@@ -1,120 +1,143 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { LiquidMetal } from "@/components/ui/liquid-metal-button";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function AboutPreview() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    // Loop the video at 7.8 seconds to cut off the AI generator credit slide at the end
+    if (video.currentTime >= 7.8) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    }
+  };
 
   useEffect(() => {
-    if (!sectionRef.current) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (!triggerRef.current || !cardRef.current || !videoRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Reveal header text characters or words
+      // 1. Card Zoom & Radius Morph (scroll-linked scale & corner flattening against light canvas)
       gsap.fromTo(
-        ".about-text-reveal",
-        { opacity: 0.1, y: 15 },
+        cardRef.current,
         {
-          opacity: 1,
+          scale: 0.9,
+          y: 120,
+          opacity: 0.2,
+          borderRadius: "96px",
+        },
+        {
+          scale: 1,
           y: 0,
-          stagger: 0.05,
-          duration: 1.2,
+          opacity: 1,
+          borderRadius: "24px",
           scrollTrigger: {
-            trigger: ".about-text-trigger",
-            start: "top 80%",
-            end: "bottom 60%",
+            trigger: cardRef.current,
+            start: "top bottom",
+            end: "center center",
+            scrub: 0.6,
+          },
+        }
+      );
+
+      // 2. Video Parallax Sweep (scroll-linked vertical translation of the video frame)
+      gsap.fromTo(
+        videoRef.current,
+        { yPercent: -15 },
+        {
+          yPercent: 15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: "top bottom",
+            end: "bottom top",
             scrub: true,
           },
         }
       );
 
-      // Staggered slide in for the key pillars cards
-      gsap.fromTo(
-        ".about-pillar-card",
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.15,
-          duration: 1.0,
-          scrollTrigger: {
-            trigger: ".about-pillars-trigger",
-            start: "top 85%",
-          },
-        }
+      // 3. Staggered Content Reveal Timeline (Play-once when card enters 80% of viewport)
+      const contentTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      contentTl.fromTo(
+        ".about-title-el",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" }
       );
-    }, sectionRef);
+    }, triggerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section 
+    <section
       id="about"
-      ref={sectionRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white/40 border-y border-saffron/10"
+      ref={triggerRef}
+      className="relative w-full overflow-hidden bg-white z-20 border-y border-saffron/10 py-16 md:py-24"
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          {/* Left Column: Heading & Large Text */}
-          <div className="lg:col-span-6 about-text-trigger">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Who We Are</span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground leading-[1.1] tracking-tight mb-8 font-heading">
-              <span className="about-text-reveal block">Bridging Legacy</span>
-              <span className="about-text-reveal block text-saffron">And Social Progress</span>
-            </h2>
-            <p className="text-lg text-slate-grey leading-relaxed mb-6">
-              Shree Prathishthan is a registered public charitable institution operating out of Maharashtra. Founded on principles of cultural reverence, we channel local energy during grand celebrations into continuous social action.
-            </p>
-            <p className="text-base text-slate-grey/80 leading-relaxed mb-8">
-              Whether organizing the athletic heights of Dahi Handi, the mass devotional gatherings of Ganeshotsav, or rural education checkups, we believe true culture lives through human service.
-            </p>
-          </div>
+      {/* Ambient decorative brand glows (original light theme values) */}
+      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-10" />
+      <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-20 opacity-10" />
 
-          {/* Right Column: Key Pillars Grid */}
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6 about-pillars-trigger">
-            {/* Pillar 1 */}
-            <div className="about-pillar-card glass-panel glass-panel-hover p-6 rounded-block">
-              <div className="w-12 h-12 rounded-full bg-saffron/10 flex items-center justify-center text-saffron mb-6">
-                <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-                  <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z" />
-                  <path d="M12 8v8M8 12h8" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-3 font-heading">Cultural Integrity</h3>
-              <p className="text-sm text-slate-grey leading-relaxed">
-                Hosting pristine festivals that protect the identity, music, and performance heritage of Maharashtra.
-              </p>
-            </div>
+      {/* Centered Heading Layout */}
+      <div className="max-w-[1400px] mx-auto px-6 md:px-8 flex flex-col items-center mb-12 text-center relative z-10">
+        <div className="inline-flex items-center gap-2 mb-4 bg-saffron/10 text-saffron font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full border border-saffron/20 opacity-0 about-title-el">
+          <span>संस्कृति: सेवा च परम धर्म:</span>
+        </div>
+        <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4 font-sans opacity-0 about-title-el">
+          Who We Are
+        </span>
+        <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-none opacity-0 about-title-el">
+          Bridging Legacy <br />
+          <span className="text-4xl sm:text-[4rem] md:text-[5rem] font-bold text-saffron block mt-3 text-outline-festive">
+            And Social Progress
+          </span>
+        </h2>
+      </div>
 
-            {/* Pillar 2 */}
-            <div className="about-pillar-card glass-panel glass-panel-hover p-6 rounded-block">
-              <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-6">
-                <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-3 font-heading">Healthcare Drives</h3>
-              <p className="text-sm text-slate-grey leading-relaxed">
-                Free diagnostic checks, diagnostics and blood donation camps matching regional public demands.
-              </p>
-            </div>
+      {/* Showcase Card Wrapper */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+        <div
+          ref={cardRef}
+          style={{ borderRadius: "96px" }}
+          className="relative w-full h-[24rem] sm:h-[34rem] md:h-[42rem] p-[6px] shadow-2xl overflow-hidden bg-white border border-saffron/10 opacity-0"
+        >
+          {/* Animated Liquid Metal Border Bezel */}
+          <LiquidMetal
+            colorBack="#aaaaac"
+            colorTint="#ffffff"
+            speed={0.4}
+            repetition={5}
+            distortion={0.12}
+            className="absolute inset-0 z-0"
+          />
 
-            {/* Pillar 3 */}
-            <div className="about-pillar-card glass-panel glass-panel-hover p-6 rounded-block sm:col-span-2">
-              <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 mb-6">
-                <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-3 font-heading">Rural Empowerment</h3>
-              <p className="text-sm text-slate-grey leading-relaxed">
-                Empowering backward regions with books, primary tools, health counseling, and water management.
-              </p>
-            </div>
+          {/* Inner Content Body - Full Bleed Video Container */}
+          <div className="relative z-10 h-full w-full overflow-hidden rounded-2xl bg-[#080808]">
+            <video
+              ref={videoRef}
+              src="/Create_a_cinematic_second_h.mp4?v=1"
+              autoPlay
+              loop
+              muted
+              playsInline
+              onTimeUpdate={handleTimeUpdate}
+              className="absolute inset-0 w-full h-[130%] -top-[15%] object-cover select-none pointer-events-none"
+            />
           </div>
         </div>
       </div>

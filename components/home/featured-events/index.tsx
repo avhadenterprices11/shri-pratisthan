@@ -107,7 +107,7 @@ export default function FeaturedEvents() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white z-20"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">
@@ -124,13 +124,13 @@ export default function FeaturedEvents() {
             <TiltCard
               category="Ganeshotsav"
               title="Shree Ganeshotsav"
-              description="A grand 10-day spiritual celebration merging community prayer, local music heritage, and social outreach. Beyond devotional arrangements, we lead healthcare counseling and eco-friendly Ganesha sculpture awareness."
+              description="A grand 10-day celebration merging community prayer, local music heritage, and custom decorations. Beyond devotional setups, we organize traditional street rituals and eco-friendly clay Ganesha workshops."
               colorClass="bg-amber-100 text-amber-600"
               details={[
-                "Ecological clay Ganesha sculptures",
-                "24/7 volunteer surveillance & healthcare booths",
+                "Ecological clay Ganesha sculpting",
+                "24/7 volunteer crowd management & security",
                 "Traditional Dhol Tasha musical displays",
-                "Annual blood donation campaigns"
+                "Special Gauri Ganpati decoration setups"
               ]}
               icon={
                 <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">

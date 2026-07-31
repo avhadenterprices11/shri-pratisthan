@@ -7,10 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [
-  { value: 15000, suffix: "+", label: "Consultations Provided" },
-  { value: 100, suffix: "+", label: "Festivals Organized" },
-  { value: 2500, suffix: "+", label: "Active Volunteers" },
-  { value: 12, suffix: "", label: "Adopted Villages" },
+  { value: 320, suffix: "+", label: "Troupe Performers" },
+  { value: 9, suffix: "-Layers", label: "Govinda Pyramid Target" },
+  { value: 52, suffix: "+", label: "Pandals Decorated" },
+  { value: 450, suffix: "+", label: "Active Youth Crew" },
 ];
 
 export default function CommunityImpact() {
@@ -61,31 +61,33 @@ export default function CommunityImpact() {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
-      className="py-20 px-6 md:px-12 relative overflow-hidden bg-white/40 border-y border-saffron/10"
+    <section
+      ref={sectionRef}
+      className="py-20 px-6 md:px-12 relative overflow-hidden bg-white z-20 border-y border-saffron/10"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-left max-w-4xl mb-16">
           <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Our Track Record</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
-            Social Impact in Numbers
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-tight sm:whitespace-nowrap">
+            Festive Milestones in Numbers
           </h2>
-          <p className="text-slate-grey mt-4">
-            Transparent statistics tracking our public welfare drives and festival configurations.
+          <p className="text-slate-grey mt-4 max-w-2xl">
+            Real-time statistics tracking our cultural performance records and regional celebrations.
           </p>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {STATS.map((item, index) => (
-            <div 
+            <div
               key={index}
               className="stat-box glass-panel p-6 sm:p-8 rounded-block text-center flex flex-col justify-center items-center"
             >
-              <div className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-saffron font-heading flex items-center justify-center">
+              <div className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-saffron font-heading flex items-baseline justify-center">
                 <span className="count-number" data-target={item.value}>0</span>
-                <span>{item.suffix}</span>
+                <span className={item.suffix.length > 1 ? "text-base sm:text-lg lg:text-2xl font-extrabold tracking-tight ml-1.5" : ""}>
+                  {item.suffix}
+                </span>
               </div>
               <div className="w-10 h-0.5 bg-gold my-4 rounded-full" />
               <div className="text-xs sm:text-sm font-bold text-slate-grey uppercase tracking-widest">

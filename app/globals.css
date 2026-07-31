@@ -25,6 +25,17 @@
   --radius-pill: 9999px;
   --radius-interactive: 12px;
   --radius-block: 24px;
+
+  /* Shree Prathishthan Design System Variables */
+  --color-obsidian-deep: var(--obsidian-deep);
+  --color-obsidian-card: var(--obsidian-card);
+  --color-obsidian-sheet: var(--obsidian-sheet);
+  --color-saffron-glowing: var(--saffron-glowing);
+  --color-gold-metallic: var(--gold-metallic);
+  --color-gold-glow: var(--gold-glow);
+  --color-alabaster: var(--alabaster);
+  --color-pebble: var(--pebble);
+  --color-coal: var(--coal);
 }
 
 :root {
@@ -58,6 +69,20 @@
   --font-sans: var(--font-jakarta);
   --font-heading: var(--font-syne);
   --font-mono: monospace;
+
+  /* Design System Specific Core Colors */
+  --obsidian-deep: hsl(240, 6%, 4%);      /* #0B0B0C - Primary Canvas */
+  --obsidian-card: hsl(240, 5%, 8%);      /* #121214 - Surface Level 1 */
+  --obsidian-sheet: hsl(240, 5%, 12%);    /* #1D1D20 - Surface Level 2 */
+  
+  --saffron-glowing: hsl(19, 75%, 55%);   /* #E26A36 - Brand Accent Primary */
+  --gold-metallic: hsl(45, 65%, 53%);     /* #D4AF37 - Brand Accent Secondary */
+  --gold-glow: rgba(212, 175, 55, 0.15);   /* Glowing drop-shadow */
+
+  /* Neutral Typography Colors */
+  --alabaster: hsl(0, 0%, 96%);           /* #F4F4F4 - Dominant Text */
+  --pebble: hsl(240, 3%, 65%);            /* #A1A1A5 - Subtitles / Body */
+  --coal: hsl(240, 4%, 30%);              /* #4C4C50 - Borders / Placeholders */
 }
 
 /* Premium Light Theme Glassmorphism */
@@ -100,8 +125,8 @@
 
 /* Infinite Scrolling Marquee */
 @keyframes marquee-scroll {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 .animate-marquee {
@@ -166,4 +191,25 @@
     @apply font-sans;
     scroll-behavior: auto;
   }
+}
+
+/* Lenis smooth scrolling utility styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-smooth iframe {
+  pointer-events: none;
 }

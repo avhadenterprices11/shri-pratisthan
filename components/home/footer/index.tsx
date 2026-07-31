@@ -26,7 +26,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-slate-300">
               <li><a href="#about" className="hover:text-gold transition-colors">About Us</a></li>
               <li><a href="#featured-events" className="hover:text-gold transition-colors">Festivals Spotlight</a></li>
-              <li><a href="#social-work" className="hover:text-gold transition-colors">Welfare Operations</a></li>
+              <li><a href="#social-work" className="hover:text-gold transition-colors">Festive Initiatives</a></li>
               <li><a href="#gallery" className="hover:text-gold transition-colors">Immersive Gallery</a></li>
             </ul>
           </div>
@@ -35,20 +35,20 @@ export default function Footer() {
           <div className="md:col-span-3">
             <h4 className="text-xs uppercase font-bold tracking-widest text-gold mb-6">Pillars</h4>
             <ul className="space-y-3 text-sm text-slate-300">
-              <li><a href="#social-work" className="hover:text-saffron transition-colors">Shiksha Education</a></li>
-              <li><a href="#social-work" className="hover:text-saffron transition-colors">Arogya Healthcare</a></li>
-              <li><a href="#social-work" className="hover:text-saffron transition-colors">Vasundhara Ecology</a></li>
+              <li><a href="#social-work" className="hover:text-saffron transition-colors">Naad Pathak (Dhol Tasha)</a></li>
+              <li><a href="#social-work" className="hover:text-saffron transition-colors">Govinda Pathak (Dahi Handi)</a></li>
+              <li><a href="#social-work" className="hover:text-saffron transition-colors">Kala Utsav (Eco Decor)</a></li>
               <li><a href="#volunteer" className="hover:text-saffron transition-colors">Volunteer Portal</a></li>
             </ul>
           </div>
 
           {/* Certifications / Contact Info */}
           <div className="md:col-span-2">
-            <h4 className="text-xs uppercase font-bold tracking-widest text-slate-400 mb-6">Legal</h4>
+            <h4 className="text-xs uppercase font-bold tracking-widest text-slate-400 mb-6">Info</h4>
             <ul className="space-y-3 text-sm text-slate-300">
-              <li><span>Reg: Bombay Public Trust Act</span></li>
-              <li><a href="#" className="hover:text-gold transition-colors">Annual Audit Reports</a></li>
-              <li><a href="#" className="hover:text-gold transition-colors">Transparency Index</a></li>
+              <li><span>Friends Group of Maharashtra</span></li>
+              <li><a href="#" className="hover:text-gold transition-colors">Festival Guidelines</a></li>
+              <li><a href="#" className="hover:text-gold transition-colors">Safety Standards</a></li>
             </ul>
           </div>
         </div>

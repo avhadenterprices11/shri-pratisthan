@@ -53,13 +53,13 @@ export default function VisionMission() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-saffron/5 rounded-full blur-3xl group-hover:bg-saffron/10 transition-all" />
             <div className="text-xs uppercase font-bold tracking-widest text-saffron mb-4">The Vision</div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-6 font-heading">
-              Cultural Purity, Social Equality
+              Cultural Purity, Youth Unity
             </h3>
             <p className="text-base sm:text-lg text-slate-grey leading-relaxed mb-6">
-              To build a society where Indian cultural heritage is celebrated with dynamic pride, acting as a catalyst for volunteer mobilization, disaster management, and community progress.
+              To build a close-knit group of friends where Maharashtra's traditional heritage is celebrated with dynamic pride, acting as a catalyst for local volunteer collaboration and community joy.
             </p>
             <p className="text-sm text-slate-grey/80 leading-relaxed">
-              We envision a future where no village lacks primary healthcare, every child has quality learning tools, and our traditional festivals set international benchmarks for safe, organized operations.
+              We envision a future where our friends group unites neighborhoods, fosters strong bonds of brotherhood, and our traditional street festivals set benchmarks for safe, organized, and lively operations.
             </p>
           </div>
 
@@ -68,13 +68,13 @@ export default function VisionMission() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-3xl group-hover:bg-gold/10 transition-all" />
             <div className="text-xs uppercase font-bold tracking-widest text-gold mb-4">The Mission</div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-6 font-heading">
-              Action in Service, Pride in Legacy
+              Energy in Performance, Pride in Legacy
             </h3>
             <p className="text-base sm:text-lg text-slate-grey leading-relaxed mb-6">
-              To design high-efficiency community programs focusing on local child literacy, blood donor aggregation networks, and environmental tree plantations.
+              To organize high-standard street celebrations, safe athletic events like Dahi Handi, and preserve folk music traditions through dedicated practice.
             </p>
             <p className="text-sm text-slate-grey/80 leading-relaxed">
-              We execute our mission through active youth enrollment, corporate CSR alignments, and transparent governance to guarantee that 100% of public support drives direct ground-level results.
+              We execute our mission through active youth enlistment, regular Dhol Tasha practice workshops, and coordinate decorative arts to bring vibrant festive moments directly to Maharashtra's streets.
             </p>
           </div>
         </div>

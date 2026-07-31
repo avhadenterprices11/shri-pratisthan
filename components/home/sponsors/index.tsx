@@ -1,6 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const CORPORATES = [
   "Sahyadri Foundations",
@@ -12,39 +16,90 @@ const CORPORATES = [
 ];
 
 export default function Sponsors() {
+  const marqueeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const marquee = marqueeRef.current;
+    if (!marquee) return;
+
+    // Direct GSAP infinite scroll animation from 0% to -50% (looping the duplicate set)
+    const anim = gsap.to(marquee, {
+      xPercent: -50,
+      repeat: -1,
+      duration: 25,
+      ease: "none",
+    });
+
+    // Velocity observer to scale marquee animation speed on scroll speed
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: marquee,
+        start: "top bottom",
+        end: "bottom top",
+        onUpdate: (self) => {
+          const velocity = Math.abs(self.getVelocity());
+          // Standard speed is 1x. Dynamically scales up to 4.5x during high-velocity scrolls
+          const targetScale = 1 + Math.min(velocity / 120, 3.5);
+          gsap.to(anim, { timeScale: targetScale, duration: 0.4, overwrite: "auto" });
+        },
+      },
+    });
+
+    // Decelerate smoothly back to 1x when page scrolling stops
+    const handleScrollStop = () => {
+      gsap.to(anim, { timeScale: 1, duration: 0.8, overwrite: "auto" });
+    };
+
+    window.addEventListener("scroll", handleScrollStop);
+
+    return () => {
+      anim.kill();
+      tl.kill();
+      window.removeEventListener("scroll", handleScrollStop);
+    };
+  }, []);
+
+  const LIST_ITEMS = [...CORPORATES, ...CORPORATES];
+
   return (
-    <section className="py-16 bg-white overflow-hidden border-b border-saffron/10 relative">
+    <section className="pt-12 pb-6 bg-white overflow-hidden border-b border-saffron/10 relative select-none">
+      {/* Background soft ambient halo */}
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40" />
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 mb-8 text-center">
-        <span className="text-slate-grey/60 font-bold text-[10px] uppercase tracking-widest block">Supported & Endorsed By</span>
+
+      {/* Capsule Badge Header Divider (Perfect visual visibility) */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 mb-8 flex items-center justify-between gap-6">
+        <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-saffron/20" />
+        <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-sans bg-white px-5 py-2 rounded-full border border-saffron/12 shadow-sm whitespace-nowrap">
+          Supported & Endorsed By
+        </span>
+        <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-saffron/20" />
       </div>
 
-      {/* Ticker Row */}
-      <div className="w-full flex relative overflow-hidden py-4 select-none">
-        {/* Shadow masks at edges for premium visual blend */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+      {/* Responsive Marquee Ticker Row */}
+      <div className="w-full flex relative overflow-hidden py-4">
+        {/* Edge gradient masks for seamless visual blend */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-        {/* Infinite scrolling block */}
-        <div className="animate-marquee flex gap-16 items-center">
-          {/* First loop */}
-          {CORPORATES.map((item, index) => (
-            <div 
-              key={`loop1-${index}`}
-              className="text-lg sm:text-xl font-black text-slate-grey/35 font-heading tracking-tight hover:text-saffron transition-colors"
-            >
-              {item}
-            </div>
-          ))}
-          {/* Second loop (duplicated for continuity) */}
-          {CORPORATES.map((item, index) => (
-            <div 
-              key={`loop2-${index}`}
-              className="text-lg sm:text-xl font-black text-slate-grey/35 font-heading tracking-tight hover:text-saffron transition-colors"
-            >
-              {item}
-            </div>
-          ))}
+        {/* Triple clone timeline container */}
+        <div ref={marqueeRef} className="flex gap-20 items-center whitespace-nowrap cursor-none">
+          {LIST_ITEMS.map((item, index) => {
+            const isEven = index % 2 === 0;
+
+            return (
+              <div
+                key={index}
+                className={`text-xl sm:text-2xl font-black font-heading tracking-widest uppercase transition-all duration-300 transform hover:scale-105 whitespace-nowrap ${
+                  isEven
+                    ? "text-saffron hover:text-gold"
+                    : "text-slate-grey hover:text-saffron"
+                }`}
+                data-hover="pointer"
+              >
+                {item}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,138 +1,231 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const INITIATIVES = [
+const impactCards = [
   {
-    title: "Educational Kits (Shiksha)",
-    desc: "Distributing quality notebooks, laptops, and constructs study desks in rural zones across Deforested Hills.",
-    icon: (
-      <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-      </svg>
-    ),
-    color: "bg-orange-100 text-orange-600",
-    metrics: "2,200+ Students Supported",
+    id: 0,
+    metric: "250+",
+    title: "Troupe Drummers",
+    description:
+      "Daily drum practice sessions, rhythm synchronizations, and marching pathak rehearsals for Ganeshotsav street performance displays.",
+    image: "/volunteer_musician.png",
+    bg: "bg-orange-50/70 border-saffron/15",
+    text: "text-charcoal",
+    isFeature: true,
+    featureLabel: "Naad Pathak",
   },
   {
-    title: "Medical Camps (Arogya)",
-    desc: "Weekly diagnostic drives, distribution of free medicines, cancer screenings, and regular blood donation aggregation.",
-    icon: (
-      <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-      </svg>
-    ),
-    color: "bg-emerald-100 text-emerald-600",
-    metrics: "15,000+ Consultations",
+    id: 1,
+    metric: "9-Layers",
+    title: "Pyramid Target",
+    description:
+      "Conducting dynamic human pyramid balancing drills, muscle conditioning, and strict safety harness inspections for Dahi Handi teams.",
+    image: "/volunteer_safety.png",
+    bg: "bg-amber-50/70 border-gold/15",
+    text: "text-charcoal",
   },
   {
-    title: "Eco Tree Planting (Vasundhara)",
-    desc: "Mass tree planting campaigns on hills to combat erosion, alongside cleanup campaigns for local rivers.",
-    icon: (
-      <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-        <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-11-7-11S5 10.7 5 15a7 7 0 0 0 7 7z" />
-      </svg>
-    ),
-    color: "bg-green-100 text-green-600",
-    metrics: "5,000+ Saplings Planted",
+    id: 2,
+    metric: "5,000+",
+    title: "Daily Garba Crowd",
+    description:
+      "Structuring safety perimeters, coordinating dance circles, and managing acoustic setups during the 9 nights of Navratri.",
+    image: "/volunteer_coordinator.png",
+    bg: "bg-[#121214] border-coal",
+    text: "text-alabaster",
   },
   {
-    title: "Disaster Emergency Relief",
-    desc: "Delivering primary dry foods, clothes, and cleaning equipment directly to zones hit by floods and slides.",
-    icon: (
-      <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4m0 4h.01" />
-      </svg>
-    ),
-    color: "bg-red-100 text-red-600",
-    metrics: "1,200+ Families Aided",
+    id: 3,
+    metric: "50+",
+    title: "Pandals Decorated",
+    description:
+      "Workshops on sculpting clay Ganesha murtis, building hand-crafted makhar decor, and custom pandal light configurations.",
+    image: "/volunteer_eco.png",
+    bg: "bg-rose-50/70 border-red-200/15",
+    text: "text-charcoal",
   },
 ];
 
-export default function SocialWork() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scrollTrackRef = useRef<HTMLDivElement>(null);
+export default function CulturalInitiatives() {
+  const [openCard, setOpenCard] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current || !scrollTrackRef.current) return;
-
-    const ctx = gsap.context(() => {
-      // Horizontal scroll animation mapped to vertical scroll
-      const pinWidth = scrollTrackRef.current!.scrollWidth;
-      const viewWidth = window.innerWidth;
-      const amountToScroll = pinWidth - viewWidth + 48; // add buffer padding
-
-      if (amountToScroll > 0) {
-        gsap.to(scrollTrackRef.current, {
-          x: -amountToScroll,
-          ease: "none",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top top",
-            end: () => `+=${pinWidth}`,
-            pin: true,
-            scrub: 1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-      }
-    }, containerRef);
-
-    return () => ctx.revert();
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return (
-    <section 
-      ref={containerRef} 
-      className="relative bg-white overflow-hidden"
-    >
-      <div className="min-h-screen flex flex-col justify-center py-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full mb-12">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Our Operations</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading max-w-2xl">
-            Community Transformation in Action
-          </h2>
-          <p className="text-slate-grey mt-4 max-w-xl">
-            Scroll down to explore how our specialized welfare programs empower communities.
-          </p>
-        </div>
-
-        {/* Horizontal Track */}
-        <div className="flex overflow-x-hidden w-full relative">
-          <div 
-            ref={scrollTrackRef}
-            className="flex gap-8 px-6 md:px-12 pb-8 flex-nowrap"
-          >
-            {INITIATIVES.map((item, index) => (
-              <div 
-                key={index}
-                className="w-[300px] sm:w-[400px] flex-shrink-0 glass-panel p-8 rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-xl transition-all duration-300"
-              >
-                <div>
-                  <div className={`w-12 h-12 rounded-full ${item.color} flex items-center justify-center mb-6`}>
-                    {item.icon}
-                  </div>
-                  <h3 className="text-2xl font-extrabold text-foreground mb-4 font-heading">{item.title}</h3>
-                  <p className="text-base text-slate-grey leading-relaxed">{item.desc}</p>
-                </div>
-                
-                <div className="border-t border-saffron/10 pt-6 mt-6 flex justify-between items-center">
-                  <span className="text-xs uppercase font-bold tracking-widest text-saffron">{item.metrics}</span>
-                  <svg className="w-5 h-5 text-gold stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </div>
-              </div>
-            ))}
+    <section id="social-work" className="w-full bg-[#FBFBFA] py-12 sm:py-16 md:py-20 border-b border-saffron/10 select-none">
+      <div className="w-full max-w-[1320px] mx-auto px-4 sm:px-6 md:px-8">
+        
+        {/* Section Header */}
+        <div className="flex items-start justify-between gap-6 mb-8 sm:mb-10">
+          <div className="max-w-[620px] text-left">
+            <p className="text-[11px] tracking-[2px] uppercase font-bold text-saffron mb-4 font-sans">
+              Our Utsavs
+            </p>
+            <h2 className="text-[28px] sm:text-[32px] md:text-[36px] leading-[1.1] font-black text-charcoal font-heading">
+              Cultural Celebrations in Motion
+            </h2>
+            <p className="mt-4 text-[14px] sm:text-[15px] text-slate-grey leading-[1.7] max-w-[560px] font-sans">
+              Scroll or hover sideways to explore how our close friends circle coordinates high-energy festival events and traditional sports.
+            </p>
           </div>
         </div>
+
+        {/* Framer-Motion Accordion Layout */}
+        <div 
+          onMouseLeave={() => setOpenCard(null)}
+          className="flex flex-col md:flex-row md:items-end gap-3 md:gap-0"
+        >
+          {impactCards.map((card, idx) => {
+            const isOpen = openCard === idx;
+            const closedHeights = [280, 330, 390, 430];
+            const targetHeight = isMobile
+              ? (isOpen ? 440 : 100)
+              : (isOpen ? 480 : closedHeights[idx]);
+
+            return (
+              <motion.div
+                key={card.id}
+                onMouseEnter={() => setOpenCard(idx)}
+                onFocus={() => setOpenCard(idx)}
+                onClick={() => setOpenCard(idx)}
+                tabIndex={0}
+                animate={{ flex: isOpen ? 4.8 : 1.5 }}
+                transition={{ type: "spring", stiffness: 220, damping: 28 }}
+                className={`${card.bg} ${card.text} relative overflow-hidden border border-saffron/10 h-[100px] md:h-auto cursor-pointer rounded-2xl md:rounded-none`}
+              >
+                <motion.div
+                  animate={{ height: targetHeight }}
+                  transition={{ type: "spring", stiffness: 260, damping: 30 }}
+                  className="h-full"
+                >
+                  {isOpen ? (
+                    <div className="h-full p-5 sm:p-6 md:p-7 flex flex-col justify-between text-left">
+                      {card.isFeature ? (
+                        <div className="max-w-[280px]">
+                          <h3 className="text-[24px] sm:text-[28px] md:text-[32px] leading-[1.05] font-black font-heading mb-3 text-charcoal">
+                            Shree
+                            <br />
+                            Naad Pathak
+                          </h3>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const el = document.getElementById("volunteer");
+                              if (el) el.scrollIntoView({ behavior: "smooth" });
+                            }}
+                            className="inline-flex items-center gap-2 text-[11px] tracking-[1.4px] uppercase font-bold text-saffron hover:text-gold transition-colors cursor-none"
+                            data-hover="pointer"
+                          >
+                            Join the Troupe <ArrowRight size={14} />
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="max-w-[300px]">
+                          <p className="text-[10px] tracking-[1.3px] uppercase font-bold opacity-80 font-sans">
+                            Festival Initiative
+                          </p>
+                          <h3 className={`mt-1.5 text-[20px] sm:text-[24px] md:text-[26px] leading-[1.08] font-black font-heading ${
+                            card.id === 2 ? "text-white" : "text-charcoal"
+                          }`}>
+                            {card.title}
+                          </h3>
+                          <p className={`mt-2 text-[12px] sm:text-[13px] leading-[1.5] opacity-90 font-sans ${
+                            card.id === 2 ? "text-slate-300" : "text-slate-grey"
+                          }`}>
+                            {card.description}
+                          </p>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const el = document.getElementById("volunteer");
+                              if (el) el.scrollIntoView({ behavior: "smooth" });
+                            }}
+                            className={`mt-3 inline-flex items-center gap-2 text-[11px] tracking-[1.4px] uppercase font-bold transition-colors cursor-none ${
+                              card.id === 2 ? "text-gold hover:text-saffron" : "text-saffron hover:text-gold"
+                            }`}
+                            data-hover="pointer"
+                          >
+                            Participate <ArrowRight size={14} />
+                          </button>
+                        </div>
+                      )}
+
+                      <div className="mt-4 grid grid-cols-1 sm:grid-cols-[1.05fr_1fr] gap-4 flex-1 items-end">
+                        <div className="self-start sm:self-end">
+                          <p className="text-[44px] sm:text-[50px] md:text-[56px] font-black leading-none font-heading text-saffron">
+                            {card.metric}
+                          </p>
+                          <p className={`mt-2 text-[10px] sm:text-[11px] tracking-[1.2px] uppercase font-bold font-sans ${
+                            card.id === 2 ? "text-white/80" : "text-charcoal/80"
+                          }`}>
+                            {card.title}
+                          </p>
+                        </div>
+
+                        <div
+                          className={`relative w-full rounded-block overflow-hidden border border-saffron/10 ${
+                            card.isFeature
+                              ? "h-[160px] sm:h-[180px] md:h-[200px]"
+                              : "h-[120px] sm:h-[140px] md:h-[155px]"
+                          }`}
+                        >
+                          <Image
+                            src={card.image}
+                            alt={card.title}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="h-full p-4 sm:p-5 flex flex-col justify-between text-left">
+                      <div />
+                      <div>
+                        <p className="text-lg sm:text-xl lg:text-2xl font-black leading-none font-heading text-saffron whitespace-nowrap">
+                          {card.metric}
+                        </p>
+                        <p className={`mt-1.5 text-[9px] lg:text-[10px] tracking-wider uppercase font-extrabold font-sans leading-tight max-w-[90px] ${
+                          card.id === 2 ? "text-white/60" : "text-charcoal/60"
+                        }`}>
+                          {card.title}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Dynamic Troupe Volunteer Invitation Banner */}
+        <div 
+          onClick={() => {
+            const el = document.getElementById("volunteer");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="mt-12 bg-charcoal text-white rounded-full px-5 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center cursor-pointer hover:bg-charcoal/95 transition-all border border-saffron/10 group shadow-md"
+          data-hover="pointer"
+        >
+          <p className="text-[13px] sm:text-[14px] leading-[1.4] text-slate-200 font-sans">
+            Ready to drum, climb, or design? Register with our friends troupe and join the next grand celebration!
+          </p>
+          <span className="text-[11px] font-extrabold uppercase tracking-widest text-saffron flex items-center gap-1.5 whitespace-nowrap bg-white/95 px-4 py-2 rounded-full shadow-sm group-hover:text-gold transition-colors">
+            Become a Volunteer <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform duration-300" />
+          </span>
+        </div>
+
       </div>
     </section>
   );

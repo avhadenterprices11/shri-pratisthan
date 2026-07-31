@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -136,12 +137,13 @@ export default function ContactCTA() {
                 />
               </div>
 
-              <button 
-                type="submit" 
-                className="w-full bg-saffron hover:bg-saffron/90 text-white font-extrabold py-4 rounded-full text-xs uppercase tracking-widest shadow-md shadow-saffron/25 transition-all hover:scale-[1.01]"
+              <LiquidMetalButton
+                type="submit"
+                size="md"
+                className="w-full text-xs uppercase font-extrabold tracking-widest font-heading"
               >
                 Send Message
-              </button>
+              </LiquidMetalButton>
             </form>
           </div>
         </div>
