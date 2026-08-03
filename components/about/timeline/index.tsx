@@ -31,43 +31,54 @@ const HISTORY = [
 
 export default function AboutTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current || !progressBarRef.current) return;
+    if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Timeline line progress height linked to scroll
-      gsap.fromTo(
-        progressBarRef.current,
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 60%",
-            end: "bottom 80%",
-            scrub: true,
-          },
+      const rows = gsap.utils.toArray<HTMLElement>(".timeline-row");
+      
+      rows.forEach((row) => {
+        const fillYear = row.querySelector(".timeline-fill-year");
+        const detail = row.querySelector(".timeline-detail-content");
+        
+        // 1. Scrub Clip-Path Liquid Fill on scroll
+        if (fillYear) {
+          gsap.fromTo(
+            fillYear,
+            { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" },
+            {
+              clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0% 100%)",
+              ease: "none",
+              scrollTrigger: {
+                trigger: row,
+                start: "top 80%", // Starts filling as row moves up from bottom
+                end: "bottom 35%", // Completes fill near top
+                scrub: true,
+              }
+            }
+          );
         }
-      );
 
-      // Stagger nodes in
-      gsap.fromTo(
-        ".about-timeline-node",
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.2,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 70%",
-          },
+        // 2. Smooth Slide Reveal for details on enter
+        if (detail) {
+          gsap.fromTo(
+            detail,
+            { opacity: 0, x: 40 },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: row,
+                start: "top 78%",
+                toggleActions: "play none none reverse",
+              }
+            }
+          );
         }
-      );
+      });
     }, containerRef);
 
     return () => ctx.revert();
@@ -76,55 +87,85 @@ export default function AboutTimeline() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-[#FFFDF9] border-t border-saffron/10 z-10 select-none"
     >
-      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none" />
-      <div className="max-w-5xl mx-auto relative z-10">
-        <div className="text-center mb-20">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Milestones</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
-            Trust Timeline History
-          </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+      {/* Background Grid Accent */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-20 z-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(226, 106, 54, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(226, 106, 54, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: "80px 80px"
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-saffron/15 mb-16 relative z-10">
+          <div className="flex flex-col items-start gap-3">
+            <span className="text-[10px] uppercase font-black tracking-widest text-saffron">Milestones</span>
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-800 font-heading uppercase leading-none">
+              Trust History
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-light leading-relaxed">
+            Our key operational milestones, reflecting direct social welfare impacts and structured organizational expansion.
+          </p>
         </div>
 
-        {/* Timeline Core */}
-        <div className="relative">
-          {/* Vertical Progress Bar */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-border -translate-x-1/2">
-            <div 
-              ref={progressBarRef}
-              className="w-full h-full bg-gradient-to-b from-saffron to-gold origin-top scale-y-0"
-            />
-          </div>
-
-          <div className="space-y-16">
-            {HISTORY.map((item, index) => {
-              const isEven = index % 2 === 0;
-              return (
-                <div 
-                  key={item.year}
-                  className="about-timeline-node flex flex-col md:flex-row relative items-start md:items-center"
-                >
-                  {/* Saffron Bullet Indicator */}
-                  <div className="absolute left-4 md:left-1/2 w-6 h-6 rounded-full bg-white border-4 border-saffron -translate-x-1/2 z-10" />
-
-                  {/* Left block (alternating grid) */}
-                  <div className={`w-full md:w-1/2 pl-12 md:pl-0 md:px-12 ${isEven ? "md:order-1 md:text-right" : "md:order-2 md:text-left"}`}>
-                    <div className="glass-panel p-6 rounded-block">
-                      <span className="text-xs font-bold text-saffron uppercase tracking-widest">{item.year}</span>
-                      <h3 className="text-xl font-extrabold text-foreground mt-1 mb-2 font-heading">{item.title}</h3>
-                      <p className="text-sm text-slate-grey leading-relaxed">{item.desc}</p>
-                    </div>
+        {/* Timeline Rows List */}
+        <div className="max-w-5xl mx-auto flex flex-col gap-12 relative z-10">
+          {HISTORY.map((item, index) => {
+            return (
+              <div 
+                key={item.year}
+                className="timeline-row w-full flex flex-col md:flex-row md:items-center justify-between gap-8 py-8 border-b border-saffron/10 last:border-0 relative"
+              >
+                {/* Left Column: Giant Year outlines */}
+                <div className="w-full md:w-5/12 relative select-none leading-none h-[90px] sm:h-[130px] flex items-center justify-start">
+                  
+                  {/* Outline Year Background */}
+                  <div 
+                    className="text-7xl sm:text-[8rem] font-black font-heading tracking-tighter leading-none"
+                    style={{
+                      WebkitTextStroke: "2px rgba(226, 106, 54, 0.15)",
+                      color: "transparent",
+                    }}
+                  >
+                    {item.year}
                   </div>
 
-                  {/* Right empty spacer helper */}
-                  <div className={`hidden md:block w-1/2 ${isEven ? "md:order-2" : "md:order-1"}`} />
+                  {/* Saffron Filled Liquid Text layer */}
+                  <div 
+                    className="timeline-fill-year absolute left-0 text-7xl sm:text-[8rem] font-black text-saffron font-heading tracking-tighter leading-none"
+                    style={{
+                      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
+                      willChange: "clip-path",
+                    }}
+                  >
+                    {item.year}
+                  </div>
+
                 </div>
-              );
-            })}
-          </div>
+
+                {/* Right Column: Title and details */}
+                <div className="timeline-detail-content w-full md:w-7/12 flex flex-col items-start gap-3 text-left">
+                  <h3 className="text-xl sm:text-2xl font-black text-slate-800 uppercase tracking-tight font-heading">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-grey leading-relaxed font-sans font-light">
+                    {item.desc}
+                  </p>
+                </div>
+
+              </div>
+            );
+          })}
         </div>
+
       </div>
     </section>
   );

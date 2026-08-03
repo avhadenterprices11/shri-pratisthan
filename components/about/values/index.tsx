@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,64 +12,45 @@ const VALUES = [
   {
     title: "Transparency (Satya)",
     desc: "We publish detailed annual audit summaries and visual metrics tracking 100% of public donations directly to active rural beneficiaries.",
-    icon: (
-      <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-        <circle cx="12" cy="12" r="10" />
-        <line x1="12" y1="16" x2="12" y2="12" />
-        <line x1="12" y1="8" x2="12.01" y2="8" />
-      </svg>
-    ),
-    color: "bg-orange-100 text-orange-600",
+    image: "/images/social-work.jpg",
   },
   {
     title: "Service (Seva)",
     desc: "Dedicated to continuous social support campaigns. Our volunteers organize medical checks, educational toolkits, and deforested hill tree planting.",
-    icon: (
-      <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-      </svg>
-    ),
-    color: "bg-emerald-100 text-emerald-600",
+    image: "/images/dahi-handi.jpg",
   },
   {
     title: "Integrity (Nishtha)",
     desc: "Operating fully independent of political networks, focusing strictly on cultural integrity and non-discriminatory humanitarian relief.",
-    icon: (
-      <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
-    color: "bg-blue-100 text-blue-600",
+    image: "/images/ganesh.jpg",
   },
   {
     title: "Unity (Ekta)",
     desc: "Structuring festivals safely to promote community integration, bridging municipal resources with remote village assistance needs.",
-    icon: (
-      <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-      </svg>
-    ),
-    color: "bg-purple-100 text-purple-600",
+    image: "/images/social-work.jpg",
   },
 ];
 
 export default function AboutValues() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [isScrolling, setIsScrolling] = useState(false);
 
+  // Scroll Entrance Reveals for list items
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".value-card",
-        { opacity: 0, y: 30 },
+        ".value-row-item",
+        { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.15,
-          duration: 0.8,
+          stagger: 0.12,
+          duration: 0.9,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 80%",
@@ -79,38 +62,143 @@ export default function AboutValues() {
     return () => ctx.revert();
   }, []);
 
+  // Cursor follow physics and scroll-hide safety (Desktop only)
+  useEffect(() => {
+    const floatingEl = document.querySelector(".floating-preview");
+    if (!floatingEl) return;
+
+    const setX = gsap.quickSetter(floatingEl, "x", "px");
+    const setY = gsap.quickSetter(floatingEl, "y", "px");
+
+    const handleMouseMove = (e: MouseEvent) => {
+      // Offset by half of card width/height to center on cursor
+      setX(e.clientX - 110);
+      setY(e.clientY - 75);
+    };
+
+    let scrollTimeout: NodeJS.Timeout;
+    const handleScroll = () => {
+      setIsScrolling(true);
+      setHoveredIdx(null);
+      gsap.to(floatingEl, { scale: 0.75, opacity: 0, duration: 0.15, overwrite: "auto" });
+
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150); // Re-enable pointer events 150ms after scroll stops
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
   return (
     <section 
-      ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
+      ref={containerRef}
+      className="relative w-full bg-[#FFFDF9] py-24 px-6 md:px-12 xl:px-24 select-none border-t border-saffron/10 z-20 overflow-hidden"
     >
-      <div className="absolute inset-0 ambient-gold-glow pointer-events-none" />
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Our Integrity</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
+      {/* Background Grid Accent */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-20 z-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(226, 106, 54, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(226, 106, 54, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: "80px 80px"
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-saffron/15 mb-16 relative z-10">
+        <div className="flex flex-col items-start gap-3">
+          <span className="text-[10px] uppercase font-black tracking-widest text-saffron">Our Philosophy</span>
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-800 font-heading uppercase leading-none">
             Our Core Values
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {VALUES.map((item, index) => (
-            <div 
-              key={index}
-              className="value-card glass-panel glass-panel-hover p-6 rounded-block flex flex-col justify-between"
-            >
-              <div>
-                <div className={`w-12 h-12 rounded-full ${item.color} flex items-center justify-center mb-6`}>
-                  {item.icon}
-                </div>
-                <h3 className="text-xl font-extrabold text-foreground mb-3 font-heading">{item.title}</h3>
-                <p className="text-sm text-slate-grey leading-relaxed">{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-light leading-relaxed">
+          We hold ourselves to strict ethical commitments, aligning cultural pride directly with transparent civic duty.
+        </p>
       </div>
+
+      {/* Interactive Spotlight Rows List */}
+      <div className={cn(
+        "max-w-7xl mx-auto flex flex-col relative z-10 transition-opacity duration-300",
+        isScrolling && "pointer-events-none"
+      )}>
+        {VALUES.map((item, idx) => {
+          const isHovered = hoveredIdx === idx;
+          const isAnyHovered = hoveredIdx !== null;
+          return (
+            <div
+              key={idx}
+              onMouseEnter={() => {
+                if (isScrolling) return;
+                setHoveredIdx(idx);
+                setActiveImage(item.image);
+                gsap.to(".floating-preview", { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.4)" });
+              }}
+              onMouseLeave={() => {
+                setHoveredIdx(null);
+                gsap.to(".floating-preview", { scale: 0.75, opacity: 0, duration: 0.2, ease: "power2.out" });
+              }}
+              className={cn(
+                "value-row-item group py-10 border-b border-saffron/15 flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-all duration-500 relative z-10 cursor-pointer",
+                isAnyHovered && !isHovered ? "opacity-30" : "opacity-100"
+              )}
+            >
+              {/* Left Column: Index & Heading */}
+              <div className="flex items-center gap-6 lg:w-5/12">
+                <span className="text-xs sm:text-sm font-bold text-saffron/50 font-sans group-hover:text-saffron transition-colors">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <h3 className="text-xl sm:text-3xl font-black text-slate-800 font-heading uppercase tracking-tight group-hover:text-saffron transition-colors">
+                  {item.title}
+                </h3>
+              </div>
+
+              {/* Right Column: Description */}
+              <p className="text-xs sm:text-sm text-slate-grey leading-relaxed lg:w-7/12 font-sans font-light transition-all duration-500 group-hover:text-slate-700">
+                {item.desc}
+              </p>
+
+              {/* Mobile Fallback: Inline Photo Frame */}
+              <div className="w-full aspect-[16/10] relative overflow-hidden rounded-[1.8rem] border border-saffron/10 shadow-md lg:hidden mt-4">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 400px"
+                />
+              </div>
+
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Floating Cursor Preview Frame (Desktop only - No CSS transitions to prevent GSAP conflict) */}
+      <div 
+        className="floating-preview pointer-events-none fixed top-0 left-0 w-[220px] h-[150px] rounded-2xl overflow-hidden shadow-2xl z-50 opacity-0 scale-75 origin-center hidden lg:block border-2 border-saffron/20 bg-white"
+        style={{ willChange: "transform" }}
+      >
+        {activeImage && (
+          <Image
+            src={activeImage}
+            alt="Preview"
+            fill
+            className="object-cover"
+            sizes="220px"
+          />
+        )}
+      </div>
+
     </section>
   );
 }

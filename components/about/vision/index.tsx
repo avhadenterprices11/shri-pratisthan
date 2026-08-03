@@ -14,15 +14,22 @@ export default function AboutVision() {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".vision-slide",
-        { opacity: 0, y: 30 },
+        ".reveal-wipe",
+        { 
+          clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
+          opacity: 0,
+          y: 20 
+        },
         {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
           opacity: 1,
           y: 0,
-          duration: 1.0,
+          stagger: 0.2,
+          duration: 1.4,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 80%",
+            start: "top 75%",
           },
         }
       );
@@ -32,30 +39,62 @@ export default function AboutVision() {
   }, []);
 
   return (
-    <section 
-      ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
+    <section
+      ref={containerRef}
+      className="relative min-h-[70vh] flex items-center py-28 px-6 md:px-12 xl:px-24 overflow-hidden bg-[#FFFDF9] border-t border-saffron/10"
     >
-      <div className="absolute inset-0 ambient-gold-glow pointer-events-none" />
-      <div className="max-w-6xl mx-auto relative z-10 vision-slide">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-          <div className="md:col-span-4">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Our Vision</span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
-              Cultural Purity & Collective Upliftment
-            </h2>
-            <div className="w-12 h-1 bg-saffron mt-4 rounded-full" />
+      {/* 1. Subtle Ambient Heritage Glow */}
+      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-5 z-0" />
+      <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-16 opacity-5 z-0" />
+
+      {/* 2. Layout Grid Lines */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-15 z-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(226, 106, 54, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(226, 106, 54, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: "60px 60px"
+        }}
+      />
+
+      {/* 3. Content Grid Layout */}
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+        
+        {/* Left Side: Tag & Header */}
+        <div className="lg:col-span-5 flex flex-col items-start text-left">
+          
+          <div className="reveal-wipe inline-flex items-center gap-2 mb-6 bg-saffron/10 text-saffron font-bold text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-full border border-saffron/20 shadow-sm backdrop-blur-md">
+            <span className="w-1.5 h-1.5 rounded-full bg-saffron animate-pulse" />
+            <span>Our Vision</span>
           </div>
 
-          <div className="md:col-span-8">
-            <p className="text-lg sm:text-xl text-slate-grey leading-relaxed mb-6 font-medium">
+          <h2 className="reveal-wipe text-4xl sm:text-6xl font-black text-slate-800 leading-[0.98] tracking-tighter uppercase font-heading">
+            Cultural Purity <br />
+            & Collective <br />
+            <span className="text-saffron">Upliftment.</span>
+          </h2>
+          <div className="reveal-wipe w-16 h-1 bg-saffron mt-6 rounded-full" />
+        </div>
+
+        {/* Right Side: High-legibility Text */}
+        <div className="lg:col-span-7 flex flex-col items-start gap-6 max-w-3xl">
+          
+          <div className="reveal-wipe overflow-hidden">
+            <p className="text-xl sm:text-2xl text-slate-800 leading-relaxed font-sans font-light tracking-tight">
               We envision a future where India's rich cultural legacy acts as a direct catalyst for civic duty, local empowerment, and educational equality.
             </p>
-            <p className="text-base text-slate-grey/80 leading-relaxed">
+          </div>
+
+          <div className="reveal-wipe overflow-hidden border-t border-saffron/15 pt-6 mt-2">
+            <p className="text-sm sm:text-base text-slate-grey leading-relaxed font-sans font-light">
               By channeling public festival coordination into continuous welfare operations, we aim to ensure that no underprivileged child lacks learning tools and no rural community is isolated from primary medical diagnostics.
             </p>
           </div>
+
         </div>
+
       </div>
     </section>
   );

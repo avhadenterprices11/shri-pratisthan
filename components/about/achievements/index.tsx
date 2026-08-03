@@ -31,20 +31,54 @@ export default function AboutAchievements() {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
+      // 1. Entrance elastic scale reveal
       gsap.fromTo(
-        ".achievement-tile",
-        { opacity: 0, scale: 0.95 },
+        ".achievement-badge-card",
+        { opacity: 0, scale: 0.85 },
         {
           opacity: 1,
           scale: 1,
           stagger: 0.15,
-          duration: 0.8,
+          duration: 1.2,
+          ease: "elastic.out(1.0, 0.75)",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 80%",
           },
         }
       );
+
+      // 2. Magnetic Dial Pull on hover (Desktop only)
+      const cards = gsap.utils.toArray<HTMLElement>(".achievement-badge-card");
+      cards.forEach((card) => {
+        const dial = card.querySelector(".achievement-badge-dial");
+
+        const handleMouseMove = (e: MouseEvent) => {
+          const rect = card.getBoundingClientRect();
+          const mouseX = e.clientX - rect.left - rect.width / 2;
+          const mouseY = e.clientY - rect.top - rect.height / 2;
+
+          // Pull emblem dial toward mouse cursor
+          if (dial) {
+            gsap.to(dial, {
+              x: mouseX * 0.18,
+              y: mouseY * 0.18,
+              duration: 0.4,
+              ease: "power2.out",
+            });
+          }
+        };
+
+        const handleMouseLeave = () => {
+          if (dial) {
+            gsap.to(dial, { x: 0, y: 0, duration: 0.6, ease: "power3.out" });
+          }
+        };
+
+        card.addEventListener("mousemove", handleMouseMove);
+        card.addEventListener("mouseleave", handleMouseLeave);
+      });
+
     }, containerRef);
 
     return () => ctx.revert();
@@ -53,36 +87,97 @@ export default function AboutAchievements() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
+      className="py-24 px-6 md:px-12 xl:px-24 bg-[#FFFDF9] border-t border-saffron/10 relative overflow-hidden select-none z-10"
     >
-      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
+      {/* Dynamic Keyframes for Badge Spin with hover speed-up transition */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes timelineBadgeSpin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow-badge {
+          animation: timelineBadgeSpin 18s linear infinite;
+          transition: animation-duration 0.6s ease;
+        }
+        .group:hover .animate-spin-slow-badge {
+          animation-duration: 7s;
+        }
+      ` }} />
+
+      {/* Background Grid Accent */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-20 z-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(226, 106, 54, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(226, 106, 54, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: "80px 80px"
+        }}
+      />
+
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Credentials</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
-            Trust Achievements & Credentials
-          </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-saffron/15 mb-16 relative z-10">
+          <div className="flex flex-col items-start gap-3">
+            <span className="text-[10px] uppercase font-black tracking-widest text-saffron">Credentials</span>
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-800 font-heading uppercase leading-none">
+              Achievements & Verifications
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-light leading-relaxed">
+            Our administrative credentials guarantee regulatory transparency and municipal clearance validation for institutional CSR partnerships.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Badge Dials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full justify-center items-start">
           {AWARDS.map((item, index) => (
             <div 
               key={index}
-              className="achievement-tile glass-panel p-8 rounded-block flex flex-col justify-between items-start hover:border-saffron/30 hover:shadow-xl transition-all duration-300 bg-white"
+              className="achievement-badge-card flex flex-col items-center text-center p-8 sm:p-10 bg-white border border-saffron/15 rounded-[3rem] shadow-xl shadow-saffron/5 hover:border-saffron/30 hover:shadow-2xl transition-all duration-500 group relative cursor-default"
             >
-              <div>
-                <div className="text-4xl mb-6">{item.badge}</div>
-                <h3 className="text-xl font-extrabold text-foreground mb-3 font-heading">{item.title}</h3>
-                <p className="text-sm text-slate-grey leading-relaxed">{item.desc}</p>
-              </div>
               
-              <div className="mt-6 text-[10px] text-saffron uppercase font-bold tracking-widest">
-                Verified Credential
+              {/* Emblem Badge Dial (Hover outer scale ripple and rotation speed-up) */}
+              <div className="achievement-badge-dial w-36 h-36 rounded-full bg-[#FFFDF9] border border-saffron/15 flex items-center justify-center relative overflow-visible mb-8 shadow-inner">
+                
+                {/* Rotating SVG Curved Label */}
+                <svg className="absolute inset-0 w-full h-full animate-spin-slow-badge opacity-50 group-hover:opacity-90 transition-opacity" viewBox="0 0 100 100">
+                  <path id={`badge-path-${index}`} d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none" />
+                  <text className="text-[6.5px] fill-saffron uppercase font-bold tracking-widest font-sans">
+                    <textPath href={`#badge-path-${index}`} startOffset="50%" textAnchor="middle">
+                      Verified Credential • Shree Prathishthan •
+                    </textPath>
+                  </text>
+                </svg>
+
+                {/* Inner Icon */}
+                <div className="text-4.5xl relative z-10 group-hover:scale-108 transition-transform duration-500">
+                  {item.badge}
+                </div>
+
               </div>
+
+              {/* Title */}
+              <h3 className="text-lg sm:text-xl font-black text-slate-800 font-heading uppercase tracking-tight mb-3 group-hover:text-saffron transition-colors duration-350">
+                {item.title}
+              </h3>
+              
+              {/* Description */}
+              <p className="text-xs sm:text-sm text-slate-grey leading-relaxed font-sans font-light max-w-xs transition-transform duration-500 translate-y-1 group-hover:translate-y-0">
+                {item.desc}
+              </p>
+
+              {/* Verified Stamp tag */}
+              <div className="mt-8 text-[9px] text-saffron uppercase font-bold tracking-widest border border-saffron/20 bg-saffron/5 px-4.5 py-1.5 rounded-full font-sans shadow-sm transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                Official Validation
+              </div>
+
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
