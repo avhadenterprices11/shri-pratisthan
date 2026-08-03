@@ -87,7 +87,7 @@ export default function AboutPreview() {
     <section
       id="about"
       ref={triggerRef}
-      className="relative w-full overflow-hidden bg-white z-20 border-y border-saffron/10 py-16 md:py-24"
+      className="relative w-full overflow-hidden bg-background z-20 py-16 md:py-24"
     >
       {/* Ambient decorative brand glows (original light theme values) */}
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-10" />

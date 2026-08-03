@@ -62,7 +62,7 @@ export default function CulturalInitiatives() {
   }, []);
 
   return (
-    <section id="social-work" className="w-full bg-[#FBFBFA] py-12 sm:py-16 md:py-20 border-b border-saffron/10 select-none">
+    <section id="social-work" className="w-full bg-background py-12 sm:py-16 md:py-20 select-none">
       <div className="w-full max-w-[1320px] mx-auto px-4 sm:px-6 md:px-8">
         
         {/* Section Header */}

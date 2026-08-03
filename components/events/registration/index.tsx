@@ -36,7 +36,7 @@ export default function EventsRegistration() {
     <section 
       ref={containerRef}
       id="register"
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none" />
       <div className="max-w-4xl mx-auto relative z-10">

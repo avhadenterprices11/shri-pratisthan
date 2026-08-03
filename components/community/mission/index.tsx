@@ -34,7 +34,7 @@ export default function CommunityMission() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
       <div className="max-w-6xl mx-auto relative z-10 mission-slide">

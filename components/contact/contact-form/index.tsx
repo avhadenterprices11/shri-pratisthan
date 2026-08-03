@@ -49,7 +49,7 @@ export default function ContactForm() {
     <section
       id="contact-form"
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white border-b border-saffron/10 scroll-mt-20"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 animate-pulse" />
       <div className="max-w-4xl mx-auto relative z-10 contact-form-reveal">

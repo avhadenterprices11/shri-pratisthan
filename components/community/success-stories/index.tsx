@@ -101,7 +101,7 @@ export default function SuccessStories() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white border-b border-saffron/10"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40" />
       <div className="max-w-5xl mx-auto relative z-10 stories-reveal">

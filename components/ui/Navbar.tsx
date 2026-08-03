@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import gsap from "gsap";
+import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -13,14 +14,42 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
-  // Scroll listener: Navbar is visible at the very top, hides completely when scrolled down
+  // Scroll listener: smart hide on scroll down, reveal on scroll up
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let isHidden = false;
+
     const handleScroll = () => {
+      // If the portal intro overlay is still active, ignore scroll events
+      const portal = document.querySelector('.portal-intro') as HTMLElement;
+      if (portal && portal.style.display !== 'none') {
+        return;
+      }
+
       const currentScrollY = window.scrollY;
       
-      if (currentScrollY > 20) {
-        setScrolled(true);
-        if (navRef.current) {
+      // If we are at the very top of the page, always show the Navbar
+      if (currentScrollY <= 50) {
+        if (isHidden) {
+          isHidden = false;
+          gsap.to(navRef.current, { 
+            y: 0, 
+            opacity: 1, 
+            duration: 0.4, 
+            ease: "power2.out" 
+          });
+        }
+        setScrolled(false);
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      // Track scroll direction (5px threshold to prevent minor noise triggering)
+      if (currentScrollY > lastScrollY + 5) {
+        // Scrolling down: hide Navbar
+        if (!isHidden) {
+          isHidden = true;
+          setScrolled(true);
           gsap.to(navRef.current, { 
             y: -120, 
             opacity: 0, 
@@ -28,9 +57,11 @@ export function Navbar() {
             ease: "power2.out" 
           });
         }
-      } else {
-        setScrolled(false);
-        if (navRef.current) {
+      } else if (currentScrollY < lastScrollY - 5) {
+        // Scrolling up: show Navbar
+        if (isHidden) {
+          isHidden = false;
+          setScrolled(false);
           gsap.to(navRef.current, { 
             y: 0, 
             opacity: 1, 
@@ -39,10 +70,43 @@ export function Navbar() {
           });
         }
       }
+
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Entrance reveal: detect when the Hero portal intro overlay finishes
+  useEffect(() => {
+    const portal = document.querySelector('.portal-intro') as HTMLElement;
+    if (!portal) {
+      // If no portal (e.g. on subpages), show Navbar immediately
+      gsap.to(navRef.current, { opacity: 1, y: 0, duration: 0.5 });
+      return;
+    }
+
+    // Check if it's already hidden (in case we mounted after it finished)
+    if (portal.style.display === 'none') {
+      gsap.to(navRef.current, { opacity: 1, y: 0, duration: 0.5 });
+      return;
+    }
+
+    const observer = new MutationObserver(() => {
+      if (portal.style.display === 'none') {
+        gsap.to(navRef.current, { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.8, 
+          ease: "power2.out" 
+        });
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(portal, { attributes: true, attributeFilter: ['style'] });
+    return () => observer.disconnect();
   }, []);
 
   // Lock body scroll when drawer is open
@@ -86,20 +150,20 @@ export function Navbar() {
     <>
       <header
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 py-6 px-6 md:px-12 bg-white/80 backdrop-blur-md transition-transform"
+        className="fixed top-0 left-0 right-0 z-50 py-6 px-6 md:px-12 bg-transparent pointer-events-none transition-transform opacity-0 -translate-y-[100px]"
       >
         <div className="max-w-[1400px] mx-auto flex justify-between items-center">
-          {/* Left: Logo (Rising Sun Visual Icon) */}
+          {/* Left: Logo (Rising Sun Visual Icon inside Floating Glass Pill) */}
           <Link 
             href="/" 
-            className="flex items-center gap-3 group" 
+            className="flex items-center gap-3 group bg-white/95 backdrop-blur-md border border-saffron/10 px-5 py-2.5 rounded-full shadow-lg pointer-events-auto hover:border-saffron/30 hover:scale-[1.02] transition-all duration-300 select-none" 
             onClick={() => setIsOpen(false)}
             data-hover="pointer"
           >
             <svg 
-              className="w-10 h-10 stroke-saffron fill-none transition-transform duration-500 group-hover:rotate-12"
+              className="w-6 h-6 stroke-saffron fill-none transition-transform duration-500 group-hover:rotate-12"
               viewBox="0 0 100 100" 
-              strokeWidth="5" 
+              strokeWidth="6" 
               strokeLinecap="round"
             >
               {/* Sunrise arches */}
@@ -111,27 +175,26 @@ export function Navbar() {
               <line x1="80" y1="70" x2="95" y2="70" />
               <path d="M5 80 L95 80" />
             </svg>
-            <span className="text-lg font-black tracking-tight text-foreground font-heading">
+            <span className="text-xs sm:text-sm font-black tracking-tight text-foreground font-heading">
               SHREE <span className="text-saffron">PRATHISHTHAN</span>
             </span>
           </Link>
 
-          {/* Right: Morphing Hamburger Toggle Button (Active on all screens) */}
+          {/* Right: Floating Dark Glassmorphic Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="group flex flex-col justify-center items-center w-10 h-10 gap-1.5 focus:outline-none z-50 relative"
+            className="group flex flex-col items-end justify-center w-14 h-10 px-4 rounded-full bg-neutral-950/95 border border-white/10 hover:border-saffron/30 transition-all duration-300 pointer-events-auto shadow-lg z-50 relative gap-1.5 focus:outline-none cursor-pointer"
             aria-label="Toggle menu"
             data-hover="pointer"
           >
-            <span className={`w-6 h-[2px] bg-foreground transition-all duration-300 ${
-              isOpen ? "rotate-45 translate-y-[8px] bg-saffron" : "group-hover:bg-saffron"
-            }`} />
-            <span className={`w-6 h-[2px] bg-foreground transition-all duration-300 ${
-              isOpen ? "opacity-0 w-0" : "group-hover:bg-saffron"
-            }`} />
-            <span className={`w-6 h-[2px] bg-foreground transition-all duration-300 ${
-              isOpen ? "-rotate-45 -translate-y-[8px] bg-saffron" : "group-hover:bg-saffron"
-            }`} />
+            <span className={cn(
+              "h-[2px] bg-white transition-all duration-300 origin-center",
+              isOpen ? "w-6 rotate-45 translate-y-[4px] bg-saffron" : "w-6 group-hover:bg-saffron"
+            )} />
+            <span className={cn(
+              "h-[2px] bg-white transition-all duration-300 origin-center",
+              isOpen ? "w-6 -rotate-45 -translate-y-[4px] bg-saffron" : "w-4 group-hover:w-6 group-hover:bg-saffron"
+            )} />
           </button>
         </div>
       </header>

@@ -124,7 +124,7 @@ export default function GalleryPreview() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background/95 backdrop-blur-xl z-20 border-y border-saffron/10 select-none"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background z-20 select-none"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">

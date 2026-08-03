@@ -1,101 +1,152 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [
-  { value: 320, suffix: "+", label: "Troupe Performers" },
-  { value: 9, suffix: "-Layers", label: "Govinda Pyramid Target" },
-  { value: 52, suffix: "+", label: "Pandals Decorated" },
-  { value: 450, suffix: "+", label: "Active Youth Crew" },
+  { 
+    id: "performers", 
+    value: 320, 
+    suffix: "+", 
+    label: "Troupe Performers", 
+    image: "/images/ganesh.jpg",
+    description: "Trained folk performers keeping traditional dhol-tasha rhythms and instruments alive." 
+  },
+  { 
+    id: "govinda", 
+    value: 9, 
+    suffix: "-Layers", 
+    label: "Govinda Pyramid Target", 
+    image: "/images/dahi-handi.jpg",
+    description: "Reflecting peak physical coordination, team courage, and safety limits in Dahi Handi." 
+  },
+  { 
+    id: "pandals", 
+    value: 52, 
+    suffix: "+", 
+    label: "Pandals Decorated", 
+    image: "/images/navratri.jpg",
+    description: "Aesthetic layouts and custom decorations spreading festive joy across major city hubs." 
+  },
+  { 
+    id: "youth", 
+    value: 450, 
+    suffix: "+", 
+    label: "Active Youth Crew", 
+    image: "/images/social-work.jpg",
+    description: "Dedicated volunteers orchestrating crowd flows, medical camps, and community drives." 
+  },
 ];
 
 export default function CommunityImpact() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Stagger stats reveal
-      gsap.fromTo(
-        ".stat-box",
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.15,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: () => window.innerWidth < 768 ? "+=850" : "+=1500",
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
         }
-      );
+      });
 
-      // Trigger count-up numbers
-      const targets = gsap.utils.toArray(".count-number");
-      targets.forEach((target: any) => {
-        const val = parseInt(target.getAttribute("data-target") || "0", 10);
-        gsap.fromTo(
-          target,
+      STATS.forEach((stat, idx) => {
+        // Slide card up
+        tl.fromTo(
+          `.stat-column-${idx}`,
+          { opacity: 0, y: 150 },
+          { opacity: 1, y: 0, duration: 1 },
+          idx === 0 ? "0" : `+=0.25`
+        );
+
+        // Count up number in sync with card slide
+        tl.fromTo(
+          `.count-number-${idx}`,
           { textContent: 0 },
-          {
-            textContent: val,
-            duration: 2.0,
-            ease: "power2.out",
-            snap: { textContent: 1 },
-            scrollTrigger: {
-              trigger: target,
-              start: "top 85%",
-            },
-          }
+          { textContent: stat.value, snap: { textContent: 1 }, duration: 1, ease: "none" },
+          "<"
         );
       });
-    }, sectionRef);
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
     <section
-      ref={sectionRef}
-      className="py-20 px-6 md:px-12 relative overflow-hidden bg-white z-20 border-y border-saffron/10"
+      ref={containerRef}
+      className="py-32 px-6 md:px-12 relative overflow-hidden bg-background z-20"
     >
-      <div className="absolute inset-0 ambient-gold-glow pointer-events-none" />
+      <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-5" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-left max-w-4xl mb-16">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Our Track Record</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-tight sm:whitespace-nowrap">
+        
+        {/* Editorial Heading Section */}
+        <div className="max-w-3xl mb-24">
+          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-3">Our Track Record</span>
+          <h2 className="text-4xl sm:text-6xl font-black text-foreground tracking-tight font-heading leading-none uppercase">
             Festive Milestones in Numbers
           </h2>
-          <p className="text-slate-grey mt-4 max-w-2xl">
-            Real-time statistics tracking our cultural performance records and regional celebrations.
-          </p>
+          <div className="w-16 h-1 bg-saffron mt-6 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Asymmetrical Grid Columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10 xl:gap-12 items-start lg:pb-12">
           {STATS.map((item, index) => (
             <div
-              key={index}
-              className="stat-box glass-panel p-6 sm:p-8 rounded-block text-center flex flex-col justify-center items-center"
+              key={item.id}
+              className={cn(
+                "stat-column group flex flex-col items-start text-left w-full transition-transform duration-500",
+                `stat-column-${index}`,
+                index % 2 === 1 ? "lg:translate-y-12" : ""
+              )}
             >
-              <div className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-saffron font-heading flex items-baseline justify-center">
-                <span className="count-number" data-target={item.value}>0</span>
-                <span className={item.suffix.length > 1 ? "text-base sm:text-lg lg:text-2xl font-extrabold tracking-tight ml-1.5" : ""}>
+              {/* Giant Metric Number */}
+              <div className="text-5xl lg:text-6xl font-black text-saffron font-heading tracking-tight leading-none flex items-baseline select-none">
+                <span className={`count-number count-number-${index}`} data-target={item.value}>0</span>
+                <span className={cn(
+                  "font-heading font-extrabold tracking-tight ml-1 text-saffron",
+                  item.suffix.length > 2 ? "text-xl lg:text-2xl" : "text-3xl lg:text-4xl"
+                )}>
                   {item.suffix}
                 </span>
               </div>
-              <div className="w-10 h-0.5 bg-gold my-4 rounded-full" />
-              <div className="text-xs sm:text-sm font-bold text-slate-grey uppercase tracking-widest">
+
+              {/* Title label */}
+              <span className="text-xs uppercase font-extrabold tracking-widest text-slate-800 mt-4 block">
                 {item.label}
+              </span>
+
+              {/* Styled Image Capsule/Frame */}
+              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden border border-saffron/10 mt-5 mb-5 shadow-md">
+                <Image
+                  src={item.image}
+                  alt={item.label}
+                  fill
+                  sizes="(max-w-768px) 100vw, 25vw"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/20 to-transparent pointer-events-none" />
               </div>
+
+              {/* Short Description */}
+              <p className="text-slate-grey text-xs md:text-sm leading-relaxed font-light pr-2">
+                {item.description}
+              </p>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

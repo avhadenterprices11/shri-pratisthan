@@ -35,7 +35,7 @@ export default function AboutStory() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">

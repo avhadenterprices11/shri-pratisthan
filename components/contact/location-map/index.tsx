@@ -48,7 +48,7 @@ export default function LocationMap() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background border-b border-saffron/10"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-saffron/5 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">

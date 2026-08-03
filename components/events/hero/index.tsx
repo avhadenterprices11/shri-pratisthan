@@ -31,7 +31,7 @@ export default function EventsHero() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[50vh] flex flex-col justify-center items-center py-24 px-6 overflow-hidden md:px-12 text-center border-b border-saffron/10"
+      className="relative min-h-[50vh] flex flex-col justify-center items-center py-24 px-6 overflow-hidden md:px-12 text-center"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none" />
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-12" />

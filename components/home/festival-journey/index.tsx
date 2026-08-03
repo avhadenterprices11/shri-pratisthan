@@ -108,7 +108,7 @@ export default function FestivalJourney() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-screen bg-white overflow-hidden flex flex-col justify-between py-12 border-y border-saffron/10 select-none"
+      className="relative w-full h-screen bg-background overflow-hidden flex flex-col justify-between py-12 select-none"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40" />
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-12 opacity-30" />

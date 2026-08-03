@@ -4,232 +4,247 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cn } from "@/lib/utils";
 
-const FESTIVAL_STAGES = [
+// Register ScrollTrigger client-side
+gsap.registerPlugin(ScrollTrigger);
+
+const SLIDES = [
   {
-    id: "ganesh",
-    title: "Ganeshotsav",
-    video: "/festival_drums.mp4",
-    color: "#E25822", // Saffron
+    title: "Ganesh\nUtsav",
+    description: "Where devotion unites thousands.",
+    image: "/images/ganesh.jpg",
+    label: "Ganesh Utsav",
   },
   {
-    id: "dahihandi",
-    title: "Dahi Handi",
-    video: "/festival_celebration.mp4",
-    color: "#D4AF37", // Gold
+    title: "Navratri",
+    description: "Nine nights of culture, dance, and celebration.",
+    image: "/images/navratri.jpg",
+    label: "Navratri",
   },
   {
-    id: "navratri",
-    title: "Navratri Garba",
-    video: "/Create_a_cinematic_second_h.mp4",
-    color: "#FF007F", // Magenta/Pink
+    title: "Dahi\nHandi",
+    description: "Strength, teamwork, and fearless spirit.",
+    image: "/images/dahi-handi.jpg",
+    label: "Dahi Handi",
   },
   {
-    id: "diwali",
-    title: "Diwali Lights",
-    video: "/about_showcase_video.mp4",
-    color: "#FF9900", // Warm Amber
-  },
-  {
-    id: "service",
-    title: "Social Welfare",
-    video: "/festival_celebration.mp4", // Re-use celebration loops
-    color: "#00A86B", // Teal/Emerald
+    title: "Social\nWork",
+    description: "Serving the community beyond every festival.",
+    image: "/images/social-work.jpg",
+    label: "Social Work",
   },
 ];
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const [activeStageIndex, setActiveStageIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    if (!containerRef.current || !viewportRef.current) return;
-
-    gsap.registerPlugin(ScrollTrigger);
+    if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Initial entrance animation
-      gsap.fromTo(
-        viewportRef.current,
-        { clipPath: "inset(0 50% 0 50%)", opacity: 0 },
-        { clipPath: "inset(0 0% 0 0%)", opacity: 1, duration: 1.4, ease: "power3.inOut" }
-      );
+      // 1. Set initial states of slides
+      const slides = gsap.utils.toArray<HTMLElement>(".slide-container");
+      const slideBgs = gsap.utils.toArray<HTMLElement>(".slide-bg");
+      const slideContents = gsap.utils.toArray<HTMLElement>(".slide-content");
 
-      // 2. ScrollTrigger timeline for pinning and cross-fading stages
-      const tl = gsap.timeline({
+      gsap.set(slides.slice(1), { opacity: 0, pointerEvents: "none" });
+      gsap.set(slideBgs.slice(1), { scale: 1.15 });
+
+      // 2. Build ScrollTrigger timeline with resting buffers (total duration = 7)
+      gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=400%", // 4 scrolls distance
+          end: "+=1800", // shortened pin depth for less scroll travel
           pin: true,
-          scrub: 1, // Smooth scrub
-          invalidateOnRefresh: true,
+          scrub: 1,
+          snap: {
+            snapTo: [0, 2.5 / 7, 4.5 / 7, 1.0],
+            duration: { min: 0.2, max: 0.5 },
+            delay: 0.05,
+            ease: "power2.inOut",
+          },
           onUpdate: (self) => {
             const progress = self.progress;
-            const time = progress * 5;
+            const time = progress * 7;
             let index = 0;
-            if (time < 0.8) index = 0;
-            else if (time < 1.8) index = 1;
-            else if (time < 2.8) index = 2;
-            else if (time < 3.8) index = 3;
-            else index = 4;
-            setActiveStageIndex(index);
+            if (time < 1.5) {
+              index = 0;
+            } else if (time < 3.5) {
+              index = 1;
+            } else if (time < 5.5) {
+              index = 2;
+            } else {
+              index = 3;
+            }
+            setActiveIndex(index);
           },
         },
-      });
+      })
+      // Transitions between slides (resting 0-1, transition 1-2, resting 2-3, transition 3-4, resting 4-5, transition 5-6, resting 6-7)
+      // Transition 0 -> 1
+      .fromTo(slides[0], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 1)
+      .fromTo(slideBgs[0], { scale: 1 }, { scale: 0.95, duration: 1 }, 1)
+      .fromTo(slides[1], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 1)
+      .fromTo(slideBgs[1], { scale: 1.15 }, { scale: 1, duration: 1 }, 1)
+      .fromTo(slideContents[0], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 1)
+      .fromTo(slideContents[1], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.2)
 
-      // Animate background video opacity transitions
-      // Slide 0 starts at opacity 1. Slides 1 to 4 start at opacity 0.
-      tl.to(".hero-slide-0", { opacity: 0, ease: "power1.inOut", duration: 0.6 }, 0.7)
-        .to(".hero-slide-1", { opacity: 1, ease: "power1.inOut", duration: 0.6 }, 0.7)
-        .to(".hero-glow-0", { opacity: 0, ease: "power1.inOut", duration: 0.6 }, 0.7)
-        .to(".hero-glow-1", { opacity: 1, ease: "power1.inOut", duration: 0.6 }, 0.7)
-        
-        .to(".hero-slide-1", { opacity: 0, ease: "power1.inOut", duration: 0.6 }, 1.7)
-        .to(".hero-slide-2", { opacity: 1, ease: "power1.inOut", duration: 0.6 }, 1.7)
-        .to(".hero-glow-1", { opacity: 0, ease: "power1.inOut", duration: 0.6 }, 1.7)
-        .to(".hero-glow-2", { opacity: 1, ease: "power1.inOut", duration: 0.6 }, 1.7)
+      // Transition 1 -> 2
+      .fromTo(slides[1], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 3)
+      .fromTo(slideBgs[1], { scale: 1 }, { scale: 0.95, duration: 1 }, 3)
+      .fromTo(slides[2], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 3)
+      .fromTo(slideBgs[2], { scale: 1.15 }, { scale: 1, duration: 1 }, 3)
+      .fromTo(slideContents[1], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 3)
+      .fromTo(slideContents[2], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 3.2)
 
-        .to(".hero-slide-2", { opacity: 0, ease: "power1.inOut", duration: 0.6 }, 2.7)
-        .to(".hero-slide-3", { opacity: 1, ease: "power1.inOut", duration: 0.6 }, 2.7)
-        .to(".hero-glow-2", { opacity: 0, ease: "power1.inOut", duration: 0.6 }, 2.7)
-        .to(".hero-glow-3", { opacity: 1, ease: "power1.inOut", duration: 0.6 }, 2.7)
+      // Transition 2 -> 3
+      .fromTo(slides[2], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 5)
+      .fromTo(slideBgs[2], { scale: 1 }, { scale: 0.95, duration: 1 }, 5)
+      .fromTo(slides[3], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 5)
+      .fromTo(slideBgs[3], { scale: 1.15 }, { scale: 1, duration: 1 }, 5)
+      .fromTo(slideContents[2], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 5)
+      .fromTo(slideContents[3], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 5.2);
 
-        .to(".hero-slide-3", { opacity: 0, ease: "power1.inOut", duration: 0.6 }, 3.7)
-        .to(".hero-slide-4", { opacity: 1, ease: "power1.inOut", duration: 0.6 }, 3.7)
-        .to(".hero-glow-3", { opacity: 0, ease: "power1.inOut", duration: 0.6 }, 3.7)
-        .to(".hero-glow-4", { opacity: 1, ease: "power1.inOut", duration: 0.6 }, 3.7);
+      // 3. Entrance Intro Animation on Mount (Typographic Portal Reveal)
+      const entryTl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // Animate text layers transitions
-      // Text 0 starts at opacity 1, y: 0. Others start at opacity 0, y: 30.
-      tl.to(".hero-text-0", { opacity: 0, y: -40, ease: "power2.inOut", duration: 0.5 }, 0.7)
-        .fromTo(".hero-text-1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, ease: "power2.inOut", duration: 0.5 }, 0.8)
+      gsap.set(".portal-text", { scale: 0.85, opacity: 0 });
 
-        .to(".hero-text-1", { opacity: 0, y: -40, ease: "power2.inOut", duration: 0.5 }, 1.7)
-        .fromTo(".hero-text-2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, ease: "power2.inOut", duration: 0.5 }, 1.8)
-
-        .to(".hero-text-2", { opacity: 0, y: -40, ease: "power2.inOut", duration: 0.5 }, 2.7)
-        .fromTo(".hero-text-3", { opacity: 0, y: 40 }, { opacity: 1, y: 0, ease: "power2.inOut", duration: 0.5 }, 2.8)
-
-        .to(".hero-text-3", { opacity: 0, y: -40, ease: "power2.inOut", duration: 0.5 }, 3.7)
-        .fromTo(".hero-text-4", { opacity: 0, y: 40 }, { opacity: 1, y: 0, ease: "power2.inOut", duration: 0.5 }, 3.8);
-
+      entryTl
+        .fromTo(
+          containerRef.current,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.5 }
+        )
+        .to(".portal-text", { scale: 1, opacity: 1, duration: 1.0 })
+        .to({}, { duration: 0.3 }) // brief pause
+        .to(".portal-text", { 
+          scale: 35, 
+          opacity: 0, 
+          duration: 1.4, 
+          ease: "power3.in" 
+        }, "+=0.1")
+        .to(".portal-intro", { 
+          opacity: 0, 
+          duration: 1.0, 
+          ease: "power2.inOut" 
+        }, "-=1.2")
+        .fromTo(
+          ".slide-bg-0",
+          { scale: 1.15, filter: "blur(4px)" },
+          { scale: 1, filter: "blur(0px)", duration: 1.4, ease: "power2.out" },
+          "-=1.2"
+        )
+        .set(".portal-intro", { display: "none" })
+        .fromTo(
+          ".slide-content-0",
+          { y: 60, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.0, ease: "power3.out" },
+          "-=0.4"
+        );
     }, containerRef);
 
-    return () => ctx.revert();
-  }, []);
+    // Refresh ScrollTrigger to ensure correct measurements
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 400);
 
-  // Play/pause videos based on the active index
-  useEffect(() => {
-    videoRefs.current.forEach((video, idx) => {
-      if (!video) return;
-      if (idx === activeStageIndex) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
-    });
-  }, [activeStageIndex]);
+    return () => {
+      ctx.revert();
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-[500vh] bg-[#0b0b0c] select-none"
+      className="relative w-full h-screen bg-obsidian-deep overflow-hidden flex flex-col justify-between select-none opacity-0"
     >
-      <div
-        ref={viewportRef}
-        style={{ clipPath: "inset(0 50% 0 50%)" }}
-        className="sticky top-0 left-0 w-full h-screen overflow-hidden flex flex-col justify-between"
-      >
-        {/* Background Visual Layers (Videos) */}
-        <div className="absolute inset-0 z-0 bg-black">
-          {FESTIVAL_STAGES.map((stage, idx) => (
+      {/* Typographic Portal Reveal Overlay */}
+      <div className="absolute inset-0 z-[60] bg-saffron flex items-center justify-center portal-intro pointer-events-none">
+        <h2 className="portal-text text-[9vw] font-black text-white select-none uppercase font-heading leading-[0.8] tracking-tighter text-center whitespace-pre-line">
+          SHREE{"\n"}PRATHISHTHAN
+        </h2>
+      </div>
+
+      {/* Background Slides */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        {SLIDES.map((slide, idx) => (
+          <div
+            key={idx}
+            className={cn(
+              "absolute inset-0 w-full h-full slide-container",
+              idx === 0 ? "slide-0" : ""
+            )}
+          >
+            {/* Slide Background Image */}
             <div
-              key={stage.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out hero-slide-${idx} overflow-hidden`}
-              style={{ opacity: idx === 0 ? 1 : 0 }}
+              className={cn(
+                "absolute inset-0 w-full h-full slide-bg",
+                idx === 0 ? "slide-bg-0" : ""
+              )}
             >
-              <video
-                ref={(el) => {
-                  videoRefs.current[idx] = el;
-                }}
-                src={stage.video}
-                loop
-                muted
-                playsInline
-                autoPlay={idx === 0}
-                className="w-full h-full object-cover"
+              <Image
+                src={slide.image}
+                alt={slide.label}
+                fill
+                priority={idx === 0}
+                className="object-cover object-center animate-pulse-slow opacity-90"
+                sizes="100vw"
               />
-            </div>
-          ))}
-        </div>
-
-        {/* Ambient Glows Layer */}
-        <div className="absolute inset-0 z-1 pointer-events-none opacity-60">
-          {FESTIVAL_STAGES.map((stage, idx) => (
-            <div
-              key={stage.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out hero-glow-${idx}`}
-              style={{
-                opacity: idx === 0 ? 1 : 0,
-                background: `radial-gradient(circle at 50% 50%, ${stage.color}40 0%, rgba(11, 11, 12, 0) 75%)`,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Lighting and Gradient Overlays for High-Contrast Readability */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0b0b0c]/80 via-transparent to-[#0b0b0c]/90 pointer-events-none" />
-        <div className="absolute inset-0 z-10 bg-black/35 pointer-events-none" />
-
-        {/* Main Content Layout Overlay */}
-        <div className="absolute inset-0 z-20 px-6 md:px-12 md:pl-20 pointer-events-none h-full w-full">
-          <div className="max-w-[1400px] mx-auto w-full h-full flex flex-col justify-between pt-24 md:pt-28 lg:pt-32 pb-8 md:pb-12 relative">
-            
-            {/* Top Heading: left-aligned */}
-            <div className="text-left w-full">
-              <h1 className="text-[44px] sm:text-[72px] lg:text-[96px] font-black text-white/95 leading-none tracking-tighter uppercase font-heading">
-                Celebrating
-              </h1>
+              <div className="absolute inset-0 bg-gradient-to-t from-obsidian-deep via-obsidian-deep/50 to-obsidian-deep/20" />
+              <div className="absolute inset-0 bg-gradient-to-r from-obsidian-deep/90 via-obsidian-deep/30 to-transparent" />
             </div>
 
-            {/* Center Heading: Dynamic transitioning stage title (left-aligned) */}
-            <div className="relative flex-grow flex items-center justify-start w-full">
-              {FESTIVAL_STAGES.map((stage, idx) => (
-                <h1
-                  key={stage.id}
-                  className={`hero-text-${idx} absolute left-0 text-left text-[44px] sm:text-[72px] md:text-[96px] lg:text-[112px] font-black leading-none tracking-tighter uppercase font-heading select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] ${
-                    idx === 0 ? "opacity-100" : "opacity-0 translate-y-[30px]"
-                  }`}
-                  style={{ color: stage.color }}
-                >
-                  {stage.title}
-                </h1>
-              ))}
-            </div>
-
-            {/* Bottom Heading: right-aligned */}
-            <div className="text-right flex justify-end w-full">
-              <h1 className="text-[44px] sm:text-[72px] lg:text-[96px] font-black text-saffron leading-none tracking-tighter uppercase font-heading">
-                Together.
-              </h1>
-            </div>
-
+            {/* Ambient glows inside active slide */}
+            <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-15" />
+            <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-40 opacity-10" />
           </div>
-        </div>
+        ))}
+      </div>
 
-        {/* Sticky Saffron Volunteer Tab on the right side of the screen */}
-        <div
-          onClick={() => {
-            const el = document.getElementById("volunteer");
-            if (el) el.scrollIntoView({ behavior: "smooth" });
-          }}
-          className="fixed right-0 top-1/2 -translate-y-1/2 bg-saffron text-white border-l border-y border-saffron/20 py-4 px-2.5 rounded-l-md font-bold uppercase text-[9px] tracking-widest [writing-mode:vertical-lr] cursor-pointer hover:bg-saffron/90 hover:text-white transition-all duration-300 shadow-lg z-50 hover:pl-3.5 select-none"
-        >
-          Become a Volunteer
+      {/* Main Slide Content Area */}
+      <div className="relative z-20 flex-grow w-full max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col justify-center text-left">
+        <div className="max-w-4xl relative w-full h-[60vh] flex items-center">
+          {SLIDES.map((slide, idx) => (
+            <div
+              key={idx}
+              className={cn(
+                "absolute left-0 w-full flex flex-col items-start gap-4 pointer-events-none",
+                activeIndex === idx ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-10"
+              )}
+            >
+              <div className={cn(
+                "slide-content flex flex-col items-start gap-3 md:gap-5",
+                idx === 0 ? "slide-content-0" : ""
+              )}>
+                {/* Big Bold Title */}
+                <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-black text-white font-heading leading-[0.9] tracking-tighter uppercase whitespace-pre-line">
+                  {slide.title}
+                </h1>
+
+                {/* Story Quote */}
+                <p className="text-lg sm:text-2xl md:text-3xl text-pebble font-light max-w-2xl leading-relaxed italic border-l-2 border-saffron/50 pl-4 py-1">
+                  "{slide.description}"
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
+      </div>
+
+      {/* Sticky Saffron Volunteer Tab on the right side of the screen */}
+      <div
+        onClick={() => {
+          const el = document.getElementById("volunteer");
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }}
+        className="fixed right-0 top-1/2 -translate-y-1/2 bg-saffron text-white border-l border-y border-saffron/20 py-4 px-2.5 rounded-l-md font-bold uppercase text-[9px] tracking-widest [writing-mode:vertical-lr] cursor-pointer hover:bg-saffron/90 hover:text-white transition-all duration-300 shadow-lg z-50 hover:pl-3.5 select-none"
+      >
+        Become a Volunteer
       </div>
     </section>
   );

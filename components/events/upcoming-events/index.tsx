@@ -54,7 +54,7 @@ export default function UpcomingEvents() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">

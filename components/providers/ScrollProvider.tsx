@@ -17,11 +17,11 @@ export function ScrollProvider({ children }: { children: React.ReactNode }) {
 
     // Instantiate Lenis engine
     const lenis = new Lenis({
-      lerp: 0.1,
+      lerp: 0.12,
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.0,
+      wheelMultiplier: 1.1,
       touchMultiplier: 1.5,
     });
 

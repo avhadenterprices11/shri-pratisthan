@@ -77,7 +77,7 @@ export default function BloodDonation() {
     <section
       id="blood-donation"
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white border-b border-saffron/10 scroll-mt-20"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">
