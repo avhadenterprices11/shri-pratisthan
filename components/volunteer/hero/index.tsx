@@ -82,9 +82,6 @@ export default function VolunteerHero() {
         
         {/* Left Column: Heading text content */}
         <div className="lg:col-span-5 space-y-6 text-left">
-          <div className="inline-flex items-center gap-2 bg-saffron/10 text-saffron font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full border border-saffron/20 backdrop-blur-sm">
-            <span>Be the Change</span>
-          </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight font-heading">
             <div className="overflow-hidden px-4 -mx-4 py-2 -my-2">

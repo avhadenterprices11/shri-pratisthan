@@ -115,7 +115,6 @@ export default function FestivalJourney() {
 
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto px-6 mt-4 relative z-20">
-        <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-2">Our History</span>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
           The Journey of Shree Prathishthan
         </h2>
@@ -167,13 +166,10 @@ export default function FestivalJourney() {
                   {/* Gradient Overlay for Readability */}
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/55 to-black/25 z-10 transition-all duration-500 group-hover:via-charcoal/60 group-hover:to-black/35" />
 
-                  {/* Header: Year & Category Tag */}
+                  {/* Header: Year */}
                   <div className="relative z-20 flex justify-between items-center p-6 sm:p-7">
                     <span className="text-2xl sm:text-3xl font-extrabold text-saffron font-heading drop-shadow-sm">
                       {item.year}
-                    </span>
-                    <span className="text-[9px] font-extrabold text-white uppercase tracking-widest bg-saffron border border-saffron/20 px-2.5 py-1 rounded shadow-md">
-                      {item.tag}
                     </span>
                   </div>
 

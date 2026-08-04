@@ -17,33 +17,49 @@ export default function TreePlantation() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
+      // Left column card 3D Scroll Flip (counter-clockwise / opposite)
       gsap.fromTo(
         ".tree-animate-left",
-        { opacity: 0, x: -50 },
+        {
+          opacity: 0,
+          rotationY: -45,
+          rotationX: -12,
+          z: -180,
+          transformOrigin: "right center",
+        },
         {
           opacity: 1,
-          x: 0,
-          duration: 1.0,
+          rotationY: 0,
+          rotationX: 0,
+          z: 0,
           scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 75%",
+            trigger: ".tree-animate-left",
+            start: "top 95%",
+            end: "top 50%",
+            scrub: 1.8, // Smooth slow catch-up lag
           },
         }
       );
 
+      // Right column text slide
       gsap.fromTo(
         ".tree-animate-right",
-        { opacity: 0, x: 50 },
+        { opacity: 0, x: 40 },
         {
           opacity: 1,
           x: 0,
-          duration: 1.0,
+          duration: 1.2,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 75%",
+            start: "top 80%",
+            toggleActions: "play none none reverse",
           },
         }
       );
@@ -56,11 +72,14 @@ export default function TreePlantation() {
     <section
       id="tree-plantation"
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20 border-t border-black/5"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div 
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+          style={{ perspective: 1200, transformStyle: "preserve-3d" }}
+        >
           
           {/* Left Column: Visual Species Selection */}
           <div className="tree-animate-left order-2 lg:order-1 glass-panel p-8 rounded-block bg-white relative">
@@ -91,15 +110,12 @@ export default function TreePlantation() {
             </div>
 
             <div className="mt-8 text-center text-xs text-slate-grey font-medium">
-              🌱 Saplings are monitored and watered under our Sunday Care initiatives.
+              Saplings are monitored and watered under our Sunday Care initiatives.
             </div>
           </div>
 
           {/* Right Column: Info & Stats */}
           <div className="tree-animate-right order-1 lg:order-2 space-y-6">
-            <span className="text-emerald-600 font-bold text-xs uppercase tracking-widest block">
-              Environmental Revival • Vasundhara
-            </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
               Restoring Eco-Balance to <br />
               <span className="text-emerald-600 text-outline-festive hover:text-emerald-600">Barren Slopes</span>

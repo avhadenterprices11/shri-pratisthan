@@ -81,7 +81,6 @@ export default function AboutMission() {
         {/* Top title header */}
         <div className="mission-reveal flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-saffron/15">
           <div className="flex flex-col items-start gap-3">
-            <span className="text-[10px] uppercase font-black tracking-widest text-saffron">Our Strategy</span>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-800 font-heading uppercase leading-none">
               Action in Service, Pride in Legacy
             </h2>
@@ -122,11 +121,6 @@ export default function AboutMission() {
 
               {/* Pillar Content Overlay */}
               <div className="relative z-10 flex flex-col items-start gap-4 text-left">
-                
-                {/* Accent Tag */}
-                <span className="px-3.5 py-1 bg-white/90 border border-saffron/20 rounded-full text-[9px] font-bold text-saffron uppercase tracking-widest font-sans shadow-sm">
-                  {pillar.subtitle}
-                </span>
 
                 {/* Pillar Heading */}
                 <h3 className="text-2xl sm:text-3xl font-black text-white font-heading uppercase leading-none drop-shadow-sm">

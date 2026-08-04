@@ -64,11 +64,6 @@ export default function AboutVision() {
         
         {/* Left Side: Tag & Header */}
         <div className="lg:col-span-5 flex flex-col items-start text-left">
-          
-          <div className="reveal-wipe inline-flex items-center gap-2 mb-6 bg-saffron/10 text-saffron font-bold text-[10px] uppercase tracking-widest px-4 py-1.5 rounded-full border border-saffron/20 shadow-sm backdrop-blur-md">
-            <span className="w-1.5 h-1.5 rounded-full bg-saffron animate-pulse" />
-            <span>Our Vision</span>
-          </div>
 
           <h2 className="reveal-wipe text-4xl sm:text-6xl font-black text-slate-800 leading-[0.98] tracking-tighter uppercase font-heading">
             Cultural Purity <br />

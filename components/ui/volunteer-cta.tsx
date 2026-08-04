@@ -10,7 +10,6 @@ import { cn } from "@/lib/utils";
 gsap.registerPlugin(ScrollTrigger);
 
 interface VolunteerCTAProps {
-  badge?: string;
   title?: React.ReactNode;
   description?: string;
   buttonText?: string;
@@ -19,7 +18,6 @@ interface VolunteerCTAProps {
 }
 
 export default function VolunteerCTA({
-  badge = "Volunteer Corps",
   title = (
     <>
       Join the Cultural Legacy.<br />
@@ -97,10 +95,7 @@ export default function VolunteerCTA({
           <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-saffron/20 pointer-events-none" />
           <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-saffron/20 pointer-events-none" />
 
-          {/* Saffron Pill Tag */}
-          <span className="px-4.5 py-1.5 rounded-full bg-saffron/5 border border-saffron/15 text-saffron text-[10px] font-bold uppercase tracking-widest block mb-5 font-sans shadow-sm">
-            {badge}
-          </span>
+
 
           {/* Massive Display Typography */}
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-800 tracking-tight font-heading leading-none uppercase max-w-4xl mb-6">

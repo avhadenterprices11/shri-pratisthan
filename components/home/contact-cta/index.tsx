@@ -43,7 +43,6 @@ export default function ContactCTA() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           {/* Left Column: Office Contacts */}
           <div className="lg:col-span-5 contact-slide-in">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Connect With Us</span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground leading-[1.1] tracking-tight mb-8 font-heading">
               Get in Touch
             </h2>

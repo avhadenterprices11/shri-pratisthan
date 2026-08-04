@@ -109,7 +109,6 @@ export default function Testimonials({
         
         {/* Section Header */}
         <div className="max-w-3xl mb-24">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-3">Community Voice</span>
           <h2 className="text-4xl sm:text-6xl font-black text-foreground tracking-tight font-heading leading-none uppercase">
             Patron & Volunteer Testimonial
           </h2>

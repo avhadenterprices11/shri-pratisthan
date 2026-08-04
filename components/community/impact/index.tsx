@@ -68,7 +68,6 @@ export default function CommunityImpact() {
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Our Track Record</span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
             Community Impact in Numbers
           </h2>

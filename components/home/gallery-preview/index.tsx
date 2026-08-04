@@ -130,9 +130,6 @@ export default function GalleryPreview() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 gap-6">
           <div className="max-w-2xl">
-            <span className="gallery-reveal-header text-saffron font-bold text-xs uppercase tracking-widest block mb-4 font-sans">
-              Media Archive
-            </span>
             <h2 className="gallery-reveal-header text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
               Moments of Legacy & Care
             </h2>

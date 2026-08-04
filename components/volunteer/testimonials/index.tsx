@@ -4,26 +4,35 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+interface TestimonialItem {
+  quote: string;
+  name: string;
+  role: string;
+  avatar: string;
+  offsetClass: string;
+}
 
-const VOLUNTEER_TESTIMONIALS = [
+const VOLUNTEER_TESTIMONIALS: TestimonialItem[] = [
   {
     quote: "Working on the Ganeshotsav logistics safety team was a massive learning experience. Coordinating queues of thousands taught me teamwork and composure under pressure.",
     name: "Swapnil Mehta",
     role: "Management Student",
-    avatar: "🧑‍🎓",
+    avatar: "SM",
+    offsetClass: "md:rotate-2 md:translate-y-6 hover:rotate-0 hover:translate-y-2",
   },
   {
     quote: "Project Vasundhara allowed me to contribute to forest recovery directly. Seeing our saplings root and grow over seasons makes every Sunday climb completely worth it.",
     name: "Priya Deshpande",
     role: "Environmental Volunteer",
-    avatar: "👩‍🌾",
+    avatar: "PD",
+    offsetClass: "md:-rotate-2 md:-translate-y-2 hover:rotate-0 hover:-translate-y-6",
   },
   {
     quote: "The operations setup is highly organized. Every medical camp has pre-assigned tasks and resource logs, which helps volunteers deliver aid efficiently.",
     name: "Dr. Rohan Sen",
     role: "Volunteer Doctor",
-    avatar: "👨‍⚕️",
+    avatar: "RS",
+    offsetClass: "md:rotate-3 md:translate-y-10 hover:rotate-0 hover:translate-y-6",
   },
 ];
 
@@ -31,17 +40,27 @@ export default function VolunteerTestimonials() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
+      // Apply 3D perspective to parent grid
+      gsap.set(".perspective-grid", { perspective: 1200 });
+
+      // Staggered 3D rotation slide up
       gsap.fromTo(
         ".testimonial-card",
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 50, rotateX: 12, rotateY: -8 },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.15,
-          duration: 0.8,
+          rotateX: 0,
+          rotateY: 0,
+          stagger: 0.18,
+          duration: 0.9,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 80%",
@@ -56,43 +75,64 @@ export default function VolunteerTestimonials() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
+      className="py-28 px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
     >
-      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
+      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50 z-0 animate-pulse" />
+      
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Voices</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-20">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
             Volunteer Experiences
           </h2>
           <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* 3D Perspective Speech Cards Grid */}
+        <div className="perspective-grid grid grid-cols-1 md:grid-cols-3 gap-y-16 md:gap-x-8 lg:gap-x-12 items-start pb-12">
           {VOLUNTEER_TESTIMONIALS.map((item, index) => (
             <div
               key={index}
-              className="testimonial-card glass-panel p-8 rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-xl transition-all duration-300 bg-white"
+              className={`testimonial-card relative glass-panel pt-12 pb-8 px-8 sm:px-10 rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-2xl transition-all duration-500 bg-white min-h-[260px] cursor-default ${item.offsetClass}`}
             >
-              <div>
-                <div className="text-4xl text-saffron opacity-30 mb-4">“</div>
-                <p className="text-slate-grey leading-relaxed italic mb-6">
+              {/* Floating Avatar overlaps top edge */}
+              <div className="absolute -top-6 left-8 w-12 h-12 rounded-full border-2 border-saffron bg-white flex items-center justify-center text-xs font-bold font-heading text-saffron shadow-lg z-20">
+                {item.avatar}
+              </div>
+
+              {/* Speech bubble pointer block */}
+              <div className="absolute -bottom-3 left-10 w-6 h-6 rotate-45 border-r border-b border-black/5 bg-white z-0" />
+
+              <div className="relative z-10">
+                {/* Decorative Quote Icon */}
+                <div className="text-5xl text-saffron/15 font-serif leading-none absolute top-0 right-0 pointer-events-none select-none">
+                  “
+                </div>
+                
+                {/* Quote description */}
+                <p className="text-slate-grey leading-relaxed italic text-sm font-sans mb-6 pt-2">
                   {item.quote}
                 </p>
               </div>
 
-              <div className="flex items-center gap-4 border-t border-saffron/10 pt-6">
-                <div className="w-10 h-10 rounded-full bg-saffron/10 flex items-center justify-center text-lg shadow-sm border border-saffron/10">
-                  {item.avatar}
-                </div>
+              {/* Author Info footer */}
+              <div className="relative z-10 border-t border-saffron/10 pt-4 flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-extrabold text-foreground font-heading">{item.name}</h4>
-                  <p className="text-xs text-slate-grey">{item.role}</p>
+                  <h4 className="text-sm font-extrabold text-neutral-900 font-heading">
+                    {item.name}
+                  </h4>
+                  <p className="text-[11px] text-slate-grey uppercase tracking-wider font-semibold mt-0.5">
+                    {item.role}
+                  </p>
                 </div>
+                <span className="text-saffron text-sm">★</span>
               </div>
+
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

@@ -128,7 +128,6 @@ export default function FeaturedEvents() {
         {/* Editorial Heading Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
           <div className="max-w-2xl">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-3">Festivals Spotlight</span>
             <h2 className="text-4xl sm:text-6xl font-black text-foreground tracking-tight font-heading leading-none uppercase">
               Upcoming Cultural Celebrations
             </h2>
@@ -148,9 +147,6 @@ export default function FeaturedEvents() {
           <div className="hidden md:flex md:w-[40%] flex-col justify-between pr-10 border-r border-saffron/10 min-h-[560px] sticky top-28">
             <div className="flex flex-col gap-4">
               <div>
-                <span className="text-saffron font-bold text-xs uppercase tracking-widest block">
-                  {activeEvent.category} Spotlight
-                </span>
                 <h3 className="text-3xl lg:text-4xl font-black text-foreground mt-2 font-heading uppercase leading-tight">
                   {activeEvent.title}
                 </h3>

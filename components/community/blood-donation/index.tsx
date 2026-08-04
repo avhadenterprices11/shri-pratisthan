@@ -31,33 +31,49 @@ export default function BloodDonation() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
+      // Left column text slide
       gsap.fromTo(
         ".blood-animate-left",
-        { opacity: 0, x: -50 },
+        { opacity: 0, x: -40 },
         {
           opacity: 1,
           x: 0,
-          duration: 1.0,
+          duration: 1.2,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 75%",
+            start: "top 80%",
+            toggleActions: "play none none reverse",
           },
         }
       );
 
+      // Right column card 3D Scroll Flip (clockwise)
       gsap.fromTo(
         ".blood-animate-right",
-        { opacity: 0, x: 50 },
+        {
+          opacity: 0,
+          rotationY: 45,
+          rotationX: 12,
+          z: -180,
+          transformOrigin: "left center",
+        },
         {
           opacity: 1,
-          x: 0,
-          duration: 1.0,
+          rotationY: 0,
+          rotationX: 0,
+          z: 0,
           scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 75%",
+            trigger: ".blood-animate-right",
+            start: "top 95%",
+            end: "top 50%",
+            scrub: 1.8, // Smooth slow catch-up lag
           },
         }
       );
@@ -77,16 +93,16 @@ export default function BloodDonation() {
     <section
       id="blood-donation"
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20 border-t border-black/5"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div 
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+          style={{ perspective: 1200, transformStyle: "preserve-3d" }}
+        >
           {/* Left Column: Info & Stats */}
           <div className="blood-animate-left space-y-6">
-            <span className="text-red-600 font-bold text-xs uppercase tracking-widest block">
-              Healthcare Initiative • Arogya
-            </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
               Bridging the Critical <br />
               <span className="text-red-600 text-outline-festive hover:text-red-600">Blood Bank Deficit</span>

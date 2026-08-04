@@ -3,42 +3,33 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { BookOpen, AlertTriangle, Gift } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+interface CampaignItem {
+  title: string;
+  desc: string;
+  metric: string;
+  icon: React.ReactNode;
+}
 
-const CAMPAIGNS = [
+const CAMPAIGNS: CampaignItem[] = [
   {
     title: "Educational Study Desks & Kits",
     desc: "We construct and distribute sturdy dual-benches and provide full notebook & stationary sets to remote tribal schools in Western Maharashtra.",
     metric: "2,200+ Kits Distributed",
-    icon: (
-      <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-        <path d="M12 22v-9M12 13H5v9h14v-9h-7z" />
-        <path d="M22 7H2v6h20V7z" />
-        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-      </svg>
-    ),
+    icon: <BookOpen className="w-6 h-6 text-saffron" />,
   },
   {
     title: "Emergency Flood & Disaster Relief",
     desc: "When monsoon flooding isolates local riverine villages, our quick-response teams deliver packets of dry grains, clean water, and medical kits directly.",
     metric: "1,200+ Families Supported",
-    icon: (
-      <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-      </svg>
-    ),
+    icon: <AlertTriangle className="w-6 h-6 text-saffron" />,
   },
   {
     title: "Winter Blankets & Clothing Bank",
     desc: "Collection drives aggregating warm clothing, sweaters, and blankets from urban hubs and distributing them to forest settlements before winter peaks.",
     metric: "3,500+ Blankets Donated",
-    icon: (
-      <svg className="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
-        <rect x="2" y="2" width="20" height="20" rx="2.5" />
-        <path d="M6 12h12M12 6v12" />
-      </svg>
-    ),
+    icon: <Gift className="w-6 h-6 text-saffron" />,
   },
 ];
 
@@ -46,9 +37,20 @@ export default function CharitySocialWork() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
     if (!containerRef.current) return;
 
+    const cards = gsap.utils.toArray(".charity-card") as HTMLElement[];
+    const rotations = [-6, 0, 6];
+    const initialX = [60, 0, -60];
+    const initialRot = [12, 0, -12];
+
+    const listeners: { card: HTMLElement; move: (e: MouseEvent) => void; leave: () => void }[] = [];
+
     const ctx = gsap.context(() => {
+      // 1. Title fade up
       gsap.fromTo(
         ".charity-title",
         { opacity: 0, y: 30 },
@@ -63,40 +65,87 @@ export default function CharitySocialWork() {
         }
       );
 
-      gsap.fromTo(
-        ".charity-card",
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.2,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 70%",
+      // 2. Fanning Cards reveal scroll triggers
+      cards.forEach((card, idx) => {
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            xPercent: initialX[idx],
+            rotation: initialRot[idx],
           },
-        }
-      );
+          {
+            opacity: 1,
+            xPercent: 0,
+            rotation: rotations[idx],
+            duration: 0.75, // Faster fan-out sweep
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+
+        // 3. Interactive 3D cursor tilt handlers
+        const onMouseMove = (e: MouseEvent) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          
+          gsap.to(card, {
+            rotationY: x * 0.06,
+            rotationX: -y * 0.06,
+            rotation: 0, // straighten slightly on hover
+            scale: 1.05,
+            transformPerspective: 1000,
+            duration: 0.3,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
+        };
+
+        const onMouseLeave = () => {
+          gsap.to(card, {
+            rotationY: 0,
+            rotationX: 0,
+            rotation: rotations[idx], // restore fanning angle
+            scale: 1,
+            duration: 0.5,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
+        };
+
+        card.addEventListener("mousemove", onMouseMove);
+        card.addEventListener("mouseleave", onMouseLeave);
+        listeners.push({ card, move: onMouseMove, leave: onMouseLeave });
+      });
     }, containerRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      listeners.forEach(({ card, move, leave }) => {
+        card.removeEventListener("mousemove", move);
+        card.removeEventListener("mouseleave", leave);
+      });
+    };
   }, []);
 
   return (
     <section
       id="charity-social-work"
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20 border-t border-black/5"
     >
-      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40" />
+      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 z-0" />
+      
       <div className="max-w-7xl mx-auto relative z-10">
         
+        {/* Title Block */}
         <div className="charity-title text-center max-w-2xl mx-auto mb-16">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">
-            Social Welfare • Seva
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
             Charity & Direct Relief Work
           </h2>
           <p className="text-slate-grey mt-4">
@@ -105,11 +154,15 @@ export default function CharitySocialWork() {
           <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Fanning Card Layout Wrapper */}
+        <div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          style={{ perspective: 1200, transformStyle: "preserve-3d" }}
+        >
           {CAMPAIGNS.map((item, index) => (
             <div
               key={index}
-              className="charity-card glass-panel p-8 rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-xl transition-all duration-300 bg-white"
+              className="charity-card glass-panel p-8 rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-2xl transition-all duration-300 bg-white"
             >
               <div>
                 <div className="w-12 h-12 rounded-full bg-saffron/5 flex items-center justify-center text-saffron mb-6">

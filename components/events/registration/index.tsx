@@ -39,10 +39,9 @@ export default function EventsRegistration() {
       className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none" />
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="glass-panel p-8 sm:p-12 rounded-block border border-saffron/20 bg-white reg-slide-in">
           <div className="text-center mb-10">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Registration</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight font-heading">
               Register for an Initiative
             </h2>

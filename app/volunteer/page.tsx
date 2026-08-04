@@ -11,7 +11,7 @@ import VolunteerFooter from "@/components/volunteer/footer";
 
 export default function VolunteerPage() {
   return (
-    <main className="flex flex-col w-full min-h-screen">
+    <main className="w-full min-h-screen">
       {/* 1. Hero Landing Block */}
       <VolunteerHero />
 

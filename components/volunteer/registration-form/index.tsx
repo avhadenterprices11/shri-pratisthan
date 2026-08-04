@@ -55,13 +55,10 @@ export default function VolunteerRegistrationForm() {
       className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 animate-pulse" />
-      <div className="max-w-4xl mx-auto relative z-10 form-reveal">
+      <div className="max-w-6xl mx-auto relative z-10 form-reveal">
         <div className="glass-panel p-8 sm:p-12 rounded-block bg-white border border-saffron/10 shadow-2xl">
           
           <div className="text-center max-w-xl mx-auto mb-10">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">
-              Apply Now
-            </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight font-heading">
               Volunteer Registration Form
             </h2>
@@ -73,8 +70,8 @@ export default function VolunteerRegistrationForm() {
 
           {submitted ? (
             <div className="text-center py-12 space-y-4">
-              <div className="w-16 h-16 rounded-full bg-saffron/10 text-saffron flex items-center justify-center text-3xl mx-auto border border-saffron/20">
-                ✔️
+              <div className="w-16 h-16 rounded-full bg-saffron/10 text-saffron flex items-center justify-center text-2xl font-bold font-heading mx-auto border border-saffron/20">
+                ✓
               </div>
               <h3 className="text-2xl font-extrabold text-foreground font-heading">
                 Application Received!

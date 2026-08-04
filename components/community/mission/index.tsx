@@ -4,26 +4,112 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+interface PhraseItem {
+  text: string;
+  highlight: boolean;
+}
+
+const paragraph1Phrases: PhraseItem[] = [
+  { text: "We believe that true", highlight: false },
+  { text: "societal transformation", highlight: true },
+  { text: "begins at the", highlight: false },
+  { text: "grassroots level.", highlight: true },
+  { text: "By structuring local networks,", highlight: true },
+  { text: "Shree Prathishthan bridges critical", highlight: false },
+  { text: "healthcare deficits", highlight: true },
+  { text: "and environmental challenges.", highlight: false }
+];
+
+const paragraph2Phrases: PhraseItem[] = [
+  { text: "Our community initiatives focus on immediate", highlight: false },
+  { text: "humanitarian relief,", highlight: true },
+  { text: "ecological restoration through active", highlight: false },
+  { text: "tree plantation,", highlight: true },
+  { text: "and establishing robust emergency", highlight: false },
+  { text: "volunteer registers", highlight: true },
+  { text: "to", highlight: false },
+  { text: "safeguard lives", highlight: true },
+  { text: "when crises strike.", highlight: false }
+];
 
 export default function CommunityMission() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
+      // 1. Line-by-line slide-up stagger reveal (Option 3 aspect)
       gsap.fromTo(
-        ".mission-slide",
-        { opacity: 0, y: 30 },
+        ".reveal-para-line",
+        { yPercent: 105, opacity: 0 },
         {
+          yPercent: 0,
           opacity: 1,
-          y: 0,
-          duration: 1.0,
+          stagger: 0.03,
+          duration: 0.85,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
-          },
+            trigger: ".reveal-para-line",
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          }
+        }
+      );
+
+      // 2. Highlight word color transitions on scroll scrub (Option 1 aspect)
+      gsap.utils.toArray(".highlight-word").forEach((el: unknown) => {
+        const element = el as HTMLElement;
+        gsap.fromTo(
+          element,
+          { color: "#8c9ba5" }, // Initial muted grey
+          {
+            color: "#E26A25", // Brand Saffron
+            fontWeight: "700",
+            duration: 0.5,
+            scrollTrigger: {
+              trigger: element,
+              start: "top 80%",
+              end: "top 60%",
+              scrub: true,
+            }
+          }
+        );
+      });
+
+      // 3. Heading word slide-up reveal
+      gsap.fromTo(
+        ".reveal-word",
+        { yPercent: 100, opacity: 0 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          stagger: 0.08,
+          duration: 1.0,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: ".reveal-word",
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          }
+        }
+      );
+
+      // 4. Scroll scrub scaling trigger for the saffron line divider
+      gsap.fromTo(
+        ".reveal-line-bar",
+        { scaleX: 0 },
+        {
+          scaleX: 1.0,
+          scrollTrigger: {
+            trigger: ".reveal-line-bar",
+            start: "top 95%",
+            end: "top 75%",
+            scrub: true,
+          }
         }
       );
     }, containerRef);
@@ -31,30 +117,65 @@ export default function CommunityMission() {
     return () => ctx.revert();
   }, []);
 
+  const headingWords = "Sustained Welfare, United Action".split(" ");
+
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
     >
-      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
-      <div className="max-w-6xl mx-auto relative z-10 mission-slide">
+      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 z-0" />
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-          <div className="md:col-span-8 order-2 md:order-1">
-            <p className="text-lg sm:text-xl text-slate-grey leading-relaxed mb-6 font-medium font-sans">
-              We believe that true societal transformation begins at the grassroots level. By structuring local networks, Shree Prathishthan bridges critical healthcare deficits and environmental challenges.
+          
+          {/* Paragraph Column */}
+          <div className="md:col-span-8 order-2 md:order-1 space-y-6">
+            <p className="text-lg sm:text-xl text-[#525250] leading-relaxed font-medium font-sans">
+              {paragraph1Phrases.map((phrase, idx) => (
+                <span key={idx} className="inline-block overflow-hidden py-0.5 mr-2 last:mr-0">
+                  <span
+                    className={`reveal-para-line inline-block ${
+                      phrase.highlight ? "highlight-word text-[#8c9ba5]" : ""
+                    }`}
+                  >
+                    {phrase.text}
+                  </span>
+                </span>
+              ))}
             </p>
-            <p className="text-base text-slate-grey/80 leading-relaxed font-sans">
-              Our community initiatives focus on immediate humanitarian relief, ecological restoration through active tree plantation, and establishing robust emergency volunteer registers to safeguard lives when crises strike.
+            <p className="text-base sm:text-lg text-[#525250]/80 leading-relaxed font-sans">
+              {paragraph2Phrases.map((phrase, idx) => (
+                <span key={idx} className="inline-block overflow-hidden py-0.5 mr-2 last:mr-0">
+                  <span
+                    className={`reveal-para-line inline-block ${
+                      phrase.highlight ? "highlight-word text-[#8c9ba5]" : ""
+                    }`}
+                  >
+                    {phrase.text}
+                  </span>
+                </span>
+              ))}
             </p>
           </div>
 
-          <div className="md:col-span-4 order-1 md:order-2">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Our Vision</span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
-              Sustained Welfare, United Action
+          {/* Heading Column */}
+          <div className="md:col-span-4 order-1 md:order-2 flex flex-col items-start">
+            <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">
+              Our Vision
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight flex flex-wrap gap-x-2.5">
+              {headingWords.map((word, index) => (
+                <span key={index} className="inline-block overflow-hidden py-0.5">
+                  <span className="reveal-word inline-block">
+                    {word}
+                  </span>
+                </span>
+              ))}
             </h2>
-            <div className="w-12 h-1 bg-saffron mt-4 rounded-full" />
+            <div className="reveal-line-bar w-24 h-1 bg-saffron mt-6 rounded-full origin-left" />
           </div>
+
         </div>
       </div>
     </section>

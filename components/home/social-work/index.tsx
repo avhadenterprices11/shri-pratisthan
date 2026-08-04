@@ -68,9 +68,6 @@ export default function CulturalInitiatives() {
         {/* Section Header */}
         <div className="flex items-start justify-between gap-6 mb-8 sm:mb-10">
           <div className="max-w-[620px] text-left">
-            <p className="text-[11px] tracking-[2px] uppercase font-bold text-saffron mb-4 font-sans">
-              Our Utsavs
-            </p>
             <h2 className="text-[28px] sm:text-[32px] md:text-[36px] leading-[1.1] font-black text-charcoal font-heading">
               Cultural Celebrations in Motion
             </h2>
@@ -131,10 +128,7 @@ export default function CulturalInitiatives() {
                         </div>
                       ) : (
                         <div className="max-w-[300px]">
-                          <p className="text-[10px] tracking-[1.3px] uppercase font-bold opacity-80 font-sans">
-                            Festival Initiative
-                          </p>
-                          <h3 className={`mt-1.5 text-[20px] sm:text-[24px] md:text-[26px] leading-[1.08] font-black font-heading ${
+                          <h3 className={`text-[20px] sm:text-[24px] md:text-[26px] leading-[1.08] font-black font-heading ${
                             card.id === 2 ? "text-white" : "text-charcoal"
                           }`}>
                             {card.title}

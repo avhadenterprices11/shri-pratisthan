@@ -109,7 +109,6 @@ export default function AboutCommittee() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-saffron/15 mb-16 relative z-10">
           <div className="flex flex-col items-start gap-3">
-            <span className="text-[10px] uppercase font-black tracking-widest text-saffron">Leadership</span>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-800 font-heading uppercase leading-none">
               Trust Governance Committee
             </h2>
@@ -132,8 +131,8 @@ export default function AboutCommittee() {
               </div>
 
               {/* Avatar Indicator */}
-              <div className="committee-avatar w-24 h-24 rounded-full bg-orange-50 border border-orange-200 flex items-center justify-center text-4xl shadow-md relative z-10">
-                👩‍🎨
+              <div className="committee-avatar w-24 h-24 rounded-full bg-orange-50 border border-orange-200 flex items-center justify-center text-xl font-bold font-heading text-saffron shadow-md relative z-10">
+                AC
               </div>
 
               {/* Founder Text */}
@@ -165,8 +164,8 @@ export default function AboutCommittee() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 relative z-10">
-                <div className="committee-avatar w-20 h-20 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-3xl shadow-sm">
-                  👨‍⚕️
+                <div className="committee-avatar w-20 h-20 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-lg font-bold font-heading text-emerald-600 shadow-sm">
+                  MB
                 </div>
                 <div className="flex flex-col items-start text-left max-w-sm">
                   <span className="text-[10px] font-bold text-saffron uppercase tracking-wider mb-1">Chairman & Medical Coordinator</span>
@@ -191,8 +190,8 @@ export default function AboutCommittee() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 relative z-10">
-                <div className="committee-avatar w-20 h-20 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center text-3xl shadow-sm">
-                  🧑‍💼
+                <div className="committee-avatar w-20 h-20 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center text-lg font-bold font-heading text-blue-600 shadow-sm">
+                  SS
                 </div>
                 <div className="flex flex-col items-start text-left max-w-sm">
                   <span className="text-[10px] font-bold text-saffron uppercase tracking-wider mb-1">Lead Field Logistics Organizer</span>

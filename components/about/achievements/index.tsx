@@ -10,17 +10,17 @@ const AWARDS = [
   {
     title: "100% Tax Exemption Clearances",
     desc: "Fully authorized certificate credentials matching regulatory guidelines, giving complete transparency to corporate CSR donors.",
-    badge: "🛡️",
+    badge: "80G",
   },
   {
     title: "Socio-Cultural Preservation Award",
     desc: "Recognized by regional cultural committees for maintaining ecological parameters and musical legacy guidelines in festivals.",
-    badge: "🏆",
+    badge: "CL",
   },
   {
     title: "Emergency Aid Acknowledgment",
     desc: "Awarded by municipal boards for coordinates assistance and dry food packaging deliveries in flooded areas.",
-    badge: "🎖️",
+    badge: "SR",
   },
 ];
 
@@ -121,7 +121,6 @@ export default function AboutAchievements() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-saffron/15 mb-16 relative z-10">
           <div className="flex flex-col items-start gap-3">
-            <span className="text-[10px] uppercase font-black tracking-widest text-saffron">Credentials</span>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-800 font-heading uppercase leading-none">
               Achievements & Verifications
             </h2>
@@ -153,7 +152,7 @@ export default function AboutAchievements() {
                 </svg>
 
                 {/* Inner Icon */}
-                <div className="text-4.5xl relative z-10 group-hover:scale-108 transition-transform duration-500">
+                <div className="text-2xl font-black font-heading text-saffron relative z-10 group-hover:scale-108 transition-transform duration-500">
                   {item.badge}
                 </div>
 

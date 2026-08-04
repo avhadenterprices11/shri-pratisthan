@@ -1,12 +1,16 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+interface StageItem {
+  step: string;
+  title: string;
+  desc: string;
+}
 
-const STAGES = [
+const STAGES: StageItem[] = [
   {
     step: "01",
     title: "Online Intake Form",
@@ -29,103 +33,233 @@ const STAGES = [
   },
 ];
 
+const ANGLES = [-45, -15, 15, 45]; // Crescent node angles in degrees
+
 export default function VolunteerProcess() {
+  const [activeIdx, setActiveIdx] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
+  const dialRef = useRef<HTMLDivElement>(null);
+  const detailsRef = useRef<HTMLDivElement>(null);
+  const activeIdxRef = useRef(0);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const scrollTriggerInstance = useRef<any>(null);
 
   useEffect(() => {
-    if (!containerRef.current || !progressBarRef.current) return;
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
 
-    const ctx = gsap.context(() => {
-      // Timeline line progress height linked to scroll
+    if (!containerRef.current) return;
+
+    const mm = gsap.matchMedia();
+
+    // Desktop viewports: Pinned Scroll-Scrubbed Half-Circle Dial
+    mm.add("(min-width: 768px)", () => {
+      if (!dialRef.current) return;
+
+      const trigger = ScrollTrigger.create({
+        trigger: "#processPinContainer",
+        start: "top top",
+        end: "+=150%",
+        scrub: 0.5,
+        pin: true,
+        pinSpacing: true, // Explicitly enforce layout spacer padding
+        anticipatePin: 1, // Prevent scroll jitter on pin start
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          // Map scroll progress (0 to 1) to step index (0 to 3)
+          const index = Math.min(
+            Math.floor(progress * STAGES.length),
+            STAGES.length - 1
+          );
+          if (index !== activeIdxRef.current) {
+            activeIdxRef.current = index;
+            setActiveIdx(index);
+          }
+        },
+      });
+
+      scrollTriggerInstance.current = trigger;
+
+      // Animate dial rotation manually via scroll scrub timeline
       gsap.fromTo(
-        progressBarRef.current,
-        { scaleY: 0 },
+        dialRef.current,
+        { rotation: 45 },
         {
-          scaleY: 1,
+          rotation: -45,
           ease: "none",
           scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 60%",
-            end: "bottom 80%",
-            scrub: true,
+            trigger: "#processPinContainer",
+            start: "top top",
+            end: "+=150%",
+            scrub: 0.5,
+            pinSpacing: true,
           },
         }
       );
+    });
 
-      // Stagger nodes in
+    // Mobile fallback viewports: Simple scroll reveal entrance
+    mm.add("(max-width: 767px)", () => {
       gsap.fromTo(
-        ".process-node",
+        ".process-reveal",
         { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.2,
           duration: 0.8,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 70%",
+            start: "top 80%",
           },
         }
       );
-    }, containerRef);
+    });
 
-    return () => ctx.revert();
+    // Force recalculate scroll positions after a short delay
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 250);
+
+    return () => {
+      mm.revert();
+      clearTimeout(refreshTimer);
+    };
   }, []);
 
+  // Micro fade-and-slide up animation when activeIdx switches
+  useEffect(() => {
+    if (!detailsRef.current) return;
+    
+    gsap.fromTo(
+      detailsRef.current,
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }
+    );
+  }, [activeIdx]);
+
+  const handleStepClick = (idx: number) => {
+    const isDesktop = window.innerWidth >= 768;
+    if (isDesktop && scrollTriggerInstance.current) {
+      const start = scrollTriggerInstance.current.start;
+      const end = scrollTriggerInstance.current.end;
+      // Scroll proportionally to snap to selected step offset
+      const progress = idx / (STAGES.length - 1);
+      const scrollPos = start + (end - start) * progress;
+      window.scrollTo({
+        top: scrollPos,
+        behavior: "smooth",
+      });
+    } else {
+      setActiveIdx(idx);
+    }
+  };
+
   return (
-    <section
-      ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
+    <div 
+      id="processPinContainer" 
+      ref={containerRef} 
+      className="bg-background relative w-full md:h-screen md:min-h-screen flex flex-col justify-center overflow-hidden"
     >
-      <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 animate-pulse" />
-      <div className="max-w-5xl mx-auto relative z-10">
-        <div className="text-center mb-20">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Onboarding</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
+      <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0 animate-pulse" />
+      
+      <div className="relative z-10 w-full flex flex-col justify-center py-16 md:py-0 overflow-hidden process-reveal">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12 px-6">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
             Our Onboarding Process
           </h2>
           <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
         </div>
 
-        {/* Timeline Core */}
-        <div className="relative">
-          {/* Vertical Progress Bar */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-border -translate-x-1/2">
-            <div
-              ref={progressBarRef}
-              className="w-full h-full bg-gradient-to-b from-saffron to-gold origin-top scale-y-0"
-            />
+        {/* 2-Column Dial Container */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center px-6 md:px-12 max-w-6xl mx-auto w-full">
+          
+          {/* Left Column: Radial Dial (Left-shifted half-circle) */}
+          <div className="hidden md:col-span-5 md:flex items-center justify-center relative overflow-hidden h-[340px] md:h-[380px] w-full">
+            {/* The Rotating Dial Circle (Translated left by exactly half-width to show only right half) */}
+            <div 
+              ref={dialRef}
+              className="absolute -left-[150px] lg:-left-[180px] w-[300px] h-[300px] lg:w-[360px] lg:h-[360px] rounded-full border-2 border-dashed border-saffron/20 flex items-center justify-center [--dial-radius:120px] lg:[--dial-radius:145px]"
+            >
+              {/* Crescent Step Nodes */}
+              {STAGES.map((stage, index) => {
+                const isActive = activeIdx === index;
+                const angle = ANGLES[index];
+                
+                return (
+                  <button
+                    key={stage.step}
+                    onClick={() => handleStepClick(index)}
+                    className={`absolute w-12 h-12 rounded-full border flex items-center justify-center text-sm font-extrabold font-heading shadow-md cursor-pointer transition-all duration-300 ${
+                      isActive 
+                        ? "bg-saffron text-white border-saffron scale-110 shadow-lg shadow-saffron/30 z-20" 
+                        : "bg-white text-slate-grey border-black/8 hover:border-saffron hover:text-saffron z-10"
+                    }`}
+                    style={{
+                      transform: `rotate(${angle}deg) translateX(var(--dial-radius)) rotate(${-angle}deg)`,
+                    }}
+                  >
+                    {stage.step}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Glowing active selector arrow at the apex center line */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-saffron rotate-45 rounded-sm z-30 shadow-md shadow-saffron/20" />
           </div>
 
-          <div className="space-y-16">
-            {STAGES.map((item, index) => {
-              const isEven = index % 2 === 0;
+          {/* Mobile Fallback: Horizontal step pills */}
+          <div className="flex md:hidden flex-row gap-3 overflow-x-auto pb-4 scrollbar-none w-full">
+            {STAGES.map((stage, index) => {
+              const isActive = activeIdx === index;
               return (
-                <div
-                  key={item.step}
-                  className="process-node flex flex-col md:flex-row relative items-start md:items-center"
+                <button
+                  key={stage.step}
+                  onClick={() => handleStepClick(index)}
+                  className={`px-5 py-2.5 rounded-full border text-xs font-extrabold tracking-wider uppercase shrink-0 transition-all duration-300 ${
+                    isActive 
+                      ? "bg-saffron border-saffron text-white shadow-lg" 
+                      : "bg-transparent border-black/8 text-slate-grey"
+                  }`}
                 >
-                  {/* Saffron Bullet Indicator */}
-                  <div className="absolute left-4 md:left-1/2 w-6 h-6 rounded-full bg-white border-4 border-saffron -translate-x-1/2 z-10" />
-
-                  {/* Left block (alternating grid) */}
-                  <div className={`w-full md:w-1/2 pl-12 md:pl-0 md:px-12 ${isEven ? "md:order-1 md:text-right" : "md:order-2 md:text-left"}`}>
-                    <div className="glass-panel p-6 rounded-block bg-white">
-                      <span className="text-xs font-bold text-saffron uppercase tracking-widest">Step {item.step}</span>
-                      <h3 className="text-xl font-extrabold text-foreground mt-1 mb-2 font-heading">{item.title}</h3>
-                      <p className="text-sm text-slate-grey leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-
-                  {/* Right empty spacer helper */}
-                  <div className={`hidden md:block w-1/2 ${isEven ? "md:order-2" : "md:order-1"}`} />
-                </div>
+                  Step {stage.step}
+                </button>
               );
             })}
           </div>
+
+          {/* Right Column: Display Card Panel */}
+          <div className="md:col-span-7">
+            <div className="glass-panel p-6 sm:p-8 rounded-block bg-white border border-saffron/15 shadow-2xl relative min-h-[220px] sm:min-h-[200px] flex flex-col justify-between overflow-hidden">
+              <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-20 z-0" />
+              
+              <div ref={detailsRef} className="relative z-10 text-left">
+                
+                {/* Stage Title */}
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 mb-4 font-heading">
+                  {STAGES[activeIdx].title}
+                </h3>
+                
+                {/* Description */}
+                <p className="text-slate-grey text-base sm:text-lg leading-relaxed font-sans">
+                  {STAGES[activeIdx].desc}
+                </p>
+              </div>
+
+              {/* Progress Tracker Footer */}
+              <div className="relative z-10 mt-8 pt-6 border-t border-saffron/10 flex justify-end items-center text-xs uppercase font-extrabold tracking-widest text-slate-grey font-heading">
+                <span>Scroll to Advance</span>
+              </div>
+            </div>
+          </div>
+
         </div>
+
       </div>
-    </section>
+    </div>
   );
 }

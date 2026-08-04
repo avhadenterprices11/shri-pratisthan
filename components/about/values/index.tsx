@@ -116,7 +116,6 @@ export default function AboutValues() {
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-saffron/15 mb-16 relative z-10">
         <div className="flex flex-col items-start gap-3">
-          <span className="text-[10px] uppercase font-black tracking-widest text-saffron">Our Philosophy</span>
           <h2 className="text-3xl sm:text-5xl font-black text-slate-800 font-heading uppercase leading-none">
             Our Core Values
           </h2>

@@ -5,7 +5,6 @@ import VolunteerCTA from "@/components/ui/volunteer-cta";
 export default function AboutJoinCTA() {
   return (
     <VolunteerCTA
-      badge="Be Part of the Story"
       title={
         <>
           Help Us Write the<br />

@@ -98,9 +98,6 @@ export default function AboutPreview() {
         <div className="inline-flex items-center gap-2 mb-4 bg-saffron/10 text-saffron font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full border border-saffron/20 opacity-0 about-title-el">
           <span>संस्कृति: सेवा च परम धर्म:</span>
         </div>
-        <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4 font-sans opacity-0 about-title-el">
-          Who We Are
-        </span>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-none opacity-0 about-title-el">
           Bridging Legacy <br />
           <span className="text-4xl sm:text-[4rem] md:text-[5rem] font-bold text-saffron block mt-3 text-outline-festive">

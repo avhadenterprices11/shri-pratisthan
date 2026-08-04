@@ -88,11 +88,6 @@ export default function AboutStory() {
         
         {/* Left Column: Sticky Sidebar Info & Giant Year */}
         <div className="w-full lg:w-5/12 lg:sticky lg:top-[18vh] flex flex-col items-start gap-6 z-20">
-          
-          <div className="inline-flex items-center gap-2 bg-saffron/10 text-saffron font-bold text-xs uppercase tracking-widest px-4.5 py-2 rounded-full border border-saffron/20 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-saffron animate-pulse" />
-            <span>Timeline Journey</span>
-          </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-slate-800 tracking-tighter uppercase font-heading">
             Our Roots & Evolution
@@ -145,9 +140,6 @@ export default function AboutStory() {
                   <div className="flex items-center gap-3">
                     <span className="text-xl font-bold text-saffron font-heading leading-none">
                       {step.year}
-                    </span>
-                    <span className="px-3.5 py-1 bg-saffron/5 border border-saffron/10 rounded-full text-[9px] font-bold text-saffron uppercase tracking-widest font-sans">
-                      {step.badge}
                     </span>
                   </div>
 

@@ -51,13 +51,10 @@ export default function JoinMission() {
       className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 animate-pulse" />
-      <div className="max-w-4xl mx-auto relative z-10 join-reveal">
+      <div className="max-w-5xl mx-auto relative z-10 join-reveal">
         <div className="glass-panel p-8 sm:p-12 rounded-block bg-white border border-saffron/10 shadow-2xl">
           
-          <div className="text-center max-w-xl mx-auto mb-10">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">
-              Get Involved
-            </span>
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight font-heading">
               Join Our Mission
             </h2>
@@ -69,8 +66,8 @@ export default function JoinMission() {
 
           {submitted ? (
             <div className="text-center py-12 space-y-4">
-              <div className="w-16 h-16 rounded-full bg-saffron/10 text-saffron flex items-center justify-center text-3xl mx-auto border border-saffron/20">
-                🎉
+              <div className="w-16 h-16 rounded-full bg-saffron/10 text-saffron flex items-center justify-center text-2xl font-bold font-heading mx-auto border border-saffron/20">
+                ✓
               </div>
               <h3 className="text-2xl font-extrabold text-foreground font-heading">
                 Registration Successful!

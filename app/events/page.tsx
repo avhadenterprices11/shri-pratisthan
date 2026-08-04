@@ -7,12 +7,11 @@ import EventJourney from "@/components/events/event-journey";
 import PastEvents from "@/components/events/past-events";
 import EventsHighlights from "@/components/events/highlights";
 import EventsRegistration from "@/components/events/registration";
-import EventsFAQ from "@/components/events/faq";
 import EventsFooter from "@/components/events/footer";
 
 export default function EventsPage() {
   return (
-    <main className="flex flex-col w-full min-h-screen">
+    <main className="w-full min-h-screen">
       {/* 1. Hero Landing Block */}
       <EventsHero />
 
@@ -36,9 +35,6 @@ export default function EventsPage() {
 
       {/* 8. Active Registration Sheet */}
       <EventsRegistration />
-
-      {/* 9. Accordion Questions */}
-      <EventsFAQ />
 
       {/* 10. Global Footer Map */}
       <EventsFooter />

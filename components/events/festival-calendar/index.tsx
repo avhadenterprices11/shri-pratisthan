@@ -4,115 +4,277 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+interface CalendarItem {
+  num: string;
+  month: string;
+  title: string;
+  desc: string;
+  type: string;
+  badgeClass: string;
+}
 
-const CULTURAL = [
-  { month: "March", title: "Shiv Jayanti Celebrations", desc: "Traditional processions, martial arts (Mardani Khel) displays, and history lectures celebrating Chhatrapati Shivaji Maharaj." },
-  { month: "August", title: "Dahi Handi Utsav", desc: "Athletic human pyramids celebrating Krishna Janmashtami with focus on volunteer safety coordinates." },
-  { month: "September", title: "Shree Ganeshotsav", desc: "10-day grand festival of Ganesha featuring traditional Dhol Tasha musical ensembles and environmental clay icons." },
-];
-
-const WELFARE = [
-  { month: "Monthly", title: "Arogya Blood Aggregation Drives", desc: "Recurring diagnostic counseling and emergency blood donations coordinates in partnership with local hospitals." },
-  { month: "July-Sept", title: "Vasundhara Planting Campaigns", desc: "Mass tree planting drives on deforested hill slopes during active monsoon seasons." },
-  { month: "Oct-Nov", title: "Shiksha Notebook Distribution", desc: "Constructing classroom desks and distributing school kits to underprivileged rural students." },
+const CALENDAR_ITEMS: CalendarItem[] = [
+  {
+    num: "1",
+    month: "March",
+    title: "Shiv Jayanti Celebrations",
+    desc: "Traditional processions, martial arts (Mardani Khel) displays, and history lectures celebrating Chhatrapati Shivaji Maharaj.",
+    type: "Cultural Festival",
+    badgeClass: "bg-orange-50 border-orange-200 text-orange-600",
+  },
+  {
+    num: "2",
+    month: "Monthly",
+    title: "Arogya Blood Aggregation Drives",
+    desc: "Recurring diagnostic counseling and emergency blood donations coordinates in partnership with local hospitals.",
+    type: "Social Welfare",
+    badgeClass: "bg-emerald-50 border-emerald-200 text-emerald-600",
+  },
+  {
+    num: "3",
+    month: "July-Sept",
+    title: "Vasundhara Planting Campaigns",
+    desc: "Mass tree planting drives on deforested hill slopes during active monsoon seasons.",
+    type: "Social Welfare",
+    badgeClass: "bg-emerald-50 border-emerald-200 text-emerald-600",
+  },
+  {
+    num: "4",
+    month: "August",
+    title: "Dahi Handi Utsav",
+    desc: "Athletic human pyramids celebrating Krishna Janmashtami with focus on volunteer safety coordinates.",
+    type: "Cultural Festival",
+    badgeClass: "bg-orange-50 border-orange-200 text-orange-600",
+  },
+  {
+    num: "5",
+    month: "September",
+    title: "Shree Ganeshotsav",
+    desc: "10-day grand festival of Ganesha featuring traditional Dhol Tasha musical ensembles and environmental clay icons.",
+    type: "Cultural Festival",
+    badgeClass: "bg-orange-50 border-orange-200 text-orange-600",
+  },
+  {
+    num: "6",
+    month: "Oct-Nov",
+    title: "Shiksha Notebook Distribution",
+    desc: "Constructing classroom desks and distributing school kits to underprivileged rural students.",
+    type: "Social Welfare",
+    badgeClass: "bg-emerald-50 border-emerald-200 text-emerald-600",
+  },
 ];
 
 export default function FestivalCalendar() {
-  const [activeTab, setActiveTab] = useState<"cultural" | "welfare">("cultural");
+  const [activeIdx, setActiveIdx] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
 
-    const ctx = gsap.context(() => {
+    if (!containerRef.current || !sliderRef.current) return;
+
+    const mm = gsap.matchMedia();
+
+    // Desktop viewports: Pinned Scroll-Scrubbed Horizontal Timeline with Offset centering
+    mm.add("(min-width: 768px)", () => {
+      const slider = sliderRef.current;
+      const container = containerRef.current;
+      if (!slider || !container) return;
+
+      const cardWidth = 332; // Matches md:w-[332px]
+      const gap = 32;        // Matches gap-8
+      const step = cardWidth + gap;
+
+      // Calculate translation to position the first card centered on start, and the last card centered on end
+      const W = container.clientWidth;
+      const offset = (W - cardWidth) / 2;
+
+      const startX = offset;
+      const endX = offset - (CALENDAR_ITEMS.length - 1) * step;
+
+      ScrollTrigger.create({
+        trigger: "#calendarPinContainer",
+        start: "top top",
+        end: () => `+=${Math.abs(endX - startX) * 1.25}`,
+        scrub: 0.5,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          // Calculate active index based on active horizontal translation coordinates
+          const currentX = startX + (endX - startX) * progress;
+          const index = Math.round((offset - currentX) / step);
+          const boundedIndex = Math.max(0, Math.min(index, CALENDAR_ITEMS.length - 1));
+          setActiveIdx(boundedIndex);
+        },
+      });
+
+      // Animate slider track horizontally
       gsap.fromTo(
-        ".calendar-slide-in",
+        slider,
+        { x: startX },
+        {
+          x: endX,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#calendarPinContainer",
+            start: "top top",
+            end: () => `+=${Math.abs(endX - startX) * 1.25}`,
+            scrub: 0.5,
+          },
+        }
+      );
+    });
+
+    // Mobile fallback viewports: Standard reveal entrance
+    mm.add("(max-width: 767px)", () => {
+      gsap.fromTo(
+        ".calendar-reveal",
         { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          duration: 1.0,
+          duration: 0.8,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 80%",
           },
         }
       );
-    }, containerRef);
+    });
 
-    return () => ctx.revert();
+    // Recalculate heights after layout hydration settles
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 250);
+
+    return () => {
+      mm.revert();
+      clearTimeout(refreshTimer);
+    };
   }, []);
 
-  // Quick tab fade trigger
-  useEffect(() => {
-    gsap.fromTo(
-      ".calendar-item-row",
-      { opacity: 0, y: 10 },
-      { opacity: 1, y: 0, stagger: 0.1, duration: 0.4 }
-    );
-  }, [activeTab]);
-
-  const items = activeTab === "cultural" ? CULTURAL : WELFARE;
+  const handleCardClick = (idx: number) => {
+    const isDesktop = window.innerWidth >= 768;
+    if (isDesktop) {
+      const triggers = ScrollTrigger.getAll();
+      const calendarTrigger = triggers.find(t => t.trigger?.id === "calendarPinContainer");
+      if (calendarTrigger) {
+        const start = calendarTrigger.start;
+        const end = calendarTrigger.end;
+        // The progress is proportional to card index
+        const progress = idx / (CALENDAR_ITEMS.length - 1);
+        const scrollPos = start + (end - start) * progress;
+        window.scrollTo({
+          top: scrollPos,
+          behavior: "smooth",
+        });
+      }
+    } else {
+      setActiveIdx(idx);
+      const cardElements = sliderRef.current?.children;
+      if (cardElements && cardElements[idx]) {
+        cardElements[idx].scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest",
+        });
+      }
+    }
+  };
 
   return (
-    <section 
-      ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
+    <div 
+      id="calendarPinContainer" 
+      ref={containerRef}
+      className="bg-background relative w-full md:h-screen md:min-h-screen flex flex-col justify-center overflow-hidden"
     >
-      <div className="absolute inset-0 ambient-gold-glow pointer-events-none" />
-      <div className="max-w-4xl mx-auto relative z-10 calendar-slide-in">
-        <div className="text-center mb-12">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Chronology</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
+      <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0 animate-pulse" />
+      
+      <div className="relative z-10 w-full flex flex-col justify-center py-20 md:py-0 overflow-hidden calendar-reveal">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12 px-6">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
             Yearly Calendar Schedule
           </h2>
+          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
         </div>
 
-        {/* Tab Buttons */}
-        <div className="flex justify-center gap-4 mb-12">
-          <button
-            onClick={() => setActiveTab("cultural")}
-            className={`font-extrabold text-xs uppercase tracking-widest px-6 py-3 rounded-full border transition-all ${
-              activeTab === "cultural"
-                ? "bg-saffron text-white border-saffron shadow-md"
-                : "bg-white/80 text-slate-grey border-border hover:border-saffron"
-            }`}
-          >
-            Cultural Festivals
-          </button>
-          <button
-            onClick={() => setActiveTab("welfare")}
-            className={`font-extrabold text-xs uppercase tracking-widest px-6 py-3 rounded-full border transition-all ${
-              activeTab === "welfare"
-                ? "bg-saffron text-white border-saffron shadow-md"
-                : "bg-white/80 text-slate-grey border-border hover:border-saffron"
-            }`}
-          >
-            Social Campaigns
-          </button>
+        {/* Scroll Instruction Banner */}
+        <div className="text-center mb-6 hidden md:block">
+          <span className="text-[10px] text-slate-grey/65 font-bold uppercase tracking-widest bg-black/5 px-4 py-1.5 rounded-full inline-block">
+            ↓ Scroll Down to Slide Calendar Timeline
+          </span>
         </div>
 
-        {/* Items List */}
-        <div className="space-y-6">
-          {items.map((item, index) => (
-            <div 
-              key={index}
-              className="calendar-item-row glass-panel p-6 rounded-block flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-saffron/30 hover:shadow-lg transition-all duration-300"
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-20 font-black text-lg text-saffron uppercase font-heading sm:text-xl">
-                  {item.month}
+        {/* The Scroll viewport Port */}
+        <div className="relative w-full overflow-x-auto md:overflow-x-visible pb-8 pt-4 scrollbar-none px-6 md:px-0">
+          {/* Draggable Row Track */}
+          <div 
+            ref={sliderRef}
+            className="flex gap-6 sm:gap-8 w-max md:transform md:translate-x-0 snap-x snap-mandatory px-6 md:px-0"
+          >
+            {CALENDAR_ITEMS.map((item, index) => {
+              const isActive = activeIdx === index;
+              return (
+                <div
+                  key={index}
+                  onClick={() => handleCardClick(index)}
+                  className={`w-[280px] md:w-[332px] shrink-0 glass-panel p-8 rounded-block bg-white border transition-all duration-500 min-h-[300px] flex flex-col justify-between cursor-pointer select-none snap-center ${
+                    isActive 
+                      ? "border-saffron/30 shadow-2xl scale-[1.03] opacity-100 z-10 shadow-saffron/10" 
+                      : "border-black/5 scale-95 opacity-40 hover:opacity-60 z-0"
+                  }`}
+                >
+                  <div>
+
+                    {/* Giant Month Title */}
+                    <span className="text-3xl sm:text-4xl font-extrabold font-heading text-neutral-900 block mb-2 leading-none">
+                      {item.month}
+                    </span>
+
+                    {/* Event Title */}
+                    <h3 className="text-base sm:text-lg font-extrabold text-neutral-900 font-sans mb-3 leading-snug">
+                      {item.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-xs text-slate-grey leading-relaxed font-sans select-none pointer-events-none">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  {/* Indicator stamp */}
+                  <div className="mt-6 pt-4 border-t border-saffron/10 flex justify-between items-center text-[10px] font-extrabold uppercase tracking-widest text-saffron font-heading">
+                    <span>Active Drive Location</span>
+                    <span>★</span>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-extrabold text-foreground font-heading mb-1">{item.title}</h3>
-                  <p className="text-sm text-slate-grey leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Milestone Indicator slider tracker */}
+        <div className="flex justify-center gap-1.5 mt-4 select-none">
+          {CALENDAR_ITEMS.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => handleCardClick(idx)}
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                activeIdx === idx ? "w-8 bg-saffron" : "w-2 bg-neutral-300 hover:bg-neutral-400"
+              }`}
+            />
           ))}
         </div>
+
       </div>
-    </section>
+    </div>
   );
 }
