@@ -1,10 +1,22 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+
+const IMAGES = [
+  "/gallery_ganeshotsav_aarthi.png",
+  "/gallery_dahi_handi_pyramids.png",
+  "/gallery_navratri_garba.png",
+  "/gallery_shiv_jayanti_rally.png",
+];
 
 export default function GalleryHero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Staggered curtain slide states
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [nextIdx, setNextIdx] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -25,34 +37,88 @@ export default function GalleryHero() {
       );
     }, containerRef);
 
-    return () => ctx.revert();
-  }, []);
+    // Staggered curtain cycle transition loop
+    const interval = setInterval(() => {
+      const nextIndex = (currentIdx + 1) % IMAGES.length;
+      setNextIdx(nextIndex);
+      setIsTransitioning(true);
+
+      // Transition takes 800ms + 300ms delay = 1100ms. Swap base at 1200ms
+      setTimeout(() => {
+        setCurrentIdx(nextIndex);
+        setIsTransitioning(false);
+      }, 1200);
+
+    }, 5000);
+
+    return () => {
+      ctx.revert();
+      clearInterval(interval);
+    };
+  }, [currentIdx]);
 
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[50vh] flex flex-col justify-center items-center py-24 px-6 overflow-hidden md:px-12 text-center border-b border-saffron/10"
+      className="relative min-h-[88vh] flex items-center py-28 md:py-36 px-6 md:px-12 overflow-hidden bg-black"
     >
-      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none" />
-      <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-12" />
+      {/* Base Background Image (Ken Burns Zoom) */}
+      <div className="absolute inset-0 z-0 bg-neutral-900 overflow-hidden">
+        <img 
+          src={IMAGES[currentIdx]} 
+          alt="Gallery Showcase Base" 
+          className="w-full h-full object-cover opacity-70 animate-ken-burns"
+        />
+      </div>
+
+      {/* Staggered Curtain Slide Columns Overlay */}
+      <div className="absolute inset-0 grid grid-cols-4 z-10 w-full h-full pointer-events-none overflow-hidden">
+        {[0, 1, 2, 3].map((index) => {
+          const delay = index * 100; // 100ms staggered delay
+          return (
+            <div 
+              key={index}
+              className="relative h-full overflow-hidden transition-transform ease-in-out bg-neutral-900"
+              style={{
+                transform: isTransitioning ? "translateY(0%)" : "translateY(-100%)",
+                transitionDuration: "800ms",
+                transitionDelay: `${delay}ms`
+              }}
+            >
+              {/* Offset full-width image inside the 25%-wide curtain strip */}
+              <img 
+                src={IMAGES[nextIdx]}
+                alt={`Curtain Pane ${index}`}
+                className="absolute top-0 h-full object-cover max-w-none opacity-70"
+                style={{
+                  width: "400%",
+                  left: `-${index * 100}%`
+                }}
+              />
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Cinematic dark overlay gradient mask for high contrast text */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-black/25 z-15 pointer-events-none" />
       
-      <div className="w-full max-w-4xl relative z-10">
-        <div className="inline-flex items-center gap-2 mb-4 bg-saffron/10 text-saffron font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full border border-saffron/20">
-          <span>Visual Vault</span>
+      <div className="max-w-[1600px] w-full mx-auto relative z-20">
+        {/* Left-aligned Text Overlay */}
+        <div className="max-w-3xl space-y-6 text-left">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight font-heading">
+            <div className="overflow-hidden">
+              <span className="block reveal-line">Immersive</span>
+            </div>
+            <div className="overflow-hidden">
+              <span className="block reveal-line text-saffron text-outline-festive">Media Gallery.</span>
+            </div>
+          </h1>
+
+          <p className="hero-subtitle text-base sm:text-lg text-white/85 max-w-xl leading-relaxed">
+            Explore photographic logs and looping video snippet reels of our cultural celebrations, environmental projects, and rural community health operations.
+          </p>
         </div>
-
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.05] tracking-tight mb-6 font-heading">
-          <div className="overflow-hidden">
-            <span className="block reveal-line">Immersive</span>
-          </div>
-          <div className="overflow-hidden">
-            <span className="block reveal-line text-saffron text-outline-festive">Media Gallery.</span>
-          </div>
-        </h1>
-
-        <p className="hero-subtitle text-base sm:text-lg text-slate-grey max-w-2xl mx-auto leading-relaxed">
-          Explore photographic logs and looping video snippet reels of our cultural celebrations and community health operations.
-        </p>
       </div>
     </section>
   );

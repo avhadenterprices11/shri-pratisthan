@@ -50,7 +50,7 @@ export default function ShareMemoriesCTA() {
   return (
     <section 
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white/40 border-y border-saffron/10"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-transparent"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none" />
       <div className="max-w-5xl mx-auto relative z-10 share-trigger-content">
@@ -58,7 +58,6 @@ export default function ShareMemoriesCTA() {
           <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-50" />
           
           <div className="relative z-10">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Share Your View</span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground leading-tight mb-6 font-heading">
               Have Photos from Our Events?
             </h2>

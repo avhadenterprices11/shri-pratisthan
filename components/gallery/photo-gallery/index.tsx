@@ -1,22 +1,69 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-
-interface PhotoProps {
-  activeCategory: string;
-}
+import Link from "next/link";
+import GalleryFilters from "../gallery-filters";
 
 const PHOTOS = [
-  { title: "Ganeshotsav Evening Arati", category: "festival", bgClass: "bg-amber-100", emoji: "🕉️" },
-  { title: "Village Diagnostics Consulting Desk", category: "healthcare", bgClass: "bg-emerald-100", emoji: "🩺" },
-  { title: "Desktop Supplies Distribution", category: "education", bgClass: "bg-orange-100", emoji: "📚" },
-  { title: "Traditional Drum Performers (Dhol)", category: "festival", bgClass: "bg-orange-50", emoji: "🥁" },
-  { title: "Rural Clean Water Filter Support", category: "education", bgClass: "bg-yellow-50", emoji: "🚰" },
-  { title: "Blood Bank Donation Aggregator", category: "healthcare", bgClass: "bg-red-50", emoji: "🏥" },
+  { 
+    id: "ganeshotsav-arati",
+    title: "Ganeshotsav Evening Arati", 
+    category: "festival", 
+    src: "/gallery_ganeshotsav_aarthi.png" 
+  },
+  { 
+    id: "diagnostics-camp",
+    title: "Village Diagnostics Camp", 
+    category: "healthcare", 
+    src: "/volunteer_medical.png" 
+  },
+  { 
+    id: "supplies-distribution",
+    title: "Educational Supplies Distribution", 
+    category: "education", 
+    src: "/volunteer_coordinator.png" 
+  },
+  { 
+    id: "dhol-tasha",
+    title: "Dhol Tasha Parade", 
+    category: "festival", 
+    src: "/gallery_dhol_tasha_camps.png" 
+  },
+  { 
+    id: "eco-preservation",
+    title: "Eco Preservation Drive", 
+    category: "education", 
+    src: "/volunteer_eco.png" 
+  },
+  { 
+    id: "navratri-celebration",
+    title: "Navratri Garba Celebration", 
+    category: "festival", 
+    src: "/gallery_navratri_garba.png" 
+  },
+  { 
+    id: "safety-training",
+    title: "Civic Safety Training", 
+    category: "healthcare", 
+    src: "/volunteer_safety.png" 
+  },
+  { 
+    id: "shiv-jayanti",
+    title: "Shiv Jayanti Rally", 
+    category: "festival", 
+    src: "/gallery_shiv_jayanti_rally.png" 
+  },
+  { 
+    id: "disaster-relief",
+    title: "Disaster Relief Operations", 
+    category: "healthcare", 
+    src: "/volunteer_disaster.png" 
+  },
 ];
 
-export default function PhotoGallery({ activeCategory }: PhotoProps) {
+export default function PhotoGallery() {
+  const [activeCategory, setActiveCategory] = useState("all");
   const gridRef = useRef<HTMLDivElement>(null);
 
   // Stagger grid item updates on category changes
@@ -32,42 +79,89 @@ export default function PhotoGallery({ activeCategory }: PhotoProps) {
     ? PHOTOS 
     : PHOTOS.filter(p => p.category === activeCategory);
 
+  // Helper to determine width and aspect ratio classes for each photo card
+  const getCardLayout = (index: number, totalCount: number) => {
+    // If the category has few items (3 or less), render as uniform blocks
+    if (totalCount <= 3) {
+      return {
+        widthClass: "w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]",
+        aspectClass: "aspect-[4/3] sm:aspect-[4/3] lg:aspect-[4/3]"
+      };
+    }
+
+    // Otherwise, generate a custom Bento layout pattern
+    // Card 1, 5, 8 are wide on desktop; the others are regular.
+    const isWide = index === 1 || index === 5 || index === 8;
+
+    if (isWide) {
+      return {
+        widthClass: "w-full sm:w-full lg:w-[calc(66.666%-16px)]",
+        aspectClass: "aspect-[16/10] sm:aspect-[16/10] lg:aspect-[16/7]"
+      };
+    }
+
+    return {
+      widthClass: "w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]",
+      aspectClass: "aspect-[4/3] sm:aspect-[4/3] lg:aspect-[4/3]"
+    };
+  };
+
   return (
     <section 
       ref={gridRef}
-      className="py-16 px-6 md:px-12 relative overflow-hidden bg-white/40 border-b border-saffron/10"
+      id="photo-gallery"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-transparent"
     >
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-[1600px] w-full mx-auto relative z-10">
+        
+        {/* Section Heading */}
+        <div className="text-center max-w-2xl mx-auto mb-6">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
+            Our Photographic Records
+          </h2>
+          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+        </div>
+
+        {/* Category Filters below heading */}
+        <div className="mb-12">
+          <GalleryFilters 
+            activeCategory={activeCategory} 
+            onCategoryChange={setActiveCategory} 
+          />
+        </div>
+
+        {/* Photo Grid (Flex Bento Layout) */}
+        <div className="flex flex-wrap justify-center gap-6 max-w-[1600px] w-full mx-auto">
           {filteredPhotos.map((item, index) => {
-            const isTall = index === 1 || index === 4;
+            const layout = getCardLayout(index, filteredPhotos.length);
             return (
-              <div 
+              <Link 
+                href={`/gallery/${item.id}`}
                 key={index}
-                className={`photo-card-row group relative overflow-hidden rounded-block border border-saffron/10 shadow-md ${item.bgClass} ${
-                  isTall ? "lg:row-span-2 min-h-[350px]" : "min-h-[250px]"
-                } flex flex-col justify-between p-6 transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]`}
+                className={`photo-card-row group relative overflow-hidden rounded-block border border-saffron/10 shadow-md flex flex-col justify-between p-6 transition-all duration-500 hover:shadow-2xl cursor-pointer ${layout.widthClass} ${layout.aspectClass}`}
               >
-                {/* Visual mask */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                {/* Background Image */}
+                <img 
+                  src={item.src} 
+                  alt={item.title} 
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-700"
+                />
+
+                {/* Ambient Dark/Saffron Gradient Overlay Mask */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent group-hover:via-black/45 transition-all duration-300 z-10" />
 
                 {/* Tag */}
                 <div className="relative z-20 self-start bg-white/90 text-saffron font-bold text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-saffron/20 shadow-sm">
                   {item.category}
                 </div>
 
-                {/* Abstract Emoji */}
-                <div className="absolute inset-0 flex items-center justify-center text-7xl select-none group-hover:scale-110 transition-transform duration-500 opacity-60">
-                  {item.emoji}
-                </div>
-
                 {/* Narrative label */}
-                <div className="relative z-20 mt-auto translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-lg sm:text-xl font-extrabold text-slate-800 group-hover:text-white transition-colors duration-300 font-heading">
+                <div className="relative z-20 mt-auto translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-white leading-tight font-heading">
                     {item.title}
                   </h3>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

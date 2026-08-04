@@ -1,77 +1,64 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function MemoryCard({ 
+  id,
   title, 
   category, 
   date, 
   metric, 
-  emoji, 
-  bgGradient 
+  src
 }: { 
+  id: string;
   title: string; 
   category: string; 
   date: string; 
   metric: string; 
-  emoji: string; 
-  bgGradient: string 
+  src: string;
 }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [rotate, setRotate] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    
-    setRotate({
-      x: -(y / (rect.height / 2)) * 6,
-      y: (x / (rect.width / 2)) * 6
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setRotate({ x: 0, y: 0 });
-  };
-
   return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
-        transition: "transform 0.15s cubic-bezier(0.16, 1, 0.3, 1)",
-      }}
-      className={`glass-panel p-8 rounded-block flex flex-col justify-between h-[300px] hover:shadow-2xl transition-all duration-500 bg-gradient-to-br ${bgGradient} hover:border-saffron/30`}
-    >
-      <div className="flex justify-between items-start">
-        <span className="text-[10px] text-saffron font-bold uppercase tracking-widest bg-white/80 border border-saffron/10 px-3 py-1 rounded-full">
-          {category}
-        </span>
-        <span className="text-4xl select-none">{emoji}</span>
-      </div>
+    <Link href={`/gallery/${id}`} className="block group">
+      <div className="glass-panel overflow-hidden rounded-block flex flex-col h-[400px] hover:shadow-2xl transition-all duration-500 bg-white/70 border border-saffron/15 hover:border-saffron/30 hover:scale-[1.02]">
+        
+        {/* Card Image */}
+        <div className="relative h-[200px] w-full overflow-hidden bg-neutral-100 border-b border-saffron/10">
+          <img 
+            src={src} 
+            alt={title} 
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div className="absolute top-4 left-4 z-10 bg-white/95 text-saffron font-bold text-[9px] uppercase tracking-widest px-3 py-1 rounded-full border border-saffron/20 shadow-sm">
+            {category}
+          </div>
+        </div>
 
-      <div>
-        <span className="text-[10px] text-slate-500 font-bold tracking-widest uppercase block mb-1">
-          {date}
-        </span>
-        <h3 className="text-2xl font-extrabold text-slate-800 leading-snug font-heading mb-4">
-          {title}
-        </h3>
-        <div className="border-t border-saffron/10 pt-4 flex justify-between items-center text-xs text-saffron font-bold uppercase tracking-widest">
-          <span>{metric}</span>
-          <span>→</span>
+        {/* Card Body */}
+        <div className="p-6 flex flex-col justify-between flex-grow">
+          <div>
+            <span className="text-[10px] text-slate-500 font-bold tracking-widest uppercase block mb-1">
+              {date}
+            </span>
+            <h3 className="text-xl sm:text-2xl font-extrabold text-slate-800 leading-snug font-heading group-hover:text-saffron transition-colors duration-300">
+              {title}
+            </h3>
+          </div>
+
+          <div className="border-t border-saffron/10 pt-4 flex justify-between items-center text-xs text-saffron font-bold uppercase tracking-widest mt-auto">
+            <span>{metric}</span>
+            <span className="flex items-center gap-1 group-hover:translate-x-1.5 transition-transform duration-300">
+              Read Story <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -104,37 +91,56 @@ export default function FeaturedMemories() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-transparent"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none" />
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-[1600px] w-full mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Iconic Moments</span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
             Featured Memories
           </h2>
           <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[1600px] w-full mx-auto">
           <div className="featured-mem-card">
             <MemoryCard
+              id="ganeshotsav-processions"
               title="Ganeshotsav Shivaji Park Processions"
               category="Festival"
               date="September 2024"
               metric="Dhol Tasha Parade"
-              emoji="🪔"
-              bgGradient="from-amber-50 to-orange-50/50"
+              src="/gallery_ganeshotsav_aarthi.png"
             />
           </div>
           <div className="featured-mem-card">
             <MemoryCard
+              id="rural-health-clinic"
               title="First Rural Health Clinic Launch"
               category="Welfare"
               date="May 2023"
               metric="150+ Patients Guided"
-              emoji="🩺"
-              bgGradient="from-emerald-50 to-teal-50/50"
+              src="/volunteer_medical.png"
+            />
+          </div>
+          <div className="featured-mem-card">
+            <MemoryCard
+              id="dahi-handi-pyramids"
+              title="Dahi Handi Festive Pyramid Team"
+              category="Festival"
+              date="August 2024"
+              metric="Festive Pyramids"
+              src="/gallery_dahi_handi_pyramids.png"
+            />
+          </div>
+          <div className="featured-mem-card">
+            <MemoryCard
+              id="navratri-garba-utsav"
+              title="Navratri Garba Utsav"
+              category="Festival"
+              date="October 2024"
+              metric="Garba & Dandiya"
+              src="/gallery_navratri_garba.png"
             />
           </div>
         </div>

@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Clock, ExternalLink } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,15 +51,12 @@ export default function LocationMap() {
       ref={containerRef}
       className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-saffron/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Left Column: Office visiting details */}
           <div className="map-animate-left space-y-6">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block">
-              Office Visits
-            </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
               Coordinate Your <br />
               <span className="text-saffron text-outline-festive">Office Visits</span>
@@ -68,8 +66,10 @@ export default function LocationMap() {
             </p>
             
             <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-4">
-                <span className="text-2xl mt-1">🗓️</span>
+              <div className="flex items-start gap-4 group">
+                <div className="w-12 h-12 rounded-xl bg-saffron/5 border border-saffron/10 flex items-center justify-center text-saffron group-hover:bg-saffron/10 group-hover:scale-105 transition-all duration-300 shrink-0">
+                  <Clock className="w-5 h-5 stroke-[1.75]" />
+                </div>
                 <div>
                   <h4 className="font-bold text-foreground font-sans">Visiting Hours</h4>
                   <p className="text-sm text-slate-grey mt-0.5">
@@ -81,40 +81,39 @@ export default function LocationMap() {
             </div>
           </div>
 
-          {/* Right Column: Premium Stylized Map Box */}
-          <div className="map-animate-right glass-panel p-8 rounded-block bg-white relative flex flex-col justify-between min-h-[350px] shadow-xl">
-            <div className="absolute top-4 right-6 text-xs uppercase font-extrabold tracking-widest text-saffron bg-saffron/5 px-3 py-1 rounded-full border border-saffron/10">
-              HQ Location
-            </div>
+          {/* Right Column: Premium Stylized Interactive Map Dashboard */}
+          <div className="map-animate-right space-y-6">
             
-            <div>
-              <h3 className="text-2xl font-extrabold text-foreground mb-4 font-heading">
-                Bhandup Headquarters
-              </h3>
-              <p className="text-sm text-slate-grey mb-6">
-                Located near Bhandup station, giving easy accessibility via Eastern Express Highway or Central Railway.
-              </p>
-              
-              {/* Graphic/Stylized Map Mockup */}
-              <div className="w-full h-40 bg-saffron/5 rounded-xl border border-saffron/10 flex flex-col items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-50" />
-                <span className="text-4xl animate-bounce">📍</span>
-                <span className="text-[10px] uppercase font-bold tracking-widest text-slate-grey mt-2">
-                  Station Road, Bhandup (E)
-                </span>
-              </div>
+            {/* Real-time Premium Google Map Container */}
+            <div className="relative w-full h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-2xl group/map">
+              {/* Actual Map Embed */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.7733475836413!2d72.9367373!3d19.1176214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7849e776ab1%3A0x6b7b25e1a3bc89a7!2sStation%20Rd%2C%20Bhandup%20East%2C%20Mumbai%2C%20Maharashtra%20400042!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                className="w-full h-full border-0 grayscale-[15%] contrast-[110%] brightness-[95%] pointer-events-auto"
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
 
-            <div className="mt-8 text-center">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-50 border border-slate-200 p-5 rounded-2xl">
+              <div>
+                <h4 className="font-extrabold text-foreground text-sm font-sans">Bhandup Headquarters</h4>
+                <p className="text-xs text-slate-grey mt-0.5">
+                  Easy accessibility via Eastern Express Highway or Central Railway.
+                </p>
+              </div>
               <a
                 href="https://maps.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-foreground hover:bg-saffron hover:shadow-lg hover:shadow-saffron/20 text-background hover:text-white font-extrabold text-xs uppercase tracking-widest px-8 py-4 rounded-full transition-all duration-300 active:scale-95 inline-block cursor-pointer"
+                className="bg-foreground hover:bg-saffron hover:shadow-lg hover:shadow-saffron/20 text-background hover:text-white font-extrabold text-xs uppercase tracking-widest px-6 py-3.5 rounded-full transition-all duration-300 active:scale-95 flex items-center gap-2 shrink-0 cursor-pointer"
               >
-                Navigate via Google Maps
+                <span>Navigate</span>
+                <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
+
           </div>
 
         </div>

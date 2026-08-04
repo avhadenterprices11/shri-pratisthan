@@ -7,13 +7,46 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const VIDEOS = [
-  { title: "Dahi Handi Safe Pyramid Coordination", duration: "1:24", colorClass: "bg-blue-100", emoji: "🏺" },
-  { title: "Ganeshotsav Traditional Drum Ensembles", duration: "2:10", colorClass: "bg-amber-100", emoji: "🥁" },
-  { title: "Vasundhara Hill Tree Plantation Drive Log", duration: "1:45", colorClass: "bg-green-100", emoji: "🌱" },
+  { 
+    title: "Dahi Handi Safe Pyramid Coordination", 
+    duration: "1:24", 
+    src: "/festival_celebration.mp4", 
+    poster: "/gallery_dahi_handi_pyramids.png" 
+  },
+  { 
+    title: "Ganeshotsav Traditional Drum Ensembles", 
+    duration: "2:10", 
+    src: "/festival_drums.mp4", 
+    poster: "/gallery_dhol_tasha_camps.png" 
+  },
+  { 
+    title: "Vasundhara Hill Tree Planting Drive Log", 
+    duration: "1:45", 
+    src: "/about_showcase_video.mp4", 
+    poster: "/volunteer_eco.png" 
+  },
+  { 
+    title: "Gauri Ganpati Home Decor Showcase", 
+    duration: "1:30", 
+    src: "/Create_a_cinematic_second_h.mp4", 
+    poster: "/gallery_gauri_ganpati_decor.png" 
+  },
+  { 
+    title: "Shiv Jayanti Cultural Rally Highlights", 
+    duration: "2:45", 
+    src: "/festival_drums.mp4", 
+    poster: "/gallery_shiv_jayanti_rally.png" 
+  },
+  { 
+    title: "Emergency Disaster Relief Operations", 
+    duration: "2:05", 
+    src: "/about_showcase_video.mp4", 
+    poster: "/volunteer_disaster.png" 
+  },
 ];
 
 export default function VideoGallery() {
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{ title: string; src: string } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,12 +75,11 @@ export default function VideoGallery() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-white"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-transparent"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-[1600px] w-full mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Motion Archives</span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
             Video Reels
           </h2>
@@ -58,17 +90,21 @@ export default function VideoGallery() {
           {VIDEOS.map((item, index) => (
             <div 
               key={index}
-              onClick={() => setActiveVideo(item.title)}
-              className="video-card glass-panel rounded-block overflow-hidden relative group cursor-none hover:shadow-2xl transition-all duration-300"
+              onClick={() => setActiveVideo({ title: item.title, src: item.src })}
+              className="video-card glass-panel rounded-block overflow-hidden relative group cursor-pointer hover:shadow-2xl transition-all duration-300"
               data-hover="pointer"
             >
               {/* Visual wrapper */}
-              <div className={`h-[220px] ${item.colorClass} flex items-center justify-center text-7xl select-none group-hover:scale-105 transition-transform duration-500`}>
-                {item.emoji}
+              <div className="h-[220px] relative overflow-hidden flex items-center justify-center text-7xl select-none">
+                <img 
+                  src={item.poster} 
+                  alt={item.title} 
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
                 {/* Play Button Overlay */}
-                <div className="absolute inset-0 bg-black/10 flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity">
+                <div className="absolute inset-0 bg-black/35 flex items-center justify-center opacity-85 group-hover:opacity-100 transition-opacity z-10">
                   <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center text-saffron shadow-lg group-hover:scale-110 transition-transform">
-                    <svg className="w-8 h-8 fill-current stroke-current" viewBox="0 0 24 24">
+                    <svg className="w-8 h-8 fill-current stroke-current ml-1" viewBox="0 0 24 24">
                       <polygon points="5 3 19 12 5 21 5 3" />
                     </svg>
                   </div>
@@ -76,7 +112,7 @@ export default function VideoGallery() {
               </div>
 
               {/* Meta */}
-              <div className="p-6 bg-white border-t border-saffron/10 flex justify-between items-center">
+              <div className="p-6 bg-white border-t border-saffron/10 flex justify-between items-center relative z-20">
                 <div>
                   <h3 className="text-base font-extrabold text-foreground font-heading">{item.title}</h3>
                   <span className="text-xs text-slate-grey font-bold tracking-widest uppercase">Duration: {item.duration}</span>
@@ -89,18 +125,25 @@ export default function VideoGallery() {
 
       {/* Lightbox Modal */}
       {activeVideo && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-6">
-          <div className="glass-panel w-full max-w-4xl rounded-block bg-white p-6 relative">
-            <button 
-              onClick={() => setActiveVideo(null)}
-              className="absolute top-4 right-4 text-slate-800 font-extrabold text-xl hover:text-saffron transition-colors focus:outline-none"
-            >
-              ✕ Close
-            </button>
-            <div className="text-center py-20 bg-saffron/5 rounded-block border border-saffron/20 mb-6 flex flex-col justify-center items-center">
-              <span className="text-6xl mb-4">🎬</span>
-              <h3 className="text-2xl font-extrabold text-foreground font-heading">{activeVideo}</h3>
-              <p className="text-slate-grey text-sm mt-2">Connecting to Shree Prathishthan CDN Media Stream...</p>
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-6">
+          <div className="w-full max-w-4xl rounded-block bg-neutral-900 border border-white/10 p-4 relative shadow-2xl flex flex-col gap-4">
+            <div className="flex justify-between items-center text-white border-b border-white/10 pb-2">
+              <h3 className="text-lg sm:text-xl font-extrabold font-heading text-saffron">{activeVideo.title}</h3>
+              <button 
+                onClick={() => setActiveVideo(null)}
+                className="text-white hover:text-saffron font-bold text-sm tracking-widest uppercase transition-colors focus:outline-none cursor-pointer flex items-center gap-1.5"
+              >
+                ✕ Close
+              </button>
+            </div>
+            
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-black border border-white/5 shadow-inner">
+              <video 
+                src={activeVideo.src} 
+                controls 
+                autoPlay 
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
         </div>

@@ -44,9 +44,6 @@ export default function ContactSupportCTA() {
           <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-30" />
           
           <div className="relative z-10 space-y-4 max-w-2xl mx-auto">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block">
-              Join Our Drives
-            </span>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
               Ready to Make an Active Impact?
             </h2>

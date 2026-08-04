@@ -2,57 +2,126 @@
 
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function CommunityHero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const cursorRingRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
 
+    // ── CURSOR MOUSEMOVE LOGIC ──
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      
+      if (cursorRef.current && cursorRingRef.current) {
+        gsap.to(cursorRef.current, {
+          x: clientX,
+          y: clientY,
+          duration: 0.1,
+          ease: "power2.out",
+        });
+
+        gsap.to(cursorRingRef.current, {
+          x: clientX,
+          y: clientY,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    // ── GSAP SCROLLTRIGGER ANIMATION ──
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#wrapper",
+          start: "top top",
+          end: "+=120%",
+          scrub: 1,
+          pin: true,
+        },
+      });
 
-      tl.fromTo(
+      tl.to("#heroImg", { scale: 1.3, ease: "none" })
+        .to("#bgPlasma", { opacity: 0.8 }, 0);
+
+      // Simple reveal line stagger on load
+      gsap.fromTo(
         ".reveal-line",
         { yPercent: 100, opacity: 0 },
-        { yPercent: 0, opacity: 1, stagger: 0.15, duration: 1.2 }
-      ).fromTo(
+        { yPercent: 0, opacity: 1, stagger: 0.15, duration: 1.2, ease: "power4.out" }
+      );
+      gsap.fromTo(
         ".hero-subtitle",
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8 },
-        "-=0.6"
+        { y: 0, opacity: 1, duration: 0.8, ease: "power4.out" }
       );
     }, containerRef);
 
-    return () => ctx.revert();
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      ctx.revert(); 
+    };
   }, []);
 
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-[60vh] flex flex-col justify-center items-center py-28 px-6 overflow-hidden md:px-12 text-center bg-background"
-    >
-      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none" />
-      <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-12" />
+    <div ref={containerRef} className="relative bg-[#FBFBFA]">
+      {/* Custom Cursor Followers (Desktop Only) */}
+      <div
+        ref={cursorRef}
+        className="hidden md:block fixed top-0 left-0 w-2.5 h-2.5 bg-saffron rounded-full pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2"
+      />
+      <div
+        ref={cursorRingRef}
+        className="hidden md:block fixed top-0 left-0 w-8 h-8 border border-saffron rounded-full pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2"
+      />
 
-      <div className="w-full max-w-4xl relative z-10">
-        <div className="inline-flex items-center gap-2 mb-6 bg-saffron/10 text-saffron font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full border border-saffron/20">
-          <span>Community Initiatives</span>
+      {/* Pinned Section Wrapper */}
+      <div 
+        id="wrapper" 
+        className="relative w-full h-[90vh] overflow-hidden flex flex-col justify-center items-center py-20 px-6 md:px-12 text-left"
+      >
+        {/* Plasma Background Overlay Layer */}
+        <div 
+          id="bgPlasma" 
+          className="absolute inset-0 bg-[#FBFBFA] opacity-0 pointer-events-none z-10 transition-opacity duration-300" 
+        />
+        
+        {/* Background Image Container */}
+        <div id="imgContainer" className="absolute inset-0 z-0 overflow-hidden w-full h-full">
+          <img
+            src="/community_assembly.png"
+            alt="Community Hero Background"
+            id="heroImg"
+            className="w-full h-full object-cover filter brightness-100 scale-100"
+          />
         </div>
 
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.05] tracking-tight mb-6 font-heading">
-          <div className="overflow-hidden">
-            <span className="block reveal-line">Unity in Action,</span>
-          </div>
-          <div className="overflow-hidden">
-            <span className="block reveal-line text-saffron text-outline-festive">Strength in Community.</span>
-          </div>
-        </h1>
+        {/* Content Overlay (Z-20) */}
+        <div className="max-w-[1600px] w-full mx-auto relative z-20 flex flex-col justify-start text-left pointer-events-none">
+          <div className="max-w-3xl pointer-events-auto">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-neutral-900 leading-[1.05] tracking-tight mb-6 font-heading [text-shadow:_0_2px_4px_rgba(255,255,255,0.8)]">
+              <div className="overflow-hidden px-4 -mx-4 py-2 -my-2">
+                <span className="block reveal-line">Unity in Action,</span>
+              </div>
+              <div className="overflow-hidden px-4 -mx-4 py-2 -my-2">
+                <span className="block reveal-line text-saffron text-outline-festive">Strength in Community.</span>
+              </div>
+            </h1>
 
-        <p className="hero-subtitle text-base sm:text-lg text-slate-grey max-w-2xl mx-auto leading-relaxed">
-          Shree Prathishthan bridges resources with local needs, fostering societal resilience through blood drives, environmental stewardship, and dedicated welfare campaigns across rural Maharashtra.
-        </p>
+            <p className="hero-subtitle text-base sm:text-lg text-neutral-800 leading-relaxed font-semibold [text-shadow:_0_1.5px_3px_rgba(255,255,255,0.9)]">
+              Shree Prathishthan bridges resources with local needs, fostering societal resilience through blood drives, environmental stewardship, and dedicated welfare campaigns across rural Maharashtra.
+            </p>
+          </div>
+        </div>
+
       </div>
-    </section>
+    </div>
   );
 }

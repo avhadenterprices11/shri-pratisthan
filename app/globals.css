@@ -214,3 +214,17 @@ html.lenis, html.lenis body {
 .lenis-smooth iframe {
   pointer-events: none;
 }
+
+/* Ken Burns slow panning/zoom animation for premium hero slides */
+@keyframes kenburns-zoom {
+  0% {
+    transform: scale(1.05) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.15) translate(-1%, -0.5%);
+  }
+}
+
+.animate-ken-burns {
+  animation: kenburns-zoom 10s infinite alternate ease-in-out;
+}

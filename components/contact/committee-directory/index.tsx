@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Phone, Mail } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,9 +66,6 @@ export default function CommitteeDirectory() {
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40" />
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">
-            Governance
-          </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
             Regional Coordinators Directory
           </h2>
@@ -81,7 +79,7 @@ export default function CommitteeDirectory() {
           {MEMBERS.map((member, index) => (
             <div
               key={index}
-              className="member-card glass-panel p-8 rounded-block hover:border-saffron/30 hover:shadow-xl transition-all duration-300 bg-white"
+              className="member-card glass-panel group p-8 rounded-block hover:border-saffron/30 hover:shadow-xl transition-all duration-300 bg-white"
             >
               <div>
                 <span className="text-[10px] uppercase font-extrabold tracking-widest text-saffron bg-saffron/5 border border-saffron/10 px-2.5 py-1 rounded block w-fit mb-4">
@@ -95,15 +93,19 @@ export default function CommitteeDirectory() {
                 </p>
               </div>
 
-              <div className="mt-8 space-y-2 border-t border-saffron/10 pt-6">
-                <div className="flex items-center gap-2 text-sm text-slate-grey font-medium">
-                  <span>📞</span>
+              <div className="mt-8 space-y-3 border-t border-saffron/10 pt-6">
+                <div className="flex items-center gap-3 text-sm text-slate-grey font-medium group/item">
+                  <span className="w-8 h-8 rounded-lg bg-saffron/5 border border-saffron/10 flex items-center justify-center text-saffron group-hover:bg-saffron/10 group-hover:scale-105 transition-all duration-300">
+                    <Phone className="w-3.5 h-3.5" />
+                  </span>
                   <a href={`tel:${member.phone.replace(/\s+/g, "")}`} className="hover:text-saffron transition-colors">
                     {member.phone}
                   </a>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-slate-grey font-medium">
-                  <span>✉️</span>
+                <div className="flex items-center gap-3 text-sm text-slate-grey font-medium group/item">
+                  <span className="w-8 h-8 rounded-lg bg-saffron/5 border border-saffron/10 flex items-center justify-center text-saffron group-hover:bg-saffron/10 group-hover:scale-105 transition-all duration-300">
+                    <Mail className="w-3.5 h-3.5" />
+                  </span>
                   <a href={`mailto:${member.email}`} className="hover:text-saffron transition-colors truncate">
                     {member.email}
                   </a>
