@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 
 const IMAGES = [
@@ -64,10 +65,13 @@ export default function GalleryHero() {
     >
       {/* Base Background Image (Ken Burns Zoom) */}
       <div className="absolute inset-0 z-0 bg-neutral-900 overflow-hidden">
-        <img 
+        <Image 
           src={IMAGES[currentIdx]} 
           alt="Gallery Showcase Base" 
-          className="w-full h-full object-cover opacity-70 animate-ken-burns"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-70 animate-ken-burns"
         />
       </div>
 

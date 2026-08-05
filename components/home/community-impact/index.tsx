@@ -50,33 +50,41 @@ export default function CommunityImpact() {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: () => window.innerWidth < 768 ? "+=850" : "+=1500",
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-        }
-      });
-
       STATS.forEach((stat, idx) => {
-        // Slide card up
-        tl.fromTo(
+        // Slide card up on scroll reveal
+        gsap.fromTo(
           `.stat-column-${idx}`,
-          { opacity: 0, y: 150 },
-          { opacity: 1, y: 0, duration: 1 },
-          idx === 0 ? "0" : `+=0.25`
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: idx * 0.12,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
         );
 
-        // Count up number in sync with card slide
-        tl.fromTo(
-          `.count-number-${idx}`,
-          { textContent: 0 },
-          { textContent: stat.value, snap: { textContent: 1 }, duration: 1, ease: "none" },
-          "<"
-        );
+        // Count up number in sync with entrance
+        const counterObj = { val: 0 };
+        gsap.to(counterObj, {
+          val: stat.value,
+          duration: 1.4,
+          delay: idx * 0.12,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+          },
+          onUpdate: () => {
+            const el = document.querySelector(`.count-number-${idx}`);
+            if (el) el.textContent = Math.floor(counterObj.val).toString();
+          },
+        });
       });
     }, containerRef);
 

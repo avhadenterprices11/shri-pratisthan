@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ArrowRight } from "lucide-react";
 import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -112,7 +113,7 @@ export default function VolunteerCTA({
             ref={buttonAreaRef}
             onMouseMove={handleAreaMouseMove}
             onMouseLeave={handleAreaMouseLeave}
-            className="py-4 px-8 flex items-center justify-center cursor-none"
+            className="py-4 px-8 flex items-center justify-center cursor-pointer"
             data-hover="pointer"
           >
             <LiquidMetalButton
@@ -121,12 +122,10 @@ export default function VolunteerCTA({
                 transform: `translate3d(${btnCoords.x}px, ${btnCoords.y}px, 0)`,
                 transition: btnCoords.x === 0 ? "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)" : "none",
               }}
-              metalConfig={{
-                colorBack: "#E26A36", // Saffron Accent
-                colorTint: "#D4AF37", // Gold Accent
-              }}
-              size="md"
-              className="text-xs uppercase font-extrabold tracking-widest font-heading shadow-xl shadow-saffron/10 cursor-none"
+              variant="themed"
+              size="lg"
+              icon={<ArrowRight className="w-4 h-4" />}
+              className="text-xs uppercase font-extrabold tracking-widest font-heading cursor-pointer"
               data-hover="pointer"
             >
               {buttonText}

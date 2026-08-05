@@ -122,9 +122,9 @@ export default function FestivalJourney() {
       </div>
 
       {/* Diagonal Cascade Carousel Viewport */}
-      <div className="relative flex-grow flex items-center justify-center w-full overflow-hidden select-none">
+      <div className="relative flex-grow flex items-center justify-center w-full select-none">
         <motion.div
-          className="absolute left-[50%] top-[45%] sm:top-[43%] flex w-fit -translate-y-1/2"
+          className="absolute left-[50%] top-[48%] flex w-fit -translate-y-1/2"
           animate={{ x: -(activeIndex * slideSize + slideSize / 2) }}
           transition={DEFAULT_TRANSITION}
         >
@@ -138,9 +138,9 @@ export default function FestivalJourney() {
                 className="flex shrink-0 flex-col items-center justify-center gap-4 will-change-transform px-4"
                 style={{ width: slideSize }}
                 animate={{
-                  rotate: distance * 16,
-                  scale: isActive ? 1 : 0.72,
-                  y: distance * 60,
+                  rotate: distance * 12,
+                  scale: isActive ? 1 : 0.75,
+                  y: distance * 40,
                   opacity: isActive ? 1 : 0.35,
                 }}
                 transition={DEFAULT_TRANSITION}
@@ -191,9 +191,6 @@ export default function FestivalJourney() {
 
       {/* Footer Navigation Progress Indicator */}
       <div className="text-center relative z-20 mb-4 flex flex-col items-center justify-center gap-1 opacity-70">
-        <span className="text-[10px] uppercase font-extrabold tracking-widest text-slate-grey">
-          {activeIndex === 3 ? "Keep scrolling to continue ↓" : "Scroll to explore timeline ↓"}
-        </span>
         <div className="flex gap-2.5 mt-2">
           {MILESTONES.map((_, idx) => (
             <div

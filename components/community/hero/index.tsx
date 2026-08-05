@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -95,11 +96,14 @@ export default function CommunityHero() {
         
         {/* Background Image Container */}
         <div id="imgContainer" className="absolute inset-0 z-0 overflow-hidden w-full h-full">
-          <img
+          <Image
             src="/community_assembly.png"
             alt="Community Hero Background"
             id="heroImg"
-            className="w-full h-full object-cover filter brightness-100 scale-100"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover filter brightness-100 scale-100"
           />
         </div>
 

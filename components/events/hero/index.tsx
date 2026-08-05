@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 
 interface SlideItem {
@@ -134,10 +135,13 @@ export default function EventsHero() {
                 }}
               >
                 {/* Campaign Visual backdrop (Fully Visible & Clear) */}
-                <img
+                <Image
                   src={slide.image}
                   alt={slide.title}
-                  className="w-full h-full object-cover filter brightness-100"
+                  fill
+                  priority={index === 0}
+                  sizes="100vw"
+                  className="object-cover filter brightness-100"
                 />
 
                 {/* Subtle top-left light overlay to guarantee text legibility without washing out the image */}

@@ -22,6 +22,10 @@ export default function Sponsors() {
     const marquee = marqueeRef.current;
     if (!marquee) return;
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     // Direct GSAP infinite scroll animation from 0% to -50% (looping the duplicate set)
     const anim = gsap.to(marquee, {
       xPercent: -50,

@@ -1,25 +1,42 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [feedbackMsg, setFeedbackMsg] = useState("");
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    const cleanEmail = email.trim();
+
+    if (!cleanEmail || !cleanEmail.includes("@") || cleanEmail.startsWith("@") || cleanEmail.endsWith("@")) {
+      setStatus("error");
+      setFeedbackMsg("Please enter a valid email address (e.g. name@domain.com)");
+      return;
+    }
+
+    setStatus("submitting");
+    setFeedbackMsg("");
+
+    setTimeout(() => {
+      setStatus("success");
+      setFeedbackMsg("Subscribed! Thank you for joining our newsletter.");
+      setEmail("");
+
+      setTimeout(() => {
+        setStatus("idle");
+        setFeedbackMsg("");
+      }, 4000);
+    }, 500);
+  };
+
   return (
     <footer className="bg-[#111111] text-white relative overflow-hidden border-t border-white/10 select-none">
-      {/* High-Performance Infinite Marquee CSS */}
-      <style>{`
-        @keyframes footer-marquee {
-          0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-100%, 0, 0); }
-        }
-        .animate-footer-marquee {
-          animation: footer-marquee 25s linear infinite;
-        }
-        .text-outline {
-          color: transparent;
-          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
-        }
-      `}</style>
+
 
       {/* 1. Giant Awwwards-Style Header Marquee */}
       <div className="relative w-full overflow-hidden whitespace-nowrap py-10 bg-[#111] flex border-b border-white/5">
@@ -51,23 +68,52 @@ export default function Footer() {
               Whether you're looking for cultural roots, youth collaboration, or active community service, we have projects to support. Get transparent trust announcements, newsletter articles, and volunteering calls directly in your inbox.
             </p>
 
-            <form 
-              onSubmit={(e) => e.preventDefault()} 
-              className="flex items-center bg-[#1c1c1c] border border-white/10 rounded-full p-1.5 w-full max-w-md"
-            >
-              <input
-                type="email"
-                placeholder="Email"
-                className="bg-transparent text-xs sm:text-sm text-white placeholder-white/30 px-5 py-3 outline-none flex-grow w-full"
-                required
-              />
-              <button
-                type="submit"
-                className="bg-white hover:bg-neutral-200 text-black text-[10px] sm:text-xs font-black uppercase tracking-widest px-6 sm:px-8 py-3 rounded-full transition-all duration-200 cursor-pointer shrink-0"
+            <div className="w-full max-w-md">
+              <form 
+                onSubmit={handleSubscribe}
+                noValidate
+                className="flex items-center bg-[#1c1c1c] border border-white/10 rounded-full p-1.5 w-full focus-within:border-saffron/50 transition-colors"
               >
-                Subscribe
-              </button>
-            </form>
+                <input
+                  type="text"
+                  placeholder="Enter email address"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (status === "error") setStatus("idle");
+                  }}
+                  className="bg-transparent text-xs sm:text-sm text-white placeholder-white/30 px-5 py-3 outline-none flex-grow w-full"
+                />
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  className="bg-white hover:bg-neutral-200 text-black text-[10px] sm:text-xs font-black uppercase tracking-widest px-6 sm:px-8 py-3 rounded-full transition-all duration-200 cursor-pointer shrink-0 disabled:opacity-50 inline-flex items-center gap-1.5"
+                >
+                  {status === "submitting" ? (
+                    <>
+                      <Loader2 className="w-3 h-3 animate-spin" />
+                      <span>Subscribing...</span>
+                    </>
+                  ) : (
+                    "Subscribe"
+                  )}
+                </button>
+              </form>
+
+              {status === "error" && feedbackMsg && (
+                <p className="text-[11px] text-red-400 font-medium mt-2 px-4 flex items-center gap-1.5">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                  {feedbackMsg}
+                </p>
+              )}
+
+              {status === "success" && feedbackMsg && (
+                <p className="text-[11px] text-emerald-400 font-medium mt-2 px-4 flex items-center gap-1.5 animate-in fade-in duration-200">
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                  {feedbackMsg}
+                </p>
+              )}
+            </div>
           </div>
 
           {/* Right Block: Directory Links */}
@@ -89,11 +135,11 @@ export default function Footer() {
             <div>
               <h4 className="text-xs font-black uppercase tracking-widest text-white mb-6 font-sans">Support</h4>
               <ul className="space-y-4 text-xs text-white/50">
-                <li><Link href="#" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Privacy Policy</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Committees</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Privacy Policy</Link></li>
+                <li><Link href="/about" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Committees</Link></li>
                 <li><Link href="/volunteer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Register As Volunteer</Link></li>
                 <li><Link href="/contact" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Contact Us</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">FAQ</Link></li>
+                <li><Link href="/volunteer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">FAQ</Link></li>
               </ul>
             </div>
 
@@ -102,22 +148,22 @@ export default function Footer() {
               <h4 className="text-xs font-black uppercase tracking-widest text-white mb-6 font-sans">Follow us on</h4>
               <ul className="space-y-4 text-xs text-white/50">
                 <li>
-                  <a href="#" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider inline-flex items-center gap-1">
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider inline-flex items-center gap-1">
                     Facebook <span className="text-[10px] text-white/30">↗</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider inline-flex items-center gap-1">
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider inline-flex items-center gap-1">
                     Instagram <span className="text-[10px] text-white/30">↗</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider inline-flex items-center gap-1">
+                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider inline-flex items-center gap-1">
                     YouTube <span className="text-[10px] text-white/30">↗</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider inline-flex items-center gap-1">
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider inline-flex items-center gap-1">
                     Twitter <span className="text-[10px] text-white/30">↗</span>
                   </a>
                 </li>

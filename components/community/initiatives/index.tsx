@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Heart, Shield, Leaf } from "lucide-react";
+import { Heart, Shield, Leaf, ArrowDownRight } from "lucide-react";
 
 interface InitiativeItem {
   title: string;
@@ -41,55 +41,34 @@ export default function CommunityInitiatives() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
 
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Initial fade-in row animation
+      // 1. Entrance fade-in animation for rows
       gsap.fromTo(
         ".initiative-row-item",
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.15,
-          duration: 1,
-          ease: "power3.out",
+          stagger: 0.12,
+          duration: 0.8,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 80%",
           },
         }
       );
-
-      // 2. GSAP Infinite horizontal scroll loop with smooth timeScale hover transitions
-      gsap.utils.toArray(".marquee-wrapper").forEach((el: unknown) => {
-        const wrapper = el as HTMLElement;
-        const tween = gsap.to(wrapper, {
-          xPercent: -50,
-          ease: "none",
-          duration: 38, // Calmer, slower base speed
-          repeat: -1,
-        });
-
-        const row = wrapper.closest(".initiative-row-item");
-        if (row) {
-          row.addEventListener("mouseenter", () => {
-            gsap.to(tween, { timeScale: 0, duration: 1.8, ease: "power2.out" });
-          });
-          row.addEventListener("mouseleave", () => {
-            gsap.to(tween, { timeScale: 1, duration: 1.8, ease: "power2.out" });
-          });
-        }
-      });
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
-  const handleScrollToSection = (anchor: string) => {
+  const handleScrollToSection = (anchor: string, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     const el = document.querySelector(anchor);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
@@ -99,7 +78,7 @@ export default function CommunityInitiatives() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
+      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5 select-none"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0" />
       
@@ -124,13 +103,13 @@ export default function CommunityInitiatives() {
               onClick={() => handleScrollToSection(item.anchor)}
               className="initiative-row-item group border-b border-neutral-300 py-10 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out relative flex flex-col justify-start"
             >
-              {/* Infinite scrolling marquee row container */}
+              {/* Hardware Accelerated Infinite CSS Marquee */}
               <div className="w-full overflow-hidden flex relative z-10 py-2">
-                <div className="marquee-wrapper flex whitespace-nowrap">
+                <div className="flex whitespace-nowrap animate-marquee group-hover:[animation-play-state:paused] will-change-transform">
                   
                   {/* First continuous loop panel */}
                   <div className="flex whitespace-nowrap gap-x-12 pr-12">
-                    {[...Array(6)].map((_, i) => (
+                    {[...Array(4)].map((_, i) => (
                       <div key={i} className="flex items-center gap-8">
                         <span className="text-[10px] font-bold text-saffron tracking-widest uppercase bg-saffron/10 px-3 py-1 rounded-full border border-saffron/20 flex items-center gap-1.5 font-heading">
                           0{index + 1} / {item.tag}
@@ -145,7 +124,7 @@ export default function CommunityInitiatives() {
 
                   {/* Second panel for seamless repeating */}
                   <div className="flex whitespace-nowrap gap-x-12 pr-12" aria-hidden="true">
-                    {[...Array(6)].map((_, i) => (
+                    {[...Array(4)].map((_, i) => (
                       <div key={i} className="flex items-center gap-8">
                         <span className="text-[10px] font-bold text-saffron tracking-widest uppercase bg-saffron/10 px-3 py-1 rounded-full border border-saffron/20 flex items-center gap-1.5 font-heading">
                           0{index + 1} / {item.tag}
@@ -166,10 +145,14 @@ export default function CommunityInitiatives() {
                 <p className="text-base sm:text-lg text-[#525250] leading-relaxed max-w-3xl font-sans">
                   {item.desc}
                 </p>
-                <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-saffron mt-3">
+                <button
+                  type="button"
+                  onClick={(e) => handleScrollToSection(item.anchor, e)}
+                  className="mt-4 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-white bg-saffron hover:bg-saffron/90 px-5 py-2.5 rounded-full shadow-md transition-all cursor-pointer group-hover:scale-102"
+                >
                   <span>Explore details</span>
-                  <span className="text-sm">↓</span>
-                </div>
+                  <ArrowDownRight className="w-4 h-4" />
+                </button>
               </div>
 
             </div>

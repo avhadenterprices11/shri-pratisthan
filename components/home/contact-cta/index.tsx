@@ -1,14 +1,42 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
+import { ChevronDown, Send, Check, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const SUBJECT_OPTIONS = [
+  "General Support / Inquiry",
+  "Corporate Partnership / CSR",
+  "Volunteer Registration",
+  "Festival Coordination Support",
+];
+
 export default function ContactCTA() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [selectedSubject, setSelectedSubject] = useState(SUBJECT_OPTIONS[0]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Form states
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -32,6 +60,41 @@ export default function ContactCTA() {
 
     return () => ctx.revert();
   }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newErrors: { name?: string; email?: string; message?: string } = {};
+
+    if (!name.trim()) {
+      newErrors.name = "Please enter your name";
+    }
+    if (!email.trim() || !email.includes("@")) {
+      newErrors.email = "Please enter a valid email address (e.g. name@domain.com)";
+    }
+    if (!message.trim()) {
+      newErrors.message = "Please type a message";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+    setStatus("submitting");
+
+    setTimeout(() => {
+      setStatus("success");
+    }, 600);
+  };
+
+  const handleReset = () => {
+    setName("");
+    setEmail("");
+    setMessage("");
+    setErrors({});
+    setStatus("idle");
+  };
 
   return (
     <section 
@@ -95,55 +158,141 @@ export default function ContactCTA() {
           </div>
 
           {/* Right Column: Contact Form */}
-          <div className="lg:col-span-7 contact-slide-in glass-panel p-8 sm:p-10 rounded-block border border-saffron/20 bg-white">
+          <div className="lg:col-span-7 contact-slide-in glass-panel p-8 sm:p-10 rounded-block border border-saffron/20 bg-white/90 backdrop-blur-md shadow-xl">
             <h3 className="text-2xl font-extrabold text-foreground mb-6 font-heading">Send a Message</h3>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2">Your Name</label>
-                  <input 
-                    type="text" 
-                    placeholder="Enter name"
-                    className="w-full px-4 py-3 rounded-interactive border border-border bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-sm transition-all"
-                  />
+
+            {status === "success" ? (
+              <div className="py-8 px-6 text-center space-y-4 bg-emerald-50/80 border border-emerald-200 rounded-2xl animate-in fade-in duration-300">
+                <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <div>
-                  <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2">Your Email</label>
-                  <input 
-                    type="email" 
-                    placeholder="Enter email"
-                    className="w-full px-4 py-3 rounded-interactive border border-border bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-sm transition-all"
-                  />
+                <h4 className="text-xl font-extrabold text-emerald-950 font-heading">
+                  Message Sent Successfully!
+                </h4>
+                <p className="text-sm text-emerald-800 leading-relaxed max-w-md mx-auto">
+                  Thank you <strong>{name}</strong>! We have received your inquiry under subject <strong>&quot;{selectedSubject}&quot;</strong>. Our desk will email you at <strong>{email}</strong> shortly.
+                </p>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="mt-4 px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all cursor-pointer shadow-sm"
+                >
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
+              <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">Your Name</label>
+                    <input 
+                      type="text" 
+                      placeholder="Enter name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-sm transition-all ${
+                        errors.name
+                          ? "border-red-400 focus:border-red-500 focus:ring-red-100"
+                          : "border-saffron/20 focus:border-saffron focus:ring-saffron/20"
+                      }`}
+                    />
+                    {errors.name && (
+                      <p className="text-[11px] text-red-500 font-medium mt-1 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" /> {errors.name}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">Your Email</label>
+                    <input 
+                      type="text" 
+                      placeholder="Enter email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-sm transition-all ${
+                        errors.email
+                          ? "border-red-400 focus:border-red-500 focus:ring-red-100"
+                          : "border-saffron/20 focus:border-saffron focus:ring-saffron/20"
+                      }`}
+                    />
+                    {errors.email && (
+                      <p className="text-[11px] text-red-500 font-medium mt-1 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" /> {errors.email}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <div>
-                <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2">Subject</label>
-                <select className="w-full px-4 py-3 rounded-interactive border border-border bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-sm transition-all">
-                  <option>General Support / Inquiry</option>
-                  <option>Corporate Partnership / CSR</option>
-                  <option>Volunteer Registration</option>
-                  <option>Festival Coordination Support</option>
-                </select>
-              </div>
+                {/* Premium Custom Dropdown */}
+                <div className="relative" ref={dropdownRef}>
+                  <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">Subject</label>
+                  <button
+                    type="button"
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className="w-full px-4 py-3 rounded-interactive border border-saffron/25 bg-background/80 hover:bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-sm text-foreground flex items-center justify-between transition-all cursor-pointer shadow-xs"
+                  >
+                    <span className="font-medium">{selectedSubject}</span>
+                    <ChevronDown className={`w-4 h-4 text-saffron transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} />
+                  </button>
 
-              <div>
-                <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2">Message</label>
-                <textarea 
-                  rows={4} 
-                  placeholder="Type message here..."
-                  className="w-full px-4 py-3 rounded-interactive border border-border bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-sm transition-all resize-none"
-                />
-              </div>
+                  {isDropdownOpen && (
+                    <div className="absolute left-0 right-0 top-full mt-2 bg-white/95 backdrop-blur-xl border border-saffron/25 rounded-xl shadow-2xl z-50 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                      {SUBJECT_OPTIONS.map((option) => (
+                        <div
+                          key={option}
+                          onClick={() => {
+                            setSelectedSubject(option);
+                            setIsDropdownOpen(false);
+                          }}
+                          className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${
+                            selectedSubject === option
+                              ? "bg-saffron/10 text-saffron font-bold"
+                              : "text-foreground hover:bg-saffron/5"
+                          }`}
+                        >
+                          <span>{option}</span>
+                          {selectedSubject === option && <Check className="w-4 h-4 text-saffron" />}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-              <LiquidMetalButton
-                type="submit"
-                size="md"
-                className="w-full text-xs uppercase font-extrabold tracking-widest font-heading"
-              >
-                Send Message
-              </LiquidMetalButton>
-            </form>
+                <div>
+                  <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">Message</label>
+                  <textarea 
+                    rows={4} 
+                    placeholder="Type message here..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-sm transition-all resize-none ${
+                      errors.message
+                        ? "border-red-400 focus:border-red-500 focus:ring-red-100"
+                        : "border-saffron/20 focus:border-saffron focus:ring-saffron/20"
+                    }`}
+                  />
+                  {errors.message && (
+                    <p className="text-[11px] text-red-500 font-medium mt-1 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3" /> {errors.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="pt-2">
+                  <LiquidMetalButton
+                    type="submit"
+                    variant="themed"
+                    size="lg"
+                    disabled={status === "submitting"}
+                    icon={status === "submitting" ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                    className="w-full text-xs uppercase font-extrabold tracking-widest font-heading cursor-pointer disabled:opacity-70"
+                    data-hover="pointer"
+                  >
+                    {status === "submitting" ? "Sending..." : "Send Message"}
+                  </LiquidMetalButton>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </div>

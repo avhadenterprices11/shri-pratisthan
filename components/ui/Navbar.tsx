@@ -201,13 +201,13 @@ export function Navbar() {
 
       {/* Next-Level Full-Screen Menu Overlay Drawer */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col md:flex-row p-8 md:p-24 overflow-y-auto">
+        <div className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col md:flex-row p-6 pt-24 pb-12 md:p-24 overflow-y-auto max-h-screen">
           {/* Ambient decorative glows */}
           <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-5" />
           <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-40 opacity-5" />
 
           {/* Left Column: Branding, Motto & Contact Coordinates */}
-          <div className="w-full md:w-1/2 flex flex-col justify-between border-b md:border-b-0 md:border-r border-saffron/10 pb-8 md:pb-0 md:pr-16 mb-8 md:mb-0 relative z-10 pt-20 md:pt-0">
+          <div className="w-full md:w-1/2 flex flex-col justify-between border-b md:border-b-0 md:border-r border-saffron/10 pb-8 md:pb-0 md:pr-16 mb-8 md:mb-0 relative z-10 pt-4 md:pt-0">
             {/* Top Logo & Title */}
             <div className="nav-drawer-info">
               <svg 
@@ -245,9 +245,9 @@ export function Navbar() {
                 </p>
               </div>
               <div className="flex gap-4 mt-2">
-                <a href="#" className="text-xs uppercase font-extrabold tracking-widest text-slate-grey hover:text-saffron transition-colors">Facebook</a>
-                <a href="#" className="text-xs uppercase font-extrabold tracking-widest text-slate-grey hover:text-saffron transition-colors">Instagram</a>
-                <a href="#" className="text-xs uppercase font-extrabold tracking-widest text-slate-grey hover:text-saffron transition-colors">Twitter</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-extrabold tracking-widest text-slate-grey hover:text-saffron transition-colors">Facebook</a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-extrabold tracking-widest text-slate-grey hover:text-saffron transition-colors">Instagram</a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-extrabold tracking-widest text-slate-grey hover:text-saffron transition-colors">Twitter</a>
               </div>
             </div>
           </div>

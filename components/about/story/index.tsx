@@ -34,13 +34,15 @@ const STORY_STEPS = [
 export default function AboutStory() {
   const [activeYear, setActiveYear] = useState(STORY_STEPS[0].year);
   const containerRef = useRef<HTMLDivElement>(null);
+  const activeYearRef = useRef(activeYear);
 
-  // Animate the active year text smoothly on update without remounting React nodes
+  // Sync ref with state
   useEffect(() => {
+    activeYearRef.current = activeYear;
     gsap.fromTo(
       ".story-year-text",
-      { y: 25, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+      { y: 15, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }
     );
   }, [activeYear]);
 
@@ -56,21 +58,36 @@ export default function AboutStory() {
 
         ScrollTrigger.create({
           trigger: card,
-          start: "top 45%", // Toggles when the card hits the upper center of the viewport
-          end: "bottom 45%",
-          onEnter: () => setActiveYear(year),
-          onEnterBack: () => setActiveYear(year),
+          start: "top 50%",
+          end: "bottom 50%",
+          onEnter: () => {
+            if (activeYearRef.current !== year) {
+              setActiveYear(year);
+            }
+          },
+          onEnterBack: () => {
+            if (activeYearRef.current !== year) {
+              setActiveYear(year);
+            }
+          },
         });
       });
     }, containerRef);
 
-    return () => ctx.revert();
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 300);
+
+    return () => {
+      ctx.revert();
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
     <section 
       ref={containerRef}
-      className="relative w-full bg-[#FFFDF9] py-24 px-6 md:px-12 xl:px-24 border-t border-saffron/10 z-10"
+      className="relative w-full bg-[#FFFDF9] py-20 px-6 md:px-12 xl:px-24 border-t border-saffron/10 z-10 select-none"
     >
       {/* Background Grid Accent */}
       <div 
@@ -87,7 +104,7 @@ export default function AboutStory() {
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 items-start relative z-10">
         
         {/* Left Column: Sticky Sidebar Info & Giant Year */}
-        <div className="w-full lg:w-5/12 lg:sticky lg:top-[18vh] flex flex-col items-start gap-6 z-20">
+        <div className="w-full lg:w-5/12 lg:sticky lg:top-[16vh] flex flex-col items-start gap-6 z-20 will-change-transform">
 
           <h2 className="text-3xl sm:text-5xl font-black text-slate-800 tracking-tighter uppercase font-heading">
             Our Roots & Evolution
@@ -119,7 +136,7 @@ export default function AboutStory() {
             return (
               <div
                 key={index}
-                className="story-card-item w-full bg-white border border-saffron/15 rounded-[2.5rem] p-8 sm:p-10 shadow-xl shadow-saffron/5 flex flex-col gap-6 transition-all duration-300 hover:border-saffron/30 hover:shadow-2xl"
+                className="story-card-item w-full bg-white border border-saffron/15 rounded-[2.5rem] p-8 sm:p-10 shadow-xl shadow-saffron/5 flex flex-col gap-6 transition-all duration-300 hover:border-saffron/30 hover:shadow-2xl will-change-transform"
                 data-year={step.year}
               >
                 {/* Card Image Frame */}

@@ -1,11 +1,31 @@
 import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Get in touch with Shree Prathishthan. Reach our administrative office for CSR partnerships, sponsorships, event collaborations, media inquiries, or general support. We reply within 24–48 hours.",
+  openGraph: {
+    title: "Contact Us | Shree Prathishthan",
+    description:
+      "Reach our office for CSR partnerships, sponsorships, event collaborations, or general support. We reply within 24–48 hours.",
+    url: "https://www.shreepratishthan.org/contact",
+    images: [{ url: "/hero_ganesh.png", width: 1200, height: 630, alt: "Contact Shree Prathishthan" }],
+  },
+  twitter: {
+    title: "Contact Us | Shree Prathishthan",
+    description: "Reach our office for CSR partnerships, sponsorships, or general support.",
+    images: ["/hero_ganesh.png"],
+  },
+  alternates: { canonical: "https://www.shreepratishthan.org/contact" },
+};
+
 import ContactInformation from "@/components/contact/contact-information";
 import CommitteeDirectory from "@/components/contact/committee-directory";
 import ContactForm from "@/components/contact/contact-form";
 import LocationMap from "@/components/contact/location-map";
 import ContactSocialMedia from "@/components/contact/social-media";
 import ContactSupportCTA from "@/components/contact/support-cta";
-import ContactFooter from "@/components/contact/footer";
 
 export default function ContactPage() {
   return (
@@ -27,9 +47,6 @@ export default function ContactPage() {
 
       {/* 6. Action Guides Conversion Block */}
       <ContactSupportCTA />
-
-      {/* 7. Global Page Footer Wrapper */}
-      <ContactFooter />
     </main>
   );
 }

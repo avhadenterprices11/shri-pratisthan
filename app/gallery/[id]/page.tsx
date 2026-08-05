@@ -1,11 +1,41 @@
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getGalleryItem } from "../gallery-data";
 import { ArrowLeft, Calendar, Tag, Info, Award } from "lucide-react";
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const item = getGalleryItem(id);
+
+  if (!item) {
+    return {
+      title: "Gallery Item Not Found",
+    };
+  }
+
+  return {
+    title: item.title,
+    description: item.description,
+    openGraph: {
+      title: `${item.title} | Shree Prathishthan Gallery`,
+      description: item.description,
+      url: `https://www.shreepratishthan.org/gallery/${item.id}`,
+      images: [{ url: item.src, width: 1200, height: 630, alt: item.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${item.title} | Shree Prathishthan Gallery`,
+      description: item.description,
+      images: [item.src],
+    },
+  };
 }
 
 export default async function GalleryDetailPage({ params }: PageProps) {
@@ -40,10 +70,13 @@ export default async function GalleryDetailPage({ params }: PageProps) {
             
             {/* Left Column: Image Showcase */}
             <div className="lg:col-span-7 relative aspect-[16/10] w-full overflow-hidden rounded-block border border-saffron/10 shadow-lg bg-neutral-100">
-              <img
+              <Image
                 src={item.src}
                 alt={item.title}
-                className="w-full h-full object-cover"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="object-cover"
               />
             </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { getCDNUrl } from "@/lib/cdn";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -201,11 +202,12 @@ export default function EventsHighlights() {
             >
               {item.isVideo && (
                 <video
-                  src={item.video}
+                  src={getCDNUrl(item.video)}
                   autoPlay
                   loop
                   muted
                   playsInline
+                  preload="metadata"
                   className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
                 />
               )}
@@ -249,10 +251,11 @@ export default function EventsHighlights() {
               {item.isVideo ? (
                 <video
                   ref={(el) => { videoRefs.current[index] = el; }}
-                  src={item.video}
+                  src={getCDNUrl(item.video)}
                   loop
                   muted
                   playsInline
+                  preload="metadata"
                   className="w-full h-full object-cover pointer-events-none select-none"
                 />
               ) : (

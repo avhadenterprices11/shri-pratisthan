@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { Users, Heart, Shield } from "lucide-react";
 
@@ -68,10 +69,13 @@ export default function VolunteerHero() {
     >
       {/* Fullscreen Ken Burns Background Image Layer (Fully Visible Casing) */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <img
+        <Image
           src="/volunteer_coordinator.png"
           alt="Volunteer Drive Background"
-          className="w-full h-full object-cover filter brightness-100 scale-105 animate-ken-burns"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover filter brightness-100 scale-105 animate-ken-burns"
         />
         {/* Semi-transparent dark overlay gradient to maintain text legibility without blacking out the center face */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-transparent via-50% to-black/90 z-10" />

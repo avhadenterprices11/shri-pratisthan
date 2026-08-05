@@ -151,11 +151,6 @@ export default function VolunteerWhyJoin() {
                   {VALUES[activeIdx].desc}
                 </p>
               </div>
-
-              {/* Progress Tracker Footer */}
-              <div className="relative z-10 mt-8 pt-6 border-t border-saffron/10 flex justify-end items-center text-xs uppercase font-extrabold tracking-widest text-slate-grey font-heading">
-                <span>0{activeIdx + 1} / 04</span>
-              </div>
             </div>
           </div>
 

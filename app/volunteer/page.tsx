@@ -1,4 +1,25 @@
 import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Volunteer With Us",
+  description:
+    "Join Shree Prathishthan's volunteer programs across Maharashtra. Opportunities in cultural event logistics, medical camps, tree plantation drives, and socio-educational relief. All skill levels welcome.",
+  openGraph: {
+    title: "Volunteer With Us | Shree Prathishthan",
+    description:
+      "Join our volunteer programs: cultural events, medical camps, tree plantation, and relief work across Maharashtra.",
+    url: "https://www.shreepratishthan.org/volunteer",
+    images: [{ url: "/volunteer_coordinator.png", width: 1200, height: 630, alt: "Volunteer with Shree Prathishthan" }],
+  },
+  twitter: {
+    title: "Volunteer With Us | Shree Prathishthan",
+    description: "Join cultural events, medical camps, tree plantation, and relief work across Maharashtra.",
+    images: ["/volunteer_coordinator.png"],
+  },
+  alternates: { canonical: "https://www.shreepratishthan.org/volunteer" },
+};
+
 import VolunteerHero from "@/components/volunteer/hero";
 import VolunteerWhyJoin from "@/components/volunteer/why-join";
 import VolunteerOpportunities from "@/components/volunteer/opportunities";
@@ -7,7 +28,6 @@ import VolunteerProcess from "@/components/volunteer/process";
 import VolunteerTestimonials from "@/components/volunteer/testimonials";
 import VolunteerFAQ from "@/components/volunteer/faq";
 import VolunteerRegistrationForm from "@/components/volunteer/registration-form";
-import VolunteerFooter from "@/components/volunteer/footer";
 
 export default function VolunteerPage() {
   return (
@@ -35,9 +55,6 @@ export default function VolunteerPage() {
 
       {/* 8. Active Intake Form Block */}
       <VolunteerRegistrationForm />
-
-      {/* 9. Page specific Footer component */}
-      <VolunteerFooter />
     </main>
   );
 }

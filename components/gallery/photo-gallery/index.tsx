@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import Link from "next/link";
 import GalleryFilters from "../gallery-filters";
@@ -64,24 +65,31 @@ const PHOTOS = [
 
 export default function PhotoGallery() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [visibleCount, setVisibleCount] = useState(6);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  // Stagger grid item updates on category changes
+  const handleCategoryChange = (cat: string) => {
+    setActiveCategory(cat);
+    setVisibleCount(6);
+  };
+
+  // Stagger grid item updates on category or pagination changes
   useEffect(() => {
     gsap.fromTo(
       ".photo-card-row",
       { opacity: 0, y: 15, scale: 0.98 },
       { opacity: 1, y: 0, scale: 1, stagger: 0.08, duration: 0.4, ease: "power2.out" }
     );
-  }, [activeCategory]);
+  }, [activeCategory, visibleCount]);
 
   const filteredPhotos = activeCategory === "all" 
     ? PHOTOS 
     : PHOTOS.filter(p => p.category === activeCategory);
 
+  const displayedPhotos = filteredPhotos.slice(0, visibleCount);
+
   // Helper to determine width and aspect ratio classes for each photo card
   const getCardLayout = (index: number, totalCount: number) => {
-    // If the category has few items (3 or less), render as uniform blocks
     if (totalCount <= 3) {
       return {
         widthClass: "w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]",
@@ -89,8 +97,6 @@ export default function PhotoGallery() {
       };
     }
 
-    // Otherwise, generate a custom Bento layout pattern
-    // Card 1, 5, 8 are wide on desktop; the others are regular.
     const isWide = index === 1 || index === 5 || index === 8;
 
     if (isWide) {
@@ -126,25 +132,27 @@ export default function PhotoGallery() {
         <div className="mb-12">
           <GalleryFilters 
             activeCategory={activeCategory} 
-            onCategoryChange={setActiveCategory} 
+            onCategoryChange={handleCategoryChange} 
           />
         </div>
 
         {/* Photo Grid (Flex Bento Layout) */}
         <div className="flex flex-wrap justify-center gap-6 max-w-[1600px] w-full mx-auto">
-          {filteredPhotos.map((item, index) => {
-            const layout = getCardLayout(index, filteredPhotos.length);
+          {displayedPhotos.map((item, index) => {
+            const layout = getCardLayout(index, displayedPhotos.length);
             return (
               <Link 
                 href={`/gallery/${item.id}`}
-                key={index}
+                key={item.id || index}
                 className={`photo-card-row group relative overflow-hidden rounded-block border border-saffron/10 shadow-md flex flex-col justify-between p-6 transition-all duration-500 hover:shadow-2xl cursor-pointer ${layout.widthClass} ${layout.aspectClass}`}
               >
                 {/* Background Image */}
-                <img 
+                <Image 
                   src={item.src} 
                   alt={item.title} 
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-700"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-[1.05] transition-transform duration-700"
                 />
 
                 {/* Ambient Dark/Saffron Gradient Overlay Mask */}
@@ -165,6 +173,18 @@ export default function PhotoGallery() {
             );
           })}
         </div>
+
+        {/* Pagination Load More Button */}
+        {visibleCount < filteredPhotos.length && (
+          <div className="mt-12 flex justify-center">
+            <button
+              onClick={() => setVisibleCount((prev) => prev + 6)}
+              className="bg-saffron hover:bg-saffron/90 text-white font-extrabold text-xs uppercase tracking-widest px-8 py-3.5 rounded-full shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer"
+            >
+              Load More Photos ({filteredPhotos.length - visibleCount} remaining)
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

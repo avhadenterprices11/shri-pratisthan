@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { getCDNUrl } from "@/lib/cdn";
 import { LiquidMetal } from "@/components/ui/liquid-metal-button";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -127,11 +128,12 @@ export default function AboutPreview() {
           <div className="relative z-10 h-full w-full overflow-hidden rounded-2xl bg-[#080808]">
             <video
               ref={videoRef}
-              src="/Create_a_cinematic_second_h.mp4?v=1"
+              src={getCDNUrl("/Create_a_cinematic_second_h.mp4")}
               autoPlay
               loop
               muted
               playsInline
+              preload="metadata"
               onTimeUpdate={handleTimeUpdate}
               className="absolute inset-0 w-full h-[130%] -top-[15%] object-cover select-none pointer-events-none"
             />

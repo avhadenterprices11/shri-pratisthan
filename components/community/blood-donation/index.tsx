@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -82,13 +83,6 @@ export default function BloodDonation() {
     return () => ctx.revert();
   }, []);
 
-  const handleScrollToJoin = () => {
-    const el = document.querySelector("#join-mission");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section
       id="blood-donation"
@@ -126,12 +120,12 @@ export default function BloodDonation() {
               </div>
             </div>
             <div className="pt-4">
-              <button
-                onClick={handleScrollToJoin}
+              <Link
+                href="/contact"
                 className="bg-red-600 hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/20 text-white font-extrabold text-xs uppercase tracking-widest px-8 py-4 rounded-full transition-all duration-300 active:scale-95 cursor-pointer inline-block"
               >
                 Register as a Donor
-              </button>
+              </Link>
             </div>
           </div>
 

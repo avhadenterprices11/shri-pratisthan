@@ -33,41 +33,42 @@ const STAGES: StageItem[] = [
   },
 ];
 
-const ANGLES = [-45, -15, 15, 45]; // Crescent node angles in degrees
+// Exact coordinates along quadratic curve M 50 30 Q 180 180 50 330
+const ARC_NODE_POSITIONS = [
+  { left: 40, top: 25 },
+  { left: 110, top: 120 },
+  { left: 110, top: 220 },
+  { left: 40, top: 315 },
+];
 
 export default function VolunteerProcess() {
   const [activeIdx, setActiveIdx] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const dialRef = useRef<HTMLDivElement>(null);
   const detailsRef = useRef<HTMLDivElement>(null);
   const activeIdxRef = useRef(0);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const scrollTriggerInstance = useRef<any>(null);
 
   useEffect(() => {
-    // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
 
     if (!containerRef.current) return;
 
     const mm = gsap.matchMedia();
 
-    // Desktop viewports: Pinned Scroll-Scrubbed Half-Circle Dial
+    // Desktop viewports: Pinned Scroll-Scrubbed Arc Stepper
     mm.add("(min-width: 768px)", () => {
-      if (!dialRef.current) return;
-
       const trigger = ScrollTrigger.create({
         trigger: "#processPinContainer",
         start: "top top",
-        end: "+=150%",
-        scrub: 0.5,
+        end: "+=120%",
+        scrub: 0.4,
         pin: true,
-        pinSpacing: true, // Explicitly enforce layout spacer padding
-        anticipatePin: 1, // Prevent scroll jitter on pin start
+        pinSpacing: true,
+        anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const progress = self.progress;
-          // Map scroll progress (0 to 1) to step index (0 to 3)
           const index = Math.min(
             Math.floor(progress * STAGES.length),
             STAGES.length - 1
@@ -80,26 +81,9 @@ export default function VolunteerProcess() {
       });
 
       scrollTriggerInstance.current = trigger;
-
-      // Animate dial rotation manually via scroll scrub timeline
-      gsap.fromTo(
-        dialRef.current,
-        { rotation: 45 },
-        {
-          rotation: -45,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "#processPinContainer",
-            start: "top top",
-            end: "+=150%",
-            scrub: 0.5,
-            pinSpacing: true,
-          },
-        }
-      );
     });
 
-    // Mobile fallback viewports: Simple scroll reveal entrance
+    // Mobile fallback
     mm.add("(max-width: 767px)", () => {
       gsap.fromTo(
         ".process-reveal",
@@ -117,10 +101,9 @@ export default function VolunteerProcess() {
       );
     });
 
-    // Force recalculate scroll positions after a short delay
     const refreshTimer = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 250);
+    }, 200);
 
     return () => {
       mm.revert();
@@ -134,8 +117,8 @@ export default function VolunteerProcess() {
     
     gsap.fromTo(
       detailsRef.current,
-      { opacity: 0, y: 15 },
-      { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }
+      { opacity: 0, y: 12 },
+      { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
     );
   }, [activeIdx]);
 
@@ -144,7 +127,6 @@ export default function VolunteerProcess() {
     if (isDesktop && scrollTriggerInstance.current) {
       const start = scrollTriggerInstance.current.start;
       const end = scrollTriggerInstance.current.end;
-      // Scroll proportionally to snap to selected step offset
       const progress = idx / (STAGES.length - 1);
       const scrollPos = start + (end - start) * progress;
       window.scrollTo({
@@ -160,56 +142,75 @@ export default function VolunteerProcess() {
     <div 
       id="processPinContainer" 
       ref={containerRef} 
-      className="bg-background relative w-full md:h-screen md:min-h-screen flex flex-col justify-center overflow-hidden"
+      className="bg-background relative w-full md:h-screen md:min-h-screen flex flex-col justify-center overflow-hidden select-none"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0 animate-pulse" />
       
-      <div className="relative z-10 w-full flex flex-col justify-center py-16 md:py-0 overflow-hidden process-reveal">
+      <div className="relative z-10 w-full flex flex-col justify-center py-16 md:py-0 process-reveal">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12 px-6">
+        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14 px-6">
           <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
             Our Onboarding Process
           </h2>
           <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
         </div>
 
-        {/* 2-Column Dial Container */}
+        {/* 2-Column Arc Container */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center px-6 md:px-12 max-w-6xl mx-auto w-full">
           
-          {/* Left Column: Radial Dial (Left-shifted half-circle) */}
-          <div className="hidden md:col-span-5 md:flex items-center justify-center relative overflow-hidden h-[340px] md:h-[380px] w-full">
-            {/* The Rotating Dial Circle (Translated left by exactly half-width to show only right half) */}
-            <div 
-              ref={dialRef}
-              className="absolute -left-[150px] lg:-left-[180px] w-[300px] h-[300px] lg:w-[360px] lg:h-[360px] rounded-full border-2 border-dashed border-saffron/20 flex items-center justify-center [--dial-radius:120px] lg:[--dial-radius:145px]"
+          {/* Left Column: Visual Arc Track */}
+          <div className="hidden md:col-span-5 md:flex items-center justify-center relative h-[360px] w-full max-w-[280px] mx-auto">
+            
+            {/* SVG Arc Curved Path */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none z-0" 
+              viewBox="0 0 240 360"
             >
-              {/* Crescent Step Nodes */}
-              {STAGES.map((stage, index) => {
-                const isActive = activeIdx === index;
-                const angle = ANGLES[index];
-                
-                return (
-                  <button
-                    key={stage.step}
-                    onClick={() => handleStepClick(index)}
-                    className={`absolute w-12 h-12 rounded-full border flex items-center justify-center text-sm font-extrabold font-heading shadow-md cursor-pointer transition-all duration-300 ${
-                      isActive 
-                        ? "bg-saffron text-white border-saffron scale-110 shadow-lg shadow-saffron/30 z-20" 
-                        : "bg-white text-slate-grey border-black/8 hover:border-saffron hover:text-saffron z-10"
-                    }`}
-                    style={{
-                      transform: `rotate(${angle}deg) translateX(var(--dial-radius)) rotate(${-angle}deg)`,
-                    }}
-                  >
-                    {stage.step}
-                  </button>
-                );
-              })}
-            </div>
+              {/* Background Dashed Arc Track */}
+              <path 
+                d="M 50 30 Q 170 180 50 330" 
+                fill="none" 
+                stroke="#E26A36" 
+                strokeOpacity="0.25" 
+                strokeWidth="2.5" 
+                strokeDasharray="6 6" 
+              />
+              {/* Active Segment Solid Arc Accent */}
+              <path 
+                d="M 50 30 Q 170 180 50 330" 
+                fill="none" 
+                stroke="#E26A36" 
+                strokeWidth="3.5" 
+                strokeDasharray="360"
+                strokeDashoffset={360 - (activeIdx / 3) * 360}
+                className="transition-all duration-500 ease-out"
+              />
+            </svg>
 
-            {/* Glowing active selector arrow at the apex center line */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-saffron rotate-45 rounded-sm z-30 shadow-md shadow-saffron/20" />
+            {/* Arc Step Node Buttons */}
+            {STAGES.map((stage, index) => {
+              const isActive = activeIdx === index;
+              const pos = ARC_NODE_POSITIONS[index];
+              
+              return (
+                <button
+                  key={stage.step}
+                  onClick={() => handleStepClick(index)}
+                  style={{
+                    left: `${pos.left}px`,
+                    top: `${pos.top}px`,
+                  }}
+                  className={`absolute -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full border flex items-center justify-center text-sm font-extrabold font-heading shadow-md cursor-pointer transition-all duration-300 ${
+                    isActive 
+                      ? "bg-saffron text-white border-saffron scale-115 shadow-xl shadow-saffron/40 z-20 ring-4 ring-saffron/20" 
+                      : "bg-white text-slate-grey border-saffron/20 hover:border-saffron hover:text-saffron z-10 hover:scale-105"
+                  }`}
+                >
+                  {stage.step}
+                </button>
+              );
+            })}
           </div>
 
           {/* Mobile Fallback: Horizontal step pills */}
@@ -234,11 +235,10 @@ export default function VolunteerProcess() {
 
           {/* Right Column: Display Card Panel */}
           <div className="md:col-span-7">
-            <div className="glass-panel p-6 sm:p-8 rounded-block bg-white border border-saffron/15 shadow-2xl relative min-h-[220px] sm:min-h-[200px] flex flex-col justify-between overflow-hidden">
+            <div className="glass-panel p-6 sm:p-10 rounded-block bg-white border border-saffron/15 shadow-2xl relative min-h-[200px] sm:min-h-[180px] flex flex-col justify-between overflow-hidden">
               <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-20 z-0" />
               
               <div ref={detailsRef} className="relative z-10 text-left">
-                
                 {/* Stage Title */}
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 mb-4 font-heading">
                   {STAGES[activeIdx].title}
@@ -248,11 +248,6 @@ export default function VolunteerProcess() {
                 <p className="text-slate-grey text-base sm:text-lg leading-relaxed font-sans">
                   {STAGES[activeIdx].desc}
                 </p>
-              </div>
-
-              {/* Progress Tracker Footer */}
-              <div className="relative z-10 mt-8 pt-6 border-t border-saffron/10 flex justify-end items-center text-xs uppercase font-extrabold tracking-widest text-slate-grey font-heading">
-                <span>Scroll to Advance</span>
               </div>
             </div>
           </div>

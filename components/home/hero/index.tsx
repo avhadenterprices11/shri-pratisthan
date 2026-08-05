@@ -164,9 +164,9 @@ export default function Hero() {
       className="relative w-full h-screen bg-obsidian-deep overflow-hidden flex flex-col justify-between select-none opacity-0"
     >
       {/* Typographic Portal Reveal Overlay */}
-      <div className="absolute inset-0 z-[60] bg-saffron flex items-center justify-center portal-intro pointer-events-none">
-        <h2 className="portal-text text-[9vw] font-black text-white select-none uppercase font-heading leading-[0.8] tracking-tighter text-center whitespace-pre-line">
-          SHREE{"\n"}PRATHISHTHAN
+      <div className="absolute inset-0 z-[60] bg-saffron flex flex-col items-center justify-center text-center portal-intro pointer-events-none px-4">
+        <h2 className="portal-text text-[8.5vw] md:text-[7.5vw] font-black text-white select-none uppercase font-heading leading-[0.82] tracking-tighter text-center whitespace-pre-line">
+          WE{"\n"}CELEBRATE{"\n"}TOGETHER
         </h2>
       </div>
 

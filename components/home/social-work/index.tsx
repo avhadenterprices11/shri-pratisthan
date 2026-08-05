@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -114,17 +115,13 @@ export default function CulturalInitiatives() {
                             <br />
                             Naad Pathak
                           </h3>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              const el = document.getElementById("volunteer");
-                              if (el) el.scrollIntoView({ behavior: "smooth" });
-                            }}
-                            className="inline-flex items-center gap-2 text-[11px] tracking-[1.4px] uppercase font-bold text-saffron hover:text-gold transition-colors cursor-none"
+                          <Link
+                            href="/volunteer"
+                            className="inline-flex items-center gap-2 text-[11px] tracking-[1.4px] uppercase font-bold text-saffron hover:text-gold transition-colors cursor-pointer"
                             data-hover="pointer"
                           >
                             Join the Troupe <ArrowRight size={14} />
-                          </button>
+                          </Link>
                         </div>
                       ) : (
                         <div className="max-w-[300px]">
@@ -138,19 +135,15 @@ export default function CulturalInitiatives() {
                           }`}>
                             {card.description}
                           </p>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              const el = document.getElementById("volunteer");
-                              if (el) el.scrollIntoView({ behavior: "smooth" });
-                            }}
-                            className={`mt-3 inline-flex items-center gap-2 text-[11px] tracking-[1.4px] uppercase font-bold transition-colors cursor-none ${
+                          <Link
+                            href="/volunteer"
+                            className={`mt-3 inline-flex items-center gap-2 text-[11px] tracking-[1.4px] uppercase font-bold transition-colors cursor-pointer ${
                               card.id === 2 ? "text-gold hover:text-saffron" : "text-saffron hover:text-gold"
                             }`}
                             data-hover="pointer"
                           >
                             Participate <ArrowRight size={14} />
-                          </button>
+                          </Link>
                         </div>
                       )}
 
@@ -204,12 +197,9 @@ export default function CulturalInitiatives() {
         </div>
 
         {/* Dynamic Troupe Volunteer Invitation Banner */}
-        <div 
-          onClick={() => {
-            const el = document.getElementById("volunteer");
-            if (el) el.scrollIntoView({ behavior: "smooth" });
-          }}
-          className="mt-12 bg-charcoal text-white rounded-full px-5 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center cursor-pointer hover:bg-charcoal/95 transition-all border border-saffron/10 group shadow-md"
+        <Link 
+          href="/volunteer"
+          className="mt-12 bg-charcoal text-white rounded-full px-5 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center cursor-pointer hover:bg-charcoal/95 transition-all border border-saffron/10 group shadow-md block"
           data-hover="pointer"
         >
           <p className="text-[13px] sm:text-[14px] leading-[1.4] text-slate-200 font-sans">
@@ -218,7 +208,7 @@ export default function CulturalInitiatives() {
           <span className="text-[11px] font-extrabold uppercase tracking-widest text-saffron flex items-center gap-1.5 whitespace-nowrap bg-white/95 px-4 py-2 rounded-full shadow-sm group-hover:text-gold transition-colors">
             Become a Volunteer <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform duration-300" />
           </span>
-        </div>
+        </Link>
 
       </div>
     </section>

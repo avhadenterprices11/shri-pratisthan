@@ -1,4 +1,25 @@
 import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "Shree Prathishthan — Maharashtra's trusted cultural heritage and social welfare trust. Organising Ganeshotsav, Dahi Handi, Navratri, blood donation camps, and rural relief drives across Pune and Mumbai.",
+  openGraph: {
+    title: "Shree Prathishthan | Home",
+    description:
+      "Maharashtra's trusted cultural heritage trust. Grand festivals, community service, and rural welfare drives.",
+    url: "https://www.shreepratishthan.org",
+    images: [{ url: "/hero_ganesh.png", width: 1200, height: 630, alt: "Shree Prathishthan Home" }],
+  },
+  twitter: {
+    title: "Shree Prathishthan | Home",
+    description: "Maharashtra's trusted cultural heritage trust. Grand festivals and community service.",
+    images: ["/hero_ganesh.png"],
+  },
+  alternates: { canonical: "https://www.shreepratishthan.org" },
+};
+
 import Hero from "@/components/home/hero";
 import AboutPreview from "@/components/home/about-preview";
 
@@ -8,10 +29,9 @@ import CommunityImpact from "@/components/home/community-impact";
 import CulturalInitiatives from "@/components/home/social-work";
 import GalleryPreview from "@/components/home/gallery-preview";
 import Testimonials from "@/components/home/testimonials";
-import VolunteerCTA from "@/components/home/volunteer-cta";
+import VolunteerCTA from "@/components/ui/volunteer-cta";
 import Sponsors from "@/components/home/sponsors";
 import ContactCTA from "@/components/home/contact-cta";
-import Footer from "@/components/home/footer";
 
 export default function Home() {
   return (
@@ -50,9 +70,6 @@ export default function Home() {
 
       {/* 13. Message Inbox & Administrative Coordinates */}
       <ContactCTA />
-
-      {/* 14. Global Page Footer Map */}
-      <Footer />
     </main>
   );
 }

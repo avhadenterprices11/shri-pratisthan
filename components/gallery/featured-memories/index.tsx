@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
@@ -29,10 +30,12 @@ function MemoryCard({
         
         {/* Card Image */}
         <div className="relative h-[200px] w-full overflow-hidden bg-neutral-100 border-b border-saffron/10">
-          <img 
+          <Image 
             src={src} 
             alt={title} 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
           />
           <div className="absolute top-4 left-4 z-10 bg-white/95 text-saffron font-bold text-[9px] uppercase tracking-widest px-3 py-1 rounded-full border border-saffron/20 shadow-sm">
             {category}

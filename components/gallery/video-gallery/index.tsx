@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -96,10 +97,12 @@ export default function VideoGallery() {
             >
               {/* Visual wrapper */}
               <div className="h-[220px] relative overflow-hidden flex items-center justify-center text-7xl select-none">
-                <img 
+                <Image 
                   src={item.poster} 
                   alt={item.title} 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 {/* Play Button Overlay */}
                 <div className="absolute inset-0 bg-black/35 flex items-center justify-center opacity-85 group-hover:opacity-100 transition-opacity z-10">

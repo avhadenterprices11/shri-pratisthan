@@ -89,20 +89,7 @@ export default function AboutAchievements() {
       ref={containerRef} 
       className="py-24 px-6 md:px-12 xl:px-24 bg-[#FFFDF9] border-t border-saffron/10 relative overflow-hidden select-none z-10"
     >
-      {/* Dynamic Keyframes for Badge Spin with hover speed-up transition */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes timelineBadgeSpin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow-badge {
-          animation: timelineBadgeSpin 18s linear infinite;
-          transition: animation-duration 0.6s ease;
-        }
-        .group:hover .animate-spin-slow-badge {
-          animation-duration: 7s;
-        }
-      ` }} />
+      {/* Animation keyframes for badge spin are defined in globals.css */}
 
       {/* Background Grid Accent */}
       <div 
