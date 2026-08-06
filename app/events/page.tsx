@@ -1,60 +1,63 @@
 import React from "react";
 import type { Metadata } from "next";
+import EventsHero from "@/components/events/hero";
+import FeaturedFestivals from "@/components/events/featured-festivals";
+import UpcomingEvents from "@/components/events/upcoming-events";
+import Highlights from "@/components/events/highlights";
+import FestivalCalendar from "@/components/events/festival-calendar";
+import EventJourney from "@/components/events/event-journey";
+import PastEvents from "@/components/events/past-events";
+import Registration from "@/components/events/registration";
+import FAQ from "@/components/events/faq";
 
 export const metadata: Metadata = {
-  title: "Events & Festivals",
+  title: "Events & Cultural Festivals",
   description:
-    "Explore Shree Prathishthan's grand festival calendar: Ganeshotsav, Dahi Handi, Navratri, Shiv Jayanti, Dussehra, and more. Join thousands of devotees in Maharashtra's biggest celebrations.",
+    "Discover upcoming cultural celebrations, Dahi Handi championships, Navratri garba, medical camps, and community drives at Shree Prathishthan.",
   openGraph: {
-    title: "Events & Festivals | Shree Prathishthan",
+    title: "Events & Cultural Festivals | Shree Prathishthan",
     description:
-      "Grand festival calendar: Ganeshotsav, Dahi Handi, Navratri, Shiv Jayanti, and more. Maharashtra's biggest celebrations.",
+      "Discover upcoming cultural celebrations, Dahi Handi championships, Navratri garba, medical camps, and community drives at Shree Prathishthan.",
     url: "https://www.shreepratishthan.org/events",
-    images: [{ url: "/gallery_ganeshotsav_aarthi.png", width: 1200, height: 630, alt: "Shree Prathishthan Events & Festivals" }],
+    images: [{ url: "/hero_ganesh.png", width: 1200, height: 630, alt: "Shree Prathishthan Events" }],
   },
   twitter: {
-    title: "Events & Festivals | Shree Prathishthan",
-    description: "Grand festivals: Ganeshotsav, Dahi Handi, Navratri, and more. Join Maharashtra's celebrations.",
-    images: ["/gallery_ganeshotsav_aarthi.png"],
+    title: "Events & Cultural Festivals | Shree Prathishthan",
+    description: "Discover upcoming cultural celebrations and community drives at Shree Prathishthan.",
+    images: ["/hero_ganesh.png"],
   },
   alternates: { canonical: "https://www.shreepratishthan.org/events" },
 };
 
-import EventsHero from "@/components/events/hero";
-import UpcomingEvents from "@/components/events/upcoming-events";
-import FestivalCalendar from "@/components/events/festival-calendar";
-import FeaturedFestivals from "@/components/events/featured-festivals";
-import EventJourney from "@/components/events/event-journey";
-import PastEvents from "@/components/events/past-events";
-import EventsHighlights from "@/components/events/highlights";
-import EventsRegistration from "@/components/events/registration";
-
 export default function EventsPage() {
   return (
-    <main className="w-full min-h-screen">
+    <main className="flex flex-col w-full min-h-screen bg-background">
       {/* 1. Hero Landing Block */}
       <EventsHero />
 
-      {/* 2. Near-future Listings */}
-      <UpcomingEvents />
-
-      {/* 3. Chronological Calendar Tabs */}
-      <FestivalCalendar />
-
-      {/* 4. Ganeshotsav & Dahi Handi Featured Cards */}
+      {/* 2. Featured Festivals Showcase */}
       <FeaturedFestivals />
 
-      {/* 5. Campaign Lifecycle Timeline */}
+      {/* 3. Upcoming Events & Campaigns */}
+      <UpcomingEvents />
+
+      {/* 4. Event Highlights */}
+      <Highlights />
+
+      {/* 5. Annual Festival Calendar */}
+      <FestivalCalendar />
+
+      {/* 6. Event Journey Timeline */}
       <EventJourney />
 
-      {/* 6. Completed Drives Grid */}
+      {/* 7. Past Events Archive */}
       <PastEvents />
 
-      {/* 7. Image Snapshots */}
-      <EventsHighlights />
+      {/* 8. Event Volunteer & Booking Registration */}
+      <Registration />
 
-      {/* 8. Active Registration Sheet */}
-      <EventsRegistration />
+      {/* 9. Event Frequently Asked Questions */}
+      <FAQ />
     </main>
   );
 }

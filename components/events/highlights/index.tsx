@@ -42,10 +42,11 @@ const HIGHLIGHTS: HighlightItem[] = [
 ];
 
 export default function EventsHighlights() {
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const isHovered = useRef(false);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -72,19 +73,18 @@ export default function EventsHighlights() {
     return () => ctx.revert();
   }, []);
 
-  // Track cursor position to translate floating portal
+  // Track cursor position to translate floating portal with ultra smooth timing
   useEffect(() => {
     const handleGlobalMouseMove = (e: MouseEvent) => {
-      if (!portalRef.current || hoveredIdx === null) return;
+      if (!portalRef.current || !isHovered.current) return;
 
       const portalWidth = 380;
       const portalHeight = 250;
 
-      // Animate fixed portal position relative to mouse coordinates with slight inertia lag
       gsap.to(portalRef.current, {
         x: e.clientX - portalWidth / 2,
         y: e.clientY - portalHeight / 2,
-        duration: 0.35,
+        duration: 0.2,
         ease: "power2.out",
         overwrite: "auto",
       });
@@ -92,10 +92,11 @@ export default function EventsHighlights() {
 
     window.addEventListener("mousemove", handleGlobalMouseMove);
     return () => window.removeEventListener("mousemove", handleGlobalMouseMove);
-  }, [hoveredIdx]);
+  }, []);
 
-  const handleMouseEnter = (idx: number) => {
-    setHoveredIdx(idx);
+  const handleMouseEnter = (idx: number, e: React.MouseEvent) => {
+    isHovered.current = true;
+    setActiveIdx(idx);
 
     // Play active video loop if present
     const video = videoRefs.current[idx];
@@ -104,19 +105,28 @@ export default function EventsHighlights() {
       video.play().catch(() => {});
     }
 
-    // Animate portal scale up and slide visible
+    // Instantly set initial position to avoid jump
     if (portalRef.current) {
+      const portalWidth = 380;
+      const portalHeight = 250;
+      gsap.set(portalRef.current, {
+        x: e.clientX - portalWidth / 2,
+        y: e.clientY - portalHeight / 2,
+      });
+
+      // Smooth scale & fade in
+      gsap.killTweensOf(portalRef.current);
       gsap.to(portalRef.current, {
         opacity: 1,
         scale: 1,
-        duration: 0.3,
-        ease: "back.out(1.2)",
+        duration: 0.35,
+        ease: "back.out(1.4)",
       });
     }
   };
 
   const handleMouseLeave = (idx: number) => {
-    setHoveredIdx(null);
+    isHovered.current = false;
 
     // Pause active video loop
     const video = videoRefs.current[idx];
@@ -124,13 +134,19 @@ export default function EventsHighlights() {
       video.pause();
     }
 
-    // Scale portal out
+    // Scale portal out cleanly, clearing activeIdx only on complete
     if (portalRef.current) {
+      gsap.killTweensOf(portalRef.current);
       gsap.to(portalRef.current, {
         opacity: 0,
         scale: 0.75,
         duration: 0.25,
         ease: "power2.out",
+        onComplete: () => {
+          if (!isHovered.current) {
+            setActiveIdx(null);
+          }
+        },
       });
     }
   };
@@ -170,7 +186,7 @@ export default function EventsHighlights() {
           {HIGHLIGHTS.map((item, index) => (
             <div
               key={index}
-              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseEnter={(e) => handleMouseEnter(index, e)}
               onMouseLeave={() => handleMouseLeave(index)}
               className="group relative flex items-center justify-between py-12 border-b border-black/10 cursor-pointer select-none transition-all duration-300 px-4"
             >
@@ -240,7 +256,7 @@ export default function EventsHighlights() {
         style={{ left: 0, top: 0 }}
       >
         {HIGHLIGHTS.map((item, index) => {
-          const isSelected = hoveredIdx === index;
+          const isSelected = activeIdx === index;
           return (
             <div
               key={index}

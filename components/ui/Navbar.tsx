@@ -142,6 +142,8 @@ export function Navbar() {
     { label: "Community", href: "/community" },
     { label: "Volunteer", href: "/volunteer" },
     { label: "Events", href: "/events" },
+    { label: "All Events", href: "/all-events" },
+    { label: "Event Booking", href: "/event-booking" },
     { label: "Gallery", href: "/gallery" },
     { label: "Contact Us", href: "/contact" },
   ];
