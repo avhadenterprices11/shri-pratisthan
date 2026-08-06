@@ -1,14 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import AllEventsHero from "@/components/all-events/hero";
-import AllEventsFilter from "@/components/all-events/all-events-filter";
-import EventsGrid from "@/components/all-events/events-grid";
-import PastEventsArchive from "@/components/all-events/past-events";
-import AllEventsCommunityCTA from "@/components/all-events/community-cta";
+import AllEventsFilter from "./all-events-filter";
+import EventsGrid from "./events-grid";
 import { ALL_EVENTS } from "@/lib/events-data";
 
-export default function AllEventsPage() {
+export default function AllEventsSection() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   // Compute event counts per category
@@ -28,25 +25,26 @@ export default function AllEventsPage() {
   });
 
   return (
-    <main className="flex flex-col w-full min-h-screen bg-background">
-      {/* 1. All Events Hero Banner */}
-      <AllEventsHero />
+    <section id="all-events-grid" className="w-full py-16 bg-neutral-50/50 border-t border-neutral-200/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-8 text-center">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading">
+          Explore All Events
+        </h2>
+        <p className="text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto mt-3 font-medium">
+          Filter our ongoing celebrations, upcoming health camps, cultural festivals, and community initiatives.
+        </p>
+        <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+      </div>
 
-      {/* 2. Interactive Category Filter Bar */}
+      {/* Interactive Category Filter Bar */}
       <AllEventsFilter
         selectedCategory={selectedCategory}
         onSelectCategory={setSelectedCategory}
         counts={counts}
       />
 
-      {/* 3. Active & Upcoming Events Grid */}
+      {/* Active & Upcoming Events Grid */}
       <EventsGrid events={filteredEvents} />
-
-      {/* 4. Historical Past Events Showcase */}
-      <PastEventsArchive />
-
-      {/* 5. Community Participation CTA Banner */}
-      <AllEventsCommunityCTA />
-    </main>
+    </section>
   );
 }

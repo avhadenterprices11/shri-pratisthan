@@ -73,7 +73,7 @@ export default async function EventDetailPage({ params }: PageProps) {
         {/* Back Link */}
         <div>
           <Link
-            href="/all-events"
+            href="/events"
             className="inline-flex items-center gap-2 text-saffron hover:text-saffron/85 font-extrabold text-xs uppercase tracking-widest transition-colors duration-300 group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />

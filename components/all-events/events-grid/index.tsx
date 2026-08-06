@@ -109,7 +109,7 @@ export default function EventsGrid({ events }: EventsGridProps) {
                     href={`/event-booking?event=${event.id}`}
                     className="py-2.5 px-4 bg-saffron hover:bg-saffron/90 text-white rounded-xl text-xs font-extrabold uppercase tracking-wider transition-all flex items-center gap-1 shadow-md hover:shadow-saffron/20"
                   >
-                    <Ticket className="w-3.5 h-3.5" /> Book Pass
+                    <Ticket className="w-3.5 h-3.5" /> Book Event
                   </Link>
                 )}
               </div>

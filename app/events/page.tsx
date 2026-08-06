@@ -4,6 +4,7 @@ import EventsHero from "@/components/events/hero";
 import FeaturedFestivals from "@/components/events/featured-festivals";
 import UpcomingEvents from "@/components/events/upcoming-events";
 import Highlights from "@/components/events/highlights";
+import AllEventsSection from "@/components/all-events/all-events-section";
 import FestivalCalendar from "@/components/events/festival-calendar";
 import EventJourney from "@/components/events/event-journey";
 import PastEvents from "@/components/events/past-events";
@@ -43,6 +44,9 @@ export default function EventsPage() {
 
       {/* 4. Event Highlights */}
       <Highlights />
+
+      {/* 4b. All Events Explorer & Grid */}
+      <AllEventsSection />
 
       {/* 5. Annual Festival Calendar */}
       <FestivalCalendar />
