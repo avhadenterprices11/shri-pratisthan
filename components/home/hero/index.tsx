@@ -236,16 +236,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Sticky Saffron Volunteer Tab on the right side of the screen */}
-      <div
-        onClick={() => {
-          const el = document.getElementById("volunteer");
-          if (el) el.scrollIntoView({ behavior: "smooth" });
-        }}
-        className="fixed right-0 top-1/2 -translate-y-1/2 bg-saffron text-white border-l border-y border-saffron/20 py-4 px-2.5 rounded-l-md font-bold uppercase text-[9px] tracking-widest [writing-mode:vertical-lr] cursor-pointer hover:bg-saffron/90 hover:text-white transition-all duration-300 shadow-lg z-50 hover:pl-3.5 select-none"
-      >
-        Become a Volunteer
-      </div>
     </section>
   );
 }
