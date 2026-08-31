@@ -8,16 +8,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const FAQS = [
   {
-    q: "How are safety parameters managed during Dahi Handi?",
-    a: "We enforce strict safety standards, supplying all human pyramid layers with professional safety harnesses, helmets, and thick protective cushioning sheets on landing zones.",
+    q: "What are the Aarti & Darshan timings during Shree Ganeshotsav?",
+    a: "Daily Prabhat Aarti begins at 6:00 AM, afternoon community darshan runs through 1:00 PM, and the grand 108-lamp evening Maha Aarti commences at 7:30 PM at the Indira Nagar Mandal Ground, Nashik.",
   },
   {
-    q: "Are the social campaigns open to non-members?",
-    a: "Yes. All diagnostic medical checks, blood camps, and ecological tree plantings are open to the general public. Anyone can register and participate.",
+    q: "Who can participate in the Gudipadwa Swagat Yatra & Cricket Tournaments?",
+    a: "Our cultural processions, health drives, and annual cricket championships are open to all citizens, families, and youth clubs across Indira Nagar and Nashik district. Registration is free and welcome to all.",
   },
   {
-    q: "How can I access audit reports for previous events?",
-    a: "We publish detailed annual audited expense logs and campaign metric reports. You can download these reports directly from the community audit center on our About Us page.",
+    q: "Are events free and how do I obtain an entry or booking pass?",
+    a: "All cultural festivals, aartis, and health camps are completely free for the public. You can generate an instant digital pass with QR verification directly on our Event Booking portal.",
   },
 ];
 

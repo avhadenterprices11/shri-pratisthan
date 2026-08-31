@@ -62,7 +62,7 @@ export default function ShareMemoriesCTA() {
               Have Photos from Our Events?
             </h2>
             <p className="text-base sm:text-lg text-slate-grey max-w-xl mx-auto mb-10 leading-relaxed">
-              If you attended our Ganeshotsav parades, coordinates diagnostic camps, or participated in tree planting drives, submit your photographs to our administrative review desk. We showcase community memories dynamically.
+              If you attended our Shree Ganeshotsav, Gudipadwa Swagat Yatra, 50+ blood donation drives, or cricket leagues in Indira Nagar, Nashik, submit your photographs to our team. We showcase community memories dynamically.
             </p>
 
             <button

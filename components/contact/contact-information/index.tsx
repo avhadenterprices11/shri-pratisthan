@@ -11,36 +11,36 @@ const CARDS = [
   {
     title: "Registered Head Office",
     details: [
-      "Building 4B, Sector 3,",
-      "Station Road, Bhandup (East),",
-      "Mumbai, MH - 400042",
+      "Shree Pratishtan Mandal,",
+      "Indira Nagar,",
+      "Nashik, MH - 422009",
     ],
     icon: MapPin,
   },
   {
     title: "Administrative Coordinates",
     details: [
-      "Inquiries: info@shripratisthan.org",
-      "Volunteer Coordinator: +91 98765 43210",
-      "Office Landline: 022-2567-8910",
+      "Inquiries: Info@shreepratishthan.com",
+      "Helpline: +91 9922786608",
+      "WhatsApp: +91 9922786608",
     ],
     icon: PhoneCall,
   },
   {
-    title: "Regional Liaison Office",
+    title: "Registered Trust Entity",
     details: [
-      "Prathishthan Seva Kendra,",
-      "Main Market Road, Karjat,",
-      "Raigad, MH - 410201",
+      "कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था",
+      "Indira Nagar, Nashik",
+      "Bank: Samarth Sahakari Bank",
     ],
     icon: Building2,
   },
   {
-    title: "Trust Registrations",
+    title: "Trust Registrations & Motto",
     details: [
-      "Trust Act Reg: E-32456 (Mumbai)",
-      "Section 80G Tax Exemption Certified",
-      "Section 12A Regulatory Clearance",
+      "Reg No: nashik/0000153/2018",
+      "Founder: ॲड श्याम धर्मराज बडोदे",
+      "वारसा संस्कृतीचा, ध्यास समाजसेवेचा",
     ],
     icon: ShieldCheck,
   },
@@ -76,7 +76,7 @@ export default function ContactInformation() {
   return (
     <section
       ref={containerRef}
-      className="pt-36 pb-24 px-6 md:px-12 relative overflow-hidden bg-background"
+      className="py-20 px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
       <div className="max-w-7xl mx-auto relative z-10">
@@ -102,12 +102,43 @@ export default function ContactInformation() {
                   <h3 className="text-lg font-extrabold text-foreground mb-4 font-heading">
                     {item.title}
                   </h3>
-                  <div className="space-y-1">
-                    {item.details.map((line, idx) => (
-                      <p key={idx} className="text-sm text-slate-grey font-medium leading-relaxed">
-                        {line}
-                      </p>
-                    ))}
+                  <div className="space-y-1.5">
+                    {item.details.map((line, idx) => {
+                      if (line.includes("Info@shreepratishthan.com")) {
+                        return (
+                          <p key={idx} className="text-sm text-slate-grey font-medium leading-relaxed">
+                            Email:{" "}
+                            <a
+                              href="mailto:Info@shreepratishthan.com"
+                              className="text-saffron font-bold hover:underline"
+                            >
+                              Info@shreepratishthan.com
+                            </a>
+                          </p>
+                        );
+                      }
+                      if (line.includes("+91 9922786608")) {
+                        const isWhatsApp = line.toLowerCase().includes("whatsapp");
+                        return (
+                          <p key={idx} className="text-sm text-slate-grey font-medium leading-relaxed">
+                            {isWhatsApp ? "WhatsApp: " : "Helpline: "}
+                            <a
+                              href={isWhatsApp ? "https://wa.me/919922786608" : "tel:+919922786608"}
+                              target={isWhatsApp ? "_blank" : undefined}
+                              rel={isWhatsApp ? "noopener noreferrer" : undefined}
+                              className="text-saffron font-bold hover:underline"
+                            >
+                              +91 9922786608
+                            </a>
+                          </p>
+                        );
+                      }
+                      return (
+                        <p key={idx} className="text-sm text-slate-grey font-medium leading-relaxed">
+                          {line}
+                        </p>
+                      );
+                    })}
                   </div>
                 </div>
 

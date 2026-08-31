@@ -53,13 +53,13 @@ export default function VisionMission() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-saffron/5 rounded-full blur-3xl group-hover:bg-saffron/10 transition-all" />
             <div className="text-xs uppercase font-bold tracking-widest text-saffron mb-4">The Vision</div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-6 font-heading">
-              Cultural Purity, Youth Unity
+              Building a United & Active Community
             </h3>
             <p className="text-base sm:text-lg text-slate-grey leading-relaxed mb-6">
-              To build a close-knit group of friends where Maharashtra's traditional heritage is celebrated with dynamic pride, acting as a catalyst for local volunteer collaboration and community joy.
+              To build a united, active, and socially responsible community where people come together to celebrate culture, support one another, encourage youth participation, and contribute towards the overall development and well-being of society.
             </p>
             <p className="text-sm text-slate-grey/80 leading-relaxed">
-              We envision a future where our friends group unites neighborhoods, fosters strong bonds of brotherhood, and our traditional street festivals set benchmarks for safe, organized, and lively operations.
+              Rooted in Indira Nagar, Nashik since 2006, we envision an empowered neighborhood where tradition fuels civic progress, youth empowerment, and mutual brotherhood.
             </p>
           </div>
 
@@ -68,13 +68,13 @@ export default function VisionMission() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-3xl group-hover:bg-gold/10 transition-all" />
             <div className="text-xs uppercase font-bold tracking-widest text-gold mb-4">The Mission</div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-6 font-heading">
-              Energy in Performance, Pride in Legacy
+              Connecting People Through Culture & Service
             </h3>
             <p className="text-base sm:text-lg text-slate-grey leading-relaxed mb-6">
-              To organize high-standard street celebrations, safe athletic events like Dahi Handi, and preserve folk music traditions through dedicated practice.
+              To bring together friends, families, and residents of the community through cultural celebrations, social initiatives, sports, health and wellness activities, charitable programmes, and community development efforts.
             </p>
             <p className="text-sm text-slate-grey/80 leading-relaxed">
-              We execute our mission through active youth enlistment, regular Dhol Tasha practice workshops, and coordinate decorative arts to bring vibrant festive moments directly to Maharashtra's streets.
+              Creating inclusive opportunities for citizens of all generations to connect, participate, and contribute actively towards a stronger, healthier, and caring society.
             </p>
           </div>
         </div>

@@ -62,7 +62,7 @@ export default function LocationMap() {
               <span className="text-saffron text-outline-festive">Office Visits</span>
             </h2>
             <p className="text-base sm:text-lg text-slate-grey leading-relaxed">
-              We welcome donors, event coordinators, and trust patrons to our registered head office in Bhandup. To ensure administrative availability, please connect with a coordinator or send a message ahead of your visit.
+              We welcome patrons, volunteers, and event partners to our registered headquarters in Indira Nagar, Nashik. To ensure coordinator availability, please connect ahead of your visit.
             </p>
             
             <div className="space-y-4 pt-2">
@@ -73,8 +73,8 @@ export default function LocationMap() {
                 <div>
                   <h4 className="font-bold text-foreground font-sans">Visiting Hours</h4>
                   <p className="text-sm text-slate-grey mt-0.5">
-                    Monday to Friday: 10:00 AM – 5:00 PM <br />
-                    Saturday: 10:00 AM – 1:00 PM (By prior appointment only)
+                    Monday to Saturday: 10:00 AM – 6:00 PM <br />
+                    Sunday: 10:00 AM – 2:00 PM (During festival campaigns)
                   </p>
                 </div>
               </div>
@@ -88,7 +88,7 @@ export default function LocationMap() {
             <div className="relative w-full h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-2xl group/map">
               {/* Actual Map Embed */}
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.7733475836413!2d72.9367373!3d19.1176214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7849e776ab1%3A0x6b7b25e1a3bc89a7!2sStation%20Rd%2C%20Bhandup%20East%2C%20Mumbai%2C%20Maharashtra%20400042!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3749.5273390757754!2d73.768165!3d19.98661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeaa9e8a9bc6f%3A0x6b7b25e1a3bc89a7!2sIndira%20Nagar%2C%20Nashik%2C%20Maharashtra%20422009!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                 className="w-full h-full border-0 grayscale-[15%] contrast-[110%] brightness-[95%] pointer-events-auto"
                 allowFullScreen={true}
                 loading="lazy"
@@ -98,13 +98,13 @@ export default function LocationMap() {
 
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-50 border border-slate-200 p-5 rounded-2xl">
               <div>
-                <h4 className="font-extrabold text-foreground text-sm font-sans">Bhandup Headquarters</h4>
+                <h4 className="font-extrabold text-foreground text-sm font-sans">Indira Nagar Headquarters (Nashik)</h4>
                 <p className="text-xs text-slate-grey mt-0.5">
-                  Easy accessibility via Eastern Express Highway or Central Railway.
+                  Conveniently accessible via Mumbai-Agra Highway and Nashik Road.
                 </p>
               </div>
               <a
-                href="https://maps.google.com"
+                href="https://maps.google.com/?q=Indira+Nagar+Nashik"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-foreground hover:bg-saffron hover:shadow-lg hover:shadow-saffron/20 text-background hover:text-white font-extrabold text-xs uppercase tracking-widest px-6 py-3.5 rounded-full transition-all duration-300 active:scale-95 flex items-center gap-2 shrink-0 cursor-pointer"

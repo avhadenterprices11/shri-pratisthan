@@ -9,10 +9,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const SUBJECT_OPTIONS = [
-  "General Support / Inquiry",
-  "Corporate Partnership / CSR",
+  "General Inquiry / Support",
   "Volunteer Registration",
-  "Festival Coordination Support",
+  "Blood Donation & Health Camps",
+  "Sports & Event Participation",
 ];
 
 export default function ContactCTA() {
@@ -110,7 +110,7 @@ export default function ContactCTA() {
               Get in Touch
             </h2>
             <p className="text-base text-slate-grey leading-relaxed mb-8">
-              Have questions regarding village initiatives, donation audits, or coordinating festival groups? Reach out to our central administrative desk.
+              Have questions regarding our cultural celebrations, blood donation drives, sports leagues, or volunteering? Reach out to our central administrative desk in Indira Nagar, Nashik.
             </p>
 
             <div className="space-y-6">
@@ -123,7 +123,7 @@ export default function ContactCTA() {
                 </div>
                 <div>
                   <span className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block">Helpline Phone</span>
-                  <span className="text-base font-extrabold text-foreground font-heading">+91 22 9876 5432</span>
+                  <span className="text-base font-extrabold text-foreground font-heading">+91 9922786608</span>
                 </div>
               </div>
 
@@ -137,7 +137,7 @@ export default function ContactCTA() {
                 </div>
                 <div>
                   <span className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block">Administrative Mail</span>
-                  <span className="text-base font-extrabold text-foreground font-heading">desk@shreeprathishthan.org</span>
+                  <span className="text-base font-extrabold text-foreground font-heading">Info@shreepratishthan.com</span>
                 </div>
               </div>
 
@@ -151,7 +151,7 @@ export default function ContactCTA() {
                 </div>
                 <div>
                   <span className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block">Headquarters Office</span>
-                  <span className="text-base font-extrabold text-foreground font-heading">Shivaji Park, Mumbai, India</span>
+                  <span className="text-base font-extrabold text-foreground font-heading">Indira Nagar, Nashik, Maharashtra</span>
                 </div>
               </div>
             </div>

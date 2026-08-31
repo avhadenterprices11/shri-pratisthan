@@ -13,18 +13,18 @@ interface SlideItem {
 const slidesData: SlideItem[] = [
   {
     id: 1,
-    title: "Cultural Celebrations",
-    image: "/volunteer_coordinator.png",
+    title: "Ganeshotsav & Swagat Yatra",
+    image: "/gallery_ganeshotsav_aarthi.png",
   },
   {
     id: 2,
-    title: "Healthcare Campaigns",
+    title: "50+ Blood Camps & Healthcare",
     image: "/volunteer_medical.png",
   },
   {
     id: 3,
-    title: "Ecological Initiatives",
-    image: "/volunteer_eco.png",
+    title: "Annual Sports & Youth Leagues",
+    image: "/hero_dahihandi.png",
   }
 ];
 
@@ -140,7 +140,7 @@ export default function EventsHero() {
         </h1>
 
         <p className="hero-subtitle text-base sm:text-lg text-neutral-950 max-w-2xl leading-relaxed font-bold bg-white/85 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/90 shadow-lg pointer-events-auto">
-          Discover our upcoming celebrations, medical camps, and cleanup schedules. Align your time to participate or volunteer directly.
+          "वारसा संस्कृतीचा, ध्यास समाजसेवेचा" — Discover upcoming grand festivals, 50+ blood camps, and sports leagues organized by Shree Pratishtan in Indira Nagar, Nashik.
         </p>
       </div>
     </section>

@@ -38,17 +38,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${event.title} | Shree Prathishthan`,
+    title: `${event.title} | Shree Pratishtan (श्री प्रतिष्ठान)`,
     description: event.description,
     openGraph: {
-      title: `${event.title} | Shree Prathishthan`,
+      title: `${event.title} | Shree Pratishtan (श्री प्रतिष्ठान)`,
       description: event.description,
-      url: `https://www.shreepratishthan.org/events/${event.id}`,
+      url: `https://www.shreepratishthan.com/events/${event.id}`,
       images: [{ url: event.mainImage, width: 1200, height: 630, alt: event.title }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${event.title} | Shree Prathishthan`,
+      title: `${event.title} | Shree Pratishtan (श्री प्रतिष्ठान)`,
       description: event.description,
       images: [event.mainImage],
     },

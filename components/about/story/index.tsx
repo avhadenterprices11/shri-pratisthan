@@ -9,23 +9,23 @@ gsap.registerPlugin(ScrollTrigger);
 
 const STORY_STEPS = [
   {
-    year: "2012",
-    title: "Shivaji Park Roots",
-    description: "Shree Prathishthan started as a small, informal collective of youth volunteers in Shivaji Park, Mumbai. Dedicated to organizing safe and orderly logistics during regional Ganeshotsav festivals, their energy became the catalyst for a larger vision.",
+    year: "2006",
+    title: "Indira Nagar Cricket Spark",
+    description: "Shree Pratishtan originated in 2006 from a close-knit group of 20 friends meeting daily in Indira Nagar to play cricket. Their sports camaraderie and mutual trust soon transformed into a committed force for community upliftment and youth empowerment.",
     image: "/images/ganesh.jpg",
     badge: "The Spark",
   },
   {
     year: "2018",
-    title: "Public Charitable Trust",
-    description: "In 2018, the group formally structured itself, registering under the Bombay Public Trust Act. The goal was to prevent cultural pride from becoming static history, translating it into immediate social progress and disaster relief.",
+    title: "Registered Charitable Trust",
+    description: "To institutionalize their expanding social initiatives, the organization registered as 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था इंदिरानगर नाशिक' (Reg: nashik/0000153/2018) under the leadership of Adv. Shyam Dharmaraj Badode.",
     image: "/images/dahi-handi.jpg",
-    badge: "Formal Structure",
+    badge: "Formal Trust",
   },
   {
     year: "Present",
-    title: "Rural Mobilization",
-    description: "Today, we act as a vital bridge between urban resources and rural development needs. By organizing healthcare drives, supply distribution, and eco-friendly workshops, we demonstrate that legacy and care belong together.",
+    title: "19+ Years of Active Service",
+    description: "Today, with 100+ active members and 20 founding pillars, Shree Pratishtan conducts 50+ blood donation & health drives, organizes grand cultural festivals (Swagat Yatra, Ganeshotsav, Shiv Jayanti), and leads annual cricket leagues in Nashik.",
     image: "/images/social-work.jpg",
     badge: "Continuous Impact",
   },
@@ -111,7 +111,7 @@ export default function AboutStory() {
           </h2>
           
           <p className="text-xs sm:text-sm text-slate-grey max-w-md leading-relaxed font-sans font-light">
-            We realized that the immense energy gathered during our annual cultural celebrations could be directed to help solve local community issues year-round.
+            Born from daily cricket matches in Indira Nagar in 2006, our energy grew into a dedicated organization serving Maharashtra through culture, health camps, and social service.
           </p>
 
           {/* Giant Active Year Indicator display */}

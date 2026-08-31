@@ -10,8 +10,9 @@ interface FiltersProps {
 const CATEGORIES = [
   { id: "all", label: "All Media" },
   { id: "festival", label: "Cultural Festivals" },
-  { id: "healthcare", label: "Health Drives" },
-  { id: "education", label: "Education & Rural" },
+  { id: "healthcare", label: "Health & Blood Drives" },
+  { id: "education", label: "Education & Seva" },
+  { id: "sports", label: "Sports & Athletics" },
 ];
 
 export default function GalleryFilters({ 

@@ -24,14 +24,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: item.title,
     description: item.description,
     openGraph: {
-      title: `${item.title} | Shree Prathishthan Gallery`,
+      title: `${item.title} | Shree Pratishtan (श्री प्रतिष्ठान)`,
       description: item.description,
-      url: `https://www.shreepratishthan.org/gallery/${item.id}`,
+      url: `https://www.shreepratishthan.com/gallery/${item.id}`,
       images: [{ url: item.src, width: 1200, height: 630, alt: item.title }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${item.title} | Shree Prathishthan Gallery`,
+      title: `${item.title} | Shree Pratishtan (श्री प्रतिष्ठान)`,
       description: item.description,
       images: [item.src],
     },

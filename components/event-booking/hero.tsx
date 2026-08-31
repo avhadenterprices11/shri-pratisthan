@@ -65,15 +65,15 @@ export default function EventBookingHero() {
       <div className="relative z-20 max-w-5xl mx-auto space-y-6 flex flex-col items-center">
         {/* Headline */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-heading text-neutral-950 tracking-tight uppercase leading-[0.92] max-w-4xl drop-shadow-[0_2px_10px_rgba(255,255,255,0.9)]">
-          <span className="block reveal-headline-1">EVENT REGISTRATION</span>
+          <span className="block reveal-headline-1">OFFICIAL FESTIVAL &amp;</span>
           <span className="block reveal-headline-2 text-saffron text-outline-festive font-heading">
-            PASS ISSUANCE
+            EVENT BOOKING
           </span>
         </h1>
 
         {/* Subtitle */}
         <p className="hero-description text-base sm:text-xl text-neutral-950 max-w-3xl leading-relaxed font-bold bg-white/85 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/90 shadow-lg">
-          Reserve your entry for Ganesh Utsav, Dahi Handi, Navratri Garba, and community medical drives. Obtain your verified pass instantly with QR security.
+          Book your slot for Shree Ganeshotsav, Gudipadwa Swagat Yatra, Navratri Garba, blood donation camps, and sports tournaments in Indira Nagar, Nashik.
         </p>
 
         {/* Feature Badges Grid */}
@@ -83,8 +83,8 @@ export default function EventBookingHero() {
               <Ticket className="w-5 h-5" />
             </div>
             <div>
-              <h5 className="font-extrabold text-neutral-900 text-xs uppercase font-heading">Digital Pass</h5>
-              <p className="text-[11px] text-neutral-500 font-medium">PDF & Wallet Ready</p>
+              <h5 className="font-extrabold text-neutral-900 text-xs uppercase font-heading">Event Booking</h5>
+              <p className="text-[11px] text-neutral-500 font-medium">Instant Slot Slip</p>
             </div>
           </div>
 
@@ -93,8 +93,8 @@ export default function EventBookingHero() {
               <QrCode className="w-5 h-5" />
             </div>
             <div>
-              <h5 className="font-extrabold text-neutral-900 text-xs uppercase font-heading">QR Verified</h5>
-              <p className="text-[11px] text-neutral-500 font-medium">Fast Gate Entry</p>
+              <h5 className="font-extrabold text-neutral-900 text-xs uppercase font-heading">Booking ID</h5>
+              <p className="text-[11px] text-neutral-500 font-medium">Ground Entry Ref</p>
             </div>
           </div>
 
@@ -103,8 +103,8 @@ export default function EventBookingHero() {
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h5 className="font-extrabold text-neutral-900 text-xs uppercase font-heading">Free Entry</h5>
-              <p className="text-[11px] text-neutral-500 font-medium">Community Pass</p>
+              <h5 className="font-extrabold text-neutral-900 text-xs uppercase font-heading">Free Booking</h5>
+              <p className="text-[11px] text-neutral-500 font-medium">No Online Payment</p>
             </div>
           </div>
 

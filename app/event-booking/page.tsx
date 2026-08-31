@@ -4,22 +4,22 @@ import EventBookingHero from "@/components/event-booking/hero";
 import EventBookingContainer from "@/components/event-booking";
 
 export const metadata: Metadata = {
-  title: "Event Booking & Registration Pass",
+  title: "Event Booking & Digital Entry Pass | Shree Pratishtan (श्री प्रतिष्ठान)",
   description:
-    "Register for upcoming Shree Prathishthan cultural celebrations, Dahi Handi competitions, Navratri garba, health camps, and volunteer events. Obtain your instant digital entry pass.",
+    "Book your passes and register for upcoming Shree Pratishtan cultural celebrations, Gudipadwa Swagat Yatra, Ganeshotsav, Navratri, health camps, and sports leagues in Indira Nagar, Nashik.",
   openGraph: {
-    title: "Event Booking & Entry Pass | Shree Prathishthan",
+    title: "Event Booking & Digital Entry Pass | Shree Pratishtan (श्री प्रतिष्ठान)",
     description:
-      "Register for upcoming cultural celebrations and social drives. Get your instant digital entry pass with QR verification.",
-    url: "https://www.shreepratishthan.org/event-booking",
-    images: [{ url: "/hero_ganesh.png", width: 1200, height: 630, alt: "Event Booking Shree Prathishthan" }],
+      "Book your passes and register for upcoming cultural celebrations and social drives in Indira Nagar, Nashik. Get your instant digital pass with QR verification.",
+    url: "https://www.shreepratishthan.com/event-booking",
+    images: [{ url: "/hero_ganesh.png", width: 1200, height: 630, alt: "Event Booking Shree Pratishtan" }],
   },
   twitter: {
-    title: "Event Booking & Entry Pass | Shree Prathishthan",
-    description: "Register for upcoming cultural celebrations and social drives.",
+    title: "Event Booking & Digital Entry Pass | Shree Pratishtan (श्री प्रतिष्ठान)",
+    description: "Book passes for upcoming cultural celebrations and social drives in Indira Nagar, Nashik.",
     images: ["/hero_ganesh.png"],
   },
-  alternates: { canonical: "https://www.shreepratishthan.org/event-booking" },
+  alternates: { canonical: "https://www.shreepratishthan.com/event-booking" },
 };
 
 export default function EventBookingPage() {

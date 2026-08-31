@@ -20,24 +20,45 @@ interface TestimonialItem {
 const TESTIMONIALS_DATA: TestimonialItem[] = [
   {
     id: 1,
-    title: "Rajesh Kulkarni",
-    subtitle: "Local Administration Coordinator",
-    description: "Shree Prathishthan's Ganeshotsav sets the benchmark for cultural heritage preservation. Their volunteers worked hand-in-hand with our logistics team to ensure flawless safety standards.",
+    title: "Gopal Avhad",
+    subtitle: "Founding Member & Sports Coordinator",
+    description: "What began in 2006 as daily cricket sessions among friends in Indira Nagar has evolved into a powerful trust serving culture, sports, and society with unshakeable brotherhood.",
     image: "/portrait_admin.png",
   },
   {
     id: 2,
-    title: "Sunita Deshmukh",
-    subtitle: "Community Supporter",
-    description: "Partnering with Shree Prathishthan to organize our local Ganeshotsav decorations has been an absolute joy. Their energy and devotion towards preserving Maharashtra's true art is inspiring.",
+    title: "Manish Patil",
+    subtitle: "Founding Member & Youth Lead",
+    description: "From annual sports tournaments to youth mentorship, Shree Pratishtan provides a platform where youngsters channel their passion and energy into constructive community building.",
     image: "/portrait_csr.png",
   },
   {
     id: 3,
-    title: "Amit Shinde",
-    subtitle: "Dhol Tasha Player",
-    description: "Registering as a volunteer took less than a minute. Since joining, I've played in 15 street performances and practice sessions. It is the best group of friends to learn folk instruments and celebrate festivals.",
+    title: "Satish Yadav",
+    subtitle: "Founding Member & Health Coordinator",
+    description: "Organizing regular mass blood donation drives, health checkups, and Yoga Day camps brings critical life-saving relief to families across Nashik.",
     image: "/portrait_volunteer.png",
+  },
+  {
+    id: 4,
+    title: "Jaywant Takke",
+    subtitle: "Founding Member & Cultural Lead",
+    description: "From our grand 10-day Shree Ganeshotsav to the vibrant Gudipadwa Swagat Yatra, every celebration brings hundreds of families together in cultural pride and harmony.",
+    image: "/volunteer_musician.png",
+  },
+  {
+    id: 5,
+    title: "Ganesh Ratnaparkhe",
+    subtitle: "Founding Member & Logistics Lead",
+    description: "The teamwork, mutual trust, and coordination we forged on the cricket pitch in 2006 have made our festival management and safety operations a benchmark in Nashik.",
+    image: "/volunteer_safety.png",
+  },
+  {
+    id: 6,
+    title: "Somnath Suryawanshi",
+    subtitle: "Founding Member & Social Welfare",
+    description: "Social unity and dedicated community service are our core pillars. Shree Pratishtan continues to stand beside local families in times of celebration and need alike.",
+    image: "/volunteer_coordinator.png",
   },
 ];
 
@@ -110,7 +131,7 @@ export default function Testimonials({
         {/* Section Header */}
         <div className="max-w-3xl mb-24">
           <h2 className="text-4xl sm:text-6xl font-black text-foreground tracking-tight font-heading leading-none uppercase">
-            Patron & Volunteer Testimonial
+            Voices of Our Founding Pillars
           </h2>
           <div className="w-16 h-1 bg-saffron mt-6 rounded-full" />
         </div>

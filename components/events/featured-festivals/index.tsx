@@ -117,40 +117,40 @@ export default function FeaturedFestivals() {
             <div className="absolute left-12 top-1/2 -translate-y-1/2 z-10 w-[42%] parallax-content-left select-none">
               <div className="glass-panel p-8 rounded-block bg-white/90 border border-white/50 backdrop-blur-md shadow-2xl space-y-5">
                 <h3 className="text-2xl xl:text-3xl font-black text-neutral-900 font-heading leading-tight">
-                  Ecological Devotion
+                  Shree Ganeshotsav &amp; Yatra
                 </h3>
                 <p className="text-xs text-neutral-700 leading-relaxed font-sans">
-                  Our Ganeshotsav focuses heavily on environmental protection. We construct traditional Mandap infrastructure using clay sculpture modeling and coordinate massive Dhol Tasha musical parades.
+                  Our flagship 10-day celebration in Indira Nagar, Nashik. Uniting thousands of devotees with eco-friendly Shadu Mati idols, grand evening Maha Aarti, traditional Dhol Tasha recitals, and daily hygienic Maha Prasad.
                 </p>
                 
                 <ul className="space-y-2.5 text-xs text-neutral-700 font-semibold font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron" />
-                    Free medical checkup clinics inside the Mandap
+                    100% Eco-friendly Shadu Mati clay idol &amp; artificial tanks
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron" />
-                    Water tanks for safe immersion (Visarjan)
+                    Daily 108-lamp Maha Aarti &amp; cultural youth drama
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron" />
-                    150+ trained security volunteers on standby
+                    100+ active volunteer marshals on crowd duty
                   </li>
                 </ul>
 
                 <div className="pt-2">
                   <a
-                    href="#register"
+                    href="/event-booking"
                     className="w-full text-center inline-block bg-saffron hover:bg-saffron/90 text-white font-extrabold py-3 rounded-full text-[10px] uppercase tracking-widest shadow-md shadow-saffron/20 transition-transform hover:scale-105"
                   >
-                    Register As Ganeshotsav Volunteer
+                    Get Ganeshotsav Aarti Pass
                   </a>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* L2 Pane: Dahi Handi (Overlay layer - Right, clipped diagonally) */}
+          {/* L2 Pane: Sports & Cricket (Overlay layer - Right, clipped diagonally) */}
           <div 
             className="split-clip-target absolute inset-0 w-full h-full bg-cover bg-center z-20 transition-all"
             style={{ 
@@ -158,40 +158,40 @@ export default function FeaturedFestivals() {
               clipPath: "polygon(38% 0%, 100% 0%, 100% 100%, 62% 100%)" 
             }}
           >
-            {/* Very soft color filter, no heavy overlays blocking human pyramids on the left */}
+            {/* Very soft color filter */}
             <div className="absolute inset-0 bg-gold/5 mix-blend-multiply z-0 pointer-events-none" />
 
-            {/* Dahi Handi Content Overlay - Floating Card on the Right */}
+            {/* Sports Content Overlay - Floating Card on the Right */}
             <div className="absolute right-12 top-1/2 -translate-y-1/2 z-10 w-[42%] parallax-content-right select-none">
               <div className="glass-panel p-8 rounded-block bg-white/90 border border-white/50 backdrop-blur-md shadow-2xl space-y-5">
                 <h3 className="text-2xl xl:text-3xl font-black text-neutral-900 font-heading leading-tight">
-                  Safety & Coordination
+                  Sports &amp; Cricket Leagues
                 </h3>
                 <p className="text-xs text-neutral-700 leading-relaxed font-sans">
-                  Redefining the sport of Dahi Handi. We focus on extreme safety parameters: safety nets, head protection harnesses, and detailed team registration logs to support athletic youth coordinates.
+                  Honoring our 2006 founding roots where 20 cricket friends united for social service. Premier annual tennis-ball cricket tournaments and youth athletics in Indira Nagar, Nashik with grand championship trophies.
                 </p>
                 
                 <ul className="space-y-2.5 text-xs text-neutral-700 font-semibold font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                    Safety helmets and foam mat protection layouts
+                    32 participating youth cricket teams across Nashik
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                    Immediate trauma ambulance standby
+                    ₹1,50,000 championship awards &amp; individual honors
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                    Proceedings route to local child education support
+                    On-site sports medical and physiotherapy care
                   </li>
                 </ul>
 
                 <div className="pt-2">
                   <a
-                    href="#register"
+                    href="/event-booking"
                     className="w-full text-center inline-block bg-neutral-900 hover:bg-saffron hover:text-white text-white font-extrabold py-3 rounded-full text-[10px] uppercase tracking-widest shadow-md shadow-neutral-900/10 transition-transform hover:scale-105"
                   >
-                    Register As Dahi Handi Volunteer
+                    Register Cricket Team / Athlete
                   </a>
                 </div>
               </div>
@@ -209,65 +209,65 @@ export default function FeaturedFestivals() {
             >
               <div className="space-y-4">
                 <h3 className="text-2xl font-black text-neutral-900 font-heading">
-                  Ecological Devotion
+                  Shree Ganeshotsav &amp; Yatra
                 </h3>
                 <p className="text-xs text-neutral-700 leading-relaxed font-sans">
-                  Our Ganeshotsav focuses heavily on environmental protection. We construct traditional Mandap infrastructure using clay sculpture modeling and coordinate massive Dhol Tasha musical parades.
+                  Our flagship 10-day celebration in Indira Nagar, Nashik with eco-friendly Shadu Mati clay idols, daily grand Maha Aarti, and traditional Dhol Tasha parades.
                 </p>
                 
                 <ul className="space-y-2 text-xs text-neutral-700 font-semibold font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron" />
-                    Free medical checkup clinics inside the Mandap
+                    100% Eco-friendly Shadu Mati clay idol &amp; artificial tanks
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron" />
-                    Water tanks for safe immersion (Visarjan)
+                    Daily 108-lamp Maha Aarti &amp; cultural youth drama
                   </li>
                 </ul>
               </div>
 
               <div className="pt-6">
                 <a
-                  href="#register"
+                  href="/event-booking"
                   className="w-full inline-block text-center bg-saffron hover:bg-saffron/90 text-white font-extrabold py-3.5 rounded-full text-[10px] uppercase tracking-widest shadow-md shadow-saffron/15"
                 >
-                  Register For Ganeshotsav
+                  Get Ganeshotsav Pass
                 </a>
               </div>
             </div>
 
-            {/* Card 2: Dahi Handi */}
+            {/* Card 2: Sports & Cricket */}
             <div 
               className="relative p-6 sm:p-8 rounded-block overflow-hidden min-h-[460px] flex flex-col justify-between bg-cover bg-center border border-black/5 shadow-lg"
               style={{ backgroundImage: "linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.95)), url('/dahihandi_bright.png')" }}
             >
               <div className="space-y-4">
                 <h3 className="text-2xl font-black text-neutral-900 font-heading">
-                  Safety & Coordination
+                  Sports &amp; Cricket Leagues
                 </h3>
                 <p className="text-xs text-neutral-700 leading-relaxed font-sans">
-                  Redefining the sport of Dahi Handi. We focus on extreme safety parameters: safety nets, head protection harnesses, and detailed team registration logs to support athletic youth coordinates.
+                  Honoring our 2006 cricket roots. Premier annual tennis-ball cricket championship with 32 teams and youth athletics in Indira Nagar, Nashik.
                 </p>
                 
                 <ul className="space-y-2 text-xs text-neutral-700 font-semibold font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                    Safety helmets and foam mat protection layouts
+                    32 participating youth cricket teams across Nashik
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                    Immediate trauma ambulance standby
+                    ₹1,50,000 championship awards &amp; trophies
                   </li>
                 </ul>
               </div>
 
               <div className="pt-6">
                 <a
-                  href="#register"
+                  href="/event-booking"
                   className="w-full inline-block text-center bg-neutral-900 hover:bg-saffron hover:text-white text-white font-extrabold py-3.5 rounded-full text-[10px] uppercase tracking-widest shadow-md shadow-neutral-900/15"
                 >
-                  Register For Dahi Handi
+                  Register Cricket Team
                 </a>
               </div>
             </div>

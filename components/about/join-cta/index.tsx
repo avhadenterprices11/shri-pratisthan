@@ -11,7 +11,7 @@ export default function AboutJoinCTA() {
           <span className="text-saffron">Next Chapter</span>
         </>
       }
-      description="Our trust expands operations exclusively based on volunteer energy and transparent resources. Register today to contribute your capabilities."
+      description="Join our 100+ active members and volunteer network in Indira Nagar, Nashik to celebrate culture, empower youth, and drive social progress."
       buttonText="Sign Up As Volunteer"
       buttonLink="/volunteer"
     />

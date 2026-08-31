@@ -9,40 +9,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ITEMS = [
   {
-    title: "Ganeshotsav Aarthi",
-    tag: "Festival",
+    title: "Shree Ganeshotsav Celebrations",
+    tag: "Ganeshotsav",
     image: "/gallery_ganeshotsav_aarthi.png",
     icon: "🕉️",
   },
   {
-    title: "Dhol Tasha Practice Camps",
-    tag: "Naad Pathak",
+    title: "Gudipadwa Swagat Yatra",
+    tag: "Swagat Yatra",
     image: "/gallery_dhol_tasha_camps.png",
-    icon: "🥁",
+    icon: "🚩",
   },
   {
-    title: "Gauri Ganpati Decor",
-    tag: "Decoration",
-    image: "/gallery_gauri_ganpati_decor.png",
-    icon: "✨",
-  },
-  {
-    title: "Dahi Handi Human Pyramids",
-    tag: "Athletics",
-    image: "/gallery_dahi_handi_pyramids.png",
-    icon: "🏺",
-  },
-  {
-    title: "Navratri Garba Evenings",
+    title: "Navratri Garba & Dandiya",
     tag: "Navratri",
     image: "/gallery_navratri_garba.png",
     icon: "💃",
   },
   {
-    title: "Shiv Jayanti Rally",
-    tag: "Utsav",
+    title: "Mass Blood Donation Drives",
+    tag: "Health & Seva",
+    image: "/gallery_dahi_handi_pyramids.png",
+    icon: "🩸",
+  },
+  {
+    title: "International Yoga Day Camps",
+    tag: "Wellness",
+    image: "/gallery_gauri_ganpati_decor.png",
+    icon: "🧘",
+  },
+  {
+    title: "Annual Cricket & Sports Leagues",
+    tag: "Youth Sports",
     image: "/gallery_shiv_jayanti_rally.png",
-    icon: "🚩",
+    icon: "🏏",
   },
 ];
 
@@ -131,7 +131,7 @@ export default function GalleryPreview() {
         <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-16 gap-6">
           <div className="max-w-2xl">
             <h2 className="gallery-reveal-header text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
-              Moments of Legacy & Care
+              Celebrations, Sports & Seva in Motion
             </h2>
           </div>
           <a 

@@ -46,7 +46,7 @@ export default function EventsRegistration() {
               Register for an Initiative
             </h2>
             <p className="text-slate-grey mt-2 max-w-lg mx-auto">
-              Select your campaign and submit your info to coordinates coordinates with local volunteer organizers.
+              Select your event or campaign and submit your info to connect with our Indira Nagar, Nashik organizers.
             </p>
           </div>
 
@@ -82,10 +82,11 @@ export default function EventsRegistration() {
               <div>
                 <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2">Target Event / Campaign</label>
                 <select className="w-full px-4 py-3 rounded-interactive border border-border bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-sm transition-all">
-                  <option>Free Diagnostics Medical Camp (Aug 12)</option>
-                  <option>Hill Tree Planting Campaign (Aug 20)</option>
-                  <option>Shree Ganeshotsav Volunteer Support (Sept)</option>
-                  <option>Dahi Handi Youth Safety Support (Aug)</option>
+                  <option>Shree Ganeshotsav 2026 (Aug 27 - Sep 06)</option>
+                  <option>Gudipadwa Swagat Yatra (Mar 19)</option>
+                  <option>Bhavya Blood Donation &amp; Health Camp (Aug 30)</option>
+                  <option>Annual Sports &amp; Cricket Tournament (Dec 18 - 25)</option>
+                  <option>Navratri Utsav &amp; Dandiya Nights (Sep 22 - Oct 02)</option>
                 </select>
               </div>
             </div>

@@ -15,22 +15,22 @@ interface InitiativeItem {
 
 const INITIATIVES_SUMMARY: InitiativeItem[] = [
   {
-    title: "Healthcare & Life drives",
-    desc: "Active blood banking networks, emergency medical support registries, and routine rural checkup camps.",
+    title: "Healthcare & Life Drives",
+    desc: "Over 50+ mass blood donation camps, International Yoga Day sessions, emergency donor registry, and free medical checkup drives across Nashik.",
     tag: "Arogya",
     icon: <Heart className="w-6 h-6 text-saffron" />,
     anchor: "#blood-donation",
   },
   {
-    title: "Ecological Revival",
-    desc: "Mass tree planting campaigns on barren hills, seed balls scattering, and nurturing green forest canopies.",
+    title: "Ecological & Cleanliness",
+    desc: "Mass tree planting campaigns, green cover enhancement, civic cleanliness drives, and promoting eco-friendly festival celebrations in Indira Nagar.",
     tag: "Vasundhara",
     icon: <Leaf className="w-6 h-6 text-saffron" />,
     anchor: "#tree-plantation",
   },
   {
-    title: "Socio-Educational Support",
-    desc: "Providing textbooks, custom study desks to rural schools, dry ration distribution, and immediate disaster aid.",
+    title: "Socio-Educational & Relief",
+    desc: "Educational study kits and books for students, dry ration distribution, disaster support, and empowering youth through community welfare.",
     tag: "Seva",
     icon: <Shield className="w-6 h-6 text-saffron" />,
     anchor: "#charity-social-work",

@@ -12,8 +12,8 @@ export default function AllEventsCommunityCTA() {
           <span className="text-saffron">Be the Change.</span>
         </>
       }
-      description="Direct event logistics, coordinate safety marshals, organize eco-friendly clay workshops, or participate in cultural drives. Shree Prathishthan channels your energy directly into community progress."
-      buttonText="Become a Volunteer / Partner"
+      description="Direct event logistics, coordinate safety marshals, organize cultural festivals, or participate in 50+ blood donation camps. Shree Pratishtan channels your energy directly into community progress across Indira Nagar, Nashik."
+      buttonText="Become a Volunteer / Organizer"
       buttonLink="/volunteer"
     />
   );

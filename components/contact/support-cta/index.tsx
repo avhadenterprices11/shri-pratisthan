@@ -48,7 +48,7 @@ export default function ContactSupportCTA() {
               Ready to Make an Active Impact?
             </h2>
             <p className="text-sm sm:text-base text-slate-grey leading-relaxed">
-              Whether you want to offer strategic sponsorships, register as a blood donor, or clear slope litter on weekends, we have a coordinate for you.
+              Whether you want to sponsor student study kits, participate in 50+ blood donation drives, support youth sports leagues, or join cultural festivals in Indira Nagar, Nashik, we welcome you.
             </p>
           </div>
 

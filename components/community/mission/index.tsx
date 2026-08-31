@@ -13,23 +13,23 @@ const paragraph1Phrases: PhraseItem[] = [
   { text: "We believe that true", highlight: false },
   { text: "societal transformation", highlight: true },
   { text: "begins at the", highlight: false },
-  { text: "grassroots level.", highlight: true },
-  { text: "By structuring local networks,", highlight: true },
-  { text: "Shree Prathishthan bridges critical", highlight: false },
-  { text: "healthcare deficits", highlight: true },
-  { text: "and environmental challenges.", highlight: false }
+  { text: "grassroots level in Nashik.", highlight: true },
+  { text: "With over 100+ active organizers,", highlight: true },
+  { text: "Shree Pratishtan bridges critical", highlight: false },
+  { text: "healthcare needs", highlight: true },
+  { text: "and community welfare challenges.", highlight: false }
 ];
 
 const paragraph2Phrases: PhraseItem[] = [
-  { text: "Our community initiatives focus on immediate", highlight: false },
-  { text: "humanitarian relief,", highlight: true },
-  { text: "ecological restoration through active", highlight: false },
-  { text: "tree plantation,", highlight: true },
-  { text: "and establishing robust emergency", highlight: false },
-  { text: "volunteer registers", highlight: true },
+  { text: "Our community drives focus on organizing 50+", highlight: false },
+  { text: "blood donation camps,", highlight: true },
+  { text: "mass health checkup camps,", highlight: false },
+  { text: "tree plantation drives,", highlight: true },
+  { text: "and establishing an emergency", highlight: false },
+  { text: "youth volunteer registry", highlight: true },
   { text: "to", highlight: false },
-  { text: "safeguard lives", highlight: true },
-  { text: "when crises strike.", highlight: false }
+  { text: "serve Indira Nagar & Nashik", highlight: true },
+  { text: "whenever needed.", highlight: false }
 ];
 
 export default function CommunityMission() {

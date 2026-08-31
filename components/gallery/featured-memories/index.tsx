@@ -65,6 +65,8 @@ function MemoryCard({
   );
 }
 
+import { FEATURED_MEMORIES } from "@/app/gallery/gallery-data";
+
 export default function FeaturedMemories() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -105,47 +107,19 @@ export default function FeaturedMemories() {
           <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[1600px] w-full mx-auto">
-          <div className="featured-mem-card">
-            <MemoryCard
-              id="ganeshotsav-processions"
-              title="Ganeshotsav Shivaji Park Processions"
-              category="Festival"
-              date="September 2024"
-              metric="Dhol Tasha Parade"
-              src="/gallery_ganeshotsav_aarthi.png"
-            />
-          </div>
-          <div className="featured-mem-card">
-            <MemoryCard
-              id="rural-health-clinic"
-              title="First Rural Health Clinic Launch"
-              category="Welfare"
-              date="May 2023"
-              metric="150+ Patients Guided"
-              src="/volunteer_medical.png"
-            />
-          </div>
-          <div className="featured-mem-card">
-            <MemoryCard
-              id="dahi-handi-pyramids"
-              title="Dahi Handi Festive Pyramid Team"
-              category="Festival"
-              date="August 2024"
-              metric="Festive Pyramids"
-              src="/gallery_dahi_handi_pyramids.png"
-            />
-          </div>
-          <div className="featured-mem-card">
-            <MemoryCard
-              id="navratri-garba-utsav"
-              title="Navratri Garba Utsav"
-              category="Festival"
-              date="October 2024"
-              metric="Garba & Dandiya"
-              src="/gallery_navratri_garba.png"
-            />
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-[1600px] w-full mx-auto">
+          {FEATURED_MEMORIES.map((memory) => (
+            <div key={memory.id} className="featured-mem-card">
+              <MemoryCard
+                id={memory.id}
+                title={memory.title}
+                category={memory.category}
+                date={memory.date}
+                metric={memory.metric || "Community Drive"}
+                src={memory.src}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

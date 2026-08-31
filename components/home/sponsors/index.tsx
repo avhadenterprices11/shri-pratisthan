@@ -7,12 +7,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const CORPORATES = [
-  "Sahyadri Foundations",
-  "Maharashtra Health Trust",
-  "Pune Cultural Federation",
-  "Mumbai Social Welfare Board",
-  "Deccan Green Initiative",
-  "Western Ghats CSR League",
+  "Samarth Sahakari Bank",
+  "Late Dharmaraj Badode Sanstha",
+  "Indira Nagar Citizens Forum",
+  "Nashik Blood Bank Network",
+  "Nashik Sports & Cricket Association",
+  "Nashik Cultural Utsav Samiti",
 ];
 
 export default function Sponsors() {

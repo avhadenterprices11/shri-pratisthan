@@ -7,10 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const LOGS = [
-  { year: "2019", title: "Shivaji Park Ganeshotsav", desc: "Our very first registered festival support drive, coordinates with municipal authorities.", emoji: "🪔" },
-  { year: "2021", title: "Covid Rural Aid Distribution", desc: "Packaging dry foods and medicines inside Thane district centers.", emoji: "📦" },
-  { year: "2023", title: "Free Healthcare Clinics Expansion", desc: "First 5 large-scale weekly consultation checkups established.", emoji: "🩺" },
-  { year: "2026", title: "Ecology Plantation Milestones", desc: "Completed planting coordinates across adopted hillsides in Pune.", emoji: "🌱" },
+  { year: "2006", title: "Daily Cricket Spark & Brotherhood", desc: "20 childhood friends playing daily cricket in Indira Nagar unite to channel sports camaraderie into community welfare.", emoji: "🏏" },
+  { year: "2012", title: "First Gudipadwa Swagat Yatra", desc: "Establishing the iconic Marathi New Year cultural procession with Lezim and Dhol Tasha across Indira Nagar.", emoji: "🚩" },
+  { year: "2018", title: "Official Trust Registration", desc: "Formally registered as 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था' (Reg: nashik/0000153/2018) under Adv. Shyam Badode.", emoji: "📜" },
+  { year: "2026", title: "19+ Years Seva & 50+ Blood Drives", desc: "Celebrating 19+ years of continuous social impact, 50+ blood donation camps, and active youth leadership across Nashik.", emoji: "🩸" },
 ];
 
 export default function MemoryTimeline() {

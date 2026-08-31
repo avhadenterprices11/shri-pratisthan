@@ -8,19 +8,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AWARDS = [
   {
-    title: "100% Tax Exemption Clearances",
-    desc: "Fully authorized certificate credentials matching regulatory guidelines, giving complete transparency to corporate CSR donors.",
-    badge: "80G",
+    title: "Registered Public Trust",
+    desc: "Officially registered under government authority as 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था' (Reg: nashik/0000153/2018).",
+    badge: "REG",
   },
   {
-    title: "Socio-Cultural Preservation Award",
-    desc: "Recognized by regional cultural committees for maintaining ecological parameters and musical legacy guidelines in festivals.",
-    badge: "CL",
+    title: "Banking Partner Verification",
+    desc: "Samarth Sahakari Bank (समर्थ बँक) verified banking credentials ensure 100% financial transparency for social contributions.",
+    badge: "BANK",
   },
   {
-    title: "Emergency Aid Acknowledgment",
-    desc: "Awarded by municipal boards for coordinates assistance and dry food packaging deliveries in flooded areas.",
-    badge: "SR",
+    title: "50+ Health & Blood Drives",
+    desc: "Conducted over 50 life-saving blood donation camps, free diagnostic checkups, and annual sports tournaments across Nashik.",
+    badge: "50+",
   },
 ];
 
@@ -113,7 +113,7 @@ export default function AboutAchievements() {
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-light leading-relaxed">
-            Our administrative credentials guarantee regulatory transparency and municipal clearance validation for institutional CSR partnerships.
+            Officially verified registration (nashik/0000153/2018) and trusted banking partnership for transparent community welfare.
           </p>
         </div>
 

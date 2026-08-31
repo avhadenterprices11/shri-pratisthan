@@ -8,10 +8,10 @@ import { Loader2, AlertCircle, CheckCircle2, ChevronDown, Check } from "lucide-r
 gsap.registerPlugin(ScrollTrigger);
 
 const INTEREST_OPTIONS = [
-  { value: "blood-donation", label: "Blood Donation Camp (Arogya)" },
-  { value: "tree-plantation", label: "Tree Plantation Drives (Vasundhara)" },
-  { value: "charity-work", label: "Socio-Educational & Material Relief (Seva)" },
-  { value: "all", label: "All Initiatives" },
+  { value: "blood-donation", label: "Blood Donation & Health Camps (Arogya)" },
+  { value: "tree-plantation", label: "Tree Plantation & Cleanliness (Vasundhara)" },
+  { value: "charity-work", label: "Educational Kits & Relief Drives (Seva)" },
+  { value: "all", label: "All Community Initiatives" },
 ];
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -187,7 +187,7 @@ export default function JoinMission() {
               Join Our Mission
             </h2>
             <p className="text-slate-grey mt-3 text-sm sm:text-base">
-              Be a catalyst for change. Register your coordinates to donate blood, plant saplings, or support local relief distributions.
+              Be a catalyst for community progress in Indira Nagar, Nashik. Register to donate blood, plant saplings, or support local student and welfare distributions.
             </p>
             <div className="w-12 h-1 bg-saffron mx-auto mt-4 rounded-full" />
           </div>

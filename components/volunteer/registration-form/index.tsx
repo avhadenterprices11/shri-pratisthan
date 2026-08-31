@@ -189,7 +189,7 @@ export default function VolunteerRegistrationForm() {
               Volunteer Registration Form
             </h2>
             <p className="text-slate-grey mt-3 text-sm sm:text-base">
-              Submit your interest below. Our district onboarding coordinates will review your file and reach out shortly.
+              Submit your interest below. Our Indira Nagar, Nashik team leads will review your application and connect with you shortly.
             </p>
             <div className="w-12 h-1 bg-saffron mx-auto mt-4 rounded-full" />
           </div>
@@ -206,8 +206,8 @@ export default function VolunteerRegistrationForm() {
               <p className="text-slate-grey max-w-md mx-auto text-sm">
                 Thank you for applying, <strong>{formData.name}</strong>. We have logged your
                 email (<strong>{formData.email}</strong>) and phone number (
-                <strong>{formData.phone}</strong>). A regional team lead will call you to explain
-                upcoming drive locations and coordinates.
+                <strong>{formData.phone}</strong>). An Indira Nagar, Nashik team coordinator will contact you to explain
+                upcoming festival, health camp, and sports initiative schedules.
               </p>
               <button
                 onClick={handleReset}
@@ -284,13 +284,13 @@ export default function VolunteerRegistrationForm() {
 
                 <div className="space-y-2">
                   <label htmlFor="vf-location" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
-                    District / City <span className="text-red-400">*</span>
+                    Area / Location <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="text"
                     id="vf-location"
                     required
-                    placeholder="e.g. Bhandup, Mumbai"
+                    placeholder="e.g. Indira Nagar, Nashik"
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                     disabled={status === "loading"}
@@ -331,10 +331,10 @@ export default function VolunteerRegistrationForm() {
                     disabled={status === "loading"}
                     className={inputClass(false) + " cursor-pointer"}
                   >
-                    <option value="event-logistics">Cultural Event Logistics (Ganeshotsav / Dahi Handi)</option>
-                    <option value="medical-camps">Medical Camp &amp; Blood drives (Arogya)</option>
-                    <option value="tree-plantation">Tree Plantation Drives (Vasundhara)</option>
-                    <option value="relief-work">Socio-Educational &amp; Material Relief (Seva)</option>
+                    <option value="event-logistics">Cultural Festivals (Swagat Yatra / Ganeshotsav / Shiv Jayanti)</option>
+                    <option value="medical-camps">Blood Donation &amp; Health Camps (Arogya)</option>
+                    <option value="tree-plantation">Sports &amp; Cricket Tournaments</option>
+                    <option value="relief-work">Student Aid &amp; Community Welfare (Seva)</option>
                   </select>
                 </div>
 

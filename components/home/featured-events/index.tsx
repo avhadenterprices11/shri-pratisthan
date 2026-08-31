@@ -26,28 +26,28 @@ const EVENTS: EventPanel[] = [
     num: "01",
     category: "Ganeshotsav",
     title: "Shree Ganeshotsav",
-    description: "A grand 10-day celebration merging community prayer, local music heritage, and custom decorations. Beyond devotional setups, we organize traditional street rituals and eco-friendly clay Ganesha workshops.",
+    description: "A grand 10-day celebration in Indira Nagar uniting the community through devotional aartis, traditional Dhol-Tasha pageantry, and eco-friendly social initiatives.",
     image: "/images/ganesh.jpg",
     details: [
-      "Clay Ganesha Sculpting",
-      "Crowd Flow Management",
-      "Dhol Tasha Displays",
-      "Gauri Decoration Setups"
+      "Eco-Friendly Idols",
+      "Traditional Aarti",
+      "Dhol Tasha Troupe",
+      "Social Cleanliness Drives"
     ],
     link: "/events"
   },
   {
-    id: "dahi-handi",
+    id: "swagat-yatra",
     num: "02",
-    category: "Dahi Handi",
-    title: "Dahi Handi Utsav",
-    description: "Reflecting Maharashtra's athletic courage. Our Dahi Handi events prioritize safe team coordinates, supporting young participants (Gopals and Gopis) while routing festival collection proceedings to rural child funds.",
+    category: "Swagat Yatra",
+    title: "Gudipadwa Swagat Yatra",
+    description: "Welcoming the Marathi New Year with a grand cultural procession across Indira Nagar, featuring traditional attire, Lezim, saffron flags, and cultural floats.",
     image: "/images/dahi-handi.jpg",
     details: [
-      "Safety Harnesses",
-      "Youth Fitness & Coordination",
-      "Athletic Pyramid Structures",
-      "Rural Health Diagnostic Funds"
+      "Grand Cultural Rally",
+      "Traditional Attire",
+      "Lezim & Dhol",
+      "Community Celebration"
     ],
     link: "/events"
   },
@@ -56,28 +56,58 @@ const EVENTS: EventPanel[] = [
     num: "03",
     category: "Navratri",
     title: "Navratri Utsav",
-    description: "Nine nights of vibrant devotion. Celebrating through traditional Garba and Dandiya rhythms, high-energy community gatherings, and prayers honoring the divine feminine power.",
+    description: "Nine nights of cultural vibrancy celebrating divine strength with traditional Garba & Dandiya rhythms, prayers, and women empowerment programs.",
     image: "/images/navratri.jpg",
     details: [
-      "Traditional Dandiya & Garba",
-      "Nine Nights of Prayers",
-      "Traditional Attire Spotlights",
-      "Community Prasad Distributions"
+      "Traditional Dandiya",
+      "Garba Nights",
+      "Devotional Puja",
+      "Prasad Distribution"
     ],
     link: "/events"
   },
   {
-    id: "dussehra",
+    id: "shiv-jayanti",
     num: "04",
-    category: "Dussehra",
-    title: "Vijayadashami Dussehra",
-    description: "Celebrating the triumph of righteousness. We host traditional Shastra Puja, community sweets distribution (Sona), and organize charity drives to empower local student educational programs.",
+    category: "Shiv Jayanti",
+    title: "Chhatrapati Shivaji Maharaj Jayanti",
+    description: "Commemorating the visionary Chhatrapati Shivaji Maharaj with inspiring youth rallies, historical lectures, traditional saffron flags, and cultural tributes.",
     image: "/images/dussehra.png",
     details: [
-      "Vijayadashami Shastra Puja",
-      "Sona Sharing Rituals",
-      "Charity & Book Drives",
-      "Special Devotional Melas"
+      "Historical Lectures",
+      "Inspirational Rally",
+      "Youth Tributes",
+      "Cultural Procession"
+    ],
+    link: "/events"
+  },
+  {
+    id: "ambedkar-jayanti",
+    num: "05",
+    category: "Ambedkar Jayanti",
+    title: "Dr. Babasaheb Ambedkar Jayanti",
+    description: "Honoring the architect of the Indian Constitution through social equality programs, book distributions, educational felicitation, and community harmony drives.",
+    image: "/images/ganesh.jpg",
+    details: [
+      "Book Distribution",
+      "Student Felicitation",
+      "Social Equality Drive",
+      "Community Harmony"
+    ],
+    link: "/events"
+  },
+  {
+    id: "sports-tournaments",
+    num: "06",
+    category: "Sports Tournaments",
+    title: "Annual Sports & Cricket Tournaments",
+    description: "Honoring our 2006 cricket founding roots with competitive local cricket tournaments, athletics, and sports coaching for Indira Nagar youth.",
+    image: "/images/dahi-handi.jpg",
+    details: [
+      "Cricket League",
+      "Youth Athletics",
+      "Fitness Coaching",
+      "Trophy Felicitation"
     ],
     link: "/events"
   }
@@ -133,7 +163,7 @@ export default function FeaturedEvents() {
             </h2>
           </div>
           <p className="text-slate-grey max-w-md text-sm md:text-base leading-relaxed font-light">
-            Bringing communities together through high-spirited celebrations, traditional street rituals, and social responsibility initiatives.
+            Bringing the Indira Nagar and Nashik community together through vibrant cultural celebrations, traditional street processions, youth sports, and social welfare drives.
           </p>
         </div>
 
@@ -228,7 +258,7 @@ export default function FeaturedEvents() {
                   </h3>
                 </div>
                 <span className="hidden md:inline text-xs uppercase font-extrabold tracking-widest text-slate-400 group-hover:text-saffron transition-colors duration-300 mt-2 md:mt-0">
-                  {event.id === "ganesh" || event.id === "navratri" ? "10 Days" : "Festive"}
+                  {event.id === "ganesh" || event.id === "navratri" ? "10 Days" : (event.id === "swagat-yatra" ? "Annual Yatra" : (event.id === "sports-tournaments" ? "Tournament" : "Annual Utsav"))}
                 </span>
 
                 {/* Mobile Dropdown Details (Toggled on click) */}

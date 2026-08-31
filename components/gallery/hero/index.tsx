@@ -120,7 +120,7 @@ export default function GalleryHero() {
           </h1>
 
           <p className="hero-subtitle text-base sm:text-lg text-white/85 max-w-xl leading-relaxed">
-            Explore photographic logs and looping video snippet reels of our cultural celebrations, environmental projects, and rural community health operations.
+            Explore photographic records and video reels of our 19+ years legacy: cultural festivals, Gudipadwa Swagat Yatra, 50+ blood donation camps, and youth sports in Indira Nagar, Nashik.
           </p>
         </div>
       </div>

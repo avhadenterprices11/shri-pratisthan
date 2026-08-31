@@ -12,22 +12,22 @@ import Registration from "@/components/events/registration";
 import FAQ from "@/components/events/faq";
 
 export const metadata: Metadata = {
-  title: "Events & Cultural Festivals",
+  title: "Events & Cultural Festivals | Shree Pratishtan (श्री प्रतिष्ठान)",
   description:
-    "Discover upcoming cultural celebrations, Dahi Handi championships, Navratri garba, medical camps, and community drives at Shree Prathishthan.",
+    "Discover upcoming cultural celebrations, Gudipadwa Swagat Yatra, Shree Ganeshotsav, Navratri, Shiv Jayanti, blood donation camps, and sports leagues at Shree Pratishtan, Indira Nagar, Nashik.",
   openGraph: {
-    title: "Events & Cultural Festivals | Shree Prathishthan",
+    title: "Events & Cultural Festivals | Shree Pratishtan (श्री प्रतिष्ठान)",
     description:
-      "Discover upcoming cultural celebrations, Dahi Handi championships, Navratri garba, medical camps, and community drives at Shree Prathishthan.",
-    url: "https://www.shreepratishthan.org/events",
-    images: [{ url: "/hero_ganesh.png", width: 1200, height: 630, alt: "Shree Prathishthan Events" }],
+      "Discover upcoming cultural celebrations, Swagat Yatra, Ganeshotsav, Navratri, health camps, and sports tournaments in Indira Nagar, Nashik.",
+    url: "https://www.shreepratishthan.com/events",
+    images: [{ url: "/hero_ganesh.png", width: 1200, height: 630, alt: "Shree Pratishtan Events" }],
   },
   twitter: {
-    title: "Events & Cultural Festivals | Shree Prathishthan",
-    description: "Discover upcoming cultural celebrations and community drives at Shree Prathishthan.",
+    title: "Events & Cultural Festivals | Shree Pratishtan (श्री प्रतिष्ठान)",
+    description: "Discover upcoming cultural celebrations and community drives at Shree Pratishtan in Indira Nagar, Nashik.",
     images: ["/hero_ganesh.png"],
   },
-  alternates: { canonical: "https://www.shreepratishthan.org/events" },
+  alternates: { canonical: "https://www.shreepratishthan.com/events" },
 };
 
 export default function EventsPage() {

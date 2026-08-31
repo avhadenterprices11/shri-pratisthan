@@ -12,24 +12,24 @@ interface BenefitItem {
 
 const BENEFITS: BenefitItem[] = [
   {
-    title: "Official Verification Credentials",
-    desc: "Receive an official Trust Certificate documenting your volunteer hours, contributions, and project alignments—highly valued for university and professional applications.",
+    title: "Official Trust Certification",
+    desc: "Receive an official Trust Certificate from 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था' (Reg: nashik/0000153/2018) validating your service, leadership, and community contributions.",
     icon: "Cert",
   },
   {
-    title: "Skill Enrichment Programs",
-    desc: "Gain access to regular training workshops covering first aid, trauma response basics, ecological farming techniques, and public communications.",
+    title: "Youth Skill & Event Training",
+    desc: "Gain hands-on experience in large-scale cultural festival execution, stage coordination, healthcare logistics, and emergency response management.",
     icon: "Skill",
   },
   {
-    title: "Leadership Pathways",
-    desc: "Take charge of local operations. Transition from field volunteer to area drive coordinator, overseeing teams and resource management.",
+    title: "Leadership & Committee Growth",
+    desc: "Take charge of zonal operations in Indira Nagar and Nashik. Transition from active volunteer to drive coordinator and event planning lead.",
     icon: "Lead",
   },
   {
-    title: "Corporate CSR Exposure",
-    desc: "Interact with corporate donors, administrative officers, and public auditors, understanding structural NGO accountability and planning.",
-    icon: "Corp",
+    title: "Civic & Community Network",
+    desc: "Connect with dedicated local leaders, municipal authorities, sports enthusiasts, and community organizers committed to Nashik's progress.",
+    icon: "Net",
   },
 ];
 

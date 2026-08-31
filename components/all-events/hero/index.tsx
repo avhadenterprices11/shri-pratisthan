@@ -7,9 +7,9 @@ import { Sparkles } from "lucide-react";
 
 const HERO_SLIDES = [
   { id: 1, title: "Cultural Festivals", image: "/ganeshotsav_backdrop.png" },
-  { id: 2, title: "Dahi Handi Sports", image: "/hero_dahihandi.png" },
-  { id: 3, title: "Healthcare & Blood Drives", image: "/volunteer_medical.png" },
-  { id: 4, title: "Ecological Restoration", image: "/volunteer_eco.png" },
+  { id: 2, title: "Annual Cricket Leagues", image: "/hero_dahihandi.png" },
+  { id: 3, title: "50+ Blood Donation Drives", image: "/volunteer_medical.png" },
+  { id: 4, title: "Gudipadwa Swagat Yatra", image: "/gallery_dhol_tasha_camps.png" },
 ];
 
 export default function AllEventsHero() {
@@ -73,7 +73,7 @@ export default function AllEventsHero() {
         {/* Animated Badge Tag */}
         <div className="hero-title-reveal inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/95 border border-saffron/40 text-saffron font-bold text-xs uppercase tracking-widest backdrop-blur-md shadow-lg">
           <Sparkles className="w-4 h-4 text-saffron animate-spin-slow-badge" />
-          Shree Prathishthan Events Hub
+          Shree Pratishtan Events Hub
         </div>
 
         {/* Bright Headline: CELEBRATING TRADITIONS */}
@@ -85,7 +85,7 @@ export default function AllEventsHero() {
 
         {/* Subtitle */}
         <p className="hero-title-reveal text-base sm:text-xl text-neutral-950 max-w-3xl leading-relaxed font-bold bg-white/85 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/90 shadow-lg">
-          Explore our complete lineup of cultural festivals, Dahi Handi championships, free healthcare camps, tree plantation drives, and social relief initiatives.
+          Explore our complete lineup of cultural celebrations, Gudipadwa Swagat Yatra, Shree Ganeshotsav, 50+ blood donation camps, and annual sports tournaments in Indira Nagar, Nashik.
         </p>
       </div>
     </section>

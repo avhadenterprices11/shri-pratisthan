@@ -10,36 +10,36 @@ gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [
   { 
-    id: "performers", 
-    value: 320, 
+    id: "members", 
+    value: 100, 
     suffix: "+", 
-    label: "Troupe Performers", 
+    label: "Active Members", 
     image: "/images/ganesh.jpg",
-    description: "Trained folk performers keeping traditional dhol-tasha rhythms and instruments alive." 
+    description: "Dedicated local members and youth leaders driving cultural celebrations and community welfare in Indira Nagar." 
   },
   { 
-    id: "govinda", 
-    value: 9, 
-    suffix: "-Layers", 
-    label: "Govinda Pyramid Target", 
+    id: "legacy", 
+    value: 19, 
+    suffix: "+ Yrs", 
+    label: "Years of Service", 
     image: "/images/dahi-handi.jpg",
-    description: "Reflecting peak physical coordination, team courage, and safety limits in Dahi Handi." 
+    description: "Serving the community since 2006 with unwavering commitment to social upliftment and cultural pride." 
   },
   { 
-    id: "pandals", 
-    value: 52, 
-    suffix: "+", 
-    label: "Pandals Decorated", 
+    id: "founders", 
+    value: 20, 
+    suffix: " Pillars", 
+    label: "Founding Members", 
     image: "/images/navratri.jpg",
-    description: "Aesthetic layouts and custom decorations spreading festive joy across major city hubs." 
+    description: "Started by 20 close friends who met daily to play cricket and transformed sports teamwork into social power." 
   },
   { 
-    id: "youth", 
-    value: 450, 
+    id: "drives", 
+    value: 50, 
     suffix: "+", 
-    label: "Active Youth Crew", 
+    label: "Social & Blood Drives", 
     image: "/images/social-work.jpg",
-    description: "Dedicated volunteers orchestrating crowd flows, medical camps, and community drives." 
+    description: "Organizing mass blood donation camps, International Yoga Day sessions, health camps, and sports leagues." 
   },
 ];
 
@@ -102,7 +102,7 @@ export default function CommunityImpact() {
         {/* Editorial Heading Section */}
         <div className="max-w-3xl mb-24">
           <h2 className="text-4xl sm:text-6xl font-black text-foreground tracking-tight font-heading leading-none uppercase">
-            Festive Milestones in Numbers
+            Community & Impact in Numbers
           </h2>
           <div className="w-16 h-1 bg-saffron mt-6 rounded-full" />
         </div>

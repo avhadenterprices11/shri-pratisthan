@@ -1,6 +1,6 @@
-# Architecture & System Brain: Shree Prathishthan
+# Architecture & System Brain: Shree Pratishtan (श्री प्रतिष्ठान)
 
-This document serves as the project's logic engine. It diagrams the information architecture, user journeys, navigation flow, CTA hierarchy, and content relationships of the **Shree Prathishthan** digital ecosystem.
+This document serves as the project's information architecture, logic engine, user journeys, navigation flow, CTA hierarchy, and content relationships of the **Shree Pratishtan** digital ecosystem.
 
 ---
 
@@ -8,97 +8,96 @@ This document serves as the project's logic engine. It diagrams the information 
 
 ```mermaid
 graph TD
-    Root[Home page] --> About[About Us]
+    Root[Home Page] --> About[About Us & History]
     Root --> Events[Events & Festivals]
-    Root --> Gallery[Immersive Gallery]
-    Root --> Community[Community Projects]
-    Root --> Volunteer[Volunteer Registration]
+    Root --> Gallery[Media & Archives]
+    Root --> Community[Social & Welfare Drives]
+    Root --> Volunteer[Volunteer Onboarding]
     Root --> Contact[Contact & Support]
 
-    About --> Leadership[Leadership Team]
-    About --> Vision[Vision & History]
+    About --> Founder[Adv. Shyam Badode Bio]
+    About --> History[2006 Cricket Origin & 20 Founders]
+    About --> Trust[Registration: nashik/0000153/2018]
+    About --> Values[Bilingual Vision, Mission & Values]
 
-    Events --> Ganeshotsav[Shree Ganeshotsav]
-    Events --> DahiHandi[Dahi Handi Utsav]
-    Events --> SocialDrives[Social Service Campaigns]
+    Events --> Cultural[Ganeshotsav & Navratri]
+    Events --> Historical[Shiv Jayanti & Ambedkar Jayanti]
+    Events --> Yatra[Gudipadwa Swagat Yatra]
+    Events --> Sports[Sports & Cricket Tournaments]
 
-    Community --> Education[Underprivileged Education]
-    Community --> Medical[Free Medical Camps]
-    Community --> Environment[Tree Plantation Drives]
+    Community --> BloodDonation[Blood Donation Camps]
+    Community --> YogaHealth[Yoga Day & Medical Camps]
+    Community --> SocialCharity[Charitable & Civic Drives]
+
+    Contact --> Bank[Samarth Sahakari Bank Info]
+    Contact --> Office[Indira Nagar, Nashik Office]
 ```
 
 ### Hierarchy & Content Tree
-1.  **Home Page**: Immersive introduction, current highlights, dynamic stats, core focus areas, and high-conversion calls to action.
-2.  **About Us**: The founding story, values of the trust, organizational structure, and credentials.
-3.  **Events & Festivals**: The dual operational pillar:
-    *   *Cultural Pageantry*: Shree Ganeshotsav, Dahi Handi.
-    *   *Social Drives*: Blood donations, disaster relief, health checkups.
-4.  **Immersive Gallery**: High-definition media, historical highlights, press releases, and social media feeds.
-5.  **Community Work**: Detailed case studies of our ongoing programs, showing metrics, stories of change, and future targets.
-6.  **Volunteer Portal**: Structured onboarding pipeline for new community members.
-7.  **Contact**: Visual forms, interactive map, details of administrative centers, and social channels.
+1.  **Home Page**: High-impact brand introduction, verified stats (Est. 2006, 100+ members, 20 founders, 50+ drives), festival spotlights, and direct onboarding CTAs.
+2.  **About Us**: 
+    *   *The Origin Story*: How a daily cricket match in Indira Nagar in 2006 turned into a social welfare organization.
+    *   *20 Founding Pillars*: Complete list of founding members.
+    *   *Leadership Spotlight*: ॲड श्याम धर्मराज बडोदे (गटनेता तथा नगरसेवक प्रभाग क्र.३०, सरचिटणीस भाजपा नाशिक शहर).
+    *   *Trust Credentials*: कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था (Reg: `nashik/0000153/2018`).
+    *   *Bilingual Philosophy*: Marathi & English Vision, Mission, and 8 Core Values.
+3.  **Events & Festivals**:
+    *   *Cultural & Traditional*: Shree Ganeshotsav, Navratri Utsav, Gudipadwa Swagat Yatra.
+    *   *Inspirational & Historical*: Chhatrapati Shivaji Maharaj Jayanti, Dr. Babasaheb Ambedkar Jayanti.
+    *   *Sports & Youth*: Annual Cricket tournaments, athletic meets.
+4.  **Social Initiatives & Community**:
+    *   *Healthcare*: Mass Blood Donation Camps, International Yoga Day, Medical checkup drives.
+    *   *Charity & Civic*: Environmental cleanliness, community welfare, student support.
+5.  **Gallery**:
+    *   Photo & Video archives of past festivals, cricket matches, felicitation ceremonies, and press coverage.
+6.  **Volunteer Portal**: Structured onboarding for youth, event volunteers, and membership inquiries.
+7.  **Contact & Banking**:
+    *   Official address (Indira Nagar, Nashik), Phone (`+91 9922786608`), Email (`Info@shreepratishthan.com`), and Samarth Bank donation verification.
 
 ---
 
 ## 2. User Personas
 
-### Persona A: The Passionate Youth Volunteer (Rohan, 22)
-*   **Goal**: Wants to find a trustworthy local platform to contribute to community welfare, specifically during major festivals.
-*   **Need**: Fast, mobile-first registration, immediate visual proof of the organization's authenticity, and clear descriptions of task allocations.
-*   **Behavior**: High usage of smartphones, prefers short, engaging videos, expects zero friction.
+### Persona A: Local Indira Nagar Youth / Sports Volunteer (20 yrs)
+*   **Goal**: Participate in the annual cricket tournament, volunteer during Ganeshotsav or Gudipadwa Swagat Yatra.
+*   **Need**: Fast, mobile-first event schedule, seamless volunteer form, and direct WhatsApp / phone contact.
 
-### Persona B: The Corporate CSR Manager (Anjali, 38)
-*   **Goal**: Wants to partner with a credible trust for corporate social responsibility funds.
-*   **Need**: Data-driven impact metrics, clean layout, structural accountability documentation, and transparent leadership profiles.
-*   **Behavior**: Desktops and tablets, prints PDF summaries, values high-quality UI reflecting organizational capability.
+### Persona B: Community Resident & Family Member (45 yrs)
+*   **Goal**: Attend cultural programs, participate in Yoga Day, or find blood donation camp details.
+*   **Need**: Clear Marathi/English notices, dates, venue locations in Indira Nagar, and helpline numbers.
 
-### Persona C: The Community Beneficiary / Elder (Suresh, 61)
-*   **Goal**: Needs to locate local healthcare drives and aid programs.
-*   **Need**: Large, highly readable text, straightforward navigation, simple phone contact channels, and localized language pointers.
+### Persona C: Donors & Institutional Partners
+*   **Goal**: Verify trust legitimacy and contribute funds or sponsor community tournaments.
+*   **Need**: Registration details (`nashik/0000153/2018`), bank account credentials (Samarth Sahakari Bank), and transparent leadership credentials (Adv. Shyam Badode).
 
 ---
 
-## 3. Navigation & Interaction Logic
+## 3. Navigation & CTA Conversion Matrix
 
-### Navigation Rules
-*   **Global Sticky Navbar**: Glassmorphic, 12% black opacity blur, slides up on scroll down, slides down on scroll up (preventing view occlusion).
-*   **Responsive Burger Menu**: Screen overlay, custom GSAP stagger menu links with smooth spring physics.
-*   **Stateful Indicators**: Current page highlighted with a subtle glowing dot matching the primary theme accent.
-
-### CTA Conversion Matrix
 | Entry Point | Primary Action | Secondary Action | Objective |
 | :--- | :--- | :--- | :--- |
-| **Hero Landing** | "Explore Our Work" (Scroll trigger) | "Become a Volunteer" (Direct Form) | High engagement and immediate volunteer onboarding. |
-| **Festival Segment**| "View Event Gallery" | "Read Impact Report" | Brand storytelling and social proofing. |
-| **Community Section**| "Support This Project" | "Browse All Initiatives" | Direct corporate/individual donations and trust validation. |
-| **About Us Footer** | "Contact Leadership" | "Register as Volunteer" | Trust validation and stakeholder query routing. |
+| **Hero Landing** | "Explore Our 19-Year Journey" | "Join as Volunteer" | Immediate engagement with history & member recruitment. |
+| **Events Hub** | "View Event Details & Schedule" | "Participate / Register" | Cultural and sports participation. |
+| **About Us Section** | "View 20 Founding Pillars" | "Contact Leadership" | Trust credibility and legacy building. |
+| **Community Section**| "Register for Blood Camp" | "Donate via Samarth Bank" | High-impact social action & donations. |
+| **Footer** | "Call: +91 9922786608" | "Email Us" | Direct communication with Indira Nagar team. |
 
 ---
 
-## 4. Scroll Journey & Animation Sequence (Home Page)
+## 4. Scroll Journey & Content Flow
 
 ```mermaid
 sequenceDiagram
-    participant User as User Scroll
-    participant Hero as Hero Block
-    participant Stats as Impact Numbers
-    participant Fest as Festival Spotlight
-    participant Social as Community Welfare
+    participant User as Visitor
+    participant Hero as Hero (Est. 2006 Indira Nagar)
+    participant Stats as Key Numbers (19+ Yrs, 100+ Members)
+    participant Story as Cricket Origin to Social Movement
+    participant Events as Festivals & Sports Showcase
+    participant Contact as Indira Nagar Office & Samarth Bank
     
-    User->>Hero: Landing Page load (Loader fade out, Title reveals)
-    Note over Hero: GSAP Title split-text reveal
-    User->>Stats: Scroll down to Stats Section
-    Note over Stats: Count-up animation of metrics on view entry
-    User->>Fest: Scroll to Festival Cards
-    Note over Fest: Cards slide up with staggered 3D skew effect
-    User->>Social: Scroll to Community Grid
-    Note over Social: Interactive card expansion (expanding details on hover)
+    User->>Hero: Land on Home Page
+    User->>Stats: View verified stats & badges
+    User->>Story: Read the 2006 cricket origin & founding members
+    User->>Events: Explore Ganeshotsav, Swagat Yatra, Shiv Jayanti, Sports
+    User->>Contact: Connect via phone (+91 9922786608) or volunteer
 ```
-
----
-
-## 5. Event & Content Relationships
-
-*   **Festivals Feed Welfare**: Cultural celebrations like Ganeshotsav act as massive gathering points to collect donations, enroll volunteers, and raise awareness for social drives.
-*   **Data Aggregation**: Every project completed in `Community` dynamically feeds metrics shown in the `Stats` components of the Home page (e.g. "Litres of blood donated," "Underprivileged kids supported").
-*   **Volunteer Funnel**: Every registration page routes profiles to specific project database tags (e.g. Rohan signs up -> tags: "Ganeshotsav-Logistics", "MedicalCamp-Volunteer").

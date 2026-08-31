@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
       phone: data.phone ?? "Not provided",
       message: data.message,
     },
-    `[Shree Prathishthan] Contact: ${data.subject}`,
+    `[Shree Pratishtan] Contact: ${data.subject}`,
     data.name,
     "Contact API"
   );

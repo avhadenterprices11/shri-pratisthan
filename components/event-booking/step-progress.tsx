@@ -5,17 +5,15 @@ import { Check, User, Calendar, MapPin, ClipboardCheck, CreditCard } from "lucid
 import { cn } from "@/lib/utils";
 
 interface StepProgressProps {
-  currentStep: number; // 1 to 5
+  currentStep: number; // 1 to 3
   onStepClick: (step: number) => void;
   maxStepReached: number;
 }
 
 const STEPS = [
   { id: 1, label: "Personal Info", icon: User },
-  { id: 2, label: "Event & Contact", icon: Calendar },
-  { id: 3, label: "Address", icon: MapPin },
-  { id: 4, label: "Review & Terms", icon: ClipboardCheck },
-  { id: 5, label: "Payment & Pass", icon: CreditCard },
+  { id: 2, label: "Booking Slot", icon: Calendar },
+  { id: 3, label: "Review & Confirm", icon: ClipboardCheck },
 ];
 
 export default function StepProgress({

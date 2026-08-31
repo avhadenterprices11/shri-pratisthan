@@ -126,7 +126,7 @@ export default function AboutHero() {
           </h2>
 
           <p className="left-desc text-white/90 text-xs sm:text-sm font-sans font-light leading-relaxed">
-            Preserving cultural roots while building transparent, youth-led community progress across Maharashtra. Estd 2012.
+            Preserving cultural roots while building youth-led community progress in Indira Nagar, Nashik. Estd 2006.
           </p>
         </div>
 
@@ -140,9 +140,9 @@ export default function AboutHero() {
           </h2>
 
           <div className="right-desc text-white/80 text-[10px] uppercase font-bold tracking-widest leading-relaxed border-t border-white/20 pt-4 flex flex-col gap-1">
-            <span>✦ Estd 2012 Maharashtra</span>
-            <span>✦ 10K+ Active Volunteers</span>
-            <span>✦ 50+ Ongoing Initiatives</span>
+            <span>✦ Estd 2006 Indira Nagar, Nashik</span>
+            <span>✦ 100+ Active Members & 20 Founders</span>
+            <span>✦ 50+ Health & Blood Donation Camps</span>
           </div>
         </div>
 
@@ -170,16 +170,16 @@ export default function AboutHero() {
         <div className="overlay-content absolute inset-0 z-40 flex flex-col items-center justify-center text-center px-6 pointer-events-none bg-saffron/95 backdrop-blur-md">
           
           <div className="inline-flex items-center gap-2 mb-6 bg-white/20 text-white font-bold text-xs uppercase tracking-widest px-5 py-2 rounded-full border border-white/30 shadow-lg backdrop-blur-md">
-            <span>Shree Prathishthan Trust</span>
+            <span>Shree Pratishtan (श्री प्रतिष्ठान)</span>
           </div>
 
           <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] font-heading uppercase max-w-4xl mb-6 tracking-tighter">
-            A Decade of Devotion <br className="hidden sm:inline" />
-            <span className="text-amber-100">& community service</span>
+            वारसा संस्कृतीचा <br className="hidden sm:inline" />
+            <span className="text-amber-100">ध्यास समाजसेवेचा</span>
           </h2>
           
           <p className="text-white/90 text-sm sm:text-base max-w-xl font-light font-sans leading-relaxed">
-            From coordinating the historic Dhol Tasha musical troupes to establishing disaster relief forces and eco-friendly Ganesha workshops, our progress is powered by volunteer transparency.
+            From a circle of friends playing daily cricket in Indira Nagar in 2006 to a formally registered trust with 100+ active members and 20 founding pillars, uniting Nashik through culture, health camps, and social service.
           </p>
 
         </div>

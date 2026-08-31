@@ -14,26 +14,26 @@ interface SlideItem {
 const SLIDES: SlideItem[] = [
   {
     stage: "Operations",
-    title: "Campaign Lifecycle Journey",
-    desc: "Tracing our structured project lifecycle from initial volunteer alignment to transparent post-campaign audits.",
+    title: "19+ Years Event & Seva Legacy",
+    desc: "Tracing our journey from a 2006 cricket spark to grand cultural festivals and 50+ blood donation camps across Indira Nagar, Nashik.",
     image: "/about_showcase.png",
   },
   {
     stage: "Stage 01",
-    title: "Volunteer Alignment",
-    desc: "Gathering and grouping local volunteers into specialized divisions (Logistics, Safety, and Medical support coordinates).",
+    title: "The 2006 Cricket Spark",
+    desc: "20 childhood friends playing cricket daily in Indira Nagar channel sports bonding and teamwork into community welfare and youth leadership.",
     image: "/volunteer_coordinator.png",
   },
   {
     stage: "Stage 02",
-    title: "Safety & Launch Execution",
-    desc: "Inspecting structure coordinates, securing helmets/safety harnesses, and executing active campaigns (blood donations, planting, or pyramids) under structured supervision.",
+    title: "Cultural Processions & Grand Festivals",
+    desc: "Establishing iconic community traditions: Gudipadwa Swagat Yatra, 10-day Shree Ganeshotsav, Navratri Garba, and Shivaji Jayanti rallies.",
     image: "/hero_dahihandi.png",
   },
   {
     stage: "Stage 03",
-    title: "Transparency & Audits",
-    desc: "Publishing detailed expenditure audits and impact reports directly to patrons, community members, and corporate CSR partners.",
+    title: "Registered Trust & 50+ Blood Drives",
+    desc: "Formal registration under 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था' (Reg: nashik/0000153/2018), 50+ blood donation camps, and active welfare.",
     image: "/community_assembly.png",
   },
 ];

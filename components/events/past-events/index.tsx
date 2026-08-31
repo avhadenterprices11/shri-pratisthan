@@ -18,30 +18,30 @@ interface CardItem {
 const CARDS: CardItem[] = [
   {
     id: 1,
-    title: "Monsoon Vasundhara Planting",
+    title: "Vasundhara Tree Plantation",
     subtitle: "5,000+ Trees Planted",
-    description: "Planted native saplings on bare hillsides to prevent erosion, in coordinates with forestry departments.",
+    description: "Planting indigenous shade and fruit saplings with Sunday volunteer care across Indira Nagar and Nashik avenues.",
     imgSrc: "/ganeshotsav_bright.png",
     bgColor: "#78d28c", // Green theme
     date: "July 2025",
   },
   {
     id: 2,
-    title: "Pandemic Social Aid",
-    subtitle: "10,000+ Families Aided",
-    description: "Distributed dry provisions and medical sanitization kits to families in remote villages.",
+    title: "Community Relief Drives",
+    subtitle: "10,000+ Citizens Aided",
+    description: "Distributed dry food grain rations, emergency medical kits, and hygiene essentials to vulnerable families in Nashik.",
     imgSrc: "/volunteer_medical.png",
     bgColor: "#d27878", // Red/Saffron theme
-    date: "April-June 2020",
+    date: "2020 - 2024",
   },
   {
     id: 3,
-    title: "Shiksha Notebook Support",
-    subtitle: "2,200+ Students Guided",
-    description: "Supplied quality learning notebooks, desks, and visual study aids to local schools in Thane district.",
+    title: "Student Education & Study Kits",
+    subtitle: "2,500+ Students Guided",
+    description: "Supplied quality school bags, notebooks, geometry boxes, and stationery to municipal and rural schools in Nashik.",
     imgSrc: "/about_showcase.png",
     bgColor: "#dbd578", // Gold theme
-    date: "November 2024",
+    date: "Annual Drive",
   },
 ];
 

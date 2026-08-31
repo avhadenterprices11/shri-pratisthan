@@ -7,22 +7,22 @@ import VideoGallery from "@/components/gallery/video-gallery";
 import ShareMemoriesCTA from "@/components/gallery/share-memories-cta";
 
 export const metadata: Metadata = {
-  title: "Gallery",
+  title: "Media Gallery",
   description:
-    "Browse Shree Prathishthan's photographic records: Ganeshotsav arati, Dhol Tasha parades, Navratri garba, Shiv Jayanti rallies, medical camps, eco drives, and volunteer stories.",
+    "Browse Shree Pratishtan's photographic and video records: Shree Ganeshotsav, Gudipadwa Swagat Yatra, Navratri Garba, 50+ blood donation camps, and youth sports in Indira Nagar, Nashik.",
   openGraph: {
-    title: "Gallery | Shree Prathishthan",
+    title: "Media Gallery | Shree Pratishtan (श्री प्रतिष्ठान)",
     description:
-      "Photographic records: Ganeshotsav, Dhol Tasha, Navratri garba, Shiv Jayanti, medical camps, and volunteer stories.",
-    url: "https://www.shreepratishthan.org/gallery",
-    images: [{ url: "/gallery_navratri_garba.png", width: 1200, height: 630, alt: "Shree Prathishthan Gallery" }],
+      "Photographic records: Shree Ganeshotsav, Gudipadwa Swagat Yatra, Navratri Garba, 50+ blood donation camps, and youth sports in Indira Nagar, Nashik.",
+    url: "https://www.shreepratishthan.com/gallery",
+    images: [{ url: "/gallery_navratri_garba.png", width: 1200, height: 630, alt: "Shree Pratishtan Gallery" }],
   },
   twitter: {
-    title: "Gallery | Shree Prathishthan",
-    description: "Photographic records: Ganeshotsav, Navratri, Shiv Jayanti, medical camps, and volunteer stories.",
+    title: "Media Gallery | Shree Pratishtan (श्री प्रतिष्ठान)",
+    description: "Photographic records: Shree Ganeshotsav, Gudipadwa Swagat Yatra, 50+ blood donation camps, and sports in Indira Nagar, Nashik.",
     images: ["/gallery_navratri_garba.png"],
   },
-  alternates: { canonical: "https://www.shreepratishthan.org/gallery" },
+  alternates: { canonical: "https://www.shreepratishthan.com/gallery" },
 };
 
 export default function GalleryPage() {

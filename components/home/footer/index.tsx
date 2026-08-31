@@ -46,14 +46,14 @@ export default function Footer() {
 
         <div className="inline-flex gap-16 animate-footer-marquee shrink-0 min-w-full justify-around pr-16 text-4xl sm:text-6xl md:text-[5vw] font-black uppercase font-sans">
           <span className="text-white">Devotion & Service!</span>
-          <span className="text-outline">Shree Prathishthan</span>
-          <span className="text-saffron">Cultural Legacy</span>
+          <span className="text-outline">Shree Pratishtan</span>
+          <span className="text-saffron">Indira Nagar • Nashik</span>
           <span className="text-white">✦</span>
         </div>
         <div className="inline-flex gap-16 animate-footer-marquee shrink-0 min-w-full justify-around pr-16 text-4xl sm:text-6xl md:text-[5vw] font-black uppercase font-sans" aria-hidden="true">
           <span className="text-white">Devotion & Service!</span>
-          <span className="text-outline">Shree Prathishthan</span>
-          <span className="text-saffron">Cultural Legacy</span>
+          <span className="text-outline">Shree Pratishtan</span>
+          <span className="text-saffron">Indira Nagar • Nashik</span>
           <span className="text-white">✦</span>
         </div>
       </div>
@@ -65,7 +65,7 @@ export default function Footer() {
           {/* Left Block: Description & Email Subscription */}
           <div className="lg:col-span-5 flex flex-col items-start gap-6">
             <p className="text-xs sm:text-sm text-white/60 leading-relaxed max-w-md font-light font-sans">
-              Whether you're looking for cultural roots, youth collaboration, or active community service, we have projects to support. Get transparent trust announcements, newsletter articles, and volunteering calls directly in your inbox.
+              Rooted in Indira Nagar, Nashik since 2006 under the leadership of Adv. Shyam Badode, Shree Pratishtan unites cultural heritage, youth sportsmanship, and selfless community welfare. Get trust announcements and volunteering calls directly in your inbox.
             </p>
 
             <div className="w-full max-w-md">
@@ -133,13 +133,13 @@ export default function Footer() {
 
             {/* Support Links */}
             <div>
-              <h4 className="text-xs font-black uppercase tracking-widest text-white mb-6 font-sans">Support</h4>
+              <h4 className="text-xs font-black uppercase tracking-widest text-white mb-6 font-sans">Support &amp; Legal</h4>
               <ul className="space-y-4 text-xs text-white/50">
-                <li><Link href="/contact" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Privacy Policy</Link></li>
-                <li><Link href="/about" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Committees</Link></li>
+                <li><Link href="/privacy-policy" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Privacy Policy</Link></li>
+                <li><Link href="/terms-conditions" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Terms &amp; Conditions</Link></li>
+                <li><Link href="/about" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Committees &amp; Trustees</Link></li>
                 <li><Link href="/volunteer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Register As Volunteer</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Contact Us</Link></li>
-                <li><Link href="/volunteer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">FAQ</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-wider">Contact &amp; Help Desk</Link></li>
               </ul>
             </div>
 
@@ -177,7 +177,7 @@ export default function Footer() {
         {/* 3. Lower Metadata Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] sm:text-xs text-white/30">
           <div>
-            © {new Date().getFullYear()} Shree Prathishthan Trust. All Rights Reserved.
+            © {new Date().getFullYear()} Shree Pratishtan (Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha — Reg: nashik/0000153/2018). All Rights Reserved.
           </div>
           <div className="flex gap-1.5 items-center font-sans font-light">
             <span>Designed with Devotion</span>

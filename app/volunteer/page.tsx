@@ -2,19 +2,19 @@ import React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Volunteer With Us",
+  title: "Volunteer With Us | Shree Pratishtan (श्री प्रतिष्ठान)",
   description:
-    "Join Shree Prathishthan's volunteer programs across Maharashtra. Opportunities in cultural event logistics, medical camps, tree plantation drives, and socio-educational relief. All skill levels welcome.",
+    "Join Shree Pratishtan's 100+ member youth volunteer network in Indira Nagar, Nashik. Opportunities in cultural festivals (Gudipadwa Swagat Yatra, Ganeshotsav, Shiv Jayanti), blood donation drives, and youth sports leagues.",
   openGraph: {
-    title: "Volunteer With Us | Shree Prathishthan",
+    title: "Volunteer With Us | Shree Pratishtan (श्री प्रतिष्ठान)",
     description:
-      "Join our volunteer programs: cultural events, medical camps, tree plantation, and relief work across Maharashtra.",
+      "Join our volunteer team in Indira Nagar, Nashik: cultural events, health drives, sports tournaments, and community welfare.",
     url: "https://www.shreepratishthan.org/volunteer",
-    images: [{ url: "/volunteer_coordinator.png", width: 1200, height: 630, alt: "Volunteer with Shree Prathishthan" }],
+    images: [{ url: "/volunteer_coordinator.png", width: 1200, height: 630, alt: "Volunteer with Shree Pratishtan" }],
   },
   twitter: {
-    title: "Volunteer With Us | Shree Prathishthan",
-    description: "Join cultural events, medical camps, tree plantation, and relief work across Maharashtra.",
+    title: "Volunteer With Us | Shree Pratishtan (श्री प्रतिष्ठान)",
+    description: "Join our volunteer team in Indira Nagar, Nashik: cultural events, health drives, sports, and relief work.",
     images: ["/volunteer_coordinator.png"],
   },
   alternates: { canonical: "https://www.shreepratishthan.org/volunteer" },

@@ -120,7 +120,7 @@ export default function CommunityHero() {
             </h1>
 
             <p className="hero-subtitle text-base sm:text-lg text-neutral-800 leading-relaxed font-semibold [text-shadow:_0_1.5px_3px_rgba(255,255,255,0.9)]">
-              Shree Prathishthan bridges resources with local needs, fostering societal resilience through blood drives, environmental stewardship, and dedicated welfare campaigns across rural Maharashtra.
+              Shree Pratishtan (श्री प्रतिष्ठान) unites citizens, youth, and organizers in Indira Nagar, Nashik to drive 50+ blood donation drives, free health diagnostics, tree plantation, and welfare campaigns under the motto &ldquo;वारसा संस्कृतीचा, ध्यास समाजसेवेचा&rdquo;.
             </p>
           </div>
         </div>

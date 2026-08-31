@@ -14,21 +14,21 @@ interface CampaignItem {
 
 const CAMPAIGNS: CampaignItem[] = [
   {
-    title: "Educational Study Desks & Kits",
-    desc: "We construct and distribute sturdy dual-benches and provide full notebook & stationary sets to remote tribal schools in Western Maharashtra.",
-    metric: "2,200+ Kits Distributed",
+    title: "Student Education & Study Kits",
+    desc: "Providing textbooks, notebooks, school bags, and stationery sets to underprivileged students and schools across Nashik district.",
+    metric: "2,500+ Kits Distributed",
     icon: <BookOpen className="w-6 h-6 text-saffron" />,
   },
   {
-    title: "Emergency Flood & Disaster Relief",
-    desc: "When monsoon flooding isolates local riverine villages, our quick-response teams deliver packets of dry grains, clean water, and medical kits directly.",
-    metric: "1,200+ Families Supported",
+    title: "Emergency Aid & Relief Drives",
+    desc: "Delivering essential grocery packets, dry food grains, emergency medical aid, and hygiene kits to vulnerable families during crises.",
+    metric: "1,500+ Families Supported",
     icon: <AlertTriangle className="w-6 h-6 text-saffron" />,
   },
   {
-    title: "Winter Blankets & Clothing Bank",
-    desc: "Collection drives aggregating warm clothing, sweaters, and blankets from urban hubs and distributing them to forest settlements before winter peaks.",
-    metric: "3,500+ Blankets Donated",
+    title: "Winter Clothing & Blanket Drive",
+    desc: "Community collection and distribution of warm blankets and sweaters to elderly residents and needy families in Indira Nagar and Nashik.",
+    metric: "3,000+ Blankets Donated",
     icon: <Gift className="w-6 h-6 text-saffron" />,
   },
 ];

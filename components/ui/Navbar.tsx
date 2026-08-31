@@ -236,12 +236,12 @@ export function Navbar() {
             <div className="nav-drawer-info flex flex-col gap-4 mt-8 md:mt-0 text-slate-grey">
               <div>
                 <span className="text-[10px] font-bold text-saffron uppercase tracking-widest block mb-1">Office Location</span>
-                <p className="text-sm font-medium">Pune, Maharashtra, India</p>
+                <p className="text-sm font-medium">Indira Nagar, Nashik, Maharashtra</p>
               </div>
               <div>
                 <span className="text-[10px] font-bold text-saffron uppercase tracking-widest block mb-1">Electronic Mail</span>
                 <p className="text-sm font-medium hover:text-saffron transition-colors">
-                  <a href="mailto:contact@shreepratishthan.org">contact@shreepratishthan.org</a>
+                  <a href="mailto:Info@shreepratishthan.com">Info@shreepratishthan.com</a>
                 </p>
               </div>
               <div className="flex gap-4 mt-2">

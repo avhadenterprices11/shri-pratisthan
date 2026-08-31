@@ -1,16 +1,8 @@
 "use client";
 
 import React from "react";
-import { User, Phone, Mail, Calendar, Briefcase, Camera } from "lucide-react";
-import CustomSelect from "@/components/ui/custom-select";
+import { User, Phone, Mail, MapPin } from "lucide-react";
 import { EventBookingInput } from "@/lib/validations";
-
-const GENDER_OPTIONS = [
-  { value: "male", label: "Male" },
-  { value: "female", label: "Female" },
-  { value: "other", label: "Other" },
-  { value: "prefer-not-to-say", label: "Prefer not to say" },
-];
 
 interface StepPersonalProps {
   formData: Partial<EventBookingInput>;
@@ -38,7 +30,7 @@ export default function StepPersonal({
           Step 1: Personal Information
         </h3>
         <p className="text-sm text-neutral-600 mt-1">
-          Please provide your identity details for participant verification and official communication.
+          Please provide your basic contact details for booking verification.
         </p>
       </div>
 
@@ -55,10 +47,10 @@ export default function StepPersonal({
               id="fullName"
               type="text"
               required
-              placeholder="e.g. Rahul Sharma"
+              placeholder="Enter your full name (e.g. Adv. Rahul Sharma)"
               value={formData.fullName || ""}
               onChange={(e) => updateFields({ fullName: e.target.value })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium"
             />
           </div>
           {errors.fullName && (
@@ -66,47 +58,10 @@ export default function StepPersonal({
           )}
         </div>
 
-        {/* Date of Birth */}
-        <div className="space-y-2">
-          <label htmlFor="dateOfBirth" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
-            Date of Birth <span className="text-saffron">*</span>
-          </label>
-          <div className="relative">
-            <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
-            <input
-              id="dateOfBirth"
-              type="date"
-              required
-              value={formData.dateOfBirth || ""}
-              onChange={(e) => updateFields({ dateOfBirth: e.target.value })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm"
-            />
-          </div>
-          {errors.dateOfBirth && (
-            <p className="text-xs text-red-600 font-medium">{errors.dateOfBirth}</p>
-          )}
-        </div>
-
-        {/* Gender */}
-        <div className="space-y-2">
-          <label htmlFor="gender" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
-            Gender <span className="text-saffron">*</span>
-          </label>
-          <CustomSelect
-            id="gender"
-            options={GENDER_OPTIONS}
-            value={formData.gender || "male"}
-            onChange={(val) => updateFields({ gender: val as EventBookingInput["gender"] })}
-          />
-          {errors.gender && (
-            <p className="text-xs text-red-600 font-medium">{errors.gender}</p>
-          )}
-        </div>
-
-        {/* Mobile Number */}
+        {/* Phone Number */}
         <div className="space-y-2">
           <label htmlFor="mobileNumber" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
-            Mobile Number <span className="text-saffron">*</span>
+            Phone Number <span className="text-saffron">*</span>
           </label>
           <div className="relative">
             <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
@@ -117,30 +72,12 @@ export default function StepPersonal({
               placeholder="10-digit mobile number"
               value={formData.mobileNumber || ""}
               onChange={(e) => updateFields({ mobileNumber: e.target.value })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium"
             />
           </div>
           {errors.mobileNumber && (
             <p className="text-xs text-red-600 font-medium">{errors.mobileNumber}</p>
           )}
-        </div>
-
-        {/* Alternate Mobile */}
-        <div className="space-y-2">
-          <label htmlFor="alternateMobile" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
-            Alternate Mobile <span className="text-neutral-400 font-normal">(Optional)</span>
-          </label>
-          <div className="relative">
-            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
-            <input
-              id="alternateMobile"
-              type="tel"
-              placeholder="Secondary contact number"
-              value={formData.alternateMobile || ""}
-              onChange={(e) => updateFields({ alternateMobile: e.target.value })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm"
-            />
-          </div>
         </div>
 
         {/* Email Address */}
@@ -154,10 +91,10 @@ export default function StepPersonal({
               id="email"
               type="email"
               required
-              placeholder="name@example.com"
+              placeholder="name@domain.com"
               value={formData.email || ""}
               onChange={(e) => updateFields({ email: e.target.value })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium"
             />
           </div>
           {errors.email && (
@@ -165,40 +102,32 @@ export default function StepPersonal({
           )}
         </div>
 
-        {/* Occupation */}
-        <div className="space-y-2">
-          <label htmlFor="occupation" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
-            Occupation <span className="text-neutral-400 font-normal">(Optional)</span>
-          </label>
-          <div className="relative">
-            <Briefcase className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
-            <input
-              id="occupation"
-              type="text"
-              placeholder="e.g. Student, Engineer, Business"
-              value={formData.occupation || ""}
-              onChange={(e) => updateFields({ occupation: e.target.value })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm"
-            />
-          </div>
-        </div>
-
-        {/* Profile Photo (Optional) */}
+        {/* Address */}
         <div className="space-y-2 md:col-span-2">
-          <label htmlFor="profilePhoto" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
-            Profile Photo Link / URL <span className="text-neutral-400 font-normal">(Optional for Identity Badge)</span>
+          <label htmlFor="streetArea" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
+            Residential Address <span className="text-saffron">*</span>
           </label>
           <div className="relative">
-            <Camera className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
-            <input
-              id="profilePhoto"
-              type="url"
-              placeholder="https://example.com/my-photo.jpg"
-              value={formData.profilePhoto || ""}
-              onChange={(e) => updateFields({ profilePhoto: e.target.value })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm"
+            <MapPin className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400" />
+            <textarea
+              id="streetArea"
+              required
+              rows={3}
+              placeholder="Enter your flat/house no., area, landmark & city (e.g. Flat 402, Indira Nagar, Nashik - 422009)"
+              value={formData.streetArea || ""}
+              onChange={(e) => updateFields({ 
+                streetArea: e.target.value,
+                houseNumber: "N/A",
+                city: "Nashik",
+                district: "Nashik",
+                pinCode: "422009"
+              })}
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium resize-none"
             />
           </div>
+          {errors.streetArea && (
+            <p className="text-xs text-red-600 font-medium">{errors.streetArea}</p>
+          )}
         </div>
       </div>
 
@@ -208,7 +137,7 @@ export default function StepPersonal({
           type="submit"
           className="px-8 py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-sm tracking-wider uppercase rounded-xl shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer"
         >
-          Next: Event Details &rarr;
+          Next: Select Booking Slot &rarr;
         </button>
       </div>
     </form>

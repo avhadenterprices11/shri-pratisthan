@@ -14,21 +14,21 @@ interface StatItem {
 
 const STATS: StatItem[] = [
   {
-    number: "10,000+",
-    label: "Volunteers Mobilized",
-    description: "Dedicated changemakers actively protecting rural ecosystems and heritage.",
+    number: "100+",
+    label: "Active Organizers",
+    description: "Dedicated youth and community members leading festivals and social drives in Indira Nagar.",
     icon: <Users className="w-5 h-5 text-saffron" />
   },
   {
-    number: "25,000+",
-    label: "Lives Empowered",
-    description: "Rural families supported through clean water, health camps, and aid.",
+    number: "50+",
+    label: "Blood & Health Camps",
+    description: "Life-saving blood collection drives and free medical diagnostic camps conducted across Nashik.",
     icon: <Heart className="w-5 h-5 text-saffron" />
   },
   {
-    number: "50+",
-    label: "Villages Transformed",
-    description: "Fostering long-term community resilience and local empowerment.",
+    number: "19+",
+    label: "Years Active Leadership",
+    description: "Unbroken community leadership and cultural preservation since our 2006 cricket origin.",
     icon: <Shield className="w-5 h-5 text-saffron" />
   }
 ];
@@ -97,7 +97,7 @@ export default function VolunteerHero() {
           </h1>
 
           <p className="hero-subtitle text-base sm:text-lg text-slate-200 max-w-xl leading-relaxed font-medium [text-shadow:_0_2px_4px_rgba(0,0,0,0.8)]">
-            Step forward as a volunteer with Shree Prathishthan. Your time, skills, and dedication can protect cultural heritage, restore ecosystems, and uplift rural communities.
+            Step forward as a volunteer with Shree Pratishtan (श्री प्रतिष्ठान). Your energy, leadership, and dedication empower youth, preserve cultural festivals, and drive social welfare in Indira Nagar and Nashik.
           </p>
         </div>
 

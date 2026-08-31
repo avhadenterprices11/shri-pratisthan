@@ -105,7 +105,7 @@ export default function StepAddress({
             id="city"
             type="text"
             required
-            placeholder="e.g. Pune / Mumbai"
+            placeholder="e.g. Nashik"
             value={formData.city || ""}
             onChange={(e) => updateFields({ city: e.target.value })}
             className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm"
@@ -124,7 +124,7 @@ export default function StepAddress({
             id="district"
             type="text"
             required
-            placeholder="e.g. Pune District"
+            placeholder="e.g. Nashik District"
             value={formData.district || ""}
             onChange={(e) => updateFields({ district: e.target.value })}
             className="w-full px-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm"

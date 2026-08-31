@@ -13,23 +13,23 @@ interface StageItem {
 const STAGES: StageItem[] = [
   {
     step: "01",
-    title: "Online Intake Form",
-    desc: "Submit your basic information, interests, and availability in the registration form below in under 2 minutes.",
+    title: "Online Registration",
+    desc: "Submit your basic contact details, area of interest, and availability in the registration form below.",
   },
   {
     step: "02",
-    title: "Alignment Connection",
-    desc: "Our community team schedules a quick 10-minute checkup call to align your skills with active program roles.",
+    title: "Team Connection",
+    desc: "Our Indira Nagar community leads connect with you to discuss upcoming festivals, sports leagues, or health drives.",
   },
   {
     step: "03",
-    title: "Orientation Briefing",
-    desc: "Join a short virtual onboarding session outlining safety parameters, code-of-conduct guidelines, and coordinators.",
+    title: "Orientation & Briefing",
+    desc: "Join a short briefing with our 100+ member team outlining event roles, safety parameters, and coordination guidelines.",
   },
   {
     step: "04",
-    title: "Active Field Deployment",
-    desc: "Report to your designated regional drive (blood camps, ecology plantation, relief) and begin driving change.",
+    title: "Active Event Deployment",
+    desc: "Report to your designated initiative (Swagat Yatra, Ganeshotsav, blood donation camps, or cricket leagues) and lead the action.",
   },
 ];
 

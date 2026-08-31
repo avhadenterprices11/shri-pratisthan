@@ -66,9 +66,9 @@ export default function AboutVision() {
         <div className="lg:col-span-5 flex flex-col items-start text-left">
 
           <h2 className="reveal-wipe text-4xl sm:text-6xl font-black text-slate-800 leading-[0.98] tracking-tighter uppercase font-heading">
-            Cultural Purity <br />
-            & Collective <br />
-            <span className="text-saffron">Upliftment.</span>
+            Our Vision <br />
+            & Social <br />
+            <span className="text-saffron">Commitment.</span>
           </h2>
           <div className="reveal-wipe w-16 h-1 bg-saffron mt-6 rounded-full" />
         </div>
@@ -78,13 +78,13 @@ export default function AboutVision() {
           
           <div className="reveal-wipe overflow-hidden">
             <p className="text-xl sm:text-2xl text-slate-800 leading-relaxed font-sans font-light tracking-tight">
-              We envision a future where India's rich cultural legacy acts as a direct catalyst for civic duty, local empowerment, and educational equality.
+              &ldquo;एक एकजूट, सक्रिय आणि सामाजिकदृष्ट्या जबाबदार समाज घडवणे, जिथे सर्व नागरिक एकत्र येऊन संस्कृती व परंपरा जपतील आणि समाजाच्या सर्वांगीण विकासासाठी योगदान देतील.&rdquo;
             </p>
           </div>
 
           <div className="reveal-wipe overflow-hidden border-t border-saffron/15 pt-6 mt-2">
             <p className="text-sm sm:text-base text-slate-grey leading-relaxed font-sans font-light">
-              By channeling public festival coordination into continuous welfare operations, we aim to ensure that no underprivileged child lacks learning tools and no rural community is isolated from primary medical diagnostics.
+              To build a united, active, and socially responsible community where people come together to celebrate culture, support one another, encourage youth participation, and contribute towards the overall development and well-being of society.
             </p>
           </div>
 

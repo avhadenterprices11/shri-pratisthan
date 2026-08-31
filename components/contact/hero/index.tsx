@@ -50,7 +50,7 @@ export default function ContactHero() {
         </h1>
 
         <p className="hero-subtitle text-base sm:text-lg text-slate-grey max-w-2xl mx-auto leading-relaxed">
-          Connect directly with Shree Prathishthan's headquarters or contact our regional zone coordinators to discuss volunteering, corporate partnerships, and donation programs.
+          Connect directly with Shree Pratishtan (श्री प्रतिष्ठान) headquarters in Indira Nagar, Nashik or coordinate with our leadership for cultural festivals, 50+ blood donation drives, and youth initiatives.
         </p>
       </div>
     </section>

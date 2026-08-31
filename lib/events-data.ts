@@ -39,15 +39,15 @@ export interface EventItem {
 export const ALL_EVENTS: EventItem[] = [
   {
     id: "ganesh-utsav-2026",
-    title: "Ganesh Utsav Grand Celebration 2026",
-    tagline: "10 Days of Devotion, Cultural Unity, and Grand Aarti",
+    title: "Shree Ganeshotsav Grand Celebration 2026 (श्री गणेशोत्सव)",
+    tagline: "10 Days of Devotion, Cultural Unity, and Grand Maha Aarti",
     category: "cultural",
     categoryLabel: "Cultural Festival",
     status: "upcoming",
     date: "Aug 27 – Sep 06, 2026",
     time: "06:00 AM – 11:00 PM Daily",
-    location: "Shree Prathishthan Mandal, Central Ground, Pune",
-    mapUrl: "https://maps.google.com/?q=Pune+Maharashtra",
+    location: "Shree Pratishtan Mandal, Indira Nagar Ground, Nashik",
+    mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
     mainImage: "/gallery_ganeshotsav_aarthi.png",
     galleryImages: [
       "/gallery_ganeshotsav_aarthi.png",
@@ -56,341 +56,57 @@ export const ALL_EVENTS: EventItem[] = [
       "/gallery_gauri_ganpati_decor.png",
     ],
     description:
-      "Shree Prathishthan's signature annual festival uniting thousands of devotees in traditional celebration, eco-friendly idol immersion, daily grand aarti, cultural performances, and community prasad distribution.",
+      "Shree Pratishtan's signature annual festival uniting thousands of devotees across Indira Nagar and Nashik in traditional celebration, eco-friendly clay idol immersion, daily grand aarti, cultural plays, and hygienic Maha Prasad distribution.",
     metrics: [
-      { label: "Expected Footfall", value: "75,000+" },
-      { label: "Volunteer Marshals", value: "250+" },
-      { label: "Cultural Programs", value: "15 Performances" },
-      { label: "Prasad Distributed", value: "50,000 Meals" },
+      { label: "Expected Devotees", value: "50,000+" },
+      { label: "Volunteer Marshals", value: "100+ Organizers" },
+      { label: "Cultural Programs", value: "10 Days Drama & Music" },
+      { label: "Prasad Distributed", value: "25,000 Meals" },
     ],
     organizedDetails: [
       {
-        heading: "A to Z Festival Planning & Municipal Approvals",
+        heading: "Community Planning & Municipal Approvals",
         content:
-          "Preparation starts 3 months in advance with municipal clearances, police permissions, fire safety audits, and structural inspections of the central Pandal. Electrical wiring is triple-tested with backup generators.",
+          "Full planning coordinated with Nashik Municipal Corporation, police clearances, fire safety audits, and structural inspections of the central Pandal with backup generators.",
       },
       {
-        heading: "Eco-Friendly Clay Idol & Green Visarjan Infrastructure",
+        heading: "Eco-Friendly Shadu Clay Idol & Green Visarjan",
         content:
-          "Continuing our environmental pledge, the central Bappa idol is sculpted using 100% natural eco-friendly clay (Shadu Mati) and organic colors. Artificial water tanks are installed at the venue for eco-immersion.",
+          "Continuing our environmental pledge, the central Bappa idol is sculpted using 100% natural eco-friendly clay (Shadu Mati) with organic colors, supported by artificial immersion tanks.",
       },
       {
-        heading: "Crowd Safety, CCTV Surveillance & Medical Tents",
+        heading: "Crowd Safety, CCTV Surveillance & Medical Booths",
         content:
-          "24/7 CCTV surveillance connected to a central control room ensures safety. Dedicated queues for senior citizens and families are maintained alongside ambulance units and emergency medical booths staffed by trained doctors.",
+          "24/7 CCTV surveillance connected to our Indira Nagar coordination desk ensures safety for senior citizens and families alongside first-aid stations staffed by doctors.",
       },
       {
         heading: "Cultural Stages & Daily Maha Prasad Management",
         content:
-          "Every evening features classical Maharashtrian folk performances, Dhol Tasha musical beats, and youth drama plays. Over 5,000 meals of hygienic Maha Prasad are served daily under strict quality standards.",
+          "Evenings feature traditional Maharashtrian devotional bhajans, Dhol Tasha rhythm, and youth performances with nutritious Maha Prasad served daily.",
       },
     ],
     agenda: [
-      { time: "06:00 AM", title: "Prabhat Aarti & Morning Bhajans", description: "Traditional morning prayers to commence the festival day." },
-      { time: "10:30 AM", title: "Eco-Workshop & School Visits", description: "Interactive clay modeling sessions for visiting school children." },
-      { time: "07:00 PM", title: "Grand Evening Maha Aarti", description: "Resonant 108-lamp aarti attended by prominent community leaders." },
-      { time: "08:30 PM", title: "Cultural Drama & Dhol Tasha Performance", description: "Live stage performances celebrating Maharashtra's rich heritage." },
+      { time: "06:00 AM", title: "Prabhat Aarti & Morning Prayers", description: "Traditional morning prayers to commence the festival day." },
+      { time: "11:00 AM", title: "Eco-Workshop & Children's Activity", description: "Interactive clay modeling and cultural sessions for local school students." },
+      { time: "07:30 PM", title: "Grand Evening Maha Aarti", description: "Resonant 108-lamp aarti attended by community elders and youth." },
+      { time: "09:00 PM", title: "Cultural Drama & Dhol Tasha Recital", description: "Live stage performances celebrating Maharashtra's rich legacy." },
     ],
-    organizerName: "Shree Prathishthan Utsav Committee",
-    organizerPhone: "+91 98765 43210",
-    organizerEmail: "events@shreepratishthan.org",
+    organizerName: "Shree Pratishtan Utsav Samiti",
+    organizerPhone: "+91 9922786608",
+    organizerEmail: "Info@shreepratishthan.com",
   },
 
   {
-    id: "dahi-handi-2026",
-    title: "Annual Dahi Handi Championship 2026",
-    tagline: "Fearless Spirit, Teamwork, and 7-Tier Human Pyramids",
-    category: "sports",
-    categoryLabel: "Sports & Cultural",
-    status: "upcoming",
-    date: "Aug 16, 2026",
-    time: "03:00 PM – 10:00 PM",
-    location: "Pratishthan Sports Arena, Shivaji Nagar, Pune",
-    mapUrl: "https://maps.google.com/?q=Pune+Maharashtra",
-    mainImage: "/gallery_dahi_handi_pyramids.png",
-    galleryImages: [
-      "/gallery_dahi_handi_pyramids.png",
-      "/hero_dahihandi.png",
-      "/dahihandi_backdrop.png",
-      "/dahihandi_bright.png",
-    ],
-    description:
-      "A thrilling display of strength, balance, and athletic unity as top Govinda Pathaks compete to break the suspended Dahi Handi under world-class safety harnesses and sports protocols.",
-    metrics: [
-      { label: "Govinda Teams", value: "35+ Troupes" },
-      { label: "Spectators", value: "25,000+" },
-      { label: "Safety Marshals", value: "180 Personnel" },
-      { label: "Prize Fund", value: "₹5,00,000" },
-    ],
-    organizedDetails: [
-      {
-        heading: "Safety First Architecture & Harness Rigging",
-        content:
-          "Safety is paramount. All participating Govindas wear certified helmets, chest guards, and double-braided climbing harnesses. High-density foam crash mats and air cushions cover the entire ground area.",
-      },
-      {
-        heading: "Medical Infrastructure & Rapid On-Site Doctors",
-        content:
-          "Two fully equipped ICU ambulances with trauma response doctors and orthopedic specialists are stationed on the perimeter for zero-delay medical care.",
-      },
-      {
-        heading: "Public Crowd Control & Elevated Viewing Decks",
-        content:
-          "Tiered barricading separates spectator zones from the central arena, featuring elevated media decks and designated family seating areas.",
-      },
-    ],
-    agenda: [
-      { time: "03:00 PM", title: "Govinda Pathak Reporting & Safety Check", description: "Inspection of helmets, gear, and registration numbers." },
-      { time: "04:30 PM", title: "Initial Rounds & 5-Tier Pyramids", description: "Opening attempts by local youth clubs." },
-      { time: "07:30 PM", title: "Championship Round & 7-Tier Pyramids", description: "Top Govinda Pathaks attempt the high-suspended Handi." },
-      { time: "09:30 PM", title: "Trophy Presentation & Awards", description: "Felicitation of winners, sportsmanship honors, and safety awards." },
-    ],
-    organizerName: "Govinda Sports Federation & Shree Prathishthan",
-    organizerPhone: "+91 98765 43211",
-    organizerEmail: "sports@shreepratishthan.org",
-  },
-
-  {
-    id: "navratri-garba-2026",
-    title: "Navratri Dandiya & Garba Nights 2026",
-    tagline: "Nine Nights of Tradition, Traditional Attire, and Folk Dance",
+    id: "gudipadwa-swagat-yatra-2026",
+    title: "Gudipadwa Bhavya Swagat Yatra (गुढीपाडवा भव्य स्वागत यात्रा)",
+    tagline: "Grand Marathi New Year Procession, Traditional Attire & Lezim Beats",
     category: "cultural",
     categoryLabel: "Cultural Festival",
     status: "upcoming",
-    date: "Sep 22 – Oct 02, 2026",
-    time: "07:30 PM – 11:30 PM Daily",
-    location: "Heritage Cultural Grounds, Kothrud, Pune",
-    mapUrl: "https://maps.google.com/?q=Pune+Maharashtra",
-    mainImage: "/gallery_navratri_garba.png",
-    galleryImages: [
-      "/gallery_navratri_garba.png",
-      "/hero_navratri.png",
-      "/community_assembly.png",
-    ],
-    description:
-      "A vibrant celebration of Goddess Durga through energetic Garba, Raas Dandiya, live traditional acoustic orchestras, ethnic costume contests, and eco-friendly food stalls.",
-    metrics: [
-      { label: "Nightly Dancers", value: "10,000+" },
-      { label: "Live Orchestra", value: "12 Musicians" },
-      { label: "Best Attire Prizes", value: "Daily Awards" },
-      { label: "Security Marshals", value: "120 Women Bouncers & Police" },
-    ],
-    organizedDetails: [
-      {
-        heading: "Women Safety & Dedicated Security Zones",
-        content:
-          "Female security marshals, undercover police constables, and well-lit entry gates ensure total safety and comfort for women and children dancers.",
-      },
-      {
-        heading: "Acoustic Stage & Wooden Flooring Setup",
-        content:
-          "Over 30,000 sq. ft. of smooth anti-skid wooden flooring is laid out to prevent injuries during fast Garba steps, accompanied by state-of-the-art surround sound.",
-      },
-    ],
-    agenda: [
-      { time: "07:30 PM", title: "Goddess Durga Aarti", description: "Solemn opening prayer and lamp lighting." },
-      { time: "08:15 PM", title: "Traditional Raas & Garba Round 1", description: "Slow to medium tempo folk dance." },
-      { time: "09:45 PM", title: "Dandiya Fusion Round 2", description: "High-energy stick dance accompanied by live percussion." },
-      { time: "11:15 PM", title: "Daily Best Dress & Dancing Awards", description: "Recognition of top traditional dancers." },
-    ],
-    organizerName: "Cultural Cell - Shree Prathishthan",
-    organizerPhone: "+91 98765 43212",
-    organizerEmail: "navratri@shreepratishthan.org",
-  },
-
-  {
-    id: "health-medical-camp",
-    title: "Free Health Checkup & Blood Donation Camp",
-    tagline: "Saving Lives Through Healthcare Access and Donor Solidarity",
-    category: "health",
-    categoryLabel: "Healthcare Social Work",
-    status: "upcoming",
-    date: "Aug 30, 2026",
-    time: "08:00 AM – 04:00 PM",
-    location: "Shree Prathishthan Hall, Swargate, Pune",
-    mapUrl: "https://maps.google.com/?q=Pune+Maharashtra",
-    mainImage: "/volunteer_medical.png",
-    galleryImages: [
-      "/volunteer_medical.png",
-      "/community_assembly.png",
-      "/volunteer_coordinator.png",
-    ],
-    description:
-      "A comprehensive medical initiative providing free diagnostic health screenings, eye checkups, blood pressure & sugar tests, free medicine distribution, and a mega blood donation drive.",
-    metrics: [
-      { label: "Blood Units Collected", value: "500+ Units" },
-      { label: "Patients Examined", value: "1,200+" },
-      { label: "Doctor Specialists", value: "25 Physicians" },
-      { label: "Free Prescription Kits", value: "800 Kits" },
-    ],
-    organizedDetails: [
-      {
-        heading: "Hospital Collaborations & Sterile Medical Setup",
-        content:
-          "Organized in partnership with leading government blood banks and private hospitals. Sterile air-conditioned donor beds, single-use needles, and certified phlebotomists ensure medical perfection.",
-      },
-      {
-        heading: "Comprehensive Screening Counter Workflow",
-        content:
-          "Token-based registration system guides visitors through blood testing, ECG, eye refraction tests, dental checkups, and doctor consultations with zero waiting hassle.",
-      },
-    ],
-    agenda: [
-      { time: "08:00 AM", title: "Camp Inauguration & Doctor Briefing", description: "Sterilization check and volunteer allocation." },
-      { time: "08:30 AM", title: "Donor Registration & Screening Starts", description: "Hemoglobin test and donor eligibility check." },
-      { time: "01:00 PM", title: "Donor Refreshment & Nutrition Drive", description: "Juice, fruit, and certificate distribution to donors." },
-      { time: "04:00 PM", title: "Blood Bag Transport to Government Bank", description: "Cold-chain blood transportation to regional hospitals." },
-    ],
-    organizerName: "Medical Seva Wing - Shree Prathishthan",
-    organizerPhone: "+91 98765 43213",
-    organizerEmail: "medical@shreepratishthan.org",
-  },
-
-  {
-    id: "tree-plantation-drive",
-    title: "Mega Tree Plantation & Eco-Drive",
-    tagline: "Nurturing 2,500 Native Trees for a Greener Tomorrow",
-    category: "eco",
-    categoryLabel: "Ecological Social Work",
-    status: "upcoming",
-    date: "Sep 05, 2026",
-    time: "07:00 AM – 11:00 AM",
-    location: "Tekadi Bio-Reserve & Hill Slopes, Pune",
-    mapUrl: "https://maps.google.com/?q=Pune+Maharashtra",
-    mainImage: "/volunteer_eco.png",
-    galleryImages: [
-      "/volunteer_eco.png",
-      "/community_assembly.png",
-      "/about_showcase.png",
-    ],
-    description:
-      "A large-scale environmental restoration campaign planting indigenous trees (Neem, Banyan, Peepal, Gulmohar) equipped with geo-tagging and a 3-year survival care agreement.",
-    metrics: [
-      { label: "Saplings Planted", value: "2,500 Saplings" },
-      { label: "Volunteer Eco-Warriors", value: "350+" },
-      { label: "Survival Rate Tracked", value: "92%" },
-      { label: "Green Cover Added", value: "5 Acres" },
-    ],
-    organizedDetails: [
-      {
-        heading: "Soil Analysis & Native Species Selection",
-        content:
-          "Botanical experts pre-surveyed the Tekadi hill slopes to dig 2,500 pits, mix organic compost, and select resilient indigenous saplings requiring minimal artificial watering after monsoon.",
-      },
-      {
-        heading: "Post-Plantation 3-Year Maintenance Pledge",
-        content:
-          "Unlike standard drives, Shree Prathishthan assigns volunteer tree guardians and drip irrigation maintenance teams to water and weed the saplings every weekend for 3 years.",
-      },
-    ],
-    agenda: [
-      { time: "07:00 AM", title: "Assembly at Tekadi Foothills", description: "Distribution of saplings, gardening tools, and gloves." },
-      { time: "07:30 AM", title: "Plantation Guidance & Pit Allocation", description: "Demonstration of proper root planting technique." },
-      { time: "09:30 AM", title: "Drip Irrigation Installation", description: "Connecting rainwater storage pipes to sapling rows." },
-      { time: "10:30 AM", title: "Tree Guardian Adoption Sign-Up", description: "Volunteers tag saplings with unique adoption IDs." },
-    ],
-    organizerName: "Green Earth Cell - Shree Prathishthan",
-    organizerPhone: "+91 98765 43214",
-    organizerEmail: "eco@shreepratishthan.org",
-  },
-
-  {
-    id: "shiv-jayanti-rally",
-    title: "Shiv Jayanti Heritage Rally & Procession",
-    tagline: "Honoring Chhatrapati Shivaji Maharaj's Legacy of Valour",
-    category: "cultural",
-    categoryLabel: "Heritage & Cultural",
-    status: "completed",
-    date: "Feb 19, 2026",
-    time: "08:00 AM – 02:00 PM",
-    location: "Historic Fort Gate to City Center, Pune",
-    mapUrl: "https://maps.google.com/?q=Pune+Maharashtra",
-    mainImage: "/gallery_shiv_jayanti_rally.png",
-    galleryImages: [
-      "/gallery_shiv_jayanti_rally.png",
-      "/gallery_dhol_tasha_camps.png",
-      "/community_assembly.png",
-    ],
-    description:
-      "A grand historic rally featuring traditional saffron flags, martial arts demonstrations (Mardani Khel), horse contingents, and rhythmic Dhol Tasha performances.",
-    metrics: [
-      { label: "Rally Participants", value: "15,000+" },
-      { label: "Dhol Tasha Players", value: "300 Troupe Members" },
-      { label: "Horse Contingents", value: "25 Horses" },
-      { label: "Cleanliness Marshals", value: "50 Zero-Waste Volunteers" },
-    ],
-    organizedDetails: [
-      {
-        heading: "Route Mapping & Zero-Waste Cleanliness Drive",
-        content:
-          "Coordinated with city traffic police for seamless route diversion. A dedicated green volunteer team followed behind the procession to collect all flower petals and waste, leaving the road spotless.",
-      },
-    ],
-    agenda: [
-      { time: "08:00 AM", title: "Statue Wreath Laying Ceremony", description: "Traditional tribute to Chhatrapati Shivaji Maharaj." },
-      { time: "09:00 AM", title: "Procession Flag-Off", description: "Dhol Tasha beat salute and flag hoisting." },
-      { time: "11:30 AM", title: "Mardani Khel Martial Arts Show", description: "Demonstration of traditional swordplay and archery." },
-      { time: "01:30 PM", title: "Cleanliness Drive & Concluding Ceremony", description: "Zero-waste sweep of the rally route." },
-    ],
-    organizerName: "Heritage Cell - Shree Prathishthan",
-    organizerPhone: "+91 98765 43215",
-    organizerEmail: "heritage@shreepratishthan.org",
-  },
-
-  {
-    id: "diwali-charity-relief",
-    title: "Diwali Anand Food & Clothes Relief Drive",
-    tagline: "Spreading Warmth, Sweets, and New Clothing to Rural Families",
-    category: "charity",
-    categoryLabel: "Charity & Social Relief",
-    status: "completed",
-    date: "Nov 01, 2025",
-    time: "09:00 AM – 05:00 PM",
-    location: "Rural Tribal Hamlets, Bhor & Velhe Taluka",
-    mapUrl: "https://maps.google.com/?q=Pune+Maharashtra",
-    mainImage: "/volunteer_disaster.png",
-    galleryImages: [
-      "/volunteer_disaster.png",
-      "/portrait_volunteer.png",
-      "/community_assembly.png",
-    ],
-    description:
-      "A festive outreach initiative distributing new festive clothes, ration kits, Faral sweet boxes, and educational stationery to underprivileged rural families and orphanages.",
-    metrics: [
-      { label: "Families Supported", value: "1,500 Families" },
-      { label: "New Clothes Kits", value: "3,000 Outfits" },
-      { label: "Faral Sweet Boxes", value: "1,500 Boxes" },
-      { label: "Distribution Vans", value: "8 Vehicles" },
-    ],
-    organizedDetails: [
-      {
-        heading: "Door-to-Door Need Assessment & Quality Control",
-        content:
-          "Volunteers pre-surveyed 12 remote hamlets to compile exact family sizes and clothing requirements. All donated clothes were brand new or freshly laundered and categorized by age.",
-      },
-    ],
-    agenda: [
-      { time: "09:00 AM", title: "Relief Van Flag-Off", description: "Dispatch of 8 distribution vehicles from Mandal office." },
-      { time: "11:00 AM", title: "Hamlet Distribution Phase 1", description: "Handing out clothes and Faral sweet boxes to children." },
-      { time: "02:00 PM", title: "Ration Kit Handover", description: "Distribution of monthly grain and oil kits to senior citizens." },
-      { time: "05:00 PM", title: "Volunteer Debrief", description: "Completion check and community feedback collection." },
-    ],
-    organizerName: "Charity & Relief Cell - Shree Prathishthan",
-    organizerPhone: "+91 98765 43216",
-    organizerEmail: "charity@shreepratishthan.org",
-  },
-
-  {
-    id: "dhol-tasha-workshop",
-    title: "Dhol Tasha Pathak Training & Music Workshop",
-    tagline: "Preserving Maharashtra's Traditional Folk Percussion Arts",
-    category: "cultural",
-    categoryLabel: "Folk Music & Youth Work",
-    status: "completed",
-    date: "Jul 10, 2026",
-    time: "05:00 PM – 08:30 PM",
-    location: "Pratishthan Cultural Complex, Pune",
-    mapUrl: "https://maps.google.com/?q=Pune+Maharashtra",
+    date: "Mar 19, 2026",
+    time: "06:30 AM – 12:30 PM",
+    location: "Indira Nagar Main Avenue to Rane Nagar, Nashik",
+    mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
     mainImage: "/gallery_dhol_tasha_camps.png",
     galleryImages: [
       "/gallery_dhol_tasha_camps.png",
@@ -398,31 +114,380 @@ export const ALL_EVENTS: EventItem[] = [
       "/community_assembly.png",
     ],
     description:
-      "A dedicated 30-day intensive music camp teaching youth the complex rhythm cycles (Taal & Legim) of Dhol Tasha percussion under veteran master drummers.",
+      "A magnificent cultural procession celebrating the Marathi New Year (Chaitra Pratipada) with traditional Pheta headgear, colorful Rangoli along the entire route, women bike rallies, dynamic Lezim troupes, and resounding Dhol Tasha beats across Indira Nagar.",
     metrics: [
-      { label: "Youth Trainees", value: "150 Players" },
-      { label: "Master Tutors", value: "8 Veteran Drummers" },
-      { label: "Instruments Provided", value: "80 Dhols & Tashas" },
-      { label: "Public Concerts", value: "3 Grand Recitals" },
+      { label: "Procession Route", value: "3.5 km" },
+      { label: "Participating Citizens", value: "15,000+" },
+      { label: "Dhol Tasha & Lezim", value: "200+ Artists" },
+      { label: "Traditional Floats", value: "12 Tableaux" },
     ],
     organizedDetails: [
       {
-        heading: "Traditional Rhythmic Discipline & Ear Safety",
+        heading: "Route Coordination & Traffic Management",
         content:
-          "Trainees were provided custom noise-attenuation earplugs, wrist support bands, and ergonomic instrument harnesses to master heavy drum playing safely.",
+          "Planned in close coordination with Nashik Traffic Police to provide seamless procession movement, water stations, and safety corridors for all participating families.",
+      },
+      {
+        heading: "Traditional Floats & Historical Tableaux",
+        content:
+          "Live floats portraying Chhatrapati Shivaji Maharaj's Swarajya, saint poets of Maharashtra, and social icons to inspire the younger generation.",
       },
     ],
     agenda: [
-      { time: "05:00 PM", title: "Rhythm Warm-Up & Hand Technique", description: "Practicing basic Taal counting and stick coordination." },
-      { time: "06:30 PM", title: "Ensemble Sync & Synchronized Formations", description: "Group drumming in circular marching formations." },
-      { time: "08:00 PM", title: "Tasha Solo Variations & Finale", description: "High-tempo climax percussion recitals." },
+      { time: "06:30 AM", title: "Gudhi Pujan & Auspicious Flag-Off", description: "Traditional pujan at Shree Pratishtan Seva Kendra." },
+      { time: "07:30 AM", title: "Grand Swagat Yatra Procession Commences", description: "Women in Nauvari sarees, youth in traditional kurta pheta leading the yatra." },
+      { time: "10:30 AM", title: "Lezim & Dhol Tasha Grand Finale", description: "High-energy synchronized performance at the main junction." },
+      { time: "12:00 PM", title: "Prasad & Neem-Jaggery Distribution", description: "Traditional prasad served to all participants." },
     ],
-    organizerName: "Dhol Tasha Troupe - Shree Prathishthan",
-    organizerPhone: "+91 98765 43217",
-    organizerEmail: "dholtasha@shreepratishthan.org",
+    organizerName: "Shree Pratishtan Swagat Yatra Committee",
+    organizerPhone: "+91 9922786608",
+    organizerEmail: "Info@shreepratishthan.com",
+  },
+
+  {
+    id: "navratri-garba-2026",
+    title: "Navratri Utsav & Dandiya Nights (नवरात्रौत्सव)",
+    tagline: "Nine Nights of Tradition, Devotion, and Traditional Folk Dance",
+    category: "cultural",
+    categoryLabel: "Cultural Festival",
+    status: "upcoming",
+    date: "Sep 22 – Oct 02, 2026",
+    time: "07:30 PM – 11:30 PM Daily",
+    location: "Indira Nagar Sports Complex, Nashik",
+    mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
+    mainImage: "/gallery_navratri_garba.png",
+    galleryImages: [
+      "/gallery_navratri_garba.png",
+      "/hero_navratri.png",
+      "/community_assembly.png",
+    ],
+    description:
+      "A vibrant celebration of Goddess Durga featuring authentic traditional Garba and Raas Dandiya, live traditional folk singers, ethnic dress competitions, safe family-friendly arenas, and social felicitation programs.",
+    metrics: [
+      { label: "Nightly Dancers", value: "5,000+" },
+      { label: "Live Folk Orchestra", value: "Traditional Troupe" },
+      { label: "Family Safety", value: "100% CCTV & Marshals" },
+      { label: "Daily Best Attire", value: "Community Awards" },
+    ],
+    organizedDetails: [
+      {
+        heading: "Family Safety & Dedicated Women Security",
+        content:
+          "Women marshals, well-lit entry avenues, and token verification ensure absolute safety and a joyful family atmosphere every night.",
+      },
+      {
+        heading: "Smooth Wooden & Anti-Skid Dance Flooring",
+        content:
+          "Over 20,000 sq. ft. of clean anti-skid wooden flooring laid out to allow uninterrupted and injury-free folk dancing for all age groups.",
+      },
+    ],
+    agenda: [
+      { time: "07:30 PM", title: "Goddess Durga Aarti & Lamp Lighting", description: "Daily evening aarti to invoke blessings." },
+      { time: "08:15 PM", title: "Traditional Raas & Garba Round", description: "Graceful folk dances accompanied by live percussion." },
+      { time: "09:45 PM", title: "High-Energy Dandiya Round", description: "Synchronized stick dance celebrations." },
+      { time: "11:15 PM", title: "Daily Traditional Attire Felicitation", description: "Prizes awarded for authentic traditional costumes." },
+    ],
+    organizerName: "Shree Pratishtan Cultural Wing",
+    organizerPhone: "+91 9922786608",
+    organizerEmail: "Info@shreepratishthan.com",
+  },
+
+  {
+    id: "shiv-jayanti-2026",
+    title: "Chhatrapati Shivaji Maharaj Jayanti (शिवजयंती)",
+    tagline: "Inspiring Youth Rallies, Tribute to Swarajya & Historical Exhibitions",
+    category: "cultural",
+    categoryLabel: "Historical & Youth",
+    status: "upcoming",
+    date: "Feb 19, 2026",
+    time: "07:00 AM – 09:30 PM",
+    location: "Shivaji Statue Chowk, Indira Nagar, Nashik",
+    mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
+    mainImage: "/community_assembly.png",
+    galleryImages: [
+      "/community_assembly.png",
+      "/hero_ganesh.png",
+      "/gallery_dhol_tasha_camps.png",
+    ],
+    description:
+      "A grand youth commemoration honoring Chhatrapati Shivaji Maharaj with morning Rajyabhishek re-enactments, inspiring speeches on Shivaji Maharaj's administrative governance, weapon display demonstrations (Mardani Khel), and blood donation drives.",
+    metrics: [
+      { label: "Youth Participants", value: "8,000+" },
+      { label: "Historical Exhibitions", value: "Forts of Swarajya" },
+      { label: "Mardani Khel Artists", value: "50+ Demonstrators" },
+      { label: "Public Lecture Attendance", value: "3,000+ Citizens" },
+    ],
+    organizedDetails: [
+      {
+        heading: "Mardani Khel Martial Arts Demonstrations",
+        content:
+          "Trained youth performers demonstrate traditional lathi-kathi, sword fighting (talwarbaji), and shield defense arts to preserve Maratha martial heritage.",
+      },
+      {
+        heading: "Historical Book Stalls & Student Quiz",
+        content:
+          "History book distribution and student inter-school quiz competitions on Swarajya forts and naval history.",
+      },
+    ],
+    agenda: [
+      { time: "07:00 AM", title: "Shivaji Maharaj Statue Pujan & Garlanding", description: "Solemn floral tribute with traditional Tutari and Dhol beats." },
+      { time: "10:00 AM", title: "Mardani Khel Martial Arts Showcase", description: "Demonstration of traditional Maratha martial weapons." },
+      { time: "06:00 PM", title: "Public Keynote Lecture on Shivaji's Governance", description: "Eminent historian address for youth." },
+      { time: "08:00 PM", title: "Torch Rally (Mashaal Yatra)", description: "Inspirational youth march through Indira Nagar." },
+    ],
+    organizerName: "Shree Pratishtan Shiv Jayanti Samiti",
+    organizerPhone: "+91 9922786608",
+    organizerEmail: "Info@shreepratishthan.com",
+  },
+
+  {
+    id: "dr-ambedkar-jayanti-2026",
+    title: "Dr. Babasaheb Ambedkar Jayanti (डॉ. बाबासाहेब आंबेडकर जयंती)",
+    tagline: "Social Equality Seminars, Book Distribution & Academic Honors",
+    category: "charity",
+    categoryLabel: "Social Harmony & Education",
+    status: "upcoming",
+    date: "Apr 14, 2026",
+    time: "08:30 AM – 06:00 PM",
+    location: "Pratishtan Seva Bhavan, Indira Nagar, Nashik",
+    mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
+    mainImage: "/volunteer_coordinator.png",
+    galleryImages: [
+      "/volunteer_coordinator.png",
+      "/community_assembly.png",
+      "/portrait_volunteer.png",
+    ],
+    description:
+      "Celebrating the birth anniversary of Bharat Ratna Dr. B. R. Ambedkar through social harmony symposiums, distribution of free school books to underprivileged students, blood donation drives, and academic excellence felicitation for local students.",
+    metrics: [
+      { label: "Students Honored", value: "300+ Meritorious Students" },
+      { label: "Books & Kits Distributed", value: "1,500+ Notebooks" },
+      { label: "Health Consultations", value: "500+ Free Checkups" },
+      { label: "Community Harmony Reach", value: "Whole Indira Nagar" },
+    ],
+    organizedDetails: [
+      {
+        heading: "Educational Kit Distribution Drive",
+        content:
+          "Free distribution of complete notebook sets, geometry boxes, and bags to primary and secondary school students from low-income families.",
+      },
+      {
+        heading: "Merit Felicitation Program",
+        content:
+          "Annual award ceremony honoring 10th and 12th board high scorers from the Indira Nagar locality.",
+      },
+    ],
+    agenda: [
+      { time: "08:30 AM", title: "Floral Tribute & Constitution Reading", description: "Reading the Preamble of the Constitution of India." },
+      { time: "11:00 AM", title: "Educational Kits Distribution", description: "Handing over study materials to school students." },
+      { time: "03:00 PM", title: "Academic Merit Felicitation Ceremony", description: "Awards and certificates presented to top students." },
+      { time: "05:00 PM", title: "Social Equality Seminar", description: "Discussions on youth education and community upliftment." },
+    ],
+    organizerName: "Shree Pratishtan Social Wing",
+    organizerPhone: "+91 9922786608",
+    organizerEmail: "Info@shreepratishthan.com",
+  },
+
+  {
+    id: "blood-donation-camp-2026",
+    title: "Bhavya Blood Donation & Health Camp (भव्य रक्तदान शिबिर)",
+    tagline: "50+ Camp Legacy: Saving Lives in Partnership with Nashik Civil Hospital",
+    category: "health",
+    categoryLabel: "Healthcare & Life Drive",
+    status: "upcoming",
+    date: "Aug 30, 2026",
+    time: "08:00 AM – 04:00 PM",
+    location: "Indira Nagar Community Hall, Nashik",
+    mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
+    mainImage: "/volunteer_medical.png",
+    galleryImages: [
+      "/volunteer_medical.png",
+      "/community_assembly.png",
+      "/volunteer_coordinator.png",
+    ],
+    description:
+      "Continuing Shree Pratishtan's landmark legacy of 50+ blood donation camps, organized in direct collaboration with Nashik Civil Hospital Blood Bank, Red Cross Blood Center, and Arpan Blood Bank to maintain critical emergency blood supplies.",
+    metrics: [
+      { label: "Target Blood Units", value: "250+ Units" },
+      { label: "Past Camps Legacy", value: "50+ Camps Held" },
+      { label: "Donor Volunteers", value: "1,500+ Registered" },
+      { label: "Free Diagnostic Screenings", value: "Blood Sugar & BP" },
+    ],
+    organizedDetails: [
+      {
+        heading: "Hospital Collaboration & Certified Phlebotomists",
+        content:
+          "Medical officers and phlebotomists from Nashik Civil Hospital and Red Cross ensure 100% sterile single-use equipment and rapid donor recovery care.",
+      },
+      {
+        heading: "Emergency Blood Donor Registry",
+        content:
+          "Every donor is cataloged in Shree Pratishtan's 24/7 Indira Nagar donor helpline to facilitate urgent transfusions during emergency hospital calls.",
+      },
+    ],
+    agenda: [
+      { time: "08:00 AM", title: "Camp Inauguration & Medical Briefing", description: "Inauguration by medical superintendents and team leads." },
+      { time: "08:30 AM", title: "Donor Registration & Screening Starts", description: "Hemoglobin test, blood pressure, and donor fitness check." },
+      { time: "01:00 PM", title: "Donor Refreshment & Certificate Handover", description: "Nutritious refreshments, juice, and official trust certificate." },
+      { time: "04:00 PM", title: "Cold-Chain Blood Transport to Civil Hospital", description: "Safe transfer of blood units to regional hospital reserves." },
+    ],
+    organizerName: "Shree Pratishtan Arogya Seva Wing",
+    organizerPhone: "+91 9922786608",
+    organizerEmail: "Info@shreepratishthan.com",
+  },
+
+  {
+    id: "yoga-day-health-camp-2026",
+    title: "International Yoga Day & Free Health Checkup (योग दिन व आरोग्य शिबिर)",
+    tagline: "Holistic Wellness, Guided Asanas & Specialized Doctor Diagnostics",
+    category: "health",
+    categoryLabel: "Wellness & Health",
+    status: "upcoming",
+    date: "Jun 21, 2026",
+    time: "06:00 AM – 02:00 PM",
+    location: "Indira Nagar Public Sports Ground, Nashik",
+    mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
+    mainImage: "/portrait_volunteer.png",
+    galleryImages: [
+      "/portrait_volunteer.png",
+      "/volunteer_medical.png",
+      "/community_assembly.png",
+    ],
+    description:
+      "A mass community health morning combining guided Common Yoga Protocol asanas with specialized medical consultations in orthopedics, cardiology, ophthalmology, and free medicine distribution for senior citizens.",
+    metrics: [
+      { label: "Yoga Participants", value: "1,200+ Citizens" },
+      { label: "Visiting Specialist Doctors", value: "15 Doctors" },
+      { label: "Free Eye Checkups", value: "400+ Screenings" },
+      { label: "Free Medicines Provided", value: "600+ Patients" },
+    ],
+    organizedDetails: [
+      {
+        heading: "Expert Yoga Instructors & Certified Asanas",
+        content:
+          "Experienced yoga teachers lead Suryanamaskar, Pranayama, and meditation sessions tailored for beginners, women, and seniors.",
+      },
+      {
+        heading: "Multi-Speciality Diagnostic Desks",
+        content:
+          "Desks for blood pressure, blood glucose, ECG, vision testing, and dietary consultation with free basic medicines.",
+      },
+    ],
+    agenda: [
+      { time: "06:00 AM", title: "Mass Community Yoga & Pranayama", description: "Guided 60-minute yoga and breathing session." },
+      { time: "07:30 AM", title: "Health & Nutrition Talk by Cardiologist", description: "Preventative heart health guidance for families." },
+      { time: "08:30 AM", title: "Specialist Health Checkup Counters Open", description: "Free consultations across general medicine, eye, and ortho." },
+      { time: "01:30 PM", title: "Free Prescription Medicine Distribution", description: "Dispensing prescribed basic medicines to patients in need." },
+    ],
+    organizerName: "Shree Pratishtan Health Wing",
+    organizerPhone: "+91 9922786608",
+    organizerEmail: "Info@shreepratishthan.com",
+  },
+
+  {
+    id: "cricket-tournament-2026",
+    title: "Annual Sports & Cricket Tournament (क्रीडा स्पर्धा व क्रिकेट महोत्सव)",
+    tagline: "Celebrating 2006 Founding Sports Roots with High-Energy Competitive Leagues",
+    category: "sports",
+    categoryLabel: "Sports & Youth Tournament",
+    status: "upcoming",
+    date: "Dec 18 – Dec 25, 2026",
+    time: "08:00 AM – 06:00 PM Daily",
+    location: "Indira Nagar Cricket Arena, Nashik",
+    mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
+    mainImage: "/hero_dahihandi.png",
+    galleryImages: [
+      "/hero_dahihandi.png",
+      "/community_assembly.png",
+      "/gallery_dahi_handi_pyramids.png",
+    ],
+    description:
+      "Honoring Shree Pratishtan's 2006 founding origin—where 20 friends playing cricket transformed sports bonding into social service. A premier annual tennis-ball cricket championship attracting top youth teams from across Nashik district with grand trophies and player felicitation.",
+    metrics: [
+      { label: "Participating Teams", value: "32 Teams" },
+      { label: "Youth Players", value: "450+ Cricketers" },
+      { label: "Championship Prize Pool", value: "₹1,50,000" },
+      { label: "Legacy Years", value: "19+ Years Heritage" },
+    ],
+    organizedDetails: [
+      {
+        heading: "Professional Tournament Infrastructure",
+        content:
+          "Matting pitch, certified leather/tennis balls, professional umpires, electronic live scoreboards, and commentary setup.",
+      },
+      {
+        heading: "Youth Sportsmanship & Player Health Support",
+        content:
+          "First-aid medical corner, sports physiotherapists on site, energy drinks, and certificates for all participating athletes.",
+      },
+    ],
+    agenda: [
+      { time: "08:00 AM", title: "Tournament Inauguration & Toss", description: "Opening match flag-off with founding cricket veterans." },
+      { time: "10:00 AM", title: "League Stage Fixtures", description: "8 matches daily on simultaneous marked grounds." },
+      { time: "03:30 PM", title: "Quarter-Finals & Semi-Final Clashes", description: "Knockout rounds with live commentary." },
+      { time: "05:00 PM", title: "Grand Final & Trophy Presentation", description: "Felicitation of winners, best batsman, and best bowler." },
+    ],
+    organizerName: "Shree Pratishtan Sports Committee",
+    organizerPhone: "+91 9922786608",
+    organizerEmail: "Info@shreepratishthan.com",
+  },
+
+  {
+    id: "civic-welfare-relief-2026",
+    title: "Student Study Kits & Community Welfare Drive (सेवाभावी उपक्रम)",
+    tagline: "Educational Support, Winter Clothing Distribution & Community Aid",
+    category: "charity",
+    categoryLabel: "Social Welfare",
+    status: "completed",
+    date: "Jul 15, 2026",
+    time: "09:00 AM – 05:00 PM",
+    location: "Indira Nagar & Nashik District Municipal Schools",
+    mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
+    mainImage: "/volunteer_disaster.png",
+    galleryImages: [
+      "/volunteer_disaster.png",
+      "/portrait_volunteer.png",
+      "/community_assembly.png",
+    ],
+    description:
+      "A dedicated community outreach initiative distributing study kits, school bags, notebooks, and winter clothing to students and vulnerable families in Indira Nagar and nearby rural schools across Nashik district.",
+    metrics: [
+      { label: "Study Kits Distributed", value: "2,500+ Kits" },
+      { label: "Families Supported", value: "1,500+ Families" },
+      { label: "Warm Blankets Donated", value: "3,000+ Blankets" },
+      { label: "Schools Covered", value: "15 Schools" },
+    ],
+    organizedDetails: [
+      {
+        heading: "Direct School Outreach & Survey",
+        content:
+          "Volunteers partnered with municipal and rural teachers to identify students in need of educational stationery, bags, and shoes.",
+      },
+    ],
+    agenda: [
+      { time: "09:00 AM", title: "Relief Team Assembly & Kit Packing", description: "Sorting notebooks and study kits at Mandal office." },
+      { time: "11:00 AM", title: "School Distribution Phase 1", description: "Handover of educational kits to primary school students." },
+      { time: "02:00 PM", title: "Family Ration & Blanket Handover", description: "Distribution of relief supplies to senior citizens." },
+      { time: "05:00 PM", title: "Volunteer Debrief & Next Phase Planning", description: "Reviewing distribution logs and community feedback." },
+    ],
+    organizerName: "Shree Pratishtan Seva Cell",
+    organizerPhone: "+91 9922786608",
+    organizerEmail: "Info@shreepratishthan.com",
   },
 ];
 
 export function getEventById(id: string): EventItem | undefined {
   return ALL_EVENTS.find((e) => e.id === id);
+}
+
+export function getAllEvents(): EventItem[] {
+  return ALL_EVENTS;
+}
+
+export function getUpcomingEvents(): EventItem[] {
+  return ALL_EVENTS.filter((e) => e.status === "upcoming");
+}
+
+export function getFeaturedEvents(): EventItem[] {
+  return ALL_EVENTS.slice(0, 4);
 }

@@ -9,22 +9,22 @@ import Image from "next/image";
 const impactCards = [
   {
     id: 0,
-    metric: "250+",
-    title: "Troupe Drummers",
+    metric: "50+ Drives",
+    title: "Blood Donation Camps",
     description:
-      "Daily drum practice sessions, rhythm synchronizations, and marching pathak rehearsals for Ganeshotsav street performance displays.",
+      "Regular mass blood donation drives organized in collaboration with top Nashik hospitals to save critical lives in times of emergency.",
     image: "/volunteer_musician.png",
     bg: "bg-orange-50/70 border-saffron/15",
     text: "text-charcoal",
     isFeature: true,
-    featureLabel: "Naad Pathak",
+    featureLabel: "Life-Saving Seva",
   },
   {
     id: 1,
-    metric: "9-Layers",
-    title: "Pyramid Target",
+    metric: "1,000+",
+    title: "Yoga & Wellness Camps",
     description:
-      "Conducting dynamic human pyramid balancing drills, muscle conditioning, and strict safety harness inspections for Dahi Handi teams.",
+      "Mass community sessions on International Yoga Day and fitness workshops promoting holistic mental and physical well-being.",
     image: "/volunteer_safety.png",
     bg: "bg-amber-50/70 border-gold/15",
     text: "text-charcoal",
@@ -32,19 +32,19 @@ const impactCards = [
   {
     id: 2,
     metric: "5,000+",
-    title: "Daily Garba Crowd",
+    title: "Health Diagnostic Camps",
     description:
-      "Structuring safety perimeters, coordinating dance circles, and managing acoustic setups during the 9 nights of Navratri.",
+      "Free medical examinations, eye checkup drives, and essential healthcare assistance for senior citizens and local families.",
     image: "/volunteer_coordinator.png",
     bg: "bg-[#121214] border-coal",
     text: "text-alabaster",
   },
   {
     id: 3,
-    metric: "50+",
-    title: "Pandals Decorated",
+    metric: "100%",
+    title: "Community & Student Aid",
     description:
-      "Workshops on sculpting clay Ganesha murtis, building hand-crafted makhar decor, and custom pandal light configurations.",
+      "Distributing notebooks, study materials for underprivileged children, cleanliness drives, and prompt emergency community assistance.",
     image: "/volunteer_eco.png",
     bg: "bg-rose-50/70 border-red-200/15",
     text: "text-charcoal",
@@ -70,10 +70,10 @@ export default function CulturalInitiatives() {
         <div className="flex items-start justify-between gap-6 mb-8 sm:mb-10">
           <div className="max-w-[620px] text-left">
             <h2 className="text-[28px] sm:text-[32px] md:text-[36px] leading-[1.1] font-black text-charcoal font-heading">
-              Cultural Celebrations in Motion
+              Social Welfare & Healthcare Drives
             </h2>
             <p className="mt-4 text-[14px] sm:text-[15px] text-slate-grey leading-[1.7] max-w-[560px] font-sans">
-              Scroll or hover sideways to explore how our close friends circle coordinates high-energy festival events and traditional sports.
+              Dedicated community initiatives, life-saving blood donation drives, wellness camps, and educational support across Indira Nagar.
             </p>
           </div>
         </div>

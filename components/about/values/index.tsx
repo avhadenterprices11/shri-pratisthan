@@ -10,24 +10,44 @@ gsap.registerPlugin(ScrollTrigger);
 
 const VALUES = [
   {
-    title: "Transparency (Satya)",
-    desc: "We publish detailed annual audit summaries and visual metrics tracking 100% of public donations directly to active rural beneficiaries.",
+    title: "Social Responsibility (सामाजिक बांधिलकी)",
+    desc: "Uncompromising commitment to uplift every section of the Indira Nagar and Nashik community through continuous civic care.",
     image: "/images/social-work.jpg",
   },
   {
-    title: "Service (Seva)",
-    desc: "Dedicated to continuous social support campaigns. Our volunteers organize medical checks, educational toolkits, and deforested hill tree planting.",
-    image: "/images/dahi-handi.jpg",
+    title: "Service to Society (समाजसेवा)",
+    desc: "Selfless action and dedication to humanitarian causes, organizing aid drives, health camps, and emergency support.",
+    image: "/images/social-work.jpg",
   },
   {
-    title: "Integrity (Nishtha)",
-    desc: "Operating fully independent of political networks, focusing strictly on cultural integrity and non-discriminatory humanitarian relief.",
+    title: "Culture & Tradition (संस्कृती व परंपरा)",
+    desc: "Preserving and celebrating Maharashtra's grand cultural legacy through Gudipadwa Swagat Yatra, Ganeshotsav, and Shiv Jayanti.",
     image: "/images/ganesh.jpg",
   },
   {
-    title: "Unity (Ekta)",
-    desc: "Structuring festivals safely to promote community integration, bridging municipal resources with remote village assistance needs.",
+    title: "Youth Empowerment (युवा सक्षमीकरण)",
+    desc: "Mentoring and channelizing the potential of youth into leadership, event organization, and community welfare.",
+    image: "/images/dahi-handi.jpg",
+  },
+  {
+    title: "Teamwork (संघभावना)",
+    desc: "Mutual trust, collective strength, and collaborative execution born from our 2006 cricket sportsmanship roots.",
+    image: "/images/sports.jpg",
+  },
+  {
+    title: "Integrity (प्रामाणिकपणा)",
+    desc: "Ethical governance, transparency, and accountability in all trust activities and community operations.",
     image: "/images/social-work.jpg",
+  },
+  {
+    title: "Health & Well-being (आरोग्य व कल्याण)",
+    desc: "Promoting physical fitness, yoga, medical diagnostics, and organizing regular life-saving blood donation camps.",
+    image: "/images/social-work.jpg",
+  },
+  {
+    title: "Volunteerism (स्वयंसेवेची भावना)",
+    desc: "Fostering a genuine spirit of voluntary contribution and brotherhood for the common good of society.",
+    image: "/images/ganesh.jpg",
   },
 ];
 

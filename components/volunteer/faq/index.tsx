@@ -13,28 +13,28 @@ interface FAQItem {
 
 const FAQS: FAQItem[] = [
   {
-    q: "Who is eligible to volunteer?",
-    a: "Anyone above 16 years of age who is passionate about public welfare, environmental conservation, or cultural coordination is welcome to register. No previous NGO experience is required.",
-    category: "General Info",
-    desc: "Understand eligibility parameters, background checks, and community requirements.",
+    q: "Who is eligible to volunteer with Shree Pratishtan?",
+    a: "Anyone aged 16 and above residing in Indira Nagar or Nashik who is passionate about cultural heritage, youth empowerment, sports, or social welfare is welcome to join. No prior experience is needed.",
+    category: "Eligibility & Joining",
+    desc: "Understand open membership criteria, age requirements, and welcoming community guidelines.",
   },
   {
-    q: "What is the minimum time commitment?",
-    a: "We do not enforce rigid commitments. You can sign up for specific campaigns (like a single Sunday tree planting drive) or volunteer during the Ganeshotsav season.",
-    category: "Time Commitment",
-    desc: "Discover hourly schedules, seasonal campaign guidelines, and coordinator listings.",
+    q: "What is the time commitment required?",
+    a: "We offer flexible involvement. You can volunteer during major seasonal festivals (like Gudipadwa Swagat Yatra or Ganeshotsav), weekend blood donation camps, or annual cricket tournaments.",
+    category: "Flexible Schedules",
+    desc: "Discover weekend drives, festival shifts, and adaptable sports event opportunities.",
   },
   {
-    q: "Do volunteers receive certificates?",
-    a: "Yes. Shree Prathishthan issues official Trust certificates detailing your volunteering project and the hours you contributed. These are verified by our governance committee.",
-    category: "Accreditation",
-    desc: "Learn about official verified trust credentials and university credits alignments.",
+    q: "Do volunteers receive an official Trust Certificate?",
+    a: "Yes. Shree Pratishtan issues an official certificate from 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था' (Reg: nashik/0000153/2018) recognizing your contribution, hours, and leadership.",
+    category: "Trust Certification",
+    desc: "Learn about official registered trust validation for educational and career portfolios.",
   },
   {
-    q: "Is there any training provided?",
-    a: "Yes. Before any field deployment (such as medical camp setups or crowd safety logistics), our coordinators organize brief orientation sessions to outline safety norms and logs.",
-    category: "Briefing Orientation",
-    desc: "See onboarding guidelines, safety briefing coordinates, and operations parameters.",
+    q: "How are new volunteers guided and supported?",
+    a: "Our core committee of 20 founding pillars and 100+ active organizers provides hands-on orientation and mentorship for every cultural procession, health camp, and sports league.",
+    category: "Mentorship & Guidance",
+    desc: "Experience dedicated teamwork, safety briefings, and collaborative event leadership.",
   },
 ];
 

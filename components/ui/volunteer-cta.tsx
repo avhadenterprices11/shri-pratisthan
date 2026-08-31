@@ -21,11 +21,11 @@ interface VolunteerCTAProps {
 export default function VolunteerCTA({
   title = (
     <>
-      Join the Cultural Legacy.<br />
-      <span className="text-saffron">Be the Change.</span>
+      Join the Movement.<br />
+      <span className="text-saffron">Serve With Pride.</span>
     </>
   ),
-  description = "Direct event logistics, coordinate safety marshals, organize eco-friendly clay workshops, or play in the historic Dhol Tasha musical troupes. Shree Prathishthan channels your energy directly into community progress and cultural preservation.",
+  description = "Coordinate event logistics, support mass blood donation drives, lead youth sports tournaments, or participate in our grand Gudipadwa Swagat Yatra and Ganeshotsav. Shree Pratishtan channels your energy directly into community progress and cultural preservation in Indira Nagar, Nashik.",
   buttonText = "Become a Volunteer",
   buttonLink = "/volunteer",
   className,

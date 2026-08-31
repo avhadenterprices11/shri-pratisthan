@@ -8,24 +8,29 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HISTORY = [
   {
+    year: "2006",
+    title: "Indira Nagar Cricket Spark",
+    desc: "Started as a close circle of 20 friends playing cricket daily in Indira Nagar, deciding to channel their bond and energy into community service.",
+  },
+  {
+    year: "2012",
+    title: "Festival & Youth Expansion",
+    desc: "Expanded into organizing grand cultural celebrations, including the iconic Gudipadwa Swagat Yatra, Ganeshotsav, and youth sports events in Nashik.",
+  },
+  {
     year: "2018",
-    title: "Official Registration",
-    desc: "Registered under Bombay Public Trust Act as a public charity. Formed active regional governance committees in Maharashtra.",
+    title: "Official Trust Registration",
+    desc: "Formally registered as 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था इंदिरानगर नाशिक' (Reg: nashik/0000153/2018) under Adv. Shyam Dharmaraj Badode.",
   },
   {
-    year: "2020",
-    title: "Social Relief Campaigns",
-    desc: "Dedicated resources to support stranded workers and rural regions with vital provisions during pandemic lockdowns.",
+    year: "2021",
+    title: "Pandemic Relief & Health Drives",
+    desc: "Organized urgent food grain distribution, medical support during lockdowns, and accelerated regular blood donation drives across Nashik.",
   },
   {
-    year: "2022",
-    title: "Healthcare Centers Setup",
-    desc: "Set up central diagnostic counseling desks and organized massive blood donation drives coordinating with urban hospitals.",
-  },
-  {
-    year: "2025",
-    title: "Ecology Vasundhara Project",
-    desc: "Adopted 12 deforested hill locations to conduct mass tree planting and constructed primary school desks for rural students.",
+    year: "Present",
+    title: "19+ Years Legacy & Leadership",
+    desc: "Leading 100+ active members and 20 founding pillars, conducting 50+ health drives, major cultural yatras, and annual sports tournaments.",
   },
 ];
 

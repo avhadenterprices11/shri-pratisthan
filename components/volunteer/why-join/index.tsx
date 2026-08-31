@@ -13,22 +13,22 @@ interface ValueItem {
 const VALUES: ValueItem[] = [
   {
     title: "Direct Social Impact",
-    desc: "Coordinate relief kit supplies, blood banking hubs, and eco reforestation campaigns to create measurable change in rural ecosystems.",
+    desc: "Coordinate 50+ blood donation drives, free medical checkups, student aid kits, and relief campaigns to create measurable change in Indira Nagar and Nashik.",
     badge: "🤝",
   },
   {
-    title: "Skill Enrichment",
-    desc: "Develop core competencies in event logistics management, public operations auditing, communication strategies, and healthcare coordination.",
+    title: "Youth Leadership & Skills",
+    desc: "Develop competencies in major cultural event management, stage coordination, emergency response, public communications, and social administration.",
     badge: "📈",
   },
   {
-    title: "Cultural Preservation",
-    desc: "Play an active role in planning green Ganeshotsav festivals, Dahi Handi safety frameworks, and preserving traditional folk arts.",
+    title: "Cultural Heritage Preservation",
+    desc: "Lead historic celebrations including the iconic Gudipadwa Swagat Yatra, Shree Ganeshotsav, Navratri, Shiv Jayanti, and traditional Lezim / Dhol Tasha.",
     badge: "🚩",
   },
   {
-    title: "Community & Networking",
-    desc: "Establish lifelong connections with dedicated student volunteers, community leaders, municipal authorities, and corporate CSR sponsors.",
+    title: "Camaraderie & Brotherhood",
+    desc: "Experience the genuine sportsmanship and unity born from our 2006 cricket origin, building lifelong bonds with over 100+ active organizers and founding pillars.",
     badge: "🌐",
   },
 ];

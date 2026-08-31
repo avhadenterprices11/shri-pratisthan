@@ -11,22 +11,22 @@ gsap.registerPlugin(ScrollTrigger);
 const MISSION_PILLARS = [
   {
     title: "Action in Service",
-    subtitle: "Rural Welfare & Relief",
-    description: "Designing and executing high-efficiency social programs that address local shortages in literacy supplies, blood bank networks, and eco-restoration.",
+    subtitle: "Community Welfare & Health",
+    description: "Organizing regular blood donation drives, free health & diagnostic checkups, disaster relief, and youth empowerment initiatives across Indira Nagar and Nashik.",
     image: "/images/social-work.jpg",
     stats: [
-      { label: "Blood Units", val: "1.5K+" },
-      { label: "Schools Aided", val: "45+" },
+      { label: "Blood Camps", val: "50+" },
+      { label: "Active Members", val: "100+" },
     ]
   },
   {
     title: "Pride in Legacy",
-    subtitle: "Cultural Heritage Preservation",
-    description: "Conserving historical arts, coordinating the Dhol Tasha musical troupes, organizing eco-friendly workshops, and channelizing youth pride directly into devotions.",
+    subtitle: "Cultural Heritage & Traditions",
+    description: "Preserving Maharashtra's grand spiritual traditions through Gudipadwa Swagat Yatra, Shree Ganeshotsav, Navratri, Shiv Jayanti, and annual youth sports leagues.",
     image: "/images/ganesh.jpg",
     stats: [
-      { label: "Musicians Led", val: "500+" },
-      { label: "Eco Idols", val: "10K+" },
+      { label: "Years Legacy", val: "19+" },
+      { label: "Founding Pillars", val: "20" },
     ]
   }
 ];
@@ -86,7 +86,7 @@ export default function AboutMission() {
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-light leading-relaxed">
-            Our target operations leverage structured youth enrollment and transparent public reporting to guarantee that every contribution fuels direct, measurable change.
+            वारसा संस्कृतीचा, ध्यास समाजसेवेचा — Bringing families, youth, and citizens together through cultural celebrations, sports leagues, and public welfare.
           </p>
         </div>
 

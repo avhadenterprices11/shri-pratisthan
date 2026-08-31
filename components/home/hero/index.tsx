@@ -11,26 +11,26 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SLIDES = [
   {
-    title: "Ganesh\nUtsav",
-    description: "Where devotion unites thousands.",
+    title: "Shree\nGanpati",
+    description: "Cultivating devotion, grand traditions, and community service in Indira Nagar since 2006.",
     image: "/images/ganesh.jpg",
     label: "Ganesh Utsav",
   },
   {
-    title: "Navratri",
-    description: "Nine nights of culture, dance, and celebration.",
+    title: "Swagat\nYatra",
+    description: "Welcoming the New Year with Dhol-Tasha, traditional pageantry, and cultural pride.",
     image: "/images/navratri.jpg",
-    label: "Navratri",
+    label: "Swagat Yatra",
   },
   {
-    title: "Dahi\nHandi",
-    description: "Strength, teamwork, and fearless spirit.",
+    title: "Sports &\nCricket",
+    description: "Born on a cricket pitch in 2006 — channeling youth energy and teamwork into social power.",
     image: "/images/dahi-handi.jpg",
-    label: "Dahi Handi",
+    label: "Sports Tournaments",
   },
   {
-    title: "Social\nWork",
-    description: "Serving the community beyond every festival.",
+    title: "Social\nService",
+    description: "Mass blood donation drives, health camps, and dedicated community upliftment.",
     image: "/images/social-work.jpg",
     label: "Social Work",
   },

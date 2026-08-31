@@ -6,62 +6,7 @@ import gsap from "gsap";
 import Link from "next/link";
 import GalleryFilters from "../gallery-filters";
 
-const PHOTOS = [
-  { 
-    id: "ganeshotsav-arati",
-    title: "Ganeshotsav Evening Arati", 
-    category: "festival", 
-    src: "/gallery_ganeshotsav_aarthi.png" 
-  },
-  { 
-    id: "diagnostics-camp",
-    title: "Village Diagnostics Camp", 
-    category: "healthcare", 
-    src: "/volunteer_medical.png" 
-  },
-  { 
-    id: "supplies-distribution",
-    title: "Educational Supplies Distribution", 
-    category: "education", 
-    src: "/volunteer_coordinator.png" 
-  },
-  { 
-    id: "dhol-tasha",
-    title: "Dhol Tasha Parade", 
-    category: "festival", 
-    src: "/gallery_dhol_tasha_camps.png" 
-  },
-  { 
-    id: "eco-preservation",
-    title: "Eco Preservation Drive", 
-    category: "education", 
-    src: "/volunteer_eco.png" 
-  },
-  { 
-    id: "navratri-celebration",
-    title: "Navratri Garba Celebration", 
-    category: "festival", 
-    src: "/gallery_navratri_garba.png" 
-  },
-  { 
-    id: "safety-training",
-    title: "Civic Safety Training", 
-    category: "healthcare", 
-    src: "/volunteer_safety.png" 
-  },
-  { 
-    id: "shiv-jayanti",
-    title: "Shiv Jayanti Rally", 
-    category: "festival", 
-    src: "/gallery_shiv_jayanti_rally.png" 
-  },
-  { 
-    id: "disaster-relief",
-    title: "Disaster Relief Operations", 
-    category: "healthcare", 
-    src: "/volunteer_disaster.png" 
-  },
-];
+import { PHOTO_ITEMS } from "@/app/gallery/gallery-data";
 
 export default function PhotoGallery() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -83,8 +28,8 @@ export default function PhotoGallery() {
   }, [activeCategory, visibleCount]);
 
   const filteredPhotos = activeCategory === "all" 
-    ? PHOTOS 
-    : PHOTOS.filter(p => p.category === activeCategory);
+    ? PHOTO_ITEMS 
+    : PHOTO_ITEMS.filter(p => p.category === activeCategory);
 
   const displayedPhotos = filteredPhotos.slice(0, visibleCount);
 

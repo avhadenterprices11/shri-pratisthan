@@ -2,19 +2,20 @@ import React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us | Shree Pratishtan (श्री प्रतिष्ठान)",
   description:
-    "Learn about Shree Prathishthan's founding story, our vision, mission, and the dedicated committee trustees who lead Maharashtra's premier cultural and social welfare trust.",
+    "Discover the 19-year journey of Shree Pratishtan (कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था), Indira Nagar, Nashik. Founded in 2006 by 20 cricket enthusiasts, led by Adv. Shyam Dharmaraj Badode.",
   openGraph: {
-    title: "About Us | Shree Prathishthan",
+    title: "About Us | Shree Pratishtan (श्री प्रतिष्ठान)",
     description:
-      "Our founding story, vision, mission, and the committee behind Maharashtra's premier cultural trust.",
+      "Our founding story from 2006 cricket roots, 20 founding pillars, bilingual vision, and leadership of Adv. Shyam Dharmaraj Badode in Indira Nagar, Nashik.",
     url: "https://www.shreepratishthan.org/about",
-    images: [{ url: "/about_showcase.png", width: 1200, height: 630, alt: "About Shree Prathishthan" }],
+    images: [{ url: "/about_showcase.png", width: 1200, height: 630, alt: "About Shree Pratishtan" }],
   },
   twitter: {
-    title: "About Us | Shree Prathishthan",
-    description: "Our founding story, vision, mission, and the committee behind Maharashtra's premier cultural trust.",
+    title: "About Us | Shree Pratishtan (श्री प्रतिष्ठान)",
+    description:
+      "Our founding story from 2006 cricket roots, 20 founding pillars, bilingual vision, and leadership of Adv. Shyam Dharmaraj Badode in Indira Nagar, Nashik.",
     images: ["/about_showcase.png"],
   },
   alternates: { canonical: "https://www.shreepratishthan.org/about" },

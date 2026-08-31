@@ -46,12 +46,12 @@ export default function InstrumentShowcase() {
       className="w-full bg-[#FCFAF7] py-16 sm:py-24 border-y border-saffron/10 relative z-20 flex flex-col items-center justify-center select-none overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full text-center mb-16 relative z-10">
-        <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Troupe Rhythms</span>
+        <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">Cultural Traditions</span>
         <h2 className="text-3xl sm:text-5xl font-black text-charcoal font-heading tracking-tight max-w-2xl mx-auto leading-none">
-          Sounds of Maharashtra
+          Rhythms & Traditions of Maharashtra
         </h2>
         <p className="text-slate-grey mt-4 max-w-xl mx-auto font-sans text-sm sm:text-base">
-          Scroll down to watch our stacked performance cards split in 3D perspective, showcasing the lead instruments of our Naad Pathak.
+          Scroll down to explore the traditional Dhol, Tasha, and Lezim rhythms that power our grand Gudipadwa Swagat Yatra and Shree Ganeshotsav processions across Indira Nagar.
         </p>
       </div>
 
@@ -74,7 +74,7 @@ export default function InstrumentShowcase() {
         >
           <div className="flex justify-between items-start">
             <span className="text-[10px] uppercase font-extrabold tracking-widest text-orange-600 bg-orange-100/50 px-3 py-1 rounded-full border border-orange-200/30">
-              Bass Drum
+              Dhol Tasha
             </span>
             <span className="text-xs font-black text-orange-400 font-heading">01</span>
           </div>
@@ -91,7 +91,7 @@ export default function InstrumentShowcase() {
           <div className="text-left">
             <h3 className="text-xl md:text-2xl font-black text-charcoal font-heading leading-tight mb-1.5">Puneri Dhol</h3>
             <p className="text-[11px] md:text-[12px] text-slate-grey font-sans leading-relaxed">
-              The heartbeat of Ganeshotsav. A massive barrel drum providing a deep, thumping bass drone that anchors the troupe.
+              The thunderous heartbeat of our Ganeshotsav and Swagat Yatra. Delivering deep, resonant bass beats that unite and energize thousands.
             </p>
           </div>
         </motion.div>
@@ -112,7 +112,7 @@ export default function InstrumentShowcase() {
         >
           <div className="flex justify-between items-start">
             <span className="text-[10px] uppercase font-extrabold tracking-widest text-amber-600 bg-amber-100/50 px-3 py-1 rounded-full border border-amber-200/30">
-              Treble Drum
+              High Treble
             </span>
             <span className="text-xs font-black text-amber-400 font-heading">02</span>
           </div>
@@ -128,7 +128,7 @@ export default function InstrumentShowcase() {
           <div className="text-left">
             <h3 className="text-xl md:text-2xl font-black text-charcoal font-heading leading-tight mb-1.5">Shahi Tasha</h3>
             <p className="text-[11px] md:text-[12px] text-slate-grey font-sans leading-relaxed">
-              The high-pitched commander. Played with cane sticks to deliver rapid, metallic treble cracks that dictate the troupe rhythm speed.
+              The commanding high-pitched treble drum, played with swift cane sticks to lead the energetic speed and coordination of our rallies.
             </p>
           </div>
         </motion.div>
@@ -150,7 +150,7 @@ export default function InstrumentShowcase() {
         >
           <div className="flex justify-between items-start">
             <span className="text-[10px] uppercase font-extrabold tracking-widest text-rose-600 bg-rose-100/50 px-3 py-1 rounded-full border border-rose-200/30">
-              Combative Jingles
+              Folk Heritage
             </span>
             <span className="text-xs font-black text-rose-400 font-heading">03</span>
           </div>
@@ -166,7 +166,7 @@ export default function InstrumentShowcase() {
           <div className="text-left">
             <h3 className="text-xl md:text-2xl font-black text-charcoal font-heading leading-tight mb-1.5">Janj & Lezim</h3>
             <p className="text-[11px] md:text-[12px] text-slate-grey font-sans leading-relaxed">
-              Traditional martial dance jingles. Flexible wooden frames fitted with iron cymbals that create metallic click layers during matching steps.
+              Traditional synchronized folk dance instruments creating rhythmic metallic cadences during our annual Gudipadwa Swagat Yatra.
             </p>
           </div>
         </motion.div>

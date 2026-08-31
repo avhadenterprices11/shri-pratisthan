@@ -7,10 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [
-  { value: 25, suffix: "+", label: "Blood Camps Organized" },
-  { value: 5000, suffix: "+", label: "Trees Sown & Grown" },
-  { value: 10000, suffix: "+", label: "Lives Directly Touched" },
-  { value: 4, suffix: "+", label: "Districts Served" },
+  { value: 50, suffix: "+", label: "Blood Camps & Health Drives" },
+  { value: 5000, suffix: "+", label: "Trees Planted & Nurtured" },
+  { value: 10000, suffix: "+", label: "Citizens & Families Reached" },
+  { value: 19, suffix: "+", label: "Years of Active Service" },
 ];
 
 export default function CommunityImpact() {

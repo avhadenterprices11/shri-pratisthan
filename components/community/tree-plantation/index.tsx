@@ -117,11 +117,11 @@ export default function TreePlantation() {
           {/* Right Column: Info & Stats */}
           <div className="tree-animate-right order-1 lg:order-2 space-y-6">
             <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
-              Restoring Eco-Balance to <br />
-              <span className="text-emerald-600 text-outline-festive hover:text-emerald-600">Barren Slopes</span>
+              Restoring Green Cover & <br />
+              <span className="text-emerald-600 text-outline-festive hover:text-emerald-600">Ecological Balance</span>
             </h2>
             <p className="text-base sm:text-lg text-slate-grey leading-relaxed">
-              Industrial progress and hill weathering have reduced local tree cover. Through project **Vasundhara**, Shree Prathishthan mobilizes citizen groups on weekends to clear plastic, construct water catchments, and plant native fruit and shade trees.
+              Preserving our environment is a sacred civic duty. Through our green initiatives, Shree Pratishtan mobilizes youth and families in Indira Nagar and Nashik on weekends to conduct mass plantation, nurture saplings, and promote cleanliness.
             </p>
             <div className="flex flex-wrap gap-6 pt-4">
               <div className="flex items-center gap-3">
@@ -132,9 +132,9 @@ export default function TreePlantation() {
               </div>
               <div className="w-px h-10 bg-slate-200 hidden sm:block" />
               <div className="flex items-center gap-3">
-                <span className="text-3xl font-extrabold text-emerald-600 font-heading">4+ Hills</span>
+                <span className="text-3xl font-extrabold text-emerald-600 font-heading">100%</span>
                 <span className="text-xs uppercase font-bold tracking-widest text-slate-grey">
-                  Actively Restored
+                  Sunday Volunteer Care
                 </span>
               </div>
             </div>

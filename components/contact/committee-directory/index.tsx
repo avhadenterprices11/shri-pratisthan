@@ -9,25 +9,25 @@ gsap.registerPlugin(ScrollTrigger);
 
 const MEMBERS = [
   {
-    name: "Vikram R. Shinde",
-    role: "Central Operations Director",
-    zone: "Headquarters (Mumbai)",
-    phone: "+91 98200 11223",
-    email: "vikram.shinde@shripratisthan.org",
+    name: "Adv. Shyam Dharmaraj Badode",
+    role: "Founder & President (संस्थापक अध्यक्ष)",
+    zone: "Central Leadership (Nashik)",
+    phone: "+91 9922786608",
+    email: "Info@shreepratishthan.com",
   },
   {
-    name: "Anand G. Kulkarni",
-    role: "Liaison & CSR Coordinator",
-    zone: "Mulund & Bhandup Zones",
-    phone: "+91 98200 44556",
-    email: "anand.k@shripratisthan.org",
+    name: "Festival Operations & Logistics",
+    role: "Swagat Yatra & Festival Lead",
+    zone: "Indira Nagar & Nashik Zone",
+    phone: "+91 9922786608",
+    email: "Info@shreepratishthan.com",
   },
   {
-    name: "Sunil S. Patil",
-    role: "Rural Welfare Lead",
-    zone: "Karjat Foothills & Raigad",
-    phone: "+91 98200 77889",
-    email: "sunil.patil@shripratisthan.org",
+    name: "Arogya & Blood Drive Coordinator",
+    role: "50+ Blood Camps & Hospital Liaison",
+    zone: "Nashik Civil Hospital Network",
+    phone: "+91 9922786608",
+    email: "Info@shreepratishthan.com",
   },
 ];
 

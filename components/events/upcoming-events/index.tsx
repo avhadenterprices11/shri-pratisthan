@@ -16,22 +16,22 @@ interface UpcomingItem {
 
 const UPCOMING: UpcomingItem[] = [
   {
-    day: "12",
+    day: "27",
     month: "AUG",
-    time: "9:00 AM - 5:00 PM",
-    title: "Free Diagnostics Medical Camp",
-    location: "Rural Clinic Center, Thane District",
-    category: "Healthcare",
-    colorClass: "bg-emerald-50 text-emerald-600 border border-emerald-200/50",
+    time: "6:00 AM - 11:00 PM Daily",
+    title: "Shree Ganeshotsav 2026 (श्री गणेशोत्सव)",
+    location: "Indira Nagar Ground, Nashik",
+    category: "Cultural Festival",
+    colorClass: "bg-saffron/10 text-saffron border border-saffron/20",
   },
   {
-    day: "20",
+    day: "30",
     month: "AUG",
-    time: "10:00 AM - 6:00 PM",
-    title: "Vasundhara Hill Tree Planting Drive",
-    location: "Deforested Slopes, Pune Region",
-    category: "Ecology",
-    colorClass: "bg-green-50 text-green-600 border border-green-200/50",
+    time: "8:00 AM - 4:00 PM",
+    title: "Bhavya Blood Donation & Health Camp",
+    location: "Indira Nagar Community Hall, Nashik",
+    category: "Healthcare & Life Drive",
+    colorClass: "bg-red-50 text-red-600 border border-red-200/50",
   },
 ];
 

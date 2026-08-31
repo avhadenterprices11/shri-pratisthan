@@ -14,27 +14,27 @@ interface OpportunityTrack {
 
 const TRACKS: OpportunityTrack[] = [
   {
-    title: "Cultural Event Logistics",
-    desc: "Oversee layout structures, safety barricades, queue arrangements, and crowd coordination during major festivals like Ganeshotsav and Dahi Handi.",
-    skills: "Crowd Safety, Event Planning, Leadership",
+    title: "Cultural Festival Logistics",
+    desc: "Oversee stage setups, grand processions, crowd safety, and logistics during major festivals like Gudipadwa Swagat Yatra, Ganeshotsav, Navratri, and Shiv Jayanti.",
+    skills: "Crowd Safety, Procession Coordination, Leadership",
     icon: <Users className="w-6 h-6 text-saffron" />,
   },
   {
-    title: "Arogya Health Mobilizer",
-    desc: "Assist with patient aggregation, registration desk files, queue configurations, and medical doctor assistance in weekly rural checkup drives.",
-    skills: "Healthcare Support, Empathy, Desk Mgmt",
+    title: "Arogya & Blood Drive Mobilizer",
+    desc: "Coordinate donor registration desks, blood bank liaisons, queue management, and doctor assistance during our 50+ blood donation & health camps.",
+    skills: "Donor Care, Health Camp Coordination, Desk Mgmt",
     icon: <HeartPulse className="w-6 h-6 text-saffron" />,
   },
   {
-    title: "Vasundhara Eco-Guard",
-    desc: "Participate in weekend tree plantation drives, barren slope cleanups, digging water storage trenches, and watering young trees.",
-    skills: "Eco-restoration, Teamwork, Outdoors Care",
+    title: "Sports & Cricket Tournaments",
+    desc: "Manage team fixtures, ground operations, referee coordination, and youth athletics during our annual cricket tournaments in Indira Nagar.",
+    skills: "Sports Coordination, Team Spirit, Field Mgmt",
     icon: <Leaf className="w-6 h-6 text-saffron" />,
   },
   {
-    title: "Seva Relief Coordinator",
-    desc: "Help assemble dry food supply packages, inspect clothing banks, build wooden study desks, and deliver items to remote tribal zones.",
-    skills: "Resource Tracking, Logistics, Aid Delivery",
+    title: "Seva & Student Relief Coordinator",
+    desc: "Assemble student educational kits, coordinate notebook distributions, organize winter clothing drives, and deliver emergency community relief.",
+    skills: "Resource Management, Distribution Logistics, Care",
     icon: <Gift className="w-6 h-6 text-saffron" />,
   },
 ];

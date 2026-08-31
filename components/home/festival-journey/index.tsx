@@ -11,31 +11,31 @@ gsap.registerPlugin(ScrollTrigger);
 
 const MILESTONES = [
   {
-    year: "2018",
-    title: "Group Foundation",
-    description: "Shree Prathishthan is formed by a group of close friends in Pune to coordinate local Ganeshotsav decorations and crowd safety.",
-    tag: "Foundation",
+    year: "2006",
+    title: "Cricket Roots & Origins",
+    description: "Started in Indira Nagar, Nashik by close friends meeting daily to play cricket, who united to serve the local community.",
+    tag: "Founding",
     image: "/about_showcase.png",
   },
   {
-    year: "2020",
-    title: "Naad Pathak Founded",
-    description: "Established our traditional musical troupe to preserve folk instruments, starting with 20 passionate drumming members.",
-    tag: "Dhol Tasha",
+    year: "2012",
+    title: "Cultural & Utsav Expansion",
+    description: "Initiated grand Ganeshotsav and Navratri celebrations, integrating social welfare drives and youth sports tournaments.",
+    tag: "Festivals",
     image: "/volunteer_musician.png",
   },
   {
-    year: "2022",
-    title: "Govinda Team Creation",
-    description: "Formed our formal Dahi Handi Govinda team, training regional youth in athletic formations and safety harness usage.",
-    tag: "Dahi Handi",
+    year: "2018",
+    title: "Official Trust Registration",
+    description: "Formally registered as Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha (Reg: nashik/0000153/2018) under Adv. Shyam Badode.",
+    tag: "Trust Reg.",
     image: "/volunteer_safety.png",
   },
   {
-    year: "2025",
-    title: "Mahotsav Expansion",
-    description: "Expanded regional collaborations to organize Navratri Dandiya events, Shiv Jayanti street rallies, and local sports tournaments.",
-    tag: "Utsav Expansion",
+    year: "Present",
+    title: "19+ Years of Impact",
+    description: "Over 100+ active members organizing Gudipadwa Swagat Yatra, mass blood donation drives, Yoga Day camps, and sports leagues.",
+    tag: "Community Impact",
     image: "/volunteer_coordinator.png",
   },
 ];
@@ -116,7 +116,7 @@ export default function FestivalJourney() {
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto px-6 mt-4 relative z-20">
         <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
-          The Journey of Shree Prathishthan
+          The Journey of Shree Pratishtan
         </h2>
         <div className="w-16 h-1 bg-saffron mx-auto mt-3 rounded-full" />
       </div>

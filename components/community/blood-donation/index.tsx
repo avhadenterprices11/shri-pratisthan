@@ -9,22 +9,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 const PAST_CAMPS = [
   {
-    location: "Prathishthan Hall, Mulund",
-    date: "July 2026",
-    units: "142 Units Collected",
-    partner: "KEM Blood Bank",
+    location: "Indira Nagar Community Hall, Nashik",
+    date: "Annual Mega Camp 2026",
+    units: "165 Units Collected",
+    partner: "Nashik Civil Hospital Blood Bank",
   },
   {
-    location: "Community Center, Bhandup",
-    date: "March 2026",
-    units: "108 Units Collected",
-    partner: "JJ Hospital Blood Bank",
+    location: "Govind Nagar Sports Ground, Nashik",
+    date: "Shiv Jayanti Drive 2026",
+    units: "120 Units Collected",
+    partner: "Red Cross Blood Center Nashik",
   },
   {
-    location: "Zilla Parishad School, Karjat",
+    location: "Pratishtan Seva Kendra, Indira Nagar",
     date: "December 2025",
-    units: "85 Units Collected",
-    partner: "Red Cross Society",
+    units: "95 Units Collected",
+    partner: "Arpan Blood Bank Nashik",
   },
 ];
 
@@ -102,20 +102,20 @@ export default function BloodDonation() {
               <span className="text-red-600 text-outline-festive hover:text-red-600">Blood Bank Deficit</span>
             </h2>
             <p className="text-base sm:text-lg text-slate-grey leading-relaxed">
-              Every month, municipal blood banks face critical shortages. Shree Prathishthan organizes recurring community donation drives in partnership with state hospitals to secure blood supply for emergency trauma, cancer patients, and thalassemia children.
+              Every month, hospitals face critical blood shortages. Shree Pratishtan organizes regular mega blood donation drives in Indira Nagar and Nashik in partnership with authorized government and charitable blood banks to save lives during emergencies.
             </p>
             <div className="flex flex-wrap gap-6 pt-4">
               <div className="flex items-center gap-3">
-                <span className="text-3xl font-extrabold text-red-600 font-heading">500+</span>
+                <span className="text-3xl font-extrabold text-red-600 font-heading">50+</span>
                 <span className="text-xs uppercase font-bold tracking-widest text-slate-grey">
-                  Donors Registered
+                  Camps Organized
                 </span>
               </div>
               <div className="w-px h-10 bg-slate-200 hidden sm:block" />
               <div className="flex items-center gap-3">
-                <span className="text-3xl font-extrabold text-red-600 font-heading">100%</span>
+                <span className="text-3xl font-extrabold text-red-600 font-heading">1,500+</span>
                 <span className="text-xs uppercase font-bold tracking-widest text-slate-grey">
-                  Sterilized & Certified
+                  Donors Registered
                 </span>
               </div>
             </div>
