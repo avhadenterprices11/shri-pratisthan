@@ -10,13 +10,12 @@ export default function AboutPreview() {
   const triggerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoAspectRatio, setVideoAspectRatio] = useState<number | null>(null);
 
-  const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
-    const video = e.currentTarget;
-    // Loop the video at 7.8 seconds to cut off the AI generator credit slide at the end
-    if (video.currentTime >= 7.8) {
-      video.currentTime = 0;
-      video.play().catch(() => {});
+  const handleLoadedMetadata = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const { videoWidth, videoHeight } = e.currentTarget;
+    if (videoWidth && videoHeight) {
+      setVideoAspectRatio(videoWidth / videoHeight);
     }
   };
 
@@ -49,12 +48,12 @@ export default function AboutPreview() {
         }
       );
 
-      // 2. Video Parallax Sweep (scroll-linked vertical translation of the video frame)
+      // 2. Video Parallax Sweep (subtle scroll-linked vertical translation)
       gsap.fromTo(
         videoRef.current,
-        { yPercent: -15 },
+        { yPercent: -5 },
         {
-          yPercent: 15,
+          yPercent: 5,
           ease: "none",
           scrollTrigger: {
             trigger: cardRef.current,
@@ -111,8 +110,11 @@ export default function AboutPreview() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
         <div
           ref={cardRef}
-          style={{ borderRadius: "96px" }}
-          className="relative w-full h-[24rem] sm:h-[34rem] md:h-[42rem] p-[6px] shadow-2xl overflow-hidden bg-white border border-saffron/10 opacity-0"
+          style={{
+            borderRadius: "96px",
+            aspectRatio: videoAspectRatio ? `${videoAspectRatio}` : "16 / 9",
+          }}
+          className="relative w-full p-[6px] shadow-2xl overflow-hidden bg-white border border-saffron/10 opacity-0 transition-[aspect-ratio] duration-300"
         >
           {/* Animated Liquid Metal Border Bezel */}
           <LiquidMetal
@@ -125,17 +127,17 @@ export default function AboutPreview() {
           />
 
           {/* Inner Content Body - Full Bleed Video Container */}
-          <div className="relative z-10 h-full w-full overflow-hidden rounded-2xl bg-[#080808]">
+          <div className="relative z-10 h-full w-full overflow-hidden rounded-[inherit] bg-[#080808]">
             <video
               ref={videoRef}
-              src={getCDNUrl("/Create_a_cinematic_second_h.mp4")}
+              src={getCDNUrl("/shri_pratisthan.mp4")}
               autoPlay
               loop
               muted
               playsInline
               preload="metadata"
-              onTimeUpdate={handleTimeUpdate}
-              className="absolute inset-0 w-full h-[130%] -top-[15%] object-cover select-none pointer-events-none"
+              onLoadedMetadata={handleLoadedMetadata}
+              className="absolute inset-0 w-full h-[110%] -top-[5%] object-cover select-none pointer-events-none"
             />
           </div>
         </div>

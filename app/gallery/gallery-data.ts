@@ -13,13 +13,13 @@ export interface GalleryItem {
 export const FEATURED_MEMORIES: GalleryItem[] = [
   {
     id: "ganeshotsav-processions",
-    title: "Shree Ganeshotsav Grand Processions",
+    title: "Shree Ganeshotsav — Jejuri Gad Dekhava",
     category: "Festival",
     date: "September 2024",
-    src: "/gallery_ganeshotsav_aarthi.png",
+    src: "/images/ganesh-utsav.jpg",
     metric: "10-Day Festival",
-    description: "Our grand Ganeshotsav street procession in Indira Nagar, Nashik celebrating unity, devotion, and traditional music.",
-    details: "The annual Ganeshotsav celebration is one of Shree Pratishtan's signature cultural events in Indira Nagar, Nashik. The procession features thousands of local devotees, traditional Dhol Tasha drummers playing in synchronization, and beautifully decorated palanquins with 100% eco-friendly Shadu Mati clay idols. Our 100+ active volunteer marshals coordinate safety corridors, distribute drinking water, and work closely with local authorities to ensure a peaceful, clean, and safe celebration for tens of thousands of devotees.",
+    description: "Our grand Ganeshotsav celebration in Indira Nagar, Nashik featuring historic theme replicas like Jejuri Gad.",
+    details: "The annual Ganeshotsav celebration is one of Shree Pratishtan's signature cultural events in Indira Nagar, Nashik. The event features magnificent theme replicas such as Shri Khandoba Maharaj Jejuri Gad, daily spiritual Maha Aartis, traditional Dhol Tasha drummers playing in synchronization, and eco-friendly Shadu Mati clay idols.",
     type: "memory"
   },
   {
@@ -27,32 +27,32 @@ export const FEATURED_MEMORIES: GalleryItem[] = [
     title: "Gudipadwa Bhavya Swagat Yatra",
     category: "Festival",
     date: "March 2024",
-    src: "/gallery_dhol_tasha_camps.png",
+    src: "/images/swagat-yatra.jpg",
     metric: "Grand Yatra",
     description: "Grand Marathi New Year procession with traditional Lezim, Dhol Tasha, and cultural rallies across Indira Nagar.",
     details: "Commencing the Marathi New Year, the Gudipadwa Swagat Yatra unites thousands of families across Indira Nagar, Nashik in traditional attire. Featuring majestic saffron flags, live Lezim performances, synchronised Dhol Tasha percussion, and decorated floats, this yatra showcases Maharashtra's rich cultural heritage and brotherhood.",
     type: "memory"
   },
   {
-    id: "blood-donation-milestone",
-    title: "50+ Blood Donation & Health Camp Milestones",
-    category: "Healthcare",
-    date: "August 2024",
-    src: "/volunteer_medical.png",
-    metric: "50+ Camps Completed",
-    description: "Organizing mega voluntary blood donation drives and free diagnostic checkups in partnership with Nashik Civil Hospital.",
-    details: "Dedicated to saving lives, Shree Pratishtan has conducted over 50 successful blood donation camps across Indira Nagar and Nashik. Partnering with Nashik Civil Hospital Blood Bank and Red Cross, each camp provides life-saving blood units for critical surgeries, emergency trauma patients, and pediatric care. Qualified doctors conduct free vitals screening, hemoglobin checks, and distribute emergency medicine kits to underprivileged families.",
+    id: "mahashivratri-celebration",
+    title: "Mahashivratri — 108-ft Mahamrutyunjay Mandir",
+    category: "Festival",
+    date: "February 2024",
+    src: "/images/mahashivratri.jpg",
+    metric: "108-Ft Shivling",
+    description: "Grand Mahashivratri celebration featuring monumental 108-ft Mahamrutyunjay Mandir Shivling replica and sacred abhishek.",
+    details: "Shree Pratishtan's grand Mahashivratri utsav in Indira Nagar, Nashik features monumental architectural replicas including the sacred 108-foot Mahamrutyunjay Mandir (Assam) Shivling. Tens of thousands of devotees assemble for continuous chanting, sacred bilva patra offerings, and evening light spectacles.",
     type: "memory"
   },
   {
-    id: "annual-cricket-championship",
-    title: "Annual Sports & Cricket Championship",
-    category: "Sports & Youth",
-    date: "December 2024",
-    src: "/gallery_dahi_handi_pyramids.png",
-    metric: "32 Teams Trophy",
-    description: "Celebrating our 2006 sports roots with competitive 32-team tennis ball cricket leagues in Indira Nagar, Nashik.",
-    details: "Founded in 2006 by 20 childhood friends playing daily cricket in Indira Nagar, sports remain the foundation of our brotherhood and youth discipline. The annual cricket tournament attracts 32 top youth teams from across Nashik district competing for prestigious championship trophies. The event promotes physical fitness, sportsmanship, and channelizes youth energy into community leadership.",
+    id: "dahi-handi-utsav",
+    title: "Bhavya Dahi Handi Utsav & Govinda Pathaks",
+    category: "Festival",
+    date: "August 2024",
+    src: "/images/dahihandi-utsav.jpg",
+    metric: "Multi-Tier Pyramids",
+    description: "Thrilling Dahi Handi celebration with top Govinda pathaks competing in towering multi-tier pyramids in Indira Nagar.",
+    details: "Our annual Dahi Handi Utsav in Indira Nagar attracts thousands of spectators and premier Govinda pathaks from across Maharashtra. The high-energy festival promotes youth fitness, discipline, and unity with cultural music and celebratory rewards.",
     type: "memory"
   },
   {
@@ -104,12 +104,12 @@ export const FEATURED_MEMORIES: GalleryItem[] = [
 export const PHOTO_ITEMS: GalleryItem[] = [
   {
     id: "ganeshotsav-processions",
-    title: "Ganeshotsav 108-Lamp Maha Aarti",
+    title: "Ganeshotsav Jejuri Gad Theme Dekhava",
     category: "festival",
     date: "September 2024",
-    src: "/gallery_ganeshotsav_aarthi.png",
-    description: "Spiritual 108-lamp evening prayer ceremonies during the 10-day Ganeshotsav festival in Indira Nagar, Nashik.",
-    details: "Every evening during the 10-day Ganeshotsav festival, community members gather for the twilight prayers (Maha Aarti) in Indira Nagar, Nashik. The event is characterized by oil lamps, incense, traditional hymns, and musical accompaniment. Our volunteer teams assist in organizing the space, ensuring crowd control, and making sure that prasadam is prepared and distributed in a clean, orderly manner.",
+    src: "/images/ganesh-utsav.jpg",
+    description: "Grand Jejuri Gad Khandoba Maharaj replica during Ganeshotsav festival in Indira Nagar, Nashik.",
+    details: "Every evening during the 10-day Ganeshotsav festival, community members gather for the twilight prayers (Maha Aarti) in Indira Nagar, Nashik. The event is characterized by historic architectural replicas, traditional hymns, and musical accompaniment.",
     type: "photo"
   },
   {
@@ -117,29 +117,29 @@ export const PHOTO_ITEMS: GalleryItem[] = [
     title: "Gudipadwa Swagat Yatra & Lezim Troupe",
     category: "festival",
     date: "March 2024",
-    src: "/gallery_dhol_tasha_camps.png",
-    description: "Traditional drum ensembles and Lezim performing during Marathi New Year celebrations in Indira Nagar.",
-    details: "The rhythmic beats of the Dhol Tasha ensemble are the heartbeat of Maharashtra's cultural festivals. Our youth troupe trains diligently to perform complex traditional rhythms during the Gudipadwa Swagat Yatra and Ganeshotsav in Indira Nagar, Nashik, fostering cultural pride and discipline.",
+    src: "/images/swagat-yatra.jpg",
+    description: "Traditional drum ensembles, saffron flags, and cultural floats during Swagat Yatra in Indira Nagar.",
+    details: "The rhythmic beats of the Dhol Tasha ensemble and saffron flag pageantry are the heartbeat of Maharashtra's cultural festivals. Our youth lead cultural floats honoring national icons across Indira Nagar.",
     type: "photo"
   },
   {
-    id: "blood-donation-milestone",
-    title: "Bhavya Blood Donation & Life Drive",
-    category: "healthcare",
+    id: "mahashivratri-utsav",
+    title: "108-Ft Mahamrutyunjay Mandir Pratikruti",
+    category: "festival",
+    date: "February 2024",
+    src: "/images/mahashivratri.jpg",
+    description: "Spectacular 108-foot Mahamrutyunjay Shivling replica during Mahashivratri in Indira Nagar, Nashik.",
+    details: "A monumental 108-foot architectural replica welcoming thousands of devotees for darshan, continuous Vedic chanting, and community aarti.",
+    type: "photo"
+  },
+  {
+    id: "dahi-handi-celebration",
+    title: "Dahi Handi Govinda Human Pyramids",
+    category: "festival",
     date: "August 2024",
-    src: "/volunteer_medical.png",
-    description: "Voluntary blood donation camps organized in partnership with Nashik Civil Hospital Blood Bank.",
-    details: "With over 50 camps conducted, our voluntary blood donation drives mobilize hundreds of donors across Indira Nagar and Nashik. Each donation unit is safely stored for trauma emergencies and thalassemia patients across regional government hospitals.",
-    type: "photo"
-  },
-  {
-    id: "annual-cricket-championship",
-    title: "Annual 32-Team Cricket Championship",
-    category: "sports",
-    date: "December 2024",
-    src: "/gallery_dahi_handi_pyramids.png",
-    description: "Competitive youth cricket tournaments celebrating our 2006 sports roots in Indira Nagar.",
-    details: "Youth cricket teams battle for annual championship trophies in Indira Nagar, Nashik. The tournament encourages physical agility, sportsmanship, and teamwork among the younger generation.",
+    src: "/images/dahihandi-utsav.jpg",
+    description: "Electrifying crowd and multi-tier human pyramids during Dahi Handi in Indira Nagar.",
+    details: "Over 10,000 citizens gather to cheer youth Govinda pathaks forming high pyramids in devotion and sportsmanship.",
     type: "photo"
   },
   {

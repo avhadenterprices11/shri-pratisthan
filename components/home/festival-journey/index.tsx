@@ -12,31 +12,35 @@ gsap.registerPlugin(ScrollTrigger);
 const MILESTONES = [
   {
     year: "2006",
-    title: "Cricket Roots & Origins",
-    description: "Started in Indira Nagar, Nashik by close friends meeting daily to play cricket, who united to serve the local community.",
+    title: "Group Formed",
+    description: "Shri Pratisthan was founded in Indira Nagar, Nashik by dedicated youth uniting together with a shared mission to serve the local community.",
     tag: "Founding",
-    image: "/about_showcase.png",
+    image: "/ganeshotsav_award_group.jpg",
+    fit: "cover",
   },
   {
     year: "2012",
     title: "Cultural & Utsav Expansion",
-    description: "Initiated grand Ganeshotsav and Navratri celebrations, integrating social welfare drives and youth sports tournaments.",
+    description: "Initiated grand Dahi Handi, Ganeshotsav, and Navratri celebrations with massive community participation across Nashik.",
     tag: "Festivals",
-    image: "/volunteer_musician.png",
+    image: "/dahihandi_2018.jpg",
+    fit: "cover",
   },
   {
     year: "2018",
     title: "Official Trust Registration",
     description: "Formally registered as Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha (Reg: nashik/0000153/2018) under Adv. Shyam Badode.",
     tag: "Trust Reg.",
-    image: "/volunteer_safety.png",
+    image: "/trust_seal.png",
+    fit: "contain",
   },
   {
     year: "Present",
     title: "19+ Years of Impact",
-    description: "Over 100+ active members organizing Gudipadwa Swagat Yatra, mass blood donation drives, Yoga Day camps, and sports leagues.",
+    description: "Over 100+ active members organizing iconic cultural sets (Jaipur Palace dekhava), Swagat Yatra, and mass community welfare initiatives.",
     tag: "Community Impact",
-    image: "/volunteer_coordinator.png",
+    image: "/ganeshotsav_2017_jaipur.jpg",
+    fit: "cover",
   },
 ];
 
@@ -160,7 +164,12 @@ export default function FestivalJourney() {
                     alt={item.title}
                     fill
                     sizes="(max-width: 640px) 100vw, 440px"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className={cn(
+                      "transition-transform duration-700 ease-out group-hover:scale-105",
+                      item.fit === "contain" 
+                        ? "object-contain p-8 sm:p-10 -translate-y-4" 
+                        : "object-cover"
+                    )}
                   />
 
                   {/* Gradient Overlay for Readability */}

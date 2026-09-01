@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import gsap from "gsap";
@@ -153,28 +154,23 @@ export function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 py-6 px-6 md:px-12 bg-transparent pointer-events-none transition-transform opacity-0 -translate-y-[100px]"
       >
         <div className="max-w-[1400px] mx-auto flex justify-between items-center">
-          {/* Left: Logo (Rising Sun Visual Icon inside Floating Glass Pill) */}
+          {/* Left: Genuine Official Emblem inside Floating Glass Pill */}
           <Link 
             href="/" 
-            className="flex items-center gap-3 group bg-white/95 backdrop-blur-md border border-saffron/10 px-5 py-2.5 rounded-full shadow-lg pointer-events-auto hover:border-saffron/30 hover:scale-[1.02] transition-all duration-300 select-none" 
+            className="flex items-center gap-3 group bg-white/95 backdrop-blur-md border border-saffron/10 px-4 py-2 rounded-full shadow-lg pointer-events-auto hover:border-saffron/30 hover:scale-[1.02] transition-all duration-300 select-none" 
             onClick={() => setIsOpen(false)}
             data-hover="pointer"
           >
-            <svg 
-              className="w-6 h-6 stroke-saffron fill-none transition-transform duration-500 group-hover:rotate-12"
-              viewBox="0 0 100 100" 
-              strokeWidth="6" 
-              strokeLinecap="round"
-            >
-              {/* Sunrise arches */}
-              <path d="M20 70 A30 30 0 0 1 80 70" />
-              <line x1="50" y1="40" x2="50" y2="15" />
-              <line x1="28.79" y1="48.79" x2="11.11" y2="31.11" />
-              <line x1="71.21" y1="48.79" x2="88.89" y2="31.11" />
-              <line x1="20" y1="70" x2="5" y2="70" />
-              <line x1="80" y1="70" x2="95" y2="70" />
-              <path d="M5 80 L95 80" />
-            </svg>
+            <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden shrink-0 border border-saffron/20 shadow-sm transition-transform duration-500 group-hover:scale-105">
+              <Image 
+                src="/logo.png" 
+                alt="Shree Pratisthan Official Logo" 
+                fill
+                sizes="36px"
+                className="object-contain"
+                priority
+              />
+            </div>
             <span className="text-xs sm:text-sm font-black tracking-tight text-foreground font-heading">
               SHREE <span className="text-saffron">PRATHISHTHAN</span>
             </span>
@@ -210,20 +206,15 @@ export function Navbar() {
           <div className="w-full md:w-1/2 flex flex-col justify-between border-b md:border-b-0 md:border-r border-saffron/10 pb-8 md:pb-0 md:pr-16 mb-8 md:mb-0 relative z-10 pt-4 md:pt-0">
             {/* Top Logo & Title */}
             <div className="nav-drawer-info">
-              <svg 
-                className="w-16 h-16 stroke-saffron fill-none mb-6 animate-pulse"
-                viewBox="0 0 100 100" 
-                strokeWidth="4" 
-                strokeLinecap="round"
-              >
-                <path d="M20 70 A30 30 0 0 1 80 70" />
-                <line x1="50" y1="40" x2="50" y2="15" />
-                <line x1="28.79" y1="48.79" x2="11.11" y2="31.11" />
-                <line x1="71.21" y1="48.79" x2="88.89" y2="31.11" />
-                <line x1="20" y1="70" x2="5" y2="70" />
-                <line x1="80" y1="70" x2="95" y2="70" />
-                <path d="M5 80 L95 80" />
-              </svg>
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-saffron/30 shadow-lg mb-6 bg-white/80">
+                <Image 
+                  src="/logo.png" 
+                  alt="Shree Pratisthan Official Logo" 
+                  fill
+                  sizes="96px"
+                  className="object-contain"
+                />
+              </div>
               <h2 className="text-2xl font-black tracking-tight text-foreground font-heading">
                 SHREE <span className="text-saffron">PRATHISHTHAN</span>
               </h2>

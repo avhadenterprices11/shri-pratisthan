@@ -26,11 +26,11 @@ const EVENTS: EventPanel[] = [
     num: "01",
     category: "Ganeshotsav",
     title: "Shree Ganeshotsav",
-    description: "A grand 10-day celebration in Indira Nagar uniting the community through devotional aartis, traditional Dhol-Tasha pageantry, and eco-friendly social initiatives.",
-    image: "/images/ganesh.jpg",
+    description: "A grand 10-day celebration in Indira Nagar uniting the community through devotional aartis, Jejuri Gad theme dekhavas, and Dhol-Tasha pageantry.",
+    image: "/images/ganesh-utsav.jpg",
     details: [
-      "Eco-Friendly Idols",
-      "Traditional Aarti",
+      "Jejuri Gad Theme",
+      "Daily Maha Aarti",
       "Dhol Tasha Troupe",
       "Social Cleanliness Drives"
     ],
@@ -42,7 +42,7 @@ const EVENTS: EventPanel[] = [
     category: "Swagat Yatra",
     title: "Gudipadwa Swagat Yatra",
     description: "Welcoming the Marathi New Year with a grand cultural procession across Indira Nagar, featuring traditional attire, Lezim, saffron flags, and cultural floats.",
-    image: "/images/dahi-handi.jpg",
+    image: "/images/swagat-yatra.jpg",
     details: [
       "Grand Cultural Rally",
       "Traditional Attire",
@@ -52,62 +52,47 @@ const EVENTS: EventPanel[] = [
     link: "/events"
   },
   {
-    id: "navratri",
+    id: "dahi-handi",
     num: "03",
+    category: "Dahi Handi",
+    title: "Bhavya Dahi Handi Utsav",
+    description: "Thrilling youth sportsmanship and multi-tier human pyramids formed by renowned Govinda pathaks from across Maharashtra in Indira Nagar.",
+    image: "/images/dahihandi-utsav.jpg",
+    details: [
+      "Multi-Tier Pyramids",
+      "Govinda Pathak Teams",
+      "Live Stage & Music",
+      "Grand Trophies"
+    ],
+    link: "/events"
+  },
+  {
+    id: "mahashivratri",
+    num: "04",
+    category: "Mahashivratri",
+    title: "Maha Shivratri Utsav",
+    description: "Spectacular 108-foot Mahamrutyunjay Mandir Shivling replica, continuous Vedic chants, sacred abhishek, and thousands of devotees.",
+    image: "/images/mahashivratri.jpg",
+    details: [
+      "108-Ft Shivling Replica",
+      "Continuous Abhishek",
+      "Devotional Bhajan",
+      "Maha Prasad Distribution"
+    ],
+    link: "/events"
+  },
+  {
+    id: "navratri",
+    num: "05",
     category: "Navratri",
     title: "Navratri Utsav",
     description: "Nine nights of cultural vibrancy celebrating divine strength with traditional Garba & Dandiya rhythms, prayers, and women empowerment programs.",
-    image: "/images/navratri.jpg",
+    image: "/navratri_2022.jpg",
     details: [
       "Traditional Dandiya",
       "Garba Nights",
       "Devotional Puja",
       "Prasad Distribution"
-    ],
-    link: "/events"
-  },
-  {
-    id: "shiv-jayanti",
-    num: "04",
-    category: "Shiv Jayanti",
-    title: "Chhatrapati Shivaji Maharaj Jayanti",
-    description: "Commemorating the visionary Chhatrapati Shivaji Maharaj with inspiring youth rallies, historical lectures, traditional saffron flags, and cultural tributes.",
-    image: "/images/dussehra.png",
-    details: [
-      "Historical Lectures",
-      "Inspirational Rally",
-      "Youth Tributes",
-      "Cultural Procession"
-    ],
-    link: "/events"
-  },
-  {
-    id: "ambedkar-jayanti",
-    num: "05",
-    category: "Ambedkar Jayanti",
-    title: "Dr. Babasaheb Ambedkar Jayanti",
-    description: "Honoring the architect of the Indian Constitution through social equality programs, book distributions, educational felicitation, and community harmony drives.",
-    image: "/images/ganesh.jpg",
-    details: [
-      "Book Distribution",
-      "Student Felicitation",
-      "Social Equality Drive",
-      "Community Harmony"
-    ],
-    link: "/events"
-  },
-  {
-    id: "sports-tournaments",
-    num: "06",
-    category: "Sports Tournaments",
-    title: "Annual Sports & Cricket Tournaments",
-    description: "Honoring our 2006 cricket founding roots with competitive local cricket tournaments, athletics, and sports coaching for Indira Nagar youth.",
-    image: "/images/dahi-handi.jpg",
-    details: [
-      "Cricket League",
-      "Youth Athletics",
-      "Fitness Coaching",
-      "Trophy Felicitation"
     ],
     link: "/events"
   }
@@ -156,13 +141,11 @@ export default function FeaturedEvents() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Editorial Heading Section */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
-          <div className="max-w-2xl">
-            <h2 className="text-4xl sm:text-6xl font-black text-foreground tracking-tight font-heading leading-none uppercase">
-              Upcoming Cultural Celebrations
-            </h2>
-          </div>
-          <p className="text-slate-grey max-w-md text-sm md:text-base leading-relaxed font-light">
+        <div className="flex flex-col mb-16 max-w-4xl">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-foreground tracking-tight font-heading leading-none uppercase">
+            Upcoming Celebrations
+          </h2>
+          <p className="text-slate-grey max-w-2xl text-sm md:text-base leading-relaxed font-light mt-4">
             Bringing the Indira Nagar and Nashik community together through vibrant cultural celebrations, traditional street processions, youth sports, and social welfare drives.
           </p>
         </div>
@@ -258,7 +241,7 @@ export default function FeaturedEvents() {
                   </h3>
                 </div>
                 <span className="hidden md:inline text-xs uppercase font-extrabold tracking-widest text-slate-400 group-hover:text-saffron transition-colors duration-300 mt-2 md:mt-0">
-                  {event.id === "ganesh" || event.id === "navratri" ? "10 Days" : (event.id === "swagat-yatra" ? "Annual Yatra" : (event.id === "sports-tournaments" ? "Tournament" : "Annual Utsav"))}
+                  {event.id === "ganesh" || event.id === "navratri" ? "10 Days" : (event.id === "swagat-yatra" ? "Annual Yatra" : (event.id === "dahi-handi" ? "Gokulashtami" : (event.id === "mahashivratri" ? "Maha Shivotsav" : "Annual Utsav")))}
                 </span>
 
                 {/* Mobile Dropdown Details (Toggled on click) */}

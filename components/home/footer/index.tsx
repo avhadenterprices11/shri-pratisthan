@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 export default function Footer() {
@@ -64,6 +65,26 @@ export default function Footer() {
           
           {/* Left Block: Description & Email Subscription */}
           <div className="lg:col-span-5 flex flex-col items-start gap-6">
+            <div className="flex items-center gap-3">
+              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-white/20 bg-white/5 shrink-0 shadow-md">
+                <Image 
+                  src="/logo.png" 
+                  alt="Shree Pratisthan Official Logo" 
+                  fill 
+                  sizes="44px" 
+                  className="object-contain" 
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm sm:text-base font-black tracking-tight text-white font-heading">
+                  SHREE <span className="text-saffron">PRATHISHTHAN</span>
+                </span>
+                <span className="text-[10px] text-white/50 uppercase tracking-widest font-sans">
+                  कै. धर्मराज बडोदे बहुउद्देशीय सेवाभावी संस्था
+                </span>
+              </div>
+            </div>
+
             <p className="text-xs sm:text-sm text-white/60 leading-relaxed max-w-md font-light font-sans">
               Rooted in Indira Nagar, Nashik since 2006 under the leadership of Adv. Shyam Badode, Shree Pratishtan unites cultural heritage, youth sportsmanship, and selfless community welfare. Get trust announcements and volunteering calls directly in your inbox.
             </p>

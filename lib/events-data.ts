@@ -48,8 +48,9 @@ export const ALL_EVENTS: EventItem[] = [
     time: "06:00 AM – 11:00 PM Daily",
     location: "Shree Pratishtan Mandal, Indira Nagar Ground, Nashik",
     mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
-    mainImage: "/gallery_ganeshotsav_aarthi.png",
+    mainImage: "/images/ganesh-utsav.jpg",
     galleryImages: [
+      "/images/ganesh-utsav.jpg",
       "/gallery_ganeshotsav_aarthi.png",
       "/hero_ganesh.png",
       "/ganeshotsav_backdrop.png",
@@ -107,8 +108,9 @@ export const ALL_EVENTS: EventItem[] = [
     time: "06:30 AM – 12:30 PM",
     location: "Indira Nagar Main Avenue to Rane Nagar, Nashik",
     mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
-    mainImage: "/gallery_dhol_tasha_camps.png",
+    mainImage: "/images/swagat-yatra.jpg",
     galleryImages: [
+      "/images/swagat-yatra.jpg",
       "/gallery_dhol_tasha_camps.png",
       "/hero_ganesh.png",
       "/community_assembly.png",

@@ -12,27 +12,27 @@ gsap.registerPlugin(ScrollTrigger);
 const SLIDES = [
   {
     title: "Shree\nGanpati",
-    description: "Cultivating devotion, grand traditions, and community service in Indira Nagar since 2006.",
-    image: "/images/ganesh.jpg",
+    description: "Cultivating devotion, historic theme dekhavas like Jejuri Gad, and grand traditions in Indira Nagar.",
+    image: "/images/ganesh-utsav.jpg",
     label: "Ganesh Utsav",
   },
   {
     title: "Swagat\nYatra",
     description: "Welcoming the New Year with Dhol-Tasha, traditional pageantry, and cultural pride.",
-    image: "/images/navratri.jpg",
+    image: "/images/swagat-yatra.jpg",
     label: "Swagat Yatra",
   },
   {
-    title: "Sports &\nCricket",
-    description: "Born on a cricket pitch in 2006 — channeling youth energy and teamwork into social power.",
-    image: "/images/dahi-handi.jpg",
-    label: "Sports Tournaments",
+    title: "Dahi\nHandi",
+    description: "Thrilling multi-tier human pyramids, electrifying crowd energy, and grand youth celebrations.",
+    image: "/images/dahihandi-utsav.jpg",
+    label: "Dahi Handi Utsav",
   },
   {
-    title: "Social\nService",
-    description: "Mass blood donation drives, health camps, and dedicated community upliftment.",
-    image: "/images/social-work.jpg",
-    label: "Social Work",
+    title: "Maha\nShivratri",
+    description: "Spectacular 108-foot Mahamrutyunjay Shivling replicas, sacred rituals, and massive devotional gatherings.",
+    image: "/images/mahashivratri.jpg",
+    label: "Maha Shivratri",
   },
 ];
 
