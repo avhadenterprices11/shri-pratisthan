@@ -81,27 +81,27 @@ export default function Hero() {
             },
           },
         })
-        // Transitions between slides
-        .fromTo(slides[0], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 1)
-        .fromTo(slideBgs[0], { scale: 1 }, { scale: 0.95, duration: 1 }, 1)
-        .fromTo(slides[1], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 1)
-        .fromTo(slideBgs[1], { scale: 1.15 }, { scale: 1, duration: 1 }, 1)
-        .fromTo(slideContents[0], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 1)
-        .fromTo(slideContents[1], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.2)
+          // Transitions between slides
+          .fromTo(slides[0], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 1)
+          .fromTo(slideBgs[0], { scale: 1 }, { scale: 0.95, duration: 1 }, 1)
+          .fromTo(slides[1], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 1)
+          .fromTo(slideBgs[1], { scale: 1.15 }, { scale: 1, duration: 1 }, 1)
+          .fromTo(slideContents[0], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 1)
+          .fromTo(slideContents[1], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.2)
 
-        .fromTo(slides[1], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 3)
-        .fromTo(slideBgs[1], { scale: 1 }, { scale: 0.95, duration: 1 }, 3)
-        .fromTo(slides[2], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 3)
-        .fromTo(slideBgs[2], { scale: 1.15 }, { scale: 1, duration: 1 }, 3)
-        .fromTo(slideContents[1], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 3)
-        .fromTo(slideContents[2], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 3.2)
+          .fromTo(slides[1], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 3)
+          .fromTo(slideBgs[1], { scale: 1 }, { scale: 0.95, duration: 1 }, 3)
+          .fromTo(slides[2], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 3)
+          .fromTo(slideBgs[2], { scale: 1.15 }, { scale: 1, duration: 1 }, 3)
+          .fromTo(slideContents[1], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 3)
+          .fromTo(slideContents[2], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 3.2)
 
-        .fromTo(slides[2], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 5)
-        .fromTo(slideBgs[2], { scale: 1 }, { scale: 0.95, duration: 1 }, 5)
-        .fromTo(slides[3], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 5)
-        .fromTo(slideBgs[3], { scale: 1.15 }, { scale: 1, duration: 1 }, 5)
-        .fromTo(slideContents[2], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 5)
-        .fromTo(slideContents[3], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 5.2);
+          .fromTo(slides[2], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 5)
+          .fromTo(slideBgs[2], { scale: 1 }, { scale: 0.95, duration: 1 }, 5)
+          .fromTo(slides[3], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 5)
+          .fromTo(slideBgs[3], { scale: 1.15 }, { scale: 1, duration: 1 }, 5)
+          .fromTo(slideContents[2], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 5)
+          .fromTo(slideContents[3], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 5.2);
       });
 
       // Mobile Optimized Timeline (shorter scroll depth, effortless touch scrolling)
@@ -125,20 +125,20 @@ export default function Hero() {
             },
           },
         })
-        .fromTo(slides[0], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 1)
-        .fromTo(slides[1], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 1)
-        .fromTo(slideContents[0], { y: 0, opacity: 1 }, { y: -30, opacity: 0, duration: 0.8 }, 1)
-        .fromTo(slideContents[1], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.2)
+          .fromTo(slides[0], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 1)
+          .fromTo(slides[1], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 1)
+          .fromTo(slideContents[0], { y: 0, opacity: 1 }, { y: -30, opacity: 0, duration: 0.8 }, 1)
+          .fromTo(slideContents[1], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.2)
 
-        .fromTo(slides[1], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 3)
-        .fromTo(slides[2], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 3)
-        .fromTo(slideContents[1], { y: 0, opacity: 1 }, { y: -30, opacity: 0, duration: 0.8 }, 3)
-        .fromTo(slideContents[2], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 3.2)
+          .fromTo(slides[1], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 3)
+          .fromTo(slides[2], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 3)
+          .fromTo(slideContents[1], { y: 0, opacity: 1 }, { y: -30, opacity: 0, duration: 0.8 }, 3)
+          .fromTo(slideContents[2], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 3.2)
 
-        .fromTo(slides[2], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 5)
-        .fromTo(slides[3], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 5)
-        .fromTo(slideContents[2], { y: 0, opacity: 1 }, { y: -30, opacity: 0, duration: 0.8 }, 5)
-        .fromTo(slideContents[3], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 5.2);
+          .fromTo(slides[2], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 5)
+          .fromTo(slides[3], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 5)
+          .fromTo(slideContents[2], { y: 0, opacity: 1 }, { y: -30, opacity: 0, duration: 0.8 }, 5)
+          .fromTo(slideContents[3], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 5.2);
       });
 
       // 3. Entrance Intro Animation on Mount
@@ -154,16 +154,16 @@ export default function Hero() {
         )
         .to(".portal-text", { scale: 1, opacity: 1, duration: 0.8 })
         .to({}, { duration: 0.2 })
-        .to(".portal-text", { 
-          scale: 18, 
-          opacity: 0, 
-          duration: 1.2, 
-          ease: "power3.in" 
+        .to(".portal-text", {
+          scale: 18,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.in"
         }, "+=0.1")
-        .to(".portal-intro", { 
-          opacity: 0, 
-          duration: 0.8, 
-          ease: "power2.inOut" 
+        .to(".portal-intro", {
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.inOut"
         }, "-=1.0")
         .fromTo(
           ".slide-bg-0",

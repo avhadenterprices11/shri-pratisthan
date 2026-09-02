@@ -1,6 +1,5 @@
 import React from "react";
 import type { Metadata } from "next";
-import EventBookingHero from "@/components/events/event-booking/hero";
 import EventBookingContainer from "@/components/events/event-booking";
 
 export const metadata: Metadata = {
@@ -24,12 +23,13 @@ export const metadata: Metadata = {
 
 export default function EventBookingPage() {
   return (
-    <main className="flex flex-col w-full min-h-screen pb-20 bg-background relative overflow-hidden">
-      {/* 1. Next-Level Interactive Hero Component */}
-      <EventBookingHero />
+    <main className="flex flex-col w-full min-h-screen pt-24 sm:pt-32 pb-20 bg-background relative overflow-hidden">
+      {/* Decorative ambient backgrounds */}
+      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40" />
+      <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-1/3 opacity-40" />
 
-      {/* 2. Main Multi-Step Form Interactive Container */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mt-4">
+      {/* Main Multi-Step Form Interactive Container */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <EventBookingContainer />
       </div>
     </main>

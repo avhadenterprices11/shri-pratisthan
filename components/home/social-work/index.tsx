@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
+import { cn } from "@/lib/utils";
 
 const impactCards = [
   {
@@ -52,153 +54,234 @@ const impactCards = [
 ];
 
 export default function CulturalInitiatives() {
-  const [openCard, setOpenCard] = useState<number | null>(null);
+  const [openCard, setOpenCard] = useState<number | null>(0);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+    };
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  const handleCardToggle = (idx: number) => {
+    setOpenCard((prev) => (prev === idx ? null : idx));
+  };
+
+  const { t } = useLanguage();
+
   return (
-    <section id="social-work" className="w-full bg-background py-10 sm:py-16 md:py-20 select-none">
+    <section id="social-work" className="w-full bg-background pt-10 sm:pt-16 md:pt-20 pb-4 sm:pb-8 md:pb-12 select-none">
       <div className="w-full max-w-[1320px] mx-auto px-4 sm:px-6 md:px-8">
         
         {/* Section Header */}
         <div className="flex items-start justify-between gap-6 mb-6 sm:mb-10">
           <div className="max-w-[620px] text-left">
             <h2 className="text-2xl sm:text-[34px] md:text-[40px] leading-[1.15] font-normal text-charcoal font-heading tracking-tight">
-              Social Welfare &amp; Healthcare Drives
+              {t("socialWork.heading")}
             </h2>
             <p className="mt-3 sm:mt-4 text-xs sm:text-[15px] text-slate-grey leading-[1.75] max-w-[560px] font-sans">
-              Dedicated community initiatives, life-saving blood donation drives, wellness camps, and educational support across Indira Nagar.
+              {t("socialWork.description")}
             </p>
           </div>
         </div>
 
         {/* Framer-Motion Accordion Layout */}
         <div 
-          onMouseLeave={() => setOpenCard(null)}
+          onMouseLeave={() => {
+            if (!isMobile) setOpenCard(null);
+          }}
           className="flex flex-col md:flex-row md:items-end gap-3 md:gap-0"
         >
           {impactCards.map((card, idx) => {
             const isOpen = openCard === idx;
             const closedHeights = [280, 330, 390, 430];
-            const targetHeight = isMobile
-              ? (isOpen ? 400 : 88)
-              : (isOpen ? 480 : closedHeights[idx]);
 
             return (
               <motion.div
                 key={card.id}
-                onMouseEnter={() => !isMobile && setOpenCard(idx)}
+                onMouseEnter={() => {
+                  if (!isMobile) setOpenCard(idx);
+                }}
                 onFocus={() => setOpenCard(idx)}
-                onClick={() => setOpenCard(isOpen ? null : idx)}
+                onClick={() => handleCardToggle(idx)}
                 tabIndex={0}
-                animate={{ flex: isOpen ? 4.8 : 1.5 }}
+                layout={isMobile}
+                animate={{
+                  flex: isMobile ? 1 : isOpen ? 4.8 : 1.5,
+                }}
                 transition={{ type: "spring", stiffness: 220, damping: 28 }}
-                className={`${card.bg} ${card.text} relative overflow-hidden border border-saffron/10 h-auto cursor-pointer rounded-2xl md:rounded-none`}
+                className={`${card.bg} ${card.text} relative overflow-hidden border border-saffron/10 cursor-pointer rounded-2xl md:rounded-none transition-shadow duration-300 ${
+                  isOpen && isMobile ? "shadow-lg ring-1 ring-saffron/20" : ""
+                }`}
               >
-                <motion.div
-                  animate={{ height: targetHeight }}
-                  transition={{ type: "spring", stiffness: 260, damping: 30 }}
-                  className="h-full"
-                >
-                  {isOpen ? (
-                    <div className="h-full p-4 sm:p-6 md:p-7 flex flex-col justify-between text-left">
-                      {card.isFeature ? (
-                        <div className="max-w-[280px]">
-                          <h3 className="text-xl sm:text-[28px] md:text-[32px] leading-[1.1] font-normal font-heading mb-2 sm:mb-3 text-charcoal">
-                            Shree
-                            <br />
-                            Naad Pathak
-                          </h3>
-                          <Link
-                            href="/volunteer"
-                            className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-bold text-saffron hover:text-gold transition-colors cursor-pointer font-sans"
-                            data-hover="pointer"
-                          >
-                            Join the Troupe <ArrowRight size={14} />
-                          </Link>
-                        </div>
-                      ) : (
-                        <div className="max-w-[300px]">
-                          <h3 className={`text-lg sm:text-[24px] md:text-[26px] leading-[1.15] font-normal font-heading ${
-                            card.id === 2 ? "text-white" : "text-charcoal"
-                          }`}>
-                            {card.title}
-                          </h3>
-                          <p className={`mt-1.5 sm:mt-2 text-xs sm:text-[13px] leading-[1.65] font-sans ${
-                            card.id === 2 ? "text-slate-300" : "text-slate-grey"
-                          }`}>
-                            {card.description}
-                          </p>
-                          <Link
-                            href="/volunteer"
-                            className={`mt-2 sm:mt-3 inline-flex items-center gap-2 text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-bold transition-colors cursor-pointer font-sans ${
-                              card.id === 2 ? "text-gold hover:text-saffron" : "text-saffron hover:text-gold"
-                            }`}
-                            data-hover="pointer"
-                          >
-                            Participate <ArrowRight size={14} />
-                          </Link>
-                        </div>
-                      )}
+                {/* Desktop view height animation */}
+                {!isMobile ? (
+                  <motion.div
+                    animate={{ height: isOpen ? 480 : closedHeights[idx] }}
+                    transition={{ type: "spring", stiffness: 260, damping: 30 }}
+                    className="h-full"
+                  >
+                    {isOpen ? (
+                      <div className="h-full p-4 sm:p-6 md:p-7 flex flex-col justify-between text-left">
+                        {card.isFeature ? (
+                          <div className="max-w-[280px]">
+                            <h3 className="text-xl sm:text-[28px] md:text-[32px] leading-[1.1] font-normal font-heading mb-2 sm:mb-3 text-charcoal uppercase">
+                              {t("cultural.shreeNaadPathak")}
+                            </h3>
+                            <Link
+                              href="/volunteer"
+                              className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-bold text-saffron hover:text-gold transition-colors cursor-pointer font-sans"
+                              data-hover="pointer"
+                            >
+                              {t("socialWork.joinTroupe")} <ArrowRight size={14} />
+                            </Link>
+                          </div>
+                        ) : (
+                          <div className="max-w-[300px]">
+                            <h3 className={`text-lg sm:text-[24px] md:text-[26px] leading-[1.15] font-normal font-heading ${
+                              card.id === 2 ? "text-white" : "text-charcoal"
+                            }`}>
+                              {card.title}
+                            </h3>
+                            <p className={`mt-1.5 sm:mt-2 text-xs sm:text-[13px] leading-[1.65] font-sans ${
+                              card.id === 2 ? "text-slate-300" : "text-slate-grey"
+                            }`}>
+                              {card.description}
+                            </p>
+                            <Link
+                              href="/volunteer"
+                              className={`mt-2 sm:mt-3 inline-flex items-center gap-2 text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-bold transition-colors cursor-pointer font-sans ${
+                                card.id === 2 ? "text-gold hover:text-saffron" : "text-saffron hover:text-gold"
+                              }`}
+                              data-hover="pointer"
+                            >
+                              Participate <ArrowRight size={14} />
+                            </Link>
+                          </div>
+                        )}
 
-                      <div className="mt-3 sm:mt-4 grid grid-cols-2 sm:grid-cols-[1.05fr_1fr] gap-3 sm:gap-4 flex-1 items-end">
-                        <div className="self-end">
-                          <p className="text-3xl sm:text-[50px] md:text-[56px] font-normal leading-none font-heading text-saffron">
+                        <div className="mt-3 sm:mt-4 grid grid-cols-2 sm:grid-cols-[1.05fr_1fr] gap-3 sm:gap-4 flex-1 items-end">
+                          <div className="self-end">
+                            <p className="text-3xl sm:text-[50px] md:text-[56px] font-normal leading-none font-heading text-saffron">
+                              {card.metric}
+                            </p>
+                            <p className={`mt-1 sm:mt-2 text-[9px] sm:text-[11px] tracking-[0.18em] uppercase font-bold font-sans ${
+                              card.id === 2 ? "text-white/80" : "text-charcoal/80"
+                            }`}>
+                              {card.title}
+                            </p>
+                          </div>
+
+                          <div
+                            className={`relative w-full rounded-xl sm:rounded-block overflow-hidden border border-saffron/10 ${
+                              card.isFeature
+                                ? "h-[110px] sm:h-[180px] md:h-[200px]"
+                                : "h-[100px] sm:h-[140px] md:h-[155px]"
+                            }`}
+                          >
+                            <Image
+                              src={card.image}
+                              alt={card.title}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="h-full p-4 sm:p-5 flex items-center md:flex-col justify-between text-left">
+                        <div className="flex items-center md:flex-col md:items-start justify-between w-full">
+                          <p className="text-base sm:text-xl lg:text-2xl font-normal leading-none font-heading text-saffron whitespace-nowrap">
                             {card.metric}
                           </p>
-                          <p className={`mt-1 sm:mt-2 text-[9px] sm:text-[11px] tracking-[0.18em] uppercase font-bold font-sans ${
-                            card.id === 2 ? "text-white/80" : "text-charcoal/80"
+                          <p className={`text-[10px] sm:text-[9px] lg:text-[10px] tracking-wider uppercase font-bold font-sans leading-tight max-w-[140px] md:max-w-[90px] ${
+                            card.id === 2 ? "text-white/70" : "text-charcoal/70"
                           }`}>
                             {card.title}
                           </p>
                         </div>
-
-                        <div
-                          className={`relative w-full rounded-xl sm:rounded-block overflow-hidden border border-saffron/10 ${
-                            card.isFeature
-                              ? "h-[110px] sm:h-[180px] md:h-[200px]"
-                              : "h-[100px] sm:h-[140px] md:h-[155px]"
-                          }`}
-                        >
-                          <Image
-                            src={card.image}
-                            alt={card.title}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="h-full p-4 sm:p-5 flex items-center md:flex-col justify-between text-left">
-                      <div className="flex items-center md:flex-col md:items-start justify-between w-full">
-                        <p className="text-base sm:text-xl lg:text-2xl font-normal leading-none font-heading text-saffron whitespace-nowrap">
+                    )}
+                  </motion.div>
+                ) : (
+                  /* Mobile Tap-to-Expand Accordion View */
+                  <div className="w-full">
+                    {/* Collapsed/Header Bar */}
+                    <div className="p-4 flex items-center justify-between gap-3 text-left">
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg sm:text-xl font-normal font-heading text-saffron whitespace-nowrap">
                           {card.metric}
-                        </p>
-                        <p className={`text-[10px] sm:text-[9px] lg:text-[10px] tracking-wider uppercase font-bold font-sans leading-tight max-w-[140px] md:max-w-[90px] ${
-                          card.id === 2 ? "text-white/70" : "text-charcoal/70"
+                        </span>
+                        <span className={`text-xs uppercase font-bold tracking-wider font-sans ${
+                          card.id === 2 ? "text-white/90" : "text-charcoal/90"
                         }`}>
                           {card.title}
-                        </p>
+                        </span>
+                      </div>
+                      <div className={cn(
+                        "w-7 h-7 rounded-full flex items-center justify-center transition-transform duration-300 shrink-0",
+                        isOpen ? "rotate-180 bg-saffron text-white" : "bg-black/5 text-neutral-500"
+                      )}>
+                        <ChevronDown size={15} />
                       </div>
                     </div>
-                  )}
-                </motion.div>
+
+                    {/* Expanded Content on Tap */}
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-4 pb-5 pt-1 border-t border-black/5 flex flex-col gap-4 text-left">
+                            <p className={`text-xs sm:text-sm leading-relaxed font-sans ${
+                              card.id === 2 ? "text-slate-300" : "text-slate-grey"
+                            }`}>
+                              {card.description}
+                            </p>
+
+                            <div className="relative w-full h-[180px] rounded-xl overflow-hidden border border-saffron/10 shadow-sm">
+                              <Image
+                                src={card.image}
+                                alt={card.title}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+
+                            <Link
+                              href="/volunteer"
+                              onClick={(e) => e.stopPropagation()}
+                              className={`inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider font-sans transition-all shadow-sm ${
+                                card.id === 2
+                                  ? "bg-gold text-black hover:bg-gold/90"
+                                  : "bg-saffron text-white hover:bg-saffron/90"
+                              }`}
+                            >
+                              {card.isFeature ? "Join the Troupe" : "Participate & Volunteer"} <ArrowRight size={14} />
+                            </Link>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )}
               </motion.div>
             );
           })}
         </div>
 
-        {/* Dynamic Troupe Volunteer Invitation Banner */}
+        {/* Troupe Volunteer Invitation Banner */}
         <Link 
           href="/volunteer"
-          className="mt-8 sm:mt-12 bg-charcoal text-white rounded-2xl sm:rounded-full px-4 sm:px-8 py-3.5 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center cursor-pointer hover:bg-charcoal/95 transition-all border border-saffron/10 group shadow-md block"
+          className="mt-6 sm:mt-10 bg-charcoal text-white rounded-2xl sm:rounded-full px-4 sm:px-8 py-3.5 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center cursor-pointer hover:bg-charcoal/95 transition-all border border-saffron/10 group shadow-md block"
           data-hover="pointer"
         >
           <p className="text-xs sm:text-[14px] leading-[1.4] text-slate-200 font-sans">
@@ -213,3 +296,4 @@ export default function CulturalInitiatives() {
     </section>
   );
 }
+

@@ -170,6 +170,9 @@ export const eventBookingSchema = z.object({
   paymentMethod: z.enum(["free", "upi", "card", "netbanking"], {
     message: "Please select a payment method.",
   }).default("free"),
+
+  // Dynamic Custom Questions Answers
+  customAnswers: z.record(z.string(), z.union([z.string(), z.boolean()])).optional(),
 });
 
 export type VolunteerInput = z.infer<typeof volunteerSchema>;

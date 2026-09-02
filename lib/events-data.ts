@@ -14,6 +14,27 @@ export interface EventOrganizationDetail {
   content: string;
 }
 
+export interface EventPartner {
+  name: string;
+  role?: string;
+  logo?: string;
+}
+
+export interface EventSponsor {
+  name: string;
+  tier: "Title Sponsor" | "Gold Sponsor" | "Powered By" | "Associate Sponsor";
+  logo?: string;
+}
+
+export interface CustomRegistrationQuestion {
+  id: string;
+  label: string;
+  type: "text" | "select" | "checkbox";
+  options?: string[];
+  required?: boolean;
+  placeholder?: string;
+}
+
 export interface EventItem {
   id: string;
   title: string;
@@ -21,13 +42,37 @@ export interface EventItem {
   category: "cultural" | "sports" | "health" | "eco" | "charity";
   categoryLabel: string;
   status: "upcoming" | "active" | "completed";
+  registrationStatus: "open" | "closing_soon" | "closed" | "free_entry";
+  registrationOpenDate?: string;
+  registrationCloseDate?: string;
+  eventMode: "In-Person" | "Virtual" | "Hybrid";
+  checkInMode: "QR Code Scan" | "Digital Pass" | "Free Open Gate";
   date: string;
   time: string;
+  startDate?: string;
+  endDate?: string;
+  capacity?: number;
+  isCapacityFull?: boolean;
+  waitlistEnabled?: boolean;
+  venueName: string;
+  addressLine1: string;
+  addressLine2?: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
   location: string;
   mapUrl: string;
   mainImage: string;
   galleryImages: string[];
+  promoVideoUrl?: string;
   description: string;
+  accessibilityInfo: string[];
+  emergencyContactName: string;
+  emergencyContactPhone: string;
+  partners: EventPartner[];
+  sponsors: EventSponsor[];
+  customQuestions?: CustomRegistrationQuestion[];
   metrics: EventMetric[];
   organizedDetails: EventOrganizationDetail[];
   agenda: EventAgendaItem[];
@@ -44,8 +89,25 @@ export const ALL_EVENTS: EventItem[] = [
     category: "cultural",
     categoryLabel: "Cultural Festival",
     status: "upcoming",
+    registrationStatus: "open",
+    registrationOpenDate: "July 15, 2026",
+    registrationCloseDate: "August 25, 2026",
+    eventMode: "In-Person",
+    checkInMode: "QR Code Scan",
+    venueName: "Shree Pratishtan Grand Pandal Arena",
+    addressLine1: "Central Grounds, Near Shree Ganesha Temple, Indira Nagar",
+    addressLine2: "Opp. City Park, Deepali Nagar Chowk",
+    city: "Nashik",
+    state: "Maharashtra",
+    postalCode: "422009",
+    country: "India",
     date: "Aug 27 – Sep 06, 2026",
     time: "06:00 AM – 11:00 PM Daily",
+    startDate: "2026-08-27",
+    endDate: "2026-09-06",
+    capacity: 500,
+    isCapacityFull: false,
+    waitlistEnabled: true,
     location: "Shree Pratishtan Mandal, Indira Nagar Ground, Nashik",
     mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
     mainImage: "/events_ganeshotsav_2024_jejuri.jpg",
@@ -54,8 +116,51 @@ export const ALL_EVENTS: EventItem[] = [
       "/events_ganeshotsav_2023.jpg",
       "/ganeshotsav_2017_jaipur.jpg",
     ],
+    promoVideoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     description:
       "Shree Pratisthan's signature annual festival uniting thousands of devotees across Indira Nagar and Nashik in traditional celebration, eco-friendly clay idol immersion, daily grand aarti, cultural plays, and hygienic Maha Prasad distribution.",
+    accessibilityInfo: [
+      "Dedicated Wheelchair Ramps at North & South Entrances",
+      "Reserved Senior Citizen Seating Row for Evening Maha Aarti",
+      "24/7 On-site First Aid Booth & Ambulance Staging Area",
+      "Free Purified Cold Drinking Water Stations throughout the arena",
+      "Braille & Signage Wayfinding with Volunteer Marshals",
+    ],
+    emergencyContactName: "Adv. Shyam Badode (Coordinator)",
+    emergencyContactPhone: "+91 9922786608",
+    partners: [
+      { name: "Nashik Municipal Corporation", role: "Civic & Safety Partner" },
+      { name: "Indira Nagar Welfare Trust", role: "Community Partner" },
+      { name: "Nashik Civil Hospital", role: "Medical Support Partner" },
+    ],
+    sponsors: [
+      { name: "Badode Associates & Legal Counsel", tier: "Title Sponsor" },
+      { name: "Nashik City Infra Developers", tier: "Gold Sponsor" },
+      { name: "Maharashtra Gramin Bank", tier: "Powered By" },
+    ],
+    customQuestions: [
+      {
+        id: "aarti_pass",
+        label: "Do you require Evening 108-Lamp Maha Aarti Reserved Pass?",
+        type: "select",
+        options: ["Yes, for family", "No, general darshan is fine"],
+        required: true,
+      },
+      {
+        id: "senior_citizen_support",
+        label: "Are you attending with Senior Citizens (wheelchair / seating assistance)?",
+        type: "select",
+        options: ["Yes, assistance required", "No assistance needed"],
+        required: false,
+      },
+      {
+        id: "dhol_tasha_participation",
+        label: "Interested in joining Shree Naad Dhol Tasha Troupe during Visarjan?",
+        type: "select",
+        options: ["Yes, I want to participate", "No, as spectator only"],
+        required: false,
+      },
+    ],
     metrics: [
       { label: "Expected Devotees", value: "50,000+" },
       { label: "Volunteer Marshals", value: "100+ Organizers" },
@@ -102,6 +207,18 @@ export const ALL_EVENTS: EventItem[] = [
     category: "cultural",
     categoryLabel: "Cultural Festival",
     status: "upcoming",
+    registrationStatus: "open",
+    registrationOpenDate: "February 01, 2026",
+    registrationCloseDate: "March 15, 2026",
+    eventMode: "In-Person",
+    checkInMode: "Free Open Gate",
+    venueName: "Indira Nagar Main Avenue to Rane Nagar Junction",
+    addressLine1: "Starting Point: Shree Pratishtan Seva Bhavan, Indira Nagar",
+    addressLine2: "Procession Corridor: Shivaji Chowk, Lekha Nagar",
+    city: "Nashik",
+    state: "Maharashtra",
+    postalCode: "422009",
+    country: "India",
     date: "Mar 19, 2026",
     time: "06:30 AM – 12:30 PM",
     location: "Indira Nagar Main Avenue to Rane Nagar, Nashik",
@@ -112,8 +229,25 @@ export const ALL_EVENTS: EventItem[] = [
       "/volunteer_hero.jpg",
       "/swagat_yatra.jpg",
     ],
+    promoVideoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     description:
       "A magnificent cultural procession celebrating the Marathi New Year (Chaitra Pratipada) with traditional Pheta headgear, colorful Rangoli along the entire route, women bike rallies, dynamic Lezim troupes, and resounding Dhol Tasha beats across Indira Nagar.",
+    accessibilityInfo: [
+      "Designated Senior Citizen & Family Resting Shaded Pavilions every 500m",
+      "Mobile Water Trolleys & Electrolyte Stations along the entire 3.5km route",
+      "Dedicated Escort Marshals for Persons with Disabilities",
+      "Mobile First-Aid Van traveling with the rear procession tier",
+    ],
+    emergencyContactName: "Shree Pratishtan Procession Cell",
+    emergencyContactPhone: "+91 9922786608",
+    partners: [
+      { name: "Nashik Traffic Police", role: "Route Clearance & Security" },
+      { name: "Shree Naad Dhol Tasha Pathak", role: "Cultural Troupe Partner" },
+    ],
+    sponsors: [
+      { name: "Maharashtra Heritage Trust", tier: "Title Sponsor" },
+      { name: "Nashik Auto Dealers Association", tier: "Gold Sponsor" },
+    ],
     metrics: [
       { label: "Procession Route", value: "3.5 km" },
       { label: "Participating Citizens", value: "15,000+" },
@@ -150,6 +284,18 @@ export const ALL_EVENTS: EventItem[] = [
     category: "cultural",
     categoryLabel: "Cultural Festival",
     status: "upcoming",
+    registrationStatus: "open",
+    registrationOpenDate: "August 01, 2026",
+    registrationCloseDate: "September 20, 2026",
+    eventMode: "In-Person",
+    checkInMode: "QR Code Scan",
+    venueName: "Indira Nagar Sports Ground & Covered Arena",
+    addressLine1: "Sports Complex Road, Indira Nagar",
+    addressLine2: "Near Jogging Track, Sector 3",
+    city: "Nashik",
+    state: "Maharashtra",
+    postalCode: "422009",
+    country: "India",
     date: "Sep 22 – Oct 02, 2026",
     time: "07:30 PM – 11:30 PM Daily",
     location: "Indira Nagar Sports Complex, Nashik",
@@ -158,8 +304,25 @@ export const ALL_EVENTS: EventItem[] = [
     galleryImages: [
       "/navratri_2022.jpg",
     ],
+    promoVideoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     description:
       "A vibrant celebration of Goddess Durga featuring authentic traditional Garba and Raas Dandiya, live traditional folk singers, ethnic dress competitions, safe family-friendly arenas, and social felicitation programs.",
+    accessibilityInfo: [
+      "Anti-skid smooth dance flooring with safety ramp access",
+      "Dedicated Women & Child Safety Marshals & Help Desk",
+      "Paramedic Booth with on-site first aid & hydration drinks",
+      "Organized separate parking with EV charging stations",
+    ],
+    emergencyContactName: "Women & Safety Coordination Wing",
+    emergencyContactPhone: "+91 9922786608",
+    partners: [
+      { name: "Nashik Folk Musicians Guild", role: "Music & Orchestra Partner" },
+      { name: "City Safety Marshals", role: "Security Partner" },
+    ],
+    sponsors: [
+      { name: "Shree Jewellers Nashik", tier: "Title Sponsor" },
+      { name: "Saffron Spices Ltd", tier: "Gold Sponsor" },
+    ],
     metrics: [
       { label: "Nightly Dancers", value: "5,000+" },
       { label: "Live Folk Orchestra", value: "Traditional Troupe" },
@@ -196,6 +359,18 @@ export const ALL_EVENTS: EventItem[] = [
     category: "cultural",
     categoryLabel: "Historical & Youth",
     status: "upcoming",
+    registrationStatus: "free_entry",
+    registrationOpenDate: "January 01, 2026",
+    registrationCloseDate: "February 18, 2026",
+    eventMode: "In-Person",
+    checkInMode: "Free Open Gate",
+    venueName: "Shivaji Statue Chowk & Open Ground",
+    addressLine1: "Central Chhatrapati Shivaji Chowk",
+    addressLine2: "Indira Nagar Main Arterial Road",
+    city: "Nashik",
+    state: "Maharashtra",
+    postalCode: "422009",
+    country: "India",
     date: "Feb 19, 2026",
     time: "07:00 AM – 09:30 PM",
     location: "Shivaji Statue Chowk, Indira Nagar, Nashik",
@@ -207,6 +382,19 @@ export const ALL_EVENTS: EventItem[] = [
     ],
     description:
       "A grand youth commemoration honoring Chhatrapati Shivaji Maharaj with morning Rajyabhishek re-enactments, inspiring speeches on Shivaji Maharaj's administrative governance, weapon display demonstrations (Mardani Khel), and blood donation drives.",
+    accessibilityInfo: [
+      "Wheelchair access to central exhibition pavilion",
+      "Emergency medical team and hydration station on site",
+      "Senior citizen seating for public keynote lecture",
+    ],
+    emergencyContactName: "Shree Pratishtan Youth Cell",
+    emergencyContactPhone: "+91 9922786608",
+    partners: [
+      { name: "Swarajya Pratishthan Nashik", role: "Historical Research Partner" },
+    ],
+    sponsors: [
+      { name: "Sahyadri Fort Conservation Group", tier: "Title Sponsor" },
+    ],
     metrics: [
       { label: "Youth Participants", value: "8,000+" },
       { label: "Historical Exhibitions", value: "Forts of Swarajya" },
@@ -243,6 +431,18 @@ export const ALL_EVENTS: EventItem[] = [
     category: "charity",
     categoryLabel: "Social Harmony & Education",
     status: "upcoming",
+    registrationStatus: "free_entry",
+    registrationOpenDate: "March 01, 2026",
+    registrationCloseDate: "April 13, 2026",
+    eventMode: "In-Person",
+    checkInMode: "Free Open Gate",
+    venueName: "Pratishtan Seva Bhavan",
+    addressLine1: "Plot 45, Seva Bhavan Road, Indira Nagar",
+    addressLine2: "Near Municipal Library",
+    city: "Nashik",
+    state: "Maharashtra",
+    postalCode: "422009",
+    country: "India",
     date: "Apr 14, 2026",
     time: "08:30 AM – 06:00 PM",
     location: "Pratishtan Seva Bhavan, Indira Nagar, Nashik",
@@ -253,6 +453,19 @@ export const ALL_EVENTS: EventItem[] = [
     ],
     description:
       "Celebrating the birth anniversary of Bharat Ratna Dr. B. R. Ambedkar through social harmony symposiums, distribution of free school books to underprivileged students, blood donation drives, and academic excellence felicitation for local students.",
+    accessibilityInfo: [
+      "Ground floor accessible hall with wheelchair ramps",
+      "Sign language interpreters available for keynote address",
+      "Free medical checkup counter on-site",
+    ],
+    emergencyContactName: "Education & Welfare Desk",
+    emergencyContactPhone: "+91 9922786608",
+    partners: [
+      { name: "Nashik Student Education Foundation", role: "Academic Partner" },
+    ],
+    sponsors: [
+      { name: "Vidya Book House Nashik", tier: "Powered By" },
+    ],
     metrics: [
       { label: "Students Honored", value: "300+ Meritorious Students" },
       { label: "Books & Kits Distributed", value: "1,500+ Notebooks" },
@@ -289,8 +502,25 @@ export const ALL_EVENTS: EventItem[] = [
     category: "health",
     categoryLabel: "Healthcare & Life Drive",
     status: "upcoming",
+    registrationStatus: "open",
+    registrationOpenDate: "July 01, 2026",
+    registrationCloseDate: "August 29, 2026",
+    eventMode: "In-Person",
+    checkInMode: "QR Code Scan",
+    venueName: "Indira Nagar Community Hall & Blood Bank Center",
+    addressLine1: "Civil Line, Indira Nagar Main Road",
+    addressLine2: "Near Mahila Udyog Kendra",
+    city: "Nashik",
+    state: "Maharashtra",
+    postalCode: "422009",
+    country: "India",
     date: "Aug 30, 2026",
     time: "08:00 AM – 04:00 PM",
+    startDate: "2026-08-30",
+    endDate: "2026-08-30",
+    capacity: 300,
+    isCapacityFull: false,
+    waitlistEnabled: true,
     location: "Indira Nagar Community Hall, Nashik",
     mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
     mainImage: "/volunteer_medical.png",
@@ -299,8 +529,49 @@ export const ALL_EVENTS: EventItem[] = [
       "/community_assembly.png",
       "/volunteer_coordinator.png",
     ],
+    promoVideoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     description:
       "Continuing Shree Pratishtan's landmark legacy of 50+ blood donation camps, organized in direct collaboration with Nashik Civil Hospital Blood Bank, Red Cross Blood Center, and Arpan Blood Bank to maintain critical emergency blood supplies.",
+    accessibilityInfo: [
+      "Air-conditioned donor recovery rooms with reclining medical beds",
+      "Immediate doctor consultation for first-time donors",
+      "Free post-donation nutritious meals and fresh juice counters",
+      "Barrier-free ground level access with donor escort marshals",
+    ],
+    emergencyContactName: "Dr. Medical Superintendent (Helpline)",
+    emergencyContactPhone: "+91 9922786608",
+    partners: [
+      { name: "Nashik Civil Hospital Blood Bank", role: "Authorized Government Blood Bank" },
+      { name: "Indian Red Cross Society Nashik", role: "Phlebotomy & Testing Partner" },
+      { name: "Arpan Blood Center", role: "Cold Chain Transport Partner" },
+    ],
+    sponsors: [
+      { name: "PharmaCare Labs Nashik", tier: "Gold Sponsor" },
+      { name: "Rotary Club of Nashik West", tier: "Powered By" },
+    ],
+    customQuestions: [
+      {
+        id: "blood_group",
+        label: "Your Blood Group",
+        type: "select",
+        options: ["A+ Positive", "A- Negative", "B+ Positive", "B- Negative", "O+ Positive", "O- Negative", "AB+ Positive", "AB- Negative", "Don't Know (Test on site)"],
+        required: true,
+      },
+      {
+        id: "past_donation",
+        label: "Have you donated blood in the last 3 months?",
+        type: "select",
+        options: ["No, ready to donate", "Yes, within 3 months", "First time donor"],
+        required: true,
+      },
+      {
+        id: "donor_registry_consent",
+        label: "Enroll in Shree Pratishtan 24/7 Emergency Blood Donor Registry for Nashik?",
+        type: "select",
+        options: ["Yes, add my contact for emergency calls", "No, for this camp only"],
+        required: false,
+      },
+    ],
     metrics: [
       { label: "Target Blood Units", value: "250+ Units" },
       { label: "Past Camps Legacy", value: "50+ Camps Held" },
@@ -337,6 +608,18 @@ export const ALL_EVENTS: EventItem[] = [
     category: "health",
     categoryLabel: "Wellness & Health",
     status: "upcoming",
+    registrationStatus: "open",
+    registrationOpenDate: "May 15, 2026",
+    registrationCloseDate: "June 20, 2026",
+    eventMode: "Hybrid",
+    checkInMode: "QR Code Scan",
+    venueName: "Indira Nagar Public Sports Ground",
+    addressLine1: "Sector 2, Near City Garden",
+    addressLine2: "Indira Nagar",
+    city: "Nashik",
+    state: "Maharashtra",
+    postalCode: "422009",
+    country: "India",
     date: "Jun 21, 2026",
     time: "06:00 AM – 02:00 PM",
     location: "Indira Nagar Public Sports Ground, Nashik",
@@ -349,6 +632,20 @@ export const ALL_EVENTS: EventItem[] = [
     ],
     description:
       "A mass community health morning combining guided Common Yoga Protocol asanas with specialized medical consultations in orthopedics, cardiology, ophthalmology, and free medicine distribution for senior citizens.",
+    accessibilityInfo: [
+      "Custom yoga mats provided for senior citizens and beginners",
+      "Reserved seating on chairs for elderly who cannot sit on ground",
+      "Free medical diagnostic counters with priority queue for seniors",
+    ],
+    emergencyContactName: "Health Desk Coordinator",
+    emergencyContactPhone: "+91 9922786608",
+    partners: [
+      { name: "Nashik Yoga Teachers Association", role: "Yoga Guidance Partner" },
+      { name: "Nashik Doctors Forum", role: "Medical Consultation Team" },
+    ],
+    sponsors: [
+      { name: "AyurVeda Wellness India", tier: "Title Sponsor" },
+    ],
     metrics: [
       { label: "Yoga Participants", value: "1,200+ Citizens" },
       { label: "Visiting Specialist Doctors", value: "15 Doctors" },
@@ -385,6 +682,18 @@ export const ALL_EVENTS: EventItem[] = [
     category: "sports",
     categoryLabel: "Sports & Youth Tournament",
     status: "upcoming",
+    registrationStatus: "open",
+    registrationOpenDate: "October 01, 2026",
+    registrationCloseDate: "December 10, 2026",
+    eventMode: "In-Person",
+    checkInMode: "QR Code Scan",
+    venueName: "Indira Nagar Cricket Arena & Sports Ground",
+    addressLine1: "Opposite Rajiv Gandhi Bhavan",
+    addressLine2: "Indira Nagar Ring Road",
+    city: "Nashik",
+    state: "Maharashtra",
+    postalCode: "422009",
+    country: "India",
     date: "Dec 18 – Dec 25, 2026",
     time: "08:00 AM – 06:00 PM Daily",
     location: "Indira Nagar Cricket Arena, Nashik",
@@ -395,8 +704,23 @@ export const ALL_EVENTS: EventItem[] = [
       "/community_assembly.png",
       "/gallery_dahi_handi_pyramids.png",
     ],
+    promoVideoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     description:
       "Honoring Shree Pratishtan's 2006 founding origin—where 20 friends playing cricket transformed sports bonding into social service. A premier annual tennis-ball cricket championship attracting top youth teams from across Nashik district with grand trophies and player felicitation.",
+    accessibilityInfo: [
+      "Spectator grandstands with shaded roof canopy",
+      "Player dugout medical corner with sports physiotherapist",
+      "Live electronic scoreboard and live video streaming booth",
+    ],
+    emergencyContactName: "Sports Committee Convenor",
+    emergencyContactPhone: "+91 9922786608",
+    partners: [
+      { name: "Nashik District Cricket Association Umpires", role: "Officiating Partner" },
+    ],
+    sponsors: [
+      { name: "Shree Sports & Fitness Gear", tier: "Title Sponsor" },
+      { name: "Nashik Power Energy Drinks", tier: "Powered By" },
+    ],
     metrics: [
       { label: "Participating Teams", value: "32 Teams" },
       { label: "Youth Players", value: "450+ Cricketers" },
@@ -433,6 +757,18 @@ export const ALL_EVENTS: EventItem[] = [
     category: "charity",
     categoryLabel: "Social Welfare",
     status: "completed",
+    registrationStatus: "closed",
+    registrationOpenDate: "June 01, 2026",
+    registrationCloseDate: "July 10, 2026",
+    eventMode: "In-Person",
+    checkInMode: "Digital Pass",
+    venueName: "Indira Nagar & Nashik District Municipal Schools",
+    addressLine1: "Central Distribution Center, Pratishtan Seva Bhavan",
+    addressLine2: "Indira Nagar",
+    city: "Nashik",
+    state: "Maharashtra",
+    postalCode: "422009",
+    country: "India",
     date: "Jul 15, 2026",
     time: "09:00 AM – 05:00 PM",
     location: "Indira Nagar & Nashik District Municipal Schools",
@@ -445,6 +781,18 @@ export const ALL_EVENTS: EventItem[] = [
     ],
     description:
       "A dedicated community outreach initiative distributing study kits, school bags, notebooks, and winter clothing to students and vulnerable families in Indira Nagar and nearby rural schools across Nashik district.",
+    accessibilityInfo: [
+      "Door-to-door distribution teams for elderly and disabled citizens",
+      "Direct school coordinate desks with municipal teachers",
+    ],
+    emergencyContactName: "Seva Cell Helpline",
+    emergencyContactPhone: "+91 9922786608",
+    partners: [
+      { name: "Nashik Municipal Education Board", role: "School Coordination" },
+    ],
+    sponsors: [
+      { name: "Shree Pratishtan Donors & Well-Wishers", tier: "Title Sponsor" },
+    ],
     metrics: [
       { label: "Study Kits Distributed", value: "2,500+ Kits" },
       { label: "Families Supported", value: "1,500+ Families" },

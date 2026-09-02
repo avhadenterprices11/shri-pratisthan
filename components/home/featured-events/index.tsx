@@ -101,7 +101,7 @@ const EVENTS: EventPanel[] = [
 export default function FeaturedEvents() {
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-  
+
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [activeMobileId, setActiveMobileId] = useState<string | null>("ganesh");
 
@@ -133,13 +133,13 @@ export default function FeaturedEvents() {
   }, []);
 
   return (
-    <section 
-      ref={containerRef} 
+    <section
+      ref={containerRef}
       className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background z-20"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-5" />
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* Editorial Heading Section */}
         <div className="flex flex-col mb-8 sm:mb-12 md:mb-16 max-w-4xl">
           <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-foreground tracking-tight font-heading leading-tight uppercase">
@@ -151,11 +151,11 @@ export default function FeaturedEvents() {
         </div>
 
         {/* Layout Row */}
-        <div 
+        <div
           ref={gridRef}
           className="flex flex-col md:flex-row gap-8 md:gap-12 items-start relative min-h-[500px] md:min-h-[580px]"
         >
-          
+
           {/* Left Column: Sticky Metadata Details (Desktop only) */}
           <div className="hidden md:flex md:w-[40%] flex-col justify-between pr-10 border-r border-saffron/10 min-h-[560px] sticky top-28">
             <div className="flex flex-col gap-4">
@@ -177,8 +177,8 @@ export default function FeaturedEvents() {
                       sizes="(max-w-768px) 100vw, 40vw"
                       className={cn(
                         "object-cover object-center absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                        activeEvent.id === event.id 
-                          ? "opacity-90 scale-100 blur-0" 
+                        activeEvent.id === event.id
+                          ? "opacity-90 scale-100 blur-0"
                           : "opacity-0 scale-105 blur-[2px]"
                       )}
                     />
@@ -191,11 +191,11 @@ export default function FeaturedEvents() {
                 {activeEvent.description}
               </p>
             </div>
-            
+
             <div className="mt-4">
               <div className="flex flex-wrap gap-1.5">
                 {activeEvent.details.map((detail, idx) => (
-                  <span 
+                  <span
                     key={idx}
                     className="px-2.5 py-1.5 rounded-full bg-saffron/5 border border-saffron/15 text-[9px] font-bold text-saffron uppercase tracking-wider transition-all duration-300 font-sans"
                   >
@@ -204,7 +204,7 @@ export default function FeaturedEvents() {
                 ))}
               </div>
 
-              <Link 
+              <Link
                 href={activeEvent.link}
                 className="mt-6 inline-flex items-center gap-2.5 py-2.5 px-5 rounded-full bg-saffron text-white text-[9px] font-bold uppercase tracking-widest hover:bg-saffron/90 hover:shadow-lg transition-all duration-300 font-sans"
               >
@@ -218,7 +218,7 @@ export default function FeaturedEvents() {
           </div>
 
           {/* Right Column: Interactive List */}
-          <div 
+          <div
             className="w-full md:w-[60%] flex flex-col border-t border-saffron/10 md:border-t-0 md:pl-16 relative"
           >
             {EVENTS.map((event) => (
@@ -245,7 +245,7 @@ export default function FeaturedEvents() {
                 </span>
 
                 {/* Mobile Dropdown Details (Toggled on click) */}
-                <div 
+                <div
                   className={cn(
                     "md:hidden transition-all duration-500 overflow-hidden flex flex-col gap-3 items-start w-full",
                     activeMobileId === event.id ? "max-h-[550px] opacity-100 mt-4 pb-2" : "max-h-0 opacity-0 pointer-events-none"
@@ -261,7 +261,7 @@ export default function FeaturedEvents() {
                     />
                   </div>
                   <p className="text-xs text-slate-grey leading-relaxed font-sans">{event.description}</p>
-                  
+
                   <div className="flex flex-wrap gap-1.5">
                     {event.details.map((detail, i) => (
                       <span key={i} className="px-2.5 py-1 rounded-full bg-saffron/5 border border-saffron/10 text-[9px] font-bold text-saffron uppercase font-sans">
@@ -270,8 +270,8 @@ export default function FeaturedEvents() {
                     ))}
                   </div>
 
-                  <Link 
-                    href={event.link} 
+                  <Link
+                    href={event.link}
                     className="py-2.5 px-4 rounded-full bg-saffron text-white text-[9px] uppercase font-bold tracking-widest flex items-center gap-1.5 shadow-md mt-1 font-sans"
                   >
                     Explore Spotlight

@@ -1,0 +1,97 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "community": "Community",
+    "volunteer": "Volunteer",
+    "events": "Events",
+    "gallery": "Gallery",
+    "contact": "Contact Us",
+    "quickLinks": "Quick Links",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions"
+  },
+  "cultural": {
+    "trustName": "Shree Prathishthan",
+    "trustSubname": "Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha",
+    "founder": "Adv. Shyam Badode",
+    "founderTitle": "Founder & President",
+    "location": "Indira Nagar, Nashik",
+    "swagatYatra": "Swagat Yatra",
+    "bhavyaSwagatYatra": "Bhavya Swagat Yatra",
+    "ganeshotsav": "Shree Ganeshotsav",
+    "dahiHandi": "Dahi Handi Utsav",
+    "shivJayanti": "Shiv Jayanti Celebrations",
+    "shreeNaadPathak": "Shree Naad Dhol Tasha Pathak",
+    "lezim": "Lezim Troupe",
+    "mahaAarti": "Grand Maha Aarti",
+    "mahaPrasad": "Maha Prasad",
+    "motto": "Preserving Culture, Empowering Community"
+  },
+  "hero": {
+    "eyebrow": "Pioneering Culture & Social Care Since 2006",
+    "titleLine1": "HERITAGE IN MOTION.",
+    "titleLine2": "SERVICE IN ACTION.",
+    "description": "Pioneering Maharashtrian cultural celebrations, youth empowerment, and grassroots community welfare in Indira Nagar, Nashik under the leadership of Adv. Shyam Badode.",
+    "ctaExplore": "Explore Our Journey",
+    "ctaVolunteer": "Join as Volunteer",
+    "badgeYear": "Since 2006",
+    "badgeImpact": "Serving Nashik"
+  },
+  "aboutPreview": {
+    "eyebrow": "Our Sacred Roots",
+    "heading": "Founded on Brotherhood, Dedicated to Public Welfare",
+    "description": "What began in 2006 as a sports friendship among 20 passionate youth has evolved into one of Nashik's most trusted socio-cultural institutions, driving civic healthcare, cultural celebrations, and social harmony.",
+    "learnMore": "Learn More About Us"
+  },
+  "socialWork": {
+    "eyebrow": "Grassroots Impact",
+    "heading": "Social Welfare & Healthcare Drives",
+    "description": "Dedicated community initiatives, life-saving blood donation drives, wellness camps, and educational support across Indira Nagar.",
+    "bannerText": "Ready to drum, climb, or design? Register with our friends troupe and join the next grand celebration!",
+    "joinTroupe": "Join the Troupe",
+    "participate": "Participate & Volunteer"
+  },
+  "galleryPreview": {
+    "eyebrow": "Visual Legacy",
+    "heading": "Celebrations, Sports & Seva in Motion",
+    "description": "Explore nineteen years of vibrant festival processions, youth sportsmanship, and impactful community outreach.",
+    "viewAll": "Explore Full Gallery"
+  },
+  "events": {
+    "eyebrow": "Festivals & Drives",
+    "heading": "Upcoming & Signature Celebrations",
+    "description": "Experience Maharashtra's grand cultural celebrations and healthcare initiatives in Indira Nagar.",
+    "viewAllEvents": "View All Events",
+    "bookPass": "Book Entry Pass",
+    "registrationOpen": "Registration Open",
+    "registrationClosed": "Registration Closed",
+    "closingSoon": "Closing Soon",
+    "freeEntry": "Free Open Gate"
+  },
+  "volunteer": {
+    "eyebrow": "Become a Force for Good",
+    "heading": "Volunteer With Shree Pratishtan",
+    "description": "Join thousands of youth and community leaders making a real difference in Nashik.",
+    "cta": "Submit Volunteer Application"
+  },
+  "footer": {
+    "tagline": "Pioneering cultural pride and public healthcare across Indira Nagar and Nashik since 2006.",
+    "addressTitle": "Headquarters",
+    "addressText": "Shree Pratishtan Seva Bhavan, Indira Nagar, Nashik - 422009, Maharashtra, India",
+    "regNo": "Reg: nashik/0000153/2018",
+    "phone": "+91 9922786608",
+    "email": "Info@shreepratishthan.com",
+    "rights": "All Rights Reserved.",
+    "designedWith": "Preserving Culture & Serving Society."
+  },
+  "common": {
+    "readMore": "Read More",
+    "viewDetails": "View Details",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "contactHelpline": "Contact Helpline",
+    "getDirections": "Get Directions"
+  }
+}

@@ -5,12 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { useLanguage } from "@/context/LanguageContext";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
@@ -139,29 +142,29 @@ export function Navbar() {
   }, [isOpen]);
 
   const navLinks = [
-    { label: "About Us", href: "/about" },
-    { label: "Community", href: "/community" },
-    { label: "Volunteer", href: "/volunteer" },
-    { label: "Events", href: "/events" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "Contact Us", href: "/contact" },
+    { label: t("nav.about"), href: "/about" },
+    { label: t("nav.community"), href: "/community" },
+    { label: t("nav.volunteer"), href: "/volunteer" },
+    { label: t("nav.events"), href: "/events" },
+    { label: t("nav.gallery"), href: "/gallery" },
+    { label: t("nav.contact"), href: "/contact" },
   ];
 
   return (
     <>
       <header
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 py-6 px-6 md:px-12 bg-transparent pointer-events-none transition-transform opacity-0 -translate-y-[100px]"
+        className="fixed top-0 left-0 right-0 z-50 py-4 sm:py-6 px-4 sm:px-6 md:px-12 bg-transparent pointer-events-none transition-transform opacity-0 -translate-y-[100px]"
       >
         <div className="max-w-[1400px] mx-auto flex justify-between items-center">
           {/* Left: Genuine Official Emblem inside Floating Glass Pill */}
           <Link
             href="/"
-            className="flex items-center gap-3 group bg-white/95 backdrop-blur-md border border-saffron/10 px-4 py-2 rounded-full shadow-lg pointer-events-auto hover:border-saffron/30 hover:scale-[1.02] transition-all duration-300 select-none"
+            className="flex items-center gap-2 sm:gap-3 group bg-white/95 backdrop-blur-md border border-saffron/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-lg pointer-events-auto hover:border-saffron/30 hover:scale-[1.02] transition-all duration-300 select-none"
             onClick={() => setIsOpen(false)}
             data-hover="pointer"
           >
-            <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden shrink-0 border border-saffron/20 shadow-sm transition-transform duration-500 group-hover:scale-105">
+            <div className="relative w-7 h-7 sm:w-9 sm:h-9 rounded-full overflow-hidden shrink-0 border border-saffron/20 shadow-sm transition-transform duration-500 group-hover:scale-105">
               <Image
                 src="/logo.png"
                 alt="Shree Pratisthan Official Logo"
@@ -171,27 +174,31 @@ export function Navbar() {
                 priority
               />
             </div>
-            <span className="text-xs sm:text-sm font-normal tracking-wider text-foreground font-heading uppercase">
-              SHREE <span className="text-saffron">PRATHISHTHAN</span>
+            <span className="text-[11px] sm:text-sm font-normal tracking-wider text-foreground font-heading uppercase">
+              {t("cultural.trustName")}
             </span>
           </Link>
 
-          {/* Right: Floating Dark Glassmorphic Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="group flex flex-col items-end justify-center w-14 h-10 px-4 rounded-full bg-neutral-950/95 border border-white/10 hover:border-saffron/30 transition-all duration-300 pointer-events-auto shadow-lg z-50 relative gap-1.5 focus:outline-none cursor-pointer"
-            aria-label="Toggle menu"
-            data-hover="pointer"
-          >
-            <span className={cn(
-              "h-[2px] bg-white transition-all duration-300 origin-center",
-              isOpen ? "w-6 rotate-45 translate-y-[4px] bg-saffron" : "w-6 group-hover:bg-saffron"
-            )} />
-            <span className={cn(
-              "h-[2px] bg-white transition-all duration-300 origin-center",
-              isOpen ? "w-6 -rotate-45 -translate-y-[4px] bg-saffron" : "w-4 group-hover:w-6 group-hover:bg-saffron"
-            )} />
-          </button>
+          {/* Right: Language Switcher + Floating Dark Glassmorphic Menu Button */}
+          <div className="flex items-center gap-2.5 sm:gap-3 pointer-events-auto">
+            <LanguageSwitcher variant="header" />
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="group flex flex-col items-end justify-center w-12 sm:w-14 h-9 sm:h-10 px-3 sm:px-4 rounded-full bg-neutral-950/95 border border-white/10 hover:border-saffron/30 transition-all duration-300 pointer-events-auto shadow-lg z-50 relative gap-1.5 focus:outline-none cursor-pointer"
+              aria-label="Toggle menu"
+              data-hover="pointer"
+            >
+              <span className={cn(
+                "h-[2px] bg-white transition-all duration-300 origin-center",
+                isOpen ? "w-5 sm:w-6 rotate-45 translate-y-[4px] bg-saffron" : "w-5 sm:w-6 group-hover:bg-saffron"
+              )} />
+              <span className={cn(
+                "h-[2px] bg-white transition-all duration-300 origin-center",
+                isOpen ? "w-5 sm:w-6 -rotate-45 -translate-y-[4px] bg-saffron" : "w-3 sm:w-4 group-hover:w-5 sm:group-hover:w-6 group-hover:bg-saffron"
+              )} />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -202,8 +209,13 @@ export function Navbar() {
           <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-5" />
           <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-40 opacity-5" />
 
+          {/* Top Left of Drawer: Segmented Language Switcher */}
+          <div className="absolute top-6 left-6 sm:left-12 md:left-24 z-20">
+            <LanguageSwitcher variant="drawer" />
+          </div>
+
           {/* Left Column: Branding Showcase */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start border-b md:border-b-0 md:border-r border-saffron/10 pb-6 md:pb-0 md:pr-16 mb-6 md:mb-0 relative z-10 pt-2 md:pt-0">
+          <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start border-b md:border-b-0 md:border-r border-saffron/10 pb-6 md:pb-0 md:pr-16 mb-6 md:mb-0 relative z-10 pt-6 md:pt-0">
             {/* Clean Logo Emblem */}
             <div className="nav-drawer-info flex flex-col items-center md:items-start">
               <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-saffron/30 shadow-xl bg-white/90 p-1 group transition-transform duration-500 hover:scale-105">

@@ -50,37 +50,37 @@ export default function GalleryPreview() {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      // 1. Reveal header texts and link
-      gsap.fromTo(
-        ".gallery-reveal-header",
-        { opacity: 0, y: 25 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          }
-        }
-      );
-
-      // 2. Desktop curved path entry
+      // 1. Reveal header texts and link (desktop & tablet)
       mm.add("(min-width: 768px)", () => {
+        gsap.fromTo(
+          ".gallery-reveal-header",
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            }
+          }
+        );
+
+        // 2. Desktop curved path entry animation
         const items = gsap.utils.toArray<HTMLElement>(".gallery-item");
         items.forEach((item, index) => {
           const col = index % 3;
           let startProps = {};
 
           if (col === 0) {
-            startProps = { x: -100, y: 60, rotation: -8, opacity: 0 };
+            startProps = { x: -80, y: 50, rotation: -6, opacity: 0 };
           } else if (col === 1) {
-            startProps = { x: 0, y: 100, scale: 0.94, opacity: 0 };
+            startProps = { x: 0, y: 80, scale: 0.95, opacity: 0 };
           } else {
-            startProps = { x: 100, y: 60, rotation: 8, opacity: 0 };
+            startProps = { x: 80, y: 50, rotation: 6, opacity: 0 };
           }
 
           gsap.fromTo(
@@ -96,7 +96,7 @@ export default function GalleryPreview() {
               scrollTrigger: {
                 trigger: item,
                 start: "top 95%",
-                end: "top 60%",
+                end: "top 65%",
                 scrub: 1,
               }
             }
@@ -104,47 +104,45 @@ export default function GalleryPreview() {
         });
       });
 
-      // 3. Mobile clean vertical entry (eliminates horizontal overflow bounce)
+      // 3. Mobile clean entrance (guaranteed 100% visible, zero blank screens)
       mm.add("(max-width: 767px)", () => {
-        const items = gsap.utils.toArray<HTMLElement>(".gallery-item");
-        items.forEach((item) => {
-          gsap.fromTo(
-            item,
-            { y: 35, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              ease: "power2.out",
-              duration: 0.7,
-              scrollTrigger: {
-                trigger: item,
-                start: "top 90%",
-                toggleActions: "play none none none",
-              }
-            }
-          );
+        gsap.set(".gallery-reveal-header, .gallery-item", {
+          opacity: 1,
+          y: 0,
+          x: 0,
+          rotation: 0,
+          scale: 1,
         });
       });
     }, containerRef);
 
-    const timer = setTimeout(() => {
+    // Refresh ScrollTrigger after DOM renders & images settle
+    const refreshTimer = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 100);
+    }, 200);
+
+    const handleResizeOrScroll = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("resize", handleResizeOrScroll, { passive: true });
 
     return () => {
       ctx.revert();
-      clearTimeout(timer);
+      clearTimeout(refreshTimer);
+      window.removeEventListener("resize", handleResizeOrScroll);
     };
   }, []);
 
   return (
     <section
       ref={containerRef}
-      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background z-20 select-none"
+      className="pt-2 sm:pt-6 md:pt-12 pb-10 sm:pb-16 md:pb-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background z-20 select-none"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-8 sm:mb-12 md:mb-16 gap-4 sm:gap-6">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-6 sm:mb-10 md:mb-14 gap-3 sm:gap-6">
           <div className="max-w-2xl">
             <h2 className="gallery-reveal-header text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-tight">
               Celebrations, Sports &amp; Seva in Motion
@@ -152,7 +150,7 @@ export default function GalleryPreview() {
           </div>
           <a
             href="/gallery"
-            className="gallery-reveal-header group inline-flex items-center gap-2 text-saffron font-bold uppercase text-[11px] sm:text-xs tracking-widest hover:text-gold transition-colors font-sans cursor-pointer md:cursor-none"
+            className="gallery-reveal-header group inline-flex items-center gap-2 text-saffron font-bold uppercase text-[11px] sm:text-xs tracking-widest hover:text-gold transition-colors font-sans cursor-pointer"
             data-hover="pointer"
           >
             Explore Complete Archive
@@ -161,15 +159,15 @@ export default function GalleryPreview() {
         </div>
 
         {/* Bento/Masonry-inspired dynamic grid */}
-        <div ref={gridRef} className="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div ref={gridRef} className="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6">
           {ITEMS.map((item, index) => {
             const isTall = index === 1 || index === 4;
             return (
               <div
                 key={index}
                 className={`gallery-item group relative overflow-hidden rounded-2xl sm:rounded-block border border-saffron/10 shadow-md ${
-                  isTall ? "lg:row-span-2 min-h-[260px] sm:min-h-[360px]" : "min-h-[220px] sm:min-h-[260px]"
-                } flex flex-col justify-between p-5 sm:p-7 transition-[border-color,box-shadow] duration-500 hover:shadow-[0_20px_50px_rgba(226,88,34,0.15)] hover:border-saffron/30`}
+                  isTall ? "lg:row-span-2 min-h-[240px] sm:min-h-[360px]" : "min-h-[200px] sm:min-h-[260px]"
+                } flex flex-col justify-between p-4 sm:p-7 transition-[border-color,box-shadow] duration-500 hover:shadow-[0_20px_50px_rgba(226,88,34,0.15)] hover:border-saffron/30`}
               >
                 {/* Full-bleed Background Image */}
                 <Image
@@ -185,13 +183,13 @@ export default function GalleryPreview() {
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/40 to-black/10 z-10 transition-all duration-500 group-hover:via-charcoal/50 group-hover:to-black/25" />
 
                 {/* Category Tag */}
-                <div className="relative z-20 self-start bg-white/95 text-saffron font-bold text-[9px] sm:text-[10px] uppercase tracking-widest px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-saffron/20 shadow-md font-sans">
+                <div className="relative z-20 self-start bg-white/95 text-saffron font-bold text-[9px] sm:text-[10px] uppercase tracking-widest px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-saffron/20 shadow-md font-sans">
                   {item.tag}
                 </div>
 
                 {/* Title & Interactive Underline */}
                 <div className="relative z-20 mt-auto">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-normal text-white tracking-tight leading-tight font-heading group-hover:text-gold transition-colors duration-300 flex flex-col gap-1 sm:gap-1.5">
+                  <h3 className="text-base sm:text-xl md:text-2xl font-normal text-white tracking-tight leading-tight font-heading group-hover:text-gold transition-colors duration-300 flex flex-col gap-1 sm:gap-1.5">
                     {item.title}
                     <span className="w-0 h-[2px] bg-gold transition-all duration-500 ease-out group-hover:w-16" />
                   </h3>
@@ -204,4 +202,5 @@ export default function GalleryPreview() {
     </section>
   );
 }
+
 

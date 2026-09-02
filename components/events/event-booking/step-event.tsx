@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import { Calendar, Users, Clock } from "lucide-react";
+import { Calendar, Users, Clock, MapPin, Sparkles, AlertCircle, ShieldCheck } from "lucide-react";
 import CustomSelect from "@/components/ui/custom-select";
 import { EventBookingInput } from "@/lib/validations";
+import { getEventById } from "@/lib/events-data";
 
 interface StepEventProps {
   formData: Partial<EventBookingInput>;
@@ -12,17 +13,6 @@ interface StepEventProps {
   onNext: () => void;
   onBack: () => void;
 }
-
-const EVENTS_LIST_OPTIONS = [
-  { value: "ganesh-utsav-2026", label: "Shree Ganeshotsav 2026 (श्री गणेशोत्सव)", sublabel: "Aug 27 - Sep 06, 2026" },
-  { value: "gudipadwa-swagat-yatra-2026", label: "Gudipadwa Bhavya Swagat Yatra", sublabel: "Mar 19, 2026" },
-  { value: "navratri-garba-2026", label: "Navratri Utsav & Dandiya Nights", sublabel: "Sep 22 - Oct 02, 2026" },
-  { value: "blood-donation-camp-2026", label: "Bhavya Blood Donation & Health Camp", sublabel: "Aug 30, 2026" },
-  { value: "shiv-jayanti-2026", label: "Shiv Jayanti Celebrations (शिवजयंती)", sublabel: "Feb 19, 2026" },
-  { value: "cricket-tournament-2026", label: "Annual Sports & Cricket Tournament", sublabel: "Dec 18 - 25, 2026" },
-  { value: "yoga-day-health-camp-2026", label: "International Yoga Day & Health Camp", sublabel: "Jun 21, 2026" },
-  { value: "dr-ambedkar-jayanti-2026", label: "Dr. Babasaheb Ambedkar Jayanti", sublabel: "Apr 14, 2026" },
-];
 
 const TIME_SLOT_OPTIONS = [
   { value: "morning", label: "Morning Slot (08:00 AM - 12:00 PM)" },
@@ -38,48 +28,70 @@ export default function StepEvent({
   onNext,
   onBack,
 }: StepEventProps) {
+  const activeEvent = getEventById(formData.eventId || "ganesh-utsav-2026");
+  const isWaitlist = Boolean(activeEvent?.isCapacityFull && activeEvent?.waitlistEnabled);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onNext();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6 select-none">
       <div className="border-b border-neutral-200 pb-4 mb-6">
         <h3 className="text-xl md:text-2xl font-bold font-heading text-neutral-900 flex items-center gap-2">
           <Calendar className="w-6 h-6 text-saffron" />
           Step 2: Booking Slot
         </h3>
-        <p className="text-sm text-neutral-600 mt-1">
-          Select your festival/event, choose your attendance date on the calendar, and pick your time slot.
+        <p className="text-sm text-neutral-600 mt-1 font-sans">
+          Your festival selection is locked in. Select your preferred date, time slot, and number of passes.
         </p>
       </div>
 
-      {/* Form Fields */}
-      <div className="space-y-5">
-        {/* 1. Select Event */}
-        <div className="space-y-2">
-          <label htmlFor="eventId" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
-            Select Festival / Event <span className="text-saffron">*</span>
-          </label>
-          <CustomSelect
-            id="eventId"
-            options={EVENTS_LIST_OPTIONS}
-            value={formData.eventId || EVENTS_LIST_OPTIONS[0].value}
-            onChange={(val) => updateFields({ eventId: val })}
-            icon={<Calendar className="w-4 h-4" />}
-          />
-          {errors.eventId && (
-            <p className="text-xs text-red-600 font-medium">{errors.eventId}</p>
-          )}
+      {/* 1. Read-Only Selected Event Summary Card */}
+      <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-saffron/20 space-y-2 relative overflow-hidden">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-saffron bg-saffron/10 px-2.5 py-0.5 rounded-full border border-saffron/20 font-sans">
+              Selected Event (Read-Only)
+            </span>
+            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 font-sans">
+              • {activeEvent?.categoryLabel}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 bg-white px-2.5 py-0.5 rounded-full border border-black/10 font-sans">
+              📍 {activeEvent?.eventMode || "In-Person"}
+            </span>
+          </div>
         </div>
 
-        {/* 2. Grid: Date Calendar & Time Slot Dropdown */}
+        <h4 className="text-lg sm:text-xl font-normal text-neutral-900 font-heading uppercase leading-tight pt-1">
+          {activeEvent?.title}
+        </h4>
+
+        <div className="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-600 font-sans pt-1">
+          <span className="flex items-center gap-1">
+            <Calendar className="w-3.5 h-3.5 text-saffron" />
+            <strong>Official Dates:</strong> {activeEvent?.date}
+          </span>
+          <span className="flex items-center gap-1">
+            <MapPin className="w-3.5 h-3.5 text-saffron" />
+            <strong>Venue:</strong> {activeEvent?.venueName}, {activeEvent?.city}
+          </span>
+        </div>
+      </div>
+
+      {/* Form Fields: Slot, Date & Attendees */}
+      <div className="space-y-5">
+        
+        {/* Date Calendar & Time Slot Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* Calendar Date Picker */}
+          {/* Calendar Date Selection */}
           <div className="space-y-2">
-            <label htmlFor="dateOfBirth" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
-              Calendar Date Selection <span className="text-saffron">*</span>
+            <label htmlFor="dateOfBirth" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
+              Attendance Date <span className="text-saffron">*</span>
             </label>
             <div className="relative">
               <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
@@ -87,19 +99,21 @@ export default function StepEvent({
                 id="dateOfBirth"
                 type="date"
                 required
-                value={formData.dateOfBirth || "2026-08-27"}
+                min={activeEvent?.startDate || "2026-01-01"}
+                max={activeEvent?.endDate || "2026-12-31"}
+                value={formData.dateOfBirth || activeEvent?.startDate || "2026-08-27"}
                 onChange={(e) => updateFields({ dateOfBirth: e.target.value })}
-                className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium"
+                className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium font-sans"
               />
             </div>
             {errors.dateOfBirth && (
-              <p className="text-xs text-red-600 font-medium">{errors.dateOfBirth}</p>
+              <p className="text-xs text-red-600 font-medium font-sans">{errors.dateOfBirth}</p>
             )}
           </div>
 
-          {/* Time Slot Selector in Dropdown */}
+          {/* Time Slot Selector Dropdown */}
           <div className="space-y-2">
-            <label htmlFor="preferredTimeSlot" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
+            <label htmlFor="preferredTimeSlot" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
               Time Slot Selector <span className="text-saffron">*</span>
             </label>
             <CustomSelect
@@ -110,15 +124,15 @@ export default function StepEvent({
               icon={<Clock className="w-4 h-4" />}
             />
             {errors.preferredTimeSlot && (
-              <p className="text-xs text-red-600 font-medium">{errors.preferredTimeSlot}</p>
+              <p className="text-xs text-red-600 font-medium font-sans">{errors.preferredTimeSlot}</p>
             )}
           </div>
         </div>
 
-        {/* 3. Number of Attendees */}
+        {/* Number of Attendees */}
         <div className="space-y-2">
-          <label htmlFor="numberOfParticipants" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
-            Number of Attendees / Passes <span className="text-saffron">*</span>
+          <label htmlFor="numberOfParticipants" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
+            Number of Attendees / Passes (Max 20) <span className="text-saffron">*</span>
           </label>
           <div className="relative">
             <Users className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
@@ -129,19 +143,31 @@ export default function StepEvent({
               max={20}
               required
               value={formData.numberOfParticipants || 1}
-              onChange={(e) => updateFields({ numberOfParticipants: parseInt(e.target.value) || 1 })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-semibold shadow-sm"
+              onChange={(e) => updateFields({ numberOfParticipants: Math.min(20, Math.max(1, parseInt(e.target.value) || 1)) })}
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-semibold shadow-xs font-sans"
             />
           </div>
           {errors.numberOfParticipants && (
-            <p className="text-xs text-red-600 font-medium">{errors.numberOfParticipants}</p>
+            <p className="text-xs text-red-600 font-medium font-sans">{errors.numberOfParticipants}</p>
           )}
         </div>
 
-        {/* Short Note Info Box */}
-        <div className="p-4 bg-saffron/5 border border-saffron/20 rounded-xl text-xs text-slate-700 leading-relaxed">
-          <strong className="text-saffron font-bold">Venue &amp; Entry:</strong> Free community passes for Indira Nagar, Nashik. Entry coordinators will reserve your designated time slot on the event ground.
-        </div>
+        {/* Capacity / Waitlist Status Notice */}
+        {isWaitlist ? (
+          <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 leading-relaxed font-sans flex items-start gap-2.5">
+            <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+            <div>
+              <strong className="font-bold">Capacity Full Notice:</strong> Primary registration allocation is currently full for this slot. Submitting this form will add you to our <strong>Priority Waitlist</strong>. You will be notified via SMS/Email as soon as passes open.
+            </div>
+          </div>
+        ) : (
+          <div className="p-4 bg-saffron/[0.04] border border-saffron/20 rounded-xl text-xs text-slate-700 leading-relaxed font-sans flex items-start gap-2.5">
+            <ShieldCheck className="w-4 h-4 text-saffron shrink-0 mt-0.5" />
+            <div>
+              <strong className="text-saffron font-bold">Free Community Passes:</strong> Indira Nagar &amp; Nashik citizens receive direct QR check-in passes valid for entry at the gate.
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Navigation Buttons */}
@@ -149,16 +175,16 @@ export default function StepEvent({
         <button
           type="button"
           onClick={onBack}
-          className="px-6 py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold text-sm uppercase rounded-xl transition-all cursor-pointer"
+          className="px-6 py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold text-xs sm:text-sm uppercase rounded-xl transition-all cursor-pointer font-sans"
         >
           &larr; Back
         </button>
 
         <button
           type="submit"
-          className="px-8 py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-sm tracking-wider uppercase rounded-xl shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer"
+          className="px-8 py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer font-sans"
         >
-          Next: Review &amp; Confirm &rarr;
+          {isWaitlist ? "Join Waitlist & Review &rarr;" : "Next: Review & Confirm &rarr;"}
         </button>
       </div>
     </form>

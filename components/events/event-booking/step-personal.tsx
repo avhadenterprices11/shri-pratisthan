@@ -1,8 +1,10 @@
 "use client";
 
 import React from "react";
-import { User, Phone, Mail, MapPin } from "lucide-react";
+import { User, Phone, Mail, MapPin, HelpCircle, CheckSquare } from "lucide-react";
 import { EventBookingInput } from "@/lib/validations";
+import { getEventById } from "@/lib/events-data";
+import { cn } from "@/lib/utils";
 
 interface StepPersonalProps {
   formData: Partial<EventBookingInput>;
@@ -17,6 +19,19 @@ export default function StepPersonal({
   errors,
   onNext,
 }: StepPersonalProps) {
+  const activeEvent = getEventById(formData.eventId || "ganesh-utsav-2026");
+  const customQuestions = activeEvent?.customQuestions || [];
+
+  const handleCustomAnswerChange = (questionId: string, value: string | boolean) => {
+    const currentAnswers = formData.customAnswers || {};
+    updateFields({
+      customAnswers: {
+        ...currentAnswers,
+        [questionId]: value,
+      },
+    });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onNext();
@@ -30,15 +45,15 @@ export default function StepPersonal({
           Step 1: Personal Information
         </h3>
         <p className="text-sm text-neutral-600 mt-1">
-          Please provide your basic contact details for booking verification.
+          Please provide your contact information and answer event-specific registration questions.
         </p>
       </div>
 
-      {/* Grid Layout */}
+      {/* Grid Layout: Basic Details */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* Full Name */}
         <div className="space-y-2 md:col-span-2">
-          <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
+          <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
             Full Name <span className="text-saffron">*</span>
           </label>
           <div className="relative">
@@ -50,17 +65,17 @@ export default function StepPersonal({
               placeholder="Enter your full name (e.g. Adv. Rahul Sharma)"
               value={formData.fullName || ""}
               onChange={(e) => updateFields({ fullName: e.target.value })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium font-sans"
             />
           </div>
           {errors.fullName && (
-            <p className="text-xs text-red-600 font-medium">{errors.fullName}</p>
+            <p className="text-xs text-red-600 font-medium font-sans">{errors.fullName}</p>
           )}
         </div>
 
         {/* Phone Number */}
         <div className="space-y-2">
-          <label htmlFor="mobileNumber" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
+          <label htmlFor="mobileNumber" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
             Phone Number <span className="text-saffron">*</span>
           </label>
           <div className="relative">
@@ -72,17 +87,17 @@ export default function StepPersonal({
               placeholder="10-digit mobile number"
               value={formData.mobileNumber || ""}
               onChange={(e) => updateFields({ mobileNumber: e.target.value })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium font-sans"
             />
           </div>
           {errors.mobileNumber && (
-            <p className="text-xs text-red-600 font-medium">{errors.mobileNumber}</p>
+            <p className="text-xs text-red-600 font-medium font-sans">{errors.mobileNumber}</p>
           )}
         </div>
 
         {/* Email Address */}
         <div className="space-y-2">
-          <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
+          <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
             Email Address <span className="text-saffron">*</span>
           </label>
           <div className="relative">
@@ -94,17 +109,17 @@ export default function StepPersonal({
               placeholder="name@domain.com"
               value={formData.email || ""}
               onChange={(e) => updateFields({ email: e.target.value })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium font-sans"
             />
           </div>
           {errors.email && (
-            <p className="text-xs text-red-600 font-medium">{errors.email}</p>
+            <p className="text-xs text-red-600 font-medium font-sans">{errors.email}</p>
           )}
         </div>
 
-        {/* Address */}
+        {/* Residential Address */}
         <div className="space-y-2 md:col-span-2">
-          <label htmlFor="streetArea" className="block text-xs font-bold uppercase tracking-wider text-neutral-700">
+          <label htmlFor="streetArea" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
             Residential Address <span className="text-saffron">*</span>
           </label>
           <div className="relative">
@@ -122,20 +137,95 @@ export default function StepPersonal({
                 district: "Nashik",
                 pinCode: "422009"
               })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium resize-none"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium resize-none font-sans"
             />
           </div>
           {errors.streetArea && (
-            <p className="text-xs text-red-600 font-medium">{errors.streetArea}</p>
+            <p className="text-xs text-red-600 font-medium font-sans">{errors.streetArea}</p>
           )}
         </div>
       </div>
+
+      {/* Dynamic Custom Registration Questions (Configured in Backend) */}
+      {customQuestions.length > 0 && (
+        <div className="pt-6 border-t border-saffron/15 space-y-5">
+          <div className="flex items-center gap-2">
+            <HelpCircle className="w-5 h-5 text-saffron" />
+            <div>
+              <h4 className="text-sm font-bold uppercase tracking-wider text-neutral-900 font-heading">
+                Event-Specific Registration Questions
+              </h4>
+              <p className="text-xs text-slate-500 font-sans">
+                Tailored for {activeEvent?.title}
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-4 bg-saffron/[0.03] p-4 sm:p-5 rounded-2xl border border-saffron/15">
+            {customQuestions.map((q) => {
+              const currentVal = formData.customAnswers?.[q.id] ?? "";
+              const errKey = `custom_${q.id}`;
+
+              return (
+                <div key={q.id} className="space-y-1.5">
+                  <label htmlFor={`custom_${q.id}`} className="block text-xs font-bold text-neutral-800 font-sans">
+                    {q.label} {q.required && <span className="text-saffron">*</span>}
+                  </label>
+
+                  {q.type === "select" && q.options && (
+                    <select
+                      id={`custom_${q.id}`}
+                      required={q.required}
+                      value={String(currentVal)}
+                      onChange={(e) => handleCustomAnswerChange(q.id, e.target.value)}
+                      className="w-full px-4 py-2.5 bg-white border border-neutral-300 rounded-xl text-neutral-900 text-xs sm:text-sm font-medium font-sans focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron"
+                    >
+                      <option value="">-- Please select an option --</option>
+                      {q.options.map((opt, i) => (
+                        <option key={i} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  )}
+
+                  {q.type === "text" && (
+                    <input
+                      id={`custom_${q.id}`}
+                      type="text"
+                      required={q.required}
+                      placeholder={q.placeholder || "Enter details..."}
+                      value={String(currentVal)}
+                      onChange={(e) => handleCustomAnswerChange(q.id, e.target.value)}
+                      className="w-full px-4 py-2.5 bg-white border border-neutral-300 rounded-xl text-neutral-900 text-xs sm:text-sm font-medium font-sans focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron"
+                    />
+                  )}
+
+                  {q.type === "checkbox" && (
+                    <label className="flex items-center gap-2 cursor-pointer mt-1">
+                      <input
+                        type="checkbox"
+                        checked={Boolean(currentVal)}
+                        onChange={(e) => handleCustomAnswerChange(q.id, e.target.checked)}
+                        className="w-4 h-4 rounded text-saffron focus:ring-saffron"
+                      />
+                      <span className="text-xs text-neutral-700 font-sans">{q.placeholder || "Yes, confirm"}</span>
+                    </label>
+                  )}
+
+                  {errors[errKey] && (
+                    <p className="text-xs text-red-600 font-medium font-sans">{errors[errKey]}</p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Action Navigation */}
       <div className="flex justify-end pt-4">
         <button
           type="submit"
-          className="px-8 py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-sm tracking-wider uppercase rounded-xl shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer"
+          className="px-8 py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer font-sans"
         >
           Next: Select Booking Slot &rarr;
         </button>
