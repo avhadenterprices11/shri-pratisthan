@@ -35,13 +35,13 @@ function FaqItem({ q, a }: { q: string; a: string }) {
   }, [open]);
 
   return (
-    <div className="glass-panel rounded-block overflow-hidden transition-all duration-300">
+    <div className="glass-panel rounded-xl sm:rounded-block overflow-hidden transition-all duration-300 border border-saffron/15 bg-white shadow-sm">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full px-6 py-5 flex justify-between items-center text-left focus:outline-none"
+        className="w-full px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-center text-left focus:outline-none gap-3"
       >
-        <span className="text-base sm:text-lg font-extrabold text-foreground font-heading">{q}</span>
-        <span className={`text-saffron text-2xl font-black transition-transform duration-300 ${open ? "rotate-45" : ""}`}>
+        <span className="text-sm sm:text-base md:text-lg font-normal text-neutral-900 font-heading leading-snug uppercase">{q}</span>
+        <span className={`text-saffron text-xl sm:text-2xl font-normal transition-transform duration-300 shrink-0 ${open ? "rotate-45" : ""}`}>
           +
         </span>
       </button>
@@ -50,7 +50,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         className="height-0 overflow-hidden"
         style={{ height: 0 }}
       >
-        <div className="px-6 pb-5 text-sm text-slate-grey leading-relaxed border-t border-saffron/10 pt-4 bg-orange-50/10">
+        <div className="px-4 sm:px-6 pb-4 sm:pb-5 text-xs sm:text-sm text-slate-grey leading-[1.75] font-sans border-t border-saffron/10 pt-3 sm:pt-4 bg-orange-50/10 font-normal">
           {a}
         </div>
       </div>
@@ -87,19 +87,19 @@ export default function EventsFAQ() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
     >
-      <div className="absolute inset-0 ambient-gold-glow pointer-events-none" />
+      <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40" />
       <div className="max-w-4xl mx-auto relative z-10 faq-slide-in">
-        <div className="text-center mb-16">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">FAQ</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
+        <div className="text-center mb-8 sm:mb-16 px-4 sm:px-6">
+          <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">FAQ</span>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Common Questions
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {FAQS.map((item, index) => (
             <FaqItem key={index} q={item.q} a={item.a} />
           ))}

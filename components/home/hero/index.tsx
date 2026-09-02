@@ -44,6 +44,8 @@ export default function Hero() {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
       // 1. Set initial states of slides
       const slides = gsap.utils.toArray<HTMLElement>(".slide-container");
       const slideBgs = gsap.utils.toArray<HTMLElement>(".slide-bg");
@@ -52,63 +54,94 @@ export default function Hero() {
       gsap.set(slides.slice(1), { opacity: 0, pointerEvents: "none" });
       gsap.set(slideBgs.slice(1), { scale: 1.15 });
 
-      // 2. Build ScrollTrigger timeline with resting buffers (total duration = 7)
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=1800", // shortened pin depth for less scroll travel
-          pin: true,
-          scrub: 1,
-          snap: {
-            snapTo: [0, 2.5 / 7, 4.5 / 7, 1.0],
-            duration: { min: 0.2, max: 0.5 },
-            delay: 0.05,
-            ease: "power2.inOut",
+      // 2. Build ScrollTrigger timeline with resting buffers
+      mm.add("(min-width: 768px)", () => {
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=1800",
+            pin: true,
+            scrub: 1,
+            snap: {
+              snapTo: [0, 2.5 / 7, 4.5 / 7, 1.0],
+              duration: { min: 0.2, max: 0.5 },
+              delay: 0.05,
+              ease: "power2.inOut",
+            },
+            onUpdate: (self) => {
+              const progress = self.progress;
+              const time = progress * 7;
+              let index = 0;
+              if (time < 1.5) index = 0;
+              else if (time < 3.5) index = 1;
+              else if (time < 5.5) index = 2;
+              else index = 3;
+              setActiveIndex(index);
+            },
           },
-          onUpdate: (self) => {
-            const progress = self.progress;
-            const time = progress * 7;
-            let index = 0;
-            if (time < 1.5) {
-              index = 0;
-            } else if (time < 3.5) {
-              index = 1;
-            } else if (time < 5.5) {
-              index = 2;
-            } else {
-              index = 3;
-            }
-            setActiveIndex(index);
+        })
+        // Transitions between slides
+        .fromTo(slides[0], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 1)
+        .fromTo(slideBgs[0], { scale: 1 }, { scale: 0.95, duration: 1 }, 1)
+        .fromTo(slides[1], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 1)
+        .fromTo(slideBgs[1], { scale: 1.15 }, { scale: 1, duration: 1 }, 1)
+        .fromTo(slideContents[0], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 1)
+        .fromTo(slideContents[1], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.2)
+
+        .fromTo(slides[1], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 3)
+        .fromTo(slideBgs[1], { scale: 1 }, { scale: 0.95, duration: 1 }, 3)
+        .fromTo(slides[2], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 3)
+        .fromTo(slideBgs[2], { scale: 1.15 }, { scale: 1, duration: 1 }, 3)
+        .fromTo(slideContents[1], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 3)
+        .fromTo(slideContents[2], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 3.2)
+
+        .fromTo(slides[2], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 5)
+        .fromTo(slideBgs[2], { scale: 1 }, { scale: 0.95, duration: 1 }, 5)
+        .fromTo(slides[3], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 5)
+        .fromTo(slideBgs[3], { scale: 1.15 }, { scale: 1, duration: 1 }, 5)
+        .fromTo(slideContents[2], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 5)
+        .fromTo(slideContents[3], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 5.2);
+      });
+
+      // Mobile Optimized Timeline (shorter scroll depth, effortless touch scrolling)
+      mm.add("(max-width: 767px)", () => {
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=1000",
+            pin: true,
+            scrub: 0.8,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              const time = progress * 7;
+              let index = 0;
+              if (time < 1.5) index = 0;
+              else if (time < 3.5) index = 1;
+              else if (time < 5.5) index = 2;
+              else index = 3;
+              setActiveIndex(index);
+            },
           },
-        },
-      })
-      // Transitions between slides (resting 0-1, transition 1-2, resting 2-3, transition 3-4, resting 4-5, transition 5-6, resting 6-7)
-      // Transition 0 -> 1
-      .fromTo(slides[0], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 1)
-      .fromTo(slideBgs[0], { scale: 1 }, { scale: 0.95, duration: 1 }, 1)
-      .fromTo(slides[1], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 1)
-      .fromTo(slideBgs[1], { scale: 1.15 }, { scale: 1, duration: 1 }, 1)
-      .fromTo(slideContents[0], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 1)
-      .fromTo(slideContents[1], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.2)
+        })
+        .fromTo(slides[0], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 1)
+        .fromTo(slides[1], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 1)
+        .fromTo(slideContents[0], { y: 0, opacity: 1 }, { y: -30, opacity: 0, duration: 0.8 }, 1)
+        .fromTo(slideContents[1], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.2)
 
-      // Transition 1 -> 2
-      .fromTo(slides[1], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 3)
-      .fromTo(slideBgs[1], { scale: 1 }, { scale: 0.95, duration: 1 }, 3)
-      .fromTo(slides[2], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 3)
-      .fromTo(slideBgs[2], { scale: 1.15 }, { scale: 1, duration: 1 }, 3)
-      .fromTo(slideContents[1], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 3)
-      .fromTo(slideContents[2], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 3.2)
+        .fromTo(slides[1], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 3)
+        .fromTo(slides[2], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 3)
+        .fromTo(slideContents[1], { y: 0, opacity: 1 }, { y: -30, opacity: 0, duration: 0.8 }, 3)
+        .fromTo(slideContents[2], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 3.2)
 
-      // Transition 2 -> 3
-      .fromTo(slides[2], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 5)
-      .fromTo(slideBgs[2], { scale: 1 }, { scale: 0.95, duration: 1 }, 5)
-      .fromTo(slides[3], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 5)
-      .fromTo(slideBgs[3], { scale: 1.15 }, { scale: 1, duration: 1 }, 5)
-      .fromTo(slideContents[2], { y: 0, opacity: 1 }, { y: -50, opacity: 0, duration: 0.8 }, 5)
-      .fromTo(slideContents[3], { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 5.2);
+        .fromTo(slides[2], { opacity: 1, pointerEvents: "auto" }, { opacity: 0, pointerEvents: "none", duration: 1 }, 5)
+        .fromTo(slides[3], { opacity: 0, pointerEvents: "none" }, { opacity: 1, pointerEvents: "auto", duration: 1 }, 5)
+        .fromTo(slideContents[2], { y: 0, opacity: 1 }, { y: -30, opacity: 0, duration: 0.8 }, 5)
+        .fromTo(slideContents[3], { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 5.2);
+      });
 
-      // 3. Entrance Intro Animation on Mount (Typographic Portal Reveal)
+      // 3. Entrance Intro Animation on Mount
       const entryTl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       gsap.set(".portal-text", { scale: 0.85, opacity: 0 });
@@ -119,30 +152,30 @@ export default function Hero() {
           { opacity: 0 },
           { opacity: 1, duration: 0.5 }
         )
-        .to(".portal-text", { scale: 1, opacity: 1, duration: 1.0 })
-        .to({}, { duration: 0.3 }) // brief pause
+        .to(".portal-text", { scale: 1, opacity: 1, duration: 0.8 })
+        .to({}, { duration: 0.2 })
         .to(".portal-text", { 
-          scale: 35, 
+          scale: 18, 
           opacity: 0, 
-          duration: 1.4, 
+          duration: 1.2, 
           ease: "power3.in" 
         }, "+=0.1")
         .to(".portal-intro", { 
           opacity: 0, 
-          duration: 1.0, 
+          duration: 0.8, 
           ease: "power2.inOut" 
-        }, "-=1.2")
+        }, "-=1.0")
         .fromTo(
           ".slide-bg-0",
           { scale: 1.15, filter: "blur(4px)" },
-          { scale: 1, filter: "blur(0px)", duration: 1.4, ease: "power2.out" },
-          "-=1.2"
+          { scale: 1, filter: "blur(0px)", duration: 1.2, ease: "power2.out" },
+          "-=1.0"
         )
         .set(".portal-intro", { display: "none" })
         .fromTo(
           ".slide-content-0",
-          { y: 60, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1.0, ease: "power3.out" },
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
           "-=0.4"
         );
     }, containerRef);
@@ -165,7 +198,7 @@ export default function Hero() {
     >
       {/* Typographic Portal Reveal Overlay */}
       <div className="absolute inset-0 z-[60] bg-saffron flex flex-col items-center justify-center text-center portal-intro pointer-events-none px-4">
-        <h2 className="portal-text text-[8.5vw] md:text-[7.5vw] font-black text-white select-none uppercase font-heading leading-[0.82] tracking-tighter text-center whitespace-pre-line">
+        <h2 className="portal-text text-3xl sm:text-5xl md:text-[7vw] font-normal text-white select-none uppercase font-heading leading-[0.9] tracking-tight text-center whitespace-pre-line">
           WE{"\n"}CELEBRATE{"\n"}TOGETHER
         </h2>
       </div>
@@ -207,8 +240,8 @@ export default function Hero() {
       </div>
 
       {/* Main Slide Content Area */}
-      <div className="relative z-20 flex-grow w-full max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col justify-center text-left">
-        <div className="max-w-4xl relative w-full h-[60vh] flex items-center">
+      <div className="relative z-20 flex-grow w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12 flex flex-col justify-center text-left">
+        <div className="max-w-4xl relative w-full h-[55vh] sm:h-[60vh] flex items-center">
           {SLIDES.map((slide, idx) => (
             <div
               key={idx}
@@ -218,16 +251,16 @@ export default function Hero() {
               )}
             >
               <div className={cn(
-                "slide-content flex flex-col items-start gap-3 md:gap-5",
+                "slide-content flex flex-col items-start gap-2.5 sm:gap-4 md:gap-5",
                 idx === 0 ? "slide-content-0" : ""
               )}>
                 {/* Big Bold Title */}
-                <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-black text-white font-heading leading-[0.9] tracking-tighter uppercase whitespace-pre-line">
+                <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[7.5rem] font-normal text-white font-heading leading-[0.94] tracking-tight uppercase whitespace-pre-line">
                   {slide.title}
                 </h1>
 
                 {/* Story Quote */}
-                <p className="text-lg sm:text-2xl md:text-3xl text-pebble font-light max-w-2xl leading-relaxed italic border-l-2 border-saffron/50 pl-4 py-1">
+                <p className="text-sm sm:text-lg md:text-2xl text-pebble font-normal font-sans max-w-2xl leading-relaxed italic border-l-2 border-saffron/50 pl-3 sm:pl-4 py-1 line-clamp-3 sm:line-clamp-none">
                   "{slide.description}"
                 </p>
               </div>

@@ -48,16 +48,14 @@ export const ALL_EVENTS: EventItem[] = [
     time: "06:00 AM – 11:00 PM Daily",
     location: "Shree Pratishtan Mandal, Indira Nagar Ground, Nashik",
     mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
-    mainImage: "/images/ganesh-utsav.jpg",
+    mainImage: "/events_ganeshotsav_2024_jejuri.jpg",
     galleryImages: [
-      "/images/ganesh-utsav.jpg",
-      "/gallery_ganeshotsav_aarthi.png",
-      "/hero_ganesh.png",
-      "/ganeshotsav_backdrop.png",
-      "/gallery_gauri_ganpati_decor.png",
+      "/events_ganeshotsav_2024_jejuri.jpg",
+      "/events_ganeshotsav_2023.jpg",
+      "/ganeshotsav_2017_jaipur.jpg",
     ],
     description:
-      "Shree Pratishtan's signature annual festival uniting thousands of devotees across Indira Nagar and Nashik in traditional celebration, eco-friendly clay idol immersion, daily grand aarti, cultural plays, and hygienic Maha Prasad distribution.",
+      "Shree Pratisthan's signature annual festival uniting thousands of devotees across Indira Nagar and Nashik in traditional celebration, eco-friendly clay idol immersion, daily grand aarti, cultural plays, and hygienic Maha Prasad distribution.",
     metrics: [
       { label: "Expected Devotees", value: "50,000+" },
       { label: "Volunteer Marshals", value: "100+ Organizers" },
@@ -108,12 +106,11 @@ export const ALL_EVENTS: EventItem[] = [
     time: "06:30 AM – 12:30 PM",
     location: "Indira Nagar Main Avenue to Rane Nagar, Nashik",
     mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
-    mainImage: "/images/swagat-yatra.jpg",
+    mainImage: "/events_swagat_yatra_2022.jpg",
     galleryImages: [
-      "/images/swagat-yatra.jpg",
-      "/gallery_dhol_tasha_camps.png",
-      "/hero_ganesh.png",
-      "/community_assembly.png",
+      "/events_swagat_yatra_2022.jpg",
+      "/volunteer_hero.jpg",
+      "/swagat_yatra.jpg",
     ],
     description:
       "A magnificent cultural procession celebrating the Marathi New Year (Chaitra Pratipada) with traditional Pheta headgear, colorful Rangoli along the entire route, women bike rallies, dynamic Lezim troupes, and resounding Dhol Tasha beats across Indira Nagar.",
@@ -157,11 +154,9 @@ export const ALL_EVENTS: EventItem[] = [
     time: "07:30 PM – 11:30 PM Daily",
     location: "Indira Nagar Sports Complex, Nashik",
     mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
-    mainImage: "/gallery_navratri_garba.png",
+    mainImage: "/navratri_2022.jpg",
     galleryImages: [
-      "/gallery_navratri_garba.png",
-      "/hero_navratri.png",
-      "/community_assembly.png",
+      "/navratri_2022.jpg",
     ],
     description:
       "A vibrant celebration of Goddess Durga featuring authentic traditional Garba and Raas Dandiya, live traditional folk singers, ethnic dress competitions, safe family-friendly arenas, and social felicitation programs.",
@@ -205,11 +200,10 @@ export const ALL_EVENTS: EventItem[] = [
     time: "07:00 AM – 09:30 PM",
     location: "Shivaji Statue Chowk, Indira Nagar, Nashik",
     mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
-    mainImage: "/community_assembly.png",
+    mainImage: "/events_shiv_jayanti_2022.jpg",
     galleryImages: [
-      "/community_assembly.png",
-      "/hero_ganesh.png",
-      "/gallery_dhol_tasha_camps.png",
+      "/events_shiv_jayanti_2022.jpg",
+      "/events_rajmudra_51ft.jpg",
     ],
     description:
       "A grand youth commemoration honoring Chhatrapati Shivaji Maharaj with morning Rajyabhishek re-enactments, inspiring speeches on Shivaji Maharaj's administrative governance, weapon display demonstrations (Mardani Khel), and blood donation drives.",
@@ -253,11 +247,9 @@ export const ALL_EVENTS: EventItem[] = [
     time: "08:30 AM – 06:00 PM",
     location: "Pratishtan Seva Bhavan, Indira Nagar, Nashik",
     mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
-    mainImage: "/volunteer_coordinator.png",
+    mainImage: "/events_ambedkar_jayanti.jpg",
     galleryImages: [
-      "/volunteer_coordinator.png",
-      "/community_assembly.png",
-      "/portrait_volunteer.png",
+      "/events_ambedkar_jayanti.jpg",
     ],
     description:
       "Celebrating the birth anniversary of Bharat Ratna Dr. B. R. Ambedkar through social harmony symposiums, distribution of free school books to underprivileged students, blood donation drives, and academic excellence felicitation for local students.",

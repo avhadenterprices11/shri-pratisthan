@@ -94,18 +94,18 @@ export default function SuccessStories() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 z-0" />
       
       <div className="max-w-5xl mx-auto relative z-10 stories-reveal">
         
         {/* Title block */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Stories of Transformation
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
         {/* 3D Stacked Deck Slider Container */}
@@ -133,30 +133,30 @@ export default function SuccessStories() {
             return (
               <div
                 key={index}
-                className={`absolute w-full p-8 sm:p-12 rounded-block flex flex-col md:flex-row gap-8 items-center bg-white border border-saffron/15 shadow-xl transition-all duration-700 ease-out ${transformClass}`}
+                className={`absolute w-full p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block flex flex-col md:flex-row gap-4 sm:gap-8 items-center bg-white border border-saffron/15 shadow-xl transition-all duration-700 ease-out ${transformClass}`}
               >
                 {/* Story Icon/Avatar */}
-                <div className={`w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 flex items-center justify-center text-lg font-bold font-heading shadow-md ${story.accent} flex-shrink-0`}>
+                <div className={`w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-2 flex items-center justify-center text-sm sm:text-lg font-normal font-heading shadow-md ${story.accent} flex-shrink-0`}>
                   {story.imageText}
                 </div>
 
                 {/* Content block */}
-                <div className="flex-grow space-y-3 text-left">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-[10px] uppercase font-bold tracking-widest bg-saffron/10 text-saffron px-2.5 py-1 rounded">
+                <div className="flex-grow space-y-2 sm:space-y-3 text-center md:text-left">
+                  <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2">
+                    <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.18em] bg-saffron/10 text-saffron px-2.5 py-0.5 sm:py-1 rounded font-sans">
                       {story.location}
                     </span>
-                    <span className="text-[10px] uppercase font-bold tracking-widest bg-slate-100 text-slate-grey px-2.5 py-1 rounded">
+                    <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.18em] bg-slate-100 text-slate-grey px-2.5 py-0.5 sm:py-1 rounded font-sans">
                       {story.beneficiary}
                     </span>
                   </div>
                   
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-neutral-900 font-heading">
+                  <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 font-heading leading-snug uppercase">
                     {story.title}
                   </h3>
                   
-                  <p className="text-slate-grey leading-relaxed text-sm sm:text-base italic">
-                    “{story.story}”
+                  <p className="text-slate-grey leading-snug text-xs sm:text-base italic font-heading font-normal">
+                    &ldquo;{story.story}&rdquo;
                   </p>
                 </div>
               </div>

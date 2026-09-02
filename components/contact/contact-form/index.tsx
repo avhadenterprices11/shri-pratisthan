@@ -51,7 +51,7 @@ function FieldError({ message }: { message?: string }) {
 
 function inputClass(hasError?: boolean) {
   return [
-    "w-full bg-slate-50/50 border rounded-xl px-4 py-3 text-sm text-foreground",
+    "w-full bg-slate-50/50 border rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm text-neutral-900 font-sans",
     "placeholder:text-slate-400 focus:outline-none focus:bg-white transition-all duration-300 shadow-inner",
     hasError
       ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100"
@@ -163,58 +163,58 @@ export default function ContactForm() {
     <section
       id="contact-form"
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 animate-pulse" />
       <div className="max-w-4xl mx-auto relative z-10 contact-form-reveal">
-        <div className="glass-panel p-8 sm:p-12 rounded-block bg-white border border-saffron/10 shadow-2xl">
+        <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white border border-saffron/10 shadow-2xl">
 
-          <div className="text-center max-w-xl mx-auto mb-10">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight font-heading">
+          <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
               Get In Touch With Us
             </h2>
-            <p className="text-slate-grey mt-3 text-sm sm:text-base">
+            <p className="text-slate-grey mt-2.5 sm:mt-3 text-xs sm:text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
               Submit your inquiry below. Our administrative office will review your message and reach out shortly.
             </p>
-            <div className="w-12 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+            <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
           </div>
 
           {/* ── Success State ────────────────────────────────────────────── */}
           {status === "success" ? (
-            <div className="text-center py-12 space-y-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-saffron/20 to-saffron/5 text-saffron flex items-center justify-center mx-auto border border-saffron/30 shadow-md">
-                <MailOpen className="w-8 h-8 stroke-[1.5]" />
+            <div className="text-center py-8 sm:py-12 space-y-4">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-saffron/20 to-saffron/5 text-saffron flex items-center justify-center mx-auto border border-saffron/30 shadow-md">
+                <MailOpen className="w-7 h-7 sm:w-8 sm:h-8 stroke-[1.5]" />
               </div>
-              <h3 className="text-2xl font-extrabold text-foreground font-heading">
+              <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase">
                 Message Sent Successfully!
               </h3>
-              <p className="text-slate-grey max-w-md mx-auto text-sm">
+              <p className="text-slate-grey max-w-md mx-auto text-xs sm:text-sm font-sans leading-relaxed">
                 Thank you, <strong>{formData.name}</strong>. We have logged your request under
                 subject <strong>&ldquo;{formData.subject || "General Inquiry"}&rdquo;</strong>.
                 A liaison officer will email you at <strong>{formData.email}</strong> within 24–48 hours.
               </p>
               <button
                 onClick={handleReset}
-                className="text-xs uppercase font-extrabold tracking-widest text-saffron hover:underline mt-4 cursor-pointer"
+                className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.2em] text-saffron hover:underline mt-3 sm:mt-4 cursor-pointer font-sans"
               >
                 Send another message
               </button>
             </div>
           ) : (
             /* ── Form ───────────────────────────────────────────────────── */
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
 
               {/* Global error banner */}
               {status === "error" && errorMessage && (
-                <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700">
+                <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-xs sm:text-sm text-red-700 font-sans">
                   <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                   <span>{errorMessage}</span>
                 </div>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="cf-name" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="cf-name" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Full Name <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -231,8 +231,8 @@ export default function ContactForm() {
                   <FieldError message={fieldErrors.name} />
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="cf-email" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="cf-email" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Email Address <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -250,9 +250,9 @@ export default function ContactForm() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="cf-phone" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="cf-phone" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Phone Number <span className="text-slate-400 normal-case font-normal">(Optional)</span>
                   </label>
                   <input
@@ -266,8 +266,8 @@ export default function ContactForm() {
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="cf-subject" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="cf-subject" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Subject <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -285,8 +285,8 @@ export default function ContactForm() {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="cf-message" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+              <div className="space-y-1.5 sm:space-y-2">
+                <label htmlFor="cf-message" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                   Detailed Message <span className="text-red-400">*</span>
                 </label>
                 <textarea
@@ -303,11 +303,11 @@ export default function ContactForm() {
                 <FieldError message={fieldErrors.message} />
               </div>
 
-              <div className="text-center pt-4">
+              <div className="text-center pt-2 sm:pt-4">
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full sm:w-auto bg-saffron hover:bg-saffron/90 hover:shadow-lg hover:shadow-saffron/20 text-white font-extrabold text-xs uppercase tracking-widest px-10 py-4 rounded-full transition-all duration-300 active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
+                  className="w-full sm:w-auto bg-saffron hover:bg-saffron/90 hover:shadow-lg hover:shadow-saffron/20 text-white font-bold text-xs uppercase tracking-[0.2em] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100 font-sans"
                 >
                   {status === "loading" ? (
                     <>

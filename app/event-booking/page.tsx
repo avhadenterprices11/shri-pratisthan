@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
-import EventBookingHero from "@/components/event-booking/hero";
-import EventBookingContainer from "@/components/event-booking";
+import EventBookingHero from "@/components/events/event-booking/hero";
+import EventBookingContainer from "@/components/events/event-booking";
 
 export const metadata: Metadata = {
   title: "Event Booking & Digital Entry Pass | Shree Pratishtan (श्री प्रतिष्ठान)",

@@ -19,16 +19,16 @@ const HIGHLIGHTS: HighlightItem[] = [
     num: "01",
     title: "Gudipadwa Swagat Yatra",
     category: "Lezim & Dhol Tasha Processions",
-    video: "/festival_drums.mp4",
-    image: "/gallery_dhol_tasha_camps.png",
-    isVideo: true,
+    video: "",
+    image: "/events_swagat_yatra_2022.jpg",
+    isVideo: false,
   },
   {
     num: "02",
     title: "Shree Ganeshotsav Maha Aarti",
     category: "108-Lamp Aarti & Eco Clay Idol",
     video: "",
-    image: "/gallery_ganeshotsav_aarthi.png",
+    image: "/events_ganeshotsav_2024_jejuri.jpg",
     isVideo: false,
   },
   {
@@ -43,16 +43,16 @@ const HIGHLIGHTS: HighlightItem[] = [
     num: "04",
     title: "Shiv Jayanti Mardani Khel",
     category: "Martial Arts & Swarajya Tributes",
-    video: "/festival_drums.mp4",
-    image: "/community_assembly.png",
-    isVideo: true,
+    video: "",
+    image: "/events_shiv_jayanti_2022.jpg",
+    isVideo: false,
   },
   {
     num: "05",
     title: "Navratri Raas & Dandiya Nights",
     category: "Traditional Folk Dance Arenas",
     video: "",
-    image: "/gallery_navratri_garba.png",
+    image: "/navratri_2022.jpg",
     isVideo: false,
   },
   {
@@ -76,7 +76,7 @@ const HIGHLIGHTS: HighlightItem[] = [
     title: "Dr. Ambedkar Jayanti Book Drive",
     category: "Student Kits & Academic Honors",
     video: "",
-    image: "/volunteer_coordinator.png",
+    image: "/events_ambedkar_jayanti.jpg",
     isVideo: false,
   },
 ];
@@ -194,7 +194,7 @@ export default function EventsHighlights() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0 animate-pulse" />
       
@@ -214,11 +214,11 @@ export default function EventsHighlights() {
       <div className="max-w-7xl mx-auto relative z-10 highlights-reveal">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-20 px-6">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-20 px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Celebration Snapshots
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
         {/* 1. Desktop Layout (Typographic list with cursor follow portal) */}
@@ -232,16 +232,16 @@ export default function EventsHighlights() {
             >
               {/* Suffix Number & Title */}
               <div className="flex items-center gap-8">
-                <span className="text-sm font-black text-slate-grey font-heading tracking-widest uppercase block select-none">
+                <span className="text-sm font-normal text-slate-grey font-heading tracking-[0.2em] uppercase block select-none">
                   {item.num}
                 </span>
-                <h3 className="text-3xl xl:text-5xl font-extrabold text-outline-highlight font-heading tracking-tight select-none">
+                <h3 className="text-3xl xl:text-5xl font-normal text-outline-highlight font-heading tracking-tight select-none uppercase">
                   {item.title}
                 </h3>
               </div>
 
               {/* Category Tag */}
-              <span className="text-xs font-bold uppercase tracking-widest text-slate-grey opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pr-4 select-none font-sans">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-grey opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pr-4 select-none font-sans">
                 {item.category}
               </span>
             </div>
@@ -249,11 +249,11 @@ export default function EventsHighlights() {
         </div>
 
         {/* 2. Mobile & Tablet Fallback Interface (Stacked visual cards) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:hidden gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:hidden gap-4 sm:gap-8 max-w-4xl mx-auto">
           {HIGHLIGHTS.map((item, index) => (
             <div
               key={index}
-              className="relative rounded-block overflow-hidden min-h-[300px] flex flex-col justify-between p-8 border border-black/5 shadow-md bg-cover bg-center"
+              className="relative rounded-2xl sm:rounded-block overflow-hidden min-h-[220px] sm:min-h-[300px] flex flex-col justify-between p-5 sm:p-8 border border-black/5 shadow-md bg-cover bg-center"
               style={!item.isVideo ? { backgroundImage: `url('${item.image}')` } : {}}
             >
               {item.isVideo && (
@@ -267,20 +267,20 @@ export default function EventsHighlights() {
                   className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
                 />
               )}
-              <div className="absolute inset-0 bg-neutral-900/45 z-0 pointer-events-none" />
+              <div className="absolute inset-0 bg-neutral-900/50 z-0 pointer-events-none" />
 
               {/* Category tag */}
-              <div className="relative z-10 flex justify-between items-center mb-6">
-                <span className="text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded bg-white/10 text-white backdrop-blur-sm border border-white/20">
+              <div className="relative z-10 flex justify-between items-center mb-4 sm:mb-6">
+                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] px-2.5 py-1 rounded bg-white/10 text-white backdrop-blur-sm border border-white/20 font-sans">
                   {item.category}
                 </span>
-                <span className="text-xs text-saffron font-bold tracking-widest uppercase font-heading select-none">
+                <span className="text-xs text-saffron font-bold tracking-[0.2em] uppercase font-sans select-none">
                   {item.num}
                 </span>
               </div>
 
               {/* Title */}
-              <h3 className="relative z-10 text-xl sm:text-2xl font-black text-white font-heading select-none leading-snug">
+              <h3 className="relative z-10 text-lg sm:text-2xl font-normal text-white font-heading select-none leading-snug uppercase">
                 {item.title}
               </h3>
             </div>

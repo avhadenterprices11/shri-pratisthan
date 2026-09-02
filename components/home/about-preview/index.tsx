@@ -25,35 +25,63 @@ export default function AboutPreview() {
     if (!triggerRef.current || !cardRef.current || !videoRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Card Zoom & Radius Morph (scroll-linked scale & corner flattening against light canvas)
-      gsap.fromTo(
-        cardRef.current,
-        {
-          scale: 0.9,
-          y: 120,
-          opacity: 0.2,
-          borderRadius: "96px",
-        },
-        {
-          scale: 1,
-          y: 0,
-          opacity: 1,
-          borderRadius: "24px",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top bottom",
-            end: "center center",
-            scrub: 0.6,
-          },
-        }
-      );
+      const mm = gsap.matchMedia();
 
-      // 2. Video Parallax Sweep (subtle scroll-linked vertical translation)
+      // 1. Card Zoom & Radius Morph
+      mm.add("(min-width: 768px)", () => {
+        gsap.fromTo(
+          cardRef.current,
+          {
+            scale: 0.9,
+            y: 100,
+            opacity: 0.2,
+            borderRadius: "80px",
+          },
+          {
+            scale: 1,
+            y: 0,
+            opacity: 1,
+            borderRadius: "24px",
+            scrollTrigger: {
+              trigger: cardRef.current,
+              start: "top bottom",
+              end: "center center",
+              scrub: 0.6,
+            },
+          }
+        );
+      });
+
+      mm.add("(max-width: 767px)", () => {
+        gsap.fromTo(
+          cardRef.current,
+          {
+            scale: 0.95,
+            y: 40,
+            opacity: 0.4,
+            borderRadius: "32px",
+          },
+          {
+            scale: 1,
+            y: 0,
+            opacity: 1,
+            borderRadius: "16px",
+            scrollTrigger: {
+              trigger: cardRef.current,
+              start: "top 90%",
+              end: "center center",
+              scrub: 0.5,
+            },
+          }
+        );
+      });
+
+      // 2. Video Parallax Sweep
       gsap.fromTo(
         videoRef.current,
-        { yPercent: -5 },
+        { yPercent: -4 },
         {
-          yPercent: 5,
+          yPercent: 4,
           ease: "none",
           scrollTrigger: {
             trigger: cardRef.current,
@@ -64,18 +92,18 @@ export default function AboutPreview() {
         }
       );
 
-      // 3. Staggered Content Reveal Timeline (Play-once when card enters 80% of viewport)
+      // 3. Staggered Content Reveal Timeline
       const contentTl = gsap.timeline({
         scrollTrigger: {
           trigger: cardRef.current,
-          start: "top 80%",
+          start: "top 85%",
           once: true,
         },
       });
 
       contentTl.fromTo(
         ".about-title-el",
-        { y: 30, opacity: 0 },
+        { y: 25, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" }
       );
     }, triggerRef);
@@ -87,34 +115,34 @@ export default function AboutPreview() {
     <section
       id="about"
       ref={triggerRef}
-      className="relative w-full overflow-hidden bg-background z-20 py-16 md:py-24"
+      className="relative w-full overflow-hidden bg-background z-20 py-12 sm:py-16 md:py-24"
     >
       {/* Ambient decorative brand glows (original light theme values) */}
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-10" />
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-20 opacity-10" />
 
       {/* Centered Heading Layout */}
-      <div className="max-w-[1400px] mx-auto px-6 md:px-8 flex flex-col items-center mb-12 text-center relative z-10">
-        <div className="inline-flex items-center gap-2 mb-4 bg-saffron/10 text-saffron font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full border border-saffron/20 opacity-0 about-title-el">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col items-center mb-8 sm:mb-12 text-center relative z-10">
+        <div className="inline-flex items-center gap-2 mb-3 sm:mb-4 bg-saffron/10 text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] px-3.5 sm:px-4 py-1.5 rounded-full border border-saffron/20 opacity-0 about-title-el font-sans">
           <span>Culture • Service • Community</span>
         </div>
-        <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading leading-none opacity-0 about-title-el">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-tight opacity-0 about-title-el">
           Heritage In Motion <br />
-          <span className="text-4xl sm:text-[4rem] md:text-[5rem] font-bold text-saffron block mt-3 text-outline-festive">
+          <span className="text-3xl sm:text-[3.25rem] md:text-[4.75rem] font-normal text-saffron block mt-2 sm:mt-3 text-outline-festive font-heading">
             Service In Action
           </span>
         </h2>
       </div>
 
       {/* Showcase Card Wrapper */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-5xl mx-auto px-3 sm:px-6 relative z-10">
         <div
           ref={cardRef}
           style={{
-            borderRadius: "96px",
+            borderRadius: "clamp(16px, 4vw, 80px)",
             aspectRatio: videoAspectRatio ? `${videoAspectRatio}` : "16 / 9",
           }}
-          className="relative w-full p-[6px] shadow-2xl overflow-hidden bg-white border border-saffron/10 opacity-0 transition-[aspect-ratio] duration-300"
+          className="relative w-full p-1 sm:p-[6px] shadow-2xl overflow-hidden bg-white border border-saffron/10 opacity-0 transition-[aspect-ratio] duration-300"
         >
           {/* Animated Liquid Metal Border Bezel */}
           <LiquidMetal

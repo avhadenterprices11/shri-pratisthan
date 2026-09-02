@@ -78,21 +78,21 @@ export default function CommunityInitiatives() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5 select-none"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5 select-none"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="text-left max-w-2xl mb-16">
-          <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">
+        <div className="text-left max-w-2xl mb-8 sm:mb-16">
+          <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
             Our Pillars
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Key Focus Areas
           </h2>
-          <div className="w-16 h-1 bg-saffron mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mt-3 sm:mt-4 rounded-full" />
         </div>
 
         {/* Marquee Rows Accordion List */}
@@ -101,38 +101,38 @@ export default function CommunityInitiatives() {
             <div
               key={index}
               onClick={() => handleScrollToSection(item.anchor)}
-              className="initiative-row-item group border-b border-neutral-300 py-10 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out relative flex flex-col justify-start"
+              className="initiative-row-item group border-b border-neutral-300 py-6 sm:py-10 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out relative flex flex-col justify-start"
             >
               {/* Hardware Accelerated Infinite CSS Marquee */}
-              <div className="w-full overflow-hidden flex relative z-10 py-2">
+              <div className="w-full overflow-hidden flex relative z-10 py-1 sm:py-2">
                 <div className="flex whitespace-nowrap animate-marquee group-hover:[animation-play-state:paused] will-change-transform">
                   
                   {/* First continuous loop panel */}
-                  <div className="flex whitespace-nowrap gap-x-12 pr-12">
+                  <div className="flex whitespace-nowrap gap-x-6 sm:gap-x-12 pr-6 sm:pr-12">
                     {[...Array(4)].map((_, i) => (
-                      <div key={i} className="flex items-center gap-8">
-                        <span className="text-[10px] font-bold text-saffron tracking-widest uppercase bg-saffron/10 px-3 py-1 rounded-full border border-saffron/20 flex items-center gap-1.5 font-heading">
+                      <div key={i} className="flex items-center gap-4 sm:gap-8">
+                        <span className="text-[9px] sm:text-[10px] font-bold text-saffron tracking-[0.2em] uppercase bg-saffron/10 px-2.5 sm:px-3 py-1 rounded-full border border-saffron/20 flex items-center gap-1.5 font-sans">
                           0{index + 1} / {item.tag}
                         </span>
-                        <span className="text-5xl sm:text-7xl lg:text-8xl font-extrabold text-outline-festive tracking-tight uppercase transition-all duration-300 group-hover:text-saffron">
+                        <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading text-outline-festive tracking-tight uppercase transition-all duration-300 group-hover:text-saffron">
                           {item.title}
                         </span>
-                        {item.icon}
+                        <div className="shrink-0 scale-85 sm:scale-100">{item.icon}</div>
                       </div>
                     ))}
                   </div>
 
                   {/* Second panel for seamless repeating */}
-                  <div className="flex whitespace-nowrap gap-x-12 pr-12" aria-hidden="true">
+                  <div className="flex whitespace-nowrap gap-x-6 sm:gap-x-12 pr-6 sm:pr-12" aria-hidden="true">
                     {[...Array(4)].map((_, i) => (
-                      <div key={i} className="flex items-center gap-8">
-                        <span className="text-[10px] font-bold text-saffron tracking-widest uppercase bg-saffron/10 px-3 py-1 rounded-full border border-saffron/20 flex items-center gap-1.5 font-heading">
+                      <div key={i} className="flex items-center gap-4 sm:gap-8">
+                        <span className="text-[9px] sm:text-[10px] font-bold text-saffron tracking-[0.2em] uppercase bg-saffron/10 px-2.5 sm:px-3 py-1 rounded-full border border-saffron/20 flex items-center gap-1.5 font-sans">
                           0{index + 1} / {item.tag}
                         </span>
-                        <span className="text-5xl sm:text-7xl lg:text-8xl font-extrabold text-outline-festive tracking-tight uppercase transition-all duration-300 group-hover:text-saffron">
+                        <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading text-outline-festive tracking-tight uppercase transition-all duration-300 group-hover:text-saffron">
                           {item.title}
                         </span>
-                        {item.icon}
+                        <div className="shrink-0 scale-85 sm:scale-100">{item.icon}</div>
                       </div>
                     ))}
                   </div>
@@ -140,18 +140,18 @@ export default function CommunityInitiatives() {
                 </div>
               </div>
 
-              {/* Expanded detailed description revealed on hover */}
-              <div className="max-w-4xl px-4 overflow-hidden max-h-0 group-hover:max-h-[160px] opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out mt-0 group-hover:mt-6">
-                <p className="text-base sm:text-lg text-[#525250] leading-relaxed max-w-3xl font-sans">
+              {/* Expanded detailed description - Always readable on mobile and animated on desktop */}
+              <div className="max-w-4xl px-2 sm:px-4 mt-3 sm:mt-0 sm:max-h-0 sm:opacity-0 group-hover:sm:max-h-[160px] group-hover:sm:opacity-100 transition-all duration-500 ease-out group-hover:sm:mt-6">
+                <p className="text-xs sm:text-base md:text-lg text-[#525250] leading-[1.7] sm:leading-[1.75] max-w-3xl font-sans font-normal">
                   {item.desc}
                 </p>
                 <button
                   type="button"
                   onClick={(e) => handleScrollToSection(item.anchor, e)}
-                  className="mt-4 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-white bg-saffron hover:bg-saffron/90 px-5 py-2.5 rounded-full shadow-md transition-all cursor-pointer group-hover:scale-102"
+                  className="mt-2.5 sm:mt-4 inline-flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white bg-saffron hover:bg-saffron/90 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md transition-all cursor-pointer group-hover:scale-102 font-sans"
                 >
                   <span>Explore details</span>
-                  <ArrowDownRight className="w-4 h-4" />
+                  <ArrowDownRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </button>
               </div>
 

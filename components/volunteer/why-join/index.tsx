@@ -93,41 +93,41 @@ export default function VolunteerWhyJoin() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-45 z-0" />
       
       <div className="max-w-6xl mx-auto relative z-10 split-reveal">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Why Volunteer With Us?
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
         {/* Interactive Split Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
           
           {/* Left Column: Tab list (scrolling tabs on mobile) */}
-          <div className="md:col-span-5 flex md:flex-col gap-3 overflow-x-auto md:overflow-visible pb-4 md:pb-0 scrollbar-none w-full">
+          <div className="md:col-span-5 flex md:flex-col gap-2.5 sm:gap-3 overflow-x-auto md:overflow-visible pb-2 md:pb-0 scrollbar-none w-full">
             {VALUES.map((item, index) => {
               const isActive = activeIdx === index;
               return (
                 <button
                   key={index}
                   onClick={() => handleTabClick(index)}
-                  className={`text-left p-4 sm:p-5 rounded-xl border transition-all duration-300 flex items-center gap-4 group cursor-pointer shrink-0 md:shrink ${
+                  className={`text-left p-3 sm:p-5 rounded-xl border transition-all duration-300 flex items-center gap-2.5 sm:gap-4 group cursor-pointer shrink-0 md:shrink ${
                     isActive 
                       ? "bg-white border-saffron/20 shadow-lg" 
                       : "bg-transparent border-transparent hover:bg-white/40"
                   }`}
                 >
-                  <span className={`text-base sm:text-lg font-extrabold font-heading transition-colors duration-300 ${isActive ? "text-saffron" : "text-slate-grey group-hover:text-neutral-900"}`}>
+                  <span className={`text-xs sm:text-base md:text-lg font-normal font-heading transition-colors duration-300 ${isActive ? "text-saffron" : "text-slate-grey group-hover:text-neutral-900"}`}>
                     0{index + 1}
                   </span>
-                  <span className={`text-base sm:text-lg font-extrabold font-heading transition-colors duration-300 ${isActive ? "text-neutral-900" : "text-slate-grey group-hover:text-neutral-900"}`}>
+                  <span className={`text-xs sm:text-base md:text-lg font-normal font-heading transition-colors duration-300 uppercase ${isActive ? "text-neutral-900" : "text-slate-grey group-hover:text-neutral-900"}`}>
                     {item.title}
                   </span>
                 </button>
@@ -137,17 +137,17 @@ export default function VolunteerWhyJoin() {
 
           {/* Right Column: Display Card Portal */}
           <div className="md:col-span-7">
-            <div className="glass-panel p-8 sm:p-12 rounded-block bg-white border border-saffron/15 shadow-2xl relative min-h-[300px] sm:min-h-[280px] flex flex-col justify-between overflow-hidden">
+            <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white border border-saffron/15 shadow-2xl relative min-h-[220px] sm:min-h-[280px] flex flex-col justify-between overflow-hidden">
               <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-20 z-0" />
               
               <div ref={cardContentRef} className="relative z-10">
                 {/* Title */}
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 mb-4 font-heading">
+                <h3 className="text-xl sm:text-3xl font-normal text-neutral-900 mb-2.5 sm:mb-4 font-heading leading-snug uppercase">
                   {VALUES[activeIdx].title}
                 </h3>
                 
                 {/* Description */}
-                <p className="text-slate-grey text-base sm:text-lg leading-relaxed font-sans">
+                <p className="text-slate-grey text-xs sm:text-base md:text-lg leading-[1.7] sm:leading-[1.75] font-sans font-normal">
                   {VALUES[activeIdx].desc}
                 </p>
               </div>

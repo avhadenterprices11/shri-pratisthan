@@ -86,7 +86,7 @@ export default function CommunityHero() {
       {/* Pinned Section Wrapper */}
       <div 
         id="wrapper" 
-        className="relative w-full h-[90vh] overflow-hidden flex flex-col justify-center items-center py-20 px-6 md:px-12 text-left"
+        className="relative w-full h-[80vh] sm:h-[90vh] overflow-hidden flex flex-col justify-center items-center py-12 sm:py-20 px-4 sm:px-6 md:px-12 text-left"
       >
         {/* Plasma Background Overlay Layer */}
         <div 
@@ -97,29 +97,29 @@ export default function CommunityHero() {
         {/* Background Image Container */}
         <div id="imgContainer" className="absolute inset-0 z-0 overflow-hidden w-full h-full">
           <Image
-            src="/community_assembly.png"
+            src="/community_hero.jpg"
             alt="Community Hero Background"
             id="heroImg"
             fill
             priority
             sizes="100vw"
-            className="object-cover filter brightness-100 scale-100"
+            className="object-cover object-top filter brightness-100 scale-100"
           />
         </div>
 
         {/* Content Overlay (Z-20) */}
         <div className="max-w-[1600px] w-full mx-auto relative z-20 flex flex-col justify-start text-left pointer-events-none">
           <div className="max-w-3xl pointer-events-auto">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-neutral-900 leading-[1.05] tracking-tight mb-6 font-heading [text-shadow:_0_2px_4px_rgba(255,255,255,0.8)]">
-              <div className="overflow-hidden px-4 -mx-4 py-2 -my-2">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-neutral-900 leading-[1.1] tracking-tight mb-4 sm:mb-6 font-heading [text-shadow:_0_2px_4px_rgba(255,255,255,0.8)] uppercase">
+              <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
                 <span className="block reveal-line">Unity in Action,</span>
               </div>
-              <div className="overflow-hidden px-4 -mx-4 py-2 -my-2">
-                <span className="block reveal-line text-saffron text-outline-festive">Strength in Community.</span>
+              <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
+                <span className="block reveal-line text-saffron text-outline-festive font-heading">Strength in Community.</span>
               </div>
             </h1>
 
-            <p className="hero-subtitle text-base sm:text-lg text-neutral-800 leading-relaxed font-semibold [text-shadow:_0_1.5px_3px_rgba(255,255,255,0.9)]">
+            <p className="hero-subtitle text-xs sm:text-base md:text-lg text-neutral-800 leading-[1.7] sm:leading-[1.75] font-normal font-sans [text-shadow:_0_1.5px_3px_rgba(255,255,255,0.9)]">
               Shree Pratishtan (श्री प्रतिष्ठान) unites citizens, youth, and organizers in Indira Nagar, Nashik to drive 50+ blood donation drives, free health diagnostics, tree plantation, and welfare campaigns under the motto &ldquo;वारसा संस्कृतीचा, ध्यास समाजसेवेचा&rdquo;.
             </p>
           </div>

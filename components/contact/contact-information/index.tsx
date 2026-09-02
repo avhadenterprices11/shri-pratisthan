@@ -76,37 +76,37 @@ export default function ContactInformation() {
   return (
     <section
       ref={containerRef}
-      className="py-20 px-6 md:px-12 relative overflow-hidden bg-background"
+      className="pt-24 sm:pt-32 md:pt-36 pb-12 sm:pb-20 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Official Contact Directory
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {CARDS.map((item, index) => {
             const Icon = item.icon;
             return (
               <div
                 key={index}
-                className="info-card glass-panel group p-8 rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-xl transition-all duration-300 bg-white"
+                className="info-card glass-panel group p-5 sm:p-8 rounded-2xl sm:rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-xl transition-all duration-300 bg-white border border-saffron/10"
               >
                 <div>
-                  <div className="mb-6 w-14 h-14 rounded-2xl bg-gradient-to-br from-saffron/10 to-saffron/5 border border-saffron/20 flex items-center justify-center text-saffron group-hover:scale-110 group-hover:border-saffron/40 group-hover:shadow-md group-hover:shadow-saffron/10 transition-all duration-300">
-                    <Icon className="w-6 h-6 stroke-[1.75]" />
+                  <div className="mb-4 sm:mb-6 w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-saffron/10 to-saffron/5 border border-saffron/20 flex items-center justify-center text-saffron group-hover:scale-110 group-hover:border-saffron/40 group-hover:shadow-md group-hover:shadow-saffron/10 transition-all duration-300">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.75]" />
                   </div>
-                  <h3 className="text-lg font-extrabold text-foreground mb-4 font-heading">
+                  <h3 className="text-base sm:text-xl font-normal text-neutral-900 mb-3 sm:mb-4 font-heading leading-snug uppercase">
                     {item.title}
                   </h3>
-                  <div className="space-y-1.5">
+                  <div className="space-y-1.5 font-sans">
                     {item.details.map((line, idx) => {
                       if (line.includes("Info@shreepratishthan.com")) {
                         return (
-                          <p key={idx} className="text-sm text-slate-grey font-medium leading-relaxed">
+                          <p key={idx} className="text-xs sm:text-sm text-slate-grey font-normal leading-[1.7]">
                             Email:{" "}
                             <a
                               href="mailto:Info@shreepratishthan.com"
@@ -120,7 +120,7 @@ export default function ContactInformation() {
                       if (line.includes("+91 9922786608")) {
                         const isWhatsApp = line.toLowerCase().includes("whatsapp");
                         return (
-                          <p key={idx} className="text-sm text-slate-grey font-medium leading-relaxed">
+                          <p key={idx} className="text-xs sm:text-sm text-slate-grey font-normal leading-[1.7]">
                             {isWhatsApp ? "WhatsApp: " : "Helpline: "}
                             <a
                               href={isWhatsApp ? "https://wa.me/919922786608" : "tel:+919922786608"}
@@ -134,7 +134,7 @@ export default function ContactInformation() {
                         );
                       }
                       return (
-                        <p key={idx} className="text-sm text-slate-grey font-medium leading-relaxed">
+                        <p key={idx} className="text-xs sm:text-sm text-slate-grey font-normal leading-[1.7]">
                           {line}
                         </p>
                       );
@@ -142,7 +142,7 @@ export default function ContactInformation() {
                   </div>
                 </div>
 
-                <div className="mt-6 text-[10px] text-saffron uppercase font-bold tracking-widest">
+                <div className="mt-4 sm:mt-6 text-[9px] sm:text-[10px] text-saffron uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] font-sans pt-3 border-t border-saffron/10">
                   Official Directory
                 </div>
               </div>

@@ -171,7 +171,7 @@ export function Navbar() {
                 priority
               />
             </div>
-            <span className="text-xs sm:text-sm font-black tracking-tight text-foreground font-heading">
+            <span className="text-xs sm:text-sm font-normal tracking-wider text-foreground font-heading uppercase">
               SHREE <span className="text-saffron">PRATHISHTHAN</span>
             </span>
           </Link>
@@ -215,7 +215,7 @@ export function Navbar() {
                   className="object-contain"
                 />
               </div>
-              <h2 className="text-2xl font-black tracking-tight text-foreground font-heading">
+              <h2 className="text-2xl font-normal tracking-wide text-foreground font-heading">
                 SHREE <span className="text-saffron">PRATHISHTHAN</span>
               </h2>
               <p className="text-xs text-saffron uppercase font-bold tracking-[0.25em] font-sans mt-2">
@@ -224,7 +224,7 @@ export function Navbar() {
             </div>
 
             {/* Bottom Contact Coordinates */}
-            <div className="nav-drawer-info flex flex-col gap-4 mt-8 md:mt-0 text-slate-grey">
+            <div className="nav-drawer-info flex flex-col gap-4 mt-8 md:mt-0 text-slate-grey font-sans">
               <div>
                 <span className="text-[10px] font-bold text-saffron uppercase tracking-widest block mb-1">Office Location</span>
                 <p className="text-sm font-medium">Indira Nagar, Nashik, Maharashtra</p>
@@ -236,9 +236,9 @@ export function Navbar() {
                 </p>
               </div>
               <div className="flex gap-4 mt-2">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-extrabold tracking-widest text-slate-grey hover:text-saffron transition-colors">Facebook</a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-extrabold tracking-widest text-slate-grey hover:text-saffron transition-colors">Instagram</a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-extrabold tracking-widest text-slate-grey hover:text-saffron transition-colors">Twitter</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-bold tracking-widest text-slate-grey hover:text-saffron transition-colors">Facebook</a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-bold tracking-widest text-slate-grey hover:text-saffron transition-colors">Instagram</a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-bold tracking-widest text-slate-grey hover:text-saffron transition-colors">Twitter</a>
               </div>
             </div>
           </div>
@@ -253,7 +253,7 @@ export function Navbar() {
                     key={link.label}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="nav-drawer-link group relative block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading tracking-tight uppercase transition-all duration-300"
+                    className="nav-drawer-link group relative block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-heading tracking-tight uppercase transition-all duration-300"
                     data-hover="pointer"
                   >
                     <span className={`inline-block transition-transform duration-300 group-hover:translate-x-3 ${

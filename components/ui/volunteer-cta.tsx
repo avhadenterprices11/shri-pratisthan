@@ -80,7 +80,7 @@ export default function VolunteerCTA({
       ref={containerRef}
       id="volunteer"
       className={cn(
-        "py-24 px-6 md:px-12 relative overflow-hidden bg-background w-full select-none",
+        "py-10 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background w-full select-none",
         className
       )}
     >
@@ -88,23 +88,21 @@ export default function VolunteerCTA({
       <div className="max-w-7xl mx-auto relative z-10 volunteer-canvas">
         
         {/* Typographic Canvas Card */}
-        <div className="w-full bg-[#FFFDF9] border border-saffron/15 rounded-[2.5rem] py-10 md:py-14 px-8 md:px-16 shadow-lg text-center flex flex-col items-center justify-center max-w-7xl mx-auto relative overflow-hidden">
+        <div className="w-full bg-[#FFFDF9] border border-saffron/15 rounded-2xl sm:rounded-[2.5rem] py-8 sm:py-10 md:py-14 px-4 sm:px-8 md:px-16 shadow-lg text-center flex flex-col items-center justify-center max-w-7xl mx-auto relative overflow-hidden">
           
           {/* Heritage Corner Borders */}
-          <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-saffron/20 pointer-events-none" />
-          <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-saffron/20 pointer-events-none" />
-          <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-saffron/20 pointer-events-none" />
-          <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-saffron/20 pointer-events-none" />
-
-
+          <div className="absolute top-3 left-3 sm:top-6 sm:left-6 w-4 h-4 sm:w-8 sm:h-8 border-t-2 border-l-2 border-saffron/20 pointer-events-none" />
+          <div className="absolute top-3 right-3 sm:top-6 sm:right-6 w-4 h-4 sm:w-8 sm:h-8 border-t-2 border-r-2 border-saffron/20 pointer-events-none" />
+          <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 w-4 h-4 sm:w-8 sm:h-8 border-b-2 border-l-2 border-saffron/20 pointer-events-none" />
+          <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 w-4 h-4 sm:w-8 sm:h-8 border-b-2 border-r-2 border-saffron/20 pointer-events-none" />
 
           {/* Massive Display Typography */}
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-800 tracking-tight font-heading leading-none uppercase max-w-4xl mb-6">
+          <h2 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-slate-800 tracking-tight font-heading leading-tight uppercase max-w-4xl mb-4 sm:mb-6">
             {title}
           </h2>
 
           {/* Clean Description */}
-          <p className="text-slate-grey text-sm md:text-base leading-relaxed max-w-2xl mb-8 font-light font-sans">
+          <p className="text-slate-grey text-xs sm:text-sm md:text-base leading-[1.75] max-w-2xl mb-6 sm:mb-8 font-normal font-sans">
             {description}
           </p>
 
@@ -113,7 +111,7 @@ export default function VolunteerCTA({
             ref={buttonAreaRef}
             onMouseMove={handleAreaMouseMove}
             onMouseLeave={handleAreaMouseLeave}
-            className="py-4 px-8 flex items-center justify-center cursor-pointer"
+            className="py-2 sm:py-4 px-2 sm:px-8 flex items-center justify-center cursor-pointer w-full sm:w-auto"
             data-hover="pointer"
           >
             <LiquidMetalButton
@@ -125,7 +123,7 @@ export default function VolunteerCTA({
               variant="themed"
               size="lg"
               icon={<ArrowRight className="w-4 h-4" />}
-              className="text-xs uppercase font-extrabold tracking-widest font-heading cursor-pointer"
+              className="text-xs uppercase font-bold tracking-[0.2em] font-sans cursor-pointer w-full sm:w-auto"
               data-hover="pointer"
             >
               {buttonText}

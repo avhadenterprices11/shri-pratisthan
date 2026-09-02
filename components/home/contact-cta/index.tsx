@@ -99,98 +99,98 @@ export default function ContactCTA() {
   return (
     <section 
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
           {/* Left Column: Office Contacts */}
           <div className="lg:col-span-5 contact-slide-in">
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground leading-[1.1] tracking-tight mb-8 font-heading">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground leading-[1.15] tracking-tight mb-4 sm:mb-6 font-heading">
               Get in Touch
             </h2>
-            <p className="text-base text-slate-grey leading-relaxed mb-8">
+            <p className="text-xs sm:text-sm md:text-base text-slate-grey leading-[1.75] mb-6 sm:mb-8 font-sans">
               Have questions regarding our cultural celebrations, blood donation drives, sports leagues, or volunteering? Reach out to our central administrative desk in Indira Nagar, Nashik.
             </p>
 
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Telephone */}
-              <div className="flex gap-4 items-center">
-                <div className="w-10 h-10 rounded-full bg-saffron/10 flex items-center justify-center text-saffron">
-                  <svg className="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
+              <div className="flex gap-3 sm:gap-4 items-center">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-saffron/10 flex items-center justify-center text-saffron shrink-0">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
                 </div>
                 <div>
-                  <span className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block">Helpline Phone</span>
-                  <span className="text-base font-extrabold text-foreground font-heading">+91 9922786608</span>
+                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">Helpline Phone</span>
+                  <span className="text-sm sm:text-base font-normal text-foreground font-heading">+91 9922786608</span>
                 </div>
               </div>
 
               {/* Email */}
-              <div className="flex gap-4 items-center">
-                <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold">
-                  <svg className="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
+              <div className="flex gap-3 sm:gap-4 items-center">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold shrink-0">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                     <polyline points="22,6 12,13 2,6" />
                   </svg>
                 </div>
                 <div>
-                  <span className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block">Administrative Mail</span>
-                  <span className="text-base font-extrabold text-foreground font-heading">Info@shreepratishthan.com</span>
+                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">Administrative Mail</span>
+                  <span className="text-sm sm:text-base font-normal text-foreground font-heading">Info@shreepratishthan.com</span>
                 </div>
               </div>
 
               {/* Office Location */}
-              <div className="flex gap-4 items-center">
-                <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
-                  <svg className="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
+              <div className="flex gap-3 sm:gap-4 items-center">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 shrink-0">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                     <circle cx="12" cy="10" r="3" />
                   </svg>
                 </div>
                 <div>
-                  <span className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block">Headquarters Office</span>
-                  <span className="text-base font-extrabold text-foreground font-heading">Indira Nagar, Nashik, Maharashtra</span>
+                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">Headquarters Office</span>
+                  <span className="text-sm sm:text-base font-normal text-foreground font-heading">Indira Nagar, Nashik, Maharashtra</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Right Column: Contact Form */}
-          <div className="lg:col-span-7 contact-slide-in glass-panel p-8 sm:p-10 rounded-block border border-saffron/20 bg-white/90 backdrop-blur-md shadow-xl">
-            <h3 className="text-2xl font-extrabold text-foreground mb-6 font-heading">Send a Message</h3>
+          <div className="lg:col-span-7 contact-slide-in glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/90 backdrop-blur-md shadow-xl">
+            <h3 className="text-xl sm:text-2xl font-normal text-foreground mb-4 sm:mb-6 font-heading">Send a Message</h3>
 
             {status === "success" ? (
-              <div className="py-8 px-6 text-center space-y-4 bg-emerald-50/80 border border-emerald-200 rounded-2xl animate-in fade-in duration-300">
-                <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
-                  <CheckCircle2 className="w-8 h-8" />
+              <div className="py-6 sm:py-8 px-4 sm:px-6 text-center space-y-3 sm:space-y-4 bg-emerald-50/80 border border-emerald-200 rounded-2xl animate-in fade-in duration-300">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
-                <h4 className="text-xl font-extrabold text-emerald-950 font-heading">
+                <h4 className="text-lg sm:text-xl font-extrabold text-emerald-950 font-heading">
                   Message Sent Successfully!
                 </h4>
-                <p className="text-sm text-emerald-800 leading-relaxed max-w-md mx-auto">
+                <p className="text-xs sm:text-sm text-emerald-800 leading-relaxed max-w-md mx-auto">
                   Thank you <strong>{name}</strong>! We have received your inquiry under subject <strong>&quot;{selectedSubject}&quot;</strong>. Our desk will email you at <strong>{email}</strong> shortly.
                 </p>
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="mt-4 px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all cursor-pointer shadow-sm"
+                  className="mt-3 sm:mt-4 px-5 sm:px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider rounded-full transition-all cursor-pointer shadow-sm"
                 >
                   Send Another Message
                 </button>
               </div>
             ) : (
-              <form className="space-y-6" onSubmit={handleSubmit} noValidate>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit} noValidate>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">Your Name</label>
+                    <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-1.5 sm:mb-2 font-heading">Your Name</label>
                     <input 
                       type="text" 
                       placeholder="Enter name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-sm transition-all ${
+                      className={`w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-base sm:text-sm transition-all ${
                         errors.name
                           ? "border-red-400 focus:border-red-500 focus:ring-red-100"
                           : "border-saffron/20 focus:border-saffron focus:ring-saffron/20"

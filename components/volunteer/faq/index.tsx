@@ -90,25 +90,25 @@ export default function VolunteerFAQ() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0 animate-pulse" />
       
       <div className="max-w-6xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-20">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16 md:mb-20">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Frequently Asked Questions
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
         {/* 2-Column Split Visual Board */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-12 items-start">
           
           {/* Left Column: Sticky Gauge & Info Panel */}
-          <div className="md:col-span-5 md:sticky md:top-28 flex flex-col md:flex-row gap-8 items-center md:items-start text-center md:text-left">
+          <div className="md:col-span-5 md:sticky md:top-28 flex flex-col md:flex-row gap-4 sm:gap-8 items-center md:items-start text-center md:text-left">
             
             {/* The Vertical Gauge Track (Hidden on mobile) */}
             <div className="hidden md:flex relative h-64 w-12 flex-col justify-between items-center py-2 shrink-0 select-none">
@@ -128,9 +128,9 @@ export default function VolunteerFAQ() {
                   <button
                     key={idx}
                     onClick={() => toggleFAQ(idx)}
-                    className={`relative z-10 text-[10px] font-extrabold font-heading transition-all duration-300 w-8 h-8 rounded-full flex items-center justify-center border cursor-pointer ${
+                    className={`relative z-10 text-[10px] font-normal font-heading transition-all duration-300 w-8 h-8 rounded-full flex items-center justify-center border cursor-pointer ${
                       isActive 
-                        ? "text-saffron border-saffron bg-saffron/5 font-extrabold scale-110 shadow-sm" 
+                        ? "text-saffron border-saffron bg-saffron/5 font-bold scale-110 shadow-sm" 
                         : "text-slate-grey border-black/8 bg-white hover:text-saffron hover:border-saffron/30"
                     }`}
                   >
@@ -142,12 +142,11 @@ export default function VolunteerFAQ() {
 
             {/* Sticky info block details */}
             <div ref={leftStickyRef} className="flex-1 md:pt-2">
-              
-              <h3 className="text-xl sm:text-2xl font-extrabold text-neutral-900 font-heading mb-3">
+              <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 font-heading mb-2 sm:mb-3 leading-snug uppercase">
                 {FAQS[openIdx].category}
               </h3>
               
-              <p className="text-sm text-slate-grey leading-relaxed font-sans max-w-sm">
+              <p className="text-xs sm:text-sm text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal max-w-sm">
                 {FAQS[openIdx].desc}
               </p>
             </div>
@@ -155,23 +154,23 @@ export default function VolunteerFAQ() {
           </div>
 
           {/* Right Column: Accordion stack list */}
-          <div className="md:col-span-7 space-y-4">
+          <div className="md:col-span-7 space-y-3 sm:space-y-4">
             {FAQS.map((faq, index) => {
               const isOpen = openIdx === index;
               return (
                 <div
                   key={index}
-                  className={`faq-row-item glass-panel rounded-xl overflow-hidden bg-white border transition-all duration-300 ${
+                  className={`faq-row-item glass-panel rounded-xl sm:rounded-interactive overflow-hidden bg-white border transition-all duration-300 ${
                     isOpen ? "border-saffron/25 shadow-xl shadow-saffron/5" : "border-black/5"
                   }`}
                 >
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full flex justify-between items-center p-6 text-left font-extrabold text-neutral-900 font-heading hover:text-saffron transition-colors cursor-pointer"
+                    className="w-full flex justify-between items-center p-4 sm:p-6 text-left font-normal text-neutral-900 font-heading hover:text-saffron transition-colors cursor-pointer uppercase"
                     aria-expanded={isOpen}
                   >
-                    <span className="text-base sm:text-lg leading-snug">{faq.q}</span>
-                    <span className={`text-xl font-light transform transition-transform duration-300 ${isOpen ? "rotate-45 text-saffron" : "text-slate-grey"}`}>
+                    <span className="text-sm sm:text-lg leading-snug pr-4">{faq.q}</span>
+                    <span className={`text-lg sm:text-xl font-light transform transition-transform duration-300 shrink-0 ${isOpen ? "rotate-45 text-saffron" : "text-slate-grey"}`}>
                       ＋
                     </span>
                   </button>
@@ -179,10 +178,10 @@ export default function VolunteerFAQ() {
                   {/* Dynamic Shutter container */}
                   <div
                     className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                      isOpen ? "max-h-[220px] border-t border-saffron/10" : "max-h-0"
+                      isOpen ? "max-h-[260px] border-t border-saffron/10" : "max-h-0"
                     }`}
                   >
-                    <p className="p-6 text-sm sm:text-base text-slate-grey leading-relaxed font-sans bg-slate-50/15">
+                    <p className="p-4 sm:p-6 text-xs sm:text-base text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal bg-slate-50/15">
                       {faq.a}
                     </p>
                   </div>

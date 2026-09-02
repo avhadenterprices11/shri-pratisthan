@@ -204,29 +204,29 @@ export default function FestivalCalendar() {
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0 animate-pulse" />
       
-      <div className="relative z-10 w-full flex flex-col justify-center py-20 md:py-0 overflow-hidden calendar-reveal">
+      <div className="relative z-10 w-full flex flex-col justify-center py-12 sm:py-16 md:py-0 overflow-hidden calendar-reveal">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 px-6">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
+        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-12 px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Yearly Calendar Schedule
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
         {/* Scroll Instruction Banner */}
         <div className="text-center mb-6 hidden md:block">
-          <span className="text-[10px] text-slate-grey/65 font-bold uppercase tracking-widest bg-black/5 px-4 py-1.5 rounded-full inline-block">
+          <span className="text-[10px] text-slate-grey/65 font-bold uppercase tracking-[0.2em] bg-black/5 px-4 py-1.5 rounded-full inline-block font-sans">
             ↓ Scroll Down to Slide Calendar Timeline
           </span>
         </div>
 
         {/* The Scroll viewport Port */}
-        <div className="relative w-full overflow-x-auto md:overflow-x-visible pb-8 pt-4 scrollbar-none px-6 md:px-0">
+        <div className="relative w-full overflow-x-auto md:overflow-x-visible pb-6 sm:pb-8 pt-2 sm:pt-4 scrollbar-none px-4 sm:px-6 md:px-0">
           {/* Draggable Row Track */}
           <div 
             ref={sliderRef}
-            className="flex gap-6 sm:gap-8 w-max md:transform md:translate-x-0 snap-x snap-mandatory px-6 md:px-0"
+            className="flex gap-4 sm:gap-6 md:gap-8 w-max md:transform md:translate-x-0 snap-x snap-mandatory px-2 sm:px-6 md:px-0"
           >
             {CALENDAR_ITEMS.map((item, index) => {
               const isActive = activeIdx === index;
@@ -234,32 +234,32 @@ export default function FestivalCalendar() {
                 <div
                   key={index}
                   onClick={() => handleCardClick(index)}
-                  className={`w-[280px] md:w-[332px] shrink-0 glass-panel p-8 rounded-block bg-white border transition-all duration-500 min-h-[300px] flex flex-col justify-between cursor-pointer select-none snap-center ${
+                  className={`w-[260px] sm:w-[300px] md:w-[332px] shrink-0 glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block bg-white border transition-all duration-500 min-h-[260px] sm:min-h-[300px] flex flex-col justify-between cursor-pointer select-none snap-center ${
                     isActive 
-                      ? "border-saffron/30 shadow-2xl scale-[1.03] opacity-100 z-10 shadow-saffron/10" 
-                      : "border-black/5 scale-95 opacity-40 hover:opacity-60 z-0"
+                      ? "border-saffron/30 shadow-2xl scale-[1.02] sm:scale-[1.03] opacity-100 z-10 shadow-saffron/10" 
+                      : "border-black/5 scale-95 opacity-50 sm:opacity-40 hover:opacity-70 z-0"
                   }`}
                 >
                   <div>
 
                     {/* Giant Month Title */}
-                    <span className="text-3xl sm:text-4xl font-extrabold font-heading text-neutral-900 block mb-2 leading-none">
+                    <span className="text-2xl sm:text-3xl md:text-4xl font-normal font-heading text-neutral-900 block mb-1.5 sm:mb-2 leading-none uppercase">
                       {item.month}
                     </span>
 
                     {/* Event Title */}
-                    <h3 className="text-base sm:text-lg font-extrabold text-neutral-900 font-sans mb-3 leading-snug">
+                    <h3 className="text-base sm:text-lg font-normal text-neutral-900 font-heading mb-2 sm:mb-3 leading-snug">
                       {item.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-xs text-slate-grey leading-relaxed font-sans select-none pointer-events-none">
+                    <p className="text-xs text-slate-grey leading-[1.7] font-sans select-none pointer-events-none">
                       {item.desc}
                     </p>
                   </div>
 
                   {/* Indicator stamp */}
-                  <div className="mt-6 pt-4 border-t border-saffron/10 flex justify-between items-center text-[10px] font-extrabold uppercase tracking-widest text-saffron font-heading">
+                  <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-saffron/10 flex justify-between items-center text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-saffron font-sans">
                     <span>Active Drive Location</span>
                     <span>★</span>
                   </div>
@@ -270,13 +270,13 @@ export default function FestivalCalendar() {
         </div>
 
         {/* Milestone Indicator slider tracker */}
-        <div className="flex justify-center gap-1.5 mt-4 select-none">
+        <div className="flex justify-center gap-1.5 mt-2 sm:mt-4 select-none">
           {CALENDAR_ITEMS.map((_, idx) => (
             <button
               key={idx}
               onClick={() => handleCardClick(idx)}
               className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                activeIdx === idx ? "w-8 bg-saffron" : "w-2 bg-neutral-300 hover:bg-neutral-400"
+                activeIdx === idx ? "w-6 sm:w-8 bg-saffron" : "w-1.5 sm:w-2 bg-neutral-300 hover:bg-neutral-400"
               }`}
             />
           ))}

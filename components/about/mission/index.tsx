@@ -62,7 +62,7 @@ export default function AboutMission() {
   return (
     <section
       ref={containerRef}
-      className="relative py-24 px-6 md:px-12 xl:px-24 overflow-hidden bg-[#FFFDF9] border-t border-saffron/10"
+      className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 xl:px-24 overflow-hidden bg-[#FFFDF9] border-t border-saffron/10"
     >
       {/* Background Grid Accent */}
       <div 
@@ -72,33 +72,33 @@ export default function AboutMission() {
             linear-gradient(to right, rgba(226, 106, 54, 0.05) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(226, 106, 54, 0.05) 1px, transparent 1px)
           `,
-          backgroundSize: "80px 80px"
+          backgroundSize: "60px 60px"
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10 flex flex-col gap-12">
+      <div className="max-w-7xl mx-auto relative z-10 flex flex-col gap-8 sm:gap-12">
         
         {/* Top title header */}
-        <div className="mission-reveal flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-saffron/15">
-          <div className="flex flex-col items-start gap-3">
-            <h2 className="text-3xl sm:text-5xl font-black text-slate-800 font-heading uppercase leading-none">
+        <div className="mission-reveal flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-4 sm:pb-6 border-b border-saffron/15">
+          <div className="flex flex-col items-start gap-2 sm:gap-3">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 font-heading uppercase leading-tight tracking-tight">
               Action in Service, Pride in Legacy
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-light leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
             वारसा संस्कृतीचा, ध्यास समाजसेवेचा — Bringing families, youth, and citizens together through cultural celebrations, sports leagues, and public welfare.
           </p>
         </div>
 
         {/* Interactive Split Columns Grid */}
-        <div className="mission-reveal flex flex-col lg:flex-row gap-6 w-full items-stretch">
+        <div className="mission-reveal flex flex-col lg:flex-row gap-5 sm:gap-6 w-full items-stretch">
           {MISSION_PILLARS.map((pillar, idx) => (
             <div
               key={idx}
               onMouseEnter={() => setActiveIdx(idx)}
               onMouseLeave={() => setActiveIdx(null)}
               className={cn(
-                "relative min-h-[420px] rounded-[2.5rem] border border-saffron/15 bg-white overflow-hidden flex flex-col justify-end p-8 sm:p-12 shadow-xl shadow-saffron/5 transition-all duration-700 ease-out cursor-default group",
+                "relative min-h-[340px] sm:min-h-[420px] rounded-2xl sm:rounded-[2.5rem] border border-saffron/15 bg-white overflow-hidden flex flex-col justify-end p-5 sm:p-8 md:p-12 shadow-xl shadow-saffron/5 transition-all duration-700 ease-out cursor-default group",
                 activeIdx === idx 
                   ? "w-full lg:w-[62%]" 
                   : activeIdx !== null 
@@ -116,36 +116,51 @@ export default function AboutMission() {
                   sizes="(max-width: 1024px) 100vw, 650px"
                 />
                 {/* Visual vignette */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/30 to-transparent" />
               </div>
 
               {/* Pillar Content Overlay */}
-              <div className="relative z-10 flex flex-col items-start gap-4 text-left">
+              <div className="relative z-10 flex flex-col items-start gap-3 sm:gap-4 text-left">
 
                 {/* Pillar Heading */}
-                <h3 className="text-2xl sm:text-3xl font-black text-white font-heading uppercase leading-none drop-shadow-sm">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-normal text-white font-heading uppercase leading-snug drop-shadow-sm">
                   {pillar.title}
                 </h3>
 
                 {/* Pillar Paragraph */}
-                <p className="text-xs sm:text-sm text-white/90 leading-relaxed max-w-lg font-sans font-light drop-shadow-sm">
+                <p className="text-xs sm:text-sm text-white/90 leading-[1.7] max-w-lg font-sans font-normal drop-shadow-sm">
                   {pillar.description}
                 </p>
 
-                {/* Sub-stats Panel (Slides up smoothly on hover) */}
+                {/* Sub-stats Panel (Mobile: always visible; Desktop: expands on hover) */}
+                <div className="w-full mt-2 sm:mt-4 border-t border-white/20 pt-3 sm:pt-4 lg:hidden">
+                  <div className="flex gap-6 sm:gap-8">
+                    {pillar.stats.map((st, i) => (
+                      <div key={i} className="flex flex-col items-start">
+                        <span className="text-xl sm:text-2xl font-normal text-saffron leading-none font-heading mb-1">
+                          {st.val}
+                        </span>
+                        <span className="text-[9px] uppercase font-bold tracking-[0.2em] text-white/80 font-sans">
+                          {st.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
                 <div 
                   className={cn(
-                    "transition-all duration-700 ease-out overflow-hidden w-full",
+                    "hidden lg:block transition-all duration-700 ease-out overflow-hidden w-full",
                     activeIdx === idx ? "max-h-[150px] opacity-100 mt-4 border-t border-white/20 pt-4" : "max-h-0 opacity-0 pointer-events-none"
                   )}
                 >
                   <div className="flex gap-8">
                     {pillar.stats.map((st, i) => (
                       <div key={i} className="flex flex-col items-start">
-                        <span className="text-2xl font-black text-saffron leading-none font-heading mb-1">
+                        <span className="text-2xl font-normal text-saffron leading-none font-heading mb-1">
                           {st.val}
                         </span>
-                        <span className="text-[9px] uppercase font-bold tracking-wider text-white/80 font-sans">
+                        <span className="text-[9px] uppercase font-bold tracking-[0.2em] text-white/80 font-sans">
                           {st.label}
                         </span>
                       </div>

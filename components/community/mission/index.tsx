@@ -122,18 +122,18 @@ export default function CommunityMission() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 z-0" />
       
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-12 items-center">
           
           {/* Paragraph Column */}
-          <div className="md:col-span-8 order-2 md:order-1 space-y-6">
-            <p className="text-lg sm:text-xl text-[#525250] leading-relaxed font-medium font-sans">
+          <div className="md:col-span-8 order-2 md:order-1 space-y-4 sm:space-y-6">
+            <p className="text-base sm:text-xl md:text-2xl text-[#525250] leading-snug font-normal font-heading">
               {paragraph1Phrases.map((phrase, idx) => (
-                <span key={idx} className="inline-block overflow-hidden py-0.5 mr-2 last:mr-0">
+                <span key={idx} className="inline-block overflow-hidden py-0.5 mr-1.5 sm:mr-2 last:mr-0">
                   <span
                     className={`reveal-para-line inline-block ${
                       phrase.highlight ? "highlight-word text-[#8c9ba5]" : ""
@@ -144,9 +144,9 @@ export default function CommunityMission() {
                 </span>
               ))}
             </p>
-            <p className="text-base sm:text-lg text-[#525250]/80 leading-relaxed font-sans">
+            <p className="text-xs sm:text-base md:text-lg text-[#525250]/80 leading-[1.7] sm:leading-[1.75] font-normal font-sans">
               {paragraph2Phrases.map((phrase, idx) => (
-                <span key={idx} className="inline-block overflow-hidden py-0.5 mr-2 last:mr-0">
+                <span key={idx} className="inline-block overflow-hidden py-0.5 mr-1.5 sm:mr-2 last:mr-0">
                   <span
                     className={`reveal-para-line inline-block ${
                       phrase.highlight ? "highlight-word text-[#8c9ba5]" : ""
@@ -161,10 +161,10 @@ export default function CommunityMission() {
 
           {/* Heading Column */}
           <div className="md:col-span-4 order-1 md:order-2 flex flex-col items-start">
-            <span className="text-saffron font-bold text-xs uppercase tracking-widest block mb-4">
+            <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
               Our Vision
             </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight flex flex-wrap gap-x-2.5">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight flex flex-wrap gap-x-2 sm:gap-x-2.5 uppercase">
               {headingWords.map((word, index) => (
                 <span key={index} className="inline-block overflow-hidden py-0.5">
                   <span className="reveal-word inline-block">
@@ -173,7 +173,7 @@ export default function CommunityMission() {
                 </span>
               ))}
             </h2>
-            <div className="reveal-line-bar w-24 h-1 bg-saffron mt-6 rounded-full origin-left" />
+            <div className="reveal-line-bar w-16 sm:w-24 h-1 bg-saffron mt-3 sm:mt-6 rounded-full origin-left" />
           </div>
 
         </div>

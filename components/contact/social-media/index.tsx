@@ -82,39 +82,39 @@ export default function ContactSocialMedia() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Stay Tuned in Social Channels
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {SOCIALS.map((item, index) => (
             <a
               key={index}
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="social-card glass-panel glass-panel-hover p-8 rounded-block flex flex-col justify-between cursor-pointer bg-white transition-all duration-300"
+              className="social-card glass-panel glass-panel-hover p-5 sm:p-8 rounded-2xl sm:rounded-block flex flex-col justify-between cursor-pointer bg-white transition-all duration-300 border border-saffron/10"
             >
               <div>
-                <div className="w-16 h-16 rounded-full bg-saffron/5 flex items-center justify-center mb-6">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-saffron/5 flex items-center justify-center mb-4 sm:mb-6">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-extrabold text-foreground mb-3 font-heading">
+                <h3 className="text-lg sm:text-xl font-normal text-neutral-900 mb-2 sm:mb-3 font-heading uppercase">
                   {item.name}
                 </h3>
-                <p className="text-sm text-slate-grey leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-grey leading-[1.7] font-sans font-normal">
                   {item.desc}
                 </p>
               </div>
 
-              <div className="mt-8 flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-saffron group">
+              <div className="mt-6 sm:mt-8 flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-saffron group font-sans">
                 <span>Visit Page</span>
                 <svg
                   className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"

@@ -89,17 +89,17 @@ export default function FeaturedFestivals() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background w-full select-none border-t border-black/5"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background w-full select-none border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 z-0 animate-pulse" />
 
       <div className="max-w-7xl mx-auto relative z-10 fest-section-reveal">
         {/* Section Heading & Subheading */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Featured Festivals
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
         {/* 1. Desktop Interface (Bright Theme Liquid Diagonal Masking Split) */}
@@ -116,14 +116,14 @@ export default function FeaturedFestivals() {
             {/* Saffron Content Overlay - Floating Card on the Left */}
             <div className="absolute left-12 top-1/2 -translate-y-1/2 z-10 w-[42%] parallax-content-left select-none">
               <div className="glass-panel p-8 rounded-block bg-white/90 border border-white/50 backdrop-blur-md shadow-2xl space-y-5">
-                <h3 className="text-2xl xl:text-3xl font-black text-neutral-900 font-heading leading-tight">
+                <h3 className="text-2xl xl:text-3xl font-normal text-neutral-900 font-heading leading-snug uppercase">
                   Shree Ganeshotsav &amp; Yatra
                 </h3>
-                <p className="text-xs text-neutral-700 leading-relaxed font-sans">
+                <p className="text-xs text-neutral-700 leading-relaxed font-sans font-normal">
                   Our flagship 10-day celebration in Indira Nagar, Nashik. Uniting thousands of devotees with eco-friendly Shadu Mati idols, grand evening Maha Aarti, traditional Dhol Tasha recitals, and daily hygienic Maha Prasad.
                 </p>
                 
-                <ul className="space-y-2.5 text-xs text-neutral-700 font-semibold font-sans">
+                <ul className="space-y-2.5 text-xs text-neutral-700 font-medium font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron" />
                     100% Eco-friendly Shadu Mati clay idol &amp; artificial tanks
@@ -141,7 +141,7 @@ export default function FeaturedFestivals() {
                 <div className="pt-2">
                   <a
                     href="/event-booking"
-                    className="w-full text-center inline-block bg-saffron hover:bg-saffron/90 text-white font-extrabold py-3 rounded-full text-[10px] uppercase tracking-widest shadow-md shadow-saffron/20 transition-transform hover:scale-105"
+                    className="w-full text-center inline-block bg-saffron hover:bg-saffron/90 text-white font-bold py-3 rounded-full text-[10px] uppercase tracking-[0.2em] shadow-md shadow-saffron/20 transition-transform hover:scale-105 font-sans"
                   >
                     Get Ganeshotsav Aarti Pass
                   </a>
@@ -164,14 +164,14 @@ export default function FeaturedFestivals() {
             {/* Sports Content Overlay - Floating Card on the Right */}
             <div className="absolute right-12 top-1/2 -translate-y-1/2 z-10 w-[42%] parallax-content-right select-none">
               <div className="glass-panel p-8 rounded-block bg-white/90 border border-white/50 backdrop-blur-md shadow-2xl space-y-5">
-                <h3 className="text-2xl xl:text-3xl font-black text-neutral-900 font-heading leading-tight">
+                <h3 className="text-2xl xl:text-3xl font-normal text-neutral-900 font-heading leading-snug uppercase">
                   Sports &amp; Cricket Leagues
                 </h3>
-                <p className="text-xs text-neutral-700 leading-relaxed font-sans">
+                <p className="text-xs text-neutral-700 leading-relaxed font-sans font-normal">
                   Honoring our 2006 founding roots where 20 cricket friends united for social service. Premier annual tennis-ball cricket tournaments and youth athletics in Indira Nagar, Nashik with grand championship trophies.
                 </p>
                 
-                <ul className="space-y-2.5 text-xs text-neutral-700 font-semibold font-sans">
+                <ul className="space-y-2.5 text-xs text-neutral-700 font-medium font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
                     32 participating youth cricket teams across Nashik
@@ -189,7 +189,7 @@ export default function FeaturedFestivals() {
                 <div className="pt-2">
                   <a
                     href="/event-booking"
-                    className="w-full text-center inline-block bg-neutral-900 hover:bg-saffron hover:text-white text-white font-extrabold py-3 rounded-full text-[10px] uppercase tracking-widest shadow-md shadow-neutral-900/10 transition-transform hover:scale-105"
+                    className="w-full text-center inline-block bg-neutral-900 hover:bg-saffron hover:text-white text-white font-bold py-3 rounded-full text-[10px] uppercase tracking-[0.2em] shadow-md shadow-neutral-900/10 transition-transform hover:scale-105 font-sans"
                   >
                     Register Cricket Team / Athlete
                   </a>
@@ -200,22 +200,22 @@ export default function FeaturedFestivals() {
         </div>
 
         {/* 2. Mobile & Tablet Interface (Stacked Cards Grid Layout - Bright Theme) */}
-        <div className="block lg:hidden space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="block lg:hidden space-y-6 sm:space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {/* Card 1: Ganeshotsav */}
             <div 
-              className="relative p-6 sm:p-8 rounded-block overflow-hidden min-h-[460px] flex flex-col justify-between bg-cover bg-center border border-black/5 shadow-lg"
+              className="relative p-5 sm:p-8 rounded-2xl sm:rounded-block overflow-hidden min-h-[380px] sm:min-h-[460px] flex flex-col justify-between bg-cover bg-center border border-black/5 shadow-lg"
               style={{ backgroundImage: "linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.95)), url('/ganeshotsav_bright.png')" }}
             >
-              <div className="space-y-4">
-                <h3 className="text-2xl font-black text-neutral-900 font-heading">
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
                   Shree Ganeshotsav &amp; Yatra
                 </h3>
-                <p className="text-xs text-neutral-700 leading-relaxed font-sans">
+                <p className="text-xs text-neutral-700 leading-relaxed font-sans font-normal">
                   Our flagship 10-day celebration in Indira Nagar, Nashik with eco-friendly Shadu Mati clay idols, daily grand Maha Aarti, and traditional Dhol Tasha parades.
                 </p>
                 
-                <ul className="space-y-2 text-xs text-neutral-700 font-semibold font-sans">
+                <ul className="space-y-1.5 sm:space-y-2 text-xs text-neutral-700 font-medium font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron" />
                     100% Eco-friendly Shadu Mati clay idol &amp; artificial tanks
@@ -227,10 +227,10 @@ export default function FeaturedFestivals() {
                 </ul>
               </div>
 
-              <div className="pt-6">
+              <div className="pt-4 sm:pt-6">
                 <a
                   href="/event-booking"
-                  className="w-full inline-block text-center bg-saffron hover:bg-saffron/90 text-white font-extrabold py-3.5 rounded-full text-[10px] uppercase tracking-widest shadow-md shadow-saffron/15"
+                  className="w-full inline-block text-center bg-saffron hover:bg-saffron/90 text-white font-bold py-3 sm:py-3.5 rounded-full text-[10px] uppercase tracking-[0.2em] shadow-md shadow-saffron/15 font-sans"
                 >
                   Get Ganeshotsav Pass
                 </a>
@@ -239,18 +239,18 @@ export default function FeaturedFestivals() {
 
             {/* Card 2: Sports & Cricket */}
             <div 
-              className="relative p-6 sm:p-8 rounded-block overflow-hidden min-h-[460px] flex flex-col justify-between bg-cover bg-center border border-black/5 shadow-lg"
+              className="relative p-5 sm:p-8 rounded-2xl sm:rounded-block overflow-hidden min-h-[380px] sm:min-h-[460px] flex flex-col justify-between bg-cover bg-center border border-black/5 shadow-lg"
               style={{ backgroundImage: "linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.95)), url('/dahihandi_bright.png')" }}
             >
-              <div className="space-y-4">
-                <h3 className="text-2xl font-black text-neutral-900 font-heading">
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
                   Sports &amp; Cricket Leagues
                 </h3>
-                <p className="text-xs text-neutral-700 leading-relaxed font-sans">
+                <p className="text-xs text-neutral-700 leading-relaxed font-sans font-normal">
                   Honoring our 2006 cricket roots. Premier annual tennis-ball cricket championship with 32 teams and youth athletics in Indira Nagar, Nashik.
                 </p>
                 
-                <ul className="space-y-2 text-xs text-neutral-700 font-semibold font-sans">
+                <ul className="space-y-1.5 sm:space-y-2 text-xs text-neutral-700 font-medium font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
                     32 participating youth cricket teams across Nashik
@@ -262,10 +262,10 @@ export default function FeaturedFestivals() {
                 </ul>
               </div>
 
-              <div className="pt-6">
+              <div className="pt-4 sm:pt-6">
                 <a
                   href="/event-booking"
-                  className="w-full inline-block text-center bg-neutral-900 hover:bg-saffron hover:text-white text-white font-extrabold py-3.5 rounded-full text-[10px] uppercase tracking-widest shadow-md shadow-neutral-900/15"
+                  className="w-full inline-block text-center bg-neutral-900 hover:bg-saffron hover:text-white text-white font-bold py-3 sm:py-3.5 rounded-full text-[10px] uppercase tracking-[0.2em] shadow-md shadow-neutral-900/15 font-sans"
                 >
                   Register Cricket Team
                 </a>

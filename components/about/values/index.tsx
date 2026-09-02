@@ -120,7 +120,7 @@ export default function AboutValues() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full bg-[#FFFDF9] py-24 px-6 md:px-12 xl:px-24 select-none border-t border-saffron/10 z-20 overflow-hidden"
+      className="relative w-full bg-[#FFFDF9] py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 xl:px-24 select-none border-t border-saffron/10 z-20 overflow-hidden"
     >
       {/* Background Grid Accent */}
       <div 
@@ -130,17 +130,17 @@ export default function AboutValues() {
             linear-gradient(to right, rgba(226, 106, 54, 0.05) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(226, 106, 54, 0.05) 1px, transparent 1px)
           `,
-          backgroundSize: "80px 80px"
+          backgroundSize: "60px 60px"
         }}
       />
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-saffron/15 mb-16 relative z-10">
-        <div className="flex flex-col items-start gap-3">
-          <h2 className="text-3xl sm:text-5xl font-black text-slate-800 font-heading uppercase leading-none">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-saffron/15 mb-8 sm:mb-16 relative z-10">
+        <div className="flex flex-col items-start gap-2 sm:gap-3">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 font-heading uppercase leading-tight tracking-tight">
             Our Core Values
           </h2>
         </div>
-        <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-light leading-relaxed">
+        <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
           We hold ourselves to strict ethical commitments, aligning cultural pride directly with transparent civic duty.
         </p>
       </div>
@@ -167,27 +167,27 @@ export default function AboutValues() {
                 gsap.to(".floating-preview", { scale: 0.75, opacity: 0, duration: 0.2, ease: "power2.out" });
               }}
               className={cn(
-                "value-row-item group py-10 border-b border-saffron/15 flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-all duration-500 relative z-10 cursor-pointer",
+                "value-row-item group py-6 sm:py-10 border-b border-saffron/15 flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-6 transition-all duration-500 relative z-10 cursor-pointer",
                 isAnyHovered && !isHovered ? "opacity-30" : "opacity-100"
               )}
             >
               {/* Left Column: Index & Heading */}
-              <div className="flex items-center gap-6 lg:w-5/12">
-                <span className="text-xs sm:text-sm font-bold text-saffron/50 font-sans group-hover:text-saffron transition-colors">
+              <div className="flex items-center gap-3 sm:gap-6 lg:w-5/12">
+                <span className="text-[10px] sm:text-xs font-bold text-saffron/60 font-sans tracking-[0.2em] group-hover:text-saffron transition-colors shrink-0">
                   {String(idx + 1).padStart(2, "0")}
                 </span>
-                <h3 className="text-xl sm:text-3xl font-black text-slate-800 font-heading uppercase tracking-tight group-hover:text-saffron transition-colors">
+                <h3 className="text-base sm:text-2xl lg:text-3xl font-normal text-slate-800 font-heading uppercase tracking-tight group-hover:text-saffron transition-colors leading-snug">
                   {item.title}
                 </h3>
               </div>
 
               {/* Right Column: Description */}
-              <p className="text-xs sm:text-sm text-slate-grey leading-relaxed lg:w-7/12 font-sans font-light transition-all duration-500 group-hover:text-slate-700">
+              <p className="text-xs sm:text-sm text-slate-grey leading-[1.7] lg:w-7/12 font-sans font-normal transition-all duration-500 group-hover:text-slate-700">
                 {item.desc}
               </p>
 
               {/* Mobile Fallback: Inline Photo Frame */}
-              <div className="w-full aspect-[16/10] relative overflow-hidden rounded-[1.8rem] border border-saffron/10 shadow-md lg:hidden mt-4">
+              <div className="w-full aspect-[16/9] relative overflow-hidden rounded-xl sm:rounded-[1.8rem] border border-saffron/10 shadow-md lg:hidden mt-2 sm:mt-4">
                 <Image
                   src={item.image}
                   alt={item.title}

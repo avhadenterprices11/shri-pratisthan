@@ -25,15 +25,15 @@ export default function AllEventsSection() {
   });
 
   return (
-    <section id="all-events-grid" className="w-full py-16 bg-neutral-50/50 border-t border-neutral-200/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-8 text-center">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading">
+    <section id="all-events-grid" className="w-full py-10 sm:py-16 bg-neutral-50/50 border-t border-neutral-200/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-6 sm:mb-8 text-center">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
           Explore All Events
         </h2>
-        <p className="text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto mt-3 font-medium">
+        <p className="text-xs sm:text-base text-neutral-600 max-w-2xl mx-auto mt-2 sm:mt-3 font-normal font-sans leading-relaxed">
           Filter our ongoing celebrations, upcoming health camps, cultural festivals, and community initiatives.
         </p>
-        <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+        <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
       </div>
 
       {/* Interactive Category Filter Bar */}

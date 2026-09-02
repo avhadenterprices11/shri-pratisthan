@@ -37,7 +37,7 @@ const VIDEOS = [
     category: "Sports Tournament",
     location: "Indira Nagar Ground, Nashik",
     duration: "2:10", 
-    src: "/Create_a_cinematic_second_h.mp4", 
+    src: "/shri_pratisthan.mp4", 
     poster: "/gallery_dahi_handi_pyramids.png" 
   },
   { 
@@ -104,27 +104,27 @@ export default function VideoGallery() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-transparent"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-transparent"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
       <div className="max-w-[1600px] w-full mx-auto relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-foreground tracking-tight font-heading">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Video Reels &amp; Event Footage
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {VIDEOS.map((item, index) => (
             <div 
               key={index}
               onClick={() => setActiveVideo({ title: item.title, src: item.src })}
-              className="video-card glass-panel rounded-block overflow-hidden relative group cursor-pointer hover:shadow-2xl transition-all duration-300 flex flex-col justify-between"
+              className="video-card glass-panel rounded-2xl sm:rounded-block overflow-hidden relative group cursor-pointer hover:shadow-2xl transition-all duration-300 flex flex-col justify-between border border-saffron/10 bg-white"
               data-hover="pointer"
             >
               {/* Visual wrapper */}
-              <div className="h-[200px] relative overflow-hidden flex items-center justify-center text-7xl select-none">
+              <div className="h-[180px] sm:h-[200px] relative overflow-hidden flex items-center justify-center select-none bg-neutral-900">
                 <Image 
                   src={item.poster} 
                   alt={item.title} 
@@ -133,13 +133,13 @@ export default function VideoGallery() {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 {/* Category Badge */}
-                <div className="absolute top-3 left-3 z-10 bg-white/90 text-saffron font-bold text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full border border-saffron/20 shadow-sm backdrop-blur-sm">
+                <div className="absolute top-3 left-3 z-10 bg-white/90 text-saffron font-bold text-[9px] uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border border-saffron/20 shadow-sm backdrop-blur-sm font-sans">
                   {item.category}
                 </div>
                 {/* Play Button Overlay */}
                 <div className="absolute inset-0 bg-black/35 flex items-center justify-center opacity-85 group-hover:opacity-100 transition-opacity z-10">
-                  <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-saffron shadow-lg group-hover:scale-110 transition-transform">
-                    <svg className="w-7 h-7 fill-current stroke-current ml-1" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white flex items-center justify-center text-saffron shadow-lg group-hover:scale-110 transition-transform">
+                    <svg className="w-6 h-6 sm:w-7 sm:h-7 fill-current stroke-current ml-1" viewBox="0 0 24 24">
                       <polygon points="5 3 19 12 5 21 5 3" />
                     </svg>
                   </div>
@@ -147,11 +147,11 @@ export default function VideoGallery() {
               </div>
 
               {/* Meta */}
-              <div className="p-5 bg-white border-t border-saffron/10 flex flex-col justify-between flex-grow relative z-20 space-y-2">
-                <h3 className="text-sm sm:text-base font-extrabold text-foreground font-heading group-hover:text-saffron transition-colors leading-snug line-clamp-2">
+              <div className="p-4 sm:p-5 bg-white border-t border-saffron/10 flex flex-col justify-between flex-grow relative z-20 space-y-2">
+                <h3 className="text-xs sm:text-base font-normal text-neutral-900 font-heading group-hover:text-saffron transition-colors leading-snug line-clamp-2 uppercase">
                   {item.title}
                 </h3>
-                <div className="flex justify-between items-center text-[10px] text-slate-grey font-bold tracking-widest uppercase pt-2 border-t border-neutral-100">
+                <div className="flex justify-between items-center text-[9px] sm:text-[10px] text-slate-grey font-bold tracking-[0.16em] sm:tracking-[0.18em] uppercase pt-2 border-t border-neutral-100 font-sans">
                   <span>{item.location}</span>
                   <span className="text-saffron">{item.duration}</span>
                 </div>
@@ -163,13 +163,13 @@ export default function VideoGallery() {
 
       {/* Lightbox Modal */}
       {activeVideo && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-6">
-          <div className="w-full max-w-4xl rounded-block bg-neutral-900 border border-white/10 p-4 relative shadow-2xl flex flex-col gap-4">
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6">
+          <div className="w-full max-w-4xl rounded-2xl sm:rounded-block bg-neutral-900 border border-white/10 p-3 sm:p-4 relative shadow-2xl flex flex-col gap-3 sm:gap-4">
             <div className="flex justify-between items-center text-white border-b border-white/10 pb-2">
-              <h3 className="text-lg sm:text-xl font-extrabold font-heading text-saffron">{activeVideo.title}</h3>
+              <h3 className="text-sm sm:text-xl font-normal font-heading text-saffron uppercase">{activeVideo.title}</h3>
               <button 
                 onClick={() => setActiveVideo(null)}
-                className="text-white hover:text-saffron font-bold text-sm tracking-widest uppercase transition-colors focus:outline-none cursor-pointer flex items-center gap-1.5"
+                className="text-white hover:text-saffron font-bold text-xs sm:text-sm tracking-widest uppercase transition-colors focus:outline-none cursor-pointer flex items-center gap-1.5 font-sans"
               >
                 ✕ Close
               </button>

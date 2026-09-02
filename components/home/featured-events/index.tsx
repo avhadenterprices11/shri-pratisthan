@@ -135,17 +135,17 @@ export default function FeaturedEvents() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background z-20"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background z-20"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-5" />
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Editorial Heading Section */}
-        <div className="flex flex-col mb-16 max-w-4xl">
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-foreground tracking-tight font-heading leading-none uppercase">
+        <div className="flex flex-col mb-8 sm:mb-12 md:mb-16 max-w-4xl">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-foreground tracking-tight font-heading leading-tight uppercase">
             Upcoming Celebrations
           </h2>
-          <p className="text-slate-grey max-w-2xl text-sm md:text-base leading-relaxed font-light mt-4">
+          <p className="text-slate-grey max-w-2xl text-xs sm:text-sm md:text-base leading-relaxed font-sans mt-3 sm:mt-4">
             Bringing the Indira Nagar and Nashik community together through vibrant cultural celebrations, traditional street processions, youth sports, and social welfare drives.
           </p>
         </div>
@@ -153,14 +153,14 @@ export default function FeaturedEvents() {
         {/* Layout Row */}
         <div 
           ref={gridRef}
-          className="flex flex-col md:flex-row gap-12 items-start relative min-h-[580px]"
+          className="flex flex-col md:flex-row gap-8 md:gap-12 items-start relative min-h-[500px] md:min-h-[580px]"
         >
           
           {/* Left Column: Sticky Metadata Details (Desktop only) */}
           <div className="hidden md:flex md:w-[40%] flex-col justify-between pr-10 border-r border-saffron/10 min-h-[560px] sticky top-28">
             <div className="flex flex-col gap-4">
               <div>
-                <h3 className="text-3xl lg:text-4xl font-black text-foreground mt-2 font-heading uppercase leading-tight">
+                <h3 className="text-3xl lg:text-4xl font-normal text-foreground mt-2 font-heading uppercase leading-tight">
                   {activeEvent.title}
                 </h3>
               </div>
@@ -187,7 +187,7 @@ export default function FeaturedEvents() {
                 </div>
               </div>
 
-              <p className="text-slate-grey text-xs lg:text-sm leading-relaxed mt-2 font-light min-h-[60px]">
+              <p className="text-slate-grey text-xs lg:text-sm leading-relaxed mt-2 font-sans min-h-[60px]">
                 {activeEvent.description}
               </p>
             </div>
@@ -197,7 +197,7 @@ export default function FeaturedEvents() {
                 {activeEvent.details.map((detail, idx) => (
                   <span 
                     key={idx}
-                    className="px-2.5 py-1.5 rounded-full bg-saffron/5 border border-saffron/15 text-[9px] font-bold text-saffron uppercase tracking-wider transition-all duration-300"
+                    className="px-2.5 py-1.5 rounded-full bg-saffron/5 border border-saffron/15 text-[9px] font-bold text-saffron uppercase tracking-wider transition-all duration-300 font-sans"
                   >
                     {detail}
                   </span>
@@ -206,7 +206,7 @@ export default function FeaturedEvents() {
 
               <Link 
                 href={activeEvent.link}
-                className="mt-6 inline-flex items-center gap-2.5 py-2.5 px-5 rounded-full bg-saffron text-white text-[9px] font-bold uppercase tracking-widest hover:bg-saffron/90 hover:shadow-lg transition-all duration-300"
+                className="mt-6 inline-flex items-center gap-2.5 py-2.5 px-5 rounded-full bg-saffron text-white text-[9px] font-bold uppercase tracking-widest hover:bg-saffron/90 hover:shadow-lg transition-all duration-300 font-sans"
               >
                 Explore Spotlight
                 <svg className="w-3.5 h-3.5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2.5">
@@ -229,29 +229,29 @@ export default function FeaturedEvents() {
                 onClick={() => {
                   setActiveMobileId(activeMobileId === event.id ? null : event.id);
                 }}
-                className="py-8 md:py-10 border-b border-saffron/10 flex flex-col md:flex-row md:justify-between md:items-center group transition-colors duration-300 relative cursor-pointer"
+                className="py-5 sm:py-8 md:py-10 border-b border-saffron/10 flex flex-col md:flex-row md:justify-between md:items-center group transition-colors duration-300 relative cursor-pointer"
               >
-                {/* Desktop List Layout */}
-                <div className="flex items-baseline gap-6 select-none">
+                {/* Desktop/Mobile List Layout */}
+                <div className="flex items-baseline gap-4 sm:gap-6 select-none">
                   <span className="text-xs md:text-sm font-bold text-saffron tracking-wider font-sans">
                     {event.num}
                   </span>
-                  <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-800 group-hover:text-saffron transition-all duration-300 font-heading uppercase leading-none">
+                  <h3 className="text-xl sm:text-3xl lg:text-5xl font-normal text-slate-800 group-hover:text-saffron transition-all duration-300 font-heading uppercase leading-none">
                     {event.category}
                   </h3>
                 </div>
-                <span className="hidden md:inline text-xs uppercase font-extrabold tracking-widest text-slate-400 group-hover:text-saffron transition-colors duration-300 mt-2 md:mt-0">
+                <span className="hidden md:inline text-xs uppercase font-bold tracking-widest text-slate-400 group-hover:text-saffron transition-colors duration-300 mt-2 md:mt-0 font-sans">
                   {event.id === "ganesh" || event.id === "navratri" ? "10 Days" : (event.id === "swagat-yatra" ? "Annual Yatra" : (event.id === "dahi-handi" ? "Gokulashtami" : (event.id === "mahashivratri" ? "Maha Shivotsav" : "Annual Utsav")))}
                 </span>
 
                 {/* Mobile Dropdown Details (Toggled on click) */}
                 <div 
                   className={cn(
-                    "md:hidden transition-all duration-500 overflow-hidden flex flex-col gap-4 items-start w-full",
-                    activeMobileId === event.id ? "max-h-[550px] opacity-100 mt-5 pb-2" : "max-h-0 opacity-0 pointer-events-none"
+                    "md:hidden transition-all duration-500 overflow-hidden flex flex-col gap-3 items-start w-full",
+                    activeMobileId === event.id ? "max-h-[550px] opacity-100 mt-4 pb-2" : "max-h-0 opacity-0 pointer-events-none"
                   )}
                 >
-                  <div className="relative w-full h-[200px] rounded-2xl overflow-hidden shadow-lg border border-saffron/10">
+                  <div className="relative w-full h-[180px] sm:h-[200px] rounded-2xl overflow-hidden shadow-lg border border-saffron/10 mt-1">
                     <Image
                       src={event.image}
                       alt={event.title}
@@ -260,11 +260,11 @@ export default function FeaturedEvents() {
                       className="object-cover object-center"
                     />
                   </div>
-                  <p className="text-xs text-slate-grey leading-relaxed">{event.description}</p>
+                  <p className="text-xs text-slate-grey leading-relaxed font-sans">{event.description}</p>
                   
                   <div className="flex flex-wrap gap-1.5">
                     {event.details.map((detail, i) => (
-                      <span key={i} className="px-2.5 py-1 rounded-full bg-saffron/5 border border-saffron/10 text-[9px] font-bold text-saffron uppercase">
+                      <span key={i} className="px-2.5 py-1 rounded-full bg-saffron/5 border border-saffron/10 text-[9px] font-bold text-saffron uppercase font-sans">
                         {detail}
                       </span>
                     ))}
@@ -272,7 +272,7 @@ export default function FeaturedEvents() {
 
                   <Link 
                     href={event.link} 
-                    className="py-2.5 px-4 rounded-full bg-saffron text-white text-[9px] uppercase font-bold tracking-widest flex items-center gap-1.5 shadow-md mt-2"
+                    className="py-2.5 px-4 rounded-full bg-saffron text-white text-[9px] uppercase font-bold tracking-widest flex items-center gap-1.5 shadow-md mt-1 font-sans"
                   >
                     Explore Spotlight
                     <svg className="w-3 h-3 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2.5">

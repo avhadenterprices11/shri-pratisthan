@@ -50,11 +50,9 @@ function FieldError({ message }: { message?: string }) {
   );
 }
 
-// ─── Input class helper ───────────────────────────────────────────────────────
-
 function inputClass(hasError?: boolean) {
   return [
-    "w-full bg-slate-50/50 border rounded-xl px-4 py-3 text-sm text-foreground",
+    "w-full bg-slate-50/50 border rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm text-neutral-900 font-sans",
     "focus:outline-none focus:bg-white transition-all",
     hasError
       ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100"
@@ -176,58 +174,58 @@ export default function JoinMission() {
     <section
       id="join-mission"
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 animate-pulse" />
       <div className="max-w-5xl mx-auto relative z-10 join-reveal">
-        <div className="glass-panel p-8 sm:p-12 rounded-block bg-white border border-saffron/10 shadow-2xl">
+        <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white border border-saffron/10 shadow-2xl">
 
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight font-heading">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
               Join Our Mission
             </h2>
-            <p className="text-slate-grey mt-3 text-sm sm:text-base">
+            <p className="text-slate-grey mt-2.5 sm:mt-3 text-xs sm:text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
               Be a catalyst for community progress in Indira Nagar, Nashik. Register to donate blood, plant saplings, or support local student and welfare distributions.
             </p>
-            <div className="w-12 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+            <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
           </div>
 
           {/* ── Success State ─────────────────────────────────────────────── */}
           {status === "success" ? (
-            <div className="text-center py-12 space-y-4">
-              <div className="w-16 h-16 rounded-full bg-saffron/10 text-saffron flex items-center justify-center mx-auto border border-saffron/20">
-                <CheckCircle2 className="w-8 h-8 stroke-[1.5]" />
+            <div className="text-center py-8 sm:py-12 space-y-4">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-saffron/10 text-saffron flex items-center justify-center mx-auto border border-saffron/20">
+                <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 stroke-[1.5]" />
               </div>
-              <h3 className="text-2xl font-extrabold text-foreground font-heading">
+              <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase">
                 Registration Successful!
               </h3>
-              <p className="text-slate-grey max-w-md mx-auto text-sm">
+              <p className="text-slate-grey max-w-md mx-auto text-xs sm:text-sm font-sans leading-relaxed">
                 Thank you, <strong>{formData.name}</strong>. One of our community coordinators
                 will contact you shortly on <strong>{formData.contact}</strong> to align on
                 upcoming initiatives.
               </p>
               <button
                 onClick={handleReset}
-                className="text-xs uppercase font-extrabold tracking-widest text-saffron hover:underline mt-4 cursor-pointer"
+                className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.2em] text-saffron hover:underline mt-3 sm:mt-4 cursor-pointer font-sans"
               >
                 Submit another response
               </button>
             </div>
           ) : (
             /* ── Form ────────────────────────────────────────────────────── */
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
 
               {/* Global error banner */}
               {status === "error" && errorMessage && (
-                <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700">
+                <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-xs sm:text-sm text-red-700 font-sans">
                   <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                   <span>{errorMessage}</span>
                 </div>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="jm-name" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="jm-name" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Full Name <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -243,8 +241,8 @@ export default function JoinMission() {
                   <FieldError message={fieldErrors.name} />
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="jm-contact" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="jm-contact" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Phone / Email <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -262,24 +260,24 @@ export default function JoinMission() {
               </div>
 
               {/* Premium Custom Dropdown */}
-              <div className="space-y-2 relative" ref={dropdownRef}>
-                <label id="jm-interest" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+              <div className="space-y-1.5 sm:space-y-2 relative" ref={dropdownRef}>
+                <label id="jm-interest" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                   Area of Interest
                 </label>
                 <button
                   type="button"
                   disabled={status === "loading"}
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-full bg-slate-50/50 hover:bg-white border border-slate-200 focus:border-saffron rounded-xl px-4 py-3 text-sm text-foreground flex items-center justify-between transition-all cursor-pointer shadow-xs disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full bg-slate-50/50 hover:bg-white border border-slate-200 focus:border-saffron rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm text-neutral-900 flex items-center justify-between transition-all cursor-pointer shadow-xs disabled:opacity-60 disabled:cursor-not-allowed font-sans"
                 >
-                  <span className="font-medium">
+                  <span className="font-normal text-left truncate">
                     {INTEREST_OPTIONS.find((opt) => opt.value === formData.interest)?.label}
                   </span>
-                  <ChevronDown className={`w-4 h-4 text-saffron transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`w-4 h-4 text-saffron transition-transform duration-300 shrink-0 ml-2 ${isDropdownOpen ? "rotate-180" : ""}`} />
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute left-0 right-0 top-full mt-2 bg-white/95 backdrop-blur-xl border border-saffron/25 rounded-xl shadow-2xl z-50 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="absolute left-0 right-0 top-full mt-2 bg-white/95 backdrop-blur-xl border border-saffron/25 rounded-xl shadow-2xl z-50 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 font-sans">
                     {INTEREST_OPTIONS.map((opt) => (
                       <div
                         key={opt.value}
@@ -287,22 +285,22 @@ export default function JoinMission() {
                           setFormData({ ...formData, interest: opt.value });
                           setIsDropdownOpen(false);
                         }}
-                        className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${
+                        className={`px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between transition-colors ${
                           formData.interest === opt.value
                             ? "bg-saffron/10 text-saffron font-bold"
-                            : "text-foreground hover:bg-saffron/5"
+                            : "text-neutral-900 hover:bg-saffron/5 font-normal"
                         }`}
                       >
-                        <span>{opt.label}</span>
-                        {formData.interest === opt.value && <Check className="w-4 h-4 text-saffron" />}
+                        <span className="truncate">{opt.label}</span>
+                        {formData.interest === opt.value && <Check className="w-4 h-4 text-saffron shrink-0 ml-2" />}
                       </div>
                     ))}
                   </div>
                 )}
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="jm-message" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+              <div className="space-y-1.5 sm:space-y-2">
+                <label htmlFor="jm-message" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                   Short Message <span className="text-slate-400 normal-case font-normal">(Optional)</span>
                 </label>
                 <textarea
@@ -316,11 +314,11 @@ export default function JoinMission() {
                 />
               </div>
 
-              <div className="text-center pt-4">
+              <div className="text-center pt-2 sm:pt-4">
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full sm:w-auto bg-saffron hover:bg-saffron/90 hover:shadow-lg hover:shadow-saffron/20 text-white font-extrabold text-xs uppercase tracking-widest px-10 py-4 rounded-full transition-all duration-300 active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
+                  className="w-full sm:w-auto bg-saffron hover:bg-saffron/90 hover:shadow-lg hover:shadow-saffron/20 text-white font-bold text-xs uppercase tracking-[0.2em] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100 font-sans"
                 >
                   {status === "loading" ? (
                     <>

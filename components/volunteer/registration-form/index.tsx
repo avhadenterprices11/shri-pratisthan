@@ -59,7 +59,7 @@ function FieldError({ message }: { message?: string }) {
 
 function inputClass(hasError?: boolean) {
   return [
-    "w-full bg-slate-50/50 border rounded-xl px-4 py-3 text-sm text-foreground",
+    "w-full bg-slate-50/50 border rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm text-neutral-900 font-sans",
     "focus:outline-none focus:bg-white transition-all",
     hasError
       ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100"
@@ -178,32 +178,32 @@ export default function VolunteerRegistrationForm() {
     <section
       id="registration-form"
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 animate-pulse" />
       <div className="max-w-6xl mx-auto relative z-10 form-reveal">
-        <div className="glass-panel p-8 sm:p-12 rounded-block bg-white border border-saffron/10 shadow-2xl">
+        <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white border border-saffron/10 shadow-2xl">
 
-          <div className="text-center max-w-xl mx-auto mb-10">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight font-heading">
+          <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
               Volunteer Registration Form
             </h2>
-            <p className="text-slate-grey mt-3 text-sm sm:text-base">
+            <p className="text-slate-grey mt-2.5 sm:mt-3 text-xs sm:text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
               Submit your interest below. Our Indira Nagar, Nashik team leads will review your application and connect with you shortly.
             </p>
-            <div className="w-12 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+            <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
           </div>
 
           {/* ── Success State ─────────────────────────────────────────────── */}
           {status === "success" ? (
-            <div className="text-center py-12 space-y-4">
-              <div className="w-16 h-16 rounded-full bg-saffron/10 text-saffron flex items-center justify-center mx-auto border border-saffron/20">
-                <CheckCircle2 className="w-8 h-8 stroke-[1.5]" />
+            <div className="text-center py-8 sm:py-12 space-y-4">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-saffron/10 text-saffron flex items-center justify-center mx-auto border border-saffron/20">
+                <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 stroke-[1.5]" />
               </div>
-              <h3 className="text-2xl font-extrabold text-foreground font-heading">
+              <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase">
                 Application Received!
               </h3>
-              <p className="text-slate-grey max-w-md mx-auto text-sm">
+              <p className="text-slate-grey max-w-md mx-auto text-xs sm:text-sm font-sans leading-relaxed">
                 Thank you for applying, <strong>{formData.name}</strong>. We have logged your
                 email (<strong>{formData.email}</strong>) and phone number (
                 <strong>{formData.phone}</strong>). An Indira Nagar, Nashik team coordinator will contact you to explain
@@ -211,26 +211,26 @@ export default function VolunteerRegistrationForm() {
               </p>
               <button
                 onClick={handleReset}
-                className="text-xs uppercase font-extrabold tracking-widest text-saffron hover:underline mt-4 cursor-pointer"
+                className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.2em] text-saffron hover:underline mt-3 sm:mt-4 cursor-pointer font-sans"
               >
                 Submit another application
               </button>
             </div>
           ) : (
             /* ── Form ────────────────────────────────────────────────────── */
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
 
               {/* Global error banner */}
               {status === "error" && errorMessage && (
-                <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700">
+                <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-xs sm:text-sm text-red-700 font-sans">
                   <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                   <span>{errorMessage}</span>
                 </div>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="vf-name" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="vf-name" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Full Name <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -246,8 +246,8 @@ export default function VolunteerRegistrationForm() {
                   <FieldError message={fieldErrors.name} />
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="vf-email" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="vf-email" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Email Address <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -264,9 +264,9 @@ export default function VolunteerRegistrationForm() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="vf-phone" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="vf-phone" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Phone Number <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -282,8 +282,8 @@ export default function VolunteerRegistrationForm() {
                   <FieldError message={fieldErrors.phone} />
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="vf-location" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="vf-location" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Area / Location <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -299,8 +299,8 @@ export default function VolunteerRegistrationForm() {
                   <FieldError message={fieldErrors.location} />
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="vf-age" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="vf-age" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Age <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -319,9 +319,9 @@ export default function VolunteerRegistrationForm() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="vf-track" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="vf-track" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Preferred Volunteer Track
                   </label>
                   <select
@@ -338,8 +338,8 @@ export default function VolunteerRegistrationForm() {
                   </select>
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="vf-availability" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <label htmlFor="vf-availability" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     Time Availability
                   </label>
                   <select
@@ -356,8 +356,8 @@ export default function VolunteerRegistrationForm() {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="vf-message" className="text-xs uppercase font-extrabold tracking-wider text-foreground block">
+              <div className="space-y-1.5 sm:space-y-2">
+                <label htmlFor="vf-message" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                   Relevant Skills / Message <span className="text-slate-400 normal-case font-normal">(Optional)</span>
                 </label>
                 <textarea
@@ -371,11 +371,11 @@ export default function VolunteerRegistrationForm() {
                 />
               </div>
 
-              <div className="text-center pt-4">
+              <div className="text-center pt-2 sm:pt-4">
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full sm:w-auto bg-saffron hover:bg-saffron/90 hover:shadow-lg hover:shadow-saffron/20 text-white font-extrabold text-xs uppercase tracking-widest px-10 py-4 rounded-full transition-all duration-300 active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
+                  className="w-full sm:w-auto bg-saffron hover:bg-saffron/90 hover:shadow-lg hover:shadow-saffron/20 text-white font-bold text-xs uppercase tracking-[0.2em] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all duration-300 active:scale-95 cursor-pointer inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100 font-sans"
                 >
                   {status === "loading" ? (
                     <>

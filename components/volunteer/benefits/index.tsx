@@ -67,7 +67,7 @@ export default function VolunteerBenefits() {
   return (
     <section
       ref={containerRef}
-      className="py-24 px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-45 z-0" />
       
@@ -87,11 +87,11 @@ export default function VolunteerBenefits() {
       <div className="max-w-6xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
-            Volunteer Rewards & Benefits
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+            Volunteer Rewards &amp; Benefits
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
         {/* Typographic Accordion List Container */}
@@ -99,25 +99,25 @@ export default function VolunteerBenefits() {
           {BENEFITS.map((item, index) => (
             <div
               key={index}
-              className="benefit-row group border-b border-neutral-300 py-8 cursor-pointer overflow-hidden transition-all duration-500 flex flex-col justify-start relative px-4"
+              className="benefit-row group border-b border-neutral-300 py-5 sm:py-8 cursor-pointer overflow-hidden transition-all duration-500 flex flex-col justify-start relative px-2 sm:px-4"
             >
               {/* Row Header Block */}
-              <div className="flex items-center gap-6 z-10">
-                <span className="text-xl sm:text-2xl font-extrabold text-saffron tracking-wider font-heading">
+              <div className="flex items-center gap-3 sm:gap-6 z-10">
+                <span className="text-base sm:text-2xl font-normal text-saffron tracking-wider font-heading">
                   0{index + 1}
                 </span>
                 
-                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-outline-row-benefit tracking-tight uppercase flex items-center gap-4">
+                <h3 className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-normal font-heading text-outline-row-benefit tracking-tight uppercase flex items-center gap-2.5 sm:gap-4">
                   <span>{item.title}</span>
-                  <span className="text-xs uppercase font-extrabold tracking-widest bg-saffron/10 text-saffron border border-saffron/20 px-3.5 py-1 rounded-full font-sans inline-block select-none opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <span className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] bg-saffron/10 text-saffron border border-saffron/20 px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full font-sans inline-block select-none opacity-0 group-hover:opacity-100 transition-all duration-500">
                     {item.icon}
                   </span>
                 </h3>
               </div>
 
               {/* Row Expandable Description Container */}
-              <div className="max-w-4xl overflow-hidden max-h-0 group-hover:max-h-[120px] opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out mt-0 group-hover:mt-4 pl-10 sm:pl-14">
-                <p className="text-base sm:text-lg text-slate-grey leading-relaxed max-w-3xl font-sans">
+              <div className="max-w-4xl overflow-hidden mt-2 sm:mt-0 sm:max-h-0 sm:opacity-0 group-hover:sm:max-h-[120px] group-hover:sm:opacity-100 transition-all duration-500 ease-out group-hover:sm:mt-4 pl-6 sm:pl-10 md:pl-14">
+                <p className="text-xs sm:text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] max-w-3xl font-sans font-normal">
                   {item.desc}
                 </p>
               </div>

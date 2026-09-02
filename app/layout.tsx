@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Outfit } from "next/font/google";
+import { Plus_Jakarta_Sans, Marcellus, Outfit } from "next/font/google";
 import "./globals.css";
 import { ScrollProvider } from "@/components/providers/ScrollProvider";
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -9,12 +9,21 @@ import Footer from "@/components/home/footer";
 const sansFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const headingFont = Outfit({
+const headingFont = Marcellus({
   subsets: ["latin"],
   variable: "--font-heading",
+  weight: ["400"],
+  display: "swap",
+});
+
+const eyebrowFont = Outfit({
+  subsets: ["latin"],
+  variable: "--font-eyebrow",
+  weight: ["500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -83,7 +92,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`h-full antialiased ${sansFont.variable} ${headingFont.variable}`}
+      className={`h-full antialiased ${sansFont.variable} ${headingFont.variable} ${eyebrowFont.variable}`}
     >
       <body className="min-h-full flex flex-col relative">
         <ScrollProvider>

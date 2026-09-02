@@ -146,18 +146,18 @@ export default function VolunteerProcess() {
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0 animate-pulse" />
       
-      <div className="relative z-10 w-full flex flex-col justify-center py-16 md:py-0 process-reveal">
+      <div className="relative z-10 w-full flex flex-col justify-center py-12 sm:py-16 md:py-0 process-reveal">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14 px-6">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 tracking-tight font-heading leading-tight">
+        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-10 md:mb-14 px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Our Onboarding Process
           </h2>
-          <div className="w-16 h-1 bg-saffron mx-auto mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
         {/* 2-Column Arc Container */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center px-6 md:px-12 max-w-6xl mx-auto w-full">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center px-4 sm:px-6 md:px-12 max-w-6xl mx-auto w-full">
           
           {/* Left Column: Visual Arc Track */}
           <div className="hidden md:col-span-5 md:flex items-center justify-center relative h-[360px] w-full max-w-[280px] mx-auto">
@@ -201,7 +201,7 @@ export default function VolunteerProcess() {
                     left: `${pos.left}px`,
                     top: `${pos.top}px`,
                   }}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full border flex items-center justify-center text-sm font-extrabold font-heading shadow-md cursor-pointer transition-all duration-300 ${
+                  className={`absolute -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full border flex items-center justify-center text-sm font-normal font-heading shadow-md cursor-pointer transition-all duration-300 ${
                     isActive 
                       ? "bg-saffron text-white border-saffron scale-115 shadow-xl shadow-saffron/40 z-20 ring-4 ring-saffron/20" 
                       : "bg-white text-slate-grey border-saffron/20 hover:border-saffron hover:text-saffron z-10 hover:scale-105"
@@ -214,14 +214,14 @@ export default function VolunteerProcess() {
           </div>
 
           {/* Mobile Fallback: Horizontal step pills */}
-          <div className="flex md:hidden flex-row gap-3 overflow-x-auto pb-4 scrollbar-none w-full">
+          <div className="flex md:hidden flex-row gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-none w-full">
             {STAGES.map((stage, index) => {
               const isActive = activeIdx === index;
               return (
                 <button
                   key={stage.step}
                   onClick={() => handleStepClick(index)}
-                  className={`px-5 py-2.5 rounded-full border text-xs font-extrabold tracking-wider uppercase shrink-0 transition-all duration-300 ${
+                  className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full border text-[10px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase shrink-0 transition-all duration-300 font-sans ${
                     isActive 
                       ? "bg-saffron border-saffron text-white shadow-lg" 
                       : "bg-transparent border-black/8 text-slate-grey"
@@ -235,17 +235,17 @@ export default function VolunteerProcess() {
 
           {/* Right Column: Display Card Panel */}
           <div className="md:col-span-7">
-            <div className="glass-panel p-6 sm:p-10 rounded-block bg-white border border-saffron/15 shadow-2xl relative min-h-[200px] sm:min-h-[180px] flex flex-col justify-between overflow-hidden">
+            <div className="glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block bg-white border border-saffron/15 shadow-2xl relative min-h-[180px] flex flex-col justify-between overflow-hidden">
               <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-20 z-0" />
               
               <div ref={detailsRef} className="relative z-10 text-left">
                 {/* Stage Title */}
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 mb-4 font-heading">
+                <h3 className="text-xl sm:text-3xl font-normal text-neutral-900 mb-2.5 sm:mb-4 font-heading leading-snug uppercase">
                   {STAGES[activeIdx].title}
                 </h3>
                 
                 {/* Description */}
-                <p className="text-slate-grey text-base sm:text-lg leading-relaxed font-sans">
+                <p className="text-slate-grey text-xs sm:text-base md:text-lg leading-[1.7] sm:leading-[1.75] font-sans font-normal">
                   {STAGES[activeIdx].desc}
                 </p>
               </div>
