@@ -62,17 +62,17 @@ export default function Footer() {
       {/* 2. Footer Content Grid */}
       <div className="max-w-7xl mx-auto relative z-10 py-10 sm:py-16 px-4 sm:px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-10 sm:mb-16">
-          
+
           {/* Left Block: Description & Email Subscription */}
           <div className="lg:col-span-5 flex flex-col items-start gap-4 sm:gap-6">
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-white/20 bg-white/5 shrink-0 shadow-md">
-                <Image 
-                  src="/logo.png" 
-                  alt="Shree Pratisthan Official Logo" 
-                  fill 
-                  sizes="44px" 
-                  className="object-contain" 
+                <Image
+                  src="/logo.png"
+                  alt="Shree Pratisthan Official Logo"
+                  fill
+                  sizes="44px"
+                  className="object-contain"
                 />
               </div>
               <div className="flex flex-col">
@@ -90,7 +90,7 @@ export default function Footer() {
             </p>
 
             <div className="w-full max-w-md">
-              <form 
+              <form
                 onSubmit={handleSubscribe}
                 noValidate
                 className="flex flex-col sm:flex-row items-stretch sm:items-center bg-[#1c1c1c] border border-white/10 rounded-2xl sm:rounded-full p-1.5 w-full focus-within:border-saffron/50 transition-colors gap-2 sm:gap-0"
@@ -139,7 +139,7 @@ export default function Footer() {
 
           {/* Right Block: Directory Links */}
           <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8">
-            
+
             {/* Quick Links */}
             <div>
               <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 sm:mb-6 font-sans">Quick links</h4>

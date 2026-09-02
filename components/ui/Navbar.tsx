@@ -28,16 +28,16 @@ export function Navbar() {
       }
 
       const currentScrollY = window.scrollY;
-      
+
       // If we are at the very top of the page, always show the Navbar
       if (currentScrollY <= 50) {
         if (isHidden) {
           isHidden = false;
-          gsap.to(navRef.current, { 
-            y: 0, 
-            opacity: 1, 
-            duration: 0.4, 
-            ease: "power2.out" 
+          gsap.to(navRef.current, {
+            y: 0,
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.out"
           });
         }
         setScrolled(false);
@@ -51,11 +51,11 @@ export function Navbar() {
         if (!isHidden) {
           isHidden = true;
           setScrolled(true);
-          gsap.to(navRef.current, { 
-            y: -120, 
-            opacity: 0, 
-            duration: 0.4, 
-            ease: "power2.out" 
+          gsap.to(navRef.current, {
+            y: -120,
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.out"
           });
         }
       } else if (currentScrollY < lastScrollY - 5) {
@@ -63,11 +63,11 @@ export function Navbar() {
         if (isHidden) {
           isHidden = false;
           setScrolled(false);
-          gsap.to(navRef.current, { 
-            y: 0, 
-            opacity: 1, 
-            duration: 0.4, 
-            ease: "power2.out" 
+          gsap.to(navRef.current, {
+            y: 0,
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.out"
           });
         }
       }
@@ -96,11 +96,11 @@ export function Navbar() {
 
     const observer = new MutationObserver(() => {
       if (portal.style.display === 'none') {
-        gsap.to(navRef.current, { 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.8, 
-          ease: "power2.out" 
+        gsap.to(navRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out"
         });
         observer.disconnect();
       }
@@ -155,16 +155,16 @@ export function Navbar() {
       >
         <div className="max-w-[1400px] mx-auto flex justify-between items-center">
           {/* Left: Genuine Official Emblem inside Floating Glass Pill */}
-          <Link 
-            href="/" 
-            className="flex items-center gap-3 group bg-white/95 backdrop-blur-md border border-saffron/10 px-4 py-2 rounded-full shadow-lg pointer-events-auto hover:border-saffron/30 hover:scale-[1.02] transition-all duration-300 select-none" 
+          <Link
+            href="/"
+            className="flex items-center gap-3 group bg-white/95 backdrop-blur-md border border-saffron/10 px-4 py-2 rounded-full shadow-lg pointer-events-auto hover:border-saffron/30 hover:scale-[1.02] transition-all duration-300 select-none"
             onClick={() => setIsOpen(false)}
             data-hover="pointer"
           >
             <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden shrink-0 border border-saffron/20 shadow-sm transition-transform duration-500 group-hover:scale-105">
-              <Image 
-                src="/logo.png" 
-                alt="Shree Pratisthan Official Logo" 
+              <Image
+                src="/logo.png"
+                alt="Shree Pratisthan Official Logo"
                 fill
                 sizes="36px"
                 className="object-contain"
@@ -197,55 +197,33 @@ export function Navbar() {
 
       {/* Next-Level Full-Screen Menu Overlay Drawer */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col md:flex-row p-6 pt-24 pb-12 md:p-24 overflow-y-auto max-h-screen">
+        <div className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col md:flex-row p-6 pt-24 pb-12 sm:p-12 md:p-24 overflow-y-auto max-h-screen">
           {/* Ambient decorative glows */}
           <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-5" />
           <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-40 opacity-5" />
 
-          {/* Left Column: Branding, Motto & Contact Coordinates */}
-          <div className="w-full md:w-1/2 flex flex-col justify-between border-b md:border-b-0 md:border-r border-saffron/10 pb-8 md:pb-0 md:pr-16 mb-8 md:mb-0 relative z-10 pt-4 md:pt-0">
-            {/* Top Logo & Title */}
-            <div className="nav-drawer-info">
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-saffron/30 shadow-lg mb-6 bg-white/80">
-                <Image 
-                  src="/logo.png" 
-                  alt="Shree Pratisthan Official Logo" 
-                  fill
-                  sizes="96px"
-                  className="object-contain"
-                />
-              </div>
-              <h2 className="text-2xl font-normal tracking-wide text-foreground font-heading">
-                SHREE <span className="text-saffron">PRATHISHTHAN</span>
-              </h2>
-              <p className="text-xs text-saffron uppercase font-bold tracking-[0.25em] font-sans mt-2">
-                संस्कृति · सेवा · सन्मान
-              </p>
-            </div>
-
-            {/* Bottom Contact Coordinates */}
-            <div className="nav-drawer-info flex flex-col gap-4 mt-8 md:mt-0 text-slate-grey font-sans">
-              <div>
-                <span className="text-[10px] font-bold text-saffron uppercase tracking-widest block mb-1">Office Location</span>
-                <p className="text-sm font-medium">Indira Nagar, Nashik, Maharashtra</p>
-              </div>
-              <div>
-                <span className="text-[10px] font-bold text-saffron uppercase tracking-widest block mb-1">Electronic Mail</span>
-                <p className="text-sm font-medium hover:text-saffron transition-colors">
-                  <a href="mailto:Info@shreepratishthan.com">Info@shreepratishthan.com</a>
-                </p>
-              </div>
-              <div className="flex gap-4 mt-2">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-bold tracking-widest text-slate-grey hover:text-saffron transition-colors">Facebook</a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-bold tracking-widest text-slate-grey hover:text-saffron transition-colors">Instagram</a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-xs uppercase font-bold tracking-widest text-slate-grey hover:text-saffron transition-colors">Twitter</a>
+          {/* Left Column: Branding Showcase */}
+          <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start border-b md:border-b-0 md:border-r border-saffron/10 pb-6 md:pb-0 md:pr-16 mb-6 md:mb-0 relative z-10 pt-2 md:pt-0">
+            {/* Clean Logo Emblem */}
+            <div className="nav-drawer-info flex flex-col items-center md:items-start">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-saffron/30 shadow-xl bg-white/90 p-1 group transition-transform duration-500 hover:scale-105">
+                <div className="relative w-full h-full rounded-full overflow-hidden">
+                  <Image
+                    src="/logo.png"
+                    alt="Shree Pratisthan Official Logo"
+                    fill
+                    sizes="(max-width: 768px) 96px, 112px"
+                    className="object-contain"
+                    priority
+                  />
+                </div>
               </div>
             </div>
           </div>
 
           {/* Right Column: Staggered Giant Menu Links */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center md:pl-16 relative z-10 pt-4 md:pt-0">
-            <nav className="flex flex-col gap-4 md:gap-6 text-left">
+          <div className="w-full md:w-1/2 flex flex-col justify-center md:pl-16 relative z-10 pt-2 md:pt-0">
+            <nav className="flex flex-col gap-3 sm:gap-4 md:gap-6 text-center md:text-left">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
@@ -253,12 +231,11 @@ export function Navbar() {
                     key={link.label}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="nav-drawer-link group relative block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-heading tracking-tight uppercase transition-all duration-300"
+                    className="nav-drawer-link group relative block text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-heading tracking-tight uppercase transition-all duration-300"
                     data-hover="pointer"
                   >
-                    <span className={`inline-block transition-transform duration-300 group-hover:translate-x-3 ${
-                      isActive ? "text-saffron" : "text-foreground hover:text-saffron"
-                    }`}>
+                    <span className={`inline-block transition-transform duration-300 md:group-hover:translate-x-3 ${isActive ? "text-saffron" : "text-neutral-900 hover:text-saffron"
+                      }`}>
                       {link.label}
                     </span>
                   </Link>
