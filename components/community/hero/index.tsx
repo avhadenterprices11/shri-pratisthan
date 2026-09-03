@@ -17,7 +17,7 @@ export default function CommunityHero() {
     // ── CURSOR MOUSEMOVE LOGIC ──
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
-      
+
       if (cursorRef.current && cursorRingRef.current) {
         gsap.to(cursorRef.current, {
           x: clientX,
@@ -67,7 +67,7 @@ export default function CommunityHero() {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      ctx.revert(); 
+      ctx.revert();
     };
   }, []);
 
@@ -84,16 +84,16 @@ export default function CommunityHero() {
       />
 
       {/* Pinned Section Wrapper */}
-      <div 
-        id="wrapper" 
+      <div
+        id="wrapper"
         className="relative w-full h-[80vh] sm:h-[90vh] overflow-hidden flex flex-col justify-center items-center py-12 sm:py-20 px-4 sm:px-6 md:px-12 text-left"
       >
         {/* Plasma Background Overlay Layer */}
-        <div 
-          id="bgPlasma" 
-          className="absolute inset-0 bg-[#FBFBFA] opacity-0 pointer-events-none z-10 transition-opacity duration-300" 
+        <div
+          id="bgPlasma"
+          className="absolute inset-0 bg-[#FBFBFA] opacity-0 pointer-events-none z-10 transition-opacity duration-300"
         />
-        
+
         {/* Background Image Container */}
         <div id="imgContainer" className="absolute inset-0 z-0 overflow-hidden w-full h-full">
           <Image

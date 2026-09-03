@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Marcellus, Outfit } from "next/font/google";
 import "./globals.css";
 import { ScrollProvider } from "@/components/providers/ScrollProvider";
-import { LanguageProvider } from "@/context/LanguageContext";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Navbar } from "@/components/ui/Navbar";
 import Footer from "@/components/home/footer";
@@ -96,14 +95,12 @@ export default function RootLayout({
       className={`h-full antialiased ${sansFont.variable} ${headingFont.variable} ${eyebrowFont.variable}`}
     >
       <body className="min-h-full flex flex-col relative">
-        <LanguageProvider>
-          <ScrollProvider>
-            <CustomCursor />
-            <Navbar />
-            {children}
-            <Footer />
-          </ScrollProvider>
-        </LanguageProvider>
+        <ScrollProvider>
+          <CustomCursor />
+          <Navbar />
+          {children}
+          <Footer />
+        </ScrollProvider>
       </body>
     </html>
   );

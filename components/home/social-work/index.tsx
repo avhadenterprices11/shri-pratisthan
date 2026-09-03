@@ -1,11 +1,11 @@
 "use client";
 
+// Clean static cultural & social welfare showcase component
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Image from "next/image";
-import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 
 const impactCards = [
@@ -71,8 +71,6 @@ export default function CulturalInitiatives() {
     setOpenCard((prev) => (prev === idx ? null : idx));
   };
 
-  const { t } = useLanguage();
-
   return (
     <section id="social-work" className="w-full bg-background pt-10 sm:pt-16 md:pt-20 pb-4 sm:pb-8 md:pb-12 select-none">
       <div className="w-full max-w-[1320px] mx-auto px-4 sm:px-6 md:px-8">
@@ -81,10 +79,10 @@ export default function CulturalInitiatives() {
         <div className="flex items-start justify-between gap-6 mb-6 sm:mb-10">
           <div className="max-w-[620px] text-left">
             <h2 className="text-2xl sm:text-[34px] md:text-[40px] leading-[1.15] font-normal text-charcoal font-heading tracking-tight">
-              {t("socialWork.heading")}
+              Social Welfare &amp; Community Action
             </h2>
             <p className="mt-3 sm:mt-4 text-xs sm:text-[15px] text-slate-grey leading-[1.75] max-w-[560px] font-sans">
-              {t("socialWork.description")}
+              Shree Pratisthan drives impactful social transformation through youth mobilization, healthcare, blood drives, and community empowerment in Indira Nagar, Nashik.
             </p>
           </div>
         </div>
@@ -130,14 +128,14 @@ export default function CulturalInitiatives() {
                         {card.isFeature ? (
                           <div className="max-w-[280px]">
                             <h3 className="text-xl sm:text-[28px] md:text-[32px] leading-[1.1] font-normal font-heading mb-2 sm:mb-3 text-charcoal uppercase">
-                              {t("cultural.shreeNaadPathak")}
+                              Shree Naad Dhol Tasha Pathak
                             </h3>
                             <Link
                               href="/volunteer"
                               className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-bold text-saffron hover:text-gold transition-colors cursor-pointer font-sans"
                               data-hover="pointer"
                             >
-                              {t("socialWork.joinTroupe")} <ArrowRight size={14} />
+                              Join Troupe <ArrowRight size={14} />
                             </Link>
                           </div>
                         ) : (

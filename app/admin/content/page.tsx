@@ -283,9 +283,9 @@ export default function AdminContentManager() {
             </Link>
             <span className="text-neutral-700">|</span>
             <div className="flex items-center gap-2">
-              <Globe className="w-4 h-4 text-amber-500" />
+              <Sparkles className="w-4 h-4 text-amber-500" />
               <h1 className="text-sm font-bold tracking-wide uppercase text-neutral-200">
-                Admin Content & Translation Hub
+                Admin Content Hub
               </h1>
             </div>
           </div>
@@ -293,7 +293,7 @@ export default function AdminContentManager() {
           <div className="flex items-center gap-3">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
               <Sparkles className="w-3 h-3" />
-              Pre-Translation Architecture
+              Live Announcements Hub
             </span>
           </div>
         </div>

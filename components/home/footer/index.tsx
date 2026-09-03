@@ -4,10 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
-import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
-  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [feedbackMsg, setFeedbackMsg] = useState("");
@@ -48,15 +46,15 @@ export default function Footer() {
         <div className="absolute right-0 top-0 h-full w-12 sm:w-24 bg-gradient-to-l from-[#111] to-transparent pointer-events-none z-10" />
 
         <div className="inline-flex gap-8 sm:gap-16 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-16 text-2xl sm:text-5xl md:text-[5vw] font-normal uppercase font-heading tracking-tight">
-          <span className="text-white">{t("cultural.motto")}</span>
-          <span className="text-outline font-heading">{t("cultural.trustName")}</span>
-          <span className="text-saffron font-heading">{t("cultural.location")}</span>
+          <span className="text-white">वारसा संस्कृतीचा, ध्यास समाजसेवेचा</span>
+          <span className="text-outline font-heading">SHREE PRATISHTHAN</span>
+          <span className="text-saffron font-heading">INDIRA NAGAR, NASHIK</span>
           <span className="text-white">✦</span>
         </div>
         <div className="inline-flex gap-8 sm:gap-16 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-16 text-2xl sm:text-5xl md:text-[5vw] font-normal uppercase font-heading tracking-tight" aria-hidden="true">
-          <span className="text-white">{t("cultural.motto")}</span>
-          <span className="text-outline font-heading">{t("cultural.trustName")}</span>
-          <span className="text-saffron font-heading">{t("cultural.location")}</span>
+          <span className="text-white">वारसा संस्कृतीचा, ध्यास समाजसेवेचा</span>
+          <span className="text-outline font-heading">SHREE PRATISHTHAN</span>
+          <span className="text-saffron font-heading">INDIRA NAGAR, NASHIK</span>
           <span className="text-white">✦</span>
         </div>
       </div>
@@ -79,16 +77,16 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="text-sm sm:text-base font-normal tracking-tight text-white font-heading uppercase">
-                  {t("cultural.trustName")}
+                  Shree Prathishthan
                 </span>
                 <span className="text-[9px] sm:text-[10px] text-white/50 uppercase tracking-[0.2em] font-sans">
-                  {t("cultural.trustSubname")}
+                  Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha
                 </span>
               </div>
             </div>
 
             <p className="text-xs sm:text-sm text-white/60 leading-[1.75] max-w-md font-normal font-sans">
-              {t("footer.tagline")}
+              Preserving sacred traditions, championing youth leadership, and fostering societal well-being across Indira Nagar, Nashik since 2006.
             </p>
 
             <div className="w-full max-w-md">
@@ -144,13 +142,13 @@ export default function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 sm:mb-6 font-sans">{t("nav.quickLinks")}</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 sm:mb-6 font-sans">Quick Links</h4>
               <ul className="space-y-3 sm:space-y-4 text-xs text-white/50 font-sans">
-                <li><Link href="/" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("nav.home")}</Link></li>
-                <li><Link href="/events" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("nav.events")}</Link></li>
-                <li><Link href="/community" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("nav.community")}</Link></li>
-                <li><Link href="/about" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("nav.about")}</Link></li>
-                <li><Link href="/gallery" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("nav.gallery")}</Link></li>
+                <li><Link href="/" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Home</Link></li>
+                <li><Link href="/events" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Events</Link></li>
+                <li><Link href="/community" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Community</Link></li>
+                <li><Link href="/about" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">About</Link></li>
+                <li><Link href="/gallery" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Gallery</Link></li>
               </ul>
             </div>
 
@@ -158,10 +156,10 @@ export default function Footer() {
             <div>
               <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 sm:mb-6 font-sans">Support &amp; Legal</h4>
               <ul className="space-y-3 sm:space-y-4 text-xs text-white/50 font-sans">
-                <li><Link href="/privacy-policy" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("nav.privacy")}</Link></li>
-                <li><Link href="/terms-conditions" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("nav.terms")}</Link></li>
-                <li><Link href="/volunteer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("nav.volunteer")}</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("nav.contact")}</Link></li>
+                <li><Link href="/privacy-policy" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Privacy Policy</Link></li>
+                <li><Link href="/terms-conditions" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Terms &amp; Conditions</Link></li>
+                <li><Link href="/volunteer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Volunteer</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Contact</Link></li>
               </ul>
             </div>
 

@@ -1,28 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useLanguage } from "@/context/LanguageContext";
 import { Bell, Calendar, Sparkles, ChevronRight } from "lucide-react";
 import Link from "next/link";
-
-interface MultilingualField {
-  en: string;
-  mr: string;
-  hi: string;
-}
 
 interface DynamicAnnouncement {
   id: string;
   type: "announcement" | "news" | "event_update" | "notice";
-  title: MultilingualField;
-  content: MultilingualField;
-  category: MultilingualField;
+  title: string | { en?: string; mr?: string; hi?: string };
+  content: string | { en?: string; mr?: string; hi?: string };
+  category: string | { en?: string; mr?: string; hi?: string };
   date: string;
   priority?: "normal" | "high" | "urgent";
 }
 
 export default function DynamicAnnouncements() {
-  const { language, resolveMultilingual } = useLanguage();
   const [items, setItems] = useState<DynamicAnnouncement[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -55,12 +47,12 @@ export default function DynamicAnnouncements() {
   // Pick primary featured announcement
   const featured = items[0];
 
-  const categoryText = resolveMultilingual(featured.category);
-  const titleText = resolveMultilingual(featured.title);
-  const contentText = resolveMultilingual(featured.content);
+  const categoryText = typeof featured.category === "string" ? featured.category : (featured.category?.en || featured.category?.mr || "");
+  const titleText = typeof featured.title === "string" ? featured.title : (featured.title?.en || featured.title?.mr || "");
+  const contentText = typeof featured.content === "string" ? featured.content : (featured.content?.en || featured.content?.mr || "");
 
   return (
-    <section key={language} className="relative z-20 w-full bg-charcoal/95 border-y border-saffron/20 py-4 px-4 sm:px-6 lg:px-8 shadow-inner overflow-hidden">
+    <section className="relative z-20 w-full bg-charcoal/95 border-y border-saffron/20 py-4 px-4 sm:px-6 lg:px-8 shadow-inner overflow-hidden">
       {/* Subtle decorative glow */}
       <div className="absolute top-0 right-1/4 w-96 h-24 bg-saffron/10 rounded-full blur-3xl pointer-events-none" />
 

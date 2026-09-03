@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { Calendar, Users, Clock, MapPin, Sparkles, AlertCircle, ShieldCheck } from "lucide-react";
-import CustomSelect from "@/components/ui/custom-select";
+import { Calendar, Users, Clock, MapPin, Sparkles, ArrowLeft, ArrowRight, Sun, Sunset, Moon, Compass } from "lucide-react";
+import CustomSelect, { CustomSelectOption } from "@/components/ui/custom-select";
 import { EventBookingInput } from "@/lib/validations";
 import { getEventById } from "@/lib/events-data";
 
@@ -14,11 +14,31 @@ interface StepEventProps {
   onBack: () => void;
 }
 
-const TIME_SLOT_OPTIONS = [
-  { value: "morning", label: "Morning Slot (08:00 AM - 12:00 PM)" },
-  { value: "afternoon", label: "Afternoon Slot (12:00 PM - 04:00 PM)" },
-  { value: "evening", label: "Evening Slot (04:00 PM - 09:00 PM)" },
-  { value: "full-day", label: "Full Day Pass (08:00 AM - 10:00 PM)" },
+const TIME_SLOT_OPTIONS: CustomSelectOption[] = [
+  { 
+    value: "morning", 
+    label: "Morning Slot", 
+    sublabel: "06:30 AM – 12:00 PM (Prabhat Pujan & Recital)",
+    icon: <Sun className="w-4 h-4" />
+  },
+  { 
+    value: "afternoon", 
+    label: "Afternoon Slot", 
+    sublabel: "12:00 PM – 04:00 PM (Cultural Exhibits & Seva)",
+    icon: <Sun className="w-4 h-4 text-amber-500" />
+  },
+  { 
+    value: "evening", 
+    label: "Evening Slot", 
+    sublabel: "04:00 PM – 09:30 PM (Grand Maha Aarti & Troupe)",
+    icon: <Sunset className="w-4 h-4 text-saffron" />
+  },
+  { 
+    value: "full-day", 
+    label: "Full Day Pass", 
+    sublabel: "All day open celebration access",
+    icon: <Moon className="w-4 h-4 text-indigo-500" />
+  },
 ];
 
 export default function StepEvent({
@@ -36,65 +56,80 @@ export default function StepEvent({
     onNext();
   };
 
+  const participantCount = formData.numberOfParticipants || 1;
+
+  const handleDecrement = () => {
+    if (participantCount > 1) {
+      updateFields({ numberOfParticipants: participantCount - 1 });
+    }
+  };
+
+  const handleIncrement = () => {
+    if (participantCount < 20) {
+      updateFields({ numberOfParticipants: participantCount + 1 });
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 select-none">
-      <div className="border-b border-neutral-200 pb-4 mb-6">
-        <h3 className="text-xl md:text-2xl font-bold font-heading text-neutral-900 flex items-center gap-2">
-          <Calendar className="w-6 h-6 text-saffron" />
-          Step 2: Booking Slot
+    <form onSubmit={handleSubmit} className="space-y-8 select-none text-left">
+      {/* Section Header */}
+      <div className="border-b border-black/8 pb-5 space-y-1">
+        <div className="inline-flex items-center gap-2 text-saffron text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] font-sans">
+          <span>Step 02 • Schedule &amp; Passes</span>
+        </div>
+        <h3 className="text-2xl sm:text-3xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
+          Select Booking Slot
         </h3>
-        <p className="text-sm text-neutral-600 mt-1 font-sans">
-          Your festival selection is locked in. Select your preferred date, time slot, and number of passes.
+        <p className="text-xs sm:text-sm text-slate-500 font-sans leading-relaxed">
+          Your celebration is locked in. Select your preferred date, time slot, and number of entry passes.
         </p>
       </div>
 
-      {/* 1. Read-Only Selected Event Summary Card */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-saffron/20 space-y-2 relative overflow-hidden">
+      {/* 1. Luminous Locked Celebration Header Card */}
+      <div className="p-5 sm:p-6 rounded-3xl bg-neutral-50/90 border border-black/8 space-y-3 relative overflow-hidden shadow-xs">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-saffron bg-saffron/10 px-2.5 py-0.5 rounded-full border border-saffron/20 font-sans">
-              Selected Event (Read-Only)
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-saffron bg-saffron/10 px-3 py-1 rounded-full border border-saffron/20 font-sans">
+              Selected Celebration
             </span>
             <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 font-sans">
               • {activeEvent?.categoryLabel}
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-700 bg-white px-2.5 py-0.5 rounded-full border border-black/10 font-sans">
-              📍 {activeEvent?.eventMode || "In-Person"}
-            </span>
-          </div>
+          <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-neutral-800 bg-white px-3 py-1 rounded-full border border-black/8 font-sans shadow-2xs">
+            <Compass className="w-3.5 h-3.5 text-saffron" />
+            <span>{activeEvent?.eventMode || "In-Person"}</span>
+          </span>
         </div>
 
-        <h4 className="text-lg sm:text-xl font-normal text-neutral-900 font-heading uppercase leading-tight pt-1">
+        <h4 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-tight pt-1">
           {activeEvent?.title}
         </h4>
 
-        <div className="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-600 font-sans pt-1">
-          <span className="flex items-center gap-1">
+        <div className="flex flex-wrap items-center gap-y-1.5 gap-x-5 text-xs text-slate-600 font-sans pt-1 border-t border-black/5">
+          <span className="flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5 text-saffron" />
-            <strong>Official Dates:</strong> {activeEvent?.date}
+            <span><strong>Dates:</strong> {activeEvent?.date}</span>
           </span>
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1.5">
             <MapPin className="w-3.5 h-3.5 text-saffron" />
-            <strong>Venue:</strong> {activeEvent?.venueName}, {activeEvent?.city}
+            <span><strong>Venue:</strong> {activeEvent?.venueName}, {activeEvent?.city}</span>
           </span>
         </div>
       </div>
 
-      {/* Form Fields: Slot, Date & Attendees */}
-      <div className="space-y-5">
+      {/* 2. Slot Selection & Attendees Grid */}
+      <div className="space-y-6">
         
-        {/* Date Calendar & Time Slot Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* Calendar Date Selection */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          {/* Attendance Date Selection */}
           <div className="space-y-2">
             <label htmlFor="dateOfBirth" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
               Attendance Date <span className="text-saffron">*</span>
             </label>
             <div className="relative">
-              <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
+              <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 id="dateOfBirth"
                 type="date"
@@ -103,7 +138,7 @@ export default function StepEvent({
                 max={activeEvent?.endDate || "2026-12-31"}
                 value={formData.dateOfBirth || activeEvent?.startDate || "2026-08-27"}
                 onChange={(e) => updateFields({ dateOfBirth: e.target.value })}
-                className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium font-sans"
+                className="w-full pl-11 pr-4 py-3.5 bg-white border border-neutral-200 rounded-2xl text-neutral-900 focus:outline-none focus:ring-4 focus:ring-saffron/10 focus:border-saffron transition-all text-xs sm:text-sm font-semibold font-sans shadow-xs"
               />
             </div>
             {errors.dateOfBirth && (
@@ -111,7 +146,7 @@ export default function StepEvent({
             )}
           </div>
 
-          {/* Time Slot Selector Dropdown */}
+          {/* Time Slot Selector with CustomSelect */}
           <div className="space-y-2">
             <label htmlFor="preferredTimeSlot" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
               Time Slot Selector <span className="text-saffron">*</span>
@@ -121,6 +156,7 @@ export default function StepEvent({
               options={TIME_SLOT_OPTIONS}
               value={formData.preferredTimeSlot || "morning"}
               onChange={(val) => updateFields({ preferredTimeSlot: val })}
+              placeholder="Choose your slot..."
               icon={<Clock className="w-4 h-4" />}
             />
             {errors.preferredTimeSlot && (
@@ -129,62 +165,77 @@ export default function StepEvent({
           </div>
         </div>
 
-        {/* Number of Attendees */}
+        {/* Number of Attendees Stepper */}
         <div className="space-y-2">
-          <label htmlFor="numberOfParticipants" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
-            Number of Attendees / Passes (Max 20) <span className="text-saffron">*</span>
+          <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
+            Number of Attendees / Passes (Max 20 Per Family) <span className="text-saffron">*</span>
           </label>
-          <div className="relative">
-            <Users className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
-            <input
-              id="numberOfParticipants"
-              type="number"
-              min={1}
-              max={20}
-              required
-              value={formData.numberOfParticipants || 1}
-              onChange={(e) => updateFields({ numberOfParticipants: Math.min(20, Math.max(1, parseInt(e.target.value) || 1)) })}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-semibold shadow-xs font-sans"
-            />
+          
+          <div className="flex items-center gap-4 p-3 bg-white border border-neutral-200 rounded-2xl shadow-xs">
+            <div className="w-9 h-9 rounded-xl bg-saffron/10 text-saffron flex items-center justify-center shrink-0">
+              <Users className="w-4 h-4" />
+            </div>
+
+            <div className="flex-1">
+              <span className="text-xs sm:text-sm font-bold text-neutral-900 font-sans">
+                {participantCount} {participantCount === 1 ? "Person" : "Persons"} Entry Pass
+              </span>
+              <span className="text-[11px] text-slate-400 block font-sans">
+                Full free gate access for family &amp; friends
+              </span>
+            </div>
+
+            {/* Stepper Controls */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleDecrement}
+                disabled={participantCount <= 1}
+                className="w-10 h-10 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed font-bold text-lg flex items-center justify-center transition-colors cursor-pointer"
+                aria-label="Decrease passes"
+              >
+                –
+              </button>
+
+              <span className="w-8 text-center text-sm sm:text-base font-bold text-neutral-900 font-sans">
+                {participantCount}
+              </span>
+
+              <button
+                type="button"
+                onClick={handleIncrement}
+                disabled={participantCount >= 20}
+                className="w-10 h-10 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed font-bold text-lg flex items-center justify-center transition-colors cursor-pointer"
+                aria-label="Increase passes"
+              >
+                +
+              </button>
+            </div>
           </div>
           {errors.numberOfParticipants && (
             <p className="text-xs text-red-600 font-medium font-sans">{errors.numberOfParticipants}</p>
           )}
         </div>
 
-        {/* Capacity / Waitlist Status Notice */}
-        {isWaitlist ? (
-          <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 leading-relaxed font-sans flex items-start gap-2.5">
-            <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-            <div>
-              <strong className="font-bold">Capacity Full Notice:</strong> Primary registration allocation is currently full for this slot. Submitting this form will add you to our <strong>Priority Waitlist</strong>. You will be notified via SMS/Email as soon as passes open.
-            </div>
-          </div>
-        ) : (
-          <div className="p-4 bg-saffron/[0.04] border border-saffron/20 rounded-xl text-xs text-slate-700 leading-relaxed font-sans flex items-start gap-2.5">
-            <ShieldCheck className="w-4 h-4 text-saffron shrink-0 mt-0.5" />
-            <div>
-              <strong className="text-saffron font-bold">Free Community Passes:</strong> Indira Nagar &amp; Nashik citizens receive direct QR check-in passes valid for entry at the gate.
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex items-center justify-between pt-4">
+      <div className="flex items-center justify-between pt-4 border-t border-black/8">
         <button
           type="button"
           onClick={onBack}
-          className="px-6 py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold text-xs sm:text-sm uppercase rounded-xl transition-all cursor-pointer font-sans"
+          className="inline-flex items-center gap-2 px-6 py-3.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold text-xs sm:text-sm uppercase rounded-full transition-all cursor-pointer font-sans"
         >
-          &larr; Back
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back</span>
         </button>
 
         <button
           type="submit"
-          className="px-8 py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer font-sans"
+          className="inline-flex items-center gap-2 px-8 py-4 bg-saffron hover:bg-saffron/90 text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-lg shadow-saffron/20 hover:shadow-saffron/30 transition-all duration-300 cursor-pointer font-sans group"
         >
-          {isWaitlist ? "Join Waitlist & Review &rarr;" : "Next: Review & Confirm &rarr;"}
+          <span>Review &amp; Confirm Pass</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </div>
     </form>

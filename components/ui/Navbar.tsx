@@ -5,15 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
-import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
-import { useLanguage } from "@/context/LanguageContext";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
@@ -142,12 +139,12 @@ export function Navbar() {
   }, [isOpen]);
 
   const navLinks = [
-    { label: t("nav.about"), href: "/about" },
-    { label: t("nav.community"), href: "/community" },
-    { label: t("nav.volunteer"), href: "/volunteer" },
-    { label: t("nav.events"), href: "/events" },
-    { label: t("nav.gallery"), href: "/gallery" },
-    { label: t("nav.contact"), href: "/contact" },
+    { label: "About Us", href: "/about" },
+    { label: "Community", href: "/community" },
+    { label: "Volunteer", href: "/volunteer" },
+    { label: "Events", href: "/events" },
+    { label: "Gallery", href: "/gallery" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -175,13 +172,12 @@ export function Navbar() {
               />
             </div>
             <span className="text-[11px] sm:text-sm font-normal tracking-wider text-foreground font-heading uppercase">
-              {t("cultural.trustName")}
+              Shree Prathishthan
             </span>
           </Link>
 
-          {/* Right: Language Switcher + Floating Dark Glassmorphic Menu Button */}
-          <div className="flex items-center gap-2.5 sm:gap-3 pointer-events-auto">
-            <LanguageSwitcher variant="header" />
+          {/* Right: Floating Dark Glassmorphic Menu Button */}
+          <div className="flex items-center pointer-events-auto">
 
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -208,11 +204,6 @@ export function Navbar() {
           {/* Ambient decorative glows */}
           <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-5" />
           <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-40 opacity-5" />
-
-          {/* Top Left of Drawer: Segmented Language Switcher */}
-          <div className="absolute top-6 left-6 sm:left-12 md:left-24 z-20">
-            <LanguageSwitcher variant="drawer" />
-          </div>
 
           {/* Left Column: Branding Showcase */}
           <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start border-b md:border-b-0 md:border-r border-saffron/10 pb-6 md:pb-0 md:pr-16 mb-6 md:mb-0 relative z-10 pt-6 md:pt-0">
