@@ -292,7 +292,11 @@
       "opt1": "General Inquiry / Support",
       "opt2": "Volunteer Registration",
       "opt3": "Blood Donation & Health Camps",
-      "opt4": "Sports & Event Participation"
+      "opt4": "Sports & Event Participation",
+      "sendAnother": "Send Another Message",
+      "nameError": "Please enter your name",
+      "emailError": "Please enter a valid email address",
+      "messageError": "Please type a message"
     }
   },
   "footer": {
@@ -533,7 +537,10 @@
       "camp3Units": "95 Units Collected",
       "camp3Partner": "Arpan Blood Bank Nashik",
       "donorHelpline": "Emergency Donor Helpline: +91 9922786608",
-      "donorButton": "Register As Blood Donor"
+      "donorButton": "Register As Blood Donor",
+      "verifiedTag": "Verified Drives",
+      "recentDrivesTitle": "Recent Donation Drives",
+      "partnerLabel": "Partnered with"
     },
     "treePlantation": {
       "badge": "Eco Initiative",
@@ -550,7 +557,10 @@
       "s3Count": "1,200+",
       "s4Name": "Peepal (Ficus religiosa)",
       "s4Type": "Oxygen Rich & Soil Stability",
-      "s4Count": "900+"
+      "s4Count": "900+",
+      "ecologyTag": "Ecology",
+      "speciesTitle": "Sown & Nurtured Saplings",
+      "careNote": "Saplings are monitored and watered under our Sunday Care initiatives."
     },
     "charity": {
       "badge": "Humanitarian Care",
@@ -564,7 +574,8 @@
       "c2Metric": "1,500+ Families Supported",
       "c3Title": "Winter Clothing & Blanket Drive",
       "c3Desc": "Community collection and distribution of warm blankets and sweaters to elderly residents and needy families in Indira Nagar and Nashik.",
-      "c3Metric": "3,000+ Blankets Donated"
+      "c3Metric": "3,000+ Blankets Donated",
+      "distributedTag": "Distributed"
     },
     "impact": {
       "badge": "Our Verified Footprint",
@@ -719,7 +730,8 @@
       "c7Month": "December",
       "c7Title": "Annual Sports & Cricket Tournament",
       "c7Desc": "Premier 32-team tennis ball cricket championship and youth athletics honoring our 2006 sports roots.",
-      "c7Type": "Sports Tournament"
+      "c7Type": "Sports Tournament",
+      "activeDriveLocation": "Active Drive Location"
     },
     "journey": {
       "heading": "19+ Years Event & Seva Legacy",
@@ -821,7 +833,38 @@
       "morningSlot": "Morning Slot (08:00 AM - 12:00 PM)",
       "afternoonSlot": "Afternoon Slot (12:00 PM - 04:00 PM)",
       "eveningSlot": "Evening Slot (04:00 PM - 09:00 PM)",
-      "fullDaySlot": "Full Day Pass (08:00 AM - 10:00 PM)"
+      "fullDaySlot": "Full Day Pass (08:00 AM - 10:00 PM)",
+      "editBtn": "Edit",
+      "step2Desc": "Your festival selection is locked in. Select your preferred date, time slot, and number of passes.",
+      "selectedEvent": "Selected Event",
+      "officialDates": "Official Dates",
+      "timeSlotSelector": "Time Slot Selector",
+      "attendeesCountLabel": "Number of Attendees / Passes (Max 20)",
+      "capacityFullNotice": "Primary registration allocation is currently full for this slot. Submitting this form will add you to our Priority Waitlist. You will be notified via SMS/Email as soon as passes open.",
+      "freeCommunityNotice": "Indira Nagar & Nashik citizens receive direct QR check-in passes valid for entry at the gate.",
+      "joinWaitlistBtn": "Join Waitlist & Review",
+      "eventName": "Event Name",
+      "officialDate": "Official Event Date",
+      "timeSlot": "Time Slot",
+      "slotWord": "Slot",
+      "attendees": "Attendees",
+      "passes": "Pass(es)",
+      "customAnswers": "Custom Registration Answers",
+      "yes": "Yes",
+      "no": "No",
+      "notSpecified": "Not specified",
+      "accessibilitySafety": "Accessibility & Safety",
+      "bookingNoticeTitle": "Event Booking Notice",
+      "waitlistNoticeTitle": "Waitlist Registration Notice",
+      "bookingNoticeDesc": "We will address and contact you as soon as possible regarding your event booking and ground coordination details.",
+      "waitlistNoticeDesc": "Your request will be placed on our priority waitlist. Our coordination team will notify you via SMS as soon as additional seating opens.",
+      "bookingDisclaimer": "Shree Pratishtan (Indira Nagar, Nashik) verifies every booking slot for festival crowd safety and smooth gate entry.",
+      "confirmWaitlist": "Confirm Waitlist Entry",
+      "freeNotice": "No online payment is required. This registration is completely free. Present your booking ID or name at the entrance.",
+      "bookingIdLabel": "Booking ID",
+      "copyBookingId": "Copy ID",
+      "copied": "Copied!",
+      "bookAnother": "Book Another Event"
     },
     "detail": {
       "dossierBadge": "Official Event Dossier",
@@ -842,7 +885,26 @@
       "open": "Open for Registration",
       "closingSoon": "Closing Soon",
       "closed": "Registration Closed",
-      "freeEntry": "Free Open Gate Entry"
+      "freeEntry": "Free Open Gate Entry",
+      "dateLabel": "Date",
+      "timeLabel": "Time",
+      "venueLabel": "Venue",
+      "deadlineLabel": "Deadline",
+      "qrScan": "QR Code Scan",
+      "openInMaps": "Open in Google Maps",
+      "streetAddress": "Street Address",
+      "cityState": "City & State",
+      "postalCountry": "Postal Code & Country",
+      "operationsBadge": "Operations & Logistics",
+      "operationsTitle": "How This Event Is Organized",
+      "promoVideoTitle": "Event Promo & Highlights Teaser",
+      "momentsGalleryTitle": "Event Moments Gallery",
+      "coordinatorLabel": "Coordinator",
+      "hotlineLabel": "Hotline",
+      "emailLabel": "Email",
+      "active247": "● 24/7 Response Active During Event",
+      "locationCoordinates": "Location Coordinates",
+      "getDirections": "Get Directions on Map"
     },
     "pastEvents": {
       "auditVerified": "Audit Verified"
@@ -1008,7 +1070,8 @@
     },
     "videoGallery": {
       "heading": "Video Reels & Event Footage",
-      "watchVideo": "Watch Video"
+      "watchVideo": "Watch Video",
+      "close": "Close"
     },
     "timeline": {
       "heading": "Heritage Timeline",
@@ -1029,6 +1092,10 @@
       "heading": "Have Photos or Videos to Share?",
       "subtitle": "Were you part of our past Gudipadwa Swagat Yatra, Ganeshotsav, or cricket tournaments? Share your captured memories with our digital archive.",
       "shareBtn": "Submit Your Memories"
+    },
+    "detail": {
+      "backToGallery": "Back to Gallery",
+      "overviewHeading": "Event Overview & Impact"
     }
   },
   "contactPage": {
@@ -1049,7 +1116,8 @@
       "card4Title": "Trust Registrations & Motto",
       "card4RegNo": "Reg No: nashik/0000153/2018",
       "card4Founder": "Founder: Adv. Shyam Dharmaraj Badode",
-      "card4Motto": "Celebrating cultural heritage and dedicated social service"
+      "card4Motto": "Celebrating cultural heritage and dedicated social service",
+      "officialDirectory": "Official Directory"
     },
     "directory": {
       "heading": "Regional Coordinators Directory",
@@ -1059,7 +1127,10 @@
       "festivalRole": "Swagat Yatra & Festival Lead",
       "festivalZone": "Indira Nagar & Nashik Zone",
       "healthRole": "50+ Blood Camps & Hospital Liaison",
-      "healthZone": "Nashik Civil Hospital Network"
+      "healthZone": "Nashik Civil Hospital Network",
+      "leaderName": "Adv. Shyam Dharmaraj Badode",
+      "festivalName": "Festival Operations Committee",
+      "healthName": "Healthcare & Blood Drive Desk"
     },
     "form": {
       "heading": "Get In Touch With Us",
@@ -1097,7 +1168,12 @@
       "fbDesc": "Follow us for official public notices, festival announcements, blood donation drives, and community assemblies in Nashik.",
       "instaDesc": "Check out visual reels and photos of our Gudipadwa Swagat Yatra, Ganeshotsav, 50+ blood camps, and sports leagues.",
       "ytDesc": "Tune in for live Ganeshotsav Maha Aarti, Dhol Tasha recitals, cultural program broadcasts, and documentary reels.",
-      "xDesc": "Receive fast real-time alerts, volunteer coordination updates, and blood donation emergency requests."
+      "xDesc": "Receive fast real-time alerts, volunteer coordination updates, and blood donation emergency requests.",
+      "visitPage": "Visit Page",
+      "fbName": "Facebook",
+      "instaName": "Instagram",
+      "ytName": "YouTube",
+      "xName": "Twitter (X)"
     },
     "cta": {
       "heading": "Ready to Make an Active Impact?",

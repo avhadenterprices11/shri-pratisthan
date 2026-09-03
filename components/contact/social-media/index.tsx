@@ -13,7 +13,7 @@ export default function ContactSocialMedia() {
 
   const SOCIALS = [
     {
-      name: "Facebook",
+      name: t("contactPage.social.fbName"),
       desc: t("contactPage.social.fbDesc"),
       icon: (
         <svg className="w-8 h-8 text-saffron fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2">
@@ -23,7 +23,7 @@ export default function ContactSocialMedia() {
       link: "https://facebook.com",
     },
     {
-      name: "Instagram",
+      name: t("contactPage.social.instaName"),
       desc: t("contactPage.social.instaDesc"),
       icon: (
         <svg className="w-8 h-8 text-saffron fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2">
@@ -35,7 +35,7 @@ export default function ContactSocialMedia() {
       link: "https://instagram.com",
     },
     {
-      name: "YouTube",
+      name: t("contactPage.social.ytName"),
       desc: t("contactPage.social.ytDesc"),
       icon: (
         <svg className="w-8 h-8 text-saffron fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2">
@@ -46,7 +46,7 @@ export default function ContactSocialMedia() {
       link: "https://youtube.com",
     },
     {
-      name: "Twitter (X)",
+      name: t("contactPage.social.xName"),
       desc: t("contactPage.social.xDesc"),
       icon: (
         <svg className="w-8 h-8 text-saffron fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2">
@@ -117,7 +117,7 @@ export default function ContactSocialMedia() {
               </div>
 
               <div className="mt-6 sm:mt-8 flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-saffron group font-sans">
-                <span>Visit Page</span>
+                <span>{t("contactPage.social.visitPage")}</span>
                 <svg
                   className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
                   fill="none"

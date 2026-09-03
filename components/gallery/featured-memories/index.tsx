@@ -7,6 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { FEATURED_MEMORIES } from "@/app/gallery/gallery-data";
+import { getLocalizedGalleryItem } from "@/lib/gallery-i18n";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,7 +26,7 @@ function MemoryCard({
   category: string; 
   date: string; 
   metric: string; 
-  src: string;
+  src: string; 
   readStoryText: string;
 }) {
   return (
@@ -68,10 +70,8 @@ function MemoryCard({
   );
 }
 
-import { FEATURED_MEMORIES } from "@/app/gallery/gallery-data";
-
 export default function FeaturedMemories() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -112,19 +112,22 @@ export default function FeaturedMemories() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-[1600px] w-full mx-auto">
-          {FEATURED_MEMORIES.map((memory) => (
-            <div key={memory.id} className="featured-mem-card">
-              <MemoryCard
-                id={memory.id}
-                title={memory.title}
-                category={memory.category}
-                date={memory.date}
-                metric={memory.metric || t("galleryPage.featured.communityDrive")}
-                src={memory.src}
-                readStoryText={t("galleryPage.featured.readStory")}
-              />
-            </div>
-          ))}
+          {FEATURED_MEMORIES.map((memory) => {
+            const localized = getLocalizedGalleryItem(memory, language);
+            return (
+              <div key={memory.id} className="featured-mem-card">
+                <MemoryCard
+                  id={localized.id}
+                  title={localized.title}
+                  category={localized.category}
+                  date={localized.date}
+                  metric={localized.metric || t("galleryPage.featured.communityDrive")}
+                  src={localized.src}
+                  readStoryText={t("galleryPage.featured.readStory")}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

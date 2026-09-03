@@ -189,7 +189,7 @@ export default function CharitySocialWork() {
                   {item.metric}
                 </span>
                 <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.18em] bg-slate-100 px-2 py-0.5 rounded font-sans">
-                  Distributed
+                  {t("communityPage.charity.distributedTag")}
                 </span>
               </div>
             </div>

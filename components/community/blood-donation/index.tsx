@@ -129,10 +129,10 @@ export default function BloodDonation() {
           {/* Right Column: Interactive Log Card */}
           <div className="blood-animate-right glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block bg-white border border-red-500/10 shadow-xl relative">
             <div className="absolute top-3 sm:top-4 right-4 sm:right-6 text-[9px] sm:text-xs uppercase font-bold tracking-[0.18em] text-red-600 bg-red-50 px-2.5 sm:px-3 py-1 rounded-full border border-red-100 font-sans">
-              Verified Drives
+              {t("communityPage.bloodDonation.verifiedTag")}
             </div>
             <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 mb-4 sm:mb-6 font-heading uppercase">
-              Recent Donation Drives
+              {t("communityPage.bloodDonation.recentDrivesTitle")}
             </h3>
             
             <div className="space-y-3 sm:space-y-4">
@@ -146,7 +146,7 @@ export default function BloodDonation() {
                       {camp.location}
                     </h4>
                     <p className="text-xs text-slate-grey font-normal mt-0.5 sm:mt-1 font-sans">
-                      Partnered with: {camp.partner}
+                      {t("communityPage.bloodDonation.partnerLabel")}: {camp.partner}
                     </p>
                   </div>
                   <div className="text-left sm:text-right flex sm:flex-col justify-between items-center sm:items-end gap-1">

@@ -228,7 +228,7 @@ export default function VolunteerProcess() {
                       {stage.step}
                     </span>
                     <span className="text-[9px] font-semibold tracking-tight truncate max-w-full">
-                      {index === 0 ? "Register" : index === 1 ? "Connect" : index === 2 ? "Briefing" : "Deploy"}
+                      {stage.title.split(" ")[0]}
                     </span>
                   </button>
                 );
@@ -249,11 +249,6 @@ export default function VolunteerProcess() {
               <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-20 z-0" />
               
               <div ref={detailsRef} className="relative z-10 text-left">
-                {/* Stage Indicator Badge */}
-                <span className="inline-block text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-saffron bg-saffron/10 border border-saffron/20 px-2.5 py-0.5 rounded-full mb-2 sm:mb-3 font-sans">
-                  Step {STAGES[activeIdx].step} of 04
-                </span>
-
                 {/* Stage Title */}
                 <h3 className="text-lg sm:text-2xl md:text-3xl font-normal text-neutral-900 mb-2 sm:mb-3 font-heading leading-snug uppercase">
                   {STAGES[activeIdx].title}

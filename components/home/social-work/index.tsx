@@ -56,7 +56,7 @@ const impactCards = [
 
 export default function CulturalInitiatives() {
   const { t } = useLanguage();
-  const [openCard, setOpenCard] = useState<number | null>(0);
+  const [openCard, setOpenCard] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   const impactCardsData = [

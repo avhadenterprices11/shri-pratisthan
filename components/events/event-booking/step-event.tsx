@@ -15,6 +15,8 @@ interface StepEventProps {
   onBack: () => void;
 }
 
+import { getLocalizedEvent } from "@/lib/events-i18n";
+
 export default function StepEvent({
   formData,
   updateFields,
@@ -22,8 +24,9 @@ export default function StepEvent({
   onNext,
   onBack,
 }: StepEventProps) {
-  const { t } = useLanguage();
-  const activeEvent = getEventById(formData.eventId || "ganesh-utsav-2026");
+  const { t, language } = useLanguage();
+  const rawActiveEvent = getEventById(formData.eventId || "ganesh-utsav-2026");
+  const activeEvent = rawActiveEvent ? getLocalizedEvent(rawActiveEvent, language) : undefined;
   const isWaitlist = Boolean(activeEvent?.isCapacityFull && activeEvent?.waitlistEnabled);
 
   const TIME_SLOT_OPTIONS = [
@@ -46,7 +49,7 @@ export default function StepEvent({
           {t("eventsPage.booking.step2")}
         </h3>
         <p className="text-sm text-neutral-600 mt-1 font-sans">
-          Your festival selection is locked in. Select your preferred date, time slot, and number of passes.
+          {t("eventsPage.booking.step2Desc")}
         </p>
       </div>
 
@@ -55,7 +58,7 @@ export default function StepEvent({
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-saffron bg-saffron/10 px-2.5 py-0.5 rounded-full border border-saffron/20 font-sans">
-              Selected Event
+              {t("eventsPage.booking.selectedEvent")}
             </span>
             <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 font-sans">
               • {activeEvent?.categoryLabel}
@@ -77,11 +80,11 @@ export default function StepEvent({
         <div className="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-600 font-sans pt-1">
           <span className="flex items-center gap-1">
             <Calendar className="w-3.5 h-3.5 text-saffron" />
-            <strong>Official Dates:</strong> {activeEvent?.date}
+            <strong>{t("eventsPage.booking.officialDates")}:</strong> {activeEvent?.date}
           </span>
           <span className="flex items-center gap-1">
             <MapPin className="w-3.5 h-3.5 text-saffron" />
-            <strong>Venue:</strong> {activeEvent?.venueName}, {activeEvent?.city}
+            <strong>{t("eventsPage.booking.venueLabel")}:</strong> {activeEvent?.venueName}, {activeEvent?.city}
           </span>
         </div>
       </div>
@@ -117,7 +120,7 @@ export default function StepEvent({
           {/* Time Slot Selector Dropdown */}
           <div className="space-y-2">
             <label htmlFor="preferredTimeSlot" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
-              Time Slot Selector <span className="text-saffron">*</span>
+              {t("eventsPage.booking.timeSlotSelector")} <span className="text-saffron">*</span>
             </label>
             <CustomSelect
               id="preferredTimeSlot"
@@ -135,7 +138,7 @@ export default function StepEvent({
         {/* Number of Attendees */}
         <div className="space-y-2">
           <label htmlFor="numberOfParticipants" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
-            Number of Attendees / Passes (Max 20) <span className="text-saffron">*</span>
+            {t("eventsPage.booking.attendeesCountLabel")} <span className="text-saffron">*</span>
           </label>
           <div className="relative">
             <Users className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
@@ -160,14 +163,14 @@ export default function StepEvent({
           <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 leading-relaxed font-sans flex items-start gap-2.5">
             <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
             <div>
-              <strong className="font-bold">Capacity Full Notice:</strong> Primary registration allocation is currently full for this slot. Submitting this form will add you to our <strong>Priority Waitlist</strong>. You will be notified via SMS/Email as soon as passes open.
+              {t("eventsPage.booking.capacityFullNotice")}
             </div>
           </div>
         ) : (
           <div className="p-4 bg-saffron/[0.04] border border-saffron/20 rounded-xl text-xs text-slate-700 leading-relaxed font-sans flex items-start gap-2.5">
             <ShieldCheck className="w-4 h-4 text-saffron shrink-0 mt-0.5" />
             <div>
-              <strong className="text-saffron font-bold">Free Community Passes:</strong> Indira Nagar &amp; Nashik citizens receive direct QR check-in passes valid for entry at the gate.
+              {t("eventsPage.booking.freeCommunityNotice")}
             </div>
           </div>
         )}
@@ -187,7 +190,7 @@ export default function StepEvent({
           type="submit"
           className="px-8 py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer font-sans"
         >
-          {isWaitlist ? "Join Waitlist & Review →" : `${t("eventsPage.booking.nextStep")} →`}
+          {isWaitlist ? `${t("eventsPage.booking.joinWaitlistBtn")} →` : `${t("eventsPage.booking.nextStep")} →`}
         </button>
       </div>
     </form>

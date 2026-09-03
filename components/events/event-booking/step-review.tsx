@@ -1,22 +1,22 @@
 "use client";
 
 import React from "react";
-import { 
-  ClipboardCheck, 
-  Edit3, 
-  User, 
-  MapPin, 
-  Calendar, 
-  Clock, 
-  Users, 
-  ShieldCheck, 
-  CheckCircle2, 
+import {
+  ClipboardCheck,
+  User,
+  Calendar,
+  Clock,
+  MapPin,
+  Users,
+  Edit3,
+  CheckCircle2,
+  Accessibility,
   HelpCircle,
-  Accessibility
 } from "lucide-react";
 import { EventBookingInput } from "@/lib/validations";
 import { getEventById } from "@/lib/events-data";
 import { useLanguage } from "@/context/LanguageContext";
+import { getLocalizedEvent } from "@/lib/events-i18n";
 
 interface StepReviewProps {
   formData: Partial<EventBookingInput>;
@@ -29,14 +29,14 @@ interface StepReviewProps {
 
 export default function StepReview({
   formData,
-  updateFields,
-  errors,
+  errors: _errors,
   onJumpToStep,
   onNext,
   onBack,
 }: StepReviewProps) {
-  const { t } = useLanguage();
-  const activeEvent = getEventById(formData.eventId || "ganesh-utsav-2026");
+  const { t, language } = useLanguage();
+  const rawActiveEvent = getEventById(formData.eventId || "ganesh-utsav-2026");
+  const activeEvent = rawActiveEvent ? getLocalizedEvent(rawActiveEvent, language) : undefined;
   const customQuestions = activeEvent?.customQuestions || [];
   const customAnswers = formData.customAnswers || {};
   const isWaitlist = Boolean(activeEvent?.isCapacityFull && activeEvent?.waitlistEnabled);
@@ -44,6 +44,14 @@ export default function StepReview({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onNext();
+  };
+
+  const getTimeSlotLabel = (slot?: string) => {
+    if (slot === "morning") return t("eventsPage.booking.morningSlot");
+    if (slot === "afternoon") return t("eventsPage.booking.afternoonSlot");
+    if (slot === "evening") return t("eventsPage.booking.eveningSlot");
+    if (slot === "full-day") return t("eventsPage.booking.fullDaySlot");
+    return `${slot || "Morning"} ${t("eventsPage.booking.slotWord")}`;
   };
 
   return (
@@ -73,7 +81,7 @@ export default function StepReview({
               onClick={() => onJumpToStep(1)}
               className="inline-flex items-center gap-1 text-xs font-bold text-saffron hover:underline cursor-pointer bg-saffron/10 px-3 py-1 rounded-full font-sans"
             >
-              <Edit3 className="w-3.5 h-3.5" /> Edit
+              <Edit3 className="w-3.5 h-3.5" /> {t("eventsPage.booking.editBtn")}
             </button>
           </div>
 
@@ -101,7 +109,7 @@ export default function StepReview({
           {customQuestions.length > 0 && (
             <div className="pt-3 border-t border-neutral-200/60 space-y-2">
               <span className="text-[11px] uppercase font-bold text-saffron tracking-wider flex items-center gap-1 font-sans">
-                <HelpCircle className="w-3.5 h-3.5" /> Custom Registration Answers
+                <HelpCircle className="w-3.5 h-3.5" /> {t("eventsPage.booking.customAnswers")}
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-sans">
                 {customQuestions.map((q) => {
@@ -110,7 +118,11 @@ export default function StepReview({
                     <div key={q.id} className="p-2.5 rounded-xl bg-white border border-neutral-200">
                       <span className="text-slate-500 block text-[10px] uppercase font-semibold leading-tight">{q.label}</span>
                       <span className="font-bold text-slate-800 mt-0.5 block">
-                        {typeof val === "boolean" ? (val ? "Yes" : "No") : (val || "Not specified")}
+                        {typeof val === "boolean"
+                          ? val
+                            ? t("eventsPage.booking.yes")
+                            : t("eventsPage.booking.no")
+                          : val || t("eventsPage.booking.notSpecified")}
                       </span>
                     </div>
                   );
@@ -132,17 +144,17 @@ export default function StepReview({
               onClick={() => onJumpToStep(2)}
               className="inline-flex items-center gap-1 text-xs font-bold text-saffron hover:underline cursor-pointer bg-saffron/10 px-3 py-1 rounded-full font-sans"
             >
-              <Edit3 className="w-3.5 h-3.5" /> Edit
+              <Edit3 className="w-3.5 h-3.5" /> {t("eventsPage.booking.editBtn")}
             </button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs md:text-sm font-sans">
             <div className="sm:col-span-2">
-              <span className="text-neutral-500 block text-[11px] uppercase font-semibold">Event Name</span>
+              <span className="text-neutral-500 block text-[11px] uppercase font-semibold">{t("eventsPage.booking.eventName")}</span>
               <span className="font-bold text-saffron text-sm md:text-base">{activeEvent?.title}</span>
             </div>
             <div>
-              <span className="text-neutral-500 block text-[11px] uppercase font-semibold">Official Event Date</span>
+              <span className="text-neutral-500 block text-[11px] uppercase font-semibold">{t("eventsPage.booking.officialDate")}</span>
               <span className="font-semibold text-neutral-900">{activeEvent?.date}</span>
             </div>
 
@@ -151,12 +163,14 @@ export default function StepReview({
               <span className="font-bold text-neutral-900">{formData.dateOfBirth || activeEvent?.startDate || "-"}</span>
             </div>
             <div>
-              <span className="text-neutral-500 block text-[11px] uppercase font-semibold">Time Slot</span>
-              <span className="font-semibold text-neutral-900 capitalize">{formData.preferredTimeSlot || "Morning"} Slot</span>
+              <span className="text-neutral-500 block text-[11px] uppercase font-semibold">{t("eventsPage.booking.timeSlot")}</span>
+              <span className="font-semibold text-neutral-900">
+                {getTimeSlotLabel(formData.preferredTimeSlot)}
+              </span>
             </div>
             <div>
-              <span className="text-neutral-500 block text-[11px] uppercase font-semibold">Attendees</span>
-              <span className="font-bold text-neutral-900">{formData.numberOfParticipants || 1} Pass(es)</span>
+              <span className="text-neutral-500 block text-[11px] uppercase font-semibold">{t("eventsPage.booking.attendees")}</span>
+              <span className="font-bold text-neutral-900">{formData.numberOfParticipants || 1} {t("eventsPage.booking.passes")}</span>
             </div>
 
             <div className="sm:col-span-2">
@@ -178,7 +192,7 @@ export default function StepReview({
           {activeEvent?.accessibilityInfo && activeEvent.accessibilityInfo.length > 0 && (
             <div className="pt-3 border-t border-neutral-200/60 space-y-2">
               <span className="text-[11px] uppercase font-bold text-slate-600 tracking-wider flex items-center gap-1 font-sans">
-                <Accessibility className="w-3.5 h-3.5 text-saffron" /> Accessibility &amp; Safety
+                <Accessibility className="w-3.5 h-3.5 text-saffron" /> {t("eventsPage.booking.accessibilitySafety")}
               </span>
               <div className="flex flex-wrap gap-2 text-xs font-sans">
                 {activeEvent.accessibilityInfo.map((acc, i) => (
@@ -196,15 +210,15 @@ export default function StepReview({
       <div className="p-5 sm:p-6 bg-gradient-to-r from-saffron/10 via-amber-50 to-saffron/10 border-2 border-saffron/30 rounded-2xl space-y-2 font-sans">
         <div className="flex items-center gap-2.5 text-neutral-900 font-bold font-heading text-base uppercase">
           <CheckCircle2 className="w-5 h-5 text-saffron shrink-0" />
-          <span>{isWaitlist ? "Waitlist Registration Notice" : "Event Booking Notice"}</span>
+          <span>{isWaitlist ? t("eventsPage.booking.waitlistNoticeTitle") : t("eventsPage.booking.bookingNoticeTitle")}</span>
         </div>
         <p className="text-xs sm:text-sm font-semibold text-neutral-800 leading-relaxed">
           {isWaitlist
-            ? "Your request will be placed on our priority waitlist. Our coordination team will notify you via SMS as soon as additional seating opens."
-            : "We will address and contact you as soon as possible regarding your event booking and ground coordination details."}
+            ? t("eventsPage.booking.waitlistNoticeDesc")
+            : t("eventsPage.booking.bookingNoticeDesc")}
         </p>
         <p className="text-[11px] text-slate-500">
-          Shree Pratishtan (Indira Nagar, Nashik) verifies every booking slot for festival crowd safety and smooth gate entry.
+          {t("eventsPage.booking.bookingDisclaimer")}
         </p>
       </div>
 
@@ -222,7 +236,7 @@ export default function StepReview({
           type="submit"
           className="px-8 py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer font-sans"
         >
-          {isWaitlist ? "Confirm Waitlist Entry →" : `${t("eventsPage.booking.confirmBooking")} →`}
+          {isWaitlist ? `${t("eventsPage.booking.confirmWaitlist")} →` : `${t("eventsPage.booking.confirmBooking")} →`}
         </button>
       </div>
     </form>

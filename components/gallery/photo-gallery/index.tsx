@@ -6,11 +6,11 @@ import gsap from "gsap";
 import Link from "next/link";
 import GalleryFilters from "../gallery-filters";
 import { useLanguage } from "@/context/LanguageContext";
-
 import { PHOTO_ITEMS } from "@/app/gallery/gallery-data";
+import { getLocalizedGalleryItem } from "@/lib/gallery-i18n";
 
 export default function PhotoGallery() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("all");
   const [visibleCount, setVisibleCount] = useState(6);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -86,6 +86,7 @@ export default function PhotoGallery() {
         {/* Photo Grid (Flex Bento Layout) */}
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6 max-w-[1600px] w-full mx-auto">
           {displayedPhotos.map((item, index) => {
+            const localized = getLocalizedGalleryItem(item, language);
             const layout = getCardLayout(index, displayedPhotos.length);
             return (
               <Link 
@@ -95,8 +96,8 @@ export default function PhotoGallery() {
               >
                 {/* Background Image */}
                 <Image 
-                  src={item.src} 
-                  alt={item.title} 
+                  src={localized.src} 
+                  alt={localized.title} 
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover group-hover:scale-[1.05] transition-transform duration-700"
@@ -107,13 +108,13 @@ export default function PhotoGallery() {
 
                 {/* Tag */}
                 <div className="relative z-20 self-start bg-white/90 text-saffron font-bold text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-saffron/20 shadow-sm font-sans">
-                  {item.category}
+                  {localized.category}
                 </div>
 
                 {/* Narrative label */}
                 <div className="relative z-20 mt-auto translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
                   <h3 className="text-base sm:text-xl font-normal text-white leading-snug font-heading uppercase">
-                    {item.title}
+                    {localized.title}
                   </h3>
                 </div>
               </Link>

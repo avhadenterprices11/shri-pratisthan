@@ -14,21 +14,21 @@ export default function CommitteeDirectory() {
 
   const MEMBERS = [
     {
-      name: "Adv. Shyam Dharmaraj Badode",
+      name: t("contactPage.directory.leaderName"),
       role: t("contactPage.directory.founderRole"),
       zone: t("contactPage.directory.founderZone"),
       phone: "+91 9922786608",
       email: "Info@shreepratishthan.com",
     },
     {
-      name: "Festival Operations & Logistics",
+      name: t("contactPage.directory.festivalName"),
       role: t("contactPage.directory.festivalRole"),
       zone: t("contactPage.directory.festivalZone"),
       phone: "+91 9922786608",
       email: "Info@shreepratishthan.com",
     },
     {
-      name: "Arogya & Blood Drive Coordinator",
+      name: t("contactPage.directory.healthName"),
       role: t("contactPage.directory.healthRole"),
       zone: t("contactPage.directory.healthZone"),
       phone: "+91 9922786608",

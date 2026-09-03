@@ -254,6 +254,11 @@ html.lenis, html.lenis body {
 
 .animate-footer-marquee {
   animation: footer-marquee 25s linear infinite;
+  transition: animation-duration 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.footer-marquee-wrap:hover .animate-footer-marquee {
+  animation-duration: 80s;
 }
 
 .text-outline {

@@ -110,25 +110,7 @@ export default function FestivalCalendar() {
       const endX = offset - (CALENDAR_ITEMS.length - 1) * step;
       const scrollDistance = Math.abs(endX - startX) * (isMobile ? 1.05 : 1.25);
 
-      ScrollTrigger.create({
-        trigger: "#calendarPinContainer",
-        start: "top top",
-        end: () => `+=${scrollDistance}`,
-        scrub: isMobile ? 0.35 : 0.5,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const currentX = startX + (endX - startX) * progress;
-          const index = Math.round((offset - currentX) / step);
-          const boundedIndex = Math.max(0, Math.min(index, CALENDAR_ITEMS.length - 1));
-          setActiveIdx(boundedIndex);
-        },
-      });
-
-      // Animate slider track horizontally
+      // Single unified ScrollTrigger tween with soft inertia scrub
       gsap.fromTo(
         slider,
         { x: startX },
@@ -139,7 +121,20 @@ export default function FestivalCalendar() {
             trigger: "#calendarPinContainer",
             start: "top top",
             end: () => `+=${scrollDistance}`,
-            scrub: isMobile ? 0.35 : 0.5,
+            scrub: isMobile ? 0.8 : 1.2, // Buttery soft inertia scrub
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 0.5,
+            invalidateOnRefresh: true,
+            fastScrollEnd: true,
+            preventOverlaps: true,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              const currentX = startX + (endX - startX) * progress;
+              const index = Math.round((offset - currentX) / step);
+              const boundedIndex = Math.max(0, Math.min(index, CALENDAR_ITEMS.length - 1));
+              setActiveIdx(boundedIndex);
+            },
           },
         }
       );
@@ -182,11 +177,11 @@ export default function FestivalCalendar() {
       <div className="relative z-10 w-full flex flex-col justify-center py-6 sm:py-12 md:py-0 overflow-hidden">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-8 md:mb-12 px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-8 md:mb-12 px-4 sm:px-6 overflow-visible">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 font-heading leading-normal sm:leading-snug pt-3 pb-1 tracking-normal">
             {t("eventsPage.calendar.heading")}
           </h2>
-          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 sm:mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 sm:mt-3 rounded-full" />
         </div>
 
         {/* Scroll Instruction Banner */}
@@ -201,7 +196,7 @@ export default function FestivalCalendar() {
           {/* Draggable Row Track */}
           <div 
             ref={sliderRef}
-            className="flex gap-4 sm:gap-6 md:gap-8 w-max will-change-transform"
+            className="flex gap-4 sm:gap-6 md:gap-8 w-max will-change-transform transform-gpu"
           >
             {CALENDAR_ITEMS.map((item, index) => {
               const isActive = activeIdx === index;
@@ -209,10 +204,10 @@ export default function FestivalCalendar() {
                 <div
                   key={index}
                   onClick={() => handleCardClick(index)}
-                  className={`w-[260px] sm:w-[300px] md:w-[332px] shrink-0 glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block bg-white border transition-all duration-300 min-h-[260px] sm:min-h-[300px] flex flex-col justify-between cursor-pointer select-none ${
+                  className={`w-[260px] sm:w-[300px] md:w-[332px] shrink-0 p-5 sm:p-8 rounded-2xl sm:rounded-block bg-white/95 border transition-[border-color,box-shadow,opacity] duration-300 min-h-[260px] sm:min-h-[300px] flex flex-col justify-between cursor-pointer select-none transform-gpu will-change-transform ${
                     isActive 
-                      ? "border-saffron/30 shadow-2xl scale-[1.02] sm:scale-[1.03] opacity-100 z-10 shadow-saffron/10" 
-                      : "border-black/5 scale-95 opacity-50 sm:opacity-40 hover:opacity-70 z-0"
+                      ? "border-saffron/40 shadow-xl opacity-100 z-10 shadow-saffron/15" 
+                      : "border-black/5 opacity-55 sm:opacity-45 hover:opacity-75 z-0 shadow-sm"
                   }`}
                 >
                   <div>
@@ -234,8 +229,8 @@ export default function FestivalCalendar() {
                   </div>
 
                   {/* Indicator stamp */}
-                  <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-saffron/10 flex justify-between items-center text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-saffron font-sans">
-                    <span>Active Drive Location</span>
+                  <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-saffron/10 flex justify-between items-center text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.16em] text-saffron font-sans">
+                    <span>{t("eventsPage.calendar.activeDriveLocation")}</span>
                     <span>★</span>
                   </div>
                 </div>

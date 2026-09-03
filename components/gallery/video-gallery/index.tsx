@@ -5,80 +5,16 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "@/context/LanguageContext";
+import { getLocalizedVideos } from "@/lib/gallery-i18n";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const VIDEOS = [
-  { 
-    title: "Gudipadwa Swagat Yatra & Lezim Parades",
-    category: "Cultural Heritage",
-    location: "Indira Nagar, Nashik",
-    duration: "2:15", 
-    src: "/festival_celebration.mp4", 
-    poster: "/gallery_dhol_tasha_camps.png" 
-  },
-  { 
-    title: "Shree Ganeshotsav Grand Maha Aarti & Parades",
-    category: "Devotional Festival",
-    location: "Indira Nagar, Nashik",
-    duration: "2:40", 
-    src: "/festival_drums.mp4", 
-    poster: "/gallery_ganeshotsav_aarthi.png" 
-  },
-  { 
-    title: "50+ Blood Donation & Health Camp Drives",
-    category: "Healthcare Seva",
-    location: "Nashik Civil Hospital Partner",
-    duration: "1:55", 
-    src: "/about_showcase_video.mp4", 
-    poster: "/volunteer_medical.png" 
-  },
-  { 
-    title: "Annual 32-Team Cricket Championship",
-    category: "Sports Tournament",
-    location: "Indira Nagar Ground, Nashik",
-    duration: "2:10", 
-    src: "/shri_pratisthan.mp4", 
-    poster: "/gallery_dahi_handi_pyramids.png" 
-  },
-  { 
-    title: "Shiv Jayanti Mardani Khel & Youth Rallies",
-    category: "Martial Arts & History",
-    location: "Indira Nagar, Nashik",
-    duration: "2:30", 
-    src: "/festival_drums.mp4", 
-    poster: "/gallery_shiv_jayanti_rally.png" 
-  },
-  { 
-    title: "Navratri Raas Dandiya & Garba Celebrations",
-    category: "Folk Traditions",
-    location: "Indira Nagar, Nashik",
-    duration: "2:05", 
-    src: "/festival_celebration.mp4", 
-    poster: "/gallery_navratri_garba.png" 
-  },
-  { 
-    title: "Vasundhara Tree Plantation & Eco Drives",
-    category: "Environmental Seva",
-    location: "Nashik Green Avenues",
-    duration: "1:45", 
-    src: "/about_showcase_video.mp4", 
-    poster: "/volunteer_eco.png" 
-  },
-  { 
-    title: "Student Study Kits & Educational Aid Drive",
-    category: "Education Relief",
-    location: "Nashik Municipal Schools",
-    duration: "1:50", 
-    src: "/about_showcase_video.mp4", 
-    poster: "/volunteer_coordinator.png" 
-  },
-];
-
 export default function VideoGallery() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [activeVideo, setActiveVideo] = useState<{ title: string; src: string } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const localizedVideos = getLocalizedVideos(language);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -118,7 +54,7 @@ export default function VideoGallery() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-          {VIDEOS.map((item, index) => (
+          {localizedVideos.map((item, index) => (
             <div 
               key={index}
               onClick={() => setActiveVideo({ title: item.title, src: item.src })}
@@ -173,7 +109,7 @@ export default function VideoGallery() {
                 onClick={() => setActiveVideo(null)}
                 className="text-white hover:text-saffron font-bold text-xs sm:text-sm tracking-widest uppercase transition-colors focus:outline-none cursor-pointer flex items-center gap-1.5 font-sans"
               >
-                ✕ Close
+                ✕ {t("galleryPage.videoGallery.close")}
               </button>
             </div>
             

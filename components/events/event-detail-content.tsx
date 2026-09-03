@@ -1,58 +1,78 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { EventItem } from "@/lib/events-data";
-import { useLanguage } from "@/context/LanguageContext";
+import Link from "next/link";
 import { 
-  ArrowLeft, 
   Calendar, 
-  MapPin, 
   Clock, 
+  MapPin, 
+  Users, 
   Ticket, 
-  PhoneCall, 
+  ShieldCheck, 
+  Share2, 
   ExternalLink,
-  Info,
-  ShieldCheck,
+  ChevronRight,
   HeartHandshake,
   Award,
+  PhoneCall,
+  Info,
   Video,
   AlertCircle,
   Building2,
   QrCode,
-  Sparkles
+  Sparkles,
 } from "lucide-react";
+import { getLocalizedEvent } from "@/lib/events-i18n";
+import { EventItem } from "@/lib/events-data";
+import { useLanguage } from "@/context/LanguageContext";
 
-export default function EventDetailContent({ event }: { event: EventItem }) {
-  const { t } = useLanguage();
+export default function EventDetailContent({ event: rawEvent }: { event: EventItem }) {
+  const { t, language } = useLanguage();
+  const event = getLocalizedEvent(rawEvent, language);
 
   const isRegistrationOpen = 
     event.registrationStatus === "open" || 
     event.registrationStatus === "closing_soon" || 
     event.registrationStatus === "free_entry";
 
+  const getSponsorTierLabel = (tier: string) => {
+    if (tier === "Title Sponsor") {
+      return language === "mr" ? "मुख्य प्रायोजक" : language === "hi" ? "शीर्ष प्रायोजक" : "Title Sponsor";
+    }
+    if (tier === "Gold Sponsor") {
+      return language === "mr" ? "सुवर्ण प्रायोजक" : language === "hi" ? "स्वर्ण प्रायोजक" : "Gold Sponsor";
+    }
+    if (tier === "Powered By") {
+      return language === "mr" ? "सहकार्य" : language === "hi" ? "सहयोगी" : "Powered By";
+    }
+    if (tier === "Associate Sponsor") {
+      return language === "mr" ? "सह-प्रायोजक" : language === "hi" ? "सह-प्रायोजक" : "Associate Sponsor";
+    }
+    return tier;
+  };
+
   return (
-    <main className="min-h-screen py-16 sm:py-24 md:py-28 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background select-none">
-      {/* Decorative ambient backgrounds */}
-      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
-      <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-1/3 opacity-50" />
+    <main className="min-h-screen bg-warm-white py-12 md:py-20 selection:bg-saffron selection:text-white font-sans">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 space-y-8 sm:space-y-12">
 
-      <div className="max-w-[1400px] w-full mx-auto relative z-10 space-y-6 sm:space-y-10">
-        
-        {/* Back Link & Quick Breadcrumb */}
-        <div className="flex items-center justify-between gap-4">
-          <Link
-            href="/events"
-            className="inline-flex items-center gap-2 text-saffron hover:text-saffron/85 font-bold text-xs uppercase tracking-[0.2em] transition-colors duration-300 group font-sans"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            {t("eventsPage.detail.breadcrumb")}
-          </Link>
+        {/* Top Breadcrumb & Metadata Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-saffron/15 pb-4">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-grey font-sans">
+            <Link href="/events" className="hover:text-saffron transition-colors">
+              {t("eventsPage.detail.breadcrumb")}
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-saffron font-bold truncate max-w-[200px] sm:max-w-[320px]">
+              {event.title}
+            </span>
+          </div>
 
-          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-neutral-400 font-sans hidden sm:inline-block">
-            {t("eventsPage.detail.dossierBadge")}
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] text-saffron bg-saffron/10 px-3 py-1 rounded-full border border-saffron/20 font-sans">
+              {t("eventsPage.detail.dossierBadge")}
+            </span>
+          </div>
         </div>
 
         {/* 1. Main Glassmorphic Showcase Panel */}
@@ -141,7 +161,7 @@ export default function EventDetailContent({ event }: { event: EventItem }) {
 
                 {event.registrationCloseDate && (
                   <p className="text-[11px] sm:text-xs text-slate-grey font-sans">
-                    <strong>Deadline:</strong> {event.registrationCloseDate}
+                    <strong>{t("eventsPage.detail.deadlineLabel")}:</strong> {event.registrationCloseDate}
                   </p>
                 )}
               </div>
@@ -150,15 +170,15 @@ export default function EventDetailContent({ event }: { event: EventItem }) {
               <div className="border-t border-saffron/10 pt-3.5 space-y-2 text-xs sm:text-sm text-slate-grey font-medium font-sans">
                 <div className="flex items-center gap-2.5">
                   <Calendar className="w-4 h-4 text-saffron flex-shrink-0" />
-                  <span><strong>Date:</strong> {event.date}</span>
+                  <span><strong>{t("eventsPage.detail.dateLabel")}:</strong> {event.date}</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Clock className="w-4 h-4 text-saffron flex-shrink-0" />
-                  <span><strong>Time:</strong> {event.time}</span>
+                  <span><strong>{t("eventsPage.detail.timeLabel")}:</strong> {event.time}</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <MapPin className="w-4 h-4 text-saffron flex-shrink-0" />
-                  <span><strong>Venue:</strong> {event.venueName}, {event.city}</span>
+                  <span><strong>{t("eventsPage.detail.venueLabel")}:</strong> {event.venueName}, {event.city}</span>
                 </div>
               </div>
 
@@ -209,22 +229,22 @@ export default function EventDetailContent({ event }: { event: EventItem }) {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 py-2.5 px-5 bg-neutral-900 text-white rounded-full text-xs font-bold uppercase tracking-[0.16em] hover:bg-black transition-all shadow-sm font-sans shrink-0"
             >
-              Open in Google Maps <ExternalLink className="w-3.5 h-3.5 text-gold" />
+              {t("eventsPage.detail.openInMaps")} <ExternalLink className="w-3.5 h-3.5 text-gold" />
             </a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-xs sm:text-sm text-slate-700 font-sans">
             <div>
-              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Street Address</span>
+              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">{t("eventsPage.detail.streetAddress")}</span>
               <p className="mt-0.5 font-medium">{event.addressLine1}</p>
               {event.addressLine2 && <p className="text-slate-500">{event.addressLine2}</p>}
             </div>
             <div>
-              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">City &amp; State</span>
+              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">{t("eventsPage.detail.cityState")}</span>
               <p className="mt-0.5 font-medium">{event.city}, {event.state}</p>
             </div>
             <div>
-              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Postal Code &amp; Country</span>
+              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">{t("eventsPage.detail.postalCountry")}</span>
               <p className="mt-0.5 font-medium">{event.postalCode}, {event.country}</p>
             </div>
           </div>
@@ -263,10 +283,10 @@ export default function EventDetailContent({ event }: { event: EventItem }) {
           <div className="border-b border-saffron/15 pb-4">
             <span className="inline-flex items-center gap-1.5 bg-saffron/10 text-saffron font-bold text-[9px] sm:text-[10px] uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border border-saffron/20 shadow-sm font-sans mb-1.5">
               <Info className="w-3.5 h-3.5" />
-              Operations &amp; Logistics
+              {t("eventsPage.detail.operationsBadge")}
             </span>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
-              HOW THIS EVENT IS <span className="text-saffron">ORGANIZED</span>
+              {t("eventsPage.detail.operationsTitle")}
             </h2>
           </div>
 
@@ -315,7 +335,7 @@ export default function EventDetailContent({ event }: { event: EventItem }) {
             <div className="flex items-center gap-2 border-b border-saffron/15 pb-3">
               <Video className="w-5 h-5 text-saffron" />
               <h2 className="text-xl sm:text-2xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
-                EVENT PROMO &amp; HIGHLIGHTS TEASER
+                {t("eventsPage.detail.promoVideoTitle")}
               </h2>
             </div>
             <div className="relative aspect-video w-full rounded-xl overflow-hidden border border-saffron/15 shadow-inner bg-black">
@@ -333,7 +353,7 @@ export default function EventDetailContent({ event }: { event: EventItem }) {
         {/* 8. Photo Moments Gallery Grid */}
         <div className="glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/80 shadow-md space-y-4 sm:space-y-6">
           <h2 className="text-xl sm:text-2xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
-            EVENT MOMENTS GALLERY
+            {t("eventsPage.detail.momentsGalleryTitle")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {event.galleryImages.map((img, idx) => (
@@ -387,7 +407,7 @@ export default function EventDetailContent({ event }: { event: EventItem }) {
                 <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-neutral-50 border border-black/5 text-xs sm:text-sm font-sans">
                   <span className="font-bold text-slate-800">{sponsor.name}</span>
                   <span className="text-[10px] uppercase font-bold text-gold bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">
-                    {sponsor.tier}
+                    {getSponsorTierLabel(sponsor.tier)}
                   </span>
                 </div>
               ))}
@@ -408,12 +428,12 @@ export default function EventDetailContent({ event }: { event: EventItem }) {
               </h3>
             </div>
             <div className="space-y-2 text-xs sm:text-sm text-slate-grey font-sans">
-              <p><strong>Coordinator:</strong> {event.emergencyContactName}</p>
-              <p><strong>Hotline:</strong> <a href={`tel:${event.emergencyContactPhone}`} className="text-saffron font-bold hover:underline">{event.emergencyContactPhone}</a></p>
-              <p><strong>Email:</strong> <a href={`mailto:${event.organizerEmail}`} className="text-slate-800 hover:underline">{event.organizerEmail}</a></p>
+              <p><strong>{t("eventsPage.detail.coordinatorLabel")}:</strong> {event.emergencyContactName}</p>
+              <p><strong>{t("eventsPage.detail.hotlineLabel")}:</strong> <a href={`tel:${event.emergencyContactPhone}`} className="text-saffron font-bold hover:underline">{event.emergencyContactPhone}</a></p>
+              <p><strong>{t("eventsPage.detail.emailLabel")}:</strong> <a href={`mailto:${event.organizerEmail}`} className="text-slate-800 hover:underline">{event.organizerEmail}</a></p>
               <div className="pt-2">
                 <span className="text-[10px] uppercase font-bold tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full inline-block">
-                  ● 24/7 Response Active During Event
+                  {t("eventsPage.detail.active247")}
                 </span>
               </div>
             </div>
@@ -425,7 +445,7 @@ export default function EventDetailContent({ event }: { event: EventItem }) {
               <div className="flex items-center gap-2 border-b border-black/5 pb-3">
                 <MapPin className="w-5 h-5 text-saffron shrink-0" />
                 <h3 className="font-normal font-heading text-neutral-900 text-base sm:text-lg uppercase">
-                  Location Coordinates
+                  {t("eventsPage.detail.locationCoordinates")}
                 </h3>
               </div>
               <p className="mt-3 text-xs sm:text-sm text-slate-700 font-sans font-medium">
@@ -438,7 +458,7 @@ export default function EventDetailContent({ event }: { event: EventItem }) {
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center justify-center gap-2 py-3 px-6 bg-neutral-900 text-white rounded-full text-xs font-bold uppercase tracking-[0.16em] hover:bg-black transition-all shadow-md font-sans"
             >
-              Get Directions on Map <ExternalLink className="w-3.5 h-3.5 text-gold" />
+              {t("eventsPage.detail.getDirections")} <ExternalLink className="w-3.5 h-3.5 text-gold" />
             </a>
           </div>
 

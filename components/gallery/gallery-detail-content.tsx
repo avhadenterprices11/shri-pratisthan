@@ -6,9 +6,11 @@ import Image from "next/image";
 import { ArrowLeft, Calendar, Tag, Info, Award } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { GalleryItem } from "@/app/gallery/gallery-data";
+import { getLocalizedGalleryItem } from "@/lib/gallery-i18n";
 
 export default function GalleryDetailContent({ item }: { item: GalleryItem }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const localizedItem = getLocalizedGalleryItem(item, language);
 
   return (
     <main className="min-h-screen py-16 sm:py-28 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-transparent">
@@ -24,7 +26,7 @@ export default function GalleryDetailContent({ item }: { item: GalleryItem }) {
             className="inline-flex items-center gap-2 text-saffron hover:text-saffron/85 font-bold text-[10px] sm:text-xs uppercase tracking-[0.2em] transition-colors duration-300 group font-sans"
           >
             <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:-translate-x-1 transition-transform" />
-            {t("galleryPage.featured.heading") ? t("galleryPage.hero.titleLine1") + " " + t("galleryPage.hero.titleLine2") : "Back to Gallery"}
+            {t("galleryPage.detail.backToGallery")}
           </Link>
         </div>
 
@@ -35,8 +37,8 @@ export default function GalleryDetailContent({ item }: { item: GalleryItem }) {
             {/* Left Column: Image Showcase */}
             <div className="lg:col-span-7 relative aspect-[16/10] w-full overflow-hidden rounded-2xl sm:rounded-block border border-saffron/10 shadow-lg bg-neutral-100">
               <Image
-                src={item.src}
-                alt={item.title}
+                src={localizedItem.src}
+                alt={localizedItem.title}
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 58vw"
@@ -50,28 +52,28 @@ export default function GalleryDetailContent({ item }: { item: GalleryItem }) {
               <div className="flex flex-wrap gap-2">
                 <span className="inline-flex items-center gap-1.5 bg-saffron/10 text-saffron font-bold text-[9px] uppercase tracking-widest px-2.5 sm:px-3 py-1 rounded-full border border-saffron/20 shadow-sm font-sans">
                   <Tag className="w-3 h-3" />
-                  {item.category}
+                  {localizedItem.category}
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 font-bold text-[9px] uppercase tracking-widest px-2.5 sm:px-3 py-1 rounded-full border border-slate-200/60 shadow-sm font-sans">
                   <Calendar className="w-3 h-3" />
-                  {item.date}
+                  {localizedItem.date}
                 </span>
-                {item.metric && (
+                {localizedItem.metric && (
                   <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 font-bold text-[9px] uppercase tracking-widest px-2.5 sm:px-3 py-1 rounded-full border border-amber-200/50 shadow-sm font-sans">
                     <Award className="w-3 h-3" />
-                    {item.metric}
+                    {localizedItem.metric}
                   </span>
                 )}
               </div>
 
               <h1 className="text-2xl sm:text-4xl font-normal text-neutral-900 leading-tight font-heading uppercase">
-                {item.title}
+                {localizedItem.title}
               </h1>
 
               {/* Description quote block */}
               <div className="flex gap-3 border-l-4 border-saffron pl-3 sm:pl-4 py-1">
                 <p className="text-sm sm:text-lg font-normal text-slate-800 italic leading-relaxed font-heading">
-                  {item.description}
+                  {localizedItem.description}
                 </p>
               </div>
 
@@ -79,10 +81,10 @@ export default function GalleryDetailContent({ item }: { item: GalleryItem }) {
               <div className="border-t border-saffron/10 pt-4 sm:pt-6">
                 <h2 className="text-base sm:text-lg font-normal text-neutral-900 font-heading mb-2 sm:mb-3 flex items-center gap-2 uppercase">
                   <Info className="w-4 h-4 text-saffron" />
-                  Event Overview &amp; Impact
+                  {t("galleryPage.detail.overviewHeading")}
                 </h2>
                 <p className="text-xs sm:text-base text-slate-grey leading-[1.7] sm:leading-relaxed whitespace-pre-line font-sans font-normal">
-                  {item.details}
+                  {localizedItem.details}
                 </p>
               </div>
             </div>

@@ -226,7 +226,7 @@ export function Navbar() {
                 </div>
               </div>
 
-              <div className="w-full max-w-[260px] pt-1">
+              <div className="w-full max-w-[300px] pt-3">
                 <LanguageSwitcher variant="drawer" />
               </div>
             </div>

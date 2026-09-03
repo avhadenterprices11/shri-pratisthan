@@ -107,9 +107,11 @@ export default function ContactInformation() {
                   <div className="space-y-1.5 font-sans">
                     {item.details.map((line, idx) => {
                       if (line.includes("Info@shreepratishthan.com")) {
+                        const parts = line.split("Info@shreepratishthan.com");
+                        const prefix = parts[0];
                         return (
                           <p key={idx} className="text-xs sm:text-sm text-slate-grey font-normal leading-[1.7]">
-                            Email:{" "}
+                            {prefix}
                             <a
                               href="mailto:Info@shreepratishthan.com"
                               className="text-saffron font-bold hover:underline"
@@ -120,10 +122,12 @@ export default function ContactInformation() {
                         );
                       }
                       if (line.includes("+91 9922786608")) {
-                        const isWhatsApp = line.toLowerCase().includes("whatsapp");
+                        const isWhatsApp = line.toLowerCase().includes("whatsapp") || line.includes("व्हॉट्सअ‍ॅप") || line.includes("व्हाट्सएप");
+                        const parts = line.split("+91 9922786608");
+                        const prefix = parts[0];
                         return (
                           <p key={idx} className="text-xs sm:text-sm text-slate-grey font-normal leading-[1.7]">
-                            {isWhatsApp ? "WhatsApp: " : "Helpline: "}
+                            {prefix}
                             <a
                               href={isWhatsApp ? "https://wa.me/919922786608" : "tel:+919922786608"}
                               target={isWhatsApp ? "_blank" : undefined}
@@ -145,7 +149,7 @@ export default function ContactInformation() {
                 </div>
 
                 <div className="mt-4 sm:mt-6 text-[9px] sm:text-[10px] text-saffron uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] font-sans pt-3 border-t border-saffron/10">
-                  Official Directory
+                  {t("contactPage.info.officialDirectory")}
                 </div>
               </div>
             );

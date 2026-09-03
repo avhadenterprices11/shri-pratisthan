@@ -86,10 +86,10 @@ export default function TreePlantation() {
           {/* Left Column: Visual Species Selection */}
           <div className="tree-animate-left order-2 lg:order-1 glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block bg-white border border-emerald-500/10 shadow-xl relative">
             <div className="absolute top-3 sm:top-4 right-4 sm:right-6 text-[9px] sm:text-xs uppercase font-bold tracking-[0.18em] text-emerald-600 bg-emerald-50 px-2.5 sm:px-3 py-1 rounded-full border border-emerald-100 font-sans">
-              Ecology
+              {t("communityPage.treePlantation.ecologyTag")}
             </div>
             <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 mb-4 sm:mb-6 font-heading uppercase">
-              Sown &amp; Nurtured Saplings
+              {t("communityPage.treePlantation.speciesTitle")}
             </h3>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -112,7 +112,7 @@ export default function TreePlantation() {
             </div>
 
             <div className="mt-6 sm:mt-8 text-center text-xs text-slate-grey font-normal font-sans">
-              Saplings are monitored and watered under our Sunday Care initiatives.
+              {t("communityPage.treePlantation.careNote")}
             </div>
           </div>
 

@@ -9,13 +9,6 @@ import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SUBJECT_OPTIONS = [
-  "General Inquiry / Support",
-  "Volunteer Registration",
-  "Blood Donation & Health Camps",
-  "Sports & Event Participation",
-];
-
 export default function ContactCTA() {
   const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,7 +21,7 @@ export default function ContactCTA() {
     t("contactCTA.form.opt4"),
   ];
 
-  const [selectedSubject, setSelectedSubject] = useState(subjectOptions[0]);
+  const [selectedSubjectIndex, setSelectedSubjectIndex] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Form states
@@ -76,13 +69,13 @@ export default function ContactCTA() {
     const newErrors: { name?: string; email?: string; message?: string } = {};
 
     if (!name.trim()) {
-      newErrors.name = "Please enter your name";
+      newErrors.name = t("contactCTA.form.nameError");
     }
     if (!email.trim() || !email.includes("@")) {
-      newErrors.email = "Please enter a valid email address (e.g. name@domain.com)";
+      newErrors.email = t("contactCTA.form.emailError");
     }
     if (!message.trim()) {
-      newErrors.message = "Please type a message";
+      newErrors.message = t("contactCTA.form.messageError");
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -187,7 +180,7 @@ export default function ContactCTA() {
                   onClick={handleReset}
                   className="mt-3 sm:mt-4 px-5 sm:px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider rounded-full transition-all cursor-pointer shadow-sm"
                 >
-                  Send Another Message
+                  {t("contactCTA.form.sendAnother")}
                 </button>
               </div>
             ) : (
@@ -241,27 +234,27 @@ export default function ContactCTA() {
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                     className="w-full px-4 py-3 rounded-interactive border border-saffron/25 bg-background/80 hover:bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-sm text-foreground flex items-center justify-between transition-all cursor-pointer shadow-xs"
                   >
-                    <span className="font-medium">{selectedSubject}</span>
+                    <span className="font-medium">{subjectOptions[selectedSubjectIndex]}</span>
                     <ChevronDown className={`w-4 h-4 text-saffron transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} />
                   </button>
 
                   {isDropdownOpen && (
                     <div className="absolute left-0 right-0 top-full mt-2 bg-white/95 backdrop-blur-xl border border-saffron/25 rounded-xl shadow-2xl z-50 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                      {subjectOptions.map((option) => (
+                      {subjectOptions.map((option, idx) => (
                         <div
-                          key={option}
+                          key={idx}
                           onClick={() => {
-                            setSelectedSubject(option);
+                            setSelectedSubjectIndex(idx);
                             setIsDropdownOpen(false);
                           }}
                           className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${
-                            selectedSubject === option
+                            selectedSubjectIndex === idx
                               ? "bg-saffron/10 text-saffron font-bold"
                               : "text-foreground hover:bg-saffron/5"
                           }`}
                         >
                           <span>{option}</span>
-                          {selectedSubject === option && <Check className="w-4 h-4 text-saffron" />}
+                          {selectedSubjectIndex === idx && <Check className="w-4 h-4 text-saffron" />}
                         </div>
                       ))}
                     </div>
