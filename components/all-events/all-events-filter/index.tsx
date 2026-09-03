@@ -3,6 +3,7 @@
 import React from "react";
 import { Sparkles, Calendar, HeartPulse, Leaf, Gift, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface AllEventsFilterProps {
   selectedCategory: string;
@@ -10,20 +11,21 @@ interface AllEventsFilterProps {
   counts: Record<string, number>;
 }
 
-const CATEGORIES = [
-  { id: "all", label: "All Events", icon: Sparkles },
-  { id: "cultural", label: "Cultural Festivals", icon: Calendar },
-  { id: "sports", label: "Sports & Competitions", icon: Trophy },
-  { id: "health", label: "Health & Medical Camps", icon: HeartPulse },
-  { id: "eco", label: "Ecological Drives", icon: Leaf },
-  { id: "charity", label: "Social & Relief Work", icon: Gift },
-];
-
 export default function AllEventsFilter({
   selectedCategory,
   onSelectCategory,
   counts,
 }: AllEventsFilterProps) {
+  const { t } = useLanguage();
+
+  const CATEGORIES = [
+    { id: "all", label: t("eventsPage.allEvents.all"), icon: Sparkles },
+    { id: "cultural", label: t("eventsPage.allEvents.cultural"), icon: Calendar },
+    { id: "sports", label: t("eventsPage.allEvents.sports"), icon: Trophy },
+    { id: "health", label: t("eventsPage.allEvents.health"), icon: HeartPulse },
+    { id: "eco", label: t("eventsPage.allEvents.eco"), icon: Leaf },
+    { id: "charity", label: t("eventsPage.allEvents.charity"), icon: Gift },
+  ];
   return (
     <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 md:px-6 my-4 sm:my-8">
       {/* Flex Wrap Container - Zero Clipping on Any Screen */}

@@ -3,82 +3,90 @@
 import React from "react";
 import { Check, User, Calendar, ClipboardCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface StepProgressProps {
-  currentStep: number; // 1 to 3
+  currentStep: number;
   onStepClick: (step: number) => void;
   maxStepReached: number;
 }
-
-const STEPS = [
-  { id: 1, label: "Personal Info", shortLabel: "Personal", icon: User },
-  { id: 2, label: "Booking Slot", shortLabel: "Slot", icon: Calendar },
-  { id: 3, label: "Review & Confirm", shortLabel: "Confirm", icon: ClipboardCheck },
-];
 
 export default function StepProgress({
   currentStep,
   onStepClick,
   maxStepReached,
 }: StepProgressProps) {
+  const { t } = useLanguage();
+
+  const STEPS = [
+    { id: 1, label: t("eventsPage.booking.step1"), icon: User },
+    { id: 2, label: t("eventsPage.booking.step2"), icon: Calendar },
+    { id: 3, label: t("eventsPage.booking.step3"), icon: ClipboardCheck },
+  ];
+
   return (
-    <div className="w-full max-w-2xl mx-auto mb-8 px-2 flex justify-center">
-      {/* Minimalist Apple-Style Status Dock */}
-      <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 bg-white/95 backdrop-blur-xl border border-black/10 rounded-full shadow-md">
-        {STEPS.map((step, idx) => {
+    <div className="w-full max-w-4xl mx-auto mb-10 px-2">
+      {/* Progress Bar Header */}
+      <div className="relative flex items-center justify-between">
+        {/* Connection Line */}
+        <div className="absolute top-1/2 left-4 right-4 -translate-y-1/2 h-1 bg-neutral-200 -z-10 rounded-full">
+          <div
+            className="h-full bg-gradient-to-r from-saffron via-gold to-saffron transition-all duration-500 rounded-full"
+            style={{
+              width: `${((Math.min(currentStep, 3) - 1) / (STEPS.length - 1)) * 100}%`,
+            }}
+          />
+        </div>
+
+        {STEPS.map((step) => {
+          const Icon = step.icon;
           const isCompleted = step.id < currentStep;
           const isCurrent = step.id === currentStep;
           const isClickable = step.id <= maxStepReached;
 
           return (
-            <React.Fragment key={step.id}>
-              <button
-                type="button"
-                onClick={() => isClickable && onStepClick(step.id)}
-                disabled={!isClickable}
+            <button
+              key={step.id}
+              type="button"
+              onClick={() => isClickable && onStepClick(step.id)}
+              disabled={!isClickable}
+              className={cn(
+                "group relative flex flex-col items-center focus:outline-none transition-all duration-300",
+                isClickable ? "cursor-pointer" : "cursor-not-allowed opacity-60"
+              )}
+            >
+              {/* Step Circle */}
+              <div
                 className={cn(
-                  "group relative flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full text-xs font-semibold font-sans transition-all duration-300 select-none",
-                  isCurrent
-                    ? "bg-saffron text-white shadow-md shadow-saffron/25 font-bold"
-                    : isCompleted
-                    ? "bg-emerald-50 text-emerald-800 hover:bg-emerald-100/80 cursor-pointer"
-                    : isClickable
-                    ? "text-neutral-700 hover:bg-black/5 cursor-pointer"
-                    : "text-neutral-400 cursor-not-allowed opacity-60"
+                  "w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-xs md:text-sm transition-all duration-300 shadow-md border-2",
+                  isCompleted
+                    ? "bg-saffron text-white border-saffron shadow-saffron/20 scale-100"
+                    : isCurrent
+                    ? "bg-white text-saffron border-saffron ring-4 ring-saffron/15 scale-110 shadow-lg"
+                    : "bg-white text-neutral-400 border-neutral-300"
                 )}
               >
-                {/* Step Pill Icon / Number */}
-                <div
-                  className={cn(
-                    "w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold transition-transform duration-200 shrink-0",
-                    isCurrent
-                      ? "bg-white text-saffron"
-                      : isCompleted
-                      ? "bg-emerald-600 text-white"
-                      : "bg-neutral-100 text-neutral-500"
-                  )}
-                >
-                  {isCompleted ? (
-                    <Check className="w-3 h-3 stroke-[2.5]" />
-                  ) : (
-                    <span>{step.id}</span>
-                  )}
-                </div>
+                {isCompleted ? (
+                  <Check className="w-5 h-5 stroke-[2.5]" />
+                ) : (
+                  <Icon className="w-4 h-4 md:w-5 md:h-5" />
+                )}
+              </div>
 
-                {/* Step Label */}
-                <span className="hidden sm:inline whitespace-nowrap tracking-wider uppercase text-[11px]">
-                  {step.label}
-                </span>
-                <span className="sm:hidden whitespace-nowrap tracking-wider uppercase text-[10px]">
-                  {step.shortLabel}
-                </span>
-              </button>
-
-              {/* Minimalist hairline separator between steps */}
-              {idx < STEPS.length - 1 && (
-                <span className="w-1.5 h-1.5 rounded-full bg-neutral-200 shrink-0 hidden sm:inline-block" />
-              )}
-            </React.Fragment>
+              {/* Step Label */}
+              <span
+                className={cn(
+                  "mt-2 text-[10px] md:text-xs font-semibold tracking-wide transition-colors duration-300 text-center max-w-[90px] md:max-w-none font-sans",
+                  isCurrent
+                    ? "text-saffron font-bold"
+                    : isCompleted
+                    ? "text-neutral-800 font-medium"
+                    : "text-neutral-400"
+                )}
+              >
+                {step.label}
+              </span>
+            </button>
           );
         })}
       </div>

@@ -3,19 +3,21 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const LOGS = [
-  { year: "2006", title: "Daily Cricket Spark & Brotherhood", desc: "20 childhood friends playing daily cricket in Indira Nagar unite to channel sports camaraderie into community welfare.", emoji: "🏏" },
-  { year: "2012", title: "First Gudipadwa Swagat Yatra", desc: "Establishing the iconic Marathi New Year cultural procession with Lezim and Dhol Tasha across Indira Nagar.", emoji: "🚩" },
-  { year: "2018", title: "Official Trust Registration", desc: "Formally registered as 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था' (Reg: nashik/0000153/2018) under Adv. Shyam Badode.", emoji: "📜" },
-  { year: "2026", title: "19+ Years Seva & 50+ Blood Drives", desc: "Celebrating 19+ years of continuous social impact, 50+ blood donation camps, and active youth leadership across Nashik.", emoji: "🩸" },
-];
-
 export default function MemoryTimeline() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
+
+  const LOGS = [
+    { year: t("galleryPage.timeline.t1Year"), title: t("galleryPage.timeline.t1Title"), desc: t("galleryPage.timeline.t1Desc"), emoji: "🏏" },
+    { year: t("galleryPage.timeline.t2Year"), title: t("galleryPage.timeline.t2Title"), desc: t("galleryPage.timeline.t2Desc"), emoji: "🚩" },
+    { year: t("galleryPage.timeline.t3Year"), title: t("galleryPage.timeline.t3Title"), desc: t("galleryPage.timeline.t3Desc"), emoji: "📜" },
+    { year: t("galleryPage.timeline.t4Year"), title: t("galleryPage.timeline.t4Title"), desc: t("galleryPage.timeline.t4Desc"), emoji: "🩸" },
+  ];
 
   useEffect(() => {
     if (!containerRef.current || !progressBarRef.current) return;
@@ -67,7 +69,7 @@ export default function MemoryTimeline() {
         <div className="text-center mb-8 sm:mb-16 md:mb-20">
           <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.25em] block mb-2 sm:mb-3 font-sans">Milestones</span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Archival Timeline
+            {t("galleryPage.timeline.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

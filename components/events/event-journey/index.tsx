@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface SlideItem {
   stage: string;
@@ -11,35 +12,36 @@ interface SlideItem {
   image: string;
 }
 
-const SLIDES: SlideItem[] = [
-  {
-    stage: "Operations",
-    title: "19+ Years Event & Seva Legacy",
-    desc: "Tracing our journey from a 2006 cricket spark to grand cultural festivals and 50+ blood donation camps across Indira Nagar, Nashik.",
-    image: "/about_showcase.png",
-  },
-  {
-    stage: "Stage 01",
-    title: "The 2006 Cricket Spark",
-    desc: "20 childhood friends playing cricket daily in Indira Nagar channel sports bonding and teamwork into community welfare and youth leadership.",
-    image: "/volunteer_coordinator.png",
-  },
-  {
-    stage: "Stage 02",
-    title: "Cultural Processions & Grand Festivals",
-    desc: "Establishing iconic community traditions: Gudipadwa Swagat Yatra, 10-day Shree Ganeshotsav, Navratri Garba, and Shivaji Jayanti rallies.",
-    image: "/hero_dahihandi.png",
-  },
-  {
-    stage: "Stage 03",
-    title: "Registered Trust & 50+ Blood Drives",
-    desc: "Formal registration under 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था' (Reg: nashik/0000153/2018), 50+ blood donation camps, and active welfare.",
-    image: "/community_assembly.png",
-  },
-];
-
 export default function EventJourney() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const SLIDES: SlideItem[] = [
+    {
+      stage: "Legacy",
+      title: t("eventsPage.journey.heading"),
+      desc: t("eventsPage.journey.subtitle"),
+      image: "/about_showcase.png",
+    },
+    {
+      stage: t("eventsPage.journey.s1Stage"),
+      title: t("eventsPage.journey.s1Title"),
+      desc: t("eventsPage.journey.s1Desc"),
+      image: "/volunteer_coordinator.png",
+    },
+    {
+      stage: t("eventsPage.journey.s2Stage"),
+      title: t("eventsPage.journey.s2Title"),
+      desc: t("eventsPage.journey.s2Desc"),
+      image: "/hero_dahihandi.png",
+    },
+    {
+      stage: t("eventsPage.journey.s3Stage"),
+      title: t("eventsPage.journey.s3Title"),
+      desc: t("eventsPage.journey.s3Desc"),
+      image: "/community_assembly.png",
+    },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin

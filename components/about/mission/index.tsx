@@ -5,35 +5,37 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MISSION_PILLARS = [
-  {
-    title: "Action in Service",
-    subtitle: "Community Welfare & Health",
-    description: "Organizing regular blood donation drives, free health & diagnostic checkups, disaster relief, and youth empowerment initiatives across Indira Nagar and Nashik.",
-    image: "/images/social-work.jpg",
-    stats: [
-      { label: "Blood Camps", val: "50+" },
-      { label: "Active Members", val: "100+" },
-    ]
-  },
-  {
-    title: "Pride in Legacy",
-    subtitle: "Cultural Heritage & Traditions",
-    description: "Preserving Maharashtra's grand spiritual traditions through Gudipadwa Swagat Yatra, Shree Ganeshotsav, Navratri, Shiv Jayanti, and annual youth sports leagues.",
-    image: "/images/ganesh.jpg",
-    stats: [
-      { label: "Years Legacy", val: "19+" },
-      { label: "Founding Pillars", val: "20" },
-    ]
-  }
-];
-
 export default function AboutMission() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
+
+  const MISSION_PILLARS = [
+    {
+      title: t("aboutPage.mission.p1Title"),
+      subtitle: t("aboutPage.mission.p1Sub"),
+      description: t("aboutPage.mission.p1Desc"),
+      image: "/images/social-work.jpg",
+      stats: [
+        { label: t("aboutPage.mission.p1Stat1Label"), val: t("aboutPage.mission.p1Stat1Val") },
+        { label: t("aboutPage.mission.p1Stat2Label"), val: t("aboutPage.mission.p1Stat2Val") },
+      ]
+    },
+    {
+      title: t("aboutPage.mission.p2Title"),
+      subtitle: t("aboutPage.mission.p2Sub"),
+      description: t("aboutPage.mission.p2Desc"),
+      image: "/images/ganesh.jpg",
+      stats: [
+        { label: t("aboutPage.mission.p2Stat1Label"), val: t("aboutPage.mission.p2Stat1Val") },
+        { label: t("aboutPage.mission.p2Stat2Label"), val: t("aboutPage.mission.p2Stat2Val") },
+      ]
+    }
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -82,11 +84,11 @@ export default function AboutMission() {
         <div className="mission-reveal flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-4 sm:pb-6 border-b border-saffron/15">
           <div className="flex flex-col items-start gap-2 sm:gap-3">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 font-heading uppercase leading-tight tracking-tight">
-              Action in Service, Pride in Legacy
+              {t("aboutPage.mission.heading")}
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
-            वारसा संस्कृतीचा, ध्यास समाजसेवेचा — Bringing families, youth, and citizens together through cultural celebrations, sports leagues, and public welfare.
+            {t("aboutPage.mission.subtitle")}
           </p>
         </div>
 

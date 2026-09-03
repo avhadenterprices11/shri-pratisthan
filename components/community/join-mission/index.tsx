@@ -4,15 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Loader2, AlertCircle, CheckCircle2, ChevronDown, Check } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const INTEREST_OPTIONS = [
-  { value: "blood-donation", label: "Blood Donation & Health Camps (Arogya)" },
-  { value: "tree-plantation", label: "Tree Plantation & Cleanliness (Vasundhara)" },
-  { value: "charity-work", label: "Educational Kits & Relief Drives (Seva)" },
-  { value: "all", label: "All Community Initiatives" },
-];
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -63,6 +57,15 @@ function inputClass(hasError?: boolean) {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function JoinMission() {
+  const { t } = useLanguage();
+
+  const INTEREST_OPTIONS = [
+    { value: "blood-donation", label: t("communityPage.joinMission.opt1") },
+    { value: "tree-plantation", label: t("communityPage.joinMission.opt2") },
+    { value: "charity-work", label: t("communityPage.joinMission.opt3") },
+    { value: "all", label: t("communityPage.joinMission.opt4") },
+  ];
+
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -181,11 +184,14 @@ export default function JoinMission() {
         <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white border border-saffron/10 shadow-2xl">
 
           <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+            <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 font-sans">
+              {t("communityPage.joinMission.badge")}
+            </span>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-              Join Our Mission
+              {t("communityPage.joinMission.heading")}
             </h2>
             <p className="text-slate-grey mt-2.5 sm:mt-3 text-xs sm:text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
-              Be a catalyst for community progress in Indira Nagar, Nashik. Register to donate blood, plant saplings, or support local student and welfare distributions.
+              {t("communityPage.joinMission.subtitle")}
             </p>
             <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
           </div>
@@ -197,12 +203,10 @@ export default function JoinMission() {
                 <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 stroke-[1.5]" />
               </div>
               <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase">
-                Registration Successful!
+                {t("communityPage.joinMission.successTitle")}
               </h3>
               <p className="text-slate-grey max-w-md mx-auto text-xs sm:text-sm font-sans leading-relaxed">
-                Thank you, <strong>{formData.name}</strong>. One of our community coordinators
-                will contact you shortly on <strong>{formData.contact}</strong> to align on
-                upcoming initiatives.
+                {t("communityPage.joinMission.successDesc")}
               </p>
               <button
                 onClick={handleReset}
@@ -226,13 +230,13 @@ export default function JoinMission() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2">
                   <label htmlFor="jm-name" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
-                    Full Name <span className="text-red-400">*</span>
+                    {t("communityPage.joinMission.nameLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="text"
                     id="jm-name"
                     required
-                    placeholder="Enter your name"
+                    placeholder={t("communityPage.joinMission.namePlaceholder")}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     disabled={status === "loading"}
@@ -243,13 +247,13 @@ export default function JoinMission() {
 
                 <div className="space-y-1.5 sm:space-y-2">
                   <label htmlFor="jm-contact" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
-                    Phone / Email <span className="text-red-400">*</span>
+                    {t("communityPage.joinMission.contactLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="text"
                     id="jm-contact"
                     required
-                    placeholder="Where can we reach you?"
+                    placeholder={t("communityPage.joinMission.contactPlaceholder")}
                     value={formData.contact}
                     onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                     disabled={status === "loading"}
@@ -262,7 +266,7 @@ export default function JoinMission() {
               {/* Premium Custom Dropdown */}
               <div className="space-y-1.5 sm:space-y-2 relative" ref={dropdownRef}>
                 <label id="jm-interest" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
-                  Area of Interest
+                  {t("communityPage.joinMission.interestLabel")}
                 </label>
                 <button
                   type="button"
@@ -301,12 +305,12 @@ export default function JoinMission() {
 
               <div className="space-y-1.5 sm:space-y-2">
                 <label htmlFor="jm-message" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
-                  Short Message <span className="text-slate-400 normal-case font-normal">(Optional)</span>
+                  {t("communityPage.joinMission.messageLabel")}
                 </label>
                 <textarea
                   id="jm-message"
                   rows={4}
-                  placeholder="Tell us a bit about yourself or ask any questions..."
+                  placeholder={t("communityPage.joinMission.messagePlaceholder")}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   disabled={status === "loading"}
@@ -323,10 +327,10 @@ export default function JoinMission() {
                   {status === "loading" ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      Sending…
+                      {t("communityPage.joinMission.submitting")}
                     </>
                   ) : (
-                    "Send Registration"
+                    t("communityPage.joinMission.submitButton")
                   )}
                 </button>
               </div>

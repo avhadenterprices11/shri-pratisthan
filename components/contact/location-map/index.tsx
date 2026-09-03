@@ -4,10 +4,12 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Clock, ExternalLink } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function LocationMap() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -58,11 +60,11 @@ export default function LocationMap() {
           {/* Left Column: Office visiting details */}
           <div className="map-animate-left space-y-4 sm:space-y-6">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-              Coordinate Your <br />
-              <span className="text-saffron text-outline-festive font-heading">Office Visits</span>
+              {t("contactPage.location.headingLine1")} <br />
+              <span className="text-saffron text-outline-festive font-heading">{t("contactPage.location.headingLine2")}</span>
             </h2>
             <p className="text-xs sm:text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
-              We welcome patrons, volunteers, and event partners to our registered headquarters in Indira Nagar, Nashik. To ensure coordinator availability, please connect ahead of your visit.
+              {t("contactPage.location.desc")}
             </p>
             
             <div className="space-y-3 sm:space-y-4 pt-1 sm:pt-2">
@@ -71,10 +73,10 @@ export default function LocationMap() {
                   <Clock className="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75]" />
                 </div>
                 <div>
-                  <h4 className="font-normal text-neutral-900 font-heading text-base sm:text-lg uppercase">Visiting Hours</h4>
+                  <h4 className="font-normal text-neutral-900 font-heading text-base sm:text-lg uppercase">{t("contactPage.location.visitingHoursTitle")}</h4>
                   <p className="text-xs sm:text-sm text-slate-grey mt-0.5 font-sans leading-relaxed font-normal">
-                    Monday to Saturday: 10:00 AM – 6:00 PM <br />
-                    Sunday: 10:00 AM – 2:00 PM (During festival campaigns)
+                    {t("contactPage.location.visitingHoursLine1")} <br />
+                    {t("contactPage.location.visitingHoursLine2")}
                   </p>
                 </div>
               </div>
@@ -98,9 +100,9 @@ export default function LocationMap() {
 
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 bg-slate-50 border border-slate-200 p-4 sm:p-5 rounded-2xl">
               <div>
-                <h4 className="font-bold text-neutral-900 text-xs sm:text-sm font-sans uppercase tracking-wide">Indira Nagar Headquarters (Nashik)</h4>
+                <h4 className="font-bold text-neutral-900 text-xs sm:text-sm font-sans uppercase tracking-wide">{t("contactPage.location.hqTitle")}</h4>
                 <p className="text-[11px] sm:text-xs text-slate-grey mt-0.5 font-sans">
-                  Conveniently accessible via Mumbai-Agra Highway and Nashik Road.
+                  {t("contactPage.location.hqDesc")}
                 </p>
               </div>
               <a
@@ -109,7 +111,7 @@ export default function LocationMap() {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto bg-foreground hover:bg-saffron hover:shadow-lg hover:shadow-saffron/20 text-background hover:text-white font-bold text-xs uppercase tracking-[0.2em] px-6 py-3 rounded-full transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 shrink-0 cursor-pointer font-sans"
               >
-                <span>Navigate</span>
+                <span>{t("contactPage.location.navigateBtn")}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>

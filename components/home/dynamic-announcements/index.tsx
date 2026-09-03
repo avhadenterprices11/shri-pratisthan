@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Bell, Calendar, Sparkles, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface DynamicAnnouncement {
   id: string;
@@ -15,6 +16,7 @@ interface DynamicAnnouncement {
 }
 
 export default function DynamicAnnouncements() {
+  const { language, t } = useLanguage();
   const [items, setItems] = useState<DynamicAnnouncement[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -47,9 +49,15 @@ export default function DynamicAnnouncements() {
   // Pick primary featured announcement
   const featured = items[0];
 
-  const categoryText = typeof featured.category === "string" ? featured.category : (featured.category?.en || featured.category?.mr || "");
-  const titleText = typeof featured.title === "string" ? featured.title : (featured.title?.en || featured.title?.mr || "");
-  const contentText = typeof featured.content === "string" ? featured.content : (featured.content?.en || featured.content?.mr || "");
+  const getLocalized = (val: string | { en?: string; mr?: string; hi?: string } | undefined) => {
+    if (!val) return "";
+    if (typeof val === "string") return val;
+    return val[language] || val.en || val.mr || "";
+  };
+
+  const categoryText = getLocalized(featured.category);
+  const titleText = getLocalized(featured.title);
+  const contentText = getLocalized(featured.content);
 
   return (
     <section className="relative z-20 w-full bg-charcoal/95 border-y border-saffron/20 py-4 px-4 sm:px-6 lg:px-8 shadow-inner overflow-hidden">

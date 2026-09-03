@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 const impactCards = [
   {
@@ -54,8 +55,50 @@ const impactCards = [
 ];
 
 export default function CulturalInitiatives() {
+  const { t } = useLanguage();
   const [openCard, setOpenCard] = useState<number | null>(0);
   const [isMobile, setIsMobile] = useState(false);
+
+  const impactCardsData = [
+    {
+      id: 0,
+      metric: t("socialWork.card1Metric"),
+      title: t("socialWork.card1Title"),
+      description: t("socialWork.card1Desc"),
+      image: "/volunteer_musician.png",
+      bg: "bg-orange-50/70 border-saffron/15",
+      text: "text-charcoal",
+      isFeature: true,
+      featureLabel: t("socialWork.card1Sub"),
+    },
+    {
+      id: 1,
+      metric: t("socialWork.card2Metric"),
+      title: t("socialWork.card2Title"),
+      description: t("socialWork.card2Desc"),
+      image: "/volunteer_safety.png",
+      bg: "bg-amber-50/70 border-gold/15",
+      text: "text-charcoal",
+    },
+    {
+      id: 2,
+      metric: t("socialWork.card3Metric"),
+      title: t("socialWork.card3Title"),
+      description: t("socialWork.card3Desc"),
+      image: "/volunteer_coordinator.png",
+      bg: "bg-[#121214] border-coal",
+      text: "text-alabaster",
+    },
+    {
+      id: 3,
+      metric: t("socialWork.card4Metric"),
+      title: t("socialWork.card4Title"),
+      description: t("socialWork.card4Desc"),
+      image: "/volunteer_eco.png",
+      bg: "bg-rose-50/70 border-red-200/15",
+      text: "text-charcoal",
+    },
+  ];
 
   useEffect(() => {
     const checkMobile = () => {
@@ -79,10 +122,10 @@ export default function CulturalInitiatives() {
         <div className="flex items-start justify-between gap-6 mb-6 sm:mb-10">
           <div className="max-w-[620px] text-left">
             <h2 className="text-2xl sm:text-[34px] md:text-[40px] leading-[1.15] font-normal text-charcoal font-heading tracking-tight">
-              Social Welfare &amp; Community Action
+              {t("socialWork.eyebrow")}
             </h2>
             <p className="mt-3 sm:mt-4 text-xs sm:text-[15px] text-slate-grey leading-[1.75] max-w-[560px] font-sans">
-              Shree Pratisthan drives impactful social transformation through youth mobilization, healthcare, blood drives, and community empowerment in Indira Nagar, Nashik.
+              {t("socialWork.description")}
             </p>
           </div>
         </div>
@@ -94,7 +137,7 @@ export default function CulturalInitiatives() {
           }}
           className="flex flex-col md:flex-row md:items-end gap-3 md:gap-0"
         >
-          {impactCards.map((card, idx) => {
+          {impactCardsData.map((card, idx) => {
             const isOpen = openCard === idx;
             const closedHeights = [280, 330, 390, 430];
 
@@ -128,14 +171,14 @@ export default function CulturalInitiatives() {
                         {card.isFeature ? (
                           <div className="max-w-[280px]">
                             <h3 className="text-xl sm:text-[28px] md:text-[32px] leading-[1.1] font-normal font-heading mb-2 sm:mb-3 text-charcoal uppercase">
-                              Shree Naad Dhol Tasha Pathak
+                              {t("socialWork.shreeNaadTitle")}
                             </h3>
                             <Link
                               href="/volunteer"
                               className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-bold text-saffron hover:text-gold transition-colors cursor-pointer font-sans"
                               data-hover="pointer"
                             >
-                              Join Troupe <ArrowRight size={14} />
+                              {t("socialWork.joinTroupe")} <ArrowRight size={14} />
                             </Link>
                           </div>
                         ) : (
@@ -157,7 +200,7 @@ export default function CulturalInitiatives() {
                               }`}
                               data-hover="pointer"
                             >
-                              Participate <ArrowRight size={14} />
+                              {t("socialWork.participate")} <ArrowRight size={14} />
                             </Link>
                           </div>
                         )}
@@ -271,7 +314,7 @@ export default function CulturalInitiatives() {
                                   : "bg-saffron text-white hover:bg-saffron/90"
                               }`}
                             >
-                              {card.isFeature ? "Join the Troupe" : "Participate & Volunteer"} <ArrowRight size={14} />
+                              {card.isFeature ? t("socialWork.joinTroupe") : t("socialWork.participateVolunteer")} <ArrowRight size={14} />
                             </Link>
                           </div>
                         </motion.div>
@@ -291,10 +334,10 @@ export default function CulturalInitiatives() {
           data-hover="pointer"
         >
           <p className="text-xs sm:text-[14px] leading-[1.4] text-slate-200 font-sans">
-            Ready to drum, climb, or design? Register with our friends troupe and join the next grand celebration!
+            {t("socialWork.bannerText")}
           </p>
           <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest text-saffron flex items-center gap-1.5 whitespace-nowrap bg-white/95 px-4 py-2 rounded-full shadow-sm group-hover:text-gold transition-colors">
-            Become a Volunteer <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform duration-300" />
+            {t("common.becomeVolunteer")} <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform duration-300" />
           </span>
         </Link>
 

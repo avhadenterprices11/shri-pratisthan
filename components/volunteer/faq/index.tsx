@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface FAQItem {
   q: string;
@@ -11,37 +12,38 @@ interface FAQItem {
   desc: string;
 }
 
-const FAQS: FAQItem[] = [
-  {
-    q: "Who is eligible to volunteer with Shree Pratishtan?",
-    a: "Anyone aged 16 and above residing in Indira Nagar or Nashik who is passionate about cultural heritage, youth empowerment, sports, or social welfare is welcome to join. No prior experience is needed.",
-    category: "Eligibility & Joining",
-    desc: "Understand open membership criteria, age requirements, and welcoming community guidelines.",
-  },
-  {
-    q: "What is the time commitment required?",
-    a: "We offer flexible involvement. You can volunteer during major seasonal festivals (like Gudipadwa Swagat Yatra or Ganeshotsav), weekend blood donation camps, or annual cricket tournaments.",
-    category: "Flexible Schedules",
-    desc: "Discover weekend drives, festival shifts, and adaptable sports event opportunities.",
-  },
-  {
-    q: "Do volunteers receive an official Trust Certificate?",
-    a: "Yes. Shree Pratishtan issues an official certificate from 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था' (Reg: nashik/0000153/2018) recognizing your contribution, hours, and leadership.",
-    category: "Trust Certification",
-    desc: "Learn about official registered trust validation for educational and career portfolios.",
-  },
-  {
-    q: "How are new volunteers guided and supported?",
-    a: "Our core committee of 20 founding pillars and 100+ active organizers provides hands-on orientation and mentorship for every cultural procession, health camp, and sports league.",
-    category: "Mentorship & Guidance",
-    desc: "Experience dedicated teamwork, safety briefings, and collaborative event leadership.",
-  },
-];
-
 export default function VolunteerFAQ() {
+  const { t } = useLanguage();
   const [openIdx, setOpenIdx] = useState(0); // Defaults to first item for active vertical gauge tracking
   const containerRef = useRef<HTMLDivElement>(null);
   const leftStickyRef = useRef<HTMLDivElement>(null);
+
+  const FAQS: FAQItem[] = [
+    {
+      q: t("volunteerPage.faq.q1"),
+      a: t("volunteerPage.faq.a1"),
+      category: t("volunteerPage.faq.cat1"),
+      desc: t("volunteerPage.faq.desc1"),
+    },
+    {
+      q: t("volunteerPage.faq.q2"),
+      a: t("volunteerPage.faq.a2"),
+      category: t("volunteerPage.faq.cat2"),
+      desc: t("volunteerPage.faq.desc2"),
+    },
+    {
+      q: t("volunteerPage.faq.q3"),
+      a: t("volunteerPage.faq.a3"),
+      category: t("volunteerPage.faq.cat3"),
+      desc: t("volunteerPage.faq.desc3"),
+    },
+    {
+      q: t("volunteerPage.faq.q4"),
+      a: t("volunteerPage.faq.a4"),
+      category: t("volunteerPage.faq.cat4"),
+      desc: t("volunteerPage.faq.desc4"),
+    },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -99,7 +101,7 @@ export default function VolunteerFAQ() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16 md:mb-20">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Frequently Asked Questions
+            {t("volunteerPage.faq.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

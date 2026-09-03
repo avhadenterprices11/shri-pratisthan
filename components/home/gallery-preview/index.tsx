@@ -5,6 +5,8 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const ITEMS = [
@@ -41,8 +43,42 @@ const ITEMS = [
 ];
 
 export default function GalleryPreview() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+
+  const itemsData = [
+    {
+      title: t("galleryPreview.i1Title"),
+      tag: t("galleryPreview.i1Tag"),
+      image: "/ganeshotsav_2017_jaipur.jpg",
+    },
+    {
+      title: t("galleryPreview.i2Title"),
+      tag: t("galleryPreview.i2Tag"),
+      image: "/swagat_yatra.jpg",
+    },
+    {
+      title: t("galleryPreview.i3Title"),
+      tag: t("galleryPreview.i3Tag"),
+      image: "/navratri_2022.jpg",
+    },
+    {
+      title: t("galleryPreview.i4Title"),
+      tag: t("galleryPreview.i4Tag"),
+      image: "/gallery_dahi_handi_pyramids.png",
+    },
+    {
+      title: t("galleryPreview.i5Title"),
+      tag: t("galleryPreview.i5Tag"),
+      image: "/gallery_gauri_ganpati_decor.png",
+    },
+    {
+      title: t("galleryPreview.i6Title"),
+      tag: t("galleryPreview.i6Tag"),
+      image: "/gallery_shiv_jayanti_rally.png",
+    },
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -145,7 +181,7 @@ export default function GalleryPreview() {
         <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-6 sm:mb-10 md:mb-14 gap-3 sm:gap-6">
           <div className="max-w-2xl">
             <h2 className="gallery-reveal-header text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-tight">
-              Celebrations, Sports &amp; Seva in Motion
+              {t("galleryPreview.title")}
             </h2>
           </div>
           <a
@@ -153,14 +189,14 @@ export default function GalleryPreview() {
             className="gallery-reveal-header group inline-flex items-center gap-2 text-saffron font-bold uppercase text-[11px] sm:text-xs tracking-widest hover:text-gold transition-colors font-sans cursor-pointer"
             data-hover="pointer"
           >
-            Explore Complete Archive
+            {t("galleryPreview.viewAll")}
             <span className="group-hover:translate-x-1.5 transition-transform duration-300 inline-block">→</span>
           </a>
         </div>
 
         {/* Bento/Masonry-inspired dynamic grid */}
         <div ref={gridRef} className="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6">
-          {ITEMS.map((item, index) => {
+          {itemsData.map((item, index) => {
             const isTall = index === 1 || index === 4;
             return (
               <div

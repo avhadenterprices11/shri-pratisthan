@@ -3,37 +3,39 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface PhraseItem {
   text: string;
   highlight: boolean;
 }
 
-const paragraph1Phrases: PhraseItem[] = [
-  { text: "We believe that true", highlight: false },
-  { text: "societal transformation", highlight: true },
-  { text: "begins at the", highlight: false },
-  { text: "grassroots level in Nashik.", highlight: true },
-  { text: "With over 100+ active organizers,", highlight: true },
-  { text: "Shree Pratishtan bridges critical", highlight: false },
-  { text: "healthcare needs", highlight: true },
-  { text: "and community welfare challenges.", highlight: false }
-];
-
-const paragraph2Phrases: PhraseItem[] = [
-  { text: "Our community drives focus on organizing 50+", highlight: false },
-  { text: "blood donation camps,", highlight: true },
-  { text: "mass health checkup camps,", highlight: false },
-  { text: "tree plantation drives,", highlight: true },
-  { text: "and establishing an emergency", highlight: false },
-  { text: "youth volunteer registry", highlight: true },
-  { text: "to", highlight: false },
-  { text: "serve Indira Nagar & Nashik", highlight: true },
-  { text: "whenever needed.", highlight: false }
-];
-
 export default function CommunityMission() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const paragraph1Phrases: PhraseItem[] = [
+    { text: t("communityPage.mission.p1Text1"), highlight: false },
+    { text: t("communityPage.mission.p1Text2"), highlight: true },
+    { text: t("communityPage.mission.p1Text3"), highlight: false },
+    { text: t("communityPage.mission.p1Text4"), highlight: true },
+    { text: t("communityPage.mission.p1Text5"), highlight: true },
+    { text: t("communityPage.mission.p1Text6"), highlight: false },
+    { text: t("communityPage.mission.p1Text7"), highlight: true },
+    { text: t("communityPage.mission.p1Text8"), highlight: false },
+  ];
+
+  const paragraph2Phrases: PhraseItem[] = [
+    { text: t("communityPage.mission.p2Text1"), highlight: false },
+    { text: t("communityPage.mission.p2Text2"), highlight: true },
+    { text: t("communityPage.mission.p2Text3"), highlight: false },
+    { text: t("communityPage.mission.p2Text4"), highlight: true },
+    { text: t("communityPage.mission.p2Text5"), highlight: false },
+    { text: t("communityPage.mission.p2Text6"), highlight: true },
+    { text: t("communityPage.mission.p2Text7"), highlight: false },
+    { text: t("communityPage.mission.p2Text8"), highlight: true },
+    { text: t("communityPage.mission.p2Text9"), highlight: false },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -117,7 +119,7 @@ export default function CommunityMission() {
     return () => ctx.revert();
   }, []);
 
-  const headingWords = "Sustained Welfare, United Action".split(" ");
+  const headingWords = t("communityPage.mission.heading").split(" ");
 
   return (
     <section
@@ -162,7 +164,7 @@ export default function CommunityMission() {
           {/* Heading Column */}
           <div className="md:col-span-4 order-1 md:order-2 flex flex-col items-start">
             <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
-              Our Vision
+              {t("communityPage.mission.badge")}
             </span>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight flex flex-wrap gap-x-2 sm:gap-x-2.5 uppercase">
               {headingWords.map((word, index) => (

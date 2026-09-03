@@ -3,29 +3,31 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AWARDS = [
-  {
-    title: "Registered Public Trust",
-    desc: "Officially registered under government authority as 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था' (Reg: nashik/0000153/2018).",
-    badge: "REG",
-  },
-  {
-    title: "Banking Partner Verification",
-    desc: "Samarth Sahakari Bank (समर्थ बँक) verified banking credentials ensure 100% financial transparency for social contributions.",
-    badge: "BANK",
-  },
-  {
-    title: "50+ Health & Blood Drives",
-    desc: "Conducted over 50 life-saving blood donation camps, free diagnostic checkups, and annual sports tournaments across Nashik.",
-    badge: "50+",
-  },
-];
-
 export default function AboutAchievements() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const AWARDS = [
+    {
+      title: t("aboutPage.achievements.a1Title"),
+      desc: t("aboutPage.achievements.a1Desc"),
+      badge: t("aboutPage.achievements.a1Badge"),
+    },
+    {
+      title: t("aboutPage.achievements.a2Title"),
+      desc: t("aboutPage.achievements.a2Desc"),
+      badge: t("aboutPage.achievements.a2Badge"),
+    },
+    {
+      title: t("aboutPage.achievements.a3Title"),
+      desc: t("aboutPage.achievements.a3Desc"),
+      badge: t("aboutPage.achievements.a3Badge"),
+    },
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -109,11 +111,11 @@ export default function AboutAchievements() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-saffron/15 mb-8 sm:mb-16 relative z-10">
           <div className="flex flex-col items-start gap-2 sm:gap-3">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 font-heading uppercase leading-tight tracking-tight">
-              Achievements &amp; Verifications
+              {t("aboutPage.achievements.heading")}
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
-            Officially verified registration (nashik/0000153/2018) and trusted banking partnership for transparent community welfare.
+            {t("aboutPage.achievements.subtitle")}
           </p>
         </div>
 
@@ -133,7 +135,7 @@ export default function AboutAchievements() {
                   <path id={`badge-path-${index}`} d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none" />
                   <text className="text-[6.5px] fill-saffron uppercase font-bold tracking-[0.2em] font-sans">
                     <textPath href={`#badge-path-${index}`} startOffset="50%" textAnchor="middle">
-                      Verified Credential • Shree Prathishthan •
+                      {t("aboutPage.achievements.credentialDial")}
                     </textPath>
                   </text>
                 </svg>
@@ -157,7 +159,7 @@ export default function AboutAchievements() {
 
               {/* Verified Stamp tag */}
               <div className="mt-5 sm:mt-8 text-[9px] text-saffron uppercase font-bold tracking-[0.2em] border border-saffron/20 bg-saffron/5 px-3.5 sm:px-4.5 py-1.5 rounded-full font-sans shadow-sm transition-all duration-500 translate-y-2 group-hover:translate-y-0">
-                Official Validation
+                {t("aboutPage.achievements.validationTag")}
               </div>
 
             </div>

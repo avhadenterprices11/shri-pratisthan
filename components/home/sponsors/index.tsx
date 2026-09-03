@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,7 @@ const CORPORATES = [
 ];
 
 export default function Sponsors() {
+  const { t, tArray } = useLanguage();
   const marqueeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -63,7 +65,9 @@ export default function Sponsors() {
     };
   }, []);
 
-  const LIST_ITEMS = [...CORPORATES, ...CORPORATES];
+  const sponsorsList = tArray("sponsors.list");
+  const listToUse = sponsorsList.length > 0 ? sponsorsList : CORPORATES;
+  const LIST_ITEMS = [...listToUse, ...listToUse];
 
   return (
     <section className="pt-8 sm:pt-12 pb-4 sm:pb-6 bg-background overflow-hidden relative select-none">
@@ -74,7 +78,7 @@ export default function Sponsors() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10 mb-6 sm:mb-8 flex items-center justify-between gap-3 sm:gap-6">
         <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-saffron/20" />
         <span className="text-saffron font-bold text-[9px] sm:text-[11px] uppercase tracking-[0.22em] font-sans bg-background px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full border border-saffron/12 shadow-sm whitespace-nowrap">
-          Supported &amp; Endorsed By
+          {t("sponsors.title")}
         </span>
         <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-saffron/20" />
       </div>

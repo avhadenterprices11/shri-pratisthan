@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MailOpen, Loader2, AlertCircle } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -62,6 +63,7 @@ function inputClass(hasError?: boolean) {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function ContactForm() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -171,10 +173,10 @@ export default function ContactForm() {
 
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-              Get In Touch With Us
+              {t("contactPage.form.heading")}
             </h2>
             <p className="text-slate-grey mt-2.5 sm:mt-3 text-xs sm:text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
-              Submit your inquiry below. Our administrative office will review your message and reach out shortly.
+              {t("contactPage.form.subtitle")}
             </p>
             <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
           </div>
@@ -186,18 +188,16 @@ export default function ContactForm() {
                 <MailOpen className="w-7 h-7 sm:w-8 sm:h-8 stroke-[1.5]" />
               </div>
               <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase">
-                Message Sent Successfully!
+                {t("contactPage.form.successTitle")}
               </h3>
               <p className="text-slate-grey max-w-md mx-auto text-xs sm:text-sm font-sans leading-relaxed">
-                Thank you, <strong>{formData.name}</strong>. We have logged your request under
-                subject <strong>&ldquo;{formData.subject || "General Inquiry"}&rdquo;</strong>.
-                A liaison officer will email you at <strong>{formData.email}</strong> within 24–48 hours.
+                {t("contactPage.form.successMsg")}
               </p>
               <button
                 onClick={handleReset}
                 className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.2em] text-saffron hover:underline mt-3 sm:mt-4 cursor-pointer font-sans"
               >
-                Send another message
+                {t("contactPage.form.sendAnother")}
               </button>
             </div>
           ) : (
@@ -215,13 +215,13 @@ export default function ContactForm() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2">
                   <label htmlFor="cf-name" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
-                    Full Name <span className="text-red-400">*</span>
+                    {t("contactPage.form.nameLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="text"
                     id="cf-name"
                     required
-                    placeholder="Enter your full name"
+                    placeholder={t("contactPage.form.namePlaceholder")}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     disabled={status === "loading"}
@@ -233,13 +233,13 @@ export default function ContactForm() {
 
                 <div className="space-y-1.5 sm:space-y-2">
                   <label htmlFor="cf-email" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
-                    Email Address <span className="text-red-400">*</span>
+                    {t("contactPage.form.emailLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="email"
                     id="cf-email"
                     required
-                    placeholder="Enter your email address"
+                    placeholder={t("contactPage.form.emailPlaceholder")}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     disabled={status === "loading"}
@@ -253,12 +253,12 @@ export default function ContactForm() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2">
                   <label htmlFor="cf-phone" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
-                    Phone Number <span className="text-slate-400 normal-case font-normal">(Optional)</span>
+                    {t("contactPage.form.phoneLabel")} <span className="text-slate-400 normal-case font-normal">(Optional)</span>
                   </label>
                   <input
                     type="tel"
                     id="cf-phone"
-                    placeholder="Enter phone number"
+                    placeholder={t("contactPage.form.phonePlaceholder")}
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     disabled={status === "loading"}
@@ -268,13 +268,13 @@ export default function ContactForm() {
 
                 <div className="space-y-1.5 sm:space-y-2">
                   <label htmlFor="cf-subject" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
-                    Subject <span className="text-red-400">*</span>
+                    {t("contactPage.form.subjectLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="text"
                     id="cf-subject"
                     required
-                    placeholder="e.g. CSR Partnership, Grievance"
+                    placeholder={t("contactPage.form.subjectPlaceholder")}
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     disabled={status === "loading"}
@@ -287,13 +287,13 @@ export default function ContactForm() {
 
               <div className="space-y-1.5 sm:space-y-2">
                 <label htmlFor="cf-message" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
-                  Detailed Message <span className="text-red-400">*</span>
+                  {t("contactPage.form.messageLabel")} <span className="text-red-400">*</span>
                 </label>
                 <textarea
                   id="cf-message"
                   required
                   rows={5}
-                  placeholder="Tell us what you'd like to coordinate..."
+                  placeholder={t("contactPage.form.messagePlaceholder")}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   disabled={status === "loading"}
@@ -312,10 +312,10 @@ export default function ContactForm() {
                   {status === "loading" ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      Sending…
+                      {t("contactPage.form.sendingBtn")}
                     </>
                   ) : (
-                    "Send Message"
+                    t("contactPage.form.submitBtn")
                   )}
                 </button>
               </div>

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface StoryItem {
   title: string;
@@ -13,36 +14,37 @@ interface StoryItem {
   accent: string;
 }
 
-const STORIES: StoryItem[] = [
-  {
-    title: "Empowering Young Students",
-    beneficiary: "Rahul Shinde, 6th Grade Student",
-    location: "Nashik Municipal School",
-    story: "Rahul and his classmates received complete study kits, notebooks, and school bags during Shree Pratishtan's annual education drive. This material assistance relieved the financial strain on his family, enabling him to continue his schooling with enthusiasm.",
-    imageText: "Edu",
-    accent: "border-saffron/30 text-saffron bg-saffron/5",
-  },
-  {
-    title: "Emergency Blood Transfusion Response",
-    beneficiary: "Mahendra Patil, Emergency Patient",
-    location: "Nashik Civil Hospital",
-    story: "During an emergency surgery, Mahendra's family urgently required O-negative blood units. Shree Pratishtan's active donor helpline mobilized a local Indira Nagar volunteer donor within 30 minutes, ensuring a timely and life-saving transfusion.",
-    imageText: "Med",
-    accent: "border-red-500/30 text-red-500 bg-red-500/5",
-  },
-  {
-    title: "Green Canopy in Indira Nagar",
-    beneficiary: "Anjali Tambe, Community Volunteer",
-    location: "Indira Nagar Green Initiative",
-    story: "Over the past seasons, our volunteer youth teams planted over 1,500 shade and fruit saplings across residential avenues and public spaces in Indira Nagar. Today, our community enjoys a visibly greener, cleaner, and healthier environment.",
-    imageText: "Eco",
-    accent: "border-emerald-500/30 text-emerald-500 bg-emerald-500/5",
-  },
-];
-
 export default function SuccessStories() {
+  const { t } = useLanguage();
   const [activeIdx, setActiveIdx] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const STORIES: StoryItem[] = [
+    {
+      title: t("communityPage.successStories.s1Title"),
+      beneficiary: t("communityPage.successStories.s1Beneficiary"),
+      location: t("communityPage.successStories.s1Location"),
+      story: t("communityPage.successStories.s1Story"),
+      imageText: "Edu",
+      accent: "border-saffron/30 text-saffron bg-saffron/5",
+    },
+    {
+      title: t("communityPage.successStories.s2Title"),
+      beneficiary: t("communityPage.successStories.s2Beneficiary"),
+      location: t("communityPage.successStories.s2Location"),
+      story: t("communityPage.successStories.s2Story"),
+      imageText: "Med",
+      accent: "border-red-500/30 text-red-500 bg-red-500/5",
+    },
+    {
+      title: t("communityPage.successStories.s3Title"),
+      beneficiary: t("communityPage.successStories.s3Beneficiary"),
+      location: t("communityPage.successStories.s3Location"),
+      story: t("communityPage.successStories.s3Story"),
+      imageText: "Eco",
+      accent: "border-emerald-500/30 text-emerald-500 bg-emerald-500/5",
+    },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -102,8 +104,11 @@ export default function SuccessStories() {
         
         {/* Title block */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
+          <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
+            {t("communityPage.successStories.badge")}
+          </span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Stories of Transformation
+            {t("communityPage.successStories.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

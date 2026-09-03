@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { User, Phone, Mail, MapPin, HelpCircle, ArrowRight, Sparkles } from "lucide-react";
+import { User, Phone, Mail, MapPin, HelpCircle } from "lucide-react";
 import { EventBookingInput } from "@/lib/validations";
 import { getEventById } from "@/lib/events-data";
-import CustomSelect from "@/components/ui/custom-select";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface StepPersonalProps {
   formData: Partial<EventBookingInput>;
@@ -19,6 +19,7 @@ export default function StepPersonal({
   errors,
   onNext,
 }: StepPersonalProps) {
+  const { t } = useLanguage();
   const activeEvent = getEventById(formData.eventId || "ganesh-utsav-2026");
   const customQuestions = activeEvent?.customQuestions || [];
 
@@ -38,29 +39,26 @@ export default function StepPersonal({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 select-none text-left">
-      {/* Section Header */}
-      <div className="border-b border-black/8 pb-5 space-y-1">
-        <div className="inline-flex items-center gap-2 text-saffron text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] font-sans">
-          <span>Step 01 • Attendee Profile</span>
-        </div>
-        <h3 className="text-2xl sm:text-3xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
-          Personal Information
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="border-b border-neutral-200 pb-4 mb-6">
+        <h3 className="text-xl md:text-2xl font-bold font-heading text-neutral-900 flex items-center gap-2">
+          <User className="w-6 h-6 text-saffron" />
+          {t("eventsPage.booking.step1")}
         </h3>
-        <p className="text-xs sm:text-sm text-slate-500 font-sans leading-relaxed">
-          Provide your primary contact details for instant gate pass issuance and festival security verification.
+        <p className="text-sm text-neutral-600 mt-1 font-sans">
+          {t("eventsPage.booking.attendeeDesc")}
         </p>
       </div>
 
-      {/* Grid: Primary Contact Details */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+      {/* Grid Layout: Basic Details */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* Full Name */}
         <div className="space-y-2 md:col-span-2">
           <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
-            Full Name <span className="text-saffron">*</span>
+            {t("eventsPage.booking.fullName")} <span className="text-saffron">*</span>
           </label>
           <div className="relative">
-            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
             <input
               id="fullName"
               type="text"
@@ -68,7 +66,7 @@ export default function StepPersonal({
               placeholder="e.g. Adv. Rahul Sharma"
               value={formData.fullName || ""}
               onChange={(e) => updateFields({ fullName: e.target.value })}
-              className="w-full pl-11 pr-4 py-3.5 bg-white border border-neutral-200 rounded-2xl text-neutral-900 placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-saffron/10 focus:border-saffron transition-all text-xs sm:text-sm font-medium font-sans shadow-xs"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium font-sans"
             />
           </div>
           {errors.fullName && (
@@ -79,18 +77,18 @@ export default function StepPersonal({
         {/* Phone Number */}
         <div className="space-y-2">
           <label htmlFor="mobileNumber" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
-            Mobile Number (For Pass SMS) <span className="text-saffron">*</span>
+            {t("eventsPage.booking.phone")} <span className="text-saffron">*</span>
           </label>
           <div className="relative">
-            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
             <input
               id="mobileNumber"
               type="tel"
               required
-              placeholder="10-digit phone number"
+              placeholder="10-digit mobile number"
               value={formData.mobileNumber || ""}
               onChange={(e) => updateFields({ mobileNumber: e.target.value })}
-              className="w-full pl-11 pr-4 py-3.5 bg-white border border-neutral-200 rounded-2xl text-neutral-900 placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-saffron/10 focus:border-saffron transition-all text-xs sm:text-sm font-medium font-sans shadow-xs"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium font-sans"
             />
           </div>
           {errors.mobileNumber && (
@@ -101,10 +99,10 @@ export default function StepPersonal({
         {/* Email Address */}
         <div className="space-y-2">
           <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
-            Email Address (For Digital QR Pass) <span className="text-saffron">*</span>
+            {t("eventsPage.booking.email")} <span className="text-saffron">*</span>
           </label>
           <div className="relative">
-            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
             <input
               id="email"
               type="email"
@@ -112,7 +110,7 @@ export default function StepPersonal({
               placeholder="name@domain.com"
               value={formData.email || ""}
               onChange={(e) => updateFields({ email: e.target.value })}
-              className="w-full pl-11 pr-4 py-3.5 bg-white border border-neutral-200 rounded-2xl text-neutral-900 placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-saffron/10 focus:border-saffron transition-all text-xs sm:text-sm font-medium font-sans shadow-xs"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium font-sans"
             />
           </div>
           {errors.email && (
@@ -123,15 +121,15 @@ export default function StepPersonal({
         {/* Residential Address */}
         <div className="space-y-2 md:col-span-2">
           <label htmlFor="streetArea" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 font-sans">
-            Residential Address &amp; Area in Nashik <span className="text-saffron">*</span>
+            {t("eventsPage.booking.address")} <span className="text-saffron">*</span>
           </label>
           <div className="relative">
-            <MapPin className="absolute left-4 top-4 w-4 h-4 text-slate-400" />
+            <MapPin className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400" />
             <textarea
               id="streetArea"
               required
               rows={3}
-              placeholder="Flat/House no., Society/Street, Landmark & City (e.g. Flat 402, Shree Heights, Indira Nagar, Nashik - 422009)"
+              placeholder="Enter your flat/house no., area, landmark & city (e.g. Flat 402, Indira Nagar, Nashik - 422009)"
               value={formData.streetArea || ""}
               onChange={(e) => updateFields({ 
                 streetArea: e.target.value,
@@ -140,7 +138,7 @@ export default function StepPersonal({
                 district: "Nashik",
                 pinCode: "422009"
               })}
-              className="w-full pl-11 pr-4 py-3.5 bg-white border border-neutral-200 rounded-2xl text-neutral-900 placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-saffron/10 focus:border-saffron transition-all text-xs sm:text-sm font-medium resize-none font-sans shadow-xs"
+              className="w-full pl-10 pr-4 py-3 bg-white border border-neutral-300 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron transition-all text-sm font-medium resize-none font-sans"
             />
           </div>
           {errors.streetArea && (
@@ -149,16 +147,14 @@ export default function StepPersonal({
         </div>
       </div>
 
-      {/* Dynamic Custom Registration Questions (With Premium CustomSelect) */}
+      {/* Dynamic Custom Registration Questions (Configured in Backend) */}
       {customQuestions.length > 0 && (
-        <div className="pt-6 border-t border-black/8 space-y-5">
+        <div className="pt-6 border-t border-saffron/15 space-y-5">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-saffron/10 text-saffron flex items-center justify-center">
-              <Sparkles className="w-4 h-4" />
-            </div>
+            <HelpCircle className="w-5 h-5 text-saffron" />
             <div>
               <h4 className="text-sm font-bold uppercase tracking-wider text-neutral-900 font-heading">
-                Celebration Specific Questions
+                Event-Specific Registration Questions
               </h4>
               <p className="text-xs text-slate-500 font-sans">
                 Tailored for {activeEvent?.title}
@@ -166,29 +162,30 @@ export default function StepPersonal({
             </div>
           </div>
 
-          <div className="space-y-4 bg-neutral-50/70 p-5 rounded-2xl border border-black/6">
+          <div className="space-y-4 bg-saffron/[0.03] p-4 sm:p-5 rounded-2xl border border-saffron/15">
             {customQuestions.map((q) => {
               const currentVal = formData.customAnswers?.[q.id] ?? "";
               const errKey = `custom_${q.id}`;
 
               return (
-                <div key={q.id} className="space-y-2">
+                <div key={q.id} className="space-y-1.5">
                   <label htmlFor={`custom_${q.id}`} className="block text-xs font-bold text-neutral-800 font-sans">
                     {q.label} {q.required && <span className="text-saffron">*</span>}
                   </label>
 
-                  {/* Premium Custom Dropdown */}
                   {q.type === "select" && q.options && (
-                    <CustomSelect
+                    <select
                       id={`custom_${q.id}`}
-                      options={q.options.map((opt) => ({
-                        value: opt,
-                        label: opt,
-                      }))}
+                      required={q.required}
                       value={String(currentVal)}
-                      onChange={(val) => handleCustomAnswerChange(q.id, val)}
-                      placeholder="Select an option..."
-                    />
+                      onChange={(e) => handleCustomAnswerChange(q.id, e.target.value)}
+                      className="w-full px-4 py-2.5 bg-white border border-neutral-300 rounded-xl text-neutral-900 text-xs sm:text-sm font-medium font-sans focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron"
+                    >
+                      <option value="">-- Please select an option --</option>
+                      {q.options.map((opt, i) => (
+                        <option key={i} value={opt}>{opt}</option>
+                      ))}
+                    </select>
                   )}
 
                   {q.type === "text" && (
@@ -199,19 +196,19 @@ export default function StepPersonal({
                       placeholder={q.placeholder || "Enter details..."}
                       value={String(currentVal)}
                       onChange={(e) => handleCustomAnswerChange(q.id, e.target.value)}
-                      className="w-full px-4 py-3 bg-white border border-neutral-200 rounded-2xl text-neutral-900 text-xs sm:text-sm font-medium font-sans focus:outline-none focus:ring-4 focus:ring-saffron/10 focus:border-saffron shadow-xs"
+                      className="w-full px-4 py-2.5 bg-white border border-neutral-300 rounded-xl text-neutral-900 text-xs sm:text-sm font-medium font-sans focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron"
                     />
                   )}
 
                   {q.type === "checkbox" && (
-                    <label className="flex items-center gap-2.5 cursor-pointer mt-1 select-none">
+                    <label className="flex items-center gap-2 cursor-pointer mt-1">
                       <input
                         type="checkbox"
                         checked={Boolean(currentVal)}
                         onChange={(e) => handleCustomAnswerChange(q.id, e.target.checked)}
-                        className="w-4 h-4 rounded text-saffron focus:ring-saffron border-neutral-300"
+                        className="w-4 h-4 rounded text-saffron focus:ring-saffron"
                       />
-                      <span className="text-xs text-neutral-700 font-sans font-medium">{q.placeholder || "Yes, confirm"}</span>
+                      <span className="text-xs text-neutral-700 font-sans">{q.placeholder || "Yes, confirm"}</span>
                     </label>
                   )}
 
@@ -225,14 +222,13 @@ export default function StepPersonal({
         </div>
       )}
 
-      {/* Action Footer */}
-      <div className="flex justify-end pt-4 border-t border-black/8">
+      {/* Action Navigation */}
+      <div className="flex justify-end pt-4">
         <button
           type="submit"
-          className="inline-flex items-center gap-2 px-8 py-4 bg-saffron hover:bg-saffron/90 text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded-full shadow-lg shadow-saffron/20 hover:shadow-saffron/30 transition-all duration-300 cursor-pointer font-sans group"
+          className="px-8 py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer font-sans flex items-center gap-2"
         >
-          <span>Continue to Booking Slot</span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <span>{t("eventsPage.booking.nextStep")}</span> &rarr;
         </button>
       </div>
     </form>

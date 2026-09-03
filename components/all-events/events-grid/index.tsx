@@ -5,16 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, MapPin, Users, ArrowRight, Ticket } from "lucide-react";
 import { EventItem } from "@/lib/events-data";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface EventsGridProps {
   events: EventItem[];
 }
 
 export default function EventsGrid({ events }: EventsGridProps) {
+  const { t } = useLanguage();
+
   if (events.length === 0) {
     return (
       <div className="w-full max-w-7xl mx-auto px-6 py-16 text-center">
-        <p className="text-lg text-neutral-500 font-medium">No events found matching the selected category.</p>
+        <p className="text-lg text-neutral-500 font-medium">{t("eventsPage.allEvents.noEvents")}</p>
       </div>
     );
   }
@@ -57,10 +60,10 @@ export default function EventsGrid({ events }: EventsGridProps) {
                   }`}
                 >
                   {event.status === "upcoming"
-                    ? "Upcoming"
+                    ? t("eventsPage.allEvents.upcoming")
                     : event.status === "active"
-                    ? "Happening Now"
-                    : "Completed Archive"}
+                    ? t("eventsPage.allEvents.active")
+                    : t("eventsPage.allEvents.completed")}
                 </span>
               </div>
 
@@ -101,7 +104,7 @@ export default function EventsGrid({ events }: EventsGridProps) {
                   href={`/events/${event.id}`}
                   className="flex-1 py-2 sm:py-2.5 px-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] text-center transition-all flex items-center justify-center gap-1.5 font-sans"
                 >
-                  Details <ArrowRight className="w-3.5 h-3.5 text-saffron" />
+                  {t("eventsPage.allEvents.detailsBtn")} <ArrowRight className="w-3.5 h-3.5 text-saffron" />
                 </Link>
 
                 {event.status !== "completed" && (
@@ -109,7 +112,7 @@ export default function EventsGrid({ events }: EventsGridProps) {
                     href={`/event-booking?event=${event.id}`}
                     className="py-2 sm:py-2.5 px-3.5 sm:px-4 bg-saffron hover:bg-saffron/90 text-white rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] transition-all flex items-center gap-1 shadow-md hover:shadow-saffron/20 font-sans"
                   >
-                    <Ticket className="w-3.5 h-3.5" /> Book Event
+                    <Ticket className="w-3.5 h-3.5" /> {t("eventsPage.allEvents.bookBtn")}
                   </Link>
                 )}
               </div>

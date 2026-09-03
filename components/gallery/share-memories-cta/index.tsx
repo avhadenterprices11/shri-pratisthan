@@ -3,10 +3,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ShareMemoriesCTA() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [btnCoords, setBtnCoords] = useState({ x: 0, y: 0 });
@@ -59,10 +61,10 @@ export default function ShareMemoriesCTA() {
           
           <div className="relative z-10">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 leading-tight mb-3 sm:mb-6 font-heading tracking-tight uppercase">
-              Have Photos from Our Events?
+              {t("galleryPage.cta.heading")}
             </h2>
             <p className="text-xs sm:text-base md:text-lg text-slate-grey max-w-xl mx-auto mb-6 sm:mb-10 leading-[1.7] sm:leading-[1.75] font-sans font-normal">
-              If you attended our Shree Ganeshotsav, Gudipadwa Swagat Yatra, 50+ blood donation drives, or cricket leagues in Indira Nagar, Nashik, submit your photographs to our team. We showcase community memories dynamically.
+              {t("galleryPage.cta.subtitle")}
             </p>
 
             <button
@@ -76,7 +78,7 @@ export default function ShareMemoriesCTA() {
               className="bg-saffron hover:bg-saffron/90 text-white font-bold px-8 sm:px-10 py-3.5 sm:py-4.5 rounded-full shadow-lg shadow-saffron/20 text-[10px] sm:text-xs uppercase tracking-[0.2em] transition-all hover:scale-105 active:scale-95 cursor-pointer font-sans"
               data-hover="pointer"
             >
-              Upload Your Photos
+              {t("galleryPage.cta.shareBtn")}
             </button>
           </div>
         </div>

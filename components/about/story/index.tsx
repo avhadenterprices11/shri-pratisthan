@@ -5,42 +5,49 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const STORY_STEPS = [
-  {
-    year: "2006",
-    title: "Group Formed",
-    description: "Shri Pratisthan was founded in Indira Nagar, Nashik by dedicated youth uniting together with a shared mission to serve the local community.",
-    image: "/ganeshotsav_award_group.jpg",
-    position: "object-top",
-  },
-  {
-    year: "2012",
-    title: "Cultural & Utsav Expansion",
-    description: "Initiated grand Dahi Handi, Ganeshotsav, and Navratri celebrations with massive community participation across Nashik.",
-    image: "/dahihandi_2018.jpg",
-    position: "object-center",
-  },
-  {
-    year: "2018",
-    title: "Official Trust Registration",
-    description: "Formally registered as Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha (Reg: nashik/0000153/2018) under Adv. Shyam Badode.",
-    image: "/trust_seal.png",
-    fit: "contain",
-    position: "object-center",
-  },
-  {
-    year: "Present",
-    title: "19+ Years of Active Service",
-    description: "Over 100+ active members organizing iconic cultural sets (Jaipur Palace dekhava), Swagat Yatra, and mass community welfare initiatives.",
-    image: "/ganeshotsav_2017_jaipur.jpg",
-    position: "object-center",
-  },
-];
-
 export default function AboutStory() {
+  const { t } = useLanguage();
+
+  const STORY_STEPS = [
+    {
+      id: "2006",
+      year: t("aboutPage.story.s1Year"),
+      title: t("aboutPage.story.s1Title"),
+      description: t("aboutPage.story.s1Desc"),
+      image: "/ganeshotsav_award_group.jpg",
+      position: "object-top",
+    },
+    {
+      id: "2012",
+      year: t("aboutPage.story.s2Year"),
+      title: t("aboutPage.story.s2Title"),
+      description: t("aboutPage.story.s2Desc"),
+      image: "/dahihandi_2018.jpg",
+      position: "object-center",
+    },
+    {
+      id: "2018",
+      year: t("aboutPage.story.s3Year"),
+      title: t("aboutPage.story.s3Title"),
+      description: t("aboutPage.story.s3Desc"),
+      image: "/trust_seal.png",
+      fit: "contain",
+      position: "object-center",
+    },
+    {
+      id: "present",
+      year: t("aboutPage.story.s4Year"),
+      title: t("aboutPage.story.s4Title"),
+      description: t("aboutPage.story.s4Desc"),
+      image: "/ganeshotsav_2017_jaipur.jpg",
+      position: "object-center",
+    },
+  ];
+
   const [activeYear, setActiveYear] = useState(STORY_STEPS[0].year);
   const containerRef = useRef<HTMLDivElement>(null);
   const activeYearRef = useRef(activeYear);
@@ -117,11 +124,11 @@ export default function AboutStory() {
         <div className="w-full lg:w-5/12 lg:sticky lg:top-[16vh] flex flex-col items-start gap-4 sm:gap-6 z-20 will-change-transform">
 
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 tracking-tight uppercase font-heading leading-tight">
-            Our Roots &amp; Evolution
+            {t("aboutPage.story.heading")}
           </h2>
           
           <p className="text-xs sm:text-sm text-slate-grey max-w-md leading-[1.75] font-sans font-normal">
-            Born from daily cricket matches in Indira Nagar in 2006, our energy grew into a dedicated organization serving Maharashtra through culture, health camps, and social service.
+            {t("aboutPage.story.subtitle")}
           </p>
 
           {/* Giant Active Year Indicator display */}

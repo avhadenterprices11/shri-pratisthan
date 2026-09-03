@@ -6,6 +6,7 @@ import { motion, type Transition } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,10 +52,46 @@ const DEFAULT_TRANSITION: Transition = {
 };
 
 export default function FestivalJourney() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideSize, setSlideSize] = useState(440);
   const [isMobile, setIsMobile] = useState(false);
+
+  const milestonesData = [
+    {
+      year: t("festivalJourney.m1.year"),
+      title: t("festivalJourney.m1.title"),
+      description: t("festivalJourney.m1.description"),
+      tag: t("festivalJourney.m1.tag"),
+      image: "/ganeshotsav_award_group.jpg",
+      fit: "cover",
+    },
+    {
+      year: t("festivalJourney.m2.year"),
+      title: t("festivalJourney.m2.title"),
+      description: t("festivalJourney.m2.description"),
+      tag: t("festivalJourney.m2.tag"),
+      image: "/dahihandi_2018.jpg",
+      fit: "cover",
+    },
+    {
+      year: t("festivalJourney.m3.year"),
+      title: t("festivalJourney.m3.title"),
+      description: t("festivalJourney.m3.description"),
+      tag: t("festivalJourney.m3.tag"),
+      image: "/trust_seal.png",
+      fit: "contain",
+    },
+    {
+      year: t("festivalJourney.m4.year"),
+      title: t("festivalJourney.m4.title"),
+      description: t("festivalJourney.m4.description"),
+      tag: t("festivalJourney.m4.tag"),
+      image: "/ganeshotsav_2017_jaipur.jpg",
+      fit: "cover",
+    },
+  ];
 
   // Monitor viewport size to adjust slide size and angles dynamically
   useEffect(() => {
@@ -142,7 +179,7 @@ export default function FestivalJourney() {
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto px-4 sm:px-6 mt-2 sm:mt-4 relative z-20">
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-tight">
-          The Journey of Shree Pratishtan
+          {t("festivalJourney.title")}
         </h2>
         <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 sm:mt-3 rounded-full" />
       </div>
@@ -154,7 +191,7 @@ export default function FestivalJourney() {
           animate={{ x: -(activeIndex * slideSize + slideSize / 2) }}
           transition={DEFAULT_TRANSITION}
         >
-          {MILESTONES.map((item, index) => {
+          {milestonesData.map((item, index) => {
             const isActive = activeIndex === index;
             const distance = index - activeIndex;
 

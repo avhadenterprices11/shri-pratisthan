@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./PastEvents.module.css";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface CardItem {
   id: number;
@@ -15,38 +16,39 @@ interface CardItem {
   date: string;
 }
 
-const CARDS: CardItem[] = [
-  {
-    id: 1,
-    title: "Vasundhara Tree Plantation",
-    subtitle: "5,000+ Trees Planted",
-    description: "Planting indigenous shade and fruit saplings with Sunday volunteer care across Indira Nagar and Nashik avenues.",
-    imgSrc: "/ganeshotsav_bright.png",
-    bgColor: "#78d28c", // Green theme
-    date: "July 2025",
-  },
-  {
-    id: 2,
-    title: "Community Relief Drives",
-    subtitle: "10,000+ Citizens Aided",
-    description: "Distributed dry food grain rations, emergency medical kits, and hygiene essentials to vulnerable families in Nashik.",
-    imgSrc: "/volunteer_medical.png",
-    bgColor: "#d27878", // Red/Saffron theme
-    date: "2020 - 2024",
-  },
-  {
-    id: 3,
-    title: "Student Education & Study Kits",
-    subtitle: "2,500+ Students Guided",
-    description: "Supplied quality school bags, notebooks, geometry boxes, and stationery to municipal and rural schools in Nashik.",
-    imgSrc: "/about_showcase.png",
-    bgColor: "#dbd578", // Gold theme
-    date: "Annual Drive",
-  },
-];
-
 export default function PastEvents() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const CARDS: CardItem[] = [
+    {
+      id: 1,
+      title: t("eventsPage.past.p1Title"),
+      subtitle: t("eventsPage.past.p1Subtitle"),
+      description: t("eventsPage.past.p1Desc"),
+      imgSrc: "/ganeshotsav_bright.png",
+      bgColor: "#78d28c", // Green theme
+      date: t("eventsPage.past.p1Date"),
+    },
+    {
+      id: 2,
+      title: t("eventsPage.past.p2Title"),
+      subtitle: t("eventsPage.past.p2Subtitle"),
+      description: t("eventsPage.past.p2Desc"),
+      imgSrc: "/volunteer_medical.png",
+      bgColor: "#d27878", // Red/Saffron theme
+      date: t("eventsPage.past.p2Date"),
+    },
+    {
+      id: 3,
+      title: t("eventsPage.past.p3Title"),
+      subtitle: t("eventsPage.past.p3Subtitle"),
+      description: t("eventsPage.past.p3Desc"),
+      imgSrc: "/about_showcase.png",
+      bgColor: "#dbd578", // Gold theme
+      date: t("eventsPage.past.p3Date"),
+    },
+  ];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -84,7 +86,7 @@ export default function PastEvents() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16 px-4 sm:px-6">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Past Campaigns Impact
+            {t("eventsPage.past.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
@@ -101,6 +103,7 @@ export default function PastEvents() {
 }
 
 function FlipCard({ card }: { card: CardItem }) {
+  const { t } = useLanguage();
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -136,7 +139,7 @@ function FlipCard({ card }: { card: CardItem }) {
             {card.description}
           </p>
           <button className={`${styles.moreBtn} font-sans uppercase text-[10px] tracking-[0.2em] font-bold`}>
-            Audit Verified
+            {t("eventsPage.pastEvents.auditVerified")}
           </button>
         </div>
       </div>

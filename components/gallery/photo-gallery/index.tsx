@@ -5,10 +5,12 @@ import Image from "next/image";
 import gsap from "gsap";
 import Link from "next/link";
 import GalleryFilters from "../gallery-filters";
+import { useLanguage } from "@/context/LanguageContext";
 
 import { PHOTO_ITEMS } from "@/app/gallery/gallery-data";
 
 export default function PhotoGallery() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("all");
   const [visibleCount, setVisibleCount] = useState(6);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -68,7 +70,7 @@ export default function PhotoGallery() {
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-6">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Our Photographic Records
+            {t("galleryPage.photoGallery.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
@@ -126,7 +128,7 @@ export default function PhotoGallery() {
               onClick={() => setVisibleCount((prev) => prev + 6)}
               className="bg-saffron hover:bg-saffron/90 text-white font-bold text-xs uppercase tracking-[0.2em] px-6 sm:px-8 py-3 sm:py-3.5 rounded-full shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer font-sans"
             >
-              Load More Photos ({filteredPhotos.length - visibleCount} remaining)
+              {t("galleryPage.photoGallery.loadMore")} ({filteredPhotos.length - visibleCount})
             </button>
           </div>
         )}

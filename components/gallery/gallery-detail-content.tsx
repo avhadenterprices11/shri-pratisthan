@@ -1,0 +1,95 @@
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowLeft, Calendar, Tag, Info, Award } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { GalleryItem } from "@/app/gallery/gallery-data";
+
+export default function GalleryDetailContent({ item }: { item: GalleryItem }) {
+  const { t } = useLanguage();
+
+  return (
+    <main className="min-h-screen py-16 sm:py-28 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-transparent">
+      {/* Decorative ambient backgrounds */}
+      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-60" />
+      <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-1/3 opacity-60" />
+
+      <div className="max-w-[1400px] w-full mx-auto relative z-10">
+        {/* Navigation Link back */}
+        <div className="mb-6 sm:mb-10">
+          <Link
+            href="/gallery"
+            className="inline-flex items-center gap-2 text-saffron hover:text-saffron/85 font-bold text-[10px] sm:text-xs uppercase tracking-[0.2em] transition-colors duration-300 group font-sans"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:-translate-x-1 transition-transform" />
+            {t("galleryPage.featured.heading") ? t("galleryPage.hero.titleLine1") + " " + t("galleryPage.hero.titleLine2") : "Back to Gallery"}
+          </Link>
+        </div>
+
+        {/* Details Wrapper */}
+        <div className="glass-panel p-4 sm:p-8 md:p-12 rounded-2xl sm:rounded-block border border-saffron/20 relative overflow-hidden bg-white/75 shadow-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-start">
+            
+            {/* Left Column: Image Showcase */}
+            <div className="lg:col-span-7 relative aspect-[16/10] w-full overflow-hidden rounded-2xl sm:rounded-block border border-saffron/10 shadow-lg bg-neutral-100">
+              <Image
+                src={item.src}
+                alt={item.title}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="object-cover"
+              />
+            </div>
+
+            {/* Right Column: Text Content */}
+            <div className="lg:col-span-5 space-y-4 sm:space-y-6">
+              {/* Header section tags */}
+              <div className="flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-1.5 bg-saffron/10 text-saffron font-bold text-[9px] uppercase tracking-widest px-2.5 sm:px-3 py-1 rounded-full border border-saffron/20 shadow-sm font-sans">
+                  <Tag className="w-3 h-3" />
+                  {item.category}
+                </span>
+                <span className="inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 font-bold text-[9px] uppercase tracking-widest px-2.5 sm:px-3 py-1 rounded-full border border-slate-200/60 shadow-sm font-sans">
+                  <Calendar className="w-3 h-3" />
+                  {item.date}
+                </span>
+                {item.metric && (
+                  <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 font-bold text-[9px] uppercase tracking-widest px-2.5 sm:px-3 py-1 rounded-full border border-amber-200/50 shadow-sm font-sans">
+                    <Award className="w-3 h-3" />
+                    {item.metric}
+                  </span>
+                )}
+              </div>
+
+              <h1 className="text-2xl sm:text-4xl font-normal text-neutral-900 leading-tight font-heading uppercase">
+                {item.title}
+              </h1>
+
+              {/* Description quote block */}
+              <div className="flex gap-3 border-l-4 border-saffron pl-3 sm:pl-4 py-1">
+                <p className="text-sm sm:text-lg font-normal text-slate-800 italic leading-relaxed font-heading">
+                  {item.description}
+                </p>
+              </div>
+
+              {/* Event overview detailed text */}
+              <div className="border-t border-saffron/10 pt-4 sm:pt-6">
+                <h2 className="text-base sm:text-lg font-normal text-neutral-900 font-heading mb-2 sm:mb-3 flex items-center gap-2 uppercase">
+                  <Info className="w-4 h-4 text-saffron" />
+                  Event Overview &amp; Impact
+                </h2>
+                <p className="text-xs sm:text-base text-slate-grey leading-[1.7] sm:leading-relaxed whitespace-pre-line font-sans font-normal">
+                  {item.details}
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}

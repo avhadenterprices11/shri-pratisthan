@@ -4,35 +4,37 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Phone, Mail } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MEMBERS = [
-  {
-    name: "Adv. Shyam Dharmaraj Badode",
-    role: "Founder & President (संस्थापक अध्यक्ष)",
-    zone: "Central Leadership (Nashik)",
-    phone: "+91 9922786608",
-    email: "Info@shreepratishthan.com",
-  },
-  {
-    name: "Festival Operations & Logistics",
-    role: "Swagat Yatra & Festival Lead",
-    zone: "Indira Nagar & Nashik Zone",
-    phone: "+91 9922786608",
-    email: "Info@shreepratishthan.com",
-  },
-  {
-    name: "Arogya & Blood Drive Coordinator",
-    role: "50+ Blood Camps & Hospital Liaison",
-    zone: "Nashik Civil Hospital Network",
-    phone: "+91 9922786608",
-    email: "Info@shreepratishthan.com",
-  },
-];
-
 export default function CommitteeDirectory() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const MEMBERS = [
+    {
+      name: "Adv. Shyam Dharmaraj Badode",
+      role: t("contactPage.directory.founderRole"),
+      zone: t("contactPage.directory.founderZone"),
+      phone: "+91 9922786608",
+      email: "Info@shreepratishthan.com",
+    },
+    {
+      name: "Festival Operations & Logistics",
+      role: t("contactPage.directory.festivalRole"),
+      zone: t("contactPage.directory.festivalZone"),
+      phone: "+91 9922786608",
+      email: "Info@shreepratishthan.com",
+    },
+    {
+      name: "Arogya & Blood Drive Coordinator",
+      role: t("contactPage.directory.healthRole"),
+      zone: t("contactPage.directory.healthZone"),
+      phone: "+91 9922786608",
+      email: "Info@shreepratishthan.com",
+    },
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -67,10 +69,10 @@ export default function CommitteeDirectory() {
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Regional Coordinators Directory
+            {t("contactPage.directory.heading")}
           </h2>
           <p className="text-slate-grey mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-xs sm:text-base font-normal">
-            Directly connect with our administrative coordinators overseeing local zones.
+            {t("contactPage.directory.subtitle")}
           </p>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

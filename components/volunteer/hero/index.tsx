@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { Users, Heart, Shield } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface StatItem {
   number: string;
@@ -12,29 +13,30 @@ interface StatItem {
   icon: React.ReactNode;
 }
 
-const STATS: StatItem[] = [
-  {
-    number: "100+",
-    label: "Active Organizers",
-    description: "Dedicated youth and community members leading festivals and social drives in Indira Nagar.",
-    icon: <Users className="w-5 h-5 text-saffron" />
-  },
-  {
-    number: "50+",
-    label: "Blood & Health Camps",
-    description: "Life-saving blood collection drives and free medical diagnostic camps conducted across Nashik.",
-    icon: <Heart className="w-5 h-5 text-saffron" />
-  },
-  {
-    number: "19+",
-    label: "Years Active Leadership",
-    description: "Unbroken community leadership and cultural preservation since our 2006 cricket origin.",
-    icon: <Shield className="w-5 h-5 text-saffron" />
-  }
-];
-
 export default function VolunteerHero() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const STATS: StatItem[] = [
+    {
+      number: t("volunteerPage.hero.stat1Number"),
+      label: t("volunteerPage.hero.stat1Label"),
+      description: t("volunteerPage.hero.stat1Desc"),
+      icon: <Users className="w-5 h-5 text-saffron" />
+    },
+    {
+      number: t("volunteerPage.hero.stat2Number"),
+      label: t("volunteerPage.hero.stat2Label"),
+      description: t("volunteerPage.hero.stat2Desc"),
+      icon: <Heart className="w-5 h-5 text-saffron" />
+    },
+    {
+      number: t("volunteerPage.hero.stat3Number"),
+      label: t("volunteerPage.hero.stat3Label"),
+      description: t("volunteerPage.hero.stat3Desc"),
+      icon: <Shield className="w-5 h-5 text-saffron" />
+    }
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -89,15 +91,15 @@ export default function VolunteerHero() {
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white leading-[1.1] tracking-tight font-heading uppercase">
             <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-              <span className="block reveal-line">Join the Movement,</span>
+              <span className="block reveal-line">{t("volunteerPage.hero.titleLine1")}</span>
             </div>
             <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-              <span className="block reveal-line text-saffron text-outline-festive font-heading">Shape the Future.</span>
+              <span className="block reveal-line text-saffron text-outline-festive font-heading">{t("volunteerPage.hero.titleLine2")}</span>
             </div>
           </h1>
 
           <p className="hero-subtitle text-xs sm:text-base md:text-lg text-slate-200 max-w-xl leading-[1.7] sm:leading-[1.75] font-normal font-sans [text-shadow:_0_2px_4px_rgba(0,0,0,0.8)]">
-            Step forward as a volunteer with Shree Pratishtan (श्री प्रतिष्ठान). Your energy, leadership, and dedication empower youth, preserve cultural festivals, and drive social welfare in Indira Nagar and Nashik.
+            {t("volunteerPage.hero.subtitle")}
           </p>
         </div>
 

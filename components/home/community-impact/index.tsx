@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,13 +46,50 @@ const STATS = [
 ];
 
 export default function CommunityImpact() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const statsData = [
+    { 
+      id: "members", 
+      value: 100, 
+      suffix: t("communityImpact.s1Suffix"), 
+      label: t("communityImpact.s1Label"), 
+      image: "/images/ganesh.jpg",
+      description: t("communityImpact.s1Desc") 
+    },
+    { 
+      id: "legacy", 
+      value: 19, 
+      suffix: t("communityImpact.s2Suffix"), 
+      label: t("communityImpact.s2Label"), 
+      image: "/images/dahi-handi.jpg",
+      description: t("communityImpact.s2Desc") 
+    },
+    { 
+      id: "founders", 
+      value: 20, 
+      suffix: t("communityImpact.s3Suffix"), 
+      label: t("communityImpact.s3Label"), 
+      image: "/founding_members.jpg",
+      position: "object-top",
+      description: t("communityImpact.s3Desc") 
+    },
+    { 
+      id: "drives", 
+      value: 50, 
+      suffix: t("communityImpact.s4Suffix"), 
+      label: t("communityImpact.s4Label"), 
+      image: "/images/social-work.jpg",
+      description: t("communityImpact.s4Desc") 
+    },
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      STATS.forEach((stat, idx) => {
+      statsData.forEach((stat, idx) => {
         // Slide card up on scroll reveal
         gsap.fromTo(
           `.stat-column-${idx}`,
@@ -103,14 +141,14 @@ export default function CommunityImpact() {
         {/* Editorial Heading Section */}
         <div className="max-w-3xl mb-8 sm:mb-14 md:mb-24">
           <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-foreground tracking-tight font-heading leading-tight uppercase">
-            Community & Impact in Numbers
+            {t("communityImpact.title")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mt-3 sm:mt-6 rounded-full" />
         </div>
 
         {/* Asymmetrical Grid Columns */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-10 xl:gap-12 items-start lg:pb-12">
-          {STATS.map((item, index) => (
+          {statsData.map((item, index) => (
             <div
               key={item.id}
               className={cn(

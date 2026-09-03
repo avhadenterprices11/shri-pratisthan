@@ -6,7 +6,10 @@ import { LiquidMetal } from "@/components/ui/liquid-metal-button";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export default function AboutPreview() {
+  const { t } = useLanguage();
   const triggerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -124,12 +127,12 @@ export default function AboutPreview() {
       {/* Centered Heading Layout */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col items-center mb-8 sm:mb-12 text-center relative z-10">
         <div className="inline-flex items-center gap-2 mb-3 sm:mb-4 bg-saffron/10 text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] px-3.5 sm:px-4 py-1.5 rounded-full border border-saffron/20 opacity-0 about-title-el font-sans">
-          <span>FOUNDING LEGACY &amp; LEADERSHIP</span>
+          <span>{t("aboutPreview.tagline")}</span>
         </div>
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-tight opacity-0 about-title-el uppercase">
-          19 YEARS OF COMMITTED <br />
+          {t("aboutPreview.title1")} <br />
           <span className="text-3xl sm:text-[3.25rem] md:text-[4.75rem] font-normal text-saffron block mt-2 sm:mt-3 text-outline-festive font-heading">
-            COMMUNITY SERVICE
+            {t("aboutPreview.title2")}
           </span>
         </h2>
       </div>

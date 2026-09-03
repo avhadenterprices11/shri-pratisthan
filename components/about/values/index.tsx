@@ -7,58 +7,60 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Sparkles } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const VALUES = [
-  {
-    title: "Social Responsibility (सामाजिक बांधिलकी)",
-    desc: "Uncompromising commitment to uplift every section of the Indira Nagar and Nashik community through continuous civic care.",
-    image: "/images/social-work.jpg",
-  },
-  {
-    title: "Service to Society (समाजसेवा)",
-    desc: "Selfless action and dedication to humanitarian causes, organizing aid drives, health camps, and emergency support.",
-    image: "/images/social-work.jpg",
-  },
-  {
-    title: "Culture & Tradition (संस्कृती व परंपरा)",
-    desc: "Preserving and celebrating Maharashtra's grand cultural legacy through Gudipadwa Swagat Yatra, Ganeshotsav, and Shiv Jayanti.",
-    image: "/images/ganesh.jpg",
-  },
-  {
-    title: "Youth Empowerment (युवा सक्षमीकरण)",
-    desc: "Mentoring and channelizing the potential of youth into leadership, event organization, and community welfare.",
-    image: "/images/dahi-handi.jpg",
-  },
-  {
-    title: "Teamwork (संघभावना)",
-    desc: "Mutual trust, collective strength, and collaborative execution born from our 2006 cricket sportsmanship roots.",
-    image: "/images/sports.jpg",
-  },
-  {
-    title: "Integrity (प्रामाणिकपणा)",
-    desc: "Ethical governance, transparency, and accountability in all trust activities and community operations.",
-    image: "/images/social-work.jpg",
-  },
-  {
-    title: "Health & Well-being (आरोग्य व कल्याण)",
-    desc: "Promoting physical fitness, yoga, medical diagnostics, and organizing regular life-saving blood donation camps.",
-    image: "/images/social-work.jpg",
-  },
-  {
-    title: "Volunteerism (स्वयंसेवेची भावना)",
-    desc: "Fostering a genuine spirit of voluntary contribution and brotherhood for the common good of society.",
-    image: "/images/ganesh.jpg",
-  },
-];
-
 export default function AboutValues() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [activeMobileIdx, setActiveMobileIdx] = useState<number | null>(0);
+
+  const VALUES = [
+    {
+      title: t("aboutPage.values.v1Title"),
+      desc: t("aboutPage.values.v1Desc"),
+      image: "/images/social-work.jpg",
+    },
+    {
+      title: t("aboutPage.values.v2Title"),
+      desc: t("aboutPage.values.v2Desc"),
+      image: "/images/social-work.jpg",
+    },
+    {
+      title: t("aboutPage.values.v3Title"),
+      desc: t("aboutPage.values.v3Desc"),
+      image: "/images/ganesh.jpg",
+    },
+    {
+      title: t("aboutPage.values.v4Title"),
+      desc: t("aboutPage.values.v4Desc"),
+      image: "/images/dahi-handi.jpg",
+    },
+    {
+      title: t("aboutPage.values.v5Title"),
+      desc: t("aboutPage.values.v5Desc"),
+      image: "/images/sports.jpg",
+    },
+    {
+      title: t("aboutPage.values.v6Title"),
+      desc: t("aboutPage.values.v6Desc"),
+      image: "/images/social-work.jpg",
+    },
+    {
+      title: t("aboutPage.values.v7Title"),
+      desc: t("aboutPage.values.v7Desc"),
+      image: "/images/social-work.jpg",
+    },
+    {
+      title: t("aboutPage.values.v8Title"),
+      desc: t("aboutPage.values.v8Desc"),
+      image: "/images/ganesh.jpg",
+    },
+  ];
 
   // Scroll Entrance Reveals for list items
   useEffect(() => {
@@ -144,11 +146,11 @@ export default function AboutValues() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-saffron/15 mb-6 sm:mb-12 relative z-10">
         <div className="flex flex-col items-start gap-2 sm:gap-3">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 font-heading uppercase leading-tight tracking-tight">
-            Our Core Values
+            {t("aboutPage.values.heading")}
           </h2>
         </div>
         <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
-          We hold ourselves to strict ethical commitments, aligning cultural pride directly with transparent civic duty.
+          {t("aboutPage.values.subtitle")}
         </p>
       </div>
 

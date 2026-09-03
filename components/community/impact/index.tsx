@@ -3,18 +3,20 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const STATS = [
-  { value: 50, suffix: "+", label: "Blood Camps & Health Drives" },
-  { value: 5000, suffix: "+", label: "Trees Planted & Nurtured" },
-  { value: 10000, suffix: "+", label: "Citizens & Families Reached" },
-  { value: 19, suffix: "+", label: "Years of Active Service" },
-];
-
 export default function CommunityImpact() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  const STATS = [
+    { value: 50, suffix: t("communityPage.impact.s1Suffix"), label: t("communityPage.impact.s1Label") },
+    { value: 5000, suffix: t("communityPage.impact.s2Suffix"), label: t("communityPage.impact.s2Label") },
+    { value: 10000, suffix: t("communityPage.impact.s3Suffix"), label: t("communityPage.impact.s3Label") },
+    { value: 19, suffix: t("communityPage.impact.s4Suffix"), label: t("communityPage.impact.s4Label") },
+  ];
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -68,12 +70,12 @@ export default function CommunityImpact() {
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
+          <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
+            {t("communityPage.impact.badge")}
+          </span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Community Impact in Numbers
+            {t("communityPage.impact.heading")}
           </h2>
-          <p className="text-slate-grey mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-xs sm:text-base font-normal">
-            Transparent statistics tracking our public welfare drives, ecological campaigns, and relief programs.
-          </p>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">

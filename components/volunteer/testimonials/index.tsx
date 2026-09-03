@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface TestimonialItem {
   quote: string;
@@ -12,32 +13,33 @@ interface TestimonialItem {
   offsetClass: string;
 }
 
-const VOLUNTEER_TESTIMONIALS: TestimonialItem[] = [
-  {
-    quote: "Working on the Gudipadwa Swagat Yatra and Ganeshotsav logistics in Indira Nagar taught me genuine teamwork, stage management, and crowd coordination under pressure.",
-    name: "Swapnil Pawar",
-    role: "Youth Volunteer, Indira Nagar",
-    avatar: "SP",
-    offsetClass: "md:rotate-2 md:translate-y-6 hover:rotate-0 hover:translate-y-2",
-  },
-  {
-    quote: "Coordinating our 50+ blood donation drives with Nashik Civil Hospital and managing emergency donor calls has been the most meaningful social work experience of my life.",
-    name: "Pooja Jadhav",
-    role: "Health Drive Coordinator",
-    avatar: "PJ",
-    offsetClass: "md:-rotate-2 md:-translate-y-2 hover:rotate-0 hover:-translate-y-6",
-  },
-  {
-    quote: "Managing the annual cricket tournament fixtures and youth athletics keeps our 2006 founding sports roots alive. The friendship and support here are unmatched.",
-    name: "Rohan Shinde",
-    role: "Sports Event Volunteer",
-    avatar: "RS",
-    offsetClass: "md:rotate-3 md:translate-y-10 hover:rotate-0 hover:translate-y-6",
-  },
-];
-
 export default function VolunteerTestimonials() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const VOLUNTEER_TESTIMONIALS: TestimonialItem[] = [
+    {
+      quote: t("volunteerPage.testimonials.tm1Quote"),
+      name: t("volunteerPage.testimonials.tm1Name"),
+      role: t("volunteerPage.testimonials.tm1Role"),
+      avatar: "SP",
+      offsetClass: "md:rotate-2 md:translate-y-6 hover:rotate-0 hover:translate-y-2",
+    },
+    {
+      quote: t("volunteerPage.testimonials.tm2Quote"),
+      name: t("volunteerPage.testimonials.tm2Name"),
+      role: t("volunteerPage.testimonials.tm2Role"),
+      avatar: "PJ",
+      offsetClass: "md:-rotate-2 md:-translate-y-2 hover:rotate-0 hover:-translate-y-6",
+    },
+    {
+      quote: t("volunteerPage.testimonials.tm3Quote"),
+      name: t("volunteerPage.testimonials.tm3Name"),
+      role: t("volunteerPage.testimonials.tm3Role"),
+      avatar: "RS",
+      offsetClass: "md:rotate-3 md:translate-y-10 hover:rotate-0 hover:translate-y-6",
+    },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -84,7 +86,7 @@ export default function VolunteerTestimonials() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 md:mb-20">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Volunteer Experiences
+            {t("volunteerPage.testimonials.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,24 +70,70 @@ export default function Testimonials({
   autoPlay?: boolean;
   autoPlayInterval?: number;
 }) {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const activeItem = TESTIMONIALS_DATA[activeIndex];
+  const testimonialsData = [
+    {
+      id: 1,
+      title: t("testimonials.t1Name"),
+      subtitle: t("testimonials.t1Subtitle"),
+      description: t("testimonials.t1Desc"),
+      image: "/shyam_badode.png",
+    },
+    {
+      id: 2,
+      title: t("testimonials.t2Name"),
+      subtitle: t("testimonials.t2Subtitle"),
+      description: t("testimonials.t2Desc"),
+      image: "/portrait_csr.png",
+    },
+    {
+      id: 3,
+      title: t("testimonials.t3Name"),
+      subtitle: t("testimonials.t3Subtitle"),
+      description: t("testimonials.t3Desc"),
+      image: "/portrait_volunteer.png",
+    },
+    {
+      id: 4,
+      title: t("testimonials.t4Name"),
+      subtitle: t("testimonials.t4Subtitle"),
+      description: t("testimonials.t4Desc"),
+      image: "/volunteer_musician.png",
+    },
+    {
+      id: 5,
+      title: t("testimonials.t5Name"),
+      subtitle: t("testimonials.t5Subtitle"),
+      description: t("testimonials.t5Desc"),
+      image: "/volunteer_safety.png",
+    },
+    {
+      id: 6,
+      title: t("testimonials.t6Name"),
+      subtitle: t("testimonials.t6Subtitle"),
+      description: t("testimonials.t6Desc"),
+      image: "/volunteer_coordinator.png",
+    },
+  ];
+
+  const activeItem = testimonialsData[activeIndex];
 
   // Auto-play effect
   useEffect(() => {
-    if (!autoPlay || TESTIMONIALS_DATA.length <= 1) return;
+    if (!autoPlay || testimonialsData.length <= 1) return;
 
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % TESTIMONIALS_DATA.length);
+      setActiveIndex((prev) => (prev + 1) % testimonialsData.length);
     }, autoPlayInterval);
 
     return () => clearInterval(interval);
-  }, [autoPlay, autoPlayInterval]);
+  }, [autoPlay, autoPlayInterval, testimonialsData.length]);
 
   const handleNext = () => {
-    if (activeIndex < TESTIMONIALS_DATA.length - 1) {
+    if (activeIndex < testimonialsData.length - 1) {
       setActiveIndex(activeIndex + 1);
     }
   };
@@ -131,7 +178,7 @@ export default function Testimonials({
         {/* Section Header */}
         <div className="max-w-3xl mb-8 sm:mb-14 md:mb-24">
           <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-foreground tracking-tight font-heading leading-tight uppercase">
-            Voices of Our Founding Pillars
+            {t("testimonials.title")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mt-3 sm:mt-6 rounded-full" />
         </div>
@@ -169,11 +216,11 @@ export default function Testimonials({
                 <div className="relative w-24 sm:w-36 h-[2px] bg-saffron/20 rounded-full overflow-hidden">
                   <div 
                     className="absolute top-0 left-0 h-full bg-saffron transition-all duration-500 ease-out" 
-                    style={{ width: `${((activeIndex + 1) / TESTIMONIALS_DATA.length) * 100}%` }}
+                    style={{ width: `${((activeIndex + 1) / testimonialsData.length) * 100}%` }}
                   />
                 </div>
                 <span className="text-[10px] font-bold text-slate-400 tracking-wider font-sans">
-                  0{TESTIMONIALS_DATA.length}
+                  0{testimonialsData.length}
                 </span>
               </div>
 

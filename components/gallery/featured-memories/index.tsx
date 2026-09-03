@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +16,8 @@ function MemoryCard({
   category, 
   date, 
   metric, 
-  src
+  src,
+  readStoryText,
 }: { 
   id: string;
   title: string; 
@@ -23,6 +25,7 @@ function MemoryCard({
   date: string; 
   metric: string; 
   src: string;
+  readStoryText: string;
 }) {
   return (
     <Link href={`/gallery/${id}`} className="block group">
@@ -56,7 +59,7 @@ function MemoryCard({
           <div className="border-t border-saffron/10 pt-3 sm:pt-4 flex justify-between items-center text-[10px] sm:text-xs text-saffron font-bold uppercase tracking-[0.16em] sm:tracking-[0.18em] mt-auto font-sans">
             <span>{metric}</span>
             <span className="flex items-center gap-1 group-hover:translate-x-1.5 transition-transform duration-300">
-              Read Story <ArrowRight className="w-3.5 h-3.5" />
+              {readStoryText} <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </div>
         </div>
@@ -68,6 +71,7 @@ function MemoryCard({
 import { FEATURED_MEMORIES } from "@/app/gallery/gallery-data";
 
 export default function FeaturedMemories() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -102,7 +106,7 @@ export default function FeaturedMemories() {
       <div className="max-w-[1600px] w-full mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Featured Memories
+            {t("galleryPage.featured.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
@@ -115,8 +119,9 @@ export default function FeaturedMemories() {
                 title={memory.title}
                 category={memory.category}
                 date={memory.date}
-                metric={memory.metric || "Community Drive"}
+                metric={memory.metric || t("galleryPage.featured.communityDrive")}
                 src={memory.src}
+                readStoryText={t("galleryPage.featured.readStory")}
               />
             </div>
           ))}

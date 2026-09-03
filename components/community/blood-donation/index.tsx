@@ -4,32 +4,34 @@ import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PAST_CAMPS = [
-  {
-    location: "Indira Nagar Community Hall, Nashik",
-    date: "Annual Mega Camp 2026",
-    units: "165 Units Collected",
-    partner: "Nashik Civil Hospital Blood Bank",
-  },
-  {
-    location: "Govind Nagar Sports Ground, Nashik",
-    date: "Shiv Jayanti Drive 2026",
-    units: "120 Units Collected",
-    partner: "Red Cross Blood Center Nashik",
-  },
-  {
-    location: "Pratishtan Seva Kendra, Indira Nagar",
-    date: "December 2025",
-    units: "95 Units Collected",
-    partner: "Arpan Blood Bank Nashik",
-  },
-];
-
 export default function BloodDonation() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const PAST_CAMPS = [
+    {
+      location: t("communityPage.bloodDonation.camp1Location"),
+      date: t("communityPage.bloodDonation.camp1Date"),
+      units: t("communityPage.bloodDonation.camp1Units"),
+      partner: t("communityPage.bloodDonation.camp1Partner"),
+    },
+    {
+      location: t("communityPage.bloodDonation.camp2Location"),
+      date: t("communityPage.bloodDonation.camp2Date"),
+      units: t("communityPage.bloodDonation.camp2Units"),
+      partner: t("communityPage.bloodDonation.camp2Partner"),
+    },
+    {
+      location: t("communityPage.bloodDonation.camp3Location"),
+      date: t("communityPage.bloodDonation.camp3Date"),
+      units: t("communityPage.bloodDonation.camp3Units"),
+      partner: t("communityPage.bloodDonation.camp3Partner"),
+    },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -97,25 +99,20 @@ export default function BloodDonation() {
         >
           {/* Left Column: Info & Stats */}
           <div className="blood-animate-left space-y-4 sm:space-y-6">
+            <span className="text-red-600 font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-1 font-sans">
+              {t("communityPage.bloodDonation.badge")}
+            </span>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-              Bridging the Critical <br />
-              <span className="text-red-600 text-outline-festive hover:text-red-600 font-heading">Blood Bank Deficit</span>
+              {t("communityPage.bloodDonation.heading")}
             </h2>
             <p className="text-xs sm:text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
-              Every month, hospitals face critical blood shortages. Shree Pratishtan organizes regular mega blood donation drives in Indira Nagar and Nashik in partnership with authorized government and charitable blood banks to save lives during emergencies.
+              {t("communityPage.bloodDonation.description")}
             </p>
             <div className="flex flex-wrap gap-4 sm:gap-6 pt-2 sm:pt-4">
               <div className="flex items-center gap-2.5 sm:gap-3">
                 <span className="text-2xl sm:text-3xl font-normal text-red-600 font-heading">50+</span>
                 <span className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-slate-grey font-sans">
-                  Camps Organized
-                </span>
-              </div>
-              <div className="w-px h-8 sm:h-10 bg-slate-200 hidden sm:block" />
-              <div className="flex items-center gap-2.5 sm:gap-3">
-                <span className="text-2xl sm:text-3xl font-normal text-red-600 font-heading">1,500+</span>
-                <span className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-slate-grey font-sans">
-                  Donors Registered
+                  {t("communityPage.impact.s1Label")}
                 </span>
               </div>
             </div>
@@ -124,7 +121,7 @@ export default function BloodDonation() {
                 href="/contact"
                 className="w-full sm:w-auto text-center bg-red-600 hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/20 text-white font-bold text-xs uppercase tracking-[0.2em] px-6 sm:px-8 py-3.5 sm:py-4 rounded-full transition-all duration-300 active:scale-95 cursor-pointer inline-block font-sans"
               >
-                Register as a Donor
+                {t("communityPage.bloodDonation.donorButton")}
               </Link>
             </div>
           </div>

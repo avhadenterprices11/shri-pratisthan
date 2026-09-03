@@ -3,18 +3,20 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SPECIES = [
-  { name: "Neem (Azadirachta indica)", type: "Air Purifying & Medicinal", count: "1,500+" },
-  { name: "Banyan (Ficus benghalensis)", type: "Shade & Canopy Growth", count: "800+" },
-  { name: "Mango (Mangifera indica)", type: "Fruiting & Local Ecology", count: "1,200+" },
-  { name: "Peepal (Ficus religiosa)", type: "Oxygen Rich & Soil Stability", count: "900+" },
-];
-
 export default function TreePlantation() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const SPECIES = [
+    { name: t("communityPage.treePlantation.s1Name"), type: t("communityPage.treePlantation.s1Type"), count: t("communityPage.treePlantation.s1Count") },
+    { name: t("communityPage.treePlantation.s2Name"), type: t("communityPage.treePlantation.s2Type"), count: t("communityPage.treePlantation.s2Count") },
+    { name: t("communityPage.treePlantation.s3Name"), type: t("communityPage.treePlantation.s3Type"), count: t("communityPage.treePlantation.s3Count") },
+    { name: t("communityPage.treePlantation.s4Name"), type: t("communityPage.treePlantation.s4Type"), count: t("communityPage.treePlantation.s4Count") },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -116,25 +118,20 @@ export default function TreePlantation() {
 
           {/* Right Column: Info & Stats */}
           <div className="tree-animate-right order-1 lg:order-2 space-y-4 sm:space-y-6">
+            <span className="text-emerald-600 font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-1 font-sans">
+              {t("communityPage.treePlantation.badge")}
+            </span>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-              Restoring Green Cover &amp; <br />
-              <span className="text-emerald-600 text-outline-festive hover:text-emerald-600 font-heading">Ecological Balance</span>
+              {t("communityPage.treePlantation.heading")}
             </h2>
             <p className="text-xs sm:text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
-              Preserving our environment is a sacred civic duty. Through our green initiatives, Shree Pratishtan mobilizes youth and families in Indira Nagar and Nashik on weekends to conduct mass plantation, nurture saplings, and promote cleanliness.
+              {t("communityPage.treePlantation.description")}
             </p>
             <div className="flex flex-wrap gap-4 sm:gap-6 pt-2 sm:pt-4">
               <div className="flex items-center gap-2.5 sm:gap-3">
                 <span className="text-2xl sm:text-3xl font-normal text-emerald-600 font-heading">5,000+</span>
                 <span className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-slate-grey font-sans">
-                  Saplings Planted
-                </span>
-              </div>
-              <div className="w-px h-8 sm:h-10 bg-slate-200 hidden sm:block" />
-              <div className="flex items-center gap-2.5 sm:gap-3">
-                <span className="text-2xl sm:text-3xl font-normal text-emerald-600 font-heading">100%</span>
-                <span className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-slate-grey font-sans">
-                  Sunday Volunteer Care
+                  {t("communityPage.impact.s2Label")}
                 </span>
               </div>
             </div>

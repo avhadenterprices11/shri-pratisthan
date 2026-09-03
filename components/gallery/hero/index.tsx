@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { useLanguage } from "@/context/LanguageContext";
 
 const IMAGES = [
   "/ganeshotsav_2017_jaipur.jpg",
@@ -12,6 +13,7 @@ const IMAGES = [
 ];
 
 export default function GalleryHero() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Staggered curtain slide states
@@ -112,15 +114,15 @@ export default function GalleryHero() {
         <div className="max-w-3xl space-y-4 sm:space-y-6 text-left">
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white leading-[1.1] tracking-tight font-heading uppercase">
             <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-              <span className="block reveal-line">Immersive</span>
+              <span className="block reveal-line">{t("galleryPage.hero.titleLine1")}</span>
             </div>
             <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-              <span className="block reveal-line text-saffron text-outline-festive font-heading">Media Gallery.</span>
+              <span className="block reveal-line text-saffron text-outline-festive font-heading">{t("galleryPage.hero.titleLine2")}</span>
             </div>
           </h1>
 
           <p className="hero-subtitle text-xs sm:text-base md:text-lg text-white/85 max-w-xl leading-[1.7] sm:leading-[1.75] font-sans font-normal [text-shadow:_0_2px_4px_rgba(0,0,0,0.8)]">
-            Explore photographic records and video reels of our 19+ years legacy: cultural festivals, Gudipadwa Swagat Yatra, 50+ blood donation camps, and youth sports in Indira Nagar, Nashik.
+            {t("galleryPage.hero.subtitle")}
           </p>
         </div>
       </div>

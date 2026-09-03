@@ -3,23 +3,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const FAQS = [
-  {
-    q: "What are the Aarti & Darshan timings during Shree Ganeshotsav?",
-    a: "Daily Prabhat Aarti begins at 6:00 AM, afternoon community darshan runs through 1:00 PM, and the grand 108-lamp evening Maha Aarti commences at 7:30 PM at the Indira Nagar Mandal Ground, Nashik.",
-  },
-  {
-    q: "Who can participate in the Gudipadwa Swagat Yatra & Cricket Tournaments?",
-    a: "Our cultural processions, health drives, and annual cricket championships are open to all citizens, families, and youth clubs across Indira Nagar and Nashik district. Registration is free and welcome to all.",
-  },
-  {
-    q: "Are events free and how do I obtain an entry or booking pass?",
-    a: "All cultural festivals, aartis, and health camps are completely free for the public. You can generate an instant digital pass with QR verification directly on our Event Booking portal.",
-  },
-];
 
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
@@ -38,7 +24,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
     <div className="glass-panel rounded-xl sm:rounded-block overflow-hidden transition-all duration-300 border border-saffron/15 bg-white shadow-sm">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-center text-left focus:outline-none gap-3"
+        className="w-full px-4 sm:px-6 py-4 sm:py-5 flex justify-between items-center text-left focus:outline-none gap-3 cursor-pointer"
       >
         <span className="text-sm sm:text-base md:text-lg font-normal text-neutral-900 font-heading leading-snug uppercase">{q}</span>
         <span className={`text-saffron text-xl sm:text-2xl font-normal transition-transform duration-300 shrink-0 ${open ? "rotate-45" : ""}`}>
@@ -59,7 +45,23 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 export default function EventsFAQ() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const FAQS = [
+    {
+      q: t("eventsPage.faq.q1"),
+      a: t("eventsPage.faq.a1"),
+    },
+    {
+      q: t("eventsPage.faq.q2"),
+      a: t("eventsPage.faq.a2"),
+    },
+    {
+      q: t("eventsPage.faq.q3"),
+      a: t("eventsPage.faq.a3"),
+    },
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -94,7 +96,7 @@ export default function EventsFAQ() {
         <div className="text-center mb-8 sm:mb-16 px-4 sm:px-6">
           <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">FAQ</span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Common Questions
+            {t("eventsPage.faq.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

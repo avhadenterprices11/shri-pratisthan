@@ -5,40 +5,42 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 // Register ScrollTrigger client-side
 gsap.registerPlugin(ScrollTrigger);
 
-const SLIDES = [
-  {
-    title: "Shree\nGanpati",
-    description: "Cultivating devotion, historic theme dekhavas like Jejuri Gad, and grand traditions in Indira Nagar.",
-    image: "/images/ganesh-utsav.jpg",
-    label: "Ganesh Utsav",
-  },
-  {
-    title: "Swagat\nYatra",
-    description: "Welcoming the New Year with Dhol-Tasha, traditional pageantry, and cultural pride.",
-    image: "/images/swagat-yatra.jpg",
-    label: "Swagat Yatra",
-  },
-  {
-    title: "Dahi\nHandi",
-    description: "Thrilling multi-tier human pyramids, electrifying crowd energy, and grand youth celebrations.",
-    image: "/images/dahihandi-utsav.jpg",
-    label: "Dahi Handi Utsav",
-  },
-  {
-    title: "Maha\nShivratri",
-    description: "Spectacular 108-foot Mahamrutyunjay Shivling replicas, sacred rituals, and massive devotional gatherings.",
-    image: "/images/mahashivratri.jpg",
-    label: "Maha Shivratri",
-  },
-];
-
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const { t } = useLanguage();
+
+  const SLIDES = [
+    {
+      title: t("hero.slide1.title"),
+      description: t("hero.slide1.description"),
+      image: "/images/ganesh-utsav.jpg",
+      label: t("hero.slide1.label"),
+    },
+    {
+      title: t("hero.slide2.title"),
+      description: t("hero.slide2.description"),
+      image: "/images/swagat-yatra.jpg",
+      label: t("hero.slide2.label"),
+    },
+    {
+      title: t("hero.slide3.title"),
+      description: t("hero.slide3.description"),
+      image: "/images/dahihandi-utsav.jpg",
+      label: t("hero.slide3.label"),
+    },
+    {
+      title: t("hero.slide4.title"),
+      description: t("hero.slide4.description"),
+      image: "/images/mahashivratri.jpg",
+      label: t("hero.slide4.label"),
+    },
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -199,7 +201,7 @@ export default function Hero() {
       {/* Typographic Portal Reveal Overlay */}
       <div className="absolute inset-0 z-[60] bg-saffron flex flex-col items-center justify-center text-center portal-intro pointer-events-none px-4">
         <h2 className="portal-text text-3xl sm:text-5xl md:text-[7vw] font-normal text-white select-none uppercase font-heading leading-[0.9] tracking-tight text-center whitespace-pre-line">
-          WE{"\n"}CELEBRATE{"\n"}TOGETHER
+          {t("hero.portalText")}
         </h2>
       </div>
 

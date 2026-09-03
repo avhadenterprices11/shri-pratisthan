@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface HighlightItem {
   num: string;
@@ -16,80 +17,81 @@ interface HighlightItem {
   isVideo: boolean;
 }
 
-const HIGHLIGHTS: HighlightItem[] = [
-  {
-    num: "01",
-    title: "Gudipadwa Swagat Yatra",
-    category: "Lezim & Dhol Tasha Processions",
-    video: "",
-    image: "/events_swagat_yatra_2022.jpg",
-    isVideo: false,
-  },
-  {
-    num: "02",
-    title: "Shree Ganeshotsav Maha Aarti",
-    category: "108-Lamp Aarti & Eco Clay Idol",
-    video: "",
-    image: "/events_ganeshotsav_2024_jejuri.jpg",
-    isVideo: false,
-  },
-  {
-    num: "03",
-    title: "50+ Blood Donation Camps",
-    category: "Nashik Civil Hospital Partner",
-    video: "",
-    image: "/volunteer_medical.png",
-    isVideo: false,
-  },
-  {
-    num: "04",
-    title: "Shiv Jayanti Mardani Khel",
-    category: "Martial Arts & Swarajya Tributes",
-    video: "",
-    image: "/events_shiv_jayanti_2022.jpg",
-    isVideo: false,
-  },
-  {
-    num: "05",
-    title: "Navratri Raas & Dandiya Nights",
-    category: "Traditional Folk Dance Arenas",
-    video: "",
-    image: "/navratri_2022.jpg",
-    isVideo: false,
-  },
-  {
-    num: "06",
-    title: "Annual Sports & Cricket League",
-    category: "32-Team Youth Championship",
-    video: "/about_showcase_video.mp4",
-    image: "/hero_dahihandi.png",
-    isVideo: true,
-  },
-  {
-    num: "07",
-    title: "International Yoga Day Clinics",
-    category: "Holistic Wellness & Screenings",
-    video: "",
-    image: "/portrait_volunteer.png",
-    isVideo: false,
-  },
-  {
-    num: "08",
-    title: "Dr. Ambedkar Jayanti Book Drive",
-    category: "Student Kits & Academic Honors",
-    video: "",
-    image: "/events_ambedkar_jayanti.jpg",
-    isVideo: false,
-  },
-];
-
 export default function EventsHighlights() {
+  const { t } = useLanguage();
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const [tappedIdx, setTappedIdx] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const isHovered = useRef(false);
+
+  const HIGHLIGHTS: HighlightItem[] = [
+    {
+      num: "01",
+      title: t("eventsPage.highlights.h1Title"),
+      category: t("eventsPage.highlights.h1Category"),
+      video: "",
+      image: "/events_swagat_yatra_2022.jpg",
+      isVideo: false,
+    },
+    {
+      num: "02",
+      title: t("eventsPage.highlights.h2Title"),
+      category: t("eventsPage.highlights.h2Category"),
+      video: "",
+      image: "/events_ganeshotsav_2024_jejuri.jpg",
+      isVideo: false,
+    },
+    {
+      num: "03",
+      title: t("eventsPage.highlights.h3Title"),
+      category: t("eventsPage.highlights.h3Category"),
+      video: "",
+      image: "/volunteer_medical.png",
+      isVideo: false,
+    },
+    {
+      num: "04",
+      title: t("eventsPage.highlights.h4Title"),
+      category: t("eventsPage.highlights.h4Category"),
+      video: "",
+      image: "/events_shiv_jayanti_2022.jpg",
+      isVideo: false,
+    },
+    {
+      num: "05",
+      title: t("eventsPage.highlights.h5Title"),
+      category: t("eventsPage.highlights.h5Category"),
+      video: "",
+      image: "/navratri_2022.jpg",
+      isVideo: false,
+    },
+    {
+      num: "06",
+      title: t("eventsPage.highlights.h6Title"),
+      category: t("eventsPage.highlights.h6Category"),
+      video: "/about_showcase_video.mp4",
+      image: "/hero_dahihandi.png",
+      isVideo: true,
+    },
+    {
+      num: "07",
+      title: t("eventsPage.highlights.h7Title"),
+      category: t("eventsPage.highlights.h7Category"),
+      video: "",
+      image: "/portrait_volunteer.png",
+      isVideo: false,
+    },
+    {
+      num: "08",
+      title: t("eventsPage.highlights.h8Title"),
+      category: t("eventsPage.highlights.h8Category"),
+      video: "",
+      image: "/events_ambedkar_jayanti.jpg",
+      isVideo: false,
+    },
+  ];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -224,11 +226,11 @@ export default function EventsHighlights() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-12 md:mb-16 px-4 sm:px-6">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Celebration Snapshots
+            {t("eventsPage.highlights.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 sm:mt-4 rounded-full" />
           <p className="text-xs sm:text-sm text-slate-grey mt-3 font-sans">
-            Hover with cursor or tap with finger to preview celebration moments
+            {t("eventsPage.highlights.subtitle")}
           </p>
         </div>
 

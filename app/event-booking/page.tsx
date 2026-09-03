@@ -23,13 +23,13 @@ export const metadata: Metadata = {
 
 export default function EventBookingPage() {
   return (
-    <main className="flex flex-col w-full min-h-screen pt-20 sm:pt-28 pb-20 bg-[#FBFBFA] relative overflow-hidden select-none">
-      {/* Subtle ambient lighting glows */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-saffron/8 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-gold/6 rounded-full blur-3xl pointer-events-none -z-10" />
+    <main className="flex flex-col w-full min-h-screen pt-24 sm:pt-32 pb-20 bg-background relative overflow-hidden">
+      {/* Decorative ambient backgrounds */}
+      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40" />
+      <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-1/3 opacity-40" />
 
-      {/* Main Multi-Step Form Container */}
-      <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+      {/* Main Multi-Step Form Interactive Container */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <EventBookingContainer />
       </div>
     </main>

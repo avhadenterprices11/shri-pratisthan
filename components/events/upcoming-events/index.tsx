@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface UpcomingItem {
   day: string;
@@ -14,29 +15,30 @@ interface UpcomingItem {
   colorClass: string;
 }
 
-const UPCOMING: UpcomingItem[] = [
-  {
-    day: "27",
-    month: "AUG",
-    time: "6:00 AM - 11:00 PM Daily",
-    title: "Shree Ganeshotsav 2026 (श्री गणेशोत्सव)",
-    location: "Indira Nagar Ground, Nashik",
-    category: "Cultural Festival",
-    colorClass: "bg-saffron/10 text-saffron border border-saffron/20",
-  },
-  {
-    day: "30",
-    month: "AUG",
-    time: "8:00 AM - 4:00 PM",
-    title: "Bhavya Blood Donation & Health Camp",
-    location: "Indira Nagar Community Hall, Nashik",
-    category: "Healthcare & Life Drive",
-    colorClass: "bg-red-50 text-red-600 border border-red-200/50",
-  },
-];
-
 export default function UpcomingEvents() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const UPCOMING: UpcomingItem[] = [
+    {
+      day: "27",
+      month: "AUG",
+      time: t("eventsPage.upcoming.u1Time"),
+      title: t("eventsPage.upcoming.u1Title"),
+      location: t("eventsPage.upcoming.u1Location"),
+      category: t("eventsPage.upcoming.u1Category"),
+      colorClass: "bg-saffron/10 text-saffron border border-saffron/20",
+    },
+    {
+      day: "30",
+      month: "AUG",
+      time: t("eventsPage.upcoming.u2Time"),
+      title: t("eventsPage.upcoming.u2Title"),
+      location: t("eventsPage.upcoming.u2Location"),
+      category: t("eventsPage.upcoming.u2Category"),
+      colorClass: "bg-red-50 text-red-600 border border-red-200/50",
+    },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -91,7 +93,7 @@ export default function UpcomingEvents() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Immediate Initiatives
+            {t("eventsPage.upcoming.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
@@ -158,7 +160,7 @@ export default function UpcomingEvents() {
 
                 {/* Floating Arrow CTA */}
                 <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-black/5 flex justify-between items-center text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-saffron font-sans group-hover:border-saffron/10">
-                  <span>Register to Attend</span>
+                  <span>{t("eventsPage.upcoming.registerBtn")}</span>
                   <span className="text-sm sm:text-base transform transition-transform duration-300 group-hover:translate-x-2">
                     →
                   </span>

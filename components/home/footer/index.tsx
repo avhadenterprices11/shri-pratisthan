@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [feedbackMsg, setFeedbackMsg] = useState("");
@@ -46,15 +48,15 @@ export default function Footer() {
         <div className="absolute right-0 top-0 h-full w-12 sm:w-24 bg-gradient-to-l from-[#111] to-transparent pointer-events-none z-10" />
 
         <div className="inline-flex gap-8 sm:gap-16 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-16 text-2xl sm:text-5xl md:text-[5vw] font-normal uppercase font-heading tracking-tight">
-          <span className="text-white">वारसा संस्कृतीचा, ध्यास समाजसेवेचा</span>
-          <span className="text-outline font-heading">SHREE PRATISHTHAN</span>
-          <span className="text-saffron font-heading">INDIRA NAGAR, NASHIK</span>
+          <span className="text-white">{t("common.motto")}</span>
+          <span className="text-outline font-heading">{t("common.trustName")}</span>
+          <span className="text-saffron font-heading">{t("common.location")}</span>
           <span className="text-white">✦</span>
         </div>
         <div className="inline-flex gap-8 sm:gap-16 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-16 text-2xl sm:text-5xl md:text-[5vw] font-normal uppercase font-heading tracking-tight" aria-hidden="true">
-          <span className="text-white">वारसा संस्कृतीचा, ध्यास समाजसेवेचा</span>
-          <span className="text-outline font-heading">SHREE PRATISHTHAN</span>
-          <span className="text-saffron font-heading">INDIRA NAGAR, NASHIK</span>
+          <span className="text-white">{t("common.motto")}</span>
+          <span className="text-outline font-heading">{t("common.trustName")}</span>
+          <span className="text-saffron font-heading">{t("common.location")}</span>
           <span className="text-white">✦</span>
         </div>
       </div>
@@ -77,16 +79,16 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="text-sm sm:text-base font-normal tracking-tight text-white font-heading uppercase">
-                  Shree Prathishthan
+                  {t("common.trustName")}
                 </span>
                 <span className="text-[9px] sm:text-[10px] text-white/50 uppercase tracking-[0.2em] font-sans">
-                  Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha
+                  {t("footer.legalName")}
                 </span>
               </div>
             </div>
 
             <p className="text-xs sm:text-sm text-white/60 leading-[1.75] max-w-md font-normal font-sans">
-              Preserving sacred traditions, championing youth leadership, and fostering societal well-being across Indira Nagar, Nashik since 2006.
+              {t("footer.tagline")}
             </p>
 
             <div className="w-full max-w-md">
@@ -97,7 +99,7 @@ export default function Footer() {
               >
                 <input
                   type="text"
-                  placeholder="Enter email address"
+                  placeholder={t("footer.subscribePlaceholder")}
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
@@ -113,10 +115,10 @@ export default function Footer() {
                   {status === "submitting" ? (
                     <>
                       <Loader2 className="w-3 h-3 animate-spin" />
-                      <span>Subscribing...</span>
+                      <span>{t("footer.subscribing")}</span>
                     </>
                   ) : (
-                    "Subscribe"
+                    t("footer.subscribeButton")
                   )}
                 </button>
               </form>
@@ -142,49 +144,49 @@ export default function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 sm:mb-6 font-sans">Quick Links</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 sm:mb-6 font-sans">{t("footer.quickLinks")}</h4>
               <ul className="space-y-3 sm:space-y-4 text-xs text-white/50 font-sans">
-                <li><Link href="/" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Home</Link></li>
-                <li><Link href="/events" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Events</Link></li>
-                <li><Link href="/community" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Community</Link></li>
-                <li><Link href="/about" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">About</Link></li>
-                <li><Link href="/gallery" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Gallery</Link></li>
+                <li><Link href="/" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("navbar.home")}</Link></li>
+                <li><Link href="/events" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("navbar.events")}</Link></li>
+                <li><Link href="/community" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("navbar.community")}</Link></li>
+                <li><Link href="/about" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("navbar.about")}</Link></li>
+                <li><Link href="/gallery" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("navbar.gallery")}</Link></li>
               </ul>
             </div>
 
             {/* Support Links */}
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 sm:mb-6 font-sans">Support &amp; Legal</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 sm:mb-6 font-sans">{t("footer.supportLegal")}</h4>
               <ul className="space-y-3 sm:space-y-4 text-xs text-white/50 font-sans">
-                <li><Link href="/privacy-policy" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Privacy Policy</Link></li>
-                <li><Link href="/terms-conditions" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Terms &amp; Conditions</Link></li>
-                <li><Link href="/volunteer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Volunteer</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">Contact</Link></li>
+                <li><Link href="/privacy-policy" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("footer.privacyPolicy")}</Link></li>
+                <li><Link href="/terms-conditions" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("footer.termsConditions")}</Link></li>
+                <li><Link href="/volunteer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("common.volunteer")}</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em]">{t("navbar.contact")}</Link></li>
               </ul>
             </div>
 
             {/* Follow Us On */}
             <div className="col-span-2 sm:col-span-1">
-              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 sm:mb-6 font-sans">Follow us on</h4>
+              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white mb-4 sm:mb-6 font-sans">{t("footer.followUs")}</h4>
               <ul className="space-y-3 sm:space-y-4 text-xs text-white/50 font-sans flex sm:flex-col gap-4 sm:gap-0 flex-wrap">
                 <li>
                   <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em] inline-flex items-center gap-1">
-                    Facebook <span className="text-[10px] text-white/30">↗</span>
+                    {t("footer.facebook")} <span className="text-[10px] text-white/30">↗</span>
                   </a>
                 </li>
                 <li>
                   <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em] inline-flex items-center gap-1">
-                    Instagram <span className="text-[10px] text-white/30">↗</span>
+                    {t("footer.instagram")} <span className="text-[10px] text-white/30">↗</span>
                   </a>
                 </li>
                 <li>
                   <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em] inline-flex items-center gap-1">
-                    YouTube <span className="text-[10px] text-white/30">↗</span>
+                    {t("footer.youtube")} <span className="text-[10px] text-white/30">↗</span>
                   </a>
                 </li>
                 <li>
                   <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.18em] inline-flex items-center gap-1">
-                    Twitter <span className="text-[10px] text-white/30">↗</span>
+                    {t("footer.twitter")} <span className="text-[10px] text-white/30">↗</span>
                   </a>
                 </li>
               </ul>
@@ -197,10 +199,10 @@ export default function Footer() {
         {/* 3. Lower Metadata Bar */}
         <div className="border-t border-white/10 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 text-[10px] sm:text-xs text-white/40 text-center sm:text-left">
           <div>
-            © {new Date().getFullYear()} Shree Pratisthan (Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha — Reg: nashik/0000153/2018). All Rights Reserved.
+            © {new Date().getFullYear()} {t("common.trustName")} ({t("footer.legalName")} — Reg: nashik/0000153/2018). {t("footer.rights")}
           </div>
           <div className="flex gap-1.5 items-center font-sans font-light">
-            <span>Designed with Devotion</span>
+            <span>{t("footer.designedWithDevotion")}</span>
             <span className="text-white text-sm">❤</span>
           </div>
         </div>

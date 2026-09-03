@@ -4,8 +4,10 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function CommunityHero() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorRingRef = useRef<HTMLDivElement>(null);
@@ -112,15 +114,15 @@ export default function CommunityHero() {
           <div className="max-w-3xl pointer-events-auto">
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-neutral-900 leading-[1.1] tracking-tight mb-4 sm:mb-6 font-heading [text-shadow:_0_2px_4px_rgba(255,255,255,0.8)] uppercase">
               <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-                <span className="block reveal-line">Unity in Action,</span>
+                <span className="block reveal-line">{t("communityPage.hero.titleLine1")}</span>
               </div>
               <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-                <span className="block reveal-line text-saffron text-outline-festive font-heading">Strength in Community.</span>
+                <span className="block reveal-line text-saffron text-outline-festive font-heading">{t("communityPage.hero.titleLine2")}</span>
               </div>
             </h1>
 
             <p className="hero-subtitle text-xs sm:text-base md:text-lg text-neutral-800 leading-[1.7] sm:leading-[1.75] font-normal font-sans [text-shadow:_0_1.5px_3px_rgba(255,255,255,0.9)]">
-              Shree Pratishtan (श्री प्रतिष्ठान) unites citizens, youth, and organizers in Indira Nagar, Nashik to drive 50+ blood donation drives, free health diagnostics, tree plantation, and welfare campaigns under the motto &ldquo;वारसा संस्कृतीचा, ध्यास समाजसेवेचा&rdquo;.
+              {t("communityPage.hero.subtitle")}
             </p>
           </div>
         </div>

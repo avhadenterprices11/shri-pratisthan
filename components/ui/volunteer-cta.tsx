@@ -7,6 +7,7 @@ import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,20 +20,24 @@ interface VolunteerCTAProps {
 }
 
 export default function VolunteerCTA({
-  title = (
-    <>
-      Join the Movement.<br />
-      <span className="text-saffron">Serve With Pride.</span>
-    </>
-  ),
-  description = "Coordinate event logistics, support mass blood donation drives, lead youth sports tournaments, or participate in our grand Gudipadwa Swagat Yatra and Ganeshotsav. Shree Pratishtan channels your energy directly into community progress and cultural preservation in Indira Nagar, Nashik.",
-  buttonText = "Become a Volunteer",
+  title,
+  description,
+  buttonText,
   buttonLink = "/volunteer",
   className,
 }: VolunteerCTAProps) {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonAreaRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+
+  const displayTitle = title || (
+    <>
+      {t("volunteerCTA.heading")}
+    </>
+  );
+  const displayDesc = description || t("volunteerCTA.description");
+  const displayBtn = buttonText || t("volunteerCTA.button");
 
   const [btnCoords, setBtnCoords] = useState({ x: 0, y: 0 });
 
@@ -98,12 +103,12 @@ export default function VolunteerCTA({
 
           {/* Massive Display Typography */}
           <h2 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-slate-800 tracking-tight font-heading leading-tight uppercase max-w-4xl mb-4 sm:mb-6">
-            {title}
+            {displayTitle}
           </h2>
 
           {/* Clean Description */}
           <p className="text-slate-grey text-xs sm:text-sm md:text-base leading-[1.75] max-w-2xl mb-6 sm:mb-8 font-normal font-sans">
-            {description}
+            {displayDesc}
           </p>
 
           {/* Centered Magnetic CTA Button */}
@@ -126,7 +131,7 @@ export default function VolunteerCTA({
               className="text-xs uppercase font-bold tracking-[0.2em] font-sans cursor-pointer w-full sm:w-auto"
               data-hover="pointer"
             >
-              {buttonText}
+              {displayBtn}
             </LiquidMetalButton>
           </div>
 

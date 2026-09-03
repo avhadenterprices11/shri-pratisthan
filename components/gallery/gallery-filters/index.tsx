@@ -1,24 +1,26 @@
 "use client";
 
 import React from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface FiltersProps {
   activeCategory: string;
   onCategoryChange: (category: string) => void;
 }
 
-const CATEGORIES = [
-  { id: "all", label: "All Media" },
-  { id: "festival", label: "Cultural Festivals" },
-  { id: "healthcare", label: "Health & Blood Drives" },
-  { id: "education", label: "Education & Seva" },
-  { id: "sports", label: "Sports & Athletics" },
-];
-
 export default function GalleryFilters({ 
   activeCategory, 
   onCategoryChange 
 }: FiltersProps) {
+  const { t } = useLanguage();
+
+  const CATEGORIES = [
+    { id: "all", label: t("galleryPage.filters.allMedia") },
+    { id: "festival", label: t("galleryPage.filters.culturalFestivals") },
+    { id: "healthcare", label: t("galleryPage.filters.healthBloodDrives") },
+    { id: "education", label: t("galleryPage.filters.educationSeva") },
+    { id: "sports", label: t("galleryPage.filters.sportsAthletics") },
+  ];
   return (
     <section className="py-4 sm:py-8 bg-transparent relative z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex justify-center flex-wrap gap-2 sm:gap-3">

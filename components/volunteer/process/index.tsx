@@ -3,35 +3,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface StageItem {
   step: string;
   title: string;
   desc: string;
 }
-
-const STAGES: StageItem[] = [
-  {
-    step: "01",
-    title: "Online Registration",
-    desc: "Submit your basic contact details, area of interest, and availability in the registration form below.",
-  },
-  {
-    step: "02",
-    title: "Team Connection",
-    desc: "Our Indira Nagar community leads connect with you to discuss upcoming festivals, sports leagues, or health drives.",
-  },
-  {
-    step: "03",
-    title: "Orientation & Briefing",
-    desc: "Join a short briefing with our 100+ member team outlining event roles, safety parameters, and coordination guidelines.",
-  },
-  {
-    step: "04",
-    title: "Active Event Deployment",
-    desc: "Report to your designated initiative (Swagat Yatra, Ganeshotsav, blood donation camps, or cricket leagues) and lead the action.",
-  },
-];
 
 // Exact coordinates along quadratic curve M 50 30 Q 180 180 50 330
 const ARC_NODE_POSITIONS = [
@@ -42,7 +20,31 @@ const ARC_NODE_POSITIONS = [
 ];
 
 export default function VolunteerProcess() {
+  const { t } = useLanguage();
   const [activeIdx, setActiveIdx] = useState(0);
+
+  const STAGES: StageItem[] = [
+    {
+      step: t("volunteerPage.process.p1Step"),
+      title: t("volunteerPage.process.p1Title"),
+      desc: t("volunteerPage.process.p1Desc"),
+    },
+    {
+      step: t("volunteerPage.process.p2Step"),
+      title: t("volunteerPage.process.p2Title"),
+      desc: t("volunteerPage.process.p2Desc"),
+    },
+    {
+      step: t("volunteerPage.process.p3Step"),
+      title: t("volunteerPage.process.p3Title"),
+      desc: t("volunteerPage.process.p3Desc"),
+    },
+    {
+      step: t("volunteerPage.process.p4Step"),
+      title: t("volunteerPage.process.p4Title"),
+      desc: t("volunteerPage.process.p4Desc"),
+    },
+  ];
   const containerRef = useRef<HTMLDivElement>(null);
   const detailsRef = useRef<HTMLDivElement>(null);
   const activeIdxRef = useRef(0);
@@ -134,7 +136,7 @@ export default function VolunteerProcess() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-3 sm:mb-8 md:mb-12 px-4 sm:px-6">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Our Onboarding Process
+            {t("volunteerPage.process.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 sm:mt-4 rounded-full" />
         </div>
@@ -142,7 +144,7 @@ export default function VolunteerProcess() {
         {/* Scroll Instruction Banner */}
         <div className="text-center mb-4 sm:mb-6">
           <span className="text-[10px] sm:text-xs text-slate-grey/70 font-bold uppercase tracking-[0.2em] bg-black/5 px-3.5 sm:px-4 py-1.5 rounded-full inline-block font-sans select-none">
-            ↓ Scroll Down to Step Through Onboarding
+            {t("volunteerPage.process.scrollInstruction")}
           </span>
         </div>
 

@@ -3,8 +3,10 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function FeaturedFestivals() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -101,7 +103,7 @@ export default function FeaturedFestivals() {
         {/* Section Heading & Subheading */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Featured Festivals
+            {t("eventsPage.featured.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
@@ -121,24 +123,24 @@ export default function FeaturedFestivals() {
             <div className="absolute left-8 xl:left-12 top-1/2 -translate-y-1/2 z-10 w-[44%] max-w-[500px] parallax-content-left select-none">
               <div className="glass-panel p-6 xl:p-8 rounded-block bg-white/95 border border-white/60 backdrop-blur-md shadow-2xl space-y-3.5 xl:space-y-4">
                 <h3 className="text-xl sm:text-2xl xl:text-3xl font-normal text-neutral-900 font-heading leading-snug uppercase">
-                  Shree Ganeshotsav &amp; Yatra
+                  {t("eventsPage.featured.f1Title")}
                 </h3>
                 <p className="text-xs text-neutral-700 leading-relaxed font-sans font-normal">
-                  Our flagship 10-day celebration in Indira Nagar, Nashik. Uniting thousands of devotees with eco-friendly Shadu Mati idols, grand evening Maha Aarti, traditional Dhol Tasha recitals, and daily hygienic Maha Prasad.
+                  {t("eventsPage.featured.f1Desc")}
                 </p>
                 
                 <ul className="space-y-2 text-xs text-neutral-700 font-medium font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron shrink-0" />
-                    <span>100% Eco-friendly Shadu Mati clay idol &amp; artificial tanks</span>
+                    <span>{t("eventsPage.featured.f1P1")}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron shrink-0" />
-                    <span>Daily 108-lamp Maha Aarti &amp; cultural youth drama</span>
+                    <span>{t("eventsPage.featured.f1P2")}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron shrink-0" />
-                    <span>100+ active volunteer marshals on crowd duty</span>
+                    <span>{t("eventsPage.featured.f1P3")}</span>
                   </li>
                 </ul>
 
@@ -147,7 +149,7 @@ export default function FeaturedFestivals() {
                     href="/event-booking"
                     className="w-full text-center inline-block bg-saffron hover:bg-saffron/90 text-white font-bold py-3 rounded-full text-[10px] uppercase tracking-[0.2em] shadow-md shadow-saffron/20 transition-transform hover:scale-102 font-sans cursor-pointer"
                   >
-                    Get Ganeshotsav Aarti Pass
+                    {t("eventsPage.featured.f1Btn")}
                   </a>
                 </div>
               </div>
@@ -169,24 +171,24 @@ export default function FeaturedFestivals() {
             <div className="absolute right-8 xl:right-12 top-1/2 -translate-y-1/2 z-10 w-[44%] max-w-[500px] parallax-content-right select-none">
               <div className="glass-panel p-6 xl:p-8 rounded-block bg-white/95 border border-white/60 backdrop-blur-md shadow-2xl space-y-3.5 xl:space-y-4">
                 <h3 className="text-xl sm:text-2xl xl:text-3xl font-normal text-neutral-900 font-heading leading-snug uppercase">
-                  Sports &amp; Cricket Leagues
+                  {t("eventsPage.featured.f2Title")}
                 </h3>
                 <p className="text-xs text-neutral-700 leading-relaxed font-sans font-normal">
-                  Honoring our 2006 founding roots where 20 cricket friends united for social service. Premier annual tennis-ball cricket tournaments and youth athletics in Indira Nagar, Nashik with grand championship trophies.
+                  {t("eventsPage.featured.f2Desc")}
                 </p>
                 
                 <ul className="space-y-2 text-xs text-neutral-700 font-medium font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
-                    <span>32 participating youth cricket teams across Nashik</span>
+                    <span>{t("eventsPage.featured.f2P1")}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
-                    <span>₹1,50,000 championship awards &amp; individual honors</span>
+                    <span>{t("eventsPage.featured.f2P2")}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
-                    <span>On-site sports medical and physiotherapy care</span>
+                    <span>{t("eventsPage.featured.f2P3")}</span>
                   </li>
                 </ul>
 
@@ -195,7 +197,7 @@ export default function FeaturedFestivals() {
                     href="/event-booking"
                     className="w-full text-center inline-block bg-neutral-900 hover:bg-saffron hover:text-white text-white font-bold py-3 rounded-full text-[10px] uppercase tracking-[0.2em] shadow-md shadow-neutral-900/10 transition-transform hover:scale-102 font-sans cursor-pointer"
                   >
-                    Register Cricket Team / Athlete
+                    {t("eventsPage.featured.f2Btn")}
                   </a>
                 </div>
               </div>
@@ -213,20 +215,20 @@ export default function FeaturedFestivals() {
             >
               <div className="space-y-3 sm:space-y-4">
                 <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
-                  Shree Ganeshotsav &amp; Yatra
+                  {t("eventsPage.featured.f1Title")}
                 </h3>
                 <p className="text-xs text-neutral-700 leading-relaxed font-sans font-normal">
-                  Our flagship 10-day celebration in Indira Nagar, Nashik with eco-friendly Shadu Mati clay idols, daily grand Maha Aarti, and traditional Dhol Tasha parades.
+                  {t("eventsPage.featured.f1Desc")}
                 </p>
                 
                 <ul className="space-y-1.5 sm:space-y-2 text-xs text-neutral-700 font-medium font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron" />
-                    100% Eco-friendly Shadu Mati clay idol &amp; artificial tanks
+                    {t("eventsPage.featured.f1P1")}
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron" />
-                    Daily 108-lamp Maha Aarti &amp; cultural youth drama
+                    {t("eventsPage.featured.f1P2")}
                   </li>
                 </ul>
               </div>
@@ -236,7 +238,7 @@ export default function FeaturedFestivals() {
                   href="/event-booking"
                   className="w-full inline-block text-center bg-saffron hover:bg-saffron/90 text-white font-bold py-3 sm:py-3.5 rounded-full text-[10px] uppercase tracking-[0.2em] shadow-md shadow-saffron/15 font-sans"
                 >
-                  Get Ganeshotsav Pass
+                  {t("eventsPage.featured.f1Btn")}
                 </a>
               </div>
             </div>
@@ -248,20 +250,20 @@ export default function FeaturedFestivals() {
             >
               <div className="space-y-3 sm:space-y-4">
                 <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
-                  Sports &amp; Cricket Leagues
+                  {t("eventsPage.featured.f2Title")}
                 </h3>
                 <p className="text-xs text-neutral-700 leading-relaxed font-sans font-normal">
-                  Honoring our 2006 cricket roots. Premier annual tennis-ball cricket championship with 32 teams and youth athletics in Indira Nagar, Nashik.
+                  {t("eventsPage.featured.f2Desc")}
                 </p>
                 
                 <ul className="space-y-1.5 sm:space-y-2 text-xs text-neutral-700 font-medium font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                    32 participating youth cricket teams across Nashik
+                    {t("eventsPage.featured.f2P1")}
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                    ₹1,50,000 championship awards &amp; trophies
+                    {t("eventsPage.featured.f2P2")}
                   </li>
                 </ul>
               </div>
@@ -271,7 +273,7 @@ export default function FeaturedFestivals() {
                   href="/event-booking"
                   className="w-full inline-block text-center bg-neutral-900 hover:bg-saffron hover:text-white text-white font-bold py-3 sm:py-3.5 rounded-full text-[10px] uppercase tracking-[0.2em] shadow-md shadow-neutral-900/15 font-sans"
                 >
-                  Register Cricket Team
+                  {t("eventsPage.featured.f2Btn")}
                 </a>
               </div>
             </div>

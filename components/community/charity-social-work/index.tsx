@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BookOpen, AlertTriangle, Gift } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface CampaignItem {
   title: string;
@@ -12,29 +13,30 @@ interface CampaignItem {
   icon: React.ReactNode;
 }
 
-const CAMPAIGNS: CampaignItem[] = [
-  {
-    title: "Student Education & Study Kits",
-    desc: "Providing textbooks, notebooks, school bags, and stationery sets to underprivileged students and schools across Nashik district.",
-    metric: "2,500+ Kits Distributed",
-    icon: <BookOpen className="w-6 h-6 text-saffron" />,
-  },
-  {
-    title: "Emergency Aid & Relief Drives",
-    desc: "Delivering essential grocery packets, dry food grains, emergency medical aid, and hygiene kits to vulnerable families during crises.",
-    metric: "1,500+ Families Supported",
-    icon: <AlertTriangle className="w-6 h-6 text-saffron" />,
-  },
-  {
-    title: "Winter Clothing & Blanket Drive",
-    desc: "Community collection and distribution of warm blankets and sweaters to elderly residents and needy families in Indira Nagar and Nashik.",
-    metric: "3,000+ Blankets Donated",
-    icon: <Gift className="w-6 h-6 text-saffron" />,
-  },
-];
-
 export default function CharitySocialWork() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const CAMPAIGNS: CampaignItem[] = [
+    {
+      title: t("communityPage.charity.c1Title"),
+      desc: t("communityPage.charity.c1Desc"),
+      metric: t("communityPage.charity.c1Metric"),
+      icon: <BookOpen className="w-6 h-6 text-saffron" />,
+    },
+    {
+      title: t("communityPage.charity.c2Title"),
+      desc: t("communityPage.charity.c2Desc"),
+      metric: t("communityPage.charity.c2Metric"),
+      icon: <AlertTriangle className="w-6 h-6 text-saffron" />,
+    },
+    {
+      title: t("communityPage.charity.c3Title"),
+      desc: t("communityPage.charity.c3Desc"),
+      metric: t("communityPage.charity.c3Metric"),
+      icon: <Gift className="w-6 h-6 text-saffron" />,
+    },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -148,11 +150,14 @@ export default function CharitySocialWork() {
         
         {/* Title Block */}
         <div className="charity-title text-center max-w-2xl mx-auto mb-8 sm:mb-16">
+          <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
+            {t("communityPage.charity.badge")}
+          </span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Charity &amp; Direct Relief Work
+            {t("communityPage.charity.heading")}
           </h2>
           <p className="text-slate-grey mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-xs sm:text-base font-normal">
-            Delivering essential support directly to students, families in crises, and marginalized communities.
+            {t("communityPage.charity.subtitle")}
           </p>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

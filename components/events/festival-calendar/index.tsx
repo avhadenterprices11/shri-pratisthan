@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface CalendarItem {
   num: string;
@@ -13,69 +14,70 @@ interface CalendarItem {
   badgeClass: string;
 }
 
-const CALENDAR_ITEMS: CalendarItem[] = [
-  {
-    num: "1",
-    month: "March / April",
-    title: "Gudipadwa Bhavya Swagat Yatra",
-    desc: "Welcoming the Marathi New Year with 1,000+ youth, traditional costumes, Lezim, and saffron flags.",
-    type: "Cultural Celebration",
-    badgeClass: "bg-saffron/10 border-saffron/30 text-saffron",
-  },
-  {
-    num: "2",
-    month: "April",
-    title: "Shiv Jayanti Utsav (शिवजयंती)",
-    desc: "Commemorating Chhatrapati Shivaji Maharaj with morning Rajyabhishek, weapon demos, and blood donation.",
-    type: "Commemoration & Seva",
-    badgeClass: "bg-amber-50 border-amber-200 text-amber-600",
-  },
-  {
-    num: "3",
-    month: "August",
-    title: "Dahi Handi Utsav (दहीहंडी)",
-    desc: "Nashik's premier Gokulashtami spectacle featuring multi-tier human pyramids and electrifying atmosphere.",
-    type: "Major Festival",
-    badgeClass: "bg-rose-50 border-rose-200 text-rose-600",
-  },
-  {
-    num: "4",
-    month: "September",
-    title: "Shree Ganeshotsav Celebrations",
-    desc: "Iconic 10-day utsav featuring historic theme dekhavas, cultural competitions, and grand Maha Aarti.",
-    type: "Signature Utsav",
-    badgeClass: "bg-saffron/10 border-saffron/30 text-saffron",
-  },
-  {
-    num: "5",
-    month: "September",
-    title: "Anant Chaturdashi Visarjan Miravnuk",
-    desc: "The pinnacle immersion procession with rhythmic Dhol-Tasha beats and lezim troupe performances.",
-    type: "Grand Procession",
-    badgeClass: "bg-red-50 border-red-200 text-red-600",
-  },
-  {
-    num: "6",
-    month: "October",
-    title: "Navratri Utsav & Dandiya (नवरात्रौत्सव)",
-    desc: "Nine nights of traditional Garba, Raas Dandiya, live folk musicians, and family celebration arenas.",
-    type: "Cultural Festival",
-    badgeClass: "bg-orange-50 border-orange-200 text-orange-600",
-  },
-  {
-    num: "7",
-    month: "December",
-    title: "Annual Sports & Cricket Tournament",
-    desc: "Premier 32-team tennis ball cricket championship and youth athletics honoring our 2006 sports roots.",
-    type: "Sports Tournament",
-    badgeClass: "bg-gold/10 border-gold/30 text-amber-700",
-  },
-];
-
 export default function FestivalCalendar() {
+  const { t } = useLanguage();
   const [activeIdx, setActiveIdx] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
+
+  const CALENDAR_ITEMS: CalendarItem[] = [
+    {
+      num: "1",
+      month: t("eventsPage.calendar.c1Month"),
+      title: t("eventsPage.calendar.c1Title"),
+      desc: t("eventsPage.calendar.c1Desc"),
+      type: t("eventsPage.calendar.c1Type"),
+      badgeClass: "bg-saffron/10 border-saffron/30 text-saffron",
+    },
+    {
+      num: "2",
+      month: t("eventsPage.calendar.c2Month"),
+      title: t("eventsPage.calendar.c2Title"),
+      desc: t("eventsPage.calendar.c2Desc"),
+      type: t("eventsPage.calendar.c2Type"),
+      badgeClass: "bg-amber-50 border-amber-200 text-amber-600",
+    },
+    {
+      num: "3",
+      month: t("eventsPage.calendar.c3Month"),
+      title: t("eventsPage.calendar.c3Title"),
+      desc: t("eventsPage.calendar.c3Desc"),
+      type: t("eventsPage.calendar.c3Type"),
+      badgeClass: "bg-rose-50 border-rose-200 text-rose-600",
+    },
+    {
+      num: "4",
+      month: t("eventsPage.calendar.c4Month"),
+      title: t("eventsPage.calendar.c4Title"),
+      desc: t("eventsPage.calendar.c4Desc"),
+      type: t("eventsPage.calendar.c4Type"),
+      badgeClass: "bg-saffron/10 border-saffron/30 text-saffron",
+    },
+    {
+      num: "5",
+      month: t("eventsPage.calendar.c5Month"),
+      title: t("eventsPage.calendar.c5Title"),
+      desc: t("eventsPage.calendar.c5Desc"),
+      type: t("eventsPage.calendar.c5Type"),
+      badgeClass: "bg-red-50 border-red-200 text-red-600",
+    },
+    {
+      num: "6",
+      month: t("eventsPage.calendar.c6Month"),
+      title: t("eventsPage.calendar.c6Title"),
+      desc: t("eventsPage.calendar.c6Desc"),
+      type: t("eventsPage.calendar.c6Type"),
+      badgeClass: "bg-orange-50 border-orange-200 text-orange-600",
+    },
+    {
+      num: "7",
+      month: t("eventsPage.calendar.c7Month"),
+      title: t("eventsPage.calendar.c7Title"),
+      desc: t("eventsPage.calendar.c7Desc"),
+      type: t("eventsPage.calendar.c7Type"),
+      badgeClass: "bg-gold/10 border-gold/30 text-amber-700",
+    },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -182,7 +184,7 @@ export default function FestivalCalendar() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-8 md:mb-12 px-4 sm:px-6">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Yearly Calendar Schedule
+            {t("eventsPage.calendar.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 sm:mt-4 rounded-full" />
         </div>
@@ -190,7 +192,7 @@ export default function FestivalCalendar() {
         {/* Scroll Instruction Banner */}
         <div className="text-center mb-4 sm:mb-6">
           <span className="text-[10px] sm:text-xs text-slate-grey/70 font-bold uppercase tracking-[0.2em] bg-black/5 px-3.5 sm:px-4 py-1.5 rounded-full inline-block font-sans select-none">
-            ↓ Scroll Down to Slide Calendar Timeline
+            {t("eventsPage.calendar.scrollInstruction")}
           </span>
         </div>
 

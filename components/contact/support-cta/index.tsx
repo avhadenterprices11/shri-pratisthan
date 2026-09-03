@@ -4,10 +4,12 @@ import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ContactSupportCTA() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,10 +47,10 @@ export default function ContactSupportCTA() {
           
           <div className="relative z-10 space-y-3 sm:space-y-4 max-w-2xl mx-auto">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-              Ready to Make an Active Impact?
+              {t("contactPage.cta.heading")}
             </h2>
             <p className="text-xs sm:text-base text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
-              Whether you want to sponsor student study kits, participate in 50+ blood donation drives, support youth sports leagues, or join cultural festivals in Indira Nagar, Nashik, we welcome you.
+              {t("contactPage.cta.desc")}
             </p>
           </div>
 
@@ -57,13 +59,13 @@ export default function ContactSupportCTA() {
               href="/volunteer"
               className="w-full sm:w-auto bg-saffron hover:bg-saffron/90 hover:shadow-lg hover:shadow-saffron/20 text-white font-bold text-xs uppercase tracking-[0.2em] px-6 sm:px-8 py-3.5 sm:py-4 rounded-full transition-all duration-300 active:scale-95 text-center font-sans"
             >
-              Become a Volunteer
+              {t("contactPage.cta.volunteerBtn")}
             </Link>
             <Link
-              href="/community"
+              href="/all-events"
               className="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-foreground font-bold text-xs uppercase tracking-[0.2em] px-6 sm:px-8 py-3.5 sm:py-4 rounded-full transition-all duration-300 active:scale-95 text-center border border-slate-200 font-sans"
             >
-              Explore Community Drives
+              {t("contactPage.cta.viewEventsBtn")}
             </Link>
           </div>
 

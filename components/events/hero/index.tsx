@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface SlideItem {
   id: number;
@@ -29,6 +30,7 @@ const slidesData: SlideItem[] = [
 ];
 
 export default function EventsHero() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const isAnimating = useRef(false);
@@ -132,15 +134,15 @@ export default function EventsHero() {
       <div className="max-w-[1600px] w-full mx-auto relative z-20 flex flex-col justify-start text-left pointer-events-none">
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-neutral-950 leading-[1.1] tracking-tight mb-4 sm:mb-6 font-heading pointer-events-auto drop-shadow-[0_2px_10px_rgba(255,255,255,0.9)]">
           <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-            <span className="block reveal-line">Festivals &amp;</span>
+            <span className="block reveal-line">{t("eventsPage.hero.titleLine1")}</span>
           </div>
           <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-            <span className="block reveal-line text-saffron text-outline-festive font-heading">Social Campaigns.</span>
+            <span className="block reveal-line text-saffron text-outline-festive font-heading">{t("eventsPage.hero.titleLine2")}</span>
           </div>
         </h1>
 
         <p className="hero-subtitle text-xs sm:text-base md:text-lg text-neutral-900 max-w-2xl leading-[1.7] sm:leading-[1.75] font-medium bg-white/85 backdrop-blur-md px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border border-white/90 shadow-lg pointer-events-auto font-sans">
-          &ldquo;वारसा संस्कृतीचा, ध्यास समाजसेवेचा&rdquo; — Discover upcoming grand festivals, 50+ blood camps, and sports leagues organized by Shree Pratishtan in Indira Nagar, Nashik.
+          {t("eventsPage.hero.subtitle")}
         </p>
       </div>
     </section>

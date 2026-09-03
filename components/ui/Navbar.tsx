@@ -7,10 +7,13 @@ import { usePathname, useRouter } from "next/navigation";
 import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
@@ -139,12 +142,12 @@ export function Navbar() {
   }, [isOpen]);
 
   const navLinks = [
-    { label: "About Us", href: "/about" },
-    { label: "Community", href: "/community" },
-    { label: "Volunteer", href: "/volunteer" },
-    { label: "Events", href: "/events" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "Contact", href: "/contact" },
+    { label: t("navbar.about"), href: "/about" },
+    { label: t("navbar.community"), href: "/community" },
+    { label: t("navbar.volunteer"), href: "/volunteer" },
+    { label: t("navbar.events"), href: "/events" },
+    { label: t("navbar.gallery"), href: "/gallery" },
+    { label: t("navbar.contact"), href: "/contact" },
   ];
 
   return (
@@ -172,12 +175,13 @@ export function Navbar() {
               />
             </div>
             <span className="text-[11px] sm:text-sm font-normal tracking-wider text-foreground font-heading uppercase">
-              Shree Prathishthan
+              {t("common.trustName")}
             </span>
           </Link>
 
-          {/* Right: Floating Dark Glassmorphic Menu Button */}
-          <div className="flex items-center pointer-events-auto">
+          {/* Right: Language Switcher + Floating Dark Glassmorphic Menu Button */}
+          <div className="flex items-center gap-2.5 sm:gap-3 pointer-events-auto">
+            <LanguageSwitcher variant="header" />
 
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -207,8 +211,8 @@ export function Navbar() {
 
           {/* Left Column: Branding Showcase */}
           <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start border-b md:border-b-0 md:border-r border-saffron/10 pb-6 md:pb-0 md:pr-16 mb-6 md:mb-0 relative z-10 pt-6 md:pt-0">
-            {/* Clean Logo Emblem */}
-            <div className="nav-drawer-info flex flex-col items-center md:items-start">
+            {/* Clean Logo Emblem & Drawer Language Switcher */}
+            <div className="nav-drawer-info flex flex-col items-center md:items-start gap-4">
               <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-saffron/30 shadow-xl bg-white/90 p-1 group transition-transform duration-500 hover:scale-105">
                 <div className="relative w-full h-full rounded-full overflow-hidden">
                   <Image
@@ -220,6 +224,10 @@ export function Navbar() {
                     priority
                   />
                 </div>
+              </div>
+
+              <div className="w-full max-w-[260px] pt-1">
+                <LanguageSwitcher variant="drawer" />
               </div>
             </div>
           </div>

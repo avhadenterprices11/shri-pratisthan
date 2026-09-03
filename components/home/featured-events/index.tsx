@@ -6,6 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,14 +100,93 @@ const EVENTS: EventPanel[] = [
 ];
 
 export default function FeaturedEvents() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [activeMobileId, setActiveMobileId] = useState<string | null>("ganesh");
 
+  const eventsData: EventPanel[] = [
+    {
+      id: "ganesh",
+      num: "01",
+      category: t("featuredEvents.event1.category"),
+      title: t("featuredEvents.event1.title"),
+      description: t("featuredEvents.event1.description"),
+      image: "/images/ganesh-utsav.jpg",
+      details: [
+        t("featuredEvents.event1.d1"),
+        t("featuredEvents.event1.d2"),
+        t("featuredEvents.event1.d3"),
+        t("featuredEvents.event1.d4"),
+      ],
+      link: "/events"
+    },
+    {
+      id: "swagat-yatra",
+      num: "02",
+      category: t("featuredEvents.event2.category"),
+      title: t("featuredEvents.event2.title"),
+      description: t("featuredEvents.event2.description"),
+      image: "/images/swagat-yatra.jpg",
+      details: [
+        t("featuredEvents.event2.d1"),
+        t("featuredEvents.event2.d2"),
+        t("featuredEvents.event2.d3"),
+        t("featuredEvents.event2.d4"),
+      ],
+      link: "/events"
+    },
+    {
+      id: "dahi-handi",
+      num: "03",
+      category: t("featuredEvents.event3.category"),
+      title: t("featuredEvents.event3.title"),
+      description: t("featuredEvents.event3.description"),
+      image: "/images/dahihandi-utsav.jpg",
+      details: [
+        t("featuredEvents.event3.d1"),
+        t("featuredEvents.event3.d2"),
+        t("featuredEvents.event3.d3"),
+        t("featuredEvents.event3.d4"),
+      ],
+      link: "/events"
+    },
+    {
+      id: "shivratri",
+      num: "04",
+      category: t("featuredEvents.event4.category"),
+      title: t("featuredEvents.event4.title"),
+      description: t("featuredEvents.event4.description"),
+      image: "/images/mahashivratri.jpg",
+      details: [
+        t("featuredEvents.event4.d1"),
+        t("featuredEvents.event4.d2"),
+        t("featuredEvents.event4.d3"),
+        t("featuredEvents.event4.d4"),
+      ],
+      link: "/events"
+    },
+    {
+      id: "navratri",
+      num: "05",
+      category: t("featuredEvents.event5.category"),
+      title: t("featuredEvents.event5.title"),
+      description: t("featuredEvents.event5.description"),
+      image: "/navratri_2022.jpg",
+      details: [
+        t("featuredEvents.event5.d1"),
+        t("featuredEvents.event5.d2"),
+        t("featuredEvents.event5.d3"),
+        t("featuredEvents.event5.d4"),
+      ],
+      link: "/events"
+    }
+  ];
+
   // Track active slide (hovered one on desktop, or default mobile first)
-  const activeEvent = EVENTS.find(e => e.id === (hoveredId || activeMobileId)) || EVENTS[0];
+  const activeEvent = eventsData.find(e => e.id === (hoveredId || activeMobileId)) || eventsData[0];
 
   useEffect(() => {
     if (!gridRef.current) return;
@@ -143,10 +223,10 @@ export default function FeaturedEvents() {
         {/* Editorial Heading Section */}
         <div className="flex flex-col mb-8 sm:mb-12 md:mb-16 max-w-4xl">
           <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-foreground tracking-tight font-heading leading-tight uppercase">
-            Upcoming Celebrations
+            {t("featuredEvents.title")}
           </h2>
           <p className="text-slate-grey max-w-2xl text-xs sm:text-sm md:text-base leading-relaxed font-sans mt-3 sm:mt-4">
-            Bringing the Indira Nagar and Nashik community together through vibrant cultural celebrations, traditional street processions, youth sports, and social welfare drives.
+            {t("featuredEvents.subtitle")}
           </p>
         </div>
 
@@ -168,7 +248,7 @@ export default function FeaturedEvents() {
               {/* Active Image Render Box inside Sidebar */}
               <div className="relative w-full h-[220px] lg:h-[240px] rounded-3xl overflow-hidden shadow-lg border border-saffron/10 mt-1">
                 <div className="relative w-full h-full bg-neutral-950">
-                  {EVENTS.map((event) => (
+                  {eventsData.map((event) => (
                     <Image
                       key={event.id}
                       src={event.image}
@@ -208,7 +288,7 @@ export default function FeaturedEvents() {
                 href={activeEvent.link}
                 className="mt-6 inline-flex items-center gap-2.5 py-2.5 px-5 rounded-full bg-saffron text-white text-[9px] font-bold uppercase tracking-widest hover:bg-saffron/90 hover:shadow-lg transition-all duration-300 font-sans"
               >
-                Explore Spotlight
+                {t("featuredEvents.viewEvent")}
                 <svg className="w-3.5 h-3.5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2.5">
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
@@ -221,7 +301,7 @@ export default function FeaturedEvents() {
           <div
             className="w-full md:w-[60%] flex flex-col border-t border-saffron/10 md:border-t-0 md:pl-16 relative"
           >
-            {EVENTS.map((event) => (
+            {eventsData.map((event) => (
               <div
                 key={event.id}
                 onMouseEnter={() => setHoveredId(event.id)}
@@ -241,7 +321,7 @@ export default function FeaturedEvents() {
                   </h3>
                 </div>
                 <span className="hidden md:inline text-xs uppercase font-bold tracking-widest text-slate-400 group-hover:text-saffron transition-colors duration-300 mt-2 md:mt-0 font-sans">
-                  {event.id === "ganesh" || event.id === "navratri" ? "10 Days" : (event.id === "swagat-yatra" ? "Annual Yatra" : (event.id === "dahi-handi" ? "Gokulashtami" : (event.id === "mahashivratri" ? "Maha Shivotsav" : "Annual Utsav")))}
+                  {event.id === "ganesh" ? t("featuredEvents.b1") : (event.id === "swagat-yatra" ? t("featuredEvents.b2") : (event.id === "dahi-handi" ? t("featuredEvents.b3") : (event.id === "shivratri" ? t("featuredEvents.b4") : t("featuredEvents.b5"))))}
                 </span>
 
                 {/* Mobile Dropdown Details (Toggled on click) */}
@@ -274,7 +354,7 @@ export default function FeaturedEvents() {
                     href={event.link}
                     className="py-2.5 px-4 rounded-full bg-saffron text-white text-[9px] uppercase font-bold tracking-widest flex items-center gap-1.5 shadow-md mt-1 font-sans"
                   >
-                    Explore Spotlight
+                    {t("featuredEvents.viewEvent")}
                     <svg className="w-3 h-3 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2.5">
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />

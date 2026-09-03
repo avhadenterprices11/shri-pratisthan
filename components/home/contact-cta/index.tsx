@@ -5,6 +5,7 @@ import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import { ChevronDown, Send, Check, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,9 +17,18 @@ const SUBJECT_OPTIONS = [
 ];
 
 export default function ContactCTA() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [selectedSubject, setSelectedSubject] = useState(SUBJECT_OPTIONS[0]);
+
+  const subjectOptions = [
+    t("contactCTA.form.opt1"),
+    t("contactCTA.form.opt2"),
+    t("contactCTA.form.opt3"),
+    t("contactCTA.form.opt4"),
+  ];
+
+  const [selectedSubject, setSelectedSubject] = useState(subjectOptions[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Form states
@@ -107,10 +117,10 @@ export default function ContactCTA() {
           {/* Left Column: Office Contacts */}
           <div className="lg:col-span-5 contact-slide-in">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground leading-[1.15] tracking-tight mb-4 sm:mb-6 font-heading">
-              Get in Touch
+              {t("contactCTA.title")}
             </h2>
             <p className="text-xs sm:text-sm md:text-base text-slate-grey leading-[1.75] mb-6 sm:mb-8 font-sans">
-              Have questions regarding our cultural celebrations, blood donation drives, sports leagues, or volunteering? Reach out to our central administrative desk in Indira Nagar, Nashik.
+              {t("contactCTA.description")}
             </p>
 
             <div className="space-y-4 sm:space-y-6">
@@ -122,7 +132,7 @@ export default function ContactCTA() {
                   </svg>
                 </div>
                 <div>
-                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">Helpline Phone</span>
+                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">{t("contactCTA.phoneTitle")}</span>
                   <span className="text-sm sm:text-base font-normal text-foreground font-heading">+91 9922786608</span>
                 </div>
               </div>
@@ -136,7 +146,7 @@ export default function ContactCTA() {
                   </svg>
                 </div>
                 <div>
-                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">Administrative Mail</span>
+                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">{t("contactCTA.emailTitle")}</span>
                   <span className="text-sm sm:text-base font-normal text-foreground font-heading">Info@shreepratishthan.com</span>
                 </div>
               </div>
@@ -150,8 +160,8 @@ export default function ContactCTA() {
                   </svg>
                 </div>
                 <div>
-                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">Headquarters Office</span>
-                  <span className="text-sm sm:text-base font-normal text-foreground font-heading">Indira Nagar, Nashik, Maharashtra</span>
+                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">{t("contactCTA.addressTitle")}</span>
+                  <span className="text-sm sm:text-base font-normal text-foreground font-heading">{t("contactCTA.address")}</span>
                 </div>
               </div>
             </div>
@@ -159,7 +169,7 @@ export default function ContactCTA() {
 
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7 contact-slide-in glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/90 backdrop-blur-md shadow-xl">
-            <h3 className="text-xl sm:text-2xl font-normal text-foreground mb-4 sm:mb-6 font-heading">Send a Message</h3>
+            <h3 className="text-xl sm:text-2xl font-normal text-foreground mb-4 sm:mb-6 font-heading">{t("contactCTA.form.submitButton")}</h3>
 
             {status === "success" ? (
               <div className="py-6 sm:py-8 px-4 sm:px-6 text-center space-y-3 sm:space-y-4 bg-emerald-50/80 border border-emerald-200 rounded-2xl animate-in fade-in duration-300">
@@ -167,10 +177,10 @@ export default function ContactCTA() {
                   <CheckCircle2 className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
                 <h4 className="text-lg sm:text-xl font-extrabold text-emerald-950 font-heading">
-                  Message Sent Successfully!
+                  {t("contactCTA.form.successTitle")}
                 </h4>
                 <p className="text-xs sm:text-sm text-emerald-800 leading-relaxed max-w-md mx-auto">
-                  Thank you <strong>{name}</strong>! We have received your inquiry under subject <strong>&quot;{selectedSubject}&quot;</strong>. Our desk will email you at <strong>{email}</strong> shortly.
+                  {t("contactCTA.form.successDesc")}
                 </p>
                 <button
                   type="button"
@@ -184,10 +194,10 @@ export default function ContactCTA() {
               <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit} noValidate>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-1.5 sm:mb-2 font-heading">Your Name</label>
+                    <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-1.5 sm:mb-2 font-heading">{t("contactCTA.form.nameLabel")}</label>
                     <input 
                       type="text" 
-                      placeholder="Enter name"
+                      placeholder={t("contactCTA.form.namePlaceholder")}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className={`w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-base sm:text-sm transition-all ${
@@ -203,10 +213,10 @@ export default function ContactCTA() {
                     )}
                   </div>
                   <div>
-                    <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">Your Email</label>
+                    <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.emailLabel")}</label>
                     <input 
                       type="text" 
-                      placeholder="Enter email"
+                      placeholder={t("contactCTA.form.emailPlaceholder")}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-sm transition-all ${
@@ -225,7 +235,7 @@ export default function ContactCTA() {
 
                 {/* Premium Custom Dropdown */}
                 <div className="relative" ref={dropdownRef}>
-                  <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">Subject</label>
+                  <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.subjectLabel")}</label>
                   <button
                     type="button"
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -237,7 +247,7 @@ export default function ContactCTA() {
 
                   {isDropdownOpen && (
                     <div className="absolute left-0 right-0 top-full mt-2 bg-white/95 backdrop-blur-xl border border-saffron/25 rounded-xl shadow-2xl z-50 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                      {SUBJECT_OPTIONS.map((option) => (
+                      {subjectOptions.map((option) => (
                         <div
                           key={option}
                           onClick={() => {
@@ -259,10 +269,10 @@ export default function ContactCTA() {
                 </div>
 
                 <div>
-                  <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">Message</label>
+                  <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.messageLabel")}</label>
                   <textarea 
                     rows={4} 
-                    placeholder="Type message here..."
+                    placeholder={t("contactCTA.form.messagePlaceholder")}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-sm transition-all resize-none ${
@@ -288,7 +298,7 @@ export default function ContactCTA() {
                     className="w-full text-xs uppercase font-extrabold tracking-widest font-heading cursor-pointer disabled:opacity-70"
                     data-hover="pointer"
                   >
-                    {status === "submitting" ? "Sending..." : "Send Message"}
+                    {status === "submitting" ? t("contactCTA.form.sending") : t("contactCTA.form.submitButton")}
                   </LiquidMetalButton>
                 </div>
               </form>

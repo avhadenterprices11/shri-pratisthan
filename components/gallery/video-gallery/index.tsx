@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,6 +76,7 @@ const VIDEOS = [
 ];
 
 export default function VideoGallery() {
+  const { t } = useLanguage();
   const [activeVideo, setActiveVideo] = useState<{ title: string; src: string } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -110,7 +112,7 @@ export default function VideoGallery() {
       <div className="max-w-[1600px] w-full mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Video Reels &amp; Event Footage
+            {t("galleryPage.videoGallery.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

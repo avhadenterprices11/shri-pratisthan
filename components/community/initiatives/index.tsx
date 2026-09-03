@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Heart, Shield, Leaf, ArrowDownRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface InitiativeItem {
   title: string;
@@ -13,34 +14,35 @@ interface InitiativeItem {
   anchor: string;
 }
 
-const INITIATIVES_SUMMARY: InitiativeItem[] = [
-  {
-    title: "Healthcare & Life Drives",
-    desc: "Over 50+ mass blood donation camps, International Yoga Day sessions, emergency donor registry, and free medical checkup drives across Nashik.",
-    tag: "Arogya",
-    icon: <Heart className="w-6 h-6 text-saffron" />,
-    anchor: "#blood-donation",
-  },
-  {
-    title: "Ecological & Cleanliness",
-    desc: "Mass tree planting campaigns, green cover enhancement, civic cleanliness drives, and promoting eco-friendly festival celebrations in Indira Nagar.",
-    tag: "Vasundhara",
-    icon: <Leaf className="w-6 h-6 text-saffron" />,
-    anchor: "#tree-plantation",
-  },
-  {
-    title: "Socio-Educational & Relief",
-    desc: "Educational study kits and books for students, dry ration distribution, disaster support, and empowering youth through community welfare.",
-    tag: "Seva",
-    icon: <Shield className="w-6 h-6 text-saffron" />,
-    anchor: "#charity-social-work",
-  },
-];
-
 export default function CommunityInitiatives() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchRow, setTouchRow] = useState<number | null>(null);
   const [activeMobileRow, setActiveMobileRow] = useState<number | null>(0);
+
+  const INITIATIVES_SUMMARY: InitiativeItem[] = [
+    {
+      title: t("communityPage.initiatives.i1Title"),
+      desc: t("communityPage.initiatives.i1Desc"),
+      tag: t("communityPage.initiatives.i1Tag"),
+      icon: <Heart className="w-6 h-6 text-saffron" />,
+      anchor: "#blood-donation",
+    },
+    {
+      title: t("communityPage.initiatives.i2Title"),
+      desc: t("communityPage.initiatives.i2Desc"),
+      tag: t("communityPage.initiatives.i2Tag"),
+      icon: <Leaf className="w-6 h-6 text-saffron" />,
+      anchor: "#tree-plantation",
+    },
+    {
+      title: t("communityPage.initiatives.i3Title"),
+      desc: t("communityPage.initiatives.i3Desc"),
+      tag: t("communityPage.initiatives.i3Tag"),
+      icon: <Shield className="w-6 h-6 text-saffron" />,
+      anchor: "#charity-social-work",
+    },
+  ];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -112,10 +114,10 @@ export default function CommunityInitiatives() {
         {/* Section Header */}
         <div className="text-left max-w-2xl mb-8 sm:mb-16">
           <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
-            Our Pillars
+            {t("communityPage.initiatives.badge")}
           </span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Key Focus Areas
+            {t("communityPage.initiatives.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mt-3 sm:mt-4 rounded-full" />
         </div>
@@ -209,7 +211,7 @@ export default function CommunityInitiatives() {
                     onClick={(e) => handleScrollToSection(item.anchor, e)}
                     className="mt-3 sm:mt-4 inline-flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white bg-saffron hover:bg-saffron/90 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md transition-all cursor-pointer group-hover:scale-102 font-sans active:scale-95"
                   >
-                    <span>Explore details</span>
+                    <span>{t("communityPage.initiatives.readMore")}</span>
                     <ArrowDownRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </button>
                 </div>

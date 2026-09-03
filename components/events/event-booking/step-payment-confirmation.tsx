@@ -24,6 +24,7 @@ import {
   ExternalLink
 } from "lucide-react";
 import { EventBookingInput } from "@/lib/validations";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface StepPaymentConfirmationProps {
   formData: Partial<EventBookingInput>;
@@ -38,6 +39,7 @@ export default function StepPaymentConfirmation({
   onBack,
   onReset,
 }: StepPaymentConfirmationProps) {
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
 
@@ -83,13 +85,13 @@ export default function StepPaymentConfirmation({
         </div>
         <div className="space-y-2 max-w-3xl mx-auto">
           <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full">
-            Event Booked
+            {t("eventsPage.booking.freeEntryBadge")}
           </span>
           <h2 className="text-2xl sm:text-4xl font-black font-heading text-neutral-900">
-            Event Booked Successfully!
+            {t("eventsPage.booking.passReadyTitle")}
           </h2>
           <p className="text-sm sm:text-base font-semibold text-neutral-800 leading-relaxed bg-amber-50/80 border border-amber-200 p-3.5 rounded-2xl">
-            &ldquo;We will address and contact you as soon as possible regarding your event booking and ground coordination details.&rdquo;
+            {t("eventsPage.booking.passReadyDesc")}
           </p>
           <p className="text-xs text-neutral-500">
             No online payment is collected. This event booking is completely free. Any physical seva contributions are handled in person at our Indira Nagar, Nashik office.

@@ -4,50 +4,52 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin, PhoneCall, Building2, ShieldCheck } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CARDS = [
-  {
-    title: "Registered Head Office",
-    details: [
-      "Shree Pratishtan Mandal,",
-      "Indira Nagar,",
-      "Nashik, MH - 422009",
-    ],
-    icon: MapPin,
-  },
-  {
-    title: "Administrative Coordinates",
-    details: [
-      "Inquiries: Info@shreepratishthan.com",
-      "Helpline: +91 9922786608",
-      "WhatsApp: +91 9922786608",
-    ],
-    icon: PhoneCall,
-  },
-  {
-    title: "Registered Trust Entity",
-    details: [
-      "कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था",
-      "Indira Nagar, Nashik",
-      "Bank: Samarth Sahakari Bank",
-    ],
-    icon: Building2,
-  },
-  {
-    title: "Trust Registrations & Motto",
-    details: [
-      "Reg No: nashik/0000153/2018",
-      "Founder: ॲड श्याम धर्मराज बडोदे",
-      "वारसा संस्कृतीचा, ध्यास समाजसेवेचा",
-    ],
-    icon: ShieldCheck,
-  },
-];
-
 export default function ContactInformation() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const CARDS = [
+    {
+      title: t("contactPage.info.card1Title"),
+      details: [
+        t("contactPage.info.card1Line1"),
+        t("contactPage.info.card1Line2"),
+        t("contactPage.info.card1Line3"),
+      ],
+      icon: MapPin,
+    },
+    {
+      title: t("contactPage.info.card2Title"),
+      details: [
+        t("contactPage.info.card2Inquiries"),
+        t("contactPage.info.card2Helpline"),
+        t("contactPage.info.card2Whatsapp"),
+      ],
+      icon: PhoneCall,
+    },
+    {
+      title: t("contactPage.info.card3Title"),
+      details: [
+        t("contactPage.info.card3TrustName"),
+        t("contactPage.info.card3Loc"),
+        t("contactPage.info.card3Bank"),
+      ],
+      icon: Building2,
+    },
+    {
+      title: t("contactPage.info.card4Title"),
+      details: [
+        t("contactPage.info.card4RegNo"),
+        t("contactPage.info.card4Founder"),
+        t("contactPage.info.card4Motto"),
+      ],
+      icon: ShieldCheck,
+    },
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -82,7 +84,7 @@ export default function ContactInformation() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Official Contact Directory
+            {t("contactPage.info.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

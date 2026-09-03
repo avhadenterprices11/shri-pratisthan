@@ -3,10 +3,12 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutCommittee() {
+  const { t, tArray } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -110,11 +112,11 @@ export default function AboutCommittee() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-saffron/15 mb-8 sm:mb-16 relative z-10">
           <div className="flex flex-col items-start gap-2 sm:gap-3">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 font-heading uppercase leading-tight tracking-tight">
-              Leadership &amp; Founding Pillars
+              {t("aboutPage.committee.heading")}
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
-            Led by Adv. Shyam Dharmaraj Badode and powered by 20 founding members and 100+ active organizers in Indira Nagar, Nashik.
+            {t("aboutPage.committee.subtitle")}
           </p>
         </div>
 
@@ -138,22 +140,22 @@ export default function AboutCommittee() {
               {/* Founder Text */}
               <div className="relative z-10 mt-6 sm:mt-12 text-left">
                 <span className="text-[10px] sm:text-xs font-bold text-saffron uppercase tracking-[0.2em] block mb-1.5 sm:mb-2 font-sans">
-                  Founder &amp; President • संस्थापक व अध्यक्ष
+                  {t("aboutPage.committee.presidentBadge")}
                 </span>
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-normal text-slate-800 font-heading uppercase leading-tight mb-2 group-hover:text-saffron transition-colors duration-300">
-                  ॲड श्याम धर्मराज बडोदे
+                  {t("aboutPage.committee.presidentName")}
                 </h3>
                 <p className="text-[11px] sm:text-xs font-bold text-amber-700 uppercase tracking-[0.18em] mb-3 sm:mb-4 font-sans">
-                  गटनेता तथा नगरसेवक प्रभाग क्र.३० | सरचिटणीस भाजपा नाशिक शहर
+                  {t("aboutPage.committee.presidentRole")}
                 </p>
                 <p className="text-xs sm:text-sm text-slate-grey font-sans font-normal leading-[1.75] max-w-md">
-                  Pioneered the evolution from the 2006 cricket brotherhood to the registered trust (कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था - Reg: nashik/0000153/2018), championing cultural festivals and welfare across Nashik.
+                  {t("aboutPage.committee.presidentDesc")}
                 </p>
               </div>
 
               {/* Footer Stamp */}
               <div className="border-t border-saffron/10 w-full pt-3 sm:pt-4 mt-5 sm:mt-6 text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.18em] font-sans relative z-10 text-left">
-                Leading Community Progress • Established 2006
+                {t("aboutPage.committee.presidentFooter")}
               </div>
 
             </div>
@@ -173,22 +175,27 @@ export default function AboutCommittee() {
                   20
                 </div>
                 <div className="flex flex-col items-start text-left">
-                  <span className="text-[9px] sm:text-[10px] font-bold text-saffron uppercase tracking-[0.18em] font-sans">The 20 Founding Pillars</span>
+                  <span className="text-[9px] sm:text-[10px] font-bold text-saffron uppercase tracking-[0.18em] font-sans">
+                    {t("aboutPage.committee.pillarsBadge")}
+                  </span>
                   <h3 className="text-lg sm:text-xl font-normal text-slate-800 font-heading uppercase leading-tight group-hover:text-saffron transition-colors">
-                    संस्थापक सदस्य (Founders Roll)
+                    {t("aboutPage.committee.pillarsHeading")}
                   </h3>
                 </div>
               </div>
 
               {/* 20 Founders Tags */}
               <div className="flex flex-wrap gap-1 sm:gap-1.5 relative z-10 max-w-lg font-sans">
-                {[
-                  "Shyam Badode", "Gopal Avhad", "Jaywant Takke", "Ganesh Ratnaparkhe",
-                  "Manish Patil", "Bharat Shirsath", "Yogesh Revgade", "Satish Yadav",
-                  "Ashish Dabholkar", "Paresh Patil", "Prashant Patil", "Nitin Bande",
-                  "Kiran Patil", "Pankaj Sonar", "Ram Nagare", "Ghanshyam Bachaw",
-                  "Prakash Sonawane", "Manoj Vayal", "Adil Shaikh", "Somnath Suryawanshi"
-                ].map((name, i) => (
+                {(tArray("aboutPage.committee.pillarsList").length > 0
+                  ? tArray("aboutPage.committee.pillarsList")
+                  : [
+                      "Shyam Badode", "Gopal Avhad", "Jaywant Takke", "Ganesh Ratnaparkhe",
+                      "Manish Patil", "Bharat Shirsath", "Yogesh Revgade", "Satish Yadav",
+                      "Ashish Dabholkar", "Paresh Patil", "Prashant Patil", "Nitin Bande",
+                      "Kiran Patil", "Pankaj Sonar", "Ram Nagare", "Ghanshyam Bachaw",
+                      "Prakash Sonawane", "Manoj Vayal", "Adil Shaikh", "Somnath Suryawanshi"
+                    ]
+                ).map((name, i) => (
                   <span key={i} className="text-[9px] sm:text-[10px] font-medium bg-saffron/5 border border-saffron/15 text-slate-700 px-2 sm:px-2.5 py-0.5 rounded-full">
                     {name}
                   </span>
@@ -196,7 +203,7 @@ export default function AboutCommittee() {
               </div>
 
               <div className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.18em] font-sans relative z-10 pt-2 border-t border-saffron/10 w-full text-left">
-                20 Founding Pillars • Indira Nagar, Nashik (2006)
+                {t("aboutPage.committee.pillarsFooter")}
               </div>
             </div>
 
@@ -211,18 +218,20 @@ export default function AboutCommittee() {
                   100+
                 </div>
                 <div className="flex flex-col items-start text-left max-w-sm">
-                  <span className="text-[9px] sm:text-[10px] font-bold text-saffron uppercase tracking-[0.18em] font-sans mb-0.5 sm:mb-1">Youth Force &amp; Volunteers</span>
+                  <span className="text-[9px] sm:text-[10px] font-bold text-saffron uppercase tracking-[0.18em] font-sans mb-0.5 sm:mb-1">
+                    {t("aboutPage.committee.youthBadge")}
+                  </span>
                   <h3 className="text-lg sm:text-xl font-normal text-slate-800 font-heading uppercase leading-tight group-hover:text-saffron transition-colors">
-                    100+ Active Organizers
+                    {t("aboutPage.committee.youthHeading")}
                   </h3>
                   <p className="text-xs text-slate-grey font-sans font-normal leading-[1.7] mt-1">
-                    Driving Ganeshotsav, Swagat Yatra, 50+ blood donation camps, and sports leagues.
+                    {t("aboutPage.committee.youthDesc")}
                   </p>
                 </div>
               </div>
 
               <div className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.18em] font-sans self-start sm:self-center relative z-10 pt-3 sm:pt-0 sm:border-l border-saffron/15 sm:pl-6">
-                19+ Yrs
+                {t("aboutPage.committee.youthTenure")}
               </div>
             </div>
 

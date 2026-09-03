@@ -3,39 +3,46 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HISTORY = [
-  {
-    year: "2006",
-    title: "Indira Nagar Cricket Spark",
-    desc: "Started as a close circle of 20 friends playing cricket daily in Indira Nagar, deciding to channel their bond and energy into community service.",
-  },
-  {
-    year: "2012",
-    title: "Festival & Youth Expansion",
-    desc: "Expanded into organizing grand cultural celebrations, including the iconic Gudipadwa Swagat Yatra, Ganeshotsav, and youth sports events in Nashik.",
-  },
-  {
-    year: "2018",
-    title: "Official Trust Registration",
-    desc: "Formally registered as 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था इंदिरानगर नाशिक' (Reg: nashik/0000153/2018) under Adv. Shyam Dharmaraj Badode.",
-  },
-  {
-    year: "2021",
-    title: "Pandemic Relief & Health Drives",
-    desc: "Organized urgent food grain distribution, medical support during lockdowns, and accelerated regular blood donation drives across Nashik.",
-  },
-  {
-    year: "Present",
-    title: "19+ Years Legacy & Leadership",
-    desc: "Leading 100+ active members and 20 founding pillars, conducting 50+ health drives, major cultural yatras, and annual sports tournaments.",
-  },
-];
-
 export default function AboutTimeline() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const HISTORY = [
+    {
+      id: "2006",
+      year: t("aboutPage.timeline.t1Year"),
+      title: t("aboutPage.timeline.t1Title"),
+      desc: t("aboutPage.timeline.t1Desc"),
+    },
+    {
+      id: "2012",
+      year: t("aboutPage.timeline.t2Year"),
+      title: t("aboutPage.timeline.t2Title"),
+      desc: t("aboutPage.timeline.t2Desc"),
+    },
+    {
+      id: "2018",
+      year: t("aboutPage.timeline.t3Year"),
+      title: t("aboutPage.timeline.t3Title"),
+      desc: t("aboutPage.timeline.t3Desc"),
+    },
+    {
+      id: "2021",
+      year: t("aboutPage.timeline.t4Year"),
+      title: t("aboutPage.timeline.t4Title"),
+      desc: t("aboutPage.timeline.t4Desc"),
+    },
+    {
+      id: "present",
+      year: t("aboutPage.timeline.t5Year"),
+      title: t("aboutPage.timeline.t5Title"),
+      desc: t("aboutPage.timeline.t5Desc"),
+    },
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -112,11 +119,11 @@ export default function AboutTimeline() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-saffron/15 mb-8 sm:mb-16 relative z-10">
           <div className="flex flex-col items-start gap-2 sm:gap-3">
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 font-heading uppercase leading-tight tracking-tight">
-              Trust History
+              {t("aboutPage.timeline.heading")}
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
-            Our key operational milestones, reflecting direct social welfare impacts and structured organizational expansion.
+            {t("aboutPage.timeline.subtitle")}
           </p>
         </div>
 

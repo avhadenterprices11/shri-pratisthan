@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Users, HeartPulse, Leaf, Gift } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface OpportunityTrack {
   title: string;
@@ -12,35 +13,36 @@ interface OpportunityTrack {
   icon: React.ReactNode;
 }
 
-const TRACKS: OpportunityTrack[] = [
-  {
-    title: "Cultural Festival Logistics",
-    desc: "Oversee stage setups, grand processions, crowd safety, and logistics during major festivals like Gudipadwa Swagat Yatra, Ganeshotsav, Navratri, and Shiv Jayanti.",
-    skills: "Crowd Safety, Procession Coordination, Leadership",
-    icon: <Users className="w-6 h-6 text-saffron" />,
-  },
-  {
-    title: "Arogya & Blood Drive Mobilizer",
-    desc: "Coordinate donor registration desks, blood bank liaisons, queue management, and doctor assistance during our 50+ blood donation & health camps.",
-    skills: "Donor Care, Health Camp Coordination, Desk Mgmt",
-    icon: <HeartPulse className="w-6 h-6 text-saffron" />,
-  },
-  {
-    title: "Sports & Cricket Tournaments",
-    desc: "Manage team fixtures, ground operations, referee coordination, and youth athletics during our annual cricket tournaments in Indira Nagar.",
-    skills: "Sports Coordination, Team Spirit, Field Mgmt",
-    icon: <Leaf className="w-6 h-6 text-saffron" />,
-  },
-  {
-    title: "Seva & Student Relief Coordinator",
-    desc: "Assemble student educational kits, coordinate notebook distributions, organize winter clothing drives, and deliver emergency community relief.",
-    skills: "Resource Management, Distribution Logistics, Care",
-    icon: <Gift className="w-6 h-6 text-saffron" />,
-  },
-];
-
 export default function VolunteerOpportunities() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const TRACKS: OpportunityTrack[] = [
+    {
+      title: t("volunteerPage.opportunities.t1Title"),
+      desc: t("volunteerPage.opportunities.t1Desc"),
+      skills: t("volunteerPage.opportunities.t1Skills"),
+      icon: <Users className="w-6 h-6 text-saffron" />,
+    },
+    {
+      title: t("volunteerPage.opportunities.t2Title"),
+      desc: t("volunteerPage.opportunities.t2Desc"),
+      skills: t("volunteerPage.opportunities.t2Skills"),
+      icon: <HeartPulse className="w-6 h-6 text-saffron" />,
+    },
+    {
+      title: t("volunteerPage.opportunities.t3Title"),
+      desc: t("volunteerPage.opportunities.t3Desc"),
+      skills: t("volunteerPage.opportunities.t3Skills"),
+      icon: <Leaf className="w-6 h-6 text-saffron" />,
+    },
+    {
+      title: t("volunteerPage.opportunities.t4Title"),
+      desc: t("volunteerPage.opportunities.t4Desc"),
+      skills: t("volunteerPage.opportunities.t4Skills"),
+      icon: <Gift className="w-6 h-6 text-saffron" />,
+    },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -89,10 +91,10 @@ export default function VolunteerOpportunities() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Active Volunteer Tracks
+            {t("volunteerPage.opportunities.heading")}
           </h2>
           <p className="text-slate-grey mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-xs sm:text-base font-normal">
-            Select a pathway that aligns with your interest and contribute to high-efficiency community systems.
+            {t("volunteerPage.opportunities.subtitle")}
           </p>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

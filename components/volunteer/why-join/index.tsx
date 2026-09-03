@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ValueItem {
   title: string;
@@ -10,34 +11,35 @@ interface ValueItem {
   badge: string;
 }
 
-const VALUES: ValueItem[] = [
-  {
-    title: "Direct Social Impact",
-    desc: "Coordinate 50+ blood donation drives, free medical checkups, student aid kits, and relief campaigns to create measurable change in Indira Nagar and Nashik.",
-    badge: "🤝",
-  },
-  {
-    title: "Youth Leadership & Skills",
-    desc: "Develop competencies in major cultural event management, stage coordination, emergency response, public communications, and social administration.",
-    badge: "📈",
-  },
-  {
-    title: "Cultural Heritage Preservation",
-    desc: "Lead historic celebrations including the iconic Gudipadwa Swagat Yatra, Shree Ganeshotsav, Navratri, Shiv Jayanti, and traditional Lezim / Dhol Tasha.",
-    badge: "🚩",
-  },
-  {
-    title: "Camaraderie & Brotherhood",
-    desc: "Experience the genuine sportsmanship and unity born from our 2006 cricket origin, building lifelong bonds with over 100+ active organizers and founding pillars.",
-    badge: "🌐",
-  },
-];
-
 export default function VolunteerWhyJoin() {
+  const { t } = useLanguage();
   const [activeIdx, setActiveIdx] = useState(0);
   const [timerKey, setTimerKey] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const cardContentRef = useRef<HTMLDivElement>(null);
+
+  const VALUES: ValueItem[] = [
+    {
+      title: t("volunteerPage.whyJoin.v1Title"),
+      desc: t("volunteerPage.whyJoin.v1Desc"),
+      badge: "🤝",
+    },
+    {
+      title: t("volunteerPage.whyJoin.v2Title"),
+      desc: t("volunteerPage.whyJoin.v2Desc"),
+      badge: "📈",
+    },
+    {
+      title: t("volunteerPage.whyJoin.v3Title"),
+      desc: t("volunteerPage.whyJoin.v3Desc"),
+      badge: "🚩",
+    },
+    {
+      title: t("volunteerPage.whyJoin.v4Title"),
+      desc: t("volunteerPage.whyJoin.v4Desc"),
+      badge: "🌐",
+    },
+  ];
 
   // Stagger reveal section elements on scroll
   useEffect(() => {
@@ -102,7 +104,7 @@ export default function VolunteerWhyJoin() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Why Volunteer With Us?
+            {t("volunteerPage.whyJoin.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

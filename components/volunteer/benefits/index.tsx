@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface BenefitItem {
   title: string;
@@ -12,32 +13,33 @@ interface BenefitItem {
   icon: string;
 }
 
-const BENEFITS: BenefitItem[] = [
-  {
-    title: "Official Trust Certification",
-    desc: "Receive an official Trust Certificate from 'कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था' (Reg: nashik/0000153/2018) validating your service, leadership, and community contributions.",
-    icon: "Cert",
-  },
-  {
-    title: "Youth Skill & Event Training",
-    desc: "Gain hands-on experience in large-scale cultural festival execution, stage coordination, healthcare logistics, and emergency response management.",
-    icon: "Skill",
-  },
-  {
-    title: "Leadership & Committee Growth",
-    desc: "Take charge of zonal operations in Indira Nagar and Nashik. Transition from active volunteer to drive coordinator and event planning lead.",
-    icon: "Lead",
-  },
-  {
-    title: "Civic & Community Network",
-    desc: "Connect with dedicated local leaders, municipal authorities, sports enthusiasts, and community organizers committed to Nashik's progress.",
-    icon: "Net",
-  },
-];
-
 export default function VolunteerBenefits() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
+
+  const BENEFITS: BenefitItem[] = [
+    {
+      title: t("volunteerPage.benefits.b1Title"),
+      desc: t("volunteerPage.benefits.b1Desc"),
+      icon: "Cert",
+    },
+    {
+      title: t("volunteerPage.benefits.b2Title"),
+      desc: t("volunteerPage.benefits.b2Desc"),
+      icon: "Skill",
+    },
+    {
+      title: t("volunteerPage.benefits.b3Title"),
+      desc: t("volunteerPage.benefits.b3Desc"),
+      icon: "Lead",
+    },
+    {
+      title: t("volunteerPage.benefits.b4Title"),
+      desc: t("volunteerPage.benefits.b4Desc"),
+      icon: "Net",
+    },
+  ];
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -97,7 +99,7 @@ export default function VolunteerBenefits() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
-            Volunteer Rewards &amp; Benefits
+            {t("volunteerPage.benefits.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>

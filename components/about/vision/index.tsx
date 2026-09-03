@@ -4,9 +4,12 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutVision() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -66,9 +69,9 @@ export default function AboutVision() {
         <div className="lg:col-span-5 flex flex-col items-start text-left">
 
           <h2 className="reveal-wipe text-2xl sm:text-4xl md:text-6xl font-normal text-slate-800 leading-[1.08] tracking-tight uppercase font-heading">
-            Our Vision <br />
-            &amp; Social <br />
-            <span className="text-saffron font-heading">Commitment.</span>
+            {t("aboutPage.vision.titlePart1")} <br />
+            {t("aboutPage.vision.titlePart2")} <br />
+            <span className="text-saffron font-heading">{t("aboutPage.vision.titlePart3")}</span>
           </h2>
           <div className="reveal-wipe w-12 sm:w-16 h-1 bg-saffron mt-4 sm:mt-6 rounded-full" />
         </div>
@@ -77,14 +80,8 @@ export default function AboutVision() {
         <div className="lg:col-span-7 flex flex-col items-start gap-4 sm:gap-6 max-w-3xl">
           
           <div className="reveal-wipe overflow-hidden">
-            <p className="text-base sm:text-xl md:text-2xl text-slate-800 leading-snug font-heading font-normal tracking-normal">
-              &ldquo;एक एकजूट, सक्रिय आणि सामाजिकदृष्ट्या जबाबदार समाज घडवणे, जिथे सर्व नागरिक एकत्र येऊन संस्कृती व परंपरा जपतील आणि समाजाच्या सर्वांगीण विकासासाठी योगदान देतील.&rdquo;
-            </p>
-          </div>
-
-          <div className="reveal-wipe overflow-hidden border-t border-saffron/15 pt-4 sm:pt-6 mt-1 sm:mt-2">
-            <p className="text-xs sm:text-sm md:text-base text-slate-grey leading-[1.75] font-sans font-normal">
-              To build a united, active, and socially responsible community where people come together to celebrate culture, support one another, encourage youth participation, and contribute towards the overall development and well-being of society.
+            <p className="text-base sm:text-xl md:text-2xl text-slate-800 leading-relaxed font-heading font-normal tracking-normal">
+              &ldquo;{t("aboutPage.vision.quote")}&rdquo;
             </p>
           </div>
 

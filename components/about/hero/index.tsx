@@ -4,10 +4,12 @@ import React, { useEffect, useRef } from "react";
 import { getCDNUrl } from "@/lib/cdn";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutHero() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const portalRef = useRef<HTMLDivElement>(null);
 
@@ -117,8 +119,8 @@ export default function AboutHero() {
     };
   }, []);
 
-  const TITLE_WORD_1 = "OUR";
-  const TITLE_WORD_2 = "LEGACY";
+  const TITLE_WORD_1 = t("aboutPage.hero.word1");
+  const TITLE_WORD_2 = t("aboutPage.hero.word2");
 
   return (
     <section
@@ -151,7 +153,7 @@ export default function AboutHero() {
         <div className="left-text-wrapper absolute top-20 sm:top-auto left-4 sm:left-6 lg:left-8 z-20 flex flex-col items-start gap-2.5 sm:gap-5 max-w-[200px] sm:max-w-xs md:max-w-sm pointer-events-none will-change-transform">
           <div className="hero-badge inline-flex items-center gap-1.5 sm:gap-2 bg-white/15 text-white font-bold text-[9px] sm:text-xs uppercase tracking-[0.2em] px-3 sm:px-4.5 py-1.5 sm:py-2 rounded-full border border-white/25 shadow-sm backdrop-blur-md font-sans">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span>Foundations</span>
+            <span>{t("aboutPage.hero.badge")}</span>
           </div>
 
           <h2 className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-white leading-[0.92] tracking-tight font-heading uppercase flex gap-0.5 sm:gap-1">
@@ -161,7 +163,7 @@ export default function AboutHero() {
           </h2>
 
           <p className="left-desc text-white/90 text-[10px] sm:text-xs md:text-sm font-sans font-normal leading-[1.6] sm:leading-[1.75]">
-            Preserving cultural roots while building youth-led community progress in Indira Nagar, Nashik. Estd 2006.
+            {t("aboutPage.hero.leftDesc")}
           </p>
         </div>
 
@@ -175,9 +177,9 @@ export default function AboutHero() {
           </h2>
 
           <div className="right-desc text-white/80 text-[8px] sm:text-[10px] uppercase font-bold tracking-[0.18em] leading-relaxed border-t border-white/20 pt-2 sm:pt-4 flex flex-col gap-0.5 sm:gap-1 font-sans">
-            <span>✦ Estd 2006 Indira Nagar, Nashik</span>
-            <span>✦ 100+ Members &amp; 20 Founders</span>
-            <span>✦ 50+ Health &amp; Blood Camps</span>
+            <span>{t("aboutPage.hero.bullet1")}</span>
+            <span>{t("aboutPage.hero.bullet2")}</span>
+            <span>{t("aboutPage.hero.bullet3")}</span>
           </div>
         </div>
 
@@ -205,16 +207,16 @@ export default function AboutHero() {
         <div className="overlay-content absolute inset-0 z-40 flex flex-col items-center justify-center text-center px-4 sm:px-6 pointer-events-none bg-saffron/95 backdrop-blur-md">
           
           <div className="inline-flex items-center gap-2 mb-4 sm:mb-6 bg-white/20 text-white font-bold text-[10px] sm:text-xs uppercase tracking-[0.2em] px-4 sm:px-5 py-1.5 sm:py-2 rounded-full border border-white/30 shadow-lg backdrop-blur-md font-sans">
-            <span>Shree Pratishtan (श्री प्रतिष्ठान)</span>
+            <span>{t("aboutPage.hero.pillTitle")}</span>
           </div>
 
           <h2 className="text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-normal text-white leading-[1.1] font-heading uppercase max-w-4xl mb-4 sm:mb-6 tracking-tight">
-            वारसा संस्कृतीचा <br className="hidden sm:inline" />
-            <span className="text-amber-100 font-heading">ध्यास समाजसेवेचा</span>
+            {t("aboutPage.hero.sloganPart1")} <br className="hidden sm:inline" />
+            <span className="text-amber-100 font-heading">{t("aboutPage.hero.sloganPart2")}</span>
           </h2>
           
           <p className="text-white/90 text-xs sm:text-sm md:text-base max-w-xl font-normal font-sans leading-[1.75]">
-            From a circle of friends playing daily cricket in Indira Nagar in 2006 to a formally registered trust with 100+ active members and 20 founding pillars, uniting Nashik through culture, health camps, and social service.
+            {t("aboutPage.hero.overlayDesc")}
           </p>
 
         </div>
