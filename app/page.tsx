@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.shreepratishthan.org" },
 };
 
+import DynamicAnnouncements from "@/components/home/dynamic-announcements";
 import Hero from "@/components/home/hero";
 import AboutPreview from "@/components/home/about-preview";
 
@@ -38,6 +39,9 @@ export default function Home() {
     <main className="w-full min-h-screen block">
       {/* 1. Hero Landing Block */}
       <Hero />
+
+      {/* Dynamic Community Notices & Pre-translated Announcements */}
+      <DynamicAnnouncements />
 
       {/* 2. Editorial About Preview */}
       <AboutPreview />

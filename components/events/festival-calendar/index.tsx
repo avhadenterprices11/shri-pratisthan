@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -16,47 +16,47 @@ interface CalendarItem {
 const CALENDAR_ITEMS: CalendarItem[] = [
   {
     num: "1",
-    month: "February",
-    title: "Shiv Jayanti Celebrations (शिवजयंती)",
-    desc: "Inspirational youth rallies, historical exhibitions, Mardani Khel martial arts demonstrations, and tributes in Indira Nagar.",
-    type: "Historical & Youth",
-    badgeClass: "bg-orange-50 border-orange-200 text-orange-600",
+    month: "March / April",
+    title: "Gudipadwa Bhavya Swagat Yatra",
+    desc: "Welcoming the Marathi New Year with 1,000+ youth, traditional costumes, Lezim, and saffron flags.",
+    type: "Cultural Celebration",
+    badgeClass: "bg-saffron/10 border-saffron/30 text-saffron",
   },
   {
     num: "2",
-    month: "March",
-    title: "Gudipadwa Swagat Yatra (स्वागत यात्रा)",
-    desc: "Grand Marathi New Year procession, traditional attire, Lezim, Dhol Tasha, and family rallies across Indira Nagar.",
-    type: "Cultural Festival",
-    badgeClass: "bg-orange-50 border-orange-200 text-orange-600",
+    month: "April",
+    title: "Shiv Jayanti Utsav (शिवजयंती)",
+    desc: "Commemorating Chhatrapati Shivaji Maharaj with morning Rajyabhishek, weapon demos, and blood donation.",
+    type: "Commemoration & Seva",
+    badgeClass: "bg-amber-50 border-amber-200 text-amber-600",
   },
   {
     num: "3",
-    month: "April",
-    title: "Dr. Ambedkar Jayanti (आंबेडकर जयंती)",
-    desc: "Free notebook kits distribution, social harmony symposiums, and academic merit awards for students.",
-    type: "Social Welfare",
-    badgeClass: "bg-emerald-50 border-emerald-200 text-emerald-600",
+    month: "August",
+    title: "Dahi Handi Utsav (दहीहंडी)",
+    desc: "Nashik's premier Gokulashtami spectacle featuring multi-tier human pyramids and electrifying atmosphere.",
+    type: "Major Festival",
+    badgeClass: "bg-rose-50 border-rose-200 text-rose-600",
   },
   {
     num: "4",
-    month: "June",
-    title: "Yoga Day & Health Camp (आरोग्य शिबिर)",
-    desc: "Mass guided yoga protocols and specialized doctor diagnostic checkups for families and senior citizens.",
-    type: "Healthcare",
-    badgeClass: "bg-emerald-50 border-emerald-200 text-emerald-600",
+    month: "September",
+    title: "Shree Ganeshotsav Celebrations",
+    desc: "Iconic 10-day utsav featuring historic theme dekhavas, cultural competitions, and grand Maha Aarti.",
+    type: "Signature Utsav",
+    badgeClass: "bg-saffron/10 border-saffron/30 text-saffron",
   },
   {
     num: "5",
-    month: "Aug-Sept",
-    title: "Shree Ganeshotsav & Blood Drive",
-    desc: "10-day grand festival, eco-friendly Shadu clay idol, daily Maha Aarti, and mega blood donation camp.",
-    type: "Cultural & Health",
-    badgeClass: "bg-orange-50 border-orange-200 text-orange-600",
+    month: "September",
+    title: "Anant Chaturdashi Visarjan Miravnuk",
+    desc: "The pinnacle immersion procession with rhythmic Dhol-Tasha beats and lezim troupe performances.",
+    type: "Grand Procession",
+    badgeClass: "bg-red-50 border-red-200 text-red-600",
   },
   {
     num: "6",
-    month: "Sept-Oct",
+    month: "October",
     title: "Navratri Utsav & Dandiya (नवरात्रौत्सव)",
     desc: "Nine nights of traditional Garba, Raas Dandiya, live folk musicians, and family celebration arenas.",
     type: "Cultural Festival",
@@ -85,35 +85,40 @@ export default function FestivalCalendar() {
 
     const mm = gsap.matchMedia();
 
-    // Desktop viewports: Pinned Scroll-Scrubbed Horizontal Timeline with Offset centering
-    mm.add("(min-width: 768px)", () => {
+    // Universal Responsive Pinned Horizontal Timeline (Mobile & Desktop)
+    mm.add("(min-width: 0px)", () => {
       const slider = sliderRef.current;
       const container = containerRef.current;
       if (!slider || !container) return;
 
-      const cardWidth = 332; // Matches md:w-[332px]
-      const gap = 32;        // Matches gap-8
-      const step = cardWidth + gap;
+      const isMobile = window.innerWidth < 768;
+      const firstChild = slider.children[0] as HTMLElement | undefined;
+      const secondChild = slider.children[1] as HTMLElement | undefined;
 
-      // Calculate translation to position the first card centered on start, and the last card centered on end
+      const cardWidth = firstChild ? firstChild.offsetWidth : (isMobile ? 260 : 332);
+      const gap = (firstChild && secondChild)
+        ? (secondChild.offsetLeft - (firstChild.offsetLeft + firstChild.offsetWidth))
+        : (isMobile ? 16 : 32);
+      const step = cardWidth + Math.max(gap, 16);
+
       const W = container.clientWidth;
       const offset = (W - cardWidth) / 2;
 
       const startX = offset;
       const endX = offset - (CALENDAR_ITEMS.length - 1) * step;
+      const scrollDistance = Math.abs(endX - startX) * (isMobile ? 1.05 : 1.25);
 
       ScrollTrigger.create({
         trigger: "#calendarPinContainer",
         start: "top top",
-        end: () => `+=${Math.abs(endX - startX) * 1.25}`,
-        scrub: 0.5,
+        end: () => `+=${scrollDistance}`,
+        scrub: isMobile ? 0.35 : 0.5,
         pin: true,
         pinSpacing: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const progress = self.progress;
-          // Calculate active index based on active horizontal translation coordinates
           const currentX = startX + (endX - startX) * progress;
           const index = Math.round((offset - currentX) / step);
           const boundedIndex = Math.max(0, Math.min(index, CALENDAR_ITEMS.length - 1));
@@ -131,26 +136,8 @@ export default function FestivalCalendar() {
           scrollTrigger: {
             trigger: "#calendarPinContainer",
             start: "top top",
-            end: () => `+=${Math.abs(endX - startX) * 1.25}`,
-            scrub: 0.5,
-          },
-        }
-      );
-    });
-
-    // Mobile fallback viewports: Standard reveal entrance
-    mm.add("(max-width: 767px)", () => {
-      gsap.fromTo(
-        ".calendar-reveal",
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
+            end: () => `+=${scrollDistance}`,
+            scrub: isMobile ? 0.35 : 0.5,
           },
         }
       );
@@ -168,31 +155,17 @@ export default function FestivalCalendar() {
   }, []);
 
   const handleCardClick = (idx: number) => {
-    const isDesktop = window.innerWidth >= 768;
-    if (isDesktop) {
-      const triggers = ScrollTrigger.getAll();
-      const calendarTrigger = triggers.find(t => t.trigger?.id === "calendarPinContainer");
-      if (calendarTrigger) {
-        const start = calendarTrigger.start;
-        const end = calendarTrigger.end;
-        // The progress is proportional to card index
-        const progress = idx / (CALENDAR_ITEMS.length - 1);
-        const scrollPos = start + (end - start) * progress;
-        window.scrollTo({
-          top: scrollPos,
-          behavior: "smooth",
-        });
-      }
-    } else {
-      setActiveIdx(idx);
-      const cardElements = sliderRef.current?.children;
-      if (cardElements && cardElements[idx]) {
-        cardElements[idx].scrollIntoView({
-          behavior: "smooth",
-          inline: "center",
-          block: "nearest",
-        });
-      }
+    const triggers = ScrollTrigger.getAll();
+    const calendarTrigger = triggers.find(t => t.trigger?.id === "calendarPinContainer");
+    if (calendarTrigger) {
+      const start = calendarTrigger.start;
+      const end = calendarTrigger.end;
+      const progress = idx / (CALENDAR_ITEMS.length - 1);
+      const scrollPos = start + (end - start) * progress;
+      window.scrollTo({
+        top: scrollPos,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -200,33 +173,33 @@ export default function FestivalCalendar() {
     <div 
       id="calendarPinContainer" 
       ref={containerRef}
-      className="bg-background relative w-full md:h-screen md:min-h-screen flex flex-col justify-center overflow-hidden"
+      className="bg-background relative w-full h-screen min-h-[580px] sm:min-h-screen flex flex-col justify-center overflow-hidden select-none"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0 animate-pulse" />
       
-      <div className="relative z-10 w-full flex flex-col justify-center py-12 sm:py-16 md:py-0 overflow-hidden calendar-reveal">
+      <div className="relative z-10 w-full flex flex-col justify-center py-6 sm:py-12 md:py-0 overflow-hidden">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-12 px-4 sm:px-6">
+        <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-8 md:mb-12 px-4 sm:px-6">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             Yearly Calendar Schedule
           </h2>
-          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 sm:mt-4 rounded-full" />
         </div>
 
         {/* Scroll Instruction Banner */}
-        <div className="text-center mb-6 hidden md:block">
-          <span className="text-[10px] text-slate-grey/65 font-bold uppercase tracking-[0.2em] bg-black/5 px-4 py-1.5 rounded-full inline-block font-sans">
+        <div className="text-center mb-4 sm:mb-6">
+          <span className="text-[10px] sm:text-xs text-slate-grey/70 font-bold uppercase tracking-[0.2em] bg-black/5 px-3.5 sm:px-4 py-1.5 rounded-full inline-block font-sans select-none">
             ↓ Scroll Down to Slide Calendar Timeline
           </span>
         </div>
 
         {/* The Scroll viewport Port */}
-        <div className="relative w-full overflow-x-auto md:overflow-x-visible pb-6 sm:pb-8 pt-2 sm:pt-4 scrollbar-none px-4 sm:px-6 md:px-0">
+        <div className="relative w-full overflow-hidden pb-4 sm:pb-8 pt-2 sm:pt-4 select-none">
           {/* Draggable Row Track */}
           <div 
             ref={sliderRef}
-            className="flex gap-4 sm:gap-6 md:gap-8 w-max md:transform md:translate-x-0 snap-x snap-mandatory px-2 sm:px-6 md:px-0"
+            className="flex gap-4 sm:gap-6 md:gap-8 w-max will-change-transform"
           >
             {CALENDAR_ITEMS.map((item, index) => {
               const isActive = activeIdx === index;
@@ -234,7 +207,7 @@ export default function FestivalCalendar() {
                 <div
                   key={index}
                   onClick={() => handleCardClick(index)}
-                  className={`w-[260px] sm:w-[300px] md:w-[332px] shrink-0 glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block bg-white border transition-all duration-500 min-h-[260px] sm:min-h-[300px] flex flex-col justify-between cursor-pointer select-none snap-center ${
+                  className={`w-[260px] sm:w-[300px] md:w-[332px] shrink-0 glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block bg-white border transition-all duration-300 min-h-[260px] sm:min-h-[300px] flex flex-col justify-between cursor-pointer select-none ${
                     isActive 
                       ? "border-saffron/30 shadow-2xl scale-[1.02] sm:scale-[1.03] opacity-100 z-10 shadow-saffron/10" 
                       : "border-black/5 scale-95 opacity-50 sm:opacity-40 hover:opacity-70 z-0"

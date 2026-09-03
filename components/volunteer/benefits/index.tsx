@@ -37,7 +37,7 @@ const BENEFITS: BenefitItem[] = [
 
 export default function VolunteerBenefits() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeMobileIdx, setActiveMobileIdx] = useState<number | null>(0);
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
   useEffect(() => {
     // Register ScrollTrigger plugin
@@ -67,8 +67,8 @@ export default function VolunteerBenefits() {
     return () => ctx.revert();
   }, []);
 
-  const handleMobileToggle = (idx: number) => {
-    setActiveMobileIdx((prev) => (prev === idx ? null : idx));
+  const handleToggle = (idx: number) => {
+    setActiveIdx((prev) => (prev === idx ? null : idx));
   };
 
   return (
@@ -105,35 +105,32 @@ export default function VolunteerBenefits() {
         {/* Typographic Accordion List Container */}
         <div className="flex flex-col border-t border-neutral-300">
           {BENEFITS.map((item, index) => {
-            const isMobileOpen = activeMobileIdx === index;
+            const isOpen = activeIdx === index;
 
             return (
               <div
                 key={index}
-                onClick={() => handleMobileToggle(index)}
+                onClick={() => handleToggle(index)}
                 className={cn(
                   "benefit-row group border-b border-neutral-300 py-5 sm:py-8 cursor-pointer overflow-hidden transition-all duration-500 flex flex-col justify-start relative px-2 sm:px-4",
-                  isMobileOpen ? "bg-saffron/[0.02] sm:bg-transparent" : ""
+                  isOpen ? "bg-saffron/[0.02]" : ""
                 )}
               >
                 {/* Row Header Block */}
                 <div className="flex items-center justify-between z-10 w-full">
                   <div className="flex items-center gap-3 sm:gap-6">
-                    <span className={cn(
-                      "text-base sm:text-2xl font-normal tracking-wider font-heading transition-colors",
-                      isMobileOpen ? "text-saffron" : "text-saffron"
-                    )}>
+                    <span className="text-base sm:text-2xl font-normal tracking-wider font-heading text-saffron transition-colors">
                       0{index + 1}
                     </span>
                     
                     <h3 className={cn(
                       "text-lg sm:text-3xl md:text-4xl lg:text-5xl font-normal font-heading text-outline-row-benefit tracking-tight uppercase flex items-center gap-2.5 sm:gap-4",
-                      isMobileOpen && "is-active-mobile"
+                      isOpen && "is-active-mobile"
                     )}>
                       <span>{item.title}</span>
                       <span className={cn(
                         "text-[10px] sm:text-xs uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] bg-saffron/10 text-saffron border border-saffron/20 px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full font-sans select-none transition-all duration-500",
-                        isMobileOpen ? "opacity-100 inline-block" : "opacity-0 sm:opacity-0 group-hover:sm:opacity-100 hidden sm:inline-block"
+                        isOpen ? "opacity-100 inline-block" : "opacity-0 sm:opacity-0 group-hover:sm:opacity-100 hidden sm:inline-block"
                       )}>
                         {item.icon}
                       </span>
@@ -143,7 +140,7 @@ export default function VolunteerBenefits() {
                   {/* Mobile Animated Chevron */}
                   <div className={cn(
                     "w-7 h-7 rounded-full flex items-center justify-center transition-transform duration-300 shrink-0 sm:hidden",
-                    isMobileOpen ? "rotate-180 bg-saffron text-white shadow-sm" : "bg-saffron/10 text-saffron"
+                    isOpen ? "rotate-180 bg-saffron text-white shadow-sm" : "bg-saffron/10 text-saffron"
                   )}>
                     <ChevronDown size={14} />
                   </div>
@@ -152,8 +149,8 @@ export default function VolunteerBenefits() {
                 {/* Row Expandable Description Container */}
                 <div className={cn(
                   "max-w-4xl overflow-hidden transition-all duration-500 ease-out pl-6 sm:pl-10 md:pl-14",
-                  isMobileOpen
-                    ? "max-h-[160px] opacity-100 mt-2.5 sm:mt-0 sm:max-h-0 sm:opacity-0 group-hover:sm:max-h-[120px] group-hover:sm:opacity-100 group-hover:sm:mt-4"
+                  isOpen
+                    ? "max-h-[160px] opacity-100 mt-2.5 sm:mt-4"
                     : "max-h-0 opacity-0 mt-0 sm:max-h-0 sm:opacity-0 group-hover:sm:max-h-[120px] group-hover:sm:opacity-100 group-hover:sm:mt-4"
                 )}>
                   <p className="text-xs sm:text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] max-w-3xl font-sans font-normal">

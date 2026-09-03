@@ -106,17 +106,17 @@ export default function CulturalInitiatives() {
                 onMouseEnter={() => {
                   if (!isMobile) setOpenCard(idx);
                 }}
-                onFocus={() => setOpenCard(idx)}
-                onClick={() => handleCardToggle(idx)}
-                tabIndex={0}
+                onClick={() => {
+                  if (!isMobile) handleCardToggle(idx);
+                }}
                 layout={isMobile}
                 animate={{
                   flex: isMobile ? 1 : isOpen ? 4.8 : 1.5,
                 }}
                 transition={{ type: "spring", stiffness: 220, damping: 28 }}
-                className={`${card.bg} ${card.text} relative overflow-hidden border border-saffron/10 cursor-pointer rounded-2xl md:rounded-none transition-shadow duration-300 ${
+                className={`${card.bg} ${card.text} relative overflow-hidden border border-saffron/10 rounded-2xl md:rounded-none transition-shadow duration-300 ${
                   isOpen && isMobile ? "shadow-lg ring-1 ring-saffron/20" : ""
-                }`}
+                } ${!isMobile ? "cursor-pointer" : ""}`}
               >
                 {/* Desktop view height animation */}
                 {!isMobile ? (
@@ -210,8 +210,16 @@ export default function CulturalInitiatives() {
                 ) : (
                   /* Mobile Tap-to-Expand Accordion View */
                   <div className="w-full">
-                    {/* Collapsed/Header Bar */}
-                    <div className="p-4 flex items-center justify-between gap-3 text-left">
+                    {/* Collapsed/Header Bar Button */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCardToggle(idx);
+                      }}
+                      className="w-full p-4 flex items-center justify-between gap-3 text-left cursor-pointer focus:outline-none select-none"
+                      aria-expanded={isOpen}
+                    >
                       <div className="flex items-center gap-3">
                         <span className="text-lg sm:text-xl font-normal font-heading text-saffron whitespace-nowrap">
                           {card.metric}
@@ -228,7 +236,7 @@ export default function CulturalInitiatives() {
                       )}>
                         <ChevronDown size={15} />
                       </div>
-                    </div>
+                    </button>
 
                     {/* Expanded Content on Tap */}
                     <AnimatePresence initial={false}>

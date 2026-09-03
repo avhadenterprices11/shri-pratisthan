@@ -137,8 +137,10 @@
   animation: marquee-scroll 25s linear infinite;
 }
 
-.animate-marquee:hover {
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
 }
 
 /* Custom Cursor Styles */

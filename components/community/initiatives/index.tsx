@@ -40,6 +40,7 @@ const INITIATIVES_SUMMARY: InitiativeItem[] = [
 export default function CommunityInitiatives() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchRow, setTouchRow] = useState<number | null>(null);
+  const [activeMobileRow, setActiveMobileRow] = useState<number | null>(0);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -47,7 +48,7 @@ export default function CommunityInitiatives() {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Entrance fade-in animation for rows
+      // Entrance fade-in animation for rows
       gsap.fromTo(
         ".initiative-row-item",
         { opacity: 0, y: 30 },
@@ -68,12 +69,35 @@ export default function CommunityInitiatives() {
     return () => ctx.revert();
   }, []);
 
+  // Guarantee that marquee resumes instantly on phone when finger lifts anywhere
+  useEffect(() => {
+    const handleRelease = () => {
+      setTouchRow(null);
+    };
+
+    window.addEventListener("pointerup", handleRelease);
+    window.addEventListener("pointercancel", handleRelease);
+    window.addEventListener("touchend", handleRelease);
+    window.addEventListener("touchcancel", handleRelease);
+
+    return () => {
+      window.removeEventListener("pointerup", handleRelease);
+      window.removeEventListener("pointercancel", handleRelease);
+      window.removeEventListener("touchend", handleRelease);
+      window.removeEventListener("touchcancel", handleRelease);
+    };
+  }, []);
+
   const handleScrollToSection = (anchor: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     const el = document.querySelector(anchor);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleRowToggle = (index: number) => {
+    setActiveMobileRow((prev) => (prev === index ? null : index));
   };
 
   return (
@@ -100,22 +124,23 @@ export default function CommunityInitiatives() {
         <div className="flex flex-col border-t border-neutral-300">
           {INITIATIVES_SUMMARY.map((item, index) => {
             const isTouchActive = touchRow === index;
+            const isMobileActive = activeMobileRow === index;
 
             return (
               <div
                 key={index}
-                onClick={() => handleScrollToSection(item.anchor)}
-                onTouchStart={() => setTouchRow(index)}
-                onTouchEnd={() => setTouchRow(null)}
-                onTouchCancel={() => setTouchRow(null)}
-                className="initiative-row-item group border-b border-neutral-300 py-6 sm:py-10 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out relative flex flex-col justify-start"
+                onClick={() => handleRowToggle(index)}
+                onPointerDown={() => setTouchRow(index)}
+                onPointerUp={() => setTouchRow(null)}
+                onPointerCancel={() => setTouchRow(null)}
+                className="initiative-row-item group border-b border-neutral-300 py-6 sm:py-10 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out relative flex flex-col justify-start touch-manipulation"
               >
                 {/* Hardware Accelerated Infinite CSS Marquee */}
                 <div className="w-full overflow-hidden flex relative z-10 py-1 sm:py-2">
                   <div
                     className="flex whitespace-nowrap animate-marquee lg:group-hover:[animation-play-state:paused] will-change-transform"
                     style={{
-                      animationPlayState: isTouchActive ? "paused" : undefined,
+                      animationPlayState: isTouchActive ? "paused" : "running",
                     }}
                   >
                     
@@ -123,10 +148,18 @@ export default function CommunityInitiatives() {
                     <div className="flex whitespace-nowrap gap-x-6 sm:gap-x-12 pr-6 sm:pr-12">
                       {[...Array(4)].map((_, i) => (
                         <div key={i} className="flex items-center gap-4 sm:gap-8">
-                          <span className="text-[9px] sm:text-[10px] font-bold text-saffron tracking-[0.2em] uppercase bg-saffron/10 px-2.5 sm:px-3 py-1 rounded-full border border-saffron/20 flex items-center gap-1.5 font-sans">
+                          <span className={`text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase px-2.5 sm:px-3 py-1 rounded-full border flex items-center gap-1.5 font-sans transition-colors ${
+                            isMobileActive
+                              ? "bg-saffron text-white border-saffron shadow-sm"
+                              : "text-saffron bg-saffron/10 border-saffron/20"
+                          }`}>
                             0{index + 1} / {item.tag}
                           </span>
-                          <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading text-outline-festive tracking-tight uppercase transition-all duration-300 group-hover:text-saffron">
+                          <span className={`text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading tracking-tight uppercase transition-all duration-300 group-hover:text-saffron ${
+                            isMobileActive
+                              ? "text-saffron font-medium"
+                              : "text-outline-festive"
+                          }`}>
                             {item.title}
                           </span>
                           <div className="shrink-0 scale-85 sm:scale-100">{item.icon}</div>
@@ -138,10 +171,18 @@ export default function CommunityInitiatives() {
                     <div className="flex whitespace-nowrap gap-x-6 sm:gap-x-12 pr-6 sm:pr-12" aria-hidden="true">
                       {[...Array(4)].map((_, i) => (
                         <div key={i} className="flex items-center gap-4 sm:gap-8">
-                          <span className="text-[9px] sm:text-[10px] font-bold text-saffron tracking-[0.2em] uppercase bg-saffron/10 px-2.5 sm:px-3 py-1 rounded-full border border-saffron/20 flex items-center gap-1.5 font-sans">
+                          <span className={`text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase px-2.5 sm:px-3 py-1 rounded-full border flex items-center gap-1.5 font-sans transition-colors ${
+                            isMobileActive
+                              ? "bg-saffron text-white border-saffron shadow-sm"
+                              : "text-saffron bg-saffron/10 border-saffron/20"
+                          }`}>
                             0{index + 1} / {item.tag}
                           </span>
-                          <span className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading text-outline-festive tracking-tight uppercase transition-all duration-300 group-hover:text-saffron">
+                          <span className={`text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading tracking-tight uppercase transition-all duration-300 group-hover:text-saffron ${
+                            isMobileActive
+                              ? "text-saffron font-medium"
+                              : "text-outline-festive"
+                          }`}>
                             {item.title}
                           </span>
                           <div className="shrink-0 scale-85 sm:scale-100">{item.icon}</div>
@@ -152,15 +193,21 @@ export default function CommunityInitiatives() {
                   </div>
                 </div>
 
-                {/* Expanded detailed description - Always readable on mobile and animated on desktop */}
-                <div className="max-w-4xl px-2 sm:px-4 mt-3 sm:mt-0 sm:max-h-0 sm:opacity-0 group-hover:sm:max-h-[160px] group-hover:sm:opacity-100 transition-all duration-500 ease-out group-hover:sm:mt-6">
+                {/* Expanded detailed description - Brings true Desktop Feel on Phone */}
+                <div
+                  className={`max-w-4xl px-2 sm:px-4 transition-all duration-500 ease-out overflow-hidden ${
+                    isMobileActive
+                      ? "max-h-[220px] opacity-100 mt-4 sm:max-h-0 sm:opacity-0 sm:mt-0 group-hover:sm:max-h-[160px] group-hover:sm:opacity-100 group-hover:sm:mt-6"
+                      : "max-h-0 opacity-0 mt-0 sm:max-h-0 sm:opacity-0 group-hover:sm:max-h-[160px] group-hover:sm:opacity-100 group-hover:sm:mt-6"
+                  }`}
+                >
                   <p className="text-xs sm:text-base md:text-lg text-[#525250] leading-[1.7] sm:leading-[1.75] max-w-3xl font-sans font-normal">
                     {item.desc}
                   </p>
                   <button
                     type="button"
                     onClick={(e) => handleScrollToSection(item.anchor, e)}
-                    className="mt-2.5 sm:mt-4 inline-flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white bg-saffron hover:bg-saffron/90 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md transition-all cursor-pointer group-hover:scale-102 font-sans"
+                    className="mt-3 sm:mt-4 inline-flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white bg-saffron hover:bg-saffron/90 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md transition-all cursor-pointer group-hover:scale-102 font-sans active:scale-95"
                   >
                     <span>Explore details</span>
                     <ArrowDownRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -176,4 +223,3 @@ export default function CommunityInitiatives() {
     </section>
   );
 }
-
