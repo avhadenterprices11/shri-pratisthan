@@ -1,25 +1,53 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AllEventsFilter from "./all-events-filter";
 import EventsGrid from "./events-grid";
-import { ALL_EVENTS } from "@/lib/events-data";
+import { EventItem, ALL_EVENTS } from "@/lib/events-data";
+import { fetchEvents } from "@/lib/api/events";
 
 export default function AllEventsSection() {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [events, setEvents] = useState<EventItem[]>(ALL_EVENTS);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Compute event counts per category
-  const counts = {
-    all: ALL_EVENTS.length,
-    cultural: ALL_EVENTS.filter((e) => e.category === "cultural").length,
-    sports: ALL_EVENTS.filter((e) => e.category === "sports").length,
-    health: ALL_EVENTS.filter((e) => e.category === "health").length,
-    eco: ALL_EVENTS.filter((e) => e.category === "eco").length,
-    charity: ALL_EVENTS.filter((e) => e.category === "charity").length,
+  // Fetch live events from API
+  useEffect(() => {
+    let isMounted = true;
+    async function loadEvents() {
+      setIsLoading(true);
+      try {
+        const response = await fetchEvents({ pageSize: 50, status: "Published" });
+        if (isMounted && response.events) {
+          setEvents(response.events);
+        }
+      } catch (err) {
+        console.error("Failed to load events dynamically:", err);
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    loadEvents();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Compute live event counts per category
+  const counts: Record<string, number> = {
+    all: events.length,
+    cultural: events.filter((e) => e.category === "cultural").length,
+    sports: events.filter((e) => e.category === "sports").length,
+    health: events.filter((e) => e.category === "health").length,
+    eco: events.filter((e) => e.category === "eco").length,
+    charity: events.filter((e) => e.category === "charity").length,
   };
 
-  // Filter active/upcoming events for grid based on category
-  const filteredEvents = ALL_EVENTS.filter((e) => {
+  // Filter events based on selected category
+  const filteredEvents = events.filter((e) => {
     if (selectedCategory === "all") return true;
     return e.category === selectedCategory;
   });
@@ -44,7 +72,7 @@ export default function AllEventsSection() {
       />
 
       {/* Active & Upcoming Events Grid */}
-      <EventsGrid events={filteredEvents} />
+      <EventsGrid events={filteredEvents} isLoading={isLoading} />
     </section>
   );
 }

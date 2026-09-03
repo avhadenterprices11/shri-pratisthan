@@ -167,9 +167,16 @@ export const eventBookingSchema = z.object({
 
   // Step 5: Payment / Contribution Options
   contributionAmount: z.coerce.number().min(0, "Amount cannot be negative.").default(0),
-  paymentMethod: z.enum(["free", "upi", "card", "netbanking"], {
+  paymentMethod: z.enum(["free", "upi", "card", "netbanking", "offline"], {
     message: "Please select a payment method.",
   }).default("free"),
+
+  // Ticketing & Addons fields
+  ticketId: z.number().optional(),
+  ticketName: z.string().optional(),
+  ticketPrice: z.number().optional(),
+  promoCode: z.string().optional(),
+  selectedAddons: z.record(z.string(), z.number()).optional(),
 });
 
 export type VolunteerInput = z.infer<typeof volunteerSchema>;

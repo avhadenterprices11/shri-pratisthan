@@ -14,19 +14,23 @@ import {
   Mail, 
   MessageCircle, 
   Clock, 
-  FileText, 
-  Heart, 
-  Share2, 
-  Sparkles,
-  PhoneCall,
-  ShieldCheck,
-  Building2,
-  ExternalLink
+  Sparkles, 
+  PhoneCall, 
+  ShieldCheck, 
+  Building2, 
+  ExternalLink,
+  Ticket,
+  QrCode
 } from "lucide-react";
 import { EventBookingInput } from "@/lib/validations";
+import { BookingResponse, IssuedTicketData } from "@/lib/api/bookings";
 
 interface StepPaymentConfirmationProps {
   formData: Partial<EventBookingInput>;
+  bookingResult?: {
+    booking: BookingResponse;
+    tickets: IssuedTicketData[];
+  } | null;
   updateFields: (fields: Partial<EventBookingInput>) => void;
   onBack: () => void;
   onReset: () => void;
@@ -34,6 +38,7 @@ interface StepPaymentConfirmationProps {
 
 export default function StepPaymentConfirmation({
   formData,
+  bookingResult,
   updateFields,
   onBack,
   onReset,
@@ -41,10 +46,14 @@ export default function StepPaymentConfirmation({
   const [copied, setCopied] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
 
-  // Fallback demo data if fields are empty
-  const bookingId = "SP-2026-" + Math.floor(1000 + Math.random() * 9000);
+  // Resolved booking code and ticket details
+  const bookingCode = bookingResult?.booking?.booking_code || "BK-" + Math.random().toString(36).substr(2, 8).toUpperCase();
+  const primaryTicket = bookingResult?.tickets?.[0];
+  const ticketNumber = primaryTicket?.ticket_number || "TK-2026-" + Math.random().toString(36).substr(2, 6).toUpperCase();
+  const uniqueCode = primaryTicket?.unique_code || Math.random().toString(36).substr(2, 6).toUpperCase();
+
   const participantName = formData.fullName || "Adv. Rahul Sharma";
-  const email = formData.email || "Info@shreepratishthan.com";
+  const email = formData.email || "devotee@shreepratishthan.com";
   const mobile = formData.mobileNumber || "+91 9922786608";
   const eventName = formData.eventId
     ? formData.eventId.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
@@ -52,13 +61,17 @@ export default function StepPaymentConfirmation({
   const participantCount = formData.numberOfParticipants || 1;
   const slotTime = formData.preferredTimeSlot
     ? formData.preferredTimeSlot.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
-    : "Morning";
+    : "Morning Slot";
   const eventDate = formData.dateOfBirth || "2026-08-27";
   const address = formData.streetArea || "Indira Nagar, Nashik";
-  const venue = "Shree Pratishtan Mandal, Indira Nagar, Nashik - 422009";
+  const venue = "Shree Pratishtan Grand Pandal, Indira Nagar Ground, Nashik - 422009";
+
+  // QR Code payload or image URL
+  const qrData = primaryTicket?.qr_payload || `EMS-EVENT-${bookingCode}-${ticketNumber}-${uniqueCode}`;
+  const qrImageUrl = primaryTicket?.qr_image_url || `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(qrData)}&color=000000&bgcolor=ffffff`;
 
   const handleCopyBookingId = () => {
-    navigator.clipboard.writeText(bookingId);
+    navigator.clipboard.writeText(bookingCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -83,243 +96,197 @@ export default function StepPaymentConfirmation({
         </div>
         <div className="space-y-2 max-w-3xl mx-auto">
           <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full">
-            Event Booked
+            Pass Issued &amp; Confirmed
           </span>
           <h2 className="text-2xl sm:text-4xl font-black font-heading text-neutral-900">
-            Event Booked Successfully!
+            Event Pass Booked Successfully!
           </h2>
-          <p className="text-sm sm:text-base font-semibold text-neutral-800 leading-relaxed bg-amber-50/80 border border-amber-200 p-3.5 rounded-2xl">
-            &ldquo;We will address and contact you as soon as possible regarding your event booking and ground coordination details.&rdquo;
-          </p>
-          <p className="text-xs text-neutral-500">
-            No online payment is collected. This event booking is completely free. Any physical seva contributions are handled in person at our Indira Nagar, Nashik office.
-          </p>
+          <div className="p-4 bg-emerald-50/80 border border-emerald-200/80 rounded-2xl text-xs sm:text-sm text-emerald-950 font-medium flex items-center justify-center gap-2">
+            <Mail className="w-4 h-4 text-emerald-700 flex-shrink-0" />
+            <span>
+              A confirmation email with your digital entry pass and scannable QR code has been dispatched to <strong>{email}</strong>.
+            </span>
+          </div>
         </div>
       </div>
 
       {/* 2. 3-Column Content Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        {/* Card 1: Event Booking Summary */}
-        <div className="bg-white border border-neutral-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6">
-          <div className="space-y-4">
-            <div className="flex items-center gap-2.5 border-b border-neutral-100 pb-4">
-              <FileText className="w-5 h-5 text-saffron" />
-              <h3 className="font-extrabold font-heading text-lg text-neutral-900">
-                Booking Summary
-              </h3>
+        {/* Left Column: Digital Pass Card (Print Friendly) */}
+        <div className="lg:col-span-7 space-y-6">
+          <div className="bg-white border-2 border-saffron/30 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden print:border-neutral-400 print:shadow-none">
+            {/* Background Decorative Emblem */}
+            <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-saffron/5 rounded-full blur-2xl pointer-events-none" />
+
+            {/* Header / Brand */}
+            <div className="flex items-center justify-between border-b border-neutral-200 pb-5">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-saffron block">
+                  Official Entry Pass
+                </span>
+                <h3 className="text-xl font-black font-heading text-neutral-900">
+                  SHREE PRATISHTAN
+                </h3>
+              </div>
+              <div className="text-right">
+                <span className="text-[10px] uppercase font-bold text-neutral-400 block">Booking Reference</span>
+                <span className="font-mono text-sm font-extrabold text-neutral-900">{bookingCode}</span>
+              </div>
             </div>
 
-            <div className="space-y-3 text-xs sm:text-sm">
-              <div className="flex items-center justify-between">
-                <span className="text-neutral-500 font-medium">Participant Name</span>
-                <span className="font-bold text-neutral-900">{participantName}</span>
+            {/* Ticket Content Body */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 py-6 border-b border-neutral-200">
+              {/* Event Info Details */}
+              <div className="md:col-span-7 space-y-4">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-neutral-400 block">Festival / Event</span>
+                  <h4 className="font-extrabold text-neutral-900 text-lg leading-tight">{eventName}</h4>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 text-xs">
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">Date</span>
+                    <span className="font-semibold text-neutral-800 flex items-center gap-1 mt-0.5">
+                      <CalendarIcon className="w-3.5 h-3.5 text-saffron" /> {eventDate}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">Slot</span>
+                    <span className="font-semibold text-neutral-800 flex items-center gap-1 mt-0.5">
+                      <Clock className="w-3.5 h-3.5 text-saffron" /> {slotTime}
+                    </span>
+                  </div>
+                </div>
+
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-neutral-400 block">Primary Pass Holder</span>
+                  <span className="font-bold text-neutral-900 text-sm">{participantName} ({participantCount} Pass{participantCount > 1 ? "es" : ""})</span>
+                </div>
+
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-neutral-400 block">Venue</span>
+                  <span className="text-xs font-medium text-neutral-700 leading-snug block mt-0.5">
+                    {venue}
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-neutral-500 font-medium">Phone Number</span>
-                <span className="font-semibold text-neutral-900">{mobile}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-neutral-500 font-medium">Booked Event</span>
-                <span className="font-bold text-saffron">{eventName}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-neutral-500 font-medium">Event Date</span>
-                <span className="font-semibold text-neutral-900">{eventDate}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-neutral-500 font-medium">Time Slot</span>
-                <span className="font-medium text-neutral-900">{slotTime} Slot</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-neutral-500 font-medium">Attendees Count</span>
-                <span className="font-bold text-neutral-900">{participantCount} Person(s)</span>
-              </div>
-              <div className="pt-2 border-t border-neutral-100 flex items-start justify-between gap-4">
-                <span className="text-neutral-500 font-medium whitespace-nowrap">Residential Area</span>
-                <span className="font-medium text-neutral-900 text-right">{address}</span>
+
+              {/* QR Code Section */}
+              <div className="md:col-span-5 flex flex-col items-center justify-center p-4 bg-neutral-50 rounded-2xl border border-neutral-200 text-center space-y-2">
+                <div className="relative w-36 h-36 bg-white p-2 rounded-xl shadow-sm border border-neutral-200">
+                  <Image
+                    src={qrImageUrl}
+                    alt="Digital Pass QR Code"
+                    width={140}
+                    height={140}
+                    unoptimized
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="text-[11px] font-mono font-bold text-neutral-800 tracking-wider">
+                  {uniqueCode}
+                </span>
+                <span className="text-[10px] text-neutral-500 font-medium">
+                  Scan at Entrance Gate
+                </span>
               </div>
             </div>
-          </div>
 
-          <div className="pt-3 border-t border-neutral-100 flex items-center justify-between">
-            <span className="text-xs text-neutral-500">Booking Status:</span>
-            <span className="text-sm font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
-              CONFIRMED (Free)
-            </span>
-          </div>
-        </div>
-
-        {/* Card 2: Your Event Booking Slip */}
-        <div className="bg-white border border-neutral-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center space-y-5">
-          <div className="w-full flex items-center gap-2.5 border-b border-neutral-100 pb-4 text-left">
-            <Sparkles className="w-5 h-5 text-saffron" />
-            <h3 className="font-extrabold font-heading text-lg text-neutral-900">
-              Event Booking Slip
-            </h3>
-          </div>
-
-          {/* Dark Metallic Ticket Box */}
-          <div className="w-full bg-neutral-950 text-white rounded-2xl p-5 border-2 border-saffron/40 shadow-xl relative overflow-hidden space-y-3">
-            <div className="space-y-0.5">
-              <h4 className="font-black font-heading text-sm sm:text-base tracking-wider uppercase text-amber-300">
-                {eventName}
-              </h4>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
-                Indira Nagar Ground • Event Booked
+            {/* Pass Footer */}
+            <div className="pt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-neutral-500 font-medium">
+              <span className="flex items-center gap-1">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" /> Verified Digital Pass
               </span>
-            </div>
-
-            {/* Scannable Vector QR Code Square */}
-            <div className="w-32 h-32 bg-white p-2.5 rounded-xl mx-auto shadow-inner flex items-center justify-center">
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-neutral-950">
-                <rect x="5" y="5" width="30" height="30" rx="3" />
-                <rect x="10" y="10" width="20" height="20" fill="white" />
-                <rect x="15" y="15" width="10" height="10" />
-                <rect x="65" y="5" width="30" height="30" rx="3" />
-                <rect x="70" y="10" width="20" height="20" fill="white" />
-                <rect x="75" y="15" width="10" height="10" />
-                <rect x="5" y="65" width="30" height="30" rx="3" />
-                <rect x="10" y="70" width="20" height="20" fill="white" />
-                <rect x="15" y="75" width="10" height="10" />
-                <rect x="45" y="45" width="10" height="10" />
-                <rect x="60" y="45" width="15" height="15" />
-                <rect x="45" y="65" width="20" height="10" />
-                <rect x="75" y="75" width="20" height="20" />
-              </svg>
-            </div>
-
-            <div className="text-[11px] font-mono text-amber-400 tracking-wider">
-              BOOKING ID: {bookingId}
+              <span>Ticket No: <strong className="font-mono text-neutral-800">{ticketNumber}</strong></span>
             </div>
           </div>
 
-          {/* Action Buttons Grid */}
-          <div className="w-full space-y-2.5 print:hidden">
+          {/* Action Buttons */}
+          <div className="flex flex-wrap gap-3 print:hidden">
             <button
               type="button"
               onClick={handlePrint}
-              className="w-full py-3 bg-saffron hover:bg-saffron/90 text-white rounded-xl text-xs font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md shadow-saffron/20"
+              className="flex-1 min-w-[140px] py-3 px-4 bg-neutral-900 hover:bg-neutral-800 text-white rounded-xl text-xs font-extrabold uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
             >
-              <Printer className="w-4 h-4" /> Print / Save Booking Slip
+              <Printer className="w-4 h-4" /> Print Pass
             </button>
+
             <button
               type="button"
               onClick={handleCopyBookingId}
-              className="w-full py-2.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer border border-neutral-200"
+              className="py-3 px-5 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 rounded-xl text-xs font-bold uppercase transition-all flex items-center gap-1.5 cursor-pointer border border-neutral-200"
             >
-              <Copy className="w-3.5 h-3.5" /> {copied ? "Copied Booking ID!" : "Copy Booking ID"}
+              {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+              {copied ? "Copied Reference" : "Copy Code"}
+            </button>
+
+            <button
+              type="button"
+              onClick={onReset}
+              className="py-3 px-5 bg-saffron/10 hover:bg-saffron/20 text-saffron rounded-xl text-xs font-bold uppercase transition-all cursor-pointer"
+            >
+              Book Another Pass
             </button>
           </div>
         </div>
 
-        {/* Card 3: Ground Entry Instructions */}
-        <div className="bg-white border border-neutral-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all space-y-5">
-          <div className="flex items-center gap-2.5 border-b border-neutral-100 pb-4">
-            <Clock className="w-5 h-5 text-saffron" />
-            <h3 className="font-extrabold font-heading text-lg text-neutral-900">
-              Next Steps
-            </h3>
-          </div>
-
-          {/* Instructions Timeline */}
-          <div className="space-y-4 relative pl-2">
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0 mt-0.5 border border-amber-100">
-                <MapPin className="w-4 h-4" />
-              </div>
-              <div>
-                <h5 className="font-bold text-xs sm:text-sm text-neutral-900">Reach the Mandal Ground</h5>
-                <p className="text-xs text-neutral-500">Mention your Booking ID or mobile number at the event coordination desk.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0 mt-0.5 border border-indigo-100">
-                <PhoneCall className="w-4 h-4" />
-              </div>
-              <div>
-                <h5 className="font-bold text-xs sm:text-sm text-neutral-900">Coordinator Assistance</h5>
-                <p className="text-xs text-neutral-500">Our 100+ active volunteer marshals will assist your seating and darshan slots.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5 border border-emerald-100">
-                <Building2 className="w-4 h-4" />
-              </div>
-              <div>
-                <h5 className="font-bold text-xs sm:text-sm text-neutral-900">Physical Seva &amp; Receipts</h5>
-                <p className="text-xs text-neutral-500">Any voluntary contributions are received physically with Samarth Sahakari Bank receipts.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center flex-shrink-0 mt-0.5 border border-rose-100">
-                <Heart className="w-4 h-4" />
-              </div>
-              <div>
-                <h5 className="font-bold text-xs sm:text-sm text-neutral-900">वारसा संस्कृतीचा, ध्यास समाजसेवेचा</h5>
-                <p className="text-xs text-neutral-500">We look forward to welcoming you and your family!</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 3. Venue Map & Trust Contact Desk */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white border border-neutral-200 rounded-3xl p-6 shadow-sm space-y-4">
-          <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
-            <h4 className="font-extrabold font-heading text-base text-neutral-900 flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-saffron" />
-              Event Ground Location
+        {/* Right Column: Support, Directions & Information */}
+        <div className="lg:col-span-5 space-y-6">
+          {/* Ground Coordination Card */}
+          <div className="bg-neutral-50 border border-neutral-200 rounded-3xl p-6 space-y-4">
+            <h4 className="font-bold text-neutral-900 flex items-center gap-2 text-base font-heading">
+              <Building2 className="w-5 h-5 text-saffron" />
+              Ground Coordination &amp; Entry
             </h4>
-            <span className="text-xs font-semibold text-slate-500">Indira Nagar, Nashik</span>
-          </div>
-          <p className="text-xs sm:text-sm text-slate-600">
-            <strong>Location:</strong> {venue}. Parking is available around the ground for all devotees and tournament participants.
-          </p>
-          <div className="flex flex-wrap items-center gap-3 pt-2">
+            <p className="text-xs text-neutral-600 leading-relaxed">
+              Show this digital pass or mention your booking reference <strong>{bookingCode}</strong> at the reception desk near Indira Nagar Ground.
+            </p>
+
+            <div className="space-y-2.5 pt-2 border-t border-neutral-200/80 text-xs">
+              <div className="flex items-start gap-2 text-neutral-700">
+                <MapPin className="w-4 h-4 text-saffron flex-shrink-0 mt-0.5" />
+                <span>Indira Nagar Ground Arena, Nashik - 422009</span>
+              </div>
+              <div className="flex items-center gap-2 text-neutral-700">
+                <PhoneCall className="w-4 h-4 text-saffron flex-shrink-0" />
+                <span>Helpline: +91 9922786608 (24/7)</span>
+              </div>
+              <div className="flex items-center gap-2 text-neutral-700">
+                <Mail className="w-4 h-4 text-saffron flex-shrink-0" />
+                <span>Email: Info@shreepratishthan.com</span>
+              </div>
+            </div>
+
             <a
-              href="https://maps.google.com/?q=Indira+Nagar+Nashik"
+              href="https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-bold bg-neutral-900 hover:bg-neutral-800 text-white px-4 py-2.5 rounded-xl transition-all"
+              className="w-full py-3 px-4 bg-white hover:bg-neutral-100 text-neutral-900 rounded-xl text-xs font-bold uppercase transition-all flex items-center justify-center gap-2 border border-neutral-300 shadow-sm"
             >
-              <span>Open Google Maps</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-            <a
-              href="tel:+919922786608"
-              className="inline-flex items-center gap-2 text-xs font-bold bg-saffron/10 text-saffron border border-saffron/20 px-4 py-2.5 rounded-xl hover:bg-saffron/20 transition-all"
-            >
-              <PhoneCall className="w-3.5 h-3.5" />
-              <span>Call Helpline: +91 9922786608</span>
+              <MapPin className="w-4 h-4 text-saffron" /> Open in Google Maps <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
-        </div>
 
-        {/* Book Another Event Button */}
-        <div className="bg-white border border-neutral-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between space-y-4">
-          <div className="space-y-2">
-            <h4 className="font-extrabold font-heading text-base text-neutral-900">
-              Book Another Event?
-            </h4>
-            <p className="text-xs text-slate-500 leading-relaxed">
-              Book slots for additional family members, sports teams, or upcoming festival celebrations.
+          {/* Social Community Callout */}
+          <div className="p-6 bg-gradient-to-br from-amber-500 to-saffron rounded-3xl text-white space-y-3 shadow-lg">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-amber-200" />
+              <h4 className="font-bold text-base font-heading">Join Shree Pratishtan Community</h4>
+            </div>
+            <p className="text-xs text-amber-100 leading-relaxed">
+              Connect with volunteer marshals and stay updated on daily Maha Aarti timings, cultural recitals, and seva drives.
             </p>
+            <Link
+              href="/volunteer"
+              className="inline-flex items-center gap-1.5 py-2.5 px-4 bg-white text-saffron hover:bg-amber-50 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-all shadow-md"
+            >
+              Join as Volunteer Marshal &rarr;
+            </Link>
           </div>
-          <button
-            type="button"
-            onClick={onReset}
-            className="w-full py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer border border-neutral-300"
-          >
-            Book Another Event Slot
-          </button>
         </div>
-      </div>
 
+      </div>
     </div>
   );
 }

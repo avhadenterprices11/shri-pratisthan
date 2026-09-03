@@ -34,6 +34,37 @@ export interface EventItem {
   organizerName: string;
   organizerPhone: string;
   organizerEmail: string;
+  // Dynamic & SEO Fields
+  metaTitle?: string;
+  metaDescription?: string;
+  rawStartDate?: string;
+  rawEndDate?: string;
+  regStartAt?: string;
+  regEndAt?: string;
+  mode?: "in-person" | "online" | "hybrid" | string;
+  venueName?: string;
+  address?: string;
+  addressLine1?: string;
+  addressLine2?: string;
+  city?: string;
+  state?: string;
+  zipCode?: string;
+  country?: string;
+  timezone?: string;
+  allDay?: boolean;
+  virtualPlatform?: string;
+  meetingUrl?: string;
+  accessibilityNotes?: string;
+  promoVideoUrl?: string;
+  capacityNumber?: number;
+  waitlistEnabled?: boolean;
+  visibility?: string;
+  checkInMode?: string;
+  coHosts?: string[];
+  tags?: string[];
+  sponsors?: Array<{ name: string; logo?: string; link?: string; tier?: string }>;
+  partners?: Array<{ name: string; logo?: string; link?: string }>;
+  isRegistrationOpen?: boolean;
 }
 
 export const ALL_EVENTS: EventItem[] = [
@@ -95,6 +126,13 @@ export const ALL_EVENTS: EventItem[] = [
     organizerName: "Shree Pratishtan Utsav Samiti",
     organizerPhone: "+91 9922786608",
     organizerEmail: "Info@shreepratishthan.com",
+    venueName: "Shree Pratishtan Grand Pandal Arena, Nashik",
+    rawStartDate: "2026-08-27T06:00:00Z",
+    rawEndDate: "2026-09-06T23:00:00Z",
+    regStartAt: "2026-08-01T00:00:00Z",
+    regEndAt: "2026-08-25T23:59:59Z",
+    capacityNumber: 50000,
+    waitlistEnabled: true,
   },
 
   {
