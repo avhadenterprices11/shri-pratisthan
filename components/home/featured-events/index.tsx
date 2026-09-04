@@ -215,7 +215,7 @@ export default function FeaturedEvents() {
   return (
     <section
       ref={containerRef}
-      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background z-20"
+      className="pt-4 pb-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background z-20"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-5" />
       <div className="max-w-7xl mx-auto relative z-10">
