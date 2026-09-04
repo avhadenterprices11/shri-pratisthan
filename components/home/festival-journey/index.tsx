@@ -66,7 +66,7 @@ export default function FestivalJourney() {
       } else if (width >= 640) {
         setSlideSize(380);
       } else {
-        setSlideSize(Math.min(width - 32, 310));
+        setSlideSize(Math.min(width - 32, 320));
       }
     };
     handleResize();
@@ -84,8 +84,8 @@ export default function FestivalJourney() {
       // Total travel distance to bring each card smoothly to center
       const travelDistance = (totalMilestones - 1) * slideSize;
       const mob = window.innerWidth < 768;
-      // Snappy 420px scrub on mobile removes the stuck feel and huge pin-spacer
-      const scrubDistance = mob ? 420 : Math.max(window.innerHeight * 0.85, 750);
+      // Calibrated scrub distance: stays pinned until all 4 cards complete showing off
+      const scrubDistance = mob ? 700 : 950;
 
       // Animate the track horizontally on scrub
       const anim = gsap.to(track, {
@@ -94,7 +94,7 @@ export default function FestivalJourney() {
         scrollTrigger: {
           trigger: section,
           pin: true,
-          start: mob ? "top 4%" : "top top",
+          start: "top top",
           end: () => `+=${scrubDistance}`,
           scrub: 0.3,
           anticipatePin: 1,
@@ -142,13 +142,13 @@ export default function FestivalJourney() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-[100dvh] max-h-[720px] md:max-h-none overflow-hidden bg-background flex flex-col items-center justify-center px-3 sm:px-6 select-none"
+      className="relative w-full h-[100dvh] overflow-hidden bg-background flex flex-col items-center justify-center px-3 sm:px-6 select-none"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-35" />
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-12 opacity-25" />
 
-      {/* Unified Journey Cluster: tight, well-proportioned spacing with navbar clearance */}
-      <div className="w-full flex flex-col items-center justify-center gap-2.5 sm:gap-4 md:gap-6 pt-2 sm:pt-4 md:pt-0">
+      {/* Unified Journey Cluster: perfectly centered in full screen with zero gaps above or below */}
+      <div className="w-full flex flex-col items-center justify-center gap-2.5 sm:gap-4 md:gap-6">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto px-4 sm:px-6 relative z-20 space-y-1 sm:space-y-2 shrink-0">
           <h2 className="text-xl sm:text-3xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-snug">
@@ -158,7 +158,7 @@ export default function FestivalJourney() {
         </div>
 
         {/* Carousel Viewport with Level Cards */}
-        <div className="relative w-full h-[330px] sm:h-[390px] lg:h-[440px] flex items-center justify-center overflow-hidden shrink-0">
+        <div className="relative w-full h-[340px] sm:h-[390px] lg:h-[440px] flex items-center justify-center overflow-hidden shrink-0">
           {/* Level Track — Animate horizontal X via GSAP on scroll scrub */}
           <div
             ref={trackRef}

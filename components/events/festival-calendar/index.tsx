@@ -87,14 +87,14 @@ export default function FestivalCalendar() {
 
     const mm = gsap.matchMedia();
 
-    // Mobile Phone Preview: Responsive pinned horizontal timeline with compact scroll distance
+    // Mobile Phone Preview: Responsive pinned horizontal timeline with full coverage
     mm.add("(max-width: 767px)", () => {
       const slider = sliderRef.current;
       const container = containerRef.current;
       if (!slider || !container) return;
 
-      const cardWidth = 260;
-      const gap = 14;
+      const cardWidth = 270;
+      const gap = 16;
       const step = cardWidth + gap;
 
       const W = container.clientWidth || window.innerWidth;
@@ -102,8 +102,8 @@ export default function FestivalCalendar() {
 
       const startX = offset;
       const endX = offset - (CALENDAR_ITEMS.length - 1) * step;
-      // Snappy 480px scrub distance so all 7 months scroll gracefully without feeling stuck
-      const scrollDistance = 480;
+      // Stays pinned at top-top until all 7 cards complete showing off
+      const scrollDistance = 850;
 
       gsap.fromTo(
         slider,
@@ -113,7 +113,7 @@ export default function FestivalCalendar() {
           ease: "none",
           scrollTrigger: {
             trigger: "#calendarPinContainer",
-            start: "top 8%",
+            start: "top top",
             end: () => `+=${scrollDistance}`,
             scrub: 0.35,
             pin: true,
@@ -134,22 +134,23 @@ export default function FestivalCalendar() {
       );
     });
 
-    // Desktop Preview: Smooth pinned scrub
+    // Desktop Preview: Smooth pinned scrub with full coverage
     mm.add("(min-width: 768px)", () => {
       const slider = sliderRef.current;
       const container = containerRef.current;
       if (!slider || !container) return;
 
-      const cardWidth = 320;
+      const cardWidth = 330;
       const gap = 28;
       const step = cardWidth + gap;
 
-      const W = container.clientWidth;
+      const W = container.clientWidth || window.innerWidth;
       const offset = (W - cardWidth) / 2;
 
       const startX = offset;
       const endX = offset - (CALENDAR_ITEMS.length - 1) * step;
-      const scrollDistance = 700;
+      // Stays pinned at top-top until all 7 cards complete showing off
+      const scrollDistance = 1100;
 
       gsap.fromTo(
         slider,
@@ -159,9 +160,9 @@ export default function FestivalCalendar() {
           ease: "none",
           scrollTrigger: {
             trigger: "#calendarPinContainer",
-            start: "top 12%",
+            start: "top top",
             end: () => `+=${scrollDistance}`,
-            scrub: 0.5,
+            scrub: 0.45,
             pin: true,
             pinSpacing: true,
             anticipatePin: 1,
@@ -211,18 +212,18 @@ export default function FestivalCalendar() {
     <section 
       id="calendarPinContainer" 
       ref={containerRef}
-      className="bg-background relative w-full py-6 sm:py-10 md:py-14 flex flex-col justify-center overflow-hidden select-none border-t border-black/5"
+      className="bg-background relative w-full h-[100dvh] flex flex-col justify-center items-center overflow-hidden select-none border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0 animate-pulse" />
       
-      <div className="relative z-10 w-full flex flex-col justify-center overflow-hidden">
+      <div className="relative z-10 w-full flex flex-col justify-center items-center overflow-hidden px-3 sm:px-6">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-2 sm:mb-5 md:mb-7 px-4 sm:px-6 overflow-visible">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 font-heading leading-normal sm:leading-snug tracking-normal">
+        <div className="text-center max-w-3xl mx-auto mb-2 sm:mb-4 md:mb-6 px-4 sm:px-6 overflow-visible">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 font-heading leading-normal sm:leading-snug tracking-normal uppercase">
             {t("eventsPage.calendar.heading")}
           </h2>
-          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-1.5 sm:mt-2.5 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-1.5 sm:mt-2 rounded-full" />
         </div>
 
         {/* Scroll Instruction Banner */}
@@ -233,11 +234,11 @@ export default function FestivalCalendar() {
         </div>
 
         {/* The Scroll Viewport Track */}
-        <div className="relative w-full overflow-hidden pb-2 sm:pb-5 pt-1 select-none">
+        <div className="relative w-full overflow-hidden pb-3 sm:pb-6 pt-1 select-none">
           {/* Animated GSAP Track */}
           <div 
             ref={sliderRef}
-            className="flex gap-3.5 sm:gap-6 md:gap-7 w-max will-change-transform transform-gpu"
+            className="flex gap-4 sm:gap-7 w-max will-change-transform transform-gpu"
           >
             {CALENDAR_ITEMS.map((item, index) => {
               const isActive = activeIdx === index;
