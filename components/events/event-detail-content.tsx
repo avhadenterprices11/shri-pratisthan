@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { 
@@ -11,6 +11,8 @@ import {
   Ticket, 
   ShieldCheck, 
   Share2, 
+  Check,
+  CheckCircle2,
   ExternalLink,
   ChevronRight,
   HeartHandshake,
@@ -30,6 +32,39 @@ import { useLanguage } from "@/context/LanguageContext";
 export default function EventDetailContent({ event: rawEvent }: { event: EventItem }) {
   const { t, language } = useLanguage();
   const event = getLocalizedEvent(rawEvent, language);
+  const [copied, setCopied] = useState(false);
+
+  const displayImages = React.useMemo(() => {
+    const list = [event.mainImage, ...(event.galleryImages || [])].filter(Boolean);
+    const unique = Array.from(new Set(list));
+    while (unique.length < 3 && unique.length > 0) {
+      unique.push(unique[0]);
+    }
+    return unique;
+  }, [event.mainImage, event.galleryImages]);
+
+  const handleShare = async () => {
+    if (typeof window === "undefined") return;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: event.title,
+          text: event.description,
+          url: window.location.href,
+        });
+        return;
+      } catch {
+        // Fallback to clipboard
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // ignore
+    }
+  };
 
   const isRegistrationOpen = 
     event.registrationStatus === "open" || 
@@ -75,139 +110,337 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
           </div>
         </div>
 
-        {/* 1. Main Glassmorphic Showcase Panel */}
-        <div className="glass-panel p-4 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 relative overflow-hidden bg-white/80 shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-start">
+        {/* 1. Main Glassmorphic Showcase Panel - Full Width Image Grid & Written Data Below */}
+        <div className="glass-panel relative p-4 sm:p-7 md:p-8 lg:p-10 rounded-2xl sm:rounded-block border border-saffron/25 bg-gradient-to-br from-white/95 via-white/90 to-amber-50/40 backdrop-blur-xl shadow-[0_24px_60px_-15px_rgba(226,88,34,0.12),0_1px_0_rgba(255,255,255,0.9)_inset] overflow-hidden">
+          {/* Top Luxury Metallic Gradient Accent Bar */}
+          <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-transparent via-saffron to-gold via-marigold to-transparent" />
+
+          {/* Ambient Lighting Orbs */}
+          <div className="pointer-events-none absolute -top-32 -right-32 w-96 h-96 rounded-full bg-gradient-to-br from-saffron/12 via-gold/8 to-transparent blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-gradient-to-tr from-amber-500/10 via-saffron/8 to-transparent blur-3xl" />
+
+          <div className="relative z-10 space-y-8 sm:space-y-10">
             
-            {/* Left Column: Image Showcase */}
-            <div className="lg:col-span-7 relative aspect-[16/10] w-full overflow-hidden rounded-xl sm:rounded-block border border-saffron/10 shadow-lg bg-neutral-100 group">
-              <Image
-                src={event.mainImage}
-                alt={event.title}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                className="object-cover group-hover:scale-103 transition-transform duration-700"
-              />
-              
-              {/* Badges Top Overlay */}
-              <div className="absolute top-3 sm:top-4 left-3 sm:left-4 flex flex-wrap gap-2">
-                <span className="inline-flex items-center bg-saffron text-white font-bold text-[9px] sm:text-[10px] uppercase tracking-[0.2em] px-2.5 sm:px-3 py-1 rounded-full shadow-sm font-sans">
-                  {event.categoryLabel}
-                </span>
+            {/* FULL WIDTH IMAGE GRID */}
+            <div className="w-full">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 h-[360px] sm:h-[420px] md:h-[460px] lg:h-[500px]">
+                {/* Main Feature Photo (md:col-span-8) */}
+                <div className="h-[240px] sm:h-[280px] md:h-full md:col-span-8 relative rounded-2xl sm:rounded-block overflow-hidden border border-black/5 shadow-xl bg-neutral-950 group select-none">
+                  <Image
+                    src={displayImages[0]}
+                    alt={event.title}
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 68vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+                  />
 
-                <span className="inline-flex items-center gap-1 bg-neutral-900/90 text-white font-bold text-[9px] sm:text-[10px] uppercase tracking-[0.16em] px-2.5 sm:px-3 py-1 rounded-full shadow-sm font-sans backdrop-blur-md">
-                  <MapPin className="w-3 h-3 text-gold" />
-                  {event.eventMode}
-                </span>
+                  {/* Diagonal Light Shimmer Sweep on Hover */}
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none z-10" />
 
-                <span className="inline-flex items-center gap-1 bg-white/90 text-neutral-900 font-bold text-[9px] sm:text-[10px] uppercase tracking-[0.16em] px-2.5 sm:px-3 py-1 rounded-full shadow-sm font-sans backdrop-blur-md border border-black/10">
-                  <QrCode className="w-3 h-3 text-saffron" />
-                  {event.checkInMode}
-                </span>
+                  {/* Vignette Gradients for Text Legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/25 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-transparent to-transparent pointer-events-none" />
+                  
+                  {/* Badges Top Overlay */}
+                  <div className="absolute top-3.5 sm:top-5 left-3.5 sm:left-5 right-3.5 sm:right-5 flex flex-wrap items-center justify-between gap-2 z-10">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-saffron to-amber-600 text-white font-extrabold text-[10px] sm:text-[11px] uppercase tracking-[0.2em] px-3 sm:px-3.5 py-1.5 rounded-full shadow-lg shadow-saffron/30 border border-white/25 font-sans backdrop-blur-md">
+                        <Sparkles className="w-3 h-3 text-amber-200" />
+                        {event.categoryLabel}
+                      </span>
+
+                      <span className="inline-flex items-center gap-1.5 bg-neutral-950/75 text-white font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.16em] px-3 py-1.5 rounded-full shadow-md font-sans backdrop-blur-md border border-white/20">
+                        <MapPin className="w-3 h-3 text-gold" />
+                        {event.eventMode}
+                      </span>
+                    </div>
+
+                    <span className="inline-flex items-center gap-1.5 bg-white/90 text-neutral-900 font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.16em] px-3 py-1.5 rounded-full shadow-md font-sans backdrop-blur-md border border-white/80">
+                      <QrCode className="w-3 h-3 text-saffron" />
+                      {event.checkInMode}
+                    </span>
+                  </div>
+
+                  {/* Bottom Trust Prestige Bar on Image */}
+                  <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 flex items-end justify-between gap-3 text-white z-10">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-full bg-saffron flex items-center justify-center text-white shadow-md ring-2 ring-white/30">
+                        <ShieldCheck className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-gold leading-tight">Shree Pratisthan Official</p>
+                        <p className="text-xs text-white/90 font-medium">{event.city}, Maharashtra</p>
+                      </div>
+                    </div>
+                    <div className="text-[10px] uppercase font-bold tracking-widest bg-white/15 backdrop-blur-md border border-white/20 px-2.5 py-1 rounded-full text-white/90 shadow-xs">
+                      Est. 2006
+                    </div>
+                  </div>
+                </div>
+
+                {/* Secondary Photos Stack (md:col-span-4) */}
+                <div className="grid grid-cols-2 md:grid-cols-1 md:col-span-4 md:grid-rows-2 gap-3 sm:gap-4 h-[110px] sm:h-[130px] md:h-full">
+                  {/* Photo 2 */}
+                  <div className="relative rounded-2xl sm:rounded-block overflow-hidden border border-black/5 shadow-md bg-neutral-950 group select-none">
+                    <Image
+                      src={displayImages[1]}
+                      alt={`${event.title} moment 2`}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 32vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
+                    <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-white/90 bg-black/40 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/20">
+                      Archive 02
+                    </span>
+                  </div>
+
+                  {/* Photo 3 */}
+                  <div className="relative rounded-2xl sm:rounded-block overflow-hidden border border-black/5 shadow-md bg-neutral-950 group select-none">
+                    <Image
+                      src={displayImages[2]}
+                      alt={`${event.title} moment 3`}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 32vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
+                    
+                    <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-white/90 bg-black/40 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/20">
+                      Archive 03
+                    </span>
+
+                    {/* Quick Link to Moments Gallery */}
+                    <a
+                      href="#moments-gallery"
+                      className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 inline-flex items-center gap-1.5 bg-neutral-900/90 hover:bg-black text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-md border border-white/25 shadow-md transition-all font-sans"
+                    >
+                      <Sparkles className="w-3.5 h-3.5 text-gold" />
+                      <span>{t("eventsPage.detail.momentsGalleryTitle")}</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right Column: Hero Content & Registration Controls */}
-            <div className="lg:col-span-5 space-y-4 sm:space-y-5 flex flex-col justify-between">
-              <div>
-                <span className="text-[10px] sm:text-xs font-bold text-saffron uppercase tracking-[0.2em] font-sans block mb-1">
-                  {event.tagline}
-                </span>
-
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-normal text-neutral-900 font-heading leading-tight uppercase tracking-tight">
-                  {event.title}
-                </h1>
-
-                {/* Quote / Narrative description */}
-                <div className="mt-3 flex gap-3 border-l-2 border-saffron pl-3.5 py-1">
-                  <p className="text-xs sm:text-sm md:text-base font-normal text-slate-700 italic leading-relaxed font-sans">
-                    &ldquo;{event.description}&rdquo;
-                  </p>
-                </div>
-              </div>
-
-              {/* Registration Status Banner */}
-              <div className="p-3.5 sm:p-4 rounded-xl bg-saffron/[0.04] border border-saffron/20 space-y-2">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-slate-500 font-sans">
-                    {t("eventsPage.detail.registrationStatus")}
-                  </span>
-                  
-                  {event.registrationStatus === "open" && (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300 font-sans">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-                      {t("eventsPage.detail.open")}
+            {/* WRITTEN DATA (BELOW THE IMAGE GRID) */}
+            <div className="space-y-6 sm:space-y-8 pt-2">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+                
+                {/* Main Written Story: Title, Tagline, Editorial Quote */}
+                <div className="lg:col-span-7 xl:col-span-8 space-y-4 sm:space-y-5">
+                  {/* Eyebrow Pill */}
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase bg-gradient-to-r from-saffron/12 via-gold/15 to-saffron/5 border border-saffron/25 text-saffron font-sans shadow-xs">
+                      <span className="w-1.5 h-1.5 rounded-full bg-saffron animate-pulse" />
+                      {event.tagline}
                     </span>
-                  )}
-                  {event.registrationStatus === "closing_soon" && (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-300 font-sans">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-600 animate-ping" />
-                      {t("eventsPage.detail.closingSoon")}
-                    </span>
-                  )}
-                  {event.registrationStatus === "free_entry" && (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-blue-100 text-blue-800 border border-blue-300 font-sans">
-                      <Sparkles className="w-3 h-3 text-blue-600" />
-                      {t("eventsPage.detail.freeEntry")}
-                    </span>
-                  )}
-                  {event.registrationStatus === "closed" && (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-neutral-200 text-neutral-700 border border-neutral-300 font-sans">
-                      {t("eventsPage.detail.closed")}
-                    </span>
-                  )}
-                </div>
-
-                {event.registrationCloseDate && (
-                  <p className="text-[11px] sm:text-xs text-slate-grey font-sans">
-                    <strong>{t("eventsPage.detail.deadlineLabel")}:</strong> {event.registrationCloseDate}
-                  </p>
-                )}
-              </div>
-
-              {/* Quick Details List */}
-              <div className="border-t border-saffron/10 pt-3.5 space-y-2 text-xs sm:text-sm text-slate-grey font-medium font-sans">
-                <div className="flex items-center gap-2.5">
-                  <Calendar className="w-4 h-4 text-saffron flex-shrink-0" />
-                  <span><strong>{t("eventsPage.detail.dateLabel")}:</strong> {event.date}</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <Clock className="w-4 h-4 text-saffron flex-shrink-0" />
-                  <span><strong>{t("eventsPage.detail.timeLabel")}:</strong> {event.time}</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <MapPin className="w-4 h-4 text-saffron flex-shrink-0" />
-                  <span><strong>{t("eventsPage.detail.venueLabel")}:</strong> {event.venueName}, {event.city}</span>
-                </div>
-              </div>
-
-              {/* Booking CTA Button */}
-              <div className="pt-2">
-                {isRegistrationOpen ? (
-                  <Link
-                    href={`/event-booking?event=${event.id}`}
-                    className="inline-flex items-center justify-center gap-2 w-full px-6 sm:px-8 py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-xs uppercase tracking-[0.2em] rounded-full shadow-lg hover:shadow-saffron/20 transition-all font-sans cursor-pointer"
-                  >
-                    <Ticket className="w-4 h-4" /> {t("eventsPage.detail.bookPassBtn")}
-                  </Link>
-                ) : (
-                  <div className="inline-flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-neutral-200 text-neutral-600 font-bold text-xs uppercase tracking-[0.2em] rounded-full font-sans cursor-not-allowed border border-neutral-300">
-                    <AlertCircle className="w-4 h-4" /> {t("eventsPage.detail.closed")}
                   </div>
-                )}
+
+                  {/* Event Heading */}
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-normal text-neutral-900 font-heading leading-[1.12] uppercase tracking-tight">
+                    {event.title}
+                  </h1>
+
+                  {/* Editorial Narrative Quote Box */}
+                  <div className="relative rounded-2xl p-4 sm:p-6 bg-gradient-to-br from-saffron/[0.04] via-amber-50/40 to-white/70 border border-saffron/20 shadow-xs overflow-hidden">
+                    <div className="text-5xl sm:text-6xl text-saffron/12 font-serif leading-none absolute -top-1 right-3 pointer-events-none select-none">
+                      “
+                    </div>
+                    <p className="relative z-10 text-xs sm:text-sm md:text-base text-slate-700 italic leading-relaxed font-sans">
+                      &ldquo;{event.description}&rdquo;
+                    </p>
+                    <div className="mt-2.5 pt-2.5 border-t border-saffron/10 flex items-center justify-between text-[11px] text-slate-500 font-sans">
+                      <span className="font-semibold text-saffron">Shree Pratisthan Organizing Committee</span>
+                      <span>Nashik, Maharashtra</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Booking & Registration Concierge Box */}
+                <div className="lg:col-span-5 xl:col-span-4 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-white via-amber-50/25 to-white border border-saffron/20 shadow-lg space-y-4">
+                  {/* Status strip */}
+                  <div className="flex items-center justify-between gap-2 pb-3 border-b border-saffron/15">
+                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-slate-500 font-sans">
+                      {t("eventsPage.detail.registrationStatus")}
+                    </span>
+
+                    {event.registrationStatus === "open" && (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-300 font-sans shadow-xs">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                        {t("eventsPage.detail.open")}
+                      </span>
+                    )}
+                    {event.registrationStatus === "closing_soon" && (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-300 font-sans shadow-xs">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-600 animate-ping" />
+                        {t("eventsPage.detail.closingSoon")}
+                      </span>
+                    )}
+                    {event.registrationStatus === "free_entry" && (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-blue-50 text-blue-800 border border-blue-300 font-sans shadow-xs">
+                        <Sparkles className="w-3 h-3 text-blue-600" />
+                        {t("eventsPage.detail.freeEntry")}
+                      </span>
+                    )}
+                    {event.registrationStatus === "closed" && (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-neutral-100 text-neutral-700 border border-neutral-300 font-sans">
+                        {t("eventsPage.detail.closed")}
+                      </span>
+                    )}
+                  </div>
+
+                  {event.registrationCloseDate && (
+                    <div className="flex items-center gap-1.5 text-[11px] text-slate-600 font-sans bg-amber-50/50 border border-amber-200/50 p-2 rounded-lg">
+                      <Clock className="w-3.5 h-3.5 text-saffron shrink-0" />
+                      <span><strong className="font-semibold">{t("eventsPage.detail.deadlineLabel")}:</strong> {event.registrationCloseDate}</span>
+                    </div>
+                  )}
+
+                  {/* Actions */}
+                  <div className="space-y-3 pt-1">
+                    {isRegistrationOpen ? (
+                      <Link
+                        href={`/event-booking?event=${event.id}`}
+                        className="inline-flex items-center justify-center gap-2.5 w-full px-7 py-4 bg-gradient-to-r from-saffron via-[#e75a1d] to-[#d96614] hover:from-[#d64d18] hover:to-[#c45308] text-white font-bold text-xs uppercase tracking-[0.2em] rounded-full shadow-xl shadow-saffron/25 hover:shadow-2xl hover:shadow-saffron/35 hover:-translate-y-0.5 active:translate-y-0 transition-all font-sans cursor-pointer group/btn ring-1 ring-white/30 text-center"
+                      >
+                        <Ticket className="w-4 h-4 transition-transform group-hover/btn:rotate-12 group-hover/btn:scale-110" />
+                        <span>{t("eventsPage.detail.bookPassBtn")}</span>
+                        <ChevronRight className="w-4 h-4 text-white/80 group-hover/btn:translate-x-1 transition-transform" />
+                      </Link>
+                    ) : (
+                      <div className="inline-flex items-center justify-center gap-2 w-full px-6 py-4 bg-neutral-200 text-neutral-600 font-bold text-xs uppercase tracking-[0.2em] rounded-full font-sans cursor-not-allowed border border-neutral-300">
+                        <AlertCircle className="w-4 h-4" /> {t("eventsPage.detail.closed")}
+                      </div>
+                    )}
+
+                    {/* Share Button with Live Feedback */}
+                    <button
+                      type="button"
+                      onClick={handleShare}
+                      aria-label="Share Event"
+                      className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 bg-white hover:bg-neutral-50 text-neutral-800 rounded-full border border-saffron/20 hover:border-saffron/40 font-bold text-xs uppercase tracking-wider font-sans transition-all shadow-xs hover:shadow-md active:scale-95 cursor-pointer"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="w-4 h-4 text-emerald-600" />
+                          <span className="text-emerald-700">Link Copied to Clipboard!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Share2 className="w-4 h-4 text-saffron" />
+                          <span>{t("eventsPage.detail.shareBtn")}</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Trust Signals */}
+                  <div className="pt-2 border-t border-saffron/10 flex items-center justify-between text-[11px] font-medium text-slate-500 font-sans">
+                    <span className="inline-flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                      Instant Pass
+                    </span>
+                    <span className="text-slate-300">•</span>
+                    <span className="inline-flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                      QR Check-In
+                    </span>
+                    <span className="text-slate-300">•</span>
+                    <span className="inline-flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                      100% Free
+                    </span>
+                  </div>
+                </div>
+
               </div>
+
+              {/* Quick Details Full-Width 4-Card Deck */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-2">
+                {/* Date Card */}
+                <div className="p-3.5 sm:p-4 rounded-xl bg-white/85 border border-saffron/15 hover:border-saffron/35 hover:bg-white transition-all shadow-xs group/item">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <div className="w-7 h-7 rounded-lg bg-saffron/10 text-saffron flex items-center justify-center shrink-0 group-hover/item:bg-saffron group-hover/item:text-white transition-colors">
+                      <Calendar className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                      {t("eventsPage.detail.dateLabel")}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm font-bold text-neutral-900 truncate">
+                    {event.date}
+                  </p>
+                </div>
+
+                {/* Time Card */}
+                <div className="p-3.5 sm:p-4 rounded-xl bg-white/85 border border-saffron/15 hover:border-saffron/35 hover:bg-white transition-all shadow-xs group/item">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <div className="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0 group-hover/item:bg-amber-600 group-hover/item:text-white transition-colors">
+                      <Clock className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                      {t("eventsPage.detail.timeLabel")}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm font-bold text-neutral-900 truncate">
+                    {event.time}
+                  </p>
+                </div>
+
+                {/* Venue Card */}
+                <div className="p-3.5 sm:p-4 rounded-xl bg-white/85 border border-saffron/15 hover:border-saffron/35 hover:bg-white transition-all shadow-xs group/item">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <div className="w-7 h-7 rounded-lg bg-gold/15 text-neutral-800 flex items-center justify-center shrink-0 group-hover/item:bg-neutral-900 group-hover/item:text-gold transition-colors">
+                      <MapPin className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                      {t("eventsPage.detail.venueLabel")}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm font-bold text-neutral-900 truncate" title={`${event.venueName}, ${event.city}`}>
+                    {event.venueName}
+                  </p>
+                </div>
+
+                {/* Check-In / Mode Card */}
+                <div className="p-3.5 sm:p-4 rounded-xl bg-white/85 border border-saffron/15 hover:border-saffron/35 hover:bg-white transition-all shadow-xs group/item">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-700 flex items-center justify-center shrink-0 group-hover/item:bg-emerald-600 group-hover/item:text-white transition-colors">
+                      <QrCode className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                      Access & Mode
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm font-bold text-neutral-900 truncate">
+                    {event.checkInMode} ({event.eventMode})
+                  </p>
+                </div>
+              </div>
+
             </div>
 
           </div>
         </div>
 
-        {/* 2. Impact Metrics Callout Row */}
+        {/* 2. Impact Metrics Callout Row - Premium Elevated Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {event.metrics.map((m, idx) => (
-            <div key={idx} className="glass-panel p-3.5 sm:p-5 rounded-xl sm:rounded-interactive border border-saffron/15 text-center space-y-1 bg-white/75 shadow-sm">
-              <span className="text-xl sm:text-3xl md:text-4xl font-normal text-saffron font-heading block">{m.value}</span>
-              <span className="text-[10px] sm:text-[11px] text-slate-grey font-bold uppercase tracking-[0.16em] font-sans">{m.label}</span>
+            <div 
+              key={idx} 
+              className="glass-panel relative p-4 sm:p-6 rounded-2xl sm:rounded-interactive border border-saffron/20 text-center space-y-1 bg-gradient-to-b from-white/95 to-amber-50/30 shadow-sm hover:shadow-md hover:border-saffron/40 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden group"
+            >
+              <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-saffron/40 to-transparent group-hover:via-saffron transition-all" />
+              <span className="text-2xl sm:text-3xl md:text-4xl font-normal text-saffron font-heading block tracking-tight group-hover:scale-105 transition-transform duration-300">
+                {m.value}
+              </span>
+              <span className="text-[10px] sm:text-[11px] text-slate-grey font-bold uppercase tracking-[0.16em] font-sans block">
+                {m.label}
+              </span>
             </div>
           ))}
         </div>
@@ -351,7 +584,7 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
         )}
 
         {/* 8. Photo Moments Gallery Grid */}
-        <div className="glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/80 shadow-md space-y-4 sm:space-y-6">
+        <div id="moments-gallery" className="glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/80 shadow-md space-y-4 sm:space-y-6 scroll-mt-24">
           <h2 className="text-xl sm:text-2xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
             {t("eventsPage.detail.momentsGalleryTitle")}
           </h2>

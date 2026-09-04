@@ -6,6 +6,106 @@ import Image from "next/image";
 import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
+function KalashIcon({ className = "w-6 h-6 sm:w-8 sm:h-8 inline-block shrink-0" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-label="Purna Kalash with Mango Leaves and Coconut"
+    >
+      {/* Coconut / Shrifal Top Tuft */}
+      <path
+        d="M32 5 C34.5 10 36 14 32 20 C28 14 29.5 10 32 5 Z"
+        fill="#8D5B28"
+      />
+      {/* Coconut / Shrifal Body */}
+      <circle cx="32" cy="18" r="7.5" fill="#A0632C" stroke="#663A12" strokeWidth="1.5" />
+      <circle cx="32" cy="18" r="1.5" fill="#E25822" />
+
+      {/* Mango Leaves (Aam Ke Patte) */}
+      {/* Left Outer Leaf */}
+      <path
+        d="M26 26 C19 22 13 20 9 24 C13 27.5 19 28 26 28 Z"
+        fill="#2E7D32"
+        stroke="#1B5E20"
+        strokeWidth="1"
+      />
+      {/* Left Inner Leaf */}
+      <path
+        d="M28 25 C23 17 19 14 15 17 C18 21.5 23.5 25 28 27 Z"
+        fill="#43A047"
+        stroke="#1B5E20"
+        strokeWidth="1"
+      />
+      {/* Center Top Leaf behind coconut */}
+      <path
+        d="M32 14 C33.5 8 32 3 32 3 C32 3 30.5 8 32 14 Z"
+        fill="#4CAF50"
+      />
+      {/* Right Inner Leaf */}
+      <path
+        d="M36 25 C41 17 45 14 49 17 C46 21.5 40.5 25 36 27 Z"
+        fill="#43A047"
+        stroke="#1B5E20"
+        strokeWidth="1"
+      />
+      {/* Right Outer Leaf */}
+      <path
+        d="M38 26 C45 22 51 20 55 24 C51 27.5 45 28 38 28 Z"
+        fill="#2E7D32"
+        stroke="#1B5E20"
+        strokeWidth="1"
+      />
+
+      {/* Kalash Rim / Mouth */}
+      <path
+        d="M21 28 C21 26 43 26 43 28 L41 31.5 L23 31.5 Z"
+        fill="#D4AF37"
+        stroke="#B38F24"
+        strokeWidth="1.5"
+      />
+
+      {/* Sacred Thread / Mauli Neck Ribbon */}
+      <rect x="22" y="30" width="20" height="3.5" rx="1.5" fill="#E25822" />
+      <line x1="26" y1="30" x2="26" y2="33.5" stroke="#F4C430" strokeWidth="1.2" />
+      <line x1="32" y1="30" x2="32" y2="33.5" stroke="#F4C430" strokeWidth="1.2" />
+      <line x1="38" y1="30" x2="38" y2="33.5" stroke="#F4C430" strokeWidth="1.2" />
+
+      {/* Golden Kalash Vessel Body */}
+      <path
+        d="M23 33 C16 38 15 52 23 58 C26 60 38 60 41 58 C49 52 48 38 41 33 Z"
+        fill="url(#kalashGoldGrad)"
+        stroke="#C59B27"
+        strokeWidth="1.5"
+      />
+
+      {/* Auspicious Red Swastik on Kalash Body */}
+      <path
+        d="M32 40 L32 49 M27.5 44.5 L36.5 44.5 M32 40 L36.5 40 M32 49 L27.5 49 M27.5 44.5 L27.5 40 M36.5 44.5 L36.5 49"
+        stroke="#D32F2F"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+
+      {/* Kalash Base */}
+      <path
+        d="M25 58 C25 58 27 61 32 61 C37 61 39 58 39 58 Z"
+        fill="#B38F24"
+      />
+
+      <defs>
+        <linearGradient id="kalashGoldGrad" x1="16" y1="34" x2="48" y2="58" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#FDE047" />
+          <stop offset="50%" stopColor="#EAB308" />
+          <stop offset="100%" stopColor="#CA8A04" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
 export default function Footer() {
   const { t } = useLanguage();
   const [email, setEmail] = useState("");
@@ -49,17 +149,25 @@ export default function Footer() {
         <div className="absolute left-0 top-0 h-full w-12 sm:w-28 bg-gradient-to-r from-[#111] to-transparent pointer-events-none z-10" />
         <div className="absolute right-0 top-0 h-full w-12 sm:w-28 bg-gradient-to-l from-[#111] to-transparent pointer-events-none z-10" />
 
-        <div className="inline-flex gap-8 sm:gap-16 group-hover/footer:gap-14 sm:group-hover/footer:gap-24 md:group-hover/footer:gap-32 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-16 group-hover/footer:pr-14 sm:group-hover/footer:pr-24 md:group-hover/footer:pr-32 text-base sm:text-xl md:text-2xl group-hover/footer:text-3xl sm:group-hover/footer:text-5xl md:group-hover/footer:text-[4.8vw] font-normal uppercase font-heading tracking-normal group-hover/footer:tracking-[0.14em] sm:group-hover/footer:tracking-[0.2em] md:group-hover/footer:tracking-[0.26em] opacity-70 group-hover/footer:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+        <div className="inline-flex items-center gap-6 sm:gap-12 group-hover/footer:gap-10 sm:group-hover/footer:gap-16 md:group-hover/footer:gap-24 animate-footer-marquee shrink-0 min-w-full justify-around pr-6 sm:pr-12 group-hover/footer:pr-10 sm:group-hover/footer:pr-16 md:group-hover/footer:pr-24 text-base sm:text-xl md:text-2xl group-hover/footer:text-3xl sm:group-hover/footer:text-5xl md:group-hover/footer:text-[4.8vw] font-normal uppercase font-heading tracking-normal group-hover/footer:tracking-[0.14em] sm:group-hover/footer:tracking-[0.2em] md:group-hover/footer:tracking-[0.26em] opacity-80 group-hover/footer:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
           <span className="text-white transition-[letter-spacing] duration-700">{t("common.motto")}</span>
+          <span className="text-gold font-serif text-lg sm:text-2xl md:text-3xl group-hover/footer:text-4xl sm:group-hover/footer:text-5xl select-none shrink-0 drop-shadow-sm">ॐ</span>
+
           <span className="text-outline font-heading transition-[letter-spacing] duration-700">{t("common.trustName")}</span>
+          <KalashIcon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 group-hover/footer:w-10 sm:group-hover/footer:w-14 md:group-hover/footer:w-16 group-hover/footer:h-10 sm:group-hover/footer:h-14 md:group-hover/footer:h-16 inline-block shrink-0 transition-all duration-700 drop-shadow-sm" />
+
           <span className="text-saffron font-heading transition-[letter-spacing] duration-700">{t("common.location")}</span>
-          <span className="text-white">✦</span>
+          <span className="text-saffron font-bold text-lg sm:text-2xl md:text-3xl group-hover/footer:text-4xl sm:group-hover/footer:text-5xl select-none shrink-0 drop-shadow-sm">卐</span>
         </div>
-        <div className="inline-flex gap-8 sm:gap-16 group-hover/footer:gap-14 sm:group-hover/footer:gap-24 md:group-hover/footer:gap-32 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-16 group-hover/footer:pr-14 sm:group-hover/footer:pr-24 md:group-hover/footer:pr-32 text-base sm:text-xl md:text-2xl group-hover/footer:text-3xl sm:group-hover/footer:text-5xl md:group-hover/footer:text-[4.8vw] font-normal uppercase font-heading tracking-normal group-hover/footer:tracking-[0.14em] sm:group-hover/footer:tracking-[0.2em] md:group-hover/footer:tracking-[0.26em] opacity-70 group-hover/footer:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" aria-hidden="true">
+        <div className="inline-flex items-center gap-6 sm:gap-12 group-hover/footer:gap-10 sm:group-hover/footer:gap-16 md:group-hover/footer:gap-24 animate-footer-marquee shrink-0 min-w-full justify-around pr-6 sm:pr-12 group-hover/footer:pr-10 sm:group-hover/footer:pr-16 md:group-hover/footer:pr-24 text-base sm:text-xl md:text-2xl group-hover/footer:text-3xl sm:group-hover/footer:text-5xl md:group-hover/footer:text-[4.8vw] font-normal uppercase font-heading tracking-normal group-hover/footer:tracking-[0.14em] sm:group-hover/footer:tracking-[0.2em] md:group-hover/footer:tracking-[0.26em] opacity-80 group-hover/footer:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" aria-hidden="true">
           <span className="text-white transition-[letter-spacing] duration-700">{t("common.motto")}</span>
+          <span className="text-gold font-serif text-lg sm:text-2xl md:text-3xl group-hover/footer:text-4xl sm:group-hover/footer:text-5xl select-none shrink-0 drop-shadow-sm">ॐ</span>
+
           <span className="text-outline font-heading transition-[letter-spacing] duration-700">{t("common.trustName")}</span>
+          <KalashIcon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 group-hover/footer:w-10 sm:group-hover/footer:w-14 md:group-hover/footer:w-16 group-hover/footer:h-10 sm:group-hover/footer:h-14 md:group-hover/footer:h-16 inline-block shrink-0 transition-all duration-700 drop-shadow-sm" />
+
           <span className="text-saffron font-heading transition-[letter-spacing] duration-700">{t("common.location")}</span>
-          <span className="text-white">✦</span>
+          <span className="text-saffron font-bold text-lg sm:text-2xl md:text-3xl group-hover/footer:text-4xl sm:group-hover/footer:text-5xl select-none shrink-0 drop-shadow-sm">卐</span>
         </div>
       </div>
 
