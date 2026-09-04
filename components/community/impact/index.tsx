@@ -15,7 +15,7 @@ export default function CommunityImpact() {
     { value: 50, suffix: t("communityPage.impact.s1Suffix"), label: t("communityPage.impact.s1Label") },
     { value: 5000, suffix: t("communityPage.impact.s2Suffix"), label: t("communityPage.impact.s2Label") },
     { value: 10000, suffix: t("communityPage.impact.s3Suffix"), label: t("communityPage.impact.s3Label") },
-    { value: 20, suffix: t("communityPage.impact.s4Suffix"), label: t("communityPage.impact.s4Label") },
+    { value: 20, suffix: t("communityPage.impact.s4Suffix", ""), label: t("communityPage.impact.s4Label") },
   ];
 
   useEffect(() => {
@@ -89,7 +89,7 @@ export default function CommunityImpact() {
             >
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-saffron font-heading flex items-center justify-center">
                 <span className="count-number" data-target={item.value}>{item.value}</span>
-                <span>{item.suffix}</span>
+                {item.suffix ? <span>{item.suffix}</span> : null}
               </div>
               <div className="w-8 sm:w-10 h-0.5 bg-gold my-2.5 sm:my-4 rounded-full" />
               <div className="text-[10px] sm:text-xs md:text-sm font-bold text-slate-grey uppercase tracking-[0.16em] sm:tracking-[0.18em] font-sans">

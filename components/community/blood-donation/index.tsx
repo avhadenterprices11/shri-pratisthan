@@ -128,12 +128,14 @@ export default function BloodDonation() {
 
           {/* Right Column: Interactive Log Card */}
           <div className="blood-animate-right glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block bg-white border border-red-500/10 shadow-xl relative">
-            <div className="absolute top-3 sm:top-4 right-4 sm:right-6 text-[9px] sm:text-xs uppercase font-bold tracking-[0.18em] text-red-600 bg-red-50 px-2.5 sm:px-3 py-1 rounded-full border border-red-100 font-sans">
-              {t("communityPage.bloodDonation.verifiedTag")}
+            <div className="flex items-start justify-between gap-3 mb-4 sm:mb-6">
+              <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
+                {t("communityPage.bloodDonation.recentDrivesTitle")}
+              </h3>
+              <span className="shrink-0 text-[9px] sm:text-xs uppercase font-bold tracking-[0.18em] text-red-600 bg-red-50 px-2.5 sm:px-3 py-1 rounded-full border border-red-100 font-sans">
+                {t("communityPage.bloodDonation.verifiedTag")}
+              </span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 mb-4 sm:mb-6 font-heading uppercase">
-              {t("communityPage.bloodDonation.recentDrivesTitle")}
-            </h3>
             
             <div className="space-y-3 sm:space-y-4">
               {PAST_CAMPS.map((camp, index) => (

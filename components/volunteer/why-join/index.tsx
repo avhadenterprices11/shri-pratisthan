@@ -112,18 +112,18 @@ export default function VolunteerWhyJoin() {
         {/* Interactive Split Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Tab list (scrolling tabs on mobile) */}
-          <div className="md:col-span-5 flex md:flex-col gap-2.5 sm:gap-3 overflow-x-auto md:overflow-visible pb-2 md:pb-0 scrollbar-none w-full">
+          {/* Left Column: Tab list (All 4 points visible simultaneously on both mobile & desktop) */}
+          <div className="md:col-span-5 flex flex-col gap-2 sm:gap-3 w-full">
             {VALUES.map((item, index) => {
               const isActive = activeIdx === index;
               return (
                 <button
                   key={index}
                   onClick={() => handleTabClick(index)}
-                  className={`text-left p-3 sm:p-5 rounded-xl border transition-all duration-300 flex items-center gap-2.5 sm:gap-4 group cursor-pointer shrink-0 md:shrink ${
+                  className={`text-left p-3 sm:p-5 rounded-xl border transition-all duration-300 flex items-center gap-2.5 sm:gap-4 group cursor-pointer w-full ${
                     isActive 
-                      ? "bg-white border-saffron/20 shadow-lg" 
-                      : "bg-transparent border-transparent hover:bg-white/40"
+                      ? "bg-white border-saffron/20 shadow-lg scale-[1.01]" 
+                      : "bg-white/40 md:bg-transparent border-black/5 md:border-transparent hover:bg-white/60"
                   }`}
                 >
                   <span className={`text-xs sm:text-base md:text-lg font-normal font-heading transition-colors duration-300 ${isActive ? "text-saffron" : "text-slate-grey group-hover:text-neutral-900"}`}>

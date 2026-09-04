@@ -58,23 +58,16 @@ export default function VolunteerProcess() {
 
     const mm = gsap.matchMedia();
 
-    // Universal Responsive Pinned Scroll-Scrubbed Stepper (Phone & Desktop)
-    mm.add("(min-width: 0px)", () => {
-      const isMobile = window.innerWidth < 768;
-
+    // Mobile: Smooth natural scroll-triggered progression (no intrusive pinning)
+    mm.add("(max-width: 767px)", () => {
       const trigger = ScrollTrigger.create({
         trigger: "#processPinContainer",
-        start: "top top",
-        end: isMobile ? "+=140%" : "+=120%",
-        scrub: isMobile ? 0.35 : 0.4,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
+        start: "top 75%",
+        end: "bottom 35%",
+        scrub: 0.3,
         onUpdate: (self) => {
-          const progress = self.progress;
           const index = Math.min(
-            Math.floor(progress * STAGES.length),
+            Math.floor(self.progress * STAGES.length),
             STAGES.length - 1
           );
           if (index !== activeIdxRef.current) {
@@ -83,7 +76,31 @@ export default function VolunteerProcess() {
           }
         },
       });
+      scrollTriggerInstance.current = trigger;
+    });
 
+    // Desktop: Compact, elegant pinned scrub
+    mm.add("(min-width: 768px)", () => {
+      const trigger = ScrollTrigger.create({
+        trigger: "#processPinContainer",
+        start: "top 12%",
+        end: "+=450",
+        scrub: 0.4,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const index = Math.min(
+            Math.floor(self.progress * STAGES.length),
+            STAGES.length - 1
+          );
+          if (index !== activeIdxRef.current) {
+            activeIdxRef.current = index;
+            setActiveIdx(index);
+          }
+        },
+      });
       scrollTriggerInstance.current = trigger;
     });
 
@@ -109,7 +126,7 @@ export default function VolunteerProcess() {
   }, [activeIdx]);
 
   const handleStepClick = (idx: number) => {
-    if (scrollTriggerInstance.current) {
+    if (scrollTriggerInstance.current && window.innerWidth >= 768) {
       const start = scrollTriggerInstance.current.start;
       const end = scrollTriggerInstance.current.end;
       const progress = (idx + 0.1) / STAGES.length;
@@ -124,14 +141,14 @@ export default function VolunteerProcess() {
   };
 
   return (
-    <div 
+    <section 
       id="processPinContainer" 
       ref={containerRef} 
-      className="bg-background relative w-full h-screen min-h-[560px] sm:min-h-screen flex flex-col justify-center overflow-hidden select-none"
+      className="bg-background relative w-full py-12 sm:py-16 md:py-20 flex flex-col justify-center overflow-hidden select-none border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0 animate-pulse" />
       
-      <div className="relative z-10 w-full flex flex-col justify-center py-6 sm:py-12 md:py-0">
+      <div className="relative z-10 w-full flex flex-col justify-center">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-3 sm:mb-8 md:mb-12 px-4 sm:px-6">
@@ -265,6 +282,6 @@ export default function VolunteerProcess() {
         </div>
 
       </div>
-    </div>
+    </section>
   );
 }

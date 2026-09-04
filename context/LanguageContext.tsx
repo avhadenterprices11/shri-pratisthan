@@ -81,14 +81,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       // 1. Try selected language dictionary
       const activeDict = DICTIONARIES[language];
       const val = getNestedValue(activeDict, path);
-      if (val !== undefined && val.trim() !== "") {
+      if (val !== undefined) {
         return val;
       }
 
       // 2. Fallback to English dictionary
       if (language !== "en") {
         const enVal = getNestedValue(DICTIONARIES.en, path);
-        if (enVal !== undefined && enVal.trim() !== "") {
+        if (enVal !== undefined) {
           return enVal;
         }
       }

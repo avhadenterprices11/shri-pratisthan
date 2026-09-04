@@ -27,8 +27,8 @@ export default function AllEventsSection() {
   });
 
   return (
-    <section id="all-events-grid" className="w-full py-10 sm:py-16 bg-neutral-50/50 border-t border-neutral-200/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-6 sm:mb-8 text-center">
+    <section id="all-events-grid" className="w-full pt-10 sm:pt-14 pb-6 sm:pb-8 bg-neutral-50/50 border-t border-neutral-200/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-4 sm:mb-6 text-center">
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
           {t("eventsPage.allEvents.heading")}
         </h2>

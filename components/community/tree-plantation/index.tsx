@@ -85,12 +85,14 @@ export default function TreePlantation() {
           
           {/* Left Column: Visual Species Selection */}
           <div className="tree-animate-left order-2 lg:order-1 glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block bg-white border border-emerald-500/10 shadow-xl relative">
-            <div className="absolute top-3 sm:top-4 right-4 sm:right-6 text-[9px] sm:text-xs uppercase font-bold tracking-[0.18em] text-emerald-600 bg-emerald-50 px-2.5 sm:px-3 py-1 rounded-full border border-emerald-100 font-sans">
-              {t("communityPage.treePlantation.ecologyTag")}
+            <div className="flex items-start justify-between gap-3 mb-4 sm:mb-6">
+              <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
+                {t("communityPage.treePlantation.speciesTitle")}
+              </h3>
+              <span className="shrink-0 text-[9px] sm:text-xs uppercase font-bold tracking-[0.18em] text-emerald-600 bg-emerald-50 px-2.5 sm:px-3 py-1 rounded-full border border-emerald-100 font-sans">
+                {t("communityPage.treePlantation.ecologyTag")}
+              </span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 mb-4 sm:mb-6 font-heading uppercase">
-              {t("communityPage.treePlantation.speciesTitle")}
-            </h3>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {SPECIES.map((spec, index) => (
