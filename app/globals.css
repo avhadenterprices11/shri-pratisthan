@@ -118,6 +118,9 @@
 .text-outline-festive {
   -webkit-text-stroke: 1.5px var(--saffron);
   color: transparent;
+  display: inline-block;
+  padding-top: 0.08em;
+  padding-bottom: 0.08em;
   transition: -webkit-text-stroke 0.3s ease;
 }
 

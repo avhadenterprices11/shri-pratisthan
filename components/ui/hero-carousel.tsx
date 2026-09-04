@@ -299,7 +299,7 @@ export function HeroCarousel({
           <AnimatePresence mode="wait" initial={false}>
             <motion.h1
               key={index}
-              className="font-heading font-normal uppercase leading-[1.12] tracking-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] pt-1"
+              className="font-heading font-normal uppercase leading-[1.28] sm:leading-[1.3] tracking-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] pt-1"
               style={{ fontSize: titleSize }}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -307,9 +307,9 @@ export function HeroCarousel({
               transition={{ duration: 0.25, ease: "easeOut" }}
             >
               {lines.map((line, i) => (
-                <span key={i} className="block overflow-hidden py-0.5 -mt-1">
+                <span key={i} className="block overflow-hidden py-2 sm:py-3 -my-1 sm:-my-1.5">
                   <motion.span
-                    className="block pb-0.5"
+                    className="block py-1"
                     initial={{ y: "110%" }}
                     animate={{ y: 0 }}
                     transition={
@@ -379,21 +379,19 @@ export function HeroCarousel({
           }}
         >
           {items.map((item, i) => (
-            <motion.button
+            <button
               key={item.id ?? i}
               type="button"
               aria-label={item.title.replace(/\n/g, " ")}
               aria-current={i === index}
               onClick={() => go(i)}
               className={cn(
-                "relative shrink-0 overflow-hidden rounded-xl sm:rounded-2xl border transition-colors duration-500 cursor-pointer shadow-2xl",
+                "relative shrink-0 overflow-hidden rounded-xl sm:rounded-2xl border transition-all duration-300 cursor-pointer shadow-xl",
                 i === index
-                  ? "border-white ring-2 ring-white/60 shadow-2xl"
-                  : "border-white/20 hover:border-white/50 opacity-80 hover:opacity-100"
+                  ? "border-saffron ring-2 ring-saffron/80 shadow-saffron/30 opacity-100 scale-100"
+                  : "border-white/20 hover:border-white/50 opacity-60 hover:opacity-90 scale-[0.98]"
               )}
-              style={{ width: cardW }}
-              animate={{ height: i === index ? fullH : halfH }}
-              transition={spring}
+              style={{ width: cardW, height: fullH }}
             >
               {/* Real authentic card image */}
               <img
@@ -406,10 +404,13 @@ export function HeroCarousel({
               {/* Subtle bottom gradient for number readability */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-70 pointer-events-none" />
               {/* Slide number on the card */}
-              <span className="absolute bottom-2 left-2 sm:bottom-2.5 sm:left-2.5 text-[9px] sm:text-[11px] font-mono font-bold tracking-widest text-white/90 drop-shadow">
+              <span className={cn(
+                "absolute bottom-2 left-2 sm:bottom-2.5 sm:left-2.5 text-[9px] sm:text-[11px] font-mono font-bold tracking-widest drop-shadow",
+                i === index ? "text-saffron" : "text-white/80"
+              )}>
                 0{i + 1}
               </span>
-            </motion.button>
+            </button>
           ))}
         </motion.div>
       </div>

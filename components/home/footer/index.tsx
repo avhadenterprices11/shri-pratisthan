@@ -140,34 +140,33 @@ export default function Footer() {
   return (
     <footer className="group/footer bg-[#111111] text-white relative overflow-hidden border-t border-white/10 select-none">
 
-      {/* 1. Interactive Expandable Awwwards-Style Header Marquee */}
+      {/* 1. Sleek Stable Header Marquee — Zero Layout Shift */}
       <div 
-        className="footer-marquee-wrap relative w-full overflow-hidden whitespace-nowrap py-3 sm:py-4.5 group-hover/footer:py-8 sm:group-hover/footer:py-12 md:group-hover/footer:py-14 bg-[#111] flex border-b border-white/5 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer select-none"
-        title="Hover to slow down and expand"
+        className="footer-marquee-wrap relative w-full overflow-hidden whitespace-nowrap py-4 sm:py-5 bg-[#111] flex border-b border-white/10 select-none"
       >
         {/* Left & Right Gradient Soft Fades */}
         <div className="absolute left-0 top-0 h-full w-12 sm:w-28 bg-gradient-to-r from-[#111] to-transparent pointer-events-none z-10" />
         <div className="absolute right-0 top-0 h-full w-12 sm:w-28 bg-gradient-to-l from-[#111] to-transparent pointer-events-none z-10" />
 
-        <div className="inline-flex items-center gap-6 sm:gap-12 group-hover/footer:gap-10 sm:group-hover/footer:gap-16 md:group-hover/footer:gap-24 animate-footer-marquee shrink-0 min-w-full justify-around pr-6 sm:pr-12 group-hover/footer:pr-10 sm:group-hover/footer:pr-16 md:group-hover/footer:pr-24 text-base sm:text-xl md:text-2xl group-hover/footer:text-3xl sm:group-hover/footer:text-5xl md:group-hover/footer:text-[4.8vw] font-normal uppercase font-heading tracking-normal group-hover/footer:tracking-[0.14em] sm:group-hover/footer:tracking-[0.2em] md:group-hover/footer:tracking-[0.26em] opacity-80 group-hover/footer:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
-          <span className="text-white transition-[letter-spacing] duration-700">{t("common.motto")}</span>
-          <span className="text-gold font-serif text-lg sm:text-2xl md:text-3xl group-hover/footer:text-4xl sm:group-hover/footer:text-5xl select-none shrink-0 drop-shadow-sm">ॐ</span>
+        <div className="inline-flex items-center gap-8 sm:gap-14 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-14 text-base sm:text-xl md:text-2xl font-normal uppercase font-heading tracking-wider opacity-80 group-hover/footer:opacity-100 transition-opacity duration-300">
+          <span className="text-white">{t("common.motto")}</span>
+          <span className="text-gold font-serif text-lg sm:text-2xl md:text-3xl select-none shrink-0 drop-shadow-sm">ॐ</span>
 
-          <span className="text-outline font-heading transition-[letter-spacing] duration-700">{t("common.trustName")}</span>
-          <KalashIcon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 group-hover/footer:w-10 sm:group-hover/footer:w-14 md:group-hover/footer:w-16 group-hover/footer:h-10 sm:group-hover/footer:h-14 md:group-hover/footer:h-16 inline-block shrink-0 transition-all duration-700 drop-shadow-sm" />
+          <span className="text-outline font-heading">{t("common.trustName")}</span>
+          <KalashIcon className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 inline-block shrink-0 drop-shadow-sm" />
 
-          <span className="text-saffron font-heading transition-[letter-spacing] duration-700">{t("common.location")}</span>
-          <span className="text-saffron font-bold text-lg sm:text-2xl md:text-3xl group-hover/footer:text-4xl sm:group-hover/footer:text-5xl select-none shrink-0 drop-shadow-sm">卐</span>
+          <span className="text-saffron font-heading">{t("common.location")}</span>
+          <span className="text-saffron font-bold text-lg sm:text-2xl md:text-3xl select-none shrink-0 drop-shadow-sm">卐</span>
         </div>
-        <div className="inline-flex items-center gap-6 sm:gap-12 group-hover/footer:gap-10 sm:group-hover/footer:gap-16 md:group-hover/footer:gap-24 animate-footer-marquee shrink-0 min-w-full justify-around pr-6 sm:pr-12 group-hover/footer:pr-10 sm:group-hover/footer:pr-16 md:group-hover/footer:pr-24 text-base sm:text-xl md:text-2xl group-hover/footer:text-3xl sm:group-hover/footer:text-5xl md:group-hover/footer:text-[4.8vw] font-normal uppercase font-heading tracking-normal group-hover/footer:tracking-[0.14em] sm:group-hover/footer:tracking-[0.2em] md:group-hover/footer:tracking-[0.26em] opacity-80 group-hover/footer:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" aria-hidden="true">
-          <span className="text-white transition-[letter-spacing] duration-700">{t("common.motto")}</span>
-          <span className="text-gold font-serif text-lg sm:text-2xl md:text-3xl group-hover/footer:text-4xl sm:group-hover/footer:text-5xl select-none shrink-0 drop-shadow-sm">ॐ</span>
+        <div className="inline-flex items-center gap-8 sm:gap-14 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-14 text-base sm:text-xl md:text-2xl font-normal uppercase font-heading tracking-wider opacity-80 group-hover/footer:opacity-100 transition-opacity duration-300" aria-hidden="true">
+          <span className="text-white">{t("common.motto")}</span>
+          <span className="text-gold font-serif text-lg sm:text-2xl md:text-3xl select-none shrink-0 drop-shadow-sm">ॐ</span>
 
-          <span className="text-outline font-heading transition-[letter-spacing] duration-700">{t("common.trustName")}</span>
-          <KalashIcon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 group-hover/footer:w-10 sm:group-hover/footer:w-14 md:group-hover/footer:w-16 group-hover/footer:h-10 sm:group-hover/footer:h-14 md:group-hover/footer:h-16 inline-block shrink-0 transition-all duration-700 drop-shadow-sm" />
+          <span className="text-outline font-heading">{t("common.trustName")}</span>
+          <KalashIcon className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 inline-block shrink-0 drop-shadow-sm" />
 
-          <span className="text-saffron font-heading transition-[letter-spacing] duration-700">{t("common.location")}</span>
-          <span className="text-saffron font-bold text-lg sm:text-2xl md:text-3xl group-hover/footer:text-4xl sm:group-hover/footer:text-5xl select-none shrink-0 drop-shadow-sm">卐</span>
+          <span className="text-saffron font-heading">{t("common.location")}</span>
+          <span className="text-saffron font-bold text-lg sm:text-2xl md:text-3xl select-none shrink-0 drop-shadow-sm">卐</span>
         </div>
       </div>
 

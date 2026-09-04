@@ -1,60 +1,20 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import Image from "next/image";
-import { motion, type Transition } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MILESTONES = [
-  {
-    year: "2006",
-    title: "Group Formed",
-    description: "Shri Pratisthan was founded in Indira Nagar, Nashik by dedicated youth uniting together with a shared mission to serve the local community.",
-    tag: "Founding",
-    image: "/ganeshotsav_award_group.jpg",
-    fit: "cover",
-  },
-  {
-    year: "2012",
-    title: "Cultural & Utsav Expansion",
-    description: "Initiated grand Dahi Handi, Ganeshotsav, and Navratri celebrations with massive community participation across Nashik.",
-    tag: "Festivals",
-    image: "/dahihandi_2018.jpg",
-    fit: "cover",
-  },
-  {
-    year: "2018",
-    title: "Official Trust Registration",
-    description: "Formally registered as Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha (Reg: nashik/0000153/2018) under Adv. Shyam Badode.",
-    tag: "Trust Reg.",
-    image: "/trust_seal.png",
-    fit: "contain",
-  },
-  {
-    year: "Present",
-    title: "20 Years of Impact",
-    description: "Over 100+ active members organizing iconic cultural sets (Jaipur Palace dekhava), Swagat Yatra, and mass community welfare initiatives.",
-    tag: "Community Impact",
-    image: "/ganeshotsav_2017_jaipur.jpg",
-    fit: "cover",
-  },
-];
-
-const DEFAULT_TRANSITION: Transition = {
-  type: "tween",
-  ease: [0.16, 1, 0.3, 1],
-  duration: 0.32,
-};
-
 export default function FestivalJourney() {
   const { t } = useLanguage();
-  const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideSize, setSlideSize] = useState(440);
   const [isMobile, setIsMobile] = useState(false);
@@ -94,7 +54,9 @@ export default function FestivalJourney() {
     },
   ], [t]);
 
-  // Monitor viewport size to adjust slide sizing dynamically
+  const totalMilestones = milestonesData.length;
+
+  // Responsive slide size measurement
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -105,7 +67,7 @@ export default function FestivalJourney() {
       } else if (width >= 640) {
         setSlideSize(380);
       } else {
-        setSlideSize(Math.min(width - 56, 320));
+        setSlideSize(Math.min(width - 48, 350));
       }
     };
     handleResize();
@@ -113,101 +75,148 @@ export default function FestivalJourney() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // GSAP: Scroll-driven milestone progression (Continuous, natural scroll with zero viewport locking)
+  // Silky Smooth GSAP Pinned Scroll Progression (Zero Tilt, 100% Level, GPU-Accelerated)
   useEffect(() => {
-    if (!containerRef.current) return;
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
 
     const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top 75%",
-        end: "bottom 25%",
-        scrub: 0.3,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          let index = 0;
-          if (progress < 0.25) index = 0;
-          else if (progress < 0.5) index = 1;
-          else if (progress < 0.75) index = 2;
-          else index = 3;
-          setActiveIndex((prev) => (prev !== index ? index : prev));
+      // Total travel distance to bring each card smoothly to center
+      const travelDistance = (totalMilestones - 1) * slideSize;
+
+      // Animate the track horizontally on scrub
+      const anim = gsap.to(track, {
+        x: -travelDistance,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          anticipatePin: 1,
+          start: "top top",
+          end: () => `+=${Math.max(window.innerHeight * 1.5, 1200)}`,
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const rawIndex = self.progress * (totalMilestones - 1);
+            const clampedIndex = Math.min(
+              totalMilestones - 1,
+              Math.max(0, Math.round(rawIndex))
+            );
+            setActiveIndex((prev) => (prev !== clampedIndex ? clampedIndex : prev));
+          },
         },
       });
-    }, containerRef);
 
+      scrollTriggerRef.current = anim.scrollTrigger ?? null;
+    }, sectionRef);
+
+    // Refresh after DOM layout stabilization
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 300);
+    }, 250);
 
     return () => {
       ctx.revert();
       clearTimeout(timer);
+      scrollTriggerRef.current = null;
     };
-  }, []);
+  }, [totalMilestones, slideSize]);
+
+  // Click navigation: smoothly scrolls the page so the pinned journey lands on target milestone
+  const scrollToMilestone = useCallback((targetIndex: number) => {
+    const st = scrollTriggerRef.current;
+    if (st) {
+      const targetScroll = st.start + (targetIndex / (totalMilestones - 1)) * (st.end - st.start);
+      window.scrollTo({
+        top: targetScroll,
+        behavior: "smooth",
+      });
+    } else {
+      setActiveIndex(targetIndex);
+    }
+  }, [totalMilestones]);
+
+  const handlePrev = useCallback(() => {
+    if (activeIndex > 0) scrollToMilestone(activeIndex - 1);
+  }, [activeIndex, scrollToMilestone]);
+
+  const handleNext = useCallback(() => {
+    if (activeIndex < totalMilestones - 1) scrollToMilestone(activeIndex + 1);
+  }, [activeIndex, totalMilestones, scrollToMilestone]);
 
   return (
     <section
-      ref={containerRef}
-      className="relative w-full min-h-[620px] sm:min-h-[700px] overflow-hidden bg-background flex flex-col justify-between py-10 sm:py-16 select-none"
+      ref={sectionRef}
+      className="relative w-full h-screen min-h-[640px] max-h-[1080px] overflow-hidden bg-background flex flex-col justify-between py-8 sm:py-12 select-none"
     >
-      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40" />
-      <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-12 opacity-30" />
+      <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-35" />
+      <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-12 opacity-25" />
 
       {/* Header */}
-      <div className="text-center max-w-2xl mx-auto px-4 sm:px-6 relative z-20 space-y-2 sm:space-y-3 pt-2 sm:pt-4">
-        <div>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase bg-saffron/10 border border-saffron/25 text-saffron font-sans mb-1.5 shadow-xs">
-            <Sparkles className="w-3 h-3 text-saffron animate-pulse" />
-            {t("festivalJourney.eyebrow", "Decades of Devotion")}
-          </span>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-tight">
-            {t("festivalJourney.title")}
-          </h2>
-          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 rounded-full" />
-        </div>
-
-        {/* Scroll Instruction Hint for Phone & Desktop */}
-        <div className="flex items-center justify-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-sans">
-          <span className="animate-bounce">↓</span>
-          <span className="text-[11px] sm:text-xs font-medium tracking-wide">
-            {t("common.scrollProgress", "Scroll down to travel through time")}
-          </span>
-        </div>
+      <div className="text-center max-w-2xl mx-auto px-4 sm:px-6 relative z-20 space-y-2 pt-2 sm:pt-4">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-snug">
+          {t("festivalJourney.title")}
+        </h2>
+        <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 rounded-full" />
       </div>
 
-      {/* Cascade Carousel Viewport (Responsive for both Phone & Desktop via Scroll Animation) */}
-      <div className="relative flex-grow items-center justify-center w-full select-none overflow-hidden my-auto flex">
-        <motion.div
-          className="absolute left-[50%] top-[50%] flex w-fit -translate-y-1/2"
-          animate={{ x: -(activeIndex * slideSize + slideSize / 2) }}
-          transition={DEFAULT_TRANSITION}
+      {/* Carousel Viewport with Level Cards and Navigation Arrows */}
+      <div className="relative w-full h-[360px] sm:h-[410px] lg:h-[440px] my-auto flex items-center justify-center overflow-hidden">
+        {/* Navigation Arrows for direct click access */}
+        <div className="absolute inset-x-0 z-30 flex justify-between items-center pointer-events-none px-3 sm:px-8 md:px-14 max-w-6xl mx-auto">
+          <button
+            type="button"
+            onClick={handlePrev}
+            disabled={activeIndex === 0}
+            aria-label="Previous milestone"
+            className={cn(
+              "pointer-events-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/20 text-white flex items-center justify-center shadow-xl transition-all duration-200 cursor-pointer active:scale-95",
+              activeIndex === 0 ? "opacity-25 cursor-not-allowed" : "hover:scale-105"
+            )}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            type="button"
+            onClick={handleNext}
+            disabled={activeIndex === totalMilestones - 1}
+            aria-label="Next milestone"
+            className={cn(
+              "pointer-events-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/20 text-white flex items-center justify-center shadow-xl transition-all duration-200 cursor-pointer active:scale-95",
+              activeIndex === totalMilestones - 1 ? "opacity-25 cursor-not-allowed" : "hover:scale-105"
+            )}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Level Track — Animate horizontal X via GSAP on scroll scrub */}
+        <div
+          ref={trackRef}
+          className="absolute left-[50%] flex w-fit items-center will-change-transform"
+          style={{
+            // Card 0 starts centered exactly in viewport
+            marginLeft: -slideSize / 2,
+          }}
         >
           {milestonesData.map((item, index) => {
             const isActive = activeIndex === index;
-            const distance = index - activeIndex;
 
             return (
-              <motion.div
+              <div
                 key={item.year}
-                className="flex shrink-0 flex-col items-center justify-center will-change-transform px-2 sm:px-4"
+                className="flex shrink-0 flex-col items-center justify-center will-change-transform px-2 sm:px-4 transition-all duration-500"
                 style={{ width: slideSize }}
-                animate={{
-                  rotate: distance * (isMobile ? 3 : 10),
-                  scale: isActive ? 1 : (isMobile ? 0.88 : 0.78),
-                  y: distance * (isMobile ? 12 : 32),
-                  opacity: isActive ? 1 : (isMobile ? 0.35 : 0.3),
-                }}
-                transition={DEFAULT_TRANSITION}
-                onClick={() => setActiveIndex(index)}
+                onClick={() => scrollToMilestone(index)}
               >
-                {/* Milestone Detail Card */}
+                {/* Milestone Detail Card — Always Level, Straight, and Elegant */}
                 <div
                   className={cn(
-                    "group w-full h-[320px] sm:h-[360px] lg:h-[390px] rounded-2xl sm:rounded-block overflow-hidden flex flex-col justify-between border bg-[#121214] shadow-2xl transition-all duration-500 relative cursor-pointer",
+                    "group w-full h-[320px] sm:h-[370px] lg:h-[400px] rounded-2xl sm:rounded-block overflow-hidden flex flex-col justify-between border bg-[#121214] shadow-2xl transition-all duration-500 relative cursor-pointer",
                     isActive
-                      ? "border-saffron/40 shadow-saffron/20 ring-2 ring-saffron/25"
-                      : "border-slate-800/60 shadow-slate-900 opacity-90 hover:opacity-100"
+                      ? "border-saffron/50 shadow-saffron/25 ring-2 ring-saffron/35 scale-100 opacity-100"
+                      : "border-slate-800/80 shadow-slate-950/60 scale-[0.94] opacity-40 hover:opacity-75"
                   )}
                 >
                   {/* Background Image */}
@@ -215,7 +224,7 @@ export default function FestivalJourney() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="(max-width: 640px) 320px, 440px"
+                    sizes="(max-width: 640px) 340px, 440px"
                     priority={index === 0}
                     className={cn(
                       "transition-transform duration-700 ease-out group-hover:scale-105",
@@ -226,7 +235,7 @@ export default function FestivalJourney() {
                   />
 
                   {/* Gradient Overlay for Readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-charcoal/65 to-black/30 z-10 transition-all duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/25 z-10" />
 
                   {/* Header: Year & Tag */}
                   <div className="relative z-20 flex justify-between items-center p-5 sm:p-7">
@@ -248,25 +257,25 @@ export default function FestivalJourney() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
 
-      {/* Bottom Year Milestones Indicator (Animated with Scroll on both Mobile & Desktop, NO ARROWS) */}
-      <div className="text-center relative z-20 pb-3 sm:pb-5 flex flex-col items-center justify-center gap-2">
-        <div className="flex items-center gap-2 sm:gap-3 bg-black/50 dark:bg-white/5 backdrop-blur-md border border-white/10 px-3.5 py-1.5 sm:py-2 rounded-full shadow-lg">
+      {/* Bottom Year Milestones Selector & Progress Track */}
+      <div className="text-center relative z-20 pb-2 sm:pb-4 flex flex-col items-center justify-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-3 bg-black/60 dark:bg-white/5 backdrop-blur-md border border-white/10 p-1.5 rounded-full shadow-lg">
           {milestonesData.map((item, idx) => {
             const isCurrent = activeIndex === idx;
             return (
               <button
                 key={idx}
                 type="button"
-                onClick={() => setActiveIndex(idx)}
+                onClick={() => scrollToMilestone(idx)}
                 aria-label={`Milestone ${item.year}`}
                 className={cn(
-                  "px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold transition-all duration-300 font-sans cursor-pointer flex items-center gap-1.5",
+                  "px-3.5 sm:px-5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold transition-all duration-300 font-sans cursor-pointer flex items-center gap-1.5",
                   isCurrent
                     ? "bg-saffron text-white shadow-md shadow-saffron/40 scale-105"
                     : "text-white/60 hover:text-white hover:bg-white/10"

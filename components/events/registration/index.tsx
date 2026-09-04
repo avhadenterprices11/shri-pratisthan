@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -80,13 +81,18 @@ export default function EventsRegistration() {
               <label className="text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block mb-1.5 sm:mb-2 font-sans">
                 {t("eventsPage.registration.eventLabel")}
               </label>
-              <select className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-interactive border border-border bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-base sm:text-sm transition-all font-sans">
-                <option>{t("eventsPage.registration.opt1")}</option>
-                <option>{t("eventsPage.registration.opt2")}</option>
-                <option>{t("eventsPage.registration.opt3")}</option>
-                <option>{t("eventsPage.registration.opt4")}</option>
-                <option>{t("eventsPage.registration.opt5")}</option>
-              </select>
+              <div className="relative group">
+                <select className="w-full appearance-none pl-4 pr-11 py-3 sm:py-3.5 rounded-xl sm:rounded-interactive border border-neutral-300 dark:border-neutral-700 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md shadow-xs text-foreground font-sans text-sm font-medium focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/25 transition-all cursor-pointer hover:border-saffron/50">
+                  <option className="bg-background text-foreground py-2">{t("eventsPage.registration.opt1")}</option>
+                  <option className="bg-background text-foreground py-2">{t("eventsPage.registration.opt2")}</option>
+                  <option className="bg-background text-foreground py-2">{t("eventsPage.registration.opt3")}</option>
+                  <option className="bg-background text-foreground py-2">{t("eventsPage.registration.opt4")}</option>
+                  <option className="bg-background text-foreground py-2">{t("eventsPage.registration.opt5")}</option>
+                </select>
+                <div className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center justify-center w-7 h-7 rounded-lg bg-saffron/10 text-saffron transition-transform duration-300 group-hover:scale-105">
+                  <ChevronDown className="w-4 h-4" />
+                </div>
+              </div>
             </div>
 
             <div>

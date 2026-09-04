@@ -89,12 +89,12 @@ export default function VolunteerHero() {
         {/* Left Column: Heading text content */}
         <div className="lg:col-span-5 space-y-4 sm:space-y-6 text-left">
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white leading-[1.1] tracking-tight font-heading uppercase">
-            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-              <span className="block reveal-line">{t("volunteerPage.hero.titleLine1")}</span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white leading-[1.3] sm:leading-[1.32] tracking-tight font-heading uppercase">
+            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-3 sm:py-4 -my-2 sm:-my-3">
+              <span className="block reveal-line py-1">{t("volunteerPage.hero.titleLine1")}</span>
             </div>
-            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-              <span className="block reveal-line text-saffron text-outline-festive font-heading">{t("volunteerPage.hero.titleLine2")}</span>
+            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-3 sm:py-4 -my-2 sm:-my-3">
+              <span className="block reveal-line py-1 text-saffron text-outline-festive font-heading">{t("volunteerPage.hero.titleLine2")}</span>
             </div>
           </h1>
 

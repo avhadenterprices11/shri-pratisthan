@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { User, Phone, Mail, MapPin, HelpCircle } from "lucide-react";
+import { User, Phone, Mail, MapPin, HelpCircle, ChevronDown } from "lucide-react";
 import { EventBookingInput } from "@/lib/validations";
 import { getEventById } from "@/lib/events-data";
 import { useLanguage } from "@/context/LanguageContext";
@@ -174,18 +174,23 @@ export default function StepPersonal({
                   </label>
 
                   {q.type === "select" && q.options && (
-                    <select
-                      id={`custom_${q.id}`}
-                      required={q.required}
-                      value={String(currentVal)}
-                      onChange={(e) => handleCustomAnswerChange(q.id, e.target.value)}
-                      className="w-full px-4 py-2.5 bg-white border border-neutral-300 rounded-xl text-neutral-900 text-xs sm:text-sm font-medium font-sans focus:outline-none focus:ring-2 focus:ring-saffron/40 focus:border-saffron"
-                    >
-                      <option value="">-- Please select an option --</option>
-                      {q.options.map((opt, i) => (
-                        <option key={i} value={opt}>{opt}</option>
-                      ))}
-                    </select>
+                    <div className="relative group">
+                      <select
+                        id={`custom_${q.id}`}
+                        required={q.required}
+                        value={String(currentVal)}
+                        onChange={(e) => handleCustomAnswerChange(q.id, e.target.value)}
+                        className="w-full appearance-none pl-4 pr-11 py-2.5 bg-white border border-neutral-300 rounded-xl text-neutral-900 text-xs sm:text-sm font-medium font-sans focus:outline-none focus:ring-2 focus:ring-saffron/30 focus:border-saffron shadow-xs cursor-pointer hover:border-saffron/50 transition-all"
+                      >
+                        <option value="">-- Please select an option --</option>
+                        {q.options.map((opt, i) => (
+                          <option key={i} value={opt}>{opt}</option>
+                        ))}
+                      </select>
+                      <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-md bg-saffron/10 text-saffron">
+                        <ChevronDown className="w-3.5 h-3.5" />
+                      </div>
+                    </div>
                   )}
 
                   {q.type === "text" && (

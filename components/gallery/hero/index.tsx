@@ -112,12 +112,12 @@ export default function GalleryHero() {
       <div className="max-w-[1600px] w-full mx-auto relative z-20">
         {/* Left-aligned Text Overlay */}
         <div className="max-w-3xl space-y-4 sm:space-y-6 text-left">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white leading-[1.1] tracking-tight font-heading uppercase">
-            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-              <span className="block reveal-line">{t("galleryPage.hero.titleLine1")}</span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white leading-[1.3] sm:leading-[1.32] tracking-tight font-heading uppercase">
+            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-3 sm:py-4 -my-2 sm:-my-3">
+              <span className="block reveal-line py-1">{t("galleryPage.hero.titleLine1")}</span>
             </div>
-            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1 sm:py-2 -my-1 sm:-my-2">
-              <span className="block reveal-line text-saffron text-outline-festive font-heading">{t("galleryPage.hero.titleLine2")}</span>
+            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-3 sm:py-4 -my-2 sm:-my-3">
+              <span className="block reveal-line py-1 text-saffron text-outline-festive font-heading">{t("galleryPage.hero.titleLine2")}</span>
             </div>
           </h1>
 

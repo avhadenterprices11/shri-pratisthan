@@ -108,12 +108,9 @@ export default function AboutPreview() {
 
       {/* Centered Heading Layout */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col items-center mb-8 sm:mb-12 text-center relative z-10">
-        <div className="inline-flex items-center gap-2 mb-3 sm:mb-4 bg-saffron/10 text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] px-3.5 sm:px-4 py-1.5 rounded-full border border-saffron/20 opacity-0 about-title-el font-sans">
-          <span>{t("aboutPreview.tagline")}</span>
-        </div>
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-tight opacity-0 about-title-el uppercase">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-snug sm:leading-normal py-1 opacity-0 about-title-el uppercase">
           {t("aboutPreview.title1")} <br />
-          <span className="text-3xl sm:text-[3.25rem] md:text-[4.75rem] font-normal text-saffron block mt-2 sm:mt-3 text-outline-festive font-heading">
+          <span className="text-3xl sm:text-[3.25rem] md:text-[4.75rem] font-normal text-saffron block mt-2 sm:mt-3 py-1 text-outline-festive font-heading">
             {t("aboutPreview.title2")}
           </span>
         </h2>

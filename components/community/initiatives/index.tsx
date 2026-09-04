@@ -138,7 +138,7 @@ export default function CommunityInitiatives() {
                 className="initiative-row-item group border-b border-neutral-300 py-6 sm:py-10 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out relative flex flex-col justify-start touch-manipulation"
               >
                 {/* Hardware Accelerated Infinite CSS Marquee */}
-                <div className="w-full overflow-hidden flex relative z-10 py-1 sm:py-2">
+                <div className="w-full overflow-hidden flex relative z-10 py-4 sm:py-6 -my-2">
                   <div
                     className="flex whitespace-nowrap animate-marquee lg:group-hover:[animation-play-state:paused] will-change-transform"
                     style={{
@@ -147,7 +147,7 @@ export default function CommunityInitiatives() {
                   >
                     
                     {/* First continuous loop panel */}
-                    <div className="flex whitespace-nowrap gap-x-6 sm:gap-x-12 pr-6 sm:pr-12">
+                    <div className="flex whitespace-nowrap gap-x-6 sm:gap-x-12 pr-6 sm:pr-12 items-center">
                       {[...Array(4)].map((_, i) => (
                         <div key={i} className="flex items-center gap-4 sm:gap-8">
                           <span className={`text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase px-2.5 sm:px-3 py-1 rounded-full border flex items-center gap-1.5 font-sans transition-colors ${
@@ -157,7 +157,7 @@ export default function CommunityInitiatives() {
                           }`}>
                             0{index + 1} / {item.tag}
                           </span>
-                          <span className={`text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading tracking-tight uppercase transition-all duration-300 group-hover:text-saffron ${
+                          <span className={`text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading tracking-tight uppercase leading-[1.25] sm:leading-[1.28] py-2 inline-block transition-all duration-300 group-hover:text-saffron ${
                             isMobileActive
                               ? "text-saffron font-medium"
                               : "text-outline-festive"
@@ -170,7 +170,7 @@ export default function CommunityInitiatives() {
                     </div>
 
                     {/* Second panel for seamless repeating */}
-                    <div className="flex whitespace-nowrap gap-x-6 sm:gap-x-12 pr-6 sm:pr-12" aria-hidden="true">
+                    <div className="flex whitespace-nowrap gap-x-6 sm:gap-x-12 pr-6 sm:pr-12 items-center" aria-hidden="true">
                       {[...Array(4)].map((_, i) => (
                         <div key={i} className="flex items-center gap-4 sm:gap-8">
                           <span className={`text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase px-2.5 sm:px-3 py-1 rounded-full border flex items-center gap-1.5 font-sans transition-colors ${
@@ -180,7 +180,7 @@ export default function CommunityInitiatives() {
                           }`}>
                             0{index + 1} / {item.tag}
                           </span>
-                          <span className={`text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading tracking-tight uppercase transition-all duration-300 group-hover:text-saffron ${
+                          <span className={`text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading tracking-tight uppercase leading-[1.25] sm:leading-[1.28] py-2 inline-block transition-all duration-300 group-hover:text-saffron ${
                             isMobileActive
                               ? "text-saffron font-medium"
                               : "text-outline-festive"

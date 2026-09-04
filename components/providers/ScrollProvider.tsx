@@ -32,7 +32,8 @@ export function ScrollProvider({ children }: { children: React.ReactNode }) {
 
     // Instantiate Lenis engine for desktop
     const lenis = new Lenis({
-      lerp: 0.1,
+      autoRaf: false,
+      lerp: 0.12,
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
