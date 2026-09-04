@@ -1,26 +1,42 @@
 "use client";
 
-import React, { useMemo } from "react";
-import dynamic from "next/dynamic";
+import React, { useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
-import type { HeroCarouselItem } from "@/components/ui/hero-carousel";
+import gsap from "gsap";
+import { HeroCarousel, type HeroCarouselItem } from "@/components/ui/hero-carousel";
 import { useLanguage } from "@/context/LanguageContext";
-
-const HeroCarousel = dynamic(
-  () => import("@/components/ui/hero-carousel").then((mod) => mod.HeroCarousel),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="relative w-full h-[100dvh] min-h-[560px] bg-black flex items-center justify-center">
-        <div className="w-8 h-8 rounded-full border-2 border-saffron border-t-transparent animate-spin" />
-      </div>
-    ),
-  }
-);
 
 export default function Hero() {
   const { t, tArray } = useLanguage();
+  const portalRef = useRef<HTMLDivElement>(null);
+
+  // 1. Entrance Preloader Zoom Animation (Restores previous iconic preloader)
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const entryTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      gsap.set(".portal-text", { scale: 0.85, opacity: 0 });
+
+      entryTl
+        .to(".portal-text", { scale: 1, opacity: 1, duration: 0.65 })
+        .to({}, { duration: 0.15 })
+        .to(".portal-text", {
+          scale: 18,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power3.in",
+        }, "+=0.06")
+        .to(".portal-intro", {
+          opacity: 0,
+          duration: 0.55,
+          ease: "power2.inOut",
+        }, "-=0.75")
+        .set(".portal-intro", { display: "none" });
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   const slides: HeroCarouselItem[] = useMemo(() => [
     {
@@ -93,6 +109,16 @@ export default function Hero() {
 
   return (
     <section className="relative w-full h-[100dvh] min-h-[560px] max-h-[1080px] overflow-hidden bg-black select-none">
+      {/* ── Typographic Portal Zoom Preloader Overlay ── */}
+      <div
+        ref={portalRef}
+        className="fixed inset-0 z-[100] bg-saffron flex flex-col items-center justify-center text-center portal-intro pointer-events-none px-4"
+      >
+        <h2 className="portal-text text-3xl sm:text-5xl md:text-[6.5vw] font-black text-white select-none uppercase font-heading leading-tight sm:leading-snug tracking-normal text-center whitespace-pre-line py-2">
+          {t("hero.portalText", "SHREE\nPRATHISHTHAN")}
+        </h2>
+      </div>
+
       <HeroCarousel
         items={slides}
         defaultIndex={0}

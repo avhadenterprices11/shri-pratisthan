@@ -113,18 +113,16 @@ export default function FestivalJourney() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // GSAP: Pinned scroll animation on ALL screen sizes (Mobile + Desktop)
+  // GSAP: Scroll-driven milestone progression (Continuous, natural scroll with zero viewport locking)
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: containerRef.current,
-        start: "top top",
-        end: () => `+=${window.innerWidth < 768 ? 400 : 600}`,
-        pin: true,
+        start: "top 75%",
+        end: "bottom 25%",
         scrub: 0.3,
-        anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const progress = self.progress;
@@ -151,7 +149,7 @@ export default function FestivalJourney() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-[100dvh] min-h-[580px] max-h-[1080px] overflow-hidden bg-background flex flex-col justify-between py-6 sm:py-10 select-none"
+      className="relative w-full min-h-[620px] sm:min-h-[700px] overflow-hidden bg-background flex flex-col justify-between py-10 sm:py-16 select-none"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40" />
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-12 opacity-30" />

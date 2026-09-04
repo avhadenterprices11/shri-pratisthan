@@ -30,26 +30,25 @@ export default function AboutPreview() {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      // 1. Card Zoom & Radius Morph
+      // 1. Card Zoom & Clean Entrance (No y-translation scrub loop)
       mm.add("(min-width: 768px)", () => {
         gsap.fromTo(
           cardRef.current,
           {
-            scale: 0.9,
-            y: 100,
-            opacity: 0.2,
-            borderRadius: "80px",
+            scale: 0.96,
+            opacity: 0.4,
+            borderRadius: "48px",
           },
           {
             scale: 1,
-            y: 0,
             opacity: 1,
             borderRadius: "24px",
+            duration: 0.9,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: cardRef.current,
-              start: "top bottom",
-              end: "center center",
-              scrub: 0.6,
+              trigger: triggerRef.current,
+              start: "top 75%",
+              once: true,
             },
           }
         );
@@ -59,47 +58,30 @@ export default function AboutPreview() {
         gsap.fromTo(
           cardRef.current,
           {
-            scale: 0.95,
-            y: 40,
-            opacity: 0.4,
-            borderRadius: "32px",
+            scale: 0.97,
+            opacity: 0.6,
+            borderRadius: "24px",
           },
           {
             scale: 1,
-            y: 0,
             opacity: 1,
             borderRadius: "16px",
+            duration: 0.7,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: cardRef.current,
-              start: "top 90%",
-              end: "center center",
-              scrub: 0.5,
+              trigger: triggerRef.current,
+              start: "top 85%",
+              once: true,
             },
           }
         );
       });
 
-      // 2. Video Parallax Sweep
-      gsap.fromTo(
-        videoRef.current,
-        { yPercent: -4 },
-        {
-          yPercent: 4,
-          ease: "none",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        }
-      );
-
-      // 3. Staggered Content Reveal Timeline
+      // 2. Staggered Content Reveal Timeline
       const contentTl = gsap.timeline({
         scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 85%",
+          trigger: triggerRef.current,
+          start: "top 80%",
           once: true,
         },
       });
@@ -145,7 +127,7 @@ export default function AboutPreview() {
             borderRadius: "clamp(16px, 4vw, 80px)",
             aspectRatio: videoAspectRatio ? `${videoAspectRatio}` : "16 / 9",
           }}
-          className="relative w-full p-1 sm:p-[6px] shadow-2xl overflow-hidden bg-white border border-saffron/10 opacity-0 transition-[aspect-ratio] duration-300"
+          className="relative w-full p-1 sm:p-[6px] shadow-2xl overflow-hidden bg-white border border-saffron/10 transition-[aspect-ratio] duration-300"
         >
           {/* Animated Liquid Metal Border Bezel */}
           <LiquidMetal
