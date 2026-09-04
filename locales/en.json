@@ -31,27 +31,49 @@
   },
   "hero": {
     "eyebrow": "19+ Years of Cultural Legacy & Social Service",
-    "scrollExplore": "Scroll to Explore Celebrations",
+    "scrollExplore": "Drag or Scroll to Explore",
     "portalText": "WE\nCELEBRATE\nTOGETHER",
     "slide1": {
       "title": "Shree\nGanpati",
+      "credit": "Indira Nagar, Nashik",
+      "meta": ["Bhadrapada Shuddha", "10 Days", "Grand Dekhava"],
       "description": "Cultivating deep devotion, historic theme dekhavas like Jejuri Gad, and grand traditions in Indira Nagar.",
       "label": "Ganesh Utsav"
     },
     "slide2": {
       "title": "Swagat\nYatra",
+      "credit": "Marathi New Year",
+      "meta": ["Chaitra Pratipada", "Dhol Tasha", "Traditional Costumes"],
       "description": "Welcoming the Marathi New Year with Dhol-Tasha, traditional pageantry, Lezim recitals, and cultural pride.",
       "label": "Swagat Yatra"
     },
     "slide3": {
       "title": "Dahi\nHandi",
+      "credit": "Youth Energy & Unity",
+      "meta": ["Gokulashtami", "Human Pyramids", "Rhythmic Beats"],
       "description": "Thrilling multi-tier human pyramids, electrifying crowd energy, and grand youth celebrations.",
       "label": "Dahi Handi Utsav"
     },
     "slide4": {
       "title": "Maha\nShivratri",
+      "credit": "Sacred Devotion",
+      "meta": ["108-Ft Shivling", "Maha Aarti", "Mass Congregation"],
       "description": "Spectacular 108-foot Mahamrutyunjay Shivling replicas, sacred rituals, and massive devotional gatherings.",
       "label": "Maha Shivratri"
+    },
+    "slide5": {
+      "title": "Navratri\nMahotsav",
+      "credit": "9 Nights of Shakti",
+      "meta": ["Garba & Dandiya", "Maha Pooja", "Cultural Unity"],
+      "description": "Joyful celebrations of Maa Durga, Dandiya nights, and cultural unity across all generations.",
+      "label": "Navratri Utsav"
+    },
+    "slide6": {
+      "title": "Samajik\nSeva",
+      "credit": "Dedicated Community Service",
+      "meta": ["Blood Donation", "Tree Plantation", "Relief Drives"],
+      "description": "Continuous humanitarian outreach including flood relief, medical camps, and environment conservation.",
+      "label": "Samajik Seva"
     }
   },
   "announcements": {

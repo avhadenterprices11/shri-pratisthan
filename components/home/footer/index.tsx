@@ -38,27 +38,27 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#111111] text-white relative overflow-hidden border-t border-white/10 select-none">
+    <footer className="group/footer bg-[#111111] text-white relative overflow-hidden border-t border-white/10 select-none">
 
       {/* 1. Interactive Expandable Awwwards-Style Header Marquee */}
       <div 
-        className="footer-marquee-wrap group/marquee relative w-full overflow-hidden whitespace-nowrap py-3 sm:py-4.5 hover:py-8 sm:hover:py-12 md:hover:py-14 bg-[#111] flex border-b border-white/5 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer select-none"
+        className="footer-marquee-wrap relative w-full overflow-hidden whitespace-nowrap py-3 sm:py-4.5 group-hover/footer:py-8 sm:group-hover/footer:py-12 md:group-hover/footer:py-14 bg-[#111] flex border-b border-white/5 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer select-none"
         title="Hover to slow down and expand"
       >
         {/* Left & Right Gradient Soft Fades */}
         <div className="absolute left-0 top-0 h-full w-12 sm:w-28 bg-gradient-to-r from-[#111] to-transparent pointer-events-none z-10" />
         <div className="absolute right-0 top-0 h-full w-12 sm:w-28 bg-gradient-to-l from-[#111] to-transparent pointer-events-none z-10" />
 
-        <div className="inline-flex gap-8 sm:gap-16 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-16 text-base sm:text-xl md:text-2xl group-hover/marquee:text-3xl sm:group-hover/marquee:text-5xl md:group-hover/marquee:text-[4.8vw] font-normal uppercase font-heading tracking-normal opacity-70 group-hover/marquee:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
-          <span className="text-white">{t("common.motto")}</span>
-          <span className="text-outline font-heading">{t("common.trustName")}</span>
-          <span className="text-saffron font-heading">{t("common.location")}</span>
+        <div className="inline-flex gap-8 sm:gap-16 group-hover/footer:gap-14 sm:group-hover/footer:gap-24 md:group-hover/footer:gap-32 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-16 group-hover/footer:pr-14 sm:group-hover/footer:pr-24 md:group-hover/footer:pr-32 text-base sm:text-xl md:text-2xl group-hover/footer:text-3xl sm:group-hover/footer:text-5xl md:group-hover/footer:text-[4.8vw] font-normal uppercase font-heading tracking-normal group-hover/footer:tracking-[0.14em] sm:group-hover/footer:tracking-[0.2em] md:group-hover/footer:tracking-[0.26em] opacity-70 group-hover/footer:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+          <span className="text-white transition-[letter-spacing] duration-700">{t("common.motto")}</span>
+          <span className="text-outline font-heading transition-[letter-spacing] duration-700">{t("common.trustName")}</span>
+          <span className="text-saffron font-heading transition-[letter-spacing] duration-700">{t("common.location")}</span>
           <span className="text-white">✦</span>
         </div>
-        <div className="inline-flex gap-8 sm:gap-16 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-16 text-base sm:text-xl md:text-2xl group-hover/marquee:text-3xl sm:group-hover/marquee:text-5xl md:group-hover/marquee:text-[4.8vw] font-normal uppercase font-heading tracking-normal opacity-70 group-hover/marquee:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" aria-hidden="true">
-          <span className="text-white">{t("common.motto")}</span>
-          <span className="text-outline font-heading">{t("common.trustName")}</span>
-          <span className="text-saffron font-heading">{t("common.location")}</span>
+        <div className="inline-flex gap-8 sm:gap-16 group-hover/footer:gap-14 sm:group-hover/footer:gap-24 md:group-hover/footer:gap-32 animate-footer-marquee shrink-0 min-w-full justify-around pr-8 sm:pr-16 group-hover/footer:pr-14 sm:group-hover/footer:pr-24 md:group-hover/footer:pr-32 text-base sm:text-xl md:text-2xl group-hover/footer:text-3xl sm:group-hover/footer:text-5xl md:group-hover/footer:text-[4.8vw] font-normal uppercase font-heading tracking-normal group-hover/footer:tracking-[0.14em] sm:group-hover/footer:tracking-[0.2em] md:group-hover/footer:tracking-[0.26em] opacity-70 group-hover/footer:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" aria-hidden="true">
+          <span className="text-white transition-[letter-spacing] duration-700">{t("common.motto")}</span>
+          <span className="text-outline font-heading transition-[letter-spacing] duration-700">{t("common.trustName")}</span>
+          <span className="text-saffron font-heading transition-[letter-spacing] duration-700">{t("common.location")}</span>
           <span className="text-white">✦</span>
         </div>
       </div>

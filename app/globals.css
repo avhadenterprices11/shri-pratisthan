@@ -257,6 +257,7 @@ html.lenis, html.lenis body {
   transition: animation-duration 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+footer:hover .animate-footer-marquee,
 .footer-marquee-wrap:hover .animate-footer-marquee {
   animation-duration: 80s;
 }
