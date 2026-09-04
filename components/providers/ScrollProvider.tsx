@@ -15,18 +15,15 @@ export function ScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
 
-    // Only run smooth scroll hijack on non-touch desktop viewports
-    const isTouch =
-      "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      window.matchMedia("(pointer: coarse)").matches ||
-      window.innerWidth < 1024;
+    // Disable GSAP lagSmoothing so reverse scroll direction changes never desync or stutter
+    gsap.ticker.lagSmoothing(0);
 
-    // Restore GSAP lagSmoothing to smoothly handle frame dips without stuttering
-    gsap.ticker.lagSmoothing(500, 33);
+    // Only bypass Lenis on actual mobile phone viewports
+    const isMobilePhone =
+      window.matchMedia("(pointer: coarse) and (max-width: 768px)").matches;
 
-    if (isTouch) {
-      // Mobile & touch devices use 100% native 120Hz hardware-accelerated scrolling
+    if (isMobilePhone) {
+      // Mobile phones use native 120Hz touch physics
       return;
     }
 

@@ -103,7 +103,7 @@ export default function CommunityImpact() {
             scrollTrigger: {
               trigger: containerRef.current,
               start: "top 80%",
-              toggleActions: "play none none reverse",
+              once: true,
             },
           }
         );
@@ -118,10 +118,11 @@ export default function CommunityImpact() {
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 80%",
+            once: true,
           },
           onUpdate: () => {
-            const el = document.querySelector(`.count-number-${idx}`);
-            if (el) el.textContent = Math.floor(counterObj.val).toString();
+            const el = document.getElementById(`stat-val-${idx}`);
+            if (el) el.innerText = Math.floor(counterObj.val).toString();
           },
         });
       });

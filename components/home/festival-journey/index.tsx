@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState, useMemo, useCallback } from "react"
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -92,10 +91,9 @@ export default function FestivalJourney() {
         scrollTrigger: {
           trigger: section,
           pin: true,
-          anticipatePin: 1,
           start: "top top",
-          end: () => `+=${Math.max(window.innerHeight * 1.5, 1200)}`,
-          scrub: 0.8,
+          end: () => `+=${Math.max(window.innerHeight * 1.2, 1000)}`,
+          scrub: 0.3,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             const rawIndex = self.progress * (totalMilestones - 1);
@@ -137,18 +135,10 @@ export default function FestivalJourney() {
     }
   }, [totalMilestones]);
 
-  const handlePrev = useCallback(() => {
-    if (activeIndex > 0) scrollToMilestone(activeIndex - 1);
-  }, [activeIndex, scrollToMilestone]);
-
-  const handleNext = useCallback(() => {
-    if (activeIndex < totalMilestones - 1) scrollToMilestone(activeIndex + 1);
-  }, [activeIndex, totalMilestones, scrollToMilestone]);
-
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-screen min-h-[640px] max-h-[1080px] overflow-hidden bg-background flex flex-col justify-between py-8 sm:py-12 select-none"
+      className="relative w-full h-[100dvh] overflow-hidden bg-background flex flex-col justify-between py-6 sm:py-10 select-none"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-35" />
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-12 opacity-25" />
@@ -161,35 +151,8 @@ export default function FestivalJourney() {
         <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 rounded-full" />
       </div>
 
-      {/* Carousel Viewport with Level Cards and Navigation Arrows */}
+      {/* Carousel Viewport with Level Cards */}
       <div className="relative w-full h-[360px] sm:h-[410px] lg:h-[440px] my-auto flex items-center justify-center overflow-hidden">
-        {/* Navigation Arrows for direct click access */}
-        <div className="absolute inset-x-0 z-30 flex justify-between items-center pointer-events-none px-3 sm:px-8 md:px-14 max-w-6xl mx-auto">
-          <button
-            type="button"
-            onClick={handlePrev}
-            disabled={activeIndex === 0}
-            aria-label="Previous milestone"
-            className={cn(
-              "pointer-events-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/20 text-white flex items-center justify-center shadow-xl transition-all duration-200 cursor-pointer active:scale-95",
-              activeIndex === 0 ? "opacity-25 cursor-not-allowed" : "hover:scale-105"
-            )}
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            type="button"
-            onClick={handleNext}
-            disabled={activeIndex === totalMilestones - 1}
-            aria-label="Next milestone"
-            className={cn(
-              "pointer-events-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/20 text-white flex items-center justify-center shadow-xl transition-all duration-200 cursor-pointer active:scale-95",
-              activeIndex === totalMilestones - 1 ? "opacity-25 cursor-not-allowed" : "hover:scale-105"
-            )}
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
 
         {/* Level Track — Animate horizontal X via GSAP on scroll scrub */}
         <div
@@ -206,14 +169,14 @@ export default function FestivalJourney() {
             return (
               <div
                 key={item.year}
-                className="flex shrink-0 flex-col items-center justify-center will-change-transform px-2 sm:px-4 transition-all duration-500"
+                className="flex shrink-0 flex-col items-center justify-center will-change-transform px-2 sm:px-4"
                 style={{ width: slideSize }}
                 onClick={() => scrollToMilestone(index)}
               >
                 {/* Milestone Detail Card — Always Level, Straight, and Elegant */}
                 <div
                   className={cn(
-                    "group w-full h-[320px] sm:h-[370px] lg:h-[400px] rounded-2xl sm:rounded-block overflow-hidden flex flex-col justify-between border bg-[#121214] shadow-2xl transition-all duration-500 relative cursor-pointer",
+                    "group w-full h-[320px] sm:h-[370px] lg:h-[400px] rounded-2xl sm:rounded-block overflow-hidden flex flex-col justify-between border bg-[#121214] shadow-2xl transition-[opacity,border-color,box-shadow] duration-300 relative cursor-pointer",
                     isActive
                       ? "border-saffron/50 shadow-saffron/25 ring-2 ring-saffron/35 scale-100 opacity-100"
                       : "border-slate-800/80 shadow-slate-950/60 scale-[0.94] opacity-40 hover:opacity-75"

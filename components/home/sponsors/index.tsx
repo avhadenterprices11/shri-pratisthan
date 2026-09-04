@@ -45,13 +45,14 @@ export default function Sponsors() {
       end: "bottom top",
       onUpdate: (self) => {
         const velocity = Math.abs(self.getVelocity());
-        const targetScale = 1 + Math.min(velocity / 200, 2.5);
-        gsap.to(anim, { timeScale: targetScale, duration: 0.3, overwrite: "auto" });
+        if (velocity < 60) return;
+        const targetScale = 1 + Math.min(velocity / 400, 2);
+        anim.timeScale(targetScale);
 
         if (stopTimer) clearTimeout(stopTimer);
         stopTimer = setTimeout(() => {
-          gsap.to(anim, { timeScale: 1, duration: 0.8, overwrite: "auto" });
-        }, 150);
+          gsap.to(anim, { timeScale: 1, duration: 0.6, ease: "power1.out", overwrite: "auto" });
+        }, 120);
       },
     });
 
