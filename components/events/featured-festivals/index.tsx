@@ -42,12 +42,13 @@ export default function FeaturedFestivals() {
     const xVal = ((e.clientX - rect.left) / rect.width) * 100;
 
     // Direct Intuitive Mapping: Hovering on the LEFT opens the LEFT; hovering on the RIGHT opens the RIGHT.
-    // Since .split-clip-target is the right pane (starting from topPct% to 100%),
-    // moving cursor LEFT (small xVal) pushes the right pane boundary to the right (large targetSplitX), opening the LEFT.
-    // moving cursor RIGHT (large xVal) pushes the right pane boundary to the left (small targetSplitX), opening the RIGHT.
+    // Constrained range so hovering expands each section cleanly ("This Much Only") without clipping either card's text.
+    // Center: top 47%, bottom 53%
+    // Left hover: expands up to top 55%, bottom 63%
+    // Right hover: expands up to top 39%, bottom 47%
     const targetSplitX = 100 - xVal;
-    const topPct = gsap.utils.clamp(24, 76, targetSplitX - 8);
-    const bottomPct = gsap.utils.clamp(24, 76, targetSplitX + 8);
+    const topPct = gsap.utils.clamp(39, 55, targetSplitX - 4);
+    const bottomPct = gsap.utils.clamp(47, 63, targetSplitX + 4);
 
     // Morphs dividing diagonal path smoothly
     gsap.to(".split-clip-target", {
@@ -56,9 +57,9 @@ export default function FeaturedFestivals() {
       ease: "power2.out",
     });
 
-    // Subtle horizontal parallax (clamped vertical movement to ensure cards never get pushed out of bounds)
-    const moveX = (e.clientX - rect.left - rect.width / 2) * 0.02;
-    const moveY = (e.clientY - rect.top - rect.height / 2) * 0.01;
+    // Subtle horizontal parallax
+    const moveX = (e.clientX - rect.left - rect.width / 2) * 0.012;
+    const moveY = (e.clientY - rect.top - rect.height / 2) * 0.008;
 
     gsap.to(".parallax-content-left", {
       x: moveX,
@@ -76,19 +77,19 @@ export default function FeaturedFestivals() {
   };
 
   const handleMouseLeave = () => {
-    // Reset to perfectly balanced 50/50 diagonal split
+    // Reset to perfectly balanced diagonal split
     gsap.to(".split-clip-target", {
-      clipPath: `polygon(46% 0%, 100% 0%, 100% 100%, 54% 100%)`,
-      duration: 0.8,
-      ease: "power3.out",
+      clipPath: `polygon(47% 0%, 100% 0%, 100% 100%, 53% 100%)`,
+      duration: 0.7,
+      ease: "power2.out",
     });
 
     // Reset parallax text transforms
     gsap.to([".parallax-content-left", ".parallax-content-right"], {
       x: 0,
       y: 0,
-      duration: 0.8,
-      ease: "power3.out",
+      duration: 0.7,
+      ease: "power2.out",
     });
   };
 
@@ -120,7 +121,7 @@ export default function FeaturedFestivals() {
             <div className="absolute inset-0 bg-saffron/5 mix-blend-multiply z-0 pointer-events-none" />
 
             {/* Saffron Content Overlay - Floating Card on the Left */}
-            <div className="absolute left-8 xl:left-12 top-1/2 -translate-y-1/2 z-10 w-[44%] max-w-[500px] parallax-content-left select-none">
+            <div className="absolute left-6 xl:left-10 top-1/2 -translate-y-1/2 z-10 w-[39%] max-w-[460px] parallax-content-left select-none">
               <div className="glass-panel p-6 xl:p-8 rounded-block bg-white/95 border border-white/60 backdrop-blur-md shadow-2xl space-y-3.5 xl:space-y-4">
                 <h3 className="text-xl sm:text-2xl xl:text-3xl font-normal text-neutral-900 font-heading leading-snug uppercase">
                   {t("eventsPage.featured.f1Title")}
@@ -158,17 +159,17 @@ export default function FeaturedFestivals() {
 
           {/* L2 Pane: Sports & Cricket (Overlay layer - Right, clipped diagonally) */}
           <div 
-            className="split-clip-target absolute inset-0 w-full h-full bg-cover bg-center z-20 transition-all"
+            className="split-clip-target absolute inset-0 w-full h-full bg-cover bg-center z-20"
             style={{ 
               backgroundImage: "url('/dahihandi_bright.png')",
-              clipPath: "polygon(46% 0%, 100% 0%, 100% 100%, 54% 100%)" 
+              clipPath: "polygon(47% 0%, 100% 0%, 100% 100%, 53% 100%)" 
             }}
           >
             {/* Very soft color filter */}
             <div className="absolute inset-0 bg-gold/5 mix-blend-multiply z-0 pointer-events-none" />
 
             {/* Sports Content Overlay - Floating Card on the Right */}
-            <div className="absolute right-8 xl:right-12 top-1/2 -translate-y-1/2 z-10 w-[44%] max-w-[500px] parallax-content-right select-none">
+            <div className="absolute right-6 xl:right-10 top-1/2 -translate-y-1/2 z-10 w-[39%] max-w-[460px] parallax-content-right select-none">
               <div className="glass-panel p-6 xl:p-8 rounded-block bg-white/95 border border-white/60 backdrop-blur-md shadow-2xl space-y-3.5 xl:space-y-4">
                 <h3 className="text-xl sm:text-2xl xl:text-3xl font-normal text-neutral-900 font-heading leading-snug uppercase">
                   {t("eventsPage.featured.f2Title")}
