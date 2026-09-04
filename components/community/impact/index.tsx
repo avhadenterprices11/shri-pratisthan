@@ -15,7 +15,7 @@ export default function CommunityImpact() {
     { value: 50, suffix: t("communityPage.impact.s1Suffix"), label: t("communityPage.impact.s1Label") },
     { value: 5000, suffix: t("communityPage.impact.s2Suffix"), label: t("communityPage.impact.s2Label") },
     { value: 10000, suffix: t("communityPage.impact.s3Suffix"), label: t("communityPage.impact.s3Label") },
-    { value: 19, suffix: t("communityPage.impact.s4Suffix"), label: t("communityPage.impact.s4Label") },
+    { value: 20, suffix: t("communityPage.impact.s4Suffix"), label: t("communityPage.impact.s4Label") },
   ];
 
   useEffect(() => {

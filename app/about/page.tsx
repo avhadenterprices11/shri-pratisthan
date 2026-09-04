@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Us | Shree Pratishtan (श्री प्रतिष्ठान)",
   description:
-    "Discover the 19-year journey of Shree Pratishtan (कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था), Indira Nagar, Nashik. Founded in 2006 by 20 cricket enthusiasts, led by Adv. Shyam Dharmaraj Badode.",
+    "Discover the 20-year journey of Shree Pratishtan (कै.धर्मराज बडोदे बहुउद्देशिय सेवाभावी संस्था), Indira Nagar, Nashik. Founded in 2006 by 20 cricket enthusiasts, led by Adv. Shyam Dharmaraj Badode.",
   openGraph: {
     title: "About Us | Shree Pratishtan (श्री प्रतिष्ठान)",
     description:

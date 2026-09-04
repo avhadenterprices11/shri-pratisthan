@@ -68,7 +68,7 @@ export interface HeroCarouselProps {
 }
 
 /* Ratios lifted from the reference layout, all relative to the stage box. */
-const CARD_H = 0.264 // active card height ÷ stage height
+const CARD_H = 0.17 // active card height ÷ stage height
 const CARD_AR = 0.75 // active card is 3:4
 const GAP = 0.045 // gap ÷ card width
 const TITLE = 0.067 // headline cap size ÷ stage height
@@ -89,7 +89,7 @@ export function HeroCarousel({
   onBack,
   onMenu,
   autoplay = false,
-  autoplayDelay = 4000,
+  autoplayDelay = 1500,
   cta,
   className,
 }: HeroCarouselProps) {
@@ -134,8 +134,8 @@ export function HeroCarousel({
 
   // Responsive stage geometry calculations
   const fullH = isMobile
-    ? clamp(stageH * 0.28, 140, 220)
-    : clamp(stageH * CARD_H, 160, 360)
+    ? clamp(stageH * 0.17, 100, 140)
+    : clamp(stageH * CARD_H, 115, 200)
   const halfH = fullH / 2
   const cardW = fullH * CARD_AR
   const gap = Math.max(8, Math.round(cardW * GAP))
@@ -147,13 +147,13 @@ export function HeroCarousel({
 
   // Headline font size scaling safely adapted for mobile, tablet, and desktop
   const titleSize = isMobile
-    ? Math.min(36, Math.max(26, Math.round(stageW * 0.082)))
+    ? Math.min(28, Math.max(22, Math.round(stageW * 0.07)))
     : isTablet
-      ? Math.max(32, Math.round(stageH * 0.055))
-      : Math.max(38, Math.round(stageH * TITLE))
+      ? Math.max(25, Math.round(stageH * 0.04))
+      : Math.max(28, Math.round(stageH * 0.046))
 
-  // Dynamic strip top edge with safe spacing on mobile so headlines never overlap
-  const stripTop = isMobile ? 0.52 : 0.48
+  // Dynamic strip top edge moved right down into the bottom portion
+  const stripTop = isMobile ? 0.73 : 0.70
 
   // Centre the focused card: the track slides, the card never moves itself.
   const xFor = React.useCallback(
@@ -165,10 +165,10 @@ export function HeroCarousel({
 
   const swing = reduced
     ? { duration: 0 }
-    : { duration: 0.75, ease: "easeOut" as const }
+    : { duration: 0.45, ease: "easeOut" as const }
   const spring = reduced
     ? { duration: 0 }
-    : { type: "spring" as const, stiffness: 260, damping: 34, mass: 0.9 }
+    : { type: "spring" as const, stiffness: 280, damping: 32, mass: 0.85 }
 
   // The track is driven by a motion value rather than an `animate` prop so a
   // drag that starts mid-spring reads the real position, not where the spring
@@ -235,9 +235,9 @@ export function HeroCarousel({
               aria-hidden
               draggable={false}
               className="absolute inset-0 h-full w-full object-cover"
-              initial={{ scale: reduced ? 1 : 1.08 }}
+              initial={{ scale: reduced ? 1 : 1.05 }}
               animate={{ scale: 1 }}
-              transition={reduced ? { duration: 0 } : { duration: 7, ease: "linear" }}
+              transition={reduced ? { duration: 0 } : { duration: 3, ease: "linear" }}
             />
           </motion.div>
         </AnimatePresence>
@@ -293,17 +293,17 @@ export function HeroCarousel({
           height: `${stripTop * 100}%`,
           paddingLeft: pad,
           paddingRight: pad,
-          paddingBottom: Math.max(14, Math.round(stageH * 0.026)),
+          paddingBottom: Math.max(6, Math.round(stageH * 0.01)),
         }}
       >
         <div className="flex w-full flex-col sm:flex-row sm:items-end justify-between gap-y-2.5 sm:gap-y-2 gap-x-6">
           {/* Main Headline & Byline */}
           <div className="flex flex-col sm:flex-row sm:items-end gap-x-4 sm:gap-x-6 gap-y-1.5">
-            <div className="relative overflow-hidden min-h-[2em] flex items-end">
+            <div className="relative min-h-[2em] flex items-end">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.h1
                   key={index}
-                  className="font-heading font-normal uppercase leading-[0.92] tracking-tight text-white drop-shadow-md"
+                  className="font-heading font-normal uppercase leading-[1.18] tracking-tight text-white drop-shadow-md pt-2 pb-1"
                   style={{ fontSize: titleSize }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -311,15 +311,15 @@ export function HeroCarousel({
                   transition={{ duration: 0.25, ease: "easeOut" }}
                 >
                   {lines.map((line, i) => (
-                    <span key={i} className="block overflow-hidden">
+                    <span key={i} className="block overflow-hidden pt-2 pb-1 -mt-1.5">
                       <motion.span
-                        className="block"
+                        className="block pb-0.5"
                         initial={{ y: "110%" }}
                         animate={{ y: 0 }}
                         transition={
                           reduced
                             ? { duration: 0 }
-                            : { duration: 0.5, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }
+                            : { duration: 0.45, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }
                         }
                       >
                         {line}
@@ -415,7 +415,7 @@ export function HeroCarousel({
         style={{
           left: pad,
           right: pad,
-          bottom: Math.max(16, stageH * 0.028),
+          bottom: Math.max(10, stageH * 0.014),
         }}
       >
         {/* Left progress indicator */}

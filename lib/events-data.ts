@@ -725,7 +725,7 @@ export const ALL_EVENTS: EventItem[] = [
       { label: "Participating Teams", value: "32 Teams" },
       { label: "Youth Players", value: "450+ Cricketers" },
       { label: "Championship Prize Pool", value: "₹1,50,000" },
-      { label: "Legacy Years", value: "19+ Years Heritage" },
+      { label: "Legacy Years", value: "20 Years Heritage" },
     ],
     organizedDetails: [
       {

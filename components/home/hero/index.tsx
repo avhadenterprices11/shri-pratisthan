@@ -97,7 +97,7 @@ export default function Hero() {
         items={slides}
         defaultIndex={0}
         autoplay={true}
-        autoplayDelay={4800}
+        autoplayDelay={1500}
         className="h-full w-full"
         cta={
           <div className="flex items-center gap-2 sm:gap-3">

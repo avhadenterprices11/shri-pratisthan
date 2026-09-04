@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, type Transition } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -38,7 +38,7 @@ const MILESTONES = [
   },
   {
     year: "Present",
-    title: "19+ Years of Impact",
+    title: "20 Years of Impact",
     description: "Over 100+ active members organizing iconic cultural sets (Jaipur Palace dekhava), Swagat Yatra, and mass community welfare initiatives.",
     tag: "Community Impact",
     image: "/ganeshotsav_2017_jaipur.jpg",
@@ -58,10 +58,6 @@ export default function FestivalJourney() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideSize, setSlideSize] = useState(440);
   const [isMobile, setIsMobile] = useState(false);
-
-  // Touch Swipe Gesture Refs for mobile
-  const touchStartX = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
 
   const milestonesData = [
     {
@@ -98,40 +94,18 @@ export default function FestivalJourney() {
     },
   ];
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStartX.current === null || touchEndX.current === null) return;
-    const distance = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 45;
-
-    if (distance > minSwipeDistance) {
-      // Swiped left -> Next
-      setActiveIndex((prev) => Math.min(prev + 1, milestonesData.length - 1));
-    } else if (distance < -minSwipeDistance) {
-      // Swiped right -> Prev
-      setActiveIndex((prev) => Math.max(prev - 1, 0));
-    }
-
-    touchStartX.current = null;
-    touchEndX.current = null;
-  };
-
-  // Monitor viewport size to adjust desktop slide sizing
+  // Monitor viewport size to adjust slide sizing dynamically
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      setIsMobile(width < 768);
-      if (width >= 768) {
+      const mob = width < 768;
+      setIsMobile(mob);
+      if (width >= 1024) {
         setSlideSize(440);
+      } else if (width >= 640) {
+        setSlideSize(380);
       } else {
-        setSlideSize(Math.min(width - 48, 340));
+        setSlideSize(Math.min(width - 56, 320));
       }
     };
     handleResize();
@@ -139,38 +113,33 @@ export default function FestivalJourney() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // GSAP: Only pin on Desktop (min-width: 1024px). On phones & tablets, no pin-spacer!
+  // GSAP: Pinned scroll animation on ALL screen sizes (Mobile + Desktop)
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      mm.add("(min-width: 1024px)", () => {
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=1200",
-          pin: true,
-          scrub: true,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const progress = self.progress;
-            let index = 0;
-            if (progress < 0.22) index = 0;
-            else if (progress < 0.44) index = 1;
-            else if (progress < 0.66) index = 2;
-            else index = 3;
-            setActiveIndex(index);
-          },
-        });
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top top",
+        end: () => `+=${window.innerWidth < 768 ? 950 : 1300}`,
+        pin: true,
+        scrub: 0.5,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          let index = 0;
+          if (progress < 0.23) index = 0;
+          else if (progress < 0.49) index = 1;
+          else if (progress < 0.75) index = 2;
+          else index = 3;
+          setActiveIndex(index);
+        },
       });
-      // Mobile screens (<1024px) do NOT get pinned, preserving native scroll!
     }, containerRef);
 
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 400);
+    }, 300);
 
     return () => {
       ctx.revert();
@@ -181,47 +150,37 @@ export default function FestivalJourney() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full lg:h-screen lg:overflow-hidden bg-background flex flex-col justify-between py-10 sm:py-14 select-none"
+      className="relative w-full h-[100dvh] min-h-[580px] max-h-[1080px] overflow-hidden bg-background flex flex-col justify-between py-6 sm:py-10 select-none"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40" />
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-12 opacity-30" />
 
       {/* Header */}
-      <div className="text-center max-w-2xl mx-auto px-4 sm:px-6 relative z-20 space-y-3">
+      <div className="text-center max-w-2xl mx-auto px-4 sm:px-6 relative z-20 space-y-2 sm:space-y-3 pt-2 sm:pt-4">
         <div>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase bg-saffron/10 border border-saffron/25 text-saffron font-sans mb-1.5 shadow-xs">
+            <Sparkles className="w-3 h-3 text-saffron animate-pulse" />
+            {t("festivalJourney.eyebrow", "Decades of Devotion")}
+          </span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-tight">
             {t("festivalJourney.title")}
           </h2>
-          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 sm:mt-3 rounded-full" />
+          <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 rounded-full" />
         </div>
 
-        {/* Mobile Quick Year Switcher Buttons */}
-        <div className="flex lg:hidden items-center justify-center gap-2 pt-1 overflow-x-auto no-scrollbar">
-          {milestonesData.map((item, idx) => {
-            const isSelected = activeIndex === idx;
-            return (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => setActiveIndex(idx)}
-                className={cn(
-                  "px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-300 font-sans cursor-pointer",
-                  isSelected
-                    ? "bg-saffron text-white shadow-md shadow-saffron/30 scale-105"
-                    : "bg-black/5 dark:bg-white/10 text-slate-600 dark:text-slate-300 hover:bg-black/10"
-                )}
-              >
-                {item.year}
-              </button>
-            );
-          })}
+        {/* Scroll Instruction Hint for Phone & Desktop */}
+        <div className="flex items-center justify-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-sans">
+          <span className="animate-bounce">↓</span>
+          <span className="text-[11px] sm:text-xs font-medium tracking-wide">
+            {t("common.scrollProgress", "Scroll down to travel through time")}
+          </span>
         </div>
       </div>
 
-      {/* 1. Desktop Diagonal Cascade Carousel Viewport (Hidden on Mobile) */}
-      <div className="hidden lg:flex relative flex-grow items-center justify-center w-full select-none overflow-hidden my-4">
+      {/* Cascade Carousel Viewport (Responsive for both Phone & Desktop via Scroll Animation) */}
+      <div className="relative flex-grow items-center justify-center w-full select-none overflow-hidden my-auto flex">
         <motion.div
-          className="absolute left-[50%] top-[48%] flex w-fit -translate-y-1/2"
+          className="absolute left-[50%] top-[50%] flex w-fit -translate-y-1/2"
           animate={{ x: -(activeIndex * slideSize + slideSize / 2) }}
           transition={DEFAULT_TRANSITION}
         >
@@ -232,13 +191,13 @@ export default function FestivalJourney() {
             return (
               <motion.div
                 key={item.year}
-                className="flex shrink-0 flex-col items-center justify-center gap-4 will-change-transform px-4"
+                className="flex shrink-0 flex-col items-center justify-center will-change-transform px-2 sm:px-4"
                 style={{ width: slideSize }}
                 animate={{
-                  rotate: distance * 12,
-                  scale: isActive ? 1 : 0.75,
-                  y: distance * 40,
-                  opacity: isActive ? 1 : 0.35,
+                  rotate: distance * (isMobile ? 3 : 10),
+                  scale: isActive ? 1 : (isMobile ? 0.88 : 0.78),
+                  y: distance * (isMobile ? 12 : 32),
+                  opacity: isActive ? 1 : (isMobile ? 0.35 : 0.3),
                 }}
                 transition={DEFAULT_TRANSITION}
                 onClick={() => setActiveIndex(index)}
@@ -246,10 +205,10 @@ export default function FestivalJourney() {
                 {/* Milestone Detail Card */}
                 <div
                   className={cn(
-                    "group w-full h-[320px] rounded-block overflow-hidden flex flex-col justify-between border bg-[#121214] shadow-2xl transition-all duration-500 relative cursor-pointer",
-                    isActive 
-                      ? "border-saffron/30 shadow-saffron/15 ring-1 ring-saffron/20" 
-                      : "border-slate-800/60 shadow-slate-900 opacity-90"
+                    "group w-full h-[320px] sm:h-[360px] lg:h-[390px] rounded-2xl sm:rounded-block overflow-hidden flex flex-col justify-between border bg-[#121214] shadow-2xl transition-all duration-500 relative cursor-pointer",
+                    isActive
+                      ? "border-saffron/40 shadow-saffron/20 ring-2 ring-saffron/25"
+                      : "border-slate-800/60 shadow-slate-900 opacity-90 hover:opacity-100"
                   )}
                 >
                   {/* Background Image */}
@@ -257,34 +216,35 @@ export default function FestivalJourney() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="440px"
+                    sizes="(max-width: 640px) 320px, 440px"
+                    priority={index === 0}
                     className={cn(
                       "transition-transform duration-700 ease-out group-hover:scale-105",
-                      item.fit === "contain" 
-                        ? "object-contain p-8 -translate-y-4" 
+                      item.fit === "contain"
+                        ? "object-contain p-6 sm:p-8 -translate-y-3"
                         : "object-cover"
                     )}
                   />
 
                   {/* Gradient Overlay for Readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/55 to-black/25 z-10 transition-all duration-500 group-hover:via-charcoal/60 group-hover:to-black/35" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-charcoal/65 to-black/30 z-10 transition-all duration-500" />
 
-                  {/* Header: Year */}
-                  <div className="relative z-20 flex justify-between items-center p-7">
-                    <span className="text-3xl font-normal text-saffron font-heading drop-shadow-sm">
+                  {/* Header: Year & Tag */}
+                  <div className="relative z-20 flex justify-between items-center p-5 sm:p-7">
+                    <span className="text-2xl sm:text-3xl font-normal text-saffron font-heading drop-shadow-sm">
                       {item.year}
                     </span>
-                    <span className="text-xs uppercase tracking-widest text-slate-300 font-bold bg-white/10 px-3 py-1 rounded-full backdrop-blur-xs font-sans border border-white/15">
+                    <span className="text-[10px] sm:text-xs uppercase tracking-widest text-slate-200 font-bold bg-white/15 px-3 py-1 rounded-full backdrop-blur-md font-sans border border-white/20">
                       {item.tag}
                     </span>
                   </div>
 
                   {/* Body: Title & Content */}
-                  <div className="relative z-20 p-7 text-left space-y-2 mt-auto">
-                    <h3 className="text-xl font-normal text-white font-heading leading-snug">
+                  <div className="relative z-20 p-5 sm:p-7 text-left space-y-1.5 sm:space-y-2 mt-auto">
+                    <h3 className="text-lg sm:text-xl font-normal text-white font-heading leading-snug">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-slate-200 leading-relaxed line-clamp-3 font-sans">
+                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed line-clamp-3 sm:line-clamp-4 font-sans">
                       {item.description}
                     </p>
                   </div>
@@ -295,130 +255,34 @@ export default function FestivalJourney() {
         </motion.div>
       </div>
 
-      {/* 2. Mobile Phone-Friendly Touch-Swipe Card Deck (Visible only on Mobile & Tablets) */}
-      <div 
-        className="lg:hidden relative w-full px-4 py-4 my-2 flex flex-col items-center justify-center select-none"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        <div className="w-full max-w-[360px] mx-auto relative overflow-hidden">
-          <motion.div
-            key={activeIndex}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.2}
-            onDragEnd={(_, info) => {
-              if (info.offset.x < -40) {
-                setActiveIndex((prev) => Math.min(prev + 1, milestonesData.length - 1));
-              } else if (info.offset.x > 40) {
-                setActiveIndex((prev) => Math.max(prev - 1, 0));
-              }
-            }}
-            initial={{ opacity: 0.6, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3 }}
-            className="w-full h-[350px] sm:h-[370px] rounded-2xl overflow-hidden flex flex-col justify-between border border-saffron/30 bg-[#121214] shadow-2xl relative cursor-grab active:cursor-grabbing"
-          >
-            {/* Background Image */}
-            <Image
-              src={milestonesData[activeIndex].image}
-              alt={milestonesData[activeIndex].title}
-              fill
-              sizes="(max-width: 640px) 100vw, 360px"
-              priority
-              className={cn(
-                "transition-transform duration-700 ease-out pointer-events-none",
-                milestonesData[activeIndex].fit === "contain" 
-                  ? "object-contain p-8 -translate-y-4" 
-                  : "object-cover"
-              )}
-            />
-
-            {/* Gradient Overlay for Text Clarity */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-charcoal/65 to-black/35 z-10 pointer-events-none" />
-
-            {/* Card Header: Year & Tag */}
-            <div className="relative z-20 flex justify-between items-center p-5 pointer-events-none">
-              <span className="text-2xl sm:text-3xl font-normal text-saffron font-heading drop-shadow-sm">
-                {milestonesData[activeIndex].year}
-              </span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-widest text-slate-200 font-bold bg-white/15 px-3 py-1 rounded-full backdrop-blur-md font-sans border border-white/20">
-                {milestonesData[activeIndex].tag}
-              </span>
-            </div>
-
-            {/* Card Body: Title & Description */}
-            <div className="relative z-20 p-5 text-left space-y-1.5 mt-auto pointer-events-none">
-              <h3 className="text-lg sm:text-xl font-normal text-white font-heading leading-snug">
-                {milestonesData[activeIndex].title}
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
-                {milestonesData[activeIndex].description}
-              </p>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Mobile Touch Controls & Thumb Arrows */}
-        <div className="w-full max-w-[360px] flex items-center justify-between gap-3 mt-4 pt-1">
-          <button
-            type="button"
-            onClick={() => setActiveIndex((prev) => Math.max(prev - 1, 0))}
-            disabled={activeIndex === 0}
-            aria-label="Previous milestone"
-            className="w-10 h-10 rounded-full border border-saffron/25 bg-white/90 dark:bg-neutral-800 flex items-center justify-center text-foreground disabled:opacity-25 disabled:cursor-not-allowed active:scale-90 transition-all shadow-sm cursor-pointer"
-          >
-            <ChevronLeft className="w-5 h-5 text-saffron" />
-          </button>
-
-          <div className="flex flex-col items-center">
-            <span className="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-slate-500 font-sans">
-              Swipe or Tap • {activeIndex + 1} of {milestonesData.length}
-            </span>
-            <div className="flex gap-1.5 mt-1.5">
-              {milestonesData.map((_, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => setActiveIndex(idx)}
-                  aria-label={`Go to milestone ${idx + 1}`}
+      {/* Bottom Year Milestones Indicator (Animated with Scroll on both Mobile & Desktop, NO ARROWS) */}
+      <div className="text-center relative z-20 pb-3 sm:pb-5 flex flex-col items-center justify-center gap-2">
+        <div className="flex items-center gap-2 sm:gap-3 bg-black/50 dark:bg-white/5 backdrop-blur-md border border-white/10 px-3.5 py-1.5 sm:py-2 rounded-full shadow-lg">
+          {milestonesData.map((item, idx) => {
+            const isCurrent = activeIndex === idx;
+            return (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setActiveIndex(idx)}
+                aria-label={`Milestone ${item.year}`}
+                className={cn(
+                  "px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold transition-all duration-300 font-sans cursor-pointer flex items-center gap-1.5",
+                  isCurrent
+                    ? "bg-saffron text-white shadow-md shadow-saffron/40 scale-105"
+                    : "text-white/60 hover:text-white hover:bg-white/10"
+                )}
+              >
+                <span
                   className={cn(
-                    "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
-                    activeIndex === idx ? "w-6 bg-saffron" : "w-1.5 bg-saffron/30"
+                    "w-1.5 h-1.5 rounded-full transition-all",
+                    isCurrent ? "bg-white animate-pulse" : "bg-white/30"
                   )}
                 />
-              ))}
-            </div>
-          </div>
-
-          <button
-            type="button"
-            onClick={() => setActiveIndex((prev) => Math.min(prev + 1, milestonesData.length - 1))}
-            disabled={activeIndex === milestonesData.length - 1}
-            aria-label="Next milestone"
-            className="w-10 h-10 rounded-full border border-saffron/25 bg-white/90 dark:bg-neutral-800 flex items-center justify-center text-foreground disabled:opacity-25 disabled:cursor-not-allowed active:scale-90 transition-all shadow-sm cursor-pointer"
-          >
-            <ChevronRight className="w-5 h-5 text-saffron" />
-          </button>
-        </div>
-      </div>
-
-      {/* Desktop Navigation Progress Indicator (Hidden on Mobile) */}
-      <div className="hidden lg:flex text-center relative z-20 mb-2 sm:mb-4 flex-col items-center justify-center gap-1">
-        <div className="flex gap-2.5 mt-2">
-          {MILESTONES.map((item, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => setActiveIndex(idx)}
-              aria-label={`Go to ${item.year}`}
-              className={cn(
-                "h-2 rounded-full bg-saffron transition-all duration-300 cursor-pointer",
-                activeIndex === idx ? "w-8 opacity-100 shadow-sm" : "w-2 opacity-30 hover:opacity-70"
-              )}
-            />
-          ))}
+                <span>{item.year}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -20,8 +20,8 @@ const STATS = [
   },
   { 
     id: "legacy", 
-    value: 19, 
-    suffix: "+ Yrs", 
+    value: 20, 
+    suffix: " Yrs", 
     label: "Years of Service", 
     image: "/images/dahi-handi.jpg",
     description: "Serving the community since 2006 with unwavering commitment to social upliftment and cultural pride." 
@@ -60,7 +60,7 @@ export default function CommunityImpact() {
     },
     { 
       id: "legacy", 
-      value: 19, 
+      value: 20, 
       suffix: t("communityImpact.s2Suffix"), 
       label: t("communityImpact.s2Label"), 
       image: "/images/dahi-handi.jpg",
