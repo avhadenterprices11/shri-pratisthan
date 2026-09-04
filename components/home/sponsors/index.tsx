@@ -36,32 +36,29 @@ export default function Sponsors() {
       ease: "none",
     });
 
+    let stopTimer: NodeJS.Timeout | null = null;
+
     // Velocity observer to scale marquee animation speed on scroll speed
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: marquee,
-        start: "top bottom",
-        end: "bottom top",
-        onUpdate: (self) => {
-          const velocity = Math.abs(self.getVelocity());
-          // Standard speed is 1x. Dynamically scales up to 4.5x during high-velocity scrolls
-          const targetScale = 1 + Math.min(velocity / 120, 3.5);
-          gsap.to(anim, { timeScale: targetScale, duration: 0.4, overwrite: "auto" });
-        },
+    const trigger = ScrollTrigger.create({
+      trigger: marquee,
+      start: "top bottom",
+      end: "bottom top",
+      onUpdate: (self) => {
+        const velocity = Math.abs(self.getVelocity());
+        const targetScale = 1 + Math.min(velocity / 200, 2.5);
+        gsap.to(anim, { timeScale: targetScale, duration: 0.3, overwrite: "auto" });
+
+        if (stopTimer) clearTimeout(stopTimer);
+        stopTimer = setTimeout(() => {
+          gsap.to(anim, { timeScale: 1, duration: 0.8, overwrite: "auto" });
+        }, 150);
       },
     });
 
-    // Decelerate smoothly back to 1x when page scrolling stops
-    const handleScrollStop = () => {
-      gsap.to(anim, { timeScale: 1, duration: 0.8, overwrite: "auto" });
-    };
-
-    window.addEventListener("scroll", handleScrollStop);
-
     return () => {
       anim.kill();
-      tl.kill();
-      window.removeEventListener("scroll", handleScrollStop);
+      trigger.kill();
+      if (stopTimer) clearTimeout(stopTimer);
     };
   }, []);
 

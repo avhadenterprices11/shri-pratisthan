@@ -145,12 +145,12 @@ export function HeroCarousel({
     ? 10
     : Math.max(11, Math.round(stageH * LABEL))
 
-  // Headline font size scaling safely adapted for mobile, tablet, and desktop
+  // Headline font size scaling: increased for bold, commanding presence in marked zone
   const titleSize = isMobile
-    ? Math.min(28, Math.max(22, Math.round(stageW * 0.07)))
+    ? Math.min(38, Math.max(28, Math.round(stageW * 0.088)))
     : isTablet
-      ? Math.max(25, Math.round(stageH * 0.04))
-      : Math.max(28, Math.round(stageH * 0.046))
+      ? Math.min(52, Math.max(36, Math.round(stageH * 0.058)))
+      : Math.min(74, Math.max(48, Math.round(stageH * 0.076)))
 
   // Dynamic strip top edge moved right down into the bottom portion
   const stripTop = isMobile ? 0.73 : 0.70
@@ -286,72 +286,77 @@ export function HeroCarousel({
         </div>
       )}
 
-      {/* ── Headline block, sitting just above the strip's top edge ── */}
+      {/* ── Main Headline & Byline (Positioned in marked middle-left zone) ── */}
       <div
-        className="absolute inset-x-0 top-0 flex flex-col justify-end z-10 pointer-events-none"
+        className="absolute left-0 z-10 pointer-events-none flex flex-col justify-start"
         style={{
-          height: `${stripTop * 100}%`,
+          top: isMobile ? "24%" : "32%",
           paddingLeft: pad,
-          paddingRight: pad,
-          paddingBottom: Math.max(6, Math.round(stageH * 0.01)),
+          maxWidth: isMobile ? "92%" : "55%",
         }}
       >
-        <div className="flex w-full flex-col sm:flex-row sm:items-end justify-between gap-y-2.5 sm:gap-y-2 gap-x-6">
-          {/* Main Headline & Byline */}
-          <div className="flex flex-col sm:flex-row sm:items-end gap-x-4 sm:gap-x-6 gap-y-1.5">
-            <div className="relative min-h-[2em] flex items-end">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.h1
-                  key={index}
-                  className="font-heading font-normal uppercase leading-[1.18] tracking-tight text-white drop-shadow-md pt-2 pb-1"
-                  style={{ fontSize: titleSize }}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10, transition: { duration: 0.14 } }}
-                  transition={{ duration: 0.25, ease: "easeOut" }}
-                >
-                  {lines.map((line, i) => (
-                    <span key={i} className="block overflow-hidden pt-2 pb-1 -mt-1.5">
-                      <motion.span
-                        className="block pb-0.5"
-                        initial={{ y: "110%" }}
-                        animate={{ y: 0 }}
-                        transition={
-                          reduced
-                            ? { duration: 0 }
-                            : { duration: 0.45, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }
-                        }
-                      >
-                        {line}
-                      </motion.span>
-                    </span>
-                  ))}
-                </motion.h1>
-              </AnimatePresence>
-            </div>
-
-            {active.credit ? (
-              <p className="font-sans uppercase tracking-[0.16em] text-white/70 text-[10px] sm:text-xs font-semibold whitespace-nowrap pb-0.5 transition-opacity duration-300">
-                {active.credit}
-              </p>
-            ) : null}
-          </div>
-
-          {/* Right-aligned meta facts */}
-          {active.meta?.length ? (
-            <div className="flex items-center sm:items-end gap-2 sm:gap-3 flex-wrap">
-              {active.meta.map((fact, i) => (
-                <span
-                  key={i}
-                  className="inline-flex items-center px-2 sm:px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[9px] sm:text-[11px] font-sans font-medium uppercase tracking-wider text-white/90 transition-all duration-300"
-                >
-                  {fact}
+        <div className="relative flex flex-col items-start gap-y-2 sm:gap-y-3">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.h1
+              key={index}
+              className="font-heading font-normal uppercase leading-[1.12] tracking-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] pt-1"
+              style={{ fontSize: titleSize }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15, transition: { duration: 0.14 } }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              {lines.map((line, i) => (
+                <span key={i} className="block overflow-hidden py-0.5 -mt-1">
+                  <motion.span
+                    className="block pb-0.5"
+                    initial={{ y: "110%" }}
+                    animate={{ y: 0 }}
+                    transition={
+                      reduced
+                        ? { duration: 0 }
+                        : { duration: 0.45, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }
+                    }
+                  >
+                    {line}
+                  </motion.span>
                 </span>
               ))}
+            </motion.h1>
+          </AnimatePresence>
+
+          {active.credit ? (
+            <div className="flex items-center gap-2 sm:gap-3 mt-0.5 sm:mt-1">
+              <span className="w-5 sm:w-7 h-[2px] bg-saffron rounded-full shrink-0 shadow-sm" />
+              <p className="font-sans uppercase tracking-[0.2em] text-white/90 text-[11px] sm:text-xs md:text-sm font-semibold whitespace-nowrap drop-shadow-md">
+                {active.credit}
+              </p>
             </div>
           ) : null}
         </div>
       </div>
+
+      {/* ── Right-aligned meta facts, sitting above the filmstrip ── */}
+      {active.meta?.length ? (
+        <div
+          className="absolute right-0 z-10 pointer-events-none flex justify-end"
+          style={{
+            top: `${(stripTop * 100) - (isMobile ? 7 : 5.5)}%`,
+            paddingRight: pad,
+          }}
+        >
+          <div className="flex items-center gap-1.5 sm:gap-2.5 flex-wrap justify-end">
+            {active.meta.map((fact, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[9px] sm:text-[11px] font-sans font-medium uppercase tracking-wider text-white drop-shadow-sm"
+              >
+                {fact}
+              </span>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       {/* ── The strip: one shared top edge, the focused card twice as tall ── */}
       <div

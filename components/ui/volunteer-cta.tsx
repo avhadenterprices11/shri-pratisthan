@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
@@ -39,21 +39,24 @@ export default function VolunteerCTA({
   const displayDesc = description || t("volunteerCTA.description");
   const displayBtn = buttonText || t("volunteerCTA.button");
 
-  const [btnCoords, setBtnCoords] = useState({ x: 0, y: 0 });
+  const btnWrapperRef = useRef<HTMLDivElement>(null);
 
   const handleAreaMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const area = buttonAreaRef.current;
-    if (!area) return;
+    const btn = btnWrapperRef.current;
+    if (!area || !btn) return;
 
     const rect = area.getBoundingClientRect();
-    const x = e.clientX - (rect.left + rect.width / 2);
-    const y = e.clientY - (rect.top + rect.height / 2);
+    const x = (e.clientX - (rect.left + rect.width / 2)) * 0.35;
+    const y = (e.clientY - (rect.top + rect.height / 2)) * 0.35;
 
-    setBtnCoords({ x: x * 0.35, y: y * 0.35 });
+    gsap.to(btn, { x, y, duration: 0.2, ease: "power2.out", overwrite: "auto" });
   };
 
   const handleAreaMouseLeave = () => {
-    setBtnCoords({ x: 0, y: 0 });
+    if (btnWrapperRef.current) {
+      gsap.to(btnWrapperRef.current, { x: 0, y: 0, duration: 0.5, ease: "power2.out", overwrite: "auto" });
+    }
   };
 
   useEffect(() => {
@@ -119,20 +122,18 @@ export default function VolunteerCTA({
             className="py-2 sm:py-4 px-2 sm:px-8 flex items-center justify-center cursor-pointer w-full sm:w-auto"
             data-hover="pointer"
           >
-            <LiquidMetalButton
-              onClick={() => router.push(buttonLink)}
-              style={{
-                transform: `translate3d(${btnCoords.x}px, ${btnCoords.y}px, 0)`,
-                transition: btnCoords.x === 0 ? "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)" : "none",
-              }}
-              variant="themed"
-              size="lg"
-              icon={<ArrowRight className="w-4 h-4" />}
-              className="text-xs uppercase font-bold tracking-[0.2em] font-sans cursor-pointer w-full sm:w-auto"
-              data-hover="pointer"
-            >
-              {displayBtn}
-            </LiquidMetalButton>
+            <div ref={btnWrapperRef} className="w-full sm:w-auto flex justify-center">
+              <LiquidMetalButton
+                onClick={() => router.push(buttonLink)}
+                variant="themed"
+                size="lg"
+                icon={<ArrowRight className="w-4 h-4" />}
+                className="text-xs uppercase font-bold tracking-[0.2em] font-sans cursor-pointer w-full sm:w-auto"
+                data-hover="pointer"
+              >
+                {displayBtn}
+              </LiquidMetalButton>
+            </div>
           </div>
 
         </div>

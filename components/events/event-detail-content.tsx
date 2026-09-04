@@ -88,7 +88,7 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
   };
 
   return (
-    <main className="min-h-screen bg-warm-white py-12 md:py-20 selection:bg-saffron selection:text-white font-sans">
+    <main className="min-h-screen bg-warm-white pt-28 sm:pt-32 md:pt-36 pb-16 md:pb-24 selection:bg-saffron selection:text-white font-sans">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 space-y-8 sm:space-y-12">
 
         {/* Top Breadcrumb & Metadata Bar */}

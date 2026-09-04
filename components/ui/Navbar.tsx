@@ -4,7 +4,6 @@ import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
@@ -14,7 +13,6 @@ export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const { t } = useLanguage();
-  const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -43,7 +41,6 @@ export function Navbar() {
             ease: "power2.out"
           });
         }
-        setScrolled(false);
         lastScrollY = currentScrollY;
         return;
       }
@@ -53,7 +50,6 @@ export function Navbar() {
         // Scrolling down: hide Navbar
         if (!isHidden) {
           isHidden = true;
-          setScrolled(true);
           gsap.to(navRef.current, {
             y: -120,
             opacity: 0,
@@ -65,7 +61,6 @@ export function Navbar() {
         // Scrolling up: show Navbar
         if (isHidden) {
           isHidden = false;
-          setScrolled(false);
           gsap.to(navRef.current, {
             y: 0,
             opacity: 1,

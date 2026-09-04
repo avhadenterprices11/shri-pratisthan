@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import Image from "next/image";
 import { motion, type Transition } from "framer-motion";
 import gsap from "gsap";
@@ -47,9 +47,9 @@ const MILESTONES = [
 ];
 
 const DEFAULT_TRANSITION: Transition = {
-  type: "spring",
-  bounce: 0.12,
-  duration: 0.8,
+  type: "tween",
+  ease: [0.16, 1, 0.3, 1],
+  duration: 0.32,
 };
 
 export default function FestivalJourney() {
@@ -59,7 +59,7 @@ export default function FestivalJourney() {
   const [slideSize, setSlideSize] = useState(440);
   const [isMobile, setIsMobile] = useState(false);
 
-  const milestonesData = [
+  const milestonesData = useMemo(() => [
     {
       year: t("festivalJourney.m1.year"),
       title: t("festivalJourney.m1.title"),
@@ -92,7 +92,7 @@ export default function FestivalJourney() {
       image: "/ganeshotsav_2017_jaipur.jpg",
       fit: "cover",
     },
-  ];
+  ], [t]);
 
   // Monitor viewport size to adjust slide sizing dynamically
   useEffect(() => {
@@ -121,18 +121,19 @@ export default function FestivalJourney() {
       ScrollTrigger.create({
         trigger: containerRef.current,
         start: "top top",
-        end: () => `+=${window.innerWidth < 768 ? 950 : 1300}`,
+        end: () => `+=${window.innerWidth < 768 ? 400 : 600}`,
         pin: true,
-        scrub: 0.5,
+        scrub: 0.3,
+        anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const progress = self.progress;
           let index = 0;
-          if (progress < 0.23) index = 0;
-          else if (progress < 0.49) index = 1;
+          if (progress < 0.25) index = 0;
+          else if (progress < 0.5) index = 1;
           else if (progress < 0.75) index = 2;
           else index = 3;
-          setActiveIndex(index);
+          setActiveIndex((prev) => (prev !== index ? index : prev));
         },
       });
     }, containerRef);

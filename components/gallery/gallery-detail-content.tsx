@@ -13,7 +13,7 @@ export default function GalleryDetailContent({ item }: { item: GalleryItem }) {
   const localizedItem = getLocalizedGalleryItem(item, language);
 
   return (
-    <main className="min-h-screen py-16 sm:py-28 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-transparent">
+    <main className="min-h-screen pt-28 sm:pt-32 md:pt-36 pb-16 sm:pb-28 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-transparent">
       {/* Decorative ambient backgrounds */}
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-60" />
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-1/3 opacity-60" />
