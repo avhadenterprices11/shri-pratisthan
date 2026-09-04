@@ -9,42 +9,6 @@ import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const STATS = [
-  { 
-    id: "members", 
-    value: 100, 
-    suffix: "+", 
-    label: "Active Members", 
-    image: "/images/ganesh.jpg",
-    description: "Dedicated local members and youth leaders driving cultural celebrations and community welfare in Indira Nagar." 
-  },
-  { 
-    id: "legacy", 
-    value: 20, 
-    suffix: " Yrs", 
-    label: "Years of Service", 
-    image: "/images/dahi-handi.jpg",
-    description: "Serving the community since 2006 with unwavering commitment to social upliftment and cultural pride." 
-  },
-  { 
-    id: "founders", 
-    value: 20, 
-    suffix: " Pillars", 
-    label: "Founding Members", 
-    image: "/founding_members.jpg",
-    position: "object-top",
-    description: "Started by 20 close friends who met daily to play cricket and transformed sports teamwork into social power." 
-  },
-  { 
-    id: "drives", 
-    value: 50, 
-    suffix: "+", 
-    label: "Social & Blood Drives", 
-    image: "/images/social-work.jpg",
-    description: "Organizing mass blood donation camps, International Yoga Day sessions, health camps, and sports leagues." 
-  },
-];
-
 export default function CommunityImpact() {
   const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -102,33 +66,46 @@ export default function CommunityImpact() {
             ease: "power2.out",
             scrollTrigger: {
               trigger: containerRef.current,
-              start: "top 80%",
+              start: "top 85%",
               once: true,
             },
           }
         );
 
         // Count up number in sync with entrance
-        const counterObj = { val: 0 };
-        gsap.to(counterObj, {
-          val: stat.value,
-          duration: 1.4,
-          delay: idx * 0.12,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
-            once: true,
-          },
-          onUpdate: () => {
-            const el = document.getElementById(`stat-val-${idx}`);
-            if (el) el.innerText = Math.floor(counterObj.val).toString();
-          },
-        });
+        const targetEl = document.getElementById(`stat-val-${idx}`);
+        if (targetEl) {
+          gsap.fromTo(
+            targetEl,
+            { textContent: 0 },
+            {
+              textContent: stat.value,
+              duration: 1.6,
+              delay: idx * 0.12,
+              ease: "power2.out",
+              snap: { textContent: 1 },
+              scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top 85%",
+                once: true,
+              },
+              onComplete: () => {
+                targetEl.textContent = stat.value.toString();
+              },
+            }
+          );
+        }
       });
     }, containerRef);
 
-    return () => ctx.revert();
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 300);
+
+    return () => {
+      ctx.revert();
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -160,7 +137,9 @@ export default function CommunityImpact() {
             >
               {/* Giant Metric Number */}
               <div className="text-4xl sm:text-5xl lg:text-6xl font-normal text-saffron font-heading tracking-tight leading-none flex items-baseline select-none">
-                <span className={`count-number count-number-${index}`} data-target={item.value}>0</span>
+                <span id={`stat-val-${index}`} className={`count-number count-number-${index}`} data-target={item.value}>
+                  {item.value}
+                </span>
                 <span className={cn(
                   "font-heading font-normal tracking-tight ml-1 text-saffron",
                   item.suffix.length > 2 ? "text-lg sm:text-xl lg:text-2xl" : "text-2xl sm:text-3xl lg:text-4xl"

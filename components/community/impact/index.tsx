@@ -54,6 +54,9 @@ export default function CommunityImpact() {
               trigger: target,
               start: "top 85%",
             },
+            onComplete: () => {
+              target.textContent = val.toString();
+            }
           }
         );
       });
@@ -85,7 +88,7 @@ export default function CommunityImpact() {
               className="stat-box glass-panel p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-block text-center flex flex-col justify-center items-center bg-white border border-saffron/15 shadow-md"
             >
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-saffron font-heading flex items-center justify-center">
-                <span className="count-number" data-target={item.value}>0</span>
+                <span className="count-number" data-target={item.value}>{item.value}</span>
                 <span>{item.suffix}</span>
               </div>
               <div className="w-8 sm:w-10 h-0.5 bg-gold my-2.5 sm:my-4 rounded-full" />
