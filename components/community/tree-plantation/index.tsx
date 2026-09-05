@@ -89,7 +89,7 @@ export default function TreePlantation() {
               <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
                 {t("communityPage.treePlantation.speciesTitle")}
               </h3>
-              <span className="shrink-0 text-[9px] sm:text-xs uppercase font-bold tracking-[0.18em] text-emerald-600 bg-emerald-50 px-2.5 sm:px-3 py-1 rounded-full border border-emerald-100 font-sans">
+              <span className="shrink-0 text-xs uppercase font-bold tracking-[0.18em] text-emerald-600 bg-emerald-50 px-2.5 sm:px-3 py-1 rounded-full border border-emerald-100 font-sans">
                 {t("communityPage.treePlantation.ecologyTag")}
               </span>
             </div>
@@ -103,10 +103,10 @@ export default function TreePlantation() {
                   <span className="text-lg sm:text-2xl font-normal text-emerald-600 block font-heading">
                     {spec.count}
                   </span>
-                  <h4 className="text-xs sm:text-sm font-normal text-neutral-900 mt-1 font-heading uppercase">
+                  <h4 className="text-sm font-normal text-neutral-900 mt-1 font-heading uppercase">
                     {spec.name}
                   </h4>
-                  <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.16em] text-slate-grey font-medium mt-0.5 sm:mt-1 font-sans">
+                  <p className="text-xs uppercase tracking-[0.16em] text-slate-grey font-medium mt-0.5 sm:mt-1 font-sans">
                     {spec.type}
                   </p>
                 </div>
@@ -120,19 +120,19 @@ export default function TreePlantation() {
 
           {/* Right Column: Info & Stats */}
           <div className="tree-animate-right order-1 lg:order-2 space-y-4 sm:space-y-6">
-            <span className="text-emerald-600 font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-1 font-sans">
+            <span className="text-emerald-600 font-bold text-xs uppercase tracking-[0.25em] block mb-1 font-sans">
               {t("communityPage.treePlantation.badge")}
             </span>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
               {t("communityPage.treePlantation.heading")}
             </h2>
-            <p className="text-xs sm:text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
+            <p className="text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
               {t("communityPage.treePlantation.description")}
             </p>
             <div className="flex flex-wrap gap-4 sm:gap-6 pt-2 sm:pt-4">
               <div className="flex items-center gap-2.5 sm:gap-3">
                 <span className="text-2xl sm:text-3xl font-normal text-emerald-600 font-heading">5,000+</span>
-                <span className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-slate-grey font-sans">
+                <span className="text-xs uppercase font-bold tracking-[0.18em] text-slate-grey font-sans">
                   {t("communityPage.impact.s2Label")}
                 </span>
               </div>

@@ -93,7 +93,7 @@ export default function VolunteerOpportunities() {
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             {t("volunteerPage.opportunities.heading")}
           </h2>
-          <p className="text-slate-grey mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-xs sm:text-base font-normal">
+          <p className="text-slate-grey mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-base font-normal">
             {t("volunteerPage.opportunities.subtitle")}
           </p>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -125,14 +125,14 @@ export default function VolunteerOpportunities() {
                 </h3>
                 
                 {/* Expandable Description (Immediately readable on mobile, animated on desktop) */}
-                <p className="text-xs sm:text-sm text-slate-grey mt-2.5 sm:mt-4 leading-[1.7] font-sans font-normal opacity-100 md:opacity-0 md:max-h-0 md:group-hover:opacity-100 md:group-hover:max-h-[140px] transition-all duration-500 ease-in-out overflow-hidden">
+                <p className="text-base text-slate-grey mt-2.5 sm:mt-4 leading-[1.7] font-sans font-normal opacity-100 md:opacity-0 md:max-h-0 md:group-hover:opacity-100 md:group-hover:max-h-[140px] transition-all duration-500 ease-in-out overflow-hidden">
                   {item.desc}
                 </p>
               </div>
 
               {/* Skills Footer */}
               <div className="mt-4 sm:mt-8 pt-3 sm:pt-4 border-t border-saffron/10 w-full">
-                <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] text-saffron bg-saffron/5 border border-saffron/10 px-2.5 py-1 rounded inline-block font-sans">
+                <span className="text-xs uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] text-saffron bg-saffron/5 border border-saffron/10 px-2.5 py-1 rounded inline-block font-sans">
                   Skills: {item.skills}
                 </span>
               </div>

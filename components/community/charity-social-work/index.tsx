@@ -150,13 +150,13 @@ export default function CharitySocialWork() {
         
         {/* Title Block */}
         <div className="charity-title text-center max-w-2xl mx-auto mb-8 sm:mb-16">
-          <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
+          <span className="text-saffron font-bold text-xs uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
             {t("communityPage.charity.badge")}
           </span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             {t("communityPage.charity.heading")}
           </h2>
-          <p className="text-slate-grey mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-xs sm:text-base font-normal">
+          <p className="text-slate-grey mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-base font-normal">
             {t("communityPage.charity.subtitle")}
           </p>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -179,16 +179,16 @@ export default function CharitySocialWork() {
                 <h3 className="text-lg sm:text-xl font-normal text-neutral-900 mb-2.5 sm:mb-4 font-heading leading-snug uppercase">
                   {item.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-grey leading-[1.7] font-sans font-normal">
+                <p className="text-base md:text-sm text-slate-grey leading-[1.7] font-sans font-normal">
                   {item.desc}
                 </p>
               </div>
 
               <div className="border-t border-saffron/10 pt-4 sm:pt-6 mt-4 sm:mt-6 flex justify-between items-center">
-                <span className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-saffron font-sans">
+                <span className="text-xs uppercase font-bold tracking-[0.18em] text-saffron font-sans">
                   {item.metric}
                 </span>
-                <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.18em] bg-slate-100 px-2 py-0.5 rounded font-sans">
+                <span className="text-xs text-slate-grey uppercase font-bold tracking-[0.18em] bg-slate-100 px-2 py-0.5 rounded font-sans">
                   {t("communityPage.charity.distributedTag")}
                 </span>
               </div>

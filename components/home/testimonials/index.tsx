@@ -276,10 +276,10 @@ export default function Testimonials({
 
               {/* Overlapping Glassmorphic Ticket Stub */}
               <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 backdrop-blur-md bg-white/85 border border-white/20 p-3.5 sm:p-5 rounded-xl sm:rounded-2xl shadow-lg flex flex-col transition-transform duration-500 select-none">
-                <span className="text-[9px] sm:text-[10px] font-bold text-saffron uppercase tracking-[0.2em] block mb-0.5 sm:mb-1 font-sans">
+                <span className="text-xs font-bold text-saffron uppercase tracking-[0.2em] block mb-0.5 sm:mb-1 font-sans">
                   {activeItem.subtitle}
                 </span>
-                <h4 className="text-sm sm:text-lg font-normal text-slate-900 font-heading leading-tight">
+                <h4 className="text-base sm:text-lg font-normal text-slate-900 font-heading leading-tight">
                   {activeItem.title}
                 </h4>
               </div>

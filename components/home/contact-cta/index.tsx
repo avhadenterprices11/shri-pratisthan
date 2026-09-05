@@ -112,7 +112,7 @@ export default function ContactCTA() {
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground leading-[1.15] tracking-tight mb-4 sm:mb-6 font-heading">
               {t("contactCTA.title")}
             </h2>
-            <p className="text-xs sm:text-sm md:text-base text-slate-grey leading-[1.75] mb-6 sm:mb-8 font-sans">
+            <p className="text-base text-slate-grey leading-[1.75] mb-6 sm:mb-8 font-sans">
               {t("contactCTA.description")}
             </p>
 
@@ -125,8 +125,8 @@ export default function ContactCTA() {
                   </svg>
                 </div>
                 <div>
-                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">{t("contactCTA.phoneTitle")}</span>
-                  <span className="text-sm sm:text-base font-normal text-foreground font-heading">+91 9922786608</span>
+                  <span className="text-xs text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">{t("contactCTA.phoneTitle")}</span>
+                  <span className="text-base font-normal text-foreground font-heading">+91 9922786608</span>
                 </div>
               </div>
 
@@ -139,8 +139,8 @@ export default function ContactCTA() {
                   </svg>
                 </div>
                 <div>
-                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">{t("contactCTA.emailTitle")}</span>
-                  <span className="text-sm sm:text-base font-normal text-foreground font-heading">Info@shreepratishthan.com</span>
+                  <span className="text-xs text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">{t("contactCTA.emailTitle")}</span>
+                  <span className="text-base font-normal text-foreground font-heading">Info@shreepratishthan.com</span>
                 </div>
               </div>
 
@@ -153,8 +153,8 @@ export default function ContactCTA() {
                   </svg>
                 </div>
                 <div>
-                  <span className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">{t("contactCTA.addressTitle")}</span>
-                  <span className="text-sm sm:text-base font-normal text-foreground font-heading">{t("contactCTA.address")}</span>
+                  <span className="text-xs text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">{t("contactCTA.addressTitle")}</span>
+                  <span className="text-base font-normal text-foreground font-heading">{t("contactCTA.address")}</span>
                 </div>
               </div>
             </div>
@@ -162,7 +162,7 @@ export default function ContactCTA() {
 
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7 contact-slide-in glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/90 backdrop-blur-md shadow-xl">
-            <h3 className="text-xl sm:text-2xl font-normal text-foreground mb-4 sm:mb-6 font-heading">{t("contactCTA.form.submitButton")}</h3>
+            <h3 className="text-lg sm:text-2xl font-normal text-foreground mb-4 sm:mb-6 font-heading">{t("contactCTA.form.submitButton")}</h3>
 
             {status === "success" ? (
               <div className="py-6 sm:py-8 px-4 sm:px-6 text-center space-y-3 sm:space-y-4 bg-emerald-50/80 border border-emerald-200 rounded-2xl animate-in fade-in duration-300">
@@ -187,39 +187,39 @@ export default function ContactCTA() {
               <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit} noValidate>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-1.5 sm:mb-2 font-heading">{t("contactCTA.form.nameLabel")}</label>
+                    <label className="text-xs text-slate-grey uppercase font-bold tracking-widest block mb-1.5 sm:mb-2 font-heading">{t("contactCTA.form.nameLabel")}</label>
                     <input 
                       type="text" 
                       placeholder={t("contactCTA.form.namePlaceholder")}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className={`w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-base sm:text-sm transition-all ${
+                      className={`w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-base transition-all ${
                         errors.name
                           ? "border-red-400 focus:border-red-500 focus:ring-red-100"
                           : "border-saffron/20 focus:border-saffron focus:ring-saffron/20"
                       }`}
                     />
                     {errors.name && (
-                      <p className="text-[11px] text-red-500 font-medium mt-1 flex items-center gap-1">
+                      <p className="text-xs text-red-500 font-medium mt-1 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.name}
                       </p>
                     )}
                   </div>
                   <div>
-                    <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.emailLabel")}</label>
+                    <label className="text-xs text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.emailLabel")}</label>
                     <input 
                       type="text" 
                       placeholder={t("contactCTA.form.emailPlaceholder")}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-sm transition-all ${
+                      className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-base transition-all ${
                         errors.email
                           ? "border-red-400 focus:border-red-500 focus:ring-red-100"
                           : "border-saffron/20 focus:border-saffron focus:ring-saffron/20"
                       }`}
                     />
                     {errors.email && (
-                      <p className="text-[11px] text-red-500 font-medium mt-1 flex items-center gap-1">
+                      <p className="text-xs text-red-500 font-medium mt-1 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.email}
                       </p>
                     )}
@@ -228,11 +228,11 @@ export default function ContactCTA() {
 
                 {/* Premium Custom Dropdown */}
                 <div className="relative" ref={dropdownRef}>
-                  <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.subjectLabel")}</label>
+                  <label className="text-xs text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.subjectLabel")}</label>
                   <button
                     type="button"
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="w-full px-4 py-3 rounded-interactive border border-saffron/25 bg-background/80 hover:bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-sm text-foreground flex items-center justify-between transition-all cursor-pointer shadow-xs"
+                    className="w-full px-4 py-3 rounded-interactive border border-saffron/25 bg-background/80 hover:bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-base text-foreground flex items-center justify-between transition-all cursor-pointer shadow-xs"
                   >
                     <span className="font-medium">{subjectOptions[selectedSubjectIndex]}</span>
                     <ChevronDown className={`w-4 h-4 text-saffron transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} />
@@ -247,7 +247,7 @@ export default function ContactCTA() {
                             setSelectedSubjectIndex(idx);
                             setIsDropdownOpen(false);
                           }}
-                          className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${
+                          className={`px-4 py-2.5 text-base cursor-pointer flex items-center justify-between transition-colors ${
                             selectedSubjectIndex === idx
                               ? "bg-saffron/10 text-saffron font-bold"
                               : "text-foreground hover:bg-saffron/5"
@@ -262,13 +262,13 @@ export default function ContactCTA() {
                 </div>
 
                 <div>
-                  <label className="text-[10px] text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.messageLabel")}</label>
+                  <label className="text-xs text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.messageLabel")}</label>
                   <textarea 
                     rows={4} 
                     placeholder={t("contactCTA.form.messagePlaceholder")}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-sm transition-all resize-none ${
+                    className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-base transition-all resize-none ${
                       errors.message
                         ? "border-red-400 focus:border-red-500 focus:ring-red-100"
                         : "border-saffron/20 focus:border-saffron focus:ring-saffron/20"

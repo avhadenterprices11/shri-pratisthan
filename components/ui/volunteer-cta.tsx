@@ -110,7 +110,7 @@ export default function VolunteerCTA({
           </h2>
 
           {/* Clean Description */}
-          <p className="text-slate-grey text-xs sm:text-sm md:text-base leading-[1.75] max-w-2xl mb-6 sm:mb-8 font-normal font-sans">
+          <p className="text-slate-grey text-base leading-[1.75] max-w-2xl mb-6 sm:mb-8 font-normal font-sans">
             {displayDesc}
           </p>
 

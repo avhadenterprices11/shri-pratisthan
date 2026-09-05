@@ -39,12 +39,12 @@ We prioritize modern sans-serif fonts with distinct weight variations to build h
 *   **Primary Font (Headers)**: `Syne` (for bold, wide, expressive titles) or `Outfit` (for clean, high-impact numbers).
 *   **Secondary Font (Body)**: `Plus Jakarta Sans` or `Inter` (for legibility).
 
-### Font Sizes & Leading Scales
-*   **Display 1 (Hero Title)**: `clamp(3rem, 8vw, 7.5rem)` | `line-height: 0.9` | `font-weight: 800`
-*   **Headline 1 (Section Title)**: `clamp(2rem, 5vw, 4rem)` | `line-height: 1.1` | `font-weight: 700`
-*   **Headline 2 (Cards/Subsections)**: `clamp(1.5rem, 3vw, 2rem)` | `line-height: 1.2` | `font-weight: 600`
-*   **Body Leading**: `1rem` (Desktop) / `0.93rem` (Mobile) | `line-height: 1.6` | `font-weight: 400`
-*   **Caption/Button Text**: `0.85rem` | `letter-spacing: 0.05em` | `font-weight: 600`
+### Font Sizes & Leading Scales (Standardized Type Scale)
+*   **H1 / Display 1 (Hero Title)**: Mobile `32px` (`text-[32px]`) / Desktop `clamp(3rem, 7vw, 6rem)` | `line-height: 1.15 - 1.3` | `font-weight: 400`
+*   **H2 / Headline 1 (Section Title)**: Mobile `24px` (`text-2xl`) / Desktop `clamp(2.5rem, 5vw, 4rem)` (`sm:text-4xl md:text-5xl`) | `line-height: 1.15 - 1.2` | `font-weight: 400`
+*   **H3 / Headline 2 (Cards/Subsections)**: Mobile `18px` (`text-lg`) / Desktop `clamp(1.25rem, 2.5vw, 2rem)` (`sm:text-2xl`) | `line-height: 1.25 - 1.3` | `font-weight: 400`
+*   **Body Copy (Paragraphs/Content)**: Mobile `16px` (`text-base`) / Desktop `16px` (`text-base`) | `line-height: 1.7` | `font-weight: 400`
+*   **Small Caption / Eyebrows / Badges**: Mobile `12px` (`text-xs`) / Desktop `12px` (`text-xs`) | `letter-spacing: 0.15em - 0.2em` | `font-weight: 700`
 
 ---
 

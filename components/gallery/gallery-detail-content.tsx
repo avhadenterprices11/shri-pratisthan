@@ -66,24 +66,24 @@ export default function GalleryDetailContent({ item }: { item: GalleryItem }) {
                 )}
               </div>
 
-              <h1 className="text-2xl sm:text-4xl font-normal text-neutral-900 leading-tight font-heading uppercase">
+              <h1 className="text-[32px] sm:text-4xl font-normal text-neutral-900 leading-tight font-heading uppercase">
                 {localizedItem.title}
               </h1>
 
               {/* Description quote block */}
               <div className="flex gap-3 border-l-4 border-saffron pl-3 sm:pl-4 py-1">
-                <p className="text-sm sm:text-lg font-normal text-slate-800 italic leading-relaxed font-heading">
+                <p className="text-base sm:text-lg font-normal text-slate-800 italic leading-relaxed font-heading">
                   {localizedItem.description}
                 </p>
               </div>
 
               {/* Event overview detailed text */}
               <div className="border-t border-saffron/10 pt-4 sm:pt-6">
-                <h2 className="text-base sm:text-lg font-normal text-neutral-900 font-heading mb-2 sm:mb-3 flex items-center gap-2 uppercase">
+                <h2 className="text-2xl font-normal text-neutral-900 font-heading mb-2 sm:mb-3 flex items-center gap-2 uppercase">
                   <Info className="w-4 h-4 text-saffron" />
                   {t("galleryPage.detail.overviewHeading")}
                 </h2>
-                <p className="text-xs sm:text-base text-slate-grey leading-[1.7] sm:leading-relaxed whitespace-pre-line font-sans font-normal">
+                <p className="text-base text-slate-grey leading-[1.7] sm:leading-relaxed whitespace-pre-line font-sans font-normal">
                   {localizedItem.details}
                 </p>
               </div>

@@ -57,11 +57,11 @@ export default function StepReview({
   return (
     <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 select-none">
       <div className="border-b border-neutral-200 pb-4">
-        <h3 className="text-xl md:text-2xl font-bold font-heading text-neutral-900 flex items-center gap-2">
+        <h3 className="text-lg md:text-2xl font-bold font-heading text-neutral-900 flex items-center gap-2">
           <ClipboardCheck className="w-6 h-6 text-saffron" />
           {t("eventsPage.booking.step3")}
         </h3>
-        <p className="text-sm text-neutral-600 mt-1 font-sans">
+        <p className="text-base text-neutral-600 mt-1 font-sans">
           {t("eventsPage.booking.reviewDesc")}
         </p>
       </div>

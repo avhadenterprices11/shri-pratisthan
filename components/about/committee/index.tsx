@@ -115,7 +115,7 @@ export default function AboutCommittee() {
               {t("aboutPage.committee.heading")}
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
+          <p className="text-base text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
             {t("aboutPage.committee.subtitle")}
           </p>
         </div>
@@ -139,22 +139,22 @@ export default function AboutCommittee() {
 
               {/* Founder Text */}
               <div className="relative z-10 mt-6 sm:mt-12 text-left">
-                <span className="text-[10px] sm:text-xs font-bold text-saffron uppercase tracking-[0.2em] block mb-1.5 sm:mb-2 font-sans">
+                <span className="text-xs font-bold text-saffron uppercase tracking-[0.2em] block mb-1.5 sm:mb-2 font-sans">
                   {t("aboutPage.committee.presidentBadge")}
                 </span>
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-normal text-slate-800 font-heading uppercase leading-tight mb-2 group-hover:text-saffron transition-colors duration-300">
                   {t("aboutPage.committee.presidentName")}
                 </h3>
-                <p className="text-[11px] sm:text-xs font-bold text-amber-700 uppercase tracking-[0.18em] mb-3 sm:mb-4 font-sans">
+                <p className="text-xs font-bold text-amber-700 uppercase tracking-[0.18em] mb-3 sm:mb-4 font-sans">
                   {t("aboutPage.committee.presidentRole")}
                 </p>
-                <p className="text-xs sm:text-sm text-slate-grey font-sans font-normal leading-[1.75] max-w-md">
+                <p className="text-base text-slate-grey font-sans font-normal leading-[1.75] max-w-md">
                   {t("aboutPage.committee.presidentDesc")}
                 </p>
               </div>
 
               {/* Footer Stamp */}
-              <div className="border-t border-saffron/10 w-full pt-3 sm:pt-4 mt-5 sm:mt-6 text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.18em] font-sans relative z-10 text-left">
+              <div className="border-t border-saffron/10 w-full pt-3 sm:pt-4 mt-5 sm:mt-6 text-xs text-slate-grey uppercase font-bold tracking-[0.18em] font-sans relative z-10 text-left">
                 {t("aboutPage.committee.presidentFooter")}
               </div>
 
@@ -175,7 +175,7 @@ export default function AboutCommittee() {
                   20
                 </div>
                 <div className="flex flex-col items-start text-left">
-                  <span className="text-[9px] sm:text-[10px] font-bold text-saffron uppercase tracking-[0.18em] font-sans">
+                  <span className="text-xs font-bold text-saffron uppercase tracking-[0.18em] font-sans">
                     {t("aboutPage.committee.pillarsBadge")}
                   </span>
                   <h3 className="text-lg sm:text-xl font-normal text-slate-800 font-heading uppercase leading-tight group-hover:text-saffron transition-colors">
@@ -196,13 +196,13 @@ export default function AboutCommittee() {
                       "Prakash Sonawane", "Manoj Vayal", "Adil Shaikh", "Somnath Suryawanshi"
                     ]
                 ).map((name, i) => (
-                  <span key={i} className="text-[9px] sm:text-[10px] font-medium bg-saffron/5 border border-saffron/15 text-slate-700 px-2 sm:px-2.5 py-0.5 rounded-full">
+                  <span key={i} className="text-xs font-medium bg-saffron/5 border border-saffron/15 text-slate-700 px-2 sm:px-2.5 py-0.5 rounded-full">
                     {name}
                   </span>
                 ))}
               </div>
 
-              <div className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.18em] font-sans relative z-10 pt-2 border-t border-saffron/10 w-full text-left">
+              <div className="text-xs text-slate-grey uppercase font-bold tracking-[0.18em] font-sans relative z-10 pt-2 border-t border-saffron/10 w-full text-left">
                 {t("aboutPage.committee.pillarsFooter")}
               </div>
             </div>
@@ -218,19 +218,19 @@ export default function AboutCommittee() {
                   100+
                 </div>
                 <div className="flex flex-col items-start text-left max-w-sm">
-                  <span className="text-[9px] sm:text-[10px] font-bold text-saffron uppercase tracking-[0.18em] font-sans mb-0.5 sm:mb-1">
+                  <span className="text-xs font-bold text-saffron uppercase tracking-[0.18em] font-sans mb-0.5 sm:mb-1">
                     {t("aboutPage.committee.youthBadge")}
                   </span>
                   <h3 className="text-lg sm:text-xl font-normal text-slate-800 font-heading uppercase leading-tight group-hover:text-saffron transition-colors">
                     {t("aboutPage.committee.youthHeading")}
                   </h3>
-                  <p className="text-xs text-slate-grey font-sans font-normal leading-[1.7] mt-1">
+                  <p className="text-base text-slate-grey font-sans font-normal leading-[1.7] mt-1">
                     {t("aboutPage.committee.youthDesc")}
                   </p>
                 </div>
               </div>
 
-              <div className="text-[9px] sm:text-[10px] text-slate-grey uppercase font-bold tracking-[0.18em] font-sans self-start sm:self-center relative z-10 pt-3 sm:pt-0 sm:border-l border-saffron/15 sm:pl-6">
+              <div className="text-xs text-slate-grey uppercase font-bold tracking-[0.18em] font-sans self-start sm:self-center relative z-10 pt-3 sm:pt-0 sm:border-l border-saffron/15 sm:pl-6">
                 {t("aboutPage.committee.youthTenure")}
               </div>
             </div>

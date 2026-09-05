@@ -67,7 +67,7 @@ export default function MemoryTimeline() {
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none" />
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-8 sm:mb-16 md:mb-20">
-          <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.25em] block mb-2 sm:mb-3 font-sans">Milestones</span>
+          <span className="text-saffron font-bold text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] block mb-2 sm:mb-3 font-sans">Milestones</span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
             {t("galleryPage.timeline.heading")}
           </h2>
@@ -98,13 +98,13 @@ export default function MemoryTimeline() {
                   {/* Left block */}
                   <div className={`w-full md:w-1/2 pl-10 sm:pl-12 md:pl-0 md:px-12 ${isEven ? "md:order-1 md:text-right" : "md:order-2 md:text-left"}`}>
                     <div className="glass-panel p-4 sm:p-6 rounded-2xl sm:rounded-block border border-saffron/10 bg-white">
-                      <span className="text-[10px] sm:text-xs font-bold text-saffron uppercase tracking-[0.2em] font-sans">{item.year}</span>
-                      <h3 className="text-base sm:text-xl font-normal text-neutral-900 mt-1 mb-2 font-heading flex items-center justify-start md:justify-end gap-2 leading-snug uppercase">
+                      <span className="text-xs font-bold text-saffron uppercase tracking-[0.2em] font-sans">{item.year}</span>
+                      <h3 className="text-lg sm:text-xl font-normal text-neutral-900 mt-1 mb-2 font-heading flex items-center justify-start md:justify-end gap-2 leading-snug uppercase">
                         {!isEven && <span className="text-xl sm:text-2xl">{item.emoji}</span>}
                         {item.title}
                         {isEven && <span className="text-xl sm:text-2xl">{item.emoji}</span>}
                       </h3>
-                      <p className="text-xs sm:text-sm text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">{item.desc}</p>
+                      <p className="text-base md:text-sm text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">{item.desc}</p>
                     </div>
                   </div>
 

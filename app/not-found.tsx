@@ -29,14 +29,14 @@ export default function NotFound() {
 
         {/* Heading */}
         <div className="space-y-3">
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-800 tracking-tight font-heading leading-tight uppercase">
+          <h1 className="text-[32px] sm:text-4xl font-black text-slate-800 tracking-tight font-heading leading-tight uppercase">
             Lost in the Festival?
           </h1>
           <div className="w-12 h-1 bg-saffron mx-auto rounded-full" />
         </div>
 
         {/* Description */}
-        <p className="text-slate-500 text-sm leading-relaxed max-w-sm mx-auto">
+        <p className="text-slate-500 text-base leading-relaxed max-w-sm mx-auto">
           The page you are looking for may have moved, been renamed, or does not exist. Let us guide you back to the celebration.
         </p>
 

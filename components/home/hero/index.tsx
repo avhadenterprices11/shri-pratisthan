@@ -126,18 +126,18 @@ export default function Hero() {
         autoplayDelay={3500}
         className="h-full w-full"
         cta={
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3">
             <Link
               href="/events"
-              className="inline-flex items-center gap-1.5 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:scale-105 shadow-md"
+              className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-[9px] sm:text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:scale-105 shadow-md whitespace-nowrap"
             >
-              <Sparkles className="w-3 h-3 text-saffron" />
+              <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-saffron" />
               <span>{t("common.exploreMore", "Explore Events")}</span>
-              <ArrowRight className="w-3 h-3 text-white/70" />
+              <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white/70" />
             </Link>
             <Link
               href="/volunteer"
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-saffron hover:bg-saffron-dark text-black font-bold text-[10px] sm:text-xs uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-md"
+              className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-saffron hover:bg-saffron-dark text-black font-bold text-[9px] sm:text-xs uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-md whitespace-nowrap"
             >
               <span>{t("common.becomeVolunteer", "Join As Volunteer")}</span>
             </Link>

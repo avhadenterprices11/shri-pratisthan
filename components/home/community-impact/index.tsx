@@ -149,7 +149,7 @@ export default function CommunityImpact() {
               </div>
 
               {/* Title label */}
-              <span className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.2em] text-slate-800 mt-3 sm:mt-4 block font-sans">
+              <span className="text-xs uppercase font-bold tracking-[0.2em] text-slate-800 mt-3 sm:mt-4 block font-sans">
                 {item.label}
               </span>
 
@@ -169,7 +169,7 @@ export default function CommunityImpact() {
               </div>
 
               {/* Short Description */}
-              <p className="text-slate-grey text-xs md:text-sm leading-[1.7] font-normal font-sans pr-2">
+              <p className="text-slate-grey text-base leading-[1.7] font-normal font-sans pr-2">
                 {item.description}
               </p>
             </div>

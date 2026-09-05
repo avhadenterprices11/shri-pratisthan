@@ -49,7 +49,7 @@ export default function ContactSupportCTA() {
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
               {t("contactPage.cta.heading")}
             </h2>
-            <p className="text-xs sm:text-base text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
+            <p className="text-base text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
               {t("contactPage.cta.desc")}
             </p>
           </div>

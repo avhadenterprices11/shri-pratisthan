@@ -126,10 +126,10 @@ export default function VolunteerWhyJoin() {
                       : "bg-white/40 md:bg-transparent border-black/5 md:border-transparent hover:bg-white/60"
                   }`}
                 >
-                  <span className={`text-xs sm:text-base md:text-lg font-normal font-heading transition-colors duration-300 ${isActive ? "text-saffron" : "text-slate-grey group-hover:text-neutral-900"}`}>
+                  <span className={`text-base font-normal font-heading transition-colors duration-300 ${isActive ? "text-saffron" : "text-slate-grey group-hover:text-neutral-900"}`}>
                     0{index + 1}
                   </span>
-                  <span className={`text-xs sm:text-base md:text-lg font-normal font-heading transition-colors duration-300 uppercase ${isActive ? "text-neutral-900" : "text-slate-grey group-hover:text-neutral-900"}`}>
+                  <span className={`text-base font-normal font-heading transition-colors duration-300 uppercase ${isActive ? "text-neutral-900" : "text-slate-grey group-hover:text-neutral-900"}`}>
                     {item.title}
                   </span>
                 </button>
@@ -144,12 +144,12 @@ export default function VolunteerWhyJoin() {
               
               <div ref={cardContentRef} className="relative z-10">
                 {/* Title */}
-                <h3 className="text-xl sm:text-3xl font-normal text-neutral-900 mb-2.5 sm:mb-4 font-heading leading-snug uppercase">
+                <h3 className="text-lg sm:text-3xl font-normal text-neutral-900 mb-2.5 sm:mb-4 font-heading leading-snug uppercase">
                   {VALUES[activeIdx].title}
                 </h3>
                 
                 {/* Description */}
-                <p className="text-slate-grey text-xs sm:text-base md:text-lg leading-[1.7] sm:leading-[1.75] font-sans font-normal">
+                <p className="text-slate-grey text-base leading-[1.7] sm:leading-[1.75] font-sans font-normal">
                   {VALUES[activeIdx].desc}
                 </p>
               </div>

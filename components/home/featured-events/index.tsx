@@ -225,7 +225,7 @@ export default function FeaturedEvents() {
           <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-foreground tracking-tight font-heading leading-tight uppercase">
             {t("featuredEvents.title")}
           </h2>
-          <p className="text-slate-grey max-w-2xl text-xs sm:text-sm md:text-base leading-relaxed font-sans mt-3 sm:mt-4">
+          <p className="text-slate-grey max-w-2xl text-base leading-relaxed font-sans mt-3 sm:mt-4">
             {t("featuredEvents.subtitle")}
           </p>
         </div>
@@ -316,7 +316,7 @@ export default function FeaturedEvents() {
                   <span className="text-xs md:text-sm font-bold text-saffron tracking-wider font-sans">
                     {event.num}
                   </span>
-                  <h3 className="text-xl sm:text-3xl lg:text-5xl font-normal text-slate-800 group-hover:text-saffron transition-all duration-300 font-heading uppercase leading-none">
+                  <h3 className="text-lg sm:text-3xl lg:text-5xl font-normal text-slate-800 group-hover:text-saffron transition-all duration-300 font-heading uppercase leading-none">
                     {event.category}
                   </h3>
                 </div>
@@ -340,11 +340,11 @@ export default function FeaturedEvents() {
                       className="object-cover object-center"
                     />
                   </div>
-                  <p className="text-xs text-slate-grey leading-relaxed font-sans">{event.description}</p>
+                  <p className="text-base text-slate-grey leading-relaxed font-sans">{event.description}</p>
 
                   <div className="flex flex-wrap gap-1.5">
                     {event.details.map((detail, i) => (
-                      <span key={i} className="px-2.5 py-1 rounded-full bg-saffron/5 border border-saffron/10 text-[9px] font-bold text-saffron uppercase font-sans">
+                      <span key={i} className="px-2.5 py-1 rounded-full bg-saffron/5 border border-saffron/10 text-xs font-bold text-saffron uppercase font-sans">
                         {detail}
                       </span>
                     ))}
@@ -352,7 +352,7 @@ export default function FeaturedEvents() {
 
                   <Link
                     href={event.link}
-                    className="py-2.5 px-4 rounded-full bg-saffron text-white text-[9px] uppercase font-bold tracking-widest flex items-center gap-1.5 shadow-md mt-1 font-sans"
+                    className="py-2.5 px-4 rounded-full bg-saffron text-white text-xs uppercase font-bold tracking-widest flex items-center gap-1.5 shadow-md mt-1 font-sans"
                   >
                     {t("featuredEvents.viewEvent")}
                     <svg className="w-3 h-3 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2.5">

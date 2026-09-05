@@ -68,12 +68,12 @@ export default function CommunityImpact() {
   return (
     <section
       ref={sectionRef}
-      className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background"
+      className="pt-12 sm:pt-16 md:pt-20 pb-4 sm:pb-6 md:pb-8 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
-          <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
+          <span className="text-saffron font-bold text-xs uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
             {t("communityPage.impact.badge")}
           </span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
@@ -92,7 +92,7 @@ export default function CommunityImpact() {
                 {item.suffix ? <span>{item.suffix}</span> : null}
               </div>
               <div className="w-8 sm:w-10 h-0.5 bg-gold my-2.5 sm:my-4 rounded-full" />
-              <div className="text-[10px] sm:text-xs md:text-sm font-bold text-slate-grey uppercase tracking-[0.16em] sm:tracking-[0.18em] font-sans">
+              <div className="text-xs md:text-sm font-bold text-slate-grey uppercase tracking-[0.16em] sm:tracking-[0.18em] font-sans">
                 {item.label}
               </div>
             </div>

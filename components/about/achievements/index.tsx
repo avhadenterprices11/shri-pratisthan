@@ -148,17 +148,17 @@ export default function AboutAchievements() {
               </div>
 
               {/* Title */}
-              <h3 className="text-base sm:text-lg md:text-xl font-normal text-slate-800 font-heading uppercase tracking-tight mb-2 sm:mb-3 group-hover:text-saffron transition-colors duration-350 leading-snug">
+              <h3 className="text-lg sm:text-lg md:text-xl font-normal text-slate-800 font-heading uppercase tracking-tight mb-2 sm:mb-3 group-hover:text-saffron transition-colors duration-350 leading-snug">
                 {item.title}
               </h3>
               
               {/* Description */}
-              <p className="text-xs sm:text-sm text-slate-grey leading-[1.7] font-sans font-normal max-w-xs transition-transform duration-500 translate-y-1 group-hover:translate-y-0">
+              <p className="text-base text-slate-grey leading-[1.7] font-sans font-normal max-w-xs transition-transform duration-500 translate-y-1 group-hover:translate-y-0">
                 {item.desc}
               </p>
 
               {/* Verified Stamp tag */}
-              <div className="mt-5 sm:mt-8 text-[9px] text-saffron uppercase font-bold tracking-[0.2em] border border-saffron/20 bg-saffron/5 px-3.5 sm:px-4.5 py-1.5 rounded-full font-sans shadow-sm transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+              <div className="mt-5 sm:mt-8 text-xs text-saffron uppercase font-bold tracking-[0.2em] border border-saffron/20 bg-saffron/5 px-3.5 sm:px-4.5 py-1.5 rounded-full font-sans shadow-sm transition-all duration-500 translate-y-2 group-hover:translate-y-0">
                 {t("aboutPage.achievements.validationTag")}
               </div>
 

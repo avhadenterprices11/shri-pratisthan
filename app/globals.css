@@ -131,13 +131,13 @@
 /* Infinite Scrolling Marquee */
 @keyframes marquee-scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 25s linear infinite;
+  animation: marquee-scroll 30s linear infinite;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -157,6 +157,27 @@
 
 .font-sans {
   font-family: var(--font-sans);
+}
+
+/* ── Standardized Typography Scale (Mobile-First) ── */
+.type-h1 {
+  @apply text-[32px] sm:text-5xl md:text-6xl lg:text-7xl font-heading leading-tight tracking-tight uppercase;
+}
+
+.type-h2 {
+  @apply text-2xl sm:text-4xl md:text-5xl font-heading leading-tight tracking-tight uppercase;
+}
+
+.type-h3 {
+  @apply text-lg sm:text-2xl font-heading leading-snug uppercase;
+}
+
+.type-body {
+  @apply text-base font-sans font-normal leading-relaxed;
+}
+
+.type-caption {
+  @apply text-xs font-sans font-bold uppercase tracking-widest;
 }
 
 .custom-cursor-dot {

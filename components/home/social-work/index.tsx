@@ -124,7 +124,7 @@ export default function CulturalInitiatives() {
             <h2 className="text-2xl sm:text-[34px] md:text-[40px] leading-[1.15] font-normal text-charcoal font-heading tracking-tight">
               {t("socialWork.eyebrow")}
             </h2>
-            <p className="mt-3 sm:mt-4 text-xs sm:text-[15px] text-slate-grey leading-[1.75] max-w-[560px] font-sans">
+            <p className="mt-3 sm:mt-4 text-base text-slate-grey leading-[1.75] max-w-[560px] font-sans">
               {t("socialWork.description")}
             </p>
           </div>
@@ -290,7 +290,7 @@ export default function CulturalInitiatives() {
                           className="overflow-hidden"
                         >
                           <div className="px-4 pb-5 pt-1 border-t border-black/5 flex flex-col gap-4 text-left">
-                            <p className={`text-xs sm:text-sm leading-relaxed font-sans ${
+                            <p className={`text-base leading-relaxed font-sans ${
                               card.id === 2 ? "text-slate-300" : "text-slate-grey"
                             }`}>
                               {card.description}
@@ -333,10 +333,10 @@ export default function CulturalInitiatives() {
           className="mt-6 sm:mt-10 bg-charcoal text-white rounded-2xl sm:rounded-full px-4 sm:px-8 py-3.5 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center cursor-pointer hover:bg-charcoal/95 transition-all border border-saffron/10 group shadow-md block"
           data-hover="pointer"
         >
-          <p className="text-xs sm:text-[14px] leading-[1.4] text-slate-200 font-sans">
+          <p className="text-base leading-[1.4] text-slate-200 font-sans">
             {t("socialWork.bannerText")}
           </p>
-          <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest text-saffron flex items-center gap-1.5 whitespace-nowrap bg-white/95 px-4 py-2 rounded-full shadow-sm group-hover:text-gold transition-colors">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-saffron flex items-center gap-1.5 whitespace-nowrap bg-white/95 px-4 py-2 rounded-full shadow-sm group-hover:text-gold transition-colors">
             {t("common.becomeVolunteer")} <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform duration-300" />
           </span>
         </Link>

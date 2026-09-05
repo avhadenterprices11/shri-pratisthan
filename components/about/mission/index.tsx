@@ -125,12 +125,12 @@ export default function AboutMission() {
               <div className="relative z-10 flex flex-col items-start gap-3 sm:gap-4 text-left">
 
                 {/* Pillar Heading */}
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-normal text-white font-heading uppercase leading-snug drop-shadow-sm">
+                <h3 className="text-lg sm:text-2xl md:text-3xl font-normal text-white font-heading uppercase leading-snug drop-shadow-sm">
                   {pillar.title}
                 </h3>
 
                 {/* Pillar Paragraph */}
-                <p className="text-xs sm:text-sm text-white/90 leading-[1.7] max-w-lg font-sans font-normal drop-shadow-sm">
+                <p className="text-base text-white/90 leading-[1.7] max-w-lg font-sans font-normal drop-shadow-sm">
                   {pillar.description}
                 </p>
 
@@ -142,7 +142,7 @@ export default function AboutMission() {
                         <span className="text-xl sm:text-2xl font-normal text-saffron leading-none font-heading mb-1">
                           {st.val}
                         </span>
-                        <span className="text-[9px] uppercase font-bold tracking-[0.2em] text-white/80 font-sans">
+                        <span className="text-xs uppercase font-bold tracking-[0.2em] text-white/80 font-sans">
                           {st.label}
                         </span>
                       </div>

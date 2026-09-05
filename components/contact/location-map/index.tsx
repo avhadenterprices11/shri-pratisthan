@@ -63,7 +63,7 @@ export default function LocationMap() {
               {t("contactPage.location.headingLine1")} <br />
               <span className="text-saffron text-outline-festive font-heading">{t("contactPage.location.headingLine2")}</span>
             </h2>
-            <p className="text-xs sm:text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
+            <p className="text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
               {t("contactPage.location.desc")}
             </p>
             
@@ -74,7 +74,7 @@ export default function LocationMap() {
                 </div>
                 <div>
                   <h4 className="font-normal text-neutral-900 font-heading text-base sm:text-lg uppercase">{t("contactPage.location.visitingHoursTitle")}</h4>
-                  <p className="text-xs sm:text-sm text-slate-grey mt-0.5 font-sans leading-relaxed font-normal">
+                  <p className="text-base md:text-sm text-slate-grey mt-0.5 font-sans leading-relaxed font-normal">
                     {t("contactPage.location.visitingHoursLine1")} <br />
                     {t("contactPage.location.visitingHoursLine2")}
                   </p>
@@ -101,7 +101,7 @@ export default function LocationMap() {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 bg-slate-50 border border-slate-200 p-4 sm:p-5 rounded-2xl">
               <div>
                 <h4 className="font-bold text-neutral-900 text-xs sm:text-sm font-sans uppercase tracking-wide">{t("contactPage.location.hqTitle")}</h4>
-                <p className="text-[11px] sm:text-xs text-slate-grey mt-0.5 font-sans">
+                <p className="text-xs text-slate-grey mt-0.5 font-sans">
                   {t("contactPage.location.hqDesc")}
                 </p>
               </div>

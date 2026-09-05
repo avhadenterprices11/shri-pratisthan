@@ -131,7 +131,7 @@ export default function VolunteerBenefits() {
                     )}>
                       <span>{item.title}</span>
                       <span className={cn(
-                        "text-[10px] sm:text-xs uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] bg-saffron/10 text-saffron border border-saffron/20 px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full font-sans select-none transition-all duration-500",
+                        "text-xs uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] bg-saffron/10 text-saffron border border-saffron/20 px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full font-sans select-none transition-all duration-500",
                         isOpen ? "opacity-100 inline-block" : "opacity-0 sm:opacity-0 group-hover:sm:opacity-100 hidden sm:inline-block"
                       )}>
                         {item.icon}
@@ -155,7 +155,7 @@ export default function VolunteerBenefits() {
                     ? "max-h-[160px] opacity-100 mt-2.5 sm:mt-4"
                     : "max-h-0 opacity-0 mt-0 sm:max-h-0 sm:opacity-0 group-hover:sm:max-h-[120px] group-hover:sm:opacity-100 group-hover:sm:mt-4"
                 )}>
-                  <p className="text-xs sm:text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] max-w-3xl font-sans font-normal">
+                  <p className="text-base text-slate-grey leading-[1.7] sm:leading-[1.75] max-w-3xl font-sans font-normal">
                     {item.desc}
                   </p>
                 </div>

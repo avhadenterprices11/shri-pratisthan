@@ -77,14 +77,14 @@ export default function AllEventsHero() {
         </div>
 
         {/* Bright Headline: CELEBRATING TRADITIONS */}
-        <h1 className="hero-title-reveal text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading tracking-tight uppercase leading-[0.95] drop-shadow-[0_2px_10px_rgba(255,255,255,0.9)]">
+        <h1 className="hero-title-reveal text-[32px] sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading tracking-tight uppercase leading-[0.95] drop-shadow-[0_2px_10px_rgba(255,255,255,0.9)]">
           <span className="text-saffron text-outline-festive font-heading block">
             CELEBRATING TRADITIONS
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="hero-title-reveal text-xs sm:text-base md:text-lg text-neutral-900 max-w-3xl leading-[1.7] sm:leading-[1.75] font-normal font-sans bg-white/85 backdrop-blur-md px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border border-white/90 shadow-lg">
+        <p className="hero-title-reveal text-base sm:text-base md:text-lg text-neutral-900 max-w-3xl leading-[1.7] sm:leading-[1.75] font-normal font-sans bg-white/85 backdrop-blur-md px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border border-white/90 shadow-lg">
           Explore our complete lineup of cultural celebrations, Gudipadwa Swagat Yatra, Shree Ganeshotsav, 50+ blood donation camps, and annual sports tournaments in Indira Nagar, Nashik.
         </p>
       </div>

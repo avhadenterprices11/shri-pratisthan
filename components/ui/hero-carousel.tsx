@@ -134,7 +134,7 @@ export function HeroCarousel({
 
   // Responsive stage geometry calculations
   const fullH = isMobile
-    ? clamp(stageH * 0.17, 100, 140)
+    ? clamp(stageH * 0.12, 75, 95)
     : clamp(stageH * CARD_H, 115, 200)
   const halfH = fullH / 2
   const cardW = fullH * CARD_AR
@@ -145,9 +145,9 @@ export function HeroCarousel({
     ? 10
     : Math.max(11, Math.round(stageH * LABEL))
 
-  // Headline font size scaling: increased for bold, commanding presence in marked zone
+  // Headline font size scaling: 70% scale (24-28px) on mobile, responsive on tablet and desktop
   const titleSize = isMobile
-    ? Math.min(38, Math.max(28, Math.round(stageW * 0.088)))
+    ? clamp(Math.round(stageW * 0.07), 24, 28)
     : isTablet
       ? Math.min(52, Math.max(36, Math.round(stageH * 0.058)))
       : Math.min(74, Math.max(48, Math.round(stageH * 0.076)))
@@ -328,7 +328,7 @@ export function HeroCarousel({
           {active.credit ? (
             <div className="flex items-center gap-2 sm:gap-3 mt-0.5 sm:mt-1">
               <span className="w-5 sm:w-7 h-[2px] bg-saffron rounded-full shrink-0 shadow-sm" />
-              <p className="font-sans uppercase tracking-[0.2em] text-white/90 text-[11px] sm:text-xs md:text-sm font-semibold whitespace-nowrap drop-shadow-md">
+              <p className="font-sans uppercase tracking-[0.2em] text-white/90 text-xs sm:text-xs md:text-sm font-semibold whitespace-nowrap drop-shadow-md">
                 {active.credit}
               </p>
             </div>
@@ -349,7 +349,7 @@ export function HeroCarousel({
             {active.meta.map((fact, i) => (
               <span
                 key={i}
-                className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[9px] sm:text-[11px] font-sans font-medium uppercase tracking-wider text-white drop-shadow-sm"
+                className="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-xs font-sans font-medium uppercase tracking-wider text-white drop-shadow-sm"
               >
                 {fact}
               </span>
@@ -425,7 +425,7 @@ export function HeroCarousel({
         }}
       >
         {/* Left progress indicator */}
-        <div style={{ width: Math.max(130, stageW * (isMobile ? 0.38 : RAIL)) }}>
+        <div style={{ width: Math.max(isMobile ? 85 : 130, stageW * (isMobile ? 0.24 : RAIL)) }}>
           <div
             className="flex justify-between font-mono tabular-nums opacity-85 text-white/70"
             style={{ fontSize: label }}

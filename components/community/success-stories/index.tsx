@@ -96,15 +96,15 @@ export default function SuccessStories() {
   return (
     <section
       ref={containerRef}
-      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
+      className="py-6 sm:py-8 md:py-10 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 z-0" />
       
       <div className="max-w-5xl mx-auto relative z-10 stories-reveal">
         
         {/* Title block */}
-        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
-          <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
+        <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-8">
+          <span className="text-saffron font-bold text-xs uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
             {t("communityPage.successStories.badge")}
           </span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
@@ -115,7 +115,7 @@ export default function SuccessStories() {
 
         {/* 3D Stacked Deck Slider Container */}
         <div 
-          className="relative w-full max-w-4xl mx-auto h-[480px] sm:h-[400px] md:h-[320px] flex items-center justify-center"
+          className="relative w-full max-w-4xl mx-auto h-[320px] sm:h-[280px] md:h-[230px] flex items-center justify-center"
           style={{ perspective: 1500, transformStyle: "preserve-3d" }}
         >
           {STORIES.map((story, index) => {
@@ -148,10 +148,10 @@ export default function SuccessStories() {
                 {/* Content block */}
                 <div className="flex-grow space-y-2 sm:space-y-3 text-center md:text-left">
                   <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2">
-                    <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.18em] bg-saffron/10 text-saffron px-2.5 py-0.5 sm:py-1 rounded font-sans">
+                    <span className="text-xs uppercase font-bold tracking-[0.18em] bg-saffron/10 text-saffron px-2.5 py-0.5 sm:py-1 rounded font-sans">
                       {story.location}
                     </span>
-                    <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.18em] bg-slate-100 text-slate-grey px-2.5 py-0.5 sm:py-1 rounded font-sans">
+                    <span className="text-xs uppercase font-bold tracking-[0.18em] bg-slate-100 text-slate-grey px-2.5 py-0.5 sm:py-1 rounded font-sans">
                       {story.beneficiary}
                     </span>
                   </div>
@@ -160,7 +160,7 @@ export default function SuccessStories() {
                     {story.title}
                   </h3>
                   
-                  <p className="text-slate-grey leading-snug text-xs sm:text-base italic font-heading font-normal">
+                  <p className="text-slate-grey leading-snug text-base italic font-heading font-normal">
                     &ldquo;{story.story}&rdquo;
                   </p>
                 </div>

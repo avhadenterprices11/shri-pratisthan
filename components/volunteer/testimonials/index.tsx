@@ -99,7 +99,7 @@ export default function VolunteerTestimonials() {
               className={`testimonial-card relative glass-panel pt-10 sm:pt-12 pb-6 sm:pb-8 px-5 sm:px-8 rounded-2xl sm:rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-2xl transition-all duration-500 bg-white min-h-[220px] cursor-default border border-saffron/10 shadow-md ${item.offsetClass}`}
             >
               {/* Floating Avatar overlaps top edge */}
-              <div className="absolute -top-5 sm:-top-6 left-6 sm:left-8 w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-saffron bg-white flex items-center justify-center text-[10px] sm:text-xs font-normal font-heading text-saffron shadow-lg z-20">
+              <div className="absolute -top-5 sm:-top-6 left-6 sm:left-8 w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-saffron bg-white flex items-center justify-center text-xs font-normal font-heading text-saffron shadow-lg z-20">
                 {item.avatar}
               </div>
 
@@ -113,7 +113,7 @@ export default function VolunteerTestimonials() {
                 </div>
                 
                 {/* Quote description */}
-                <p className="text-slate-grey leading-snug italic text-xs sm:text-base font-heading font-normal mb-4 sm:mb-6 pt-1 sm:pt-2">
+                <p className="text-slate-grey leading-snug italic text-base font-heading font-normal mb-4 sm:mb-6 pt-1 sm:pt-2">
                   &ldquo;{item.quote}&rdquo;
                 </p>
               </div>
@@ -121,10 +121,10 @@ export default function VolunteerTestimonials() {
               {/* Author Info footer */}
               <div className="relative z-10 border-t border-saffron/10 pt-3 sm:pt-4 flex items-center justify-between">
                 <div>
-                  <h4 className="text-xs sm:text-base font-normal text-neutral-900 font-heading uppercase">
+                  <h4 className="text-base font-normal text-neutral-900 font-heading uppercase">
                     {item.name}
                   </h4>
-                  <p className="text-[9px] sm:text-[11px] text-slate-grey uppercase tracking-[0.16em] sm:tracking-[0.18em] font-medium mt-0.5 font-sans">
+                  <p className="text-xs text-slate-grey uppercase tracking-[0.16em] sm:tracking-[0.18em] font-medium mt-0.5 font-sans">
                     {item.role}
                   </p>
                 </div>

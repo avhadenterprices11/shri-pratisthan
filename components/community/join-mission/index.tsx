@@ -177,20 +177,20 @@ export default function JoinMission() {
     <section
       id="join-mission"
       ref={containerRef}
-      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
+      className="pt-6 sm:pt-8 md:pt-10 pb-12 sm:pb-16 md:pb-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 animate-pulse" />
       <div className="max-w-5xl mx-auto relative z-10 join-reveal">
         <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white border border-saffron/10 shadow-2xl">
 
           <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-            <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-2 font-sans">
+            <span className="text-saffron font-bold text-xs uppercase tracking-[0.25em] block mb-2 font-sans">
               {t("communityPage.joinMission.badge")}
             </span>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
               {t("communityPage.joinMission.heading")}
             </h2>
-            <p className="text-slate-grey mt-2.5 sm:mt-3 text-xs sm:text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
+            <p className="text-slate-grey mt-2.5 sm:mt-3 text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
               {t("communityPage.joinMission.subtitle")}
             </p>
             <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -202,15 +202,15 @@ export default function JoinMission() {
               <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-saffron/10 text-saffron flex items-center justify-center mx-auto border border-saffron/20">
                 <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 stroke-[1.5]" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase">
+              <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 font-heading uppercase">
                 {t("communityPage.joinMission.successTitle")}
               </h3>
-              <p className="text-slate-grey max-w-md mx-auto text-xs sm:text-sm font-sans leading-relaxed">
+              <p className="text-slate-grey max-w-md mx-auto text-base md:text-sm font-sans leading-relaxed">
                 {t("communityPage.joinMission.successDesc")}
               </p>
               <button
                 onClick={handleReset}
-                className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.2em] text-saffron hover:underline mt-3 sm:mt-4 cursor-pointer font-sans"
+                className="text-xs uppercase font-bold tracking-[0.2em] text-saffron hover:underline mt-3 sm:mt-4 cursor-pointer font-sans"
               >
                 Submit another response
               </button>
@@ -229,7 +229,7 @@ export default function JoinMission() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="jm-name" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="jm-name" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     {t("communityPage.joinMission.nameLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -246,7 +246,7 @@ export default function JoinMission() {
                 </div>
 
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="jm-contact" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="jm-contact" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     {t("communityPage.joinMission.contactLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -265,7 +265,7 @@ export default function JoinMission() {
 
               {/* Premium Custom Dropdown */}
               <div className="space-y-1.5 sm:space-y-2 relative" ref={dropdownRef}>
-                <label id="jm-interest" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                <label id="jm-interest" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                   {t("communityPage.joinMission.interestLabel")}
                 </label>
                 <button
@@ -289,7 +289,7 @@ export default function JoinMission() {
                           setFormData({ ...formData, interest: opt.value });
                           setIsDropdownOpen(false);
                         }}
-                        className={`px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm cursor-pointer flex items-center justify-between transition-colors ${
+                        className={`px-3.5 sm:px-4 py-2 sm:py-2.5 text-base sm:text-sm cursor-pointer flex items-center justify-between transition-colors ${
                           formData.interest === opt.value
                             ? "bg-saffron/10 text-saffron font-bold"
                             : "text-neutral-900 hover:bg-saffron/5 font-normal"
@@ -304,7 +304,7 @@ export default function JoinMission() {
               </div>
 
               <div className="space-y-1.5 sm:space-y-2">
-                <label htmlFor="jm-message" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                <label htmlFor="jm-message" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                   {t("communityPage.joinMission.messageLabel")}
                 </label>
                 <textarea

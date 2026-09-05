@@ -119,7 +119,7 @@ export default function UpcomingEvents() {
                 <span className="text-5xl sm:text-6xl md:text-7xl font-normal font-heading text-outline-date tracking-tight leading-none block">
                   {item.day}
                 </span>
-                <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-slate-grey mt-0 sm:mt-2 block select-none uppercase font-sans">
+                <span className="text-xs font-bold tracking-[0.2em] text-slate-grey mt-0 sm:mt-2 block select-none uppercase font-sans">
                   {item.month}
                 </span>
               </div>
@@ -129,7 +129,7 @@ export default function UpcomingEvents() {
                 <div>
                   {/* Category */}
                   <div className="flex justify-between items-center mb-2.5 sm:mb-3">
-                    <span className={`text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] px-2.5 py-1 rounded font-sans ${item.colorClass}`}>
+                    <span className={`text-xs font-bold uppercase tracking-[0.2em] px-2.5 py-1 rounded font-sans ${item.colorClass}`}>
                       {item.category}
                     </span>
                   </div>
@@ -140,7 +140,7 @@ export default function UpcomingEvents() {
                   </h3>
 
                   {/* Time & Location details */}
-                  <div className="space-y-1.5 sm:space-y-2 text-xs text-slate-grey font-medium font-sans">
+                  <div className="space-y-1.5 sm:space-y-2 text-base text-slate-grey font-medium font-sans">
                     <div className="flex items-center gap-2">
                       <svg className="w-4 h-4 text-saffron stroke-current fill-none shrink-0" viewBox="0 0 24 24" strokeWidth="2.5">
                         <circle cx="12" cy="12" r="10" />

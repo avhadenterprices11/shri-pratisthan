@@ -214,12 +214,12 @@ export default function Footer() {
                     setEmail(e.target.value);
                     if (status === "error") setStatus("idle");
                   }}
-                  className="bg-transparent text-xs sm:text-sm text-white placeholder-white/30 py-1.5 sm:py-2.5 outline-none flex-grow min-w-0 font-sans"
+                  className="bg-transparent text-base sm:text-sm text-white placeholder-white/30 py-1.5 sm:py-2.5 outline-none flex-grow min-w-0 font-sans"
                 />
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="bg-white hover:bg-neutral-200 text-black text-[9px] sm:text-xs font-bold uppercase tracking-[0.16em] sm:tracking-[0.2em] px-3.5 sm:px-8 py-1.5 sm:py-2.5 rounded-full transition-all duration-200 cursor-pointer shrink-0 disabled:opacity-50 inline-flex items-center justify-center gap-1.5 font-sans whitespace-nowrap"
+                  className="bg-white hover:bg-neutral-200 text-black text-xs font-bold uppercase tracking-[0.16em] sm:tracking-[0.2em] px-3.5 sm:px-8 py-1.5 sm:py-2.5 rounded-full transition-all duration-200 cursor-pointer shrink-0 disabled:opacity-50 inline-flex items-center justify-center gap-1.5 font-sans whitespace-nowrap"
                 >
                   {status === "submitting" ? (
                     <>
@@ -258,10 +258,10 @@ export default function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-white mb-2 sm:mb-5 font-sans">
+              <h4 className="text-xs font-bold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-white mb-2 sm:mb-5 font-sans">
                 {t("footer.quickLinks")}
               </h4>
-              <ul className="space-y-1.5 sm:space-y-3.5 text-[11px] sm:text-xs text-white/50 font-sans">
+              <ul className="space-y-1.5 sm:space-y-3.5 text-xs text-white/50 font-sans">
                 <li><Link href="/" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.14em] sm:tracking-[0.18em]">{t("navbar.home")}</Link></li>
                 <li><Link href="/events" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.14em] sm:tracking-[0.18em]">{t("navbar.events")}</Link></li>
                 <li><Link href="/community" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.14em] sm:tracking-[0.18em]">{t("navbar.community")}</Link></li>
@@ -272,10 +272,10 @@ export default function Footer() {
 
             {/* Support Links */}
             <div>
-              <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-white mb-2 sm:mb-5 font-sans">
+              <h4 className="text-xs font-bold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-white mb-2 sm:mb-5 font-sans">
                 {t("footer.supportLegal")}
               </h4>
-              <ul className="space-y-1.5 sm:space-y-3.5 text-[11px] sm:text-xs text-white/50 font-sans">
+              <ul className="space-y-1.5 sm:space-y-3.5 text-xs text-white/50 font-sans">
                 <li><Link href="/privacy-policy" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.14em] sm:tracking-[0.18em]">{t("footer.privacyPolicy")}</Link></li>
                 <li><Link href="/terms-conditions" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.14em] sm:tracking-[0.18em]">{t("footer.termsConditions")}</Link></li>
                 <li><Link href="/volunteer" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.14em] sm:tracking-[0.18em]">{t("common.volunteer")}</Link></li>
@@ -285,7 +285,7 @@ export default function Footer() {
 
             {/* Follow Us On In Icon Form */}
             <div className="col-span-2 sm:col-span-1 pt-1 sm:pt-0">
-              <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-white mb-2 sm:mb-5 font-sans">
+              <h4 className="text-xs font-bold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-white mb-2 sm:mb-5 font-sans">
                 {t("footer.followUs")}
               </h4>
               <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
@@ -339,7 +339,7 @@ export default function Footer() {
                   title={t("footer.twitter")}
                   className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-saffron text-white/70 hover:text-white border border-white/10 hover:border-saffron shadow-sm flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer"
                 >
-                  <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" viewBox="0 0 24 24">
+                  <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                 </a>
@@ -352,7 +352,7 @@ export default function Footer() {
 
         {/* Mobile-only compact copyright at the very bottom */}
         <div className="block lg:hidden border-t border-white/10 mt-5 pt-3.5 text-center">
-          <p className="text-[9px] text-white/40 font-sans leading-relaxed">
+          <p className="text-xs text-white/40 font-sans leading-relaxed">
             © {new Date().getFullYear()} {t("common.trustName")} ({t("footer.legalName")} — Reg: nashik/0000153/2018). {t("footer.rights")}
           </p>
         </div>

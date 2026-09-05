@@ -37,7 +37,7 @@ export default function TermsConditionsPage() {
               <span>Community Governance &amp; Terms</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
+            <h1 className="text-[32px] sm:text-6xl lg:text-7xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
               Terms &amp; <span className="text-saffron text-outline-festive">Conditions</span>
             </h1>
 

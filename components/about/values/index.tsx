@@ -149,7 +149,7 @@ export default function AboutValues() {
             {t("aboutPage.values.heading")}
           </h2>
         </div>
-        <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
+        <p className="text-base text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
           {t("aboutPage.values.subtitle")}
         </p>
       </div>
@@ -191,13 +191,13 @@ export default function AboutValues() {
                 <div className="flex items-center justify-between lg:justify-start gap-3 sm:gap-6 lg:w-5/12">
                   <div className="flex items-center gap-3 sm:gap-6">
                     <span className={cn(
-                      "text-[10px] sm:text-xs font-bold font-sans tracking-[0.2em] transition-colors shrink-0",
+                      "text-xs font-bold font-sans tracking-[0.2em] transition-colors shrink-0",
                       isMobileOpen ? "text-saffron" : "text-saffron/60 group-hover:text-saffron"
                     )}>
                       {String(idx + 1).padStart(2, "0")}
                     </span>
                     <h3 className={cn(
-                      "text-base sm:text-2xl lg:text-3xl font-normal font-heading uppercase tracking-tight transition-colors leading-snug",
+                      "text-lg sm:text-2xl lg:text-3xl font-normal font-heading uppercase tracking-tight transition-colors leading-snug",
                       isMobileOpen ? "text-saffron" : "text-slate-800 group-hover:text-saffron"
                     )}>
                       {item.title}
@@ -214,7 +214,7 @@ export default function AboutValues() {
                 </div>
 
                 {/* Right Column: Description */}
-                <p className="text-xs sm:text-sm text-slate-grey leading-[1.7] lg:w-7/12 font-sans font-normal transition-all duration-500 group-hover:text-slate-700">
+                <p className="text-base text-slate-grey leading-[1.7] lg:w-7/12 font-sans font-normal transition-all duration-500 group-hover:text-slate-700">
                   {item.desc}
                 </p>
               </div>

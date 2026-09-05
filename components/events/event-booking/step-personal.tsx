@@ -41,11 +41,11 @@ export default function StepPersonal({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="border-b border-neutral-200 pb-4 mb-6">
-        <h3 className="text-xl md:text-2xl font-bold font-heading text-neutral-900 flex items-center gap-2">
+        <h3 className="text-lg md:text-2xl font-bold font-heading text-neutral-900 flex items-center gap-2">
           <User className="w-6 h-6 text-saffron" />
           {t("eventsPage.booking.step1")}
         </h3>
-        <p className="text-sm text-neutral-600 mt-1 font-sans">
+        <p className="text-base text-neutral-600 mt-1 font-sans">
           {t("eventsPage.booking.attendeeDesc")}
         </p>
       </div>

@@ -175,7 +175,7 @@ export default function ContactForm() {
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
               {t("contactPage.form.heading")}
             </h2>
-            <p className="text-slate-grey mt-2.5 sm:mt-3 text-xs sm:text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
+            <p className="text-slate-grey mt-2.5 sm:mt-3 text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
               {t("contactPage.form.subtitle")}
             </p>
             <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -187,15 +187,15 @@ export default function ContactForm() {
               <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-saffron/20 to-saffron/5 text-saffron flex items-center justify-center mx-auto border border-saffron/30 shadow-md">
                 <MailOpen className="w-7 h-7 sm:w-8 sm:h-8 stroke-[1.5]" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase">
+              <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 font-heading uppercase">
                 {t("contactPage.form.successTitle")}
               </h3>
-              <p className="text-slate-grey max-w-md mx-auto text-xs sm:text-sm font-sans leading-relaxed">
+              <p className="text-slate-grey max-w-md mx-auto text-base md:text-sm font-sans leading-relaxed">
                 {t("contactPage.form.successMsg")}
               </p>
               <button
                 onClick={handleReset}
-                className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.2em] text-saffron hover:underline mt-3 sm:mt-4 cursor-pointer font-sans"
+                className="text-xs uppercase font-bold tracking-[0.2em] text-saffron hover:underline mt-3 sm:mt-4 cursor-pointer font-sans"
               >
                 {t("contactPage.form.sendAnother")}
               </button>
@@ -214,7 +214,7 @@ export default function ContactForm() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="cf-name" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="cf-name" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     {t("contactPage.form.nameLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -232,7 +232,7 @@ export default function ContactForm() {
                 </div>
 
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="cf-email" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="cf-email" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     {t("contactPage.form.emailLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -252,7 +252,7 @@ export default function ContactForm() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="cf-phone" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="cf-phone" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     {t("contactPage.form.phoneLabel")} <span className="text-slate-400 normal-case font-normal">(Optional)</span>
                   </label>
                   <input
@@ -267,7 +267,7 @@ export default function ContactForm() {
                 </div>
 
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="cf-subject" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="cf-subject" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                     {t("contactPage.form.subjectLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -286,7 +286,7 @@ export default function ContactForm() {
               </div>
 
               <div className="space-y-1.5 sm:space-y-2">
-                <label htmlFor="cf-message" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                <label htmlFor="cf-message" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
                   {t("contactPage.form.messageLabel")} <span className="text-red-400">*</span>
                 </label>
                 <textarea

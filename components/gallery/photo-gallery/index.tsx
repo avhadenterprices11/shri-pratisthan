@@ -107,13 +107,13 @@ export default function PhotoGallery() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent group-hover:via-black/45 transition-all duration-300 z-10" />
 
                 {/* Tag */}
-                <div className="relative z-20 self-start bg-white/90 text-saffron font-bold text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-saffron/20 shadow-sm font-sans">
+                <div className="relative z-20 self-start bg-white/90 text-saffron font-bold text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-saffron/20 shadow-sm font-sans">
                   {localized.category}
                 </div>
 
                 {/* Narrative label */}
                 <div className="relative z-20 mt-auto translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-base sm:text-xl font-normal text-white leading-snug font-heading uppercase">
+                  <h3 className="text-lg sm:text-xl font-normal text-white leading-snug font-heading uppercase">
                     {localized.title}
                   </h3>
                 </div>

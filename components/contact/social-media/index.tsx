@@ -111,12 +111,12 @@ export default function ContactSocialMedia() {
                 <h3 className="text-lg sm:text-xl font-normal text-neutral-900 mb-2 sm:mb-3 font-heading uppercase">
                   {item.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-grey leading-[1.7] font-sans font-normal">
+                <p className="text-base md:text-sm text-slate-grey leading-[1.7] font-sans font-normal">
                   {item.desc}
                 </p>
               </div>
 
-              <div className="mt-6 sm:mt-8 flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-saffron group font-sans">
+              <div className="mt-6 sm:mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-saffron group font-sans">
                 <span>{t("contactPage.social.visitPage")}</span>
                 <svg
                   className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"

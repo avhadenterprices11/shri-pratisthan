@@ -190,7 +190,7 @@ export default function VolunteerRegistrationForm() {
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
               {t("volunteerPage.form.heading")}
             </h2>
-            <p className="text-slate-grey mt-2.5 sm:mt-3 text-xs sm:text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
+            <p className="text-slate-grey mt-2.5 sm:mt-3 text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
               {t("volunteerPage.form.subtitle")}
             </p>
             <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -205,7 +205,7 @@ export default function VolunteerRegistrationForm() {
               <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase">
                 {t("volunteerPage.form.successTitle")}
               </h3>
-              <p className="text-slate-grey max-w-md mx-auto text-xs sm:text-sm font-sans leading-relaxed">
+              <p className="text-slate-grey max-w-md mx-auto text-base font-sans leading-relaxed">
                 {t("volunteerPage.form.successMsg")}
               </p>
               <button

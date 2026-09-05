@@ -200,7 +200,7 @@ export default function FestivalJourney() {
 
                   {/* Card Top: Milestone Tag */}
                   <div className="relative z-10 p-4 sm:p-6 flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-amber-300 font-sans">
+                    <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-bold uppercase tracking-widest text-amber-300 font-sans">
                       {item.tag}
                     </span>
                     <span className="text-xl sm:text-2xl font-normal font-heading text-white/90">
@@ -213,7 +213,7 @@ export default function FestivalJourney() {
                     <h3 className="text-lg sm:text-2xl font-normal font-heading text-white leading-snug uppercase">
                       {item.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-neutral-300 line-clamp-3 font-sans font-normal leading-relaxed">
+                    <p className="text-base text-neutral-300 line-clamp-3 font-sans font-normal leading-relaxed">
                       {item.description}
                     </p>
                   </div>

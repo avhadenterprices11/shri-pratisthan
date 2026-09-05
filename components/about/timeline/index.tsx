@@ -51,22 +51,23 @@ export default function AboutTimeline() {
       const rows = gsap.utils.toArray<HTMLElement>(".timeline-row");
       
       rows.forEach((row) => {
-        const fillYear = row.querySelector(".timeline-fill-year");
+        const fillMask = row.querySelector(".timeline-fill-mask");
         const detail = row.querySelector(".timeline-detail-content");
         
-        // 1. Scrub Clip-Path Liquid Fill on scroll
-        if (fillYear) {
+        // 1. Scrub Liquid Height Fill on scroll (bottom-to-top flood)
+        if (fillMask) {
           gsap.fromTo(
-            fillYear,
-            { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" },
+            fillMask,
+            { height: "0%" },
             {
-              clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0% 100%)",
+              height: "100%",
               ease: "none",
               scrollTrigger: {
                 trigger: row,
-                start: "top 80%", // Starts filling as row moves up from bottom
-                end: "bottom 35%", // Completes fill near top
-                scrub: true,
+                start: "top 88%", // Starts filling as row enters from bottom
+                end: "center 48%", // 100% filled when centered in view
+                scrub: 0.3,
+                invalidateOnRefresh: true,
               }
             }
           );
@@ -84,7 +85,7 @@ export default function AboutTimeline() {
               ease: "power2.out",
               scrollTrigger: {
                 trigger: row,
-                start: "top 78%",
+                start: "top 80%",
                 toggleActions: "play none none reverse",
               }
             }
@@ -93,7 +94,14 @@ export default function AboutTimeline() {
       });
     }, containerRef);
 
-    return () => ctx.revert();
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 250);
+
+    return () => {
+      ctx.revert();
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -122,7 +130,7 @@ export default function AboutTimeline() {
               {t("aboutPage.timeline.heading")}
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
+          <p className="text-base text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
             {t("aboutPage.timeline.subtitle")}
           </p>
         </div>
@@ -141,28 +149,28 @@ export default function AboutTimeline() {
                 className="timeline-row w-full grid grid-cols-1 md:grid-cols-12 items-center gap-3 sm:gap-6 md:gap-12 py-4 sm:py-8 border-b border-saffron/10 last:border-0 relative"
               >
                 {/* Left Column: Giant Year outlines */}
-                <div className="md:col-span-5 relative select-none leading-none h-[50px] sm:h-[80px] md:h-[120px] flex items-center justify-start overflow-hidden">
+                <div className="md:col-span-5 relative select-none leading-none h-[50px] sm:h-[80px] md:h-[120px] flex items-center justify-start">
                   
                   {/* Outline Year Background */}
                   <div 
-                    className={`${textSizeClass} font-normal font-heading tracking-tight leading-none whitespace-nowrap`}
+                    className={`${textSizeClass} font-normal font-heading tracking-tight leading-none whitespace-nowrap select-none`}
                     style={{
-                      WebkitTextStroke: "2px rgba(226, 106, 54, 0.18)",
+                      WebkitTextStroke: "2px rgba(226, 106, 54, 0.28)",
                       color: "transparent",
                     }}
                   >
                     {item.year}
                   </div>
 
-                  {/* Saffron Filled Liquid Text layer */}
+                  {/* Solid Reveal Year (Driven by GSAP Scrub from bottom-to-top) */}
                   <div 
-                    className={`timeline-fill-year absolute left-0 ${textSizeClass} font-normal text-saffron font-heading tracking-tight leading-none whitespace-nowrap`}
-                    style={{
-                      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-                      willChange: "clip-path",
-                    }}
+                    className="timeline-fill-mask absolute left-0 bottom-0 w-full overflow-hidden h-0 pointer-events-none select-none will-change-[height]"
                   >
-                    {item.year}
+                    <div className="absolute left-0 bottom-0 h-[50px] sm:h-[80px] md:h-[120px] flex items-center">
+                      <span className={`${textSizeClass} font-normal font-heading text-saffron tracking-tight leading-none whitespace-nowrap`}>
+                        {item.year}
+                      </span>
+                    </div>
                   </div>
 
                 </div>
@@ -172,7 +180,7 @@ export default function AboutTimeline() {
                   <h3 className="text-lg sm:text-xl md:text-2xl font-normal text-slate-800 uppercase tracking-tight font-heading leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-grey leading-[1.7] font-sans font-normal">
+                  <p className="text-base text-slate-grey leading-[1.7] font-sans font-normal">
                     {item.desc}
                   </p>
                 </div>

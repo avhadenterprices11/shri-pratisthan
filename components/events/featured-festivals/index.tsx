@@ -215,14 +215,14 @@ export default function FeaturedFestivals() {
               style={{ backgroundImage: "linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.95)), url('/ganeshotsav_bright.png')" }}
             >
               <div className="space-y-3 sm:space-y-4">
-                <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
+                <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
                   {t("eventsPage.featured.f1Title")}
                 </h3>
-                <p className="text-xs text-neutral-700 leading-relaxed font-sans font-normal">
+                <p className="text-base text-neutral-700 leading-relaxed font-sans font-normal">
                   {t("eventsPage.featured.f1Desc")}
                 </p>
                 
-                <ul className="space-y-1.5 sm:space-y-2 text-xs text-neutral-700 font-medium font-sans">
+                <ul className="space-y-1.5 sm:space-y-2 text-base text-neutral-700 font-medium font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron" />
                     {t("eventsPage.featured.f1P1")}
@@ -237,7 +237,7 @@ export default function FeaturedFestivals() {
               <div className="pt-4 sm:pt-6">
                 <a
                   href="/event-booking"
-                  className="w-full inline-block text-center bg-saffron hover:bg-saffron/90 text-white font-bold py-3 sm:py-3.5 rounded-full text-[10px] uppercase tracking-[0.2em] shadow-md shadow-saffron/15 font-sans"
+                  className="w-full inline-block text-center bg-saffron hover:bg-saffron/90 text-white font-bold py-3 sm:py-3.5 rounded-full text-xs uppercase tracking-[0.2em] shadow-md shadow-saffron/15 font-sans"
                 >
                   {t("eventsPage.featured.f1Btn")}
                 </a>
@@ -250,14 +250,14 @@ export default function FeaturedFestivals() {
               style={{ backgroundImage: "linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.95)), url('/dahihandi_bright.png')" }}
             >
               <div className="space-y-3 sm:space-y-4">
-                <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
+                <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
                   {t("eventsPage.featured.f2Title")}
                 </h3>
-                <p className="text-xs text-neutral-700 leading-relaxed font-sans font-normal">
+                <p className="text-base text-neutral-700 leading-relaxed font-sans font-normal">
                   {t("eventsPage.featured.f2Desc")}
                 </p>
                 
-                <ul className="space-y-1.5 sm:space-y-2 text-xs text-neutral-700 font-medium font-sans">
+                <ul className="space-y-1.5 sm:space-y-2 text-base text-neutral-700 font-medium font-sans">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
                     {t("eventsPage.featured.f2P1")}
@@ -272,7 +272,7 @@ export default function FeaturedFestivals() {
               <div className="pt-4 sm:pt-6">
                 <a
                   href="/event-booking"
-                  className="w-full inline-block text-center bg-neutral-900 hover:bg-saffron hover:text-white text-white font-bold py-3 sm:py-3.5 rounded-full text-[10px] uppercase tracking-[0.2em] shadow-md shadow-neutral-900/15 font-sans"
+                  className="w-full inline-block text-center bg-neutral-900 hover:bg-saffron hover:text-white text-white font-bold py-3 sm:py-3.5 rounded-full text-xs uppercase tracking-[0.2em] shadow-md shadow-neutral-900/15 font-sans"
                 >
                   {t("eventsPage.featured.f2Btn")}
                 </a>

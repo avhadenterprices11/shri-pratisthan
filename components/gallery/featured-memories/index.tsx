@@ -50,7 +50,7 @@ function MemoryCard({
         {/* Card Body */}
         <div className="p-4 sm:p-6 flex flex-col justify-between flex-grow">
           <div>
-            <span className="text-[10px] text-slate-500 font-bold tracking-[0.2em] uppercase block mb-1 font-sans">
+            <span className="text-xs text-slate-500 font-bold tracking-[0.2em] uppercase block mb-1 font-sans">
               {date}
             </span>
             <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 leading-snug font-heading group-hover:text-saffron transition-colors duration-300 uppercase">
@@ -58,7 +58,7 @@ function MemoryCard({
             </h3>
           </div>
 
-          <div className="border-t border-saffron/10 pt-3 sm:pt-4 flex justify-between items-center text-[10px] sm:text-xs text-saffron font-bold uppercase tracking-[0.16em] sm:tracking-[0.18em] mt-auto font-sans">
+          <div className="border-t border-saffron/10 pt-3 sm:pt-4 flex justify-between items-center text-xs text-saffron font-bold uppercase tracking-[0.16em] sm:tracking-[0.18em] mt-auto font-sans">
             <span>{metric}</span>
             <span className="flex items-center gap-1 group-hover:translate-x-1.5 transition-transform duration-300">
               {readStoryText} <ArrowRight className="w-3.5 h-3.5" />

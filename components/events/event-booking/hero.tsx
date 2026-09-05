@@ -64,7 +64,7 @@ export default function EventBookingHero() {
       {/* Main Content Box */}
       <div className="relative z-20 max-w-5xl mx-auto space-y-4 sm:space-y-6 flex flex-col items-center">
         {/* Headline */}
-        <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading text-neutral-950 tracking-tight uppercase leading-[0.95] sm:leading-[0.92] max-w-4xl drop-shadow-[0_2px_10px_rgba(255,255,255,0.9)]">
+        <h1 className="text-[32px] sm:text-5xl md:text-7xl lg:text-8xl font-normal font-heading text-neutral-950 tracking-tight uppercase leading-[0.95] sm:leading-[0.92] max-w-4xl drop-shadow-[0_2px_10px_rgba(255,255,255,0.9)]">
           <span className="block reveal-headline-1">OFFICIAL FESTIVAL &amp;</span>
           <span className="block reveal-headline-2 text-saffron text-outline-festive font-heading">
             EVENT BOOKING
@@ -72,7 +72,7 @@ export default function EventBookingHero() {
         </h1>
 
         {/* Subtitle */}
-        <p className="hero-description text-xs sm:text-base md:text-lg text-neutral-900 max-w-3xl leading-[1.7] sm:leading-[1.75] font-normal font-sans bg-white/85 backdrop-blur-md px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border border-white/90 shadow-lg">
+        <p className="hero-description text-base sm:text-base md:text-lg text-neutral-900 max-w-3xl leading-[1.7] sm:leading-[1.75] font-normal font-sans bg-white/85 backdrop-blur-md px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border border-white/90 shadow-lg">
           Book your slot for Shree Ganeshotsav, Gudipadwa Swagat Yatra, Navratri Garba, blood donation camps, and sports tournaments in Indira Nagar, Nashik.
         </p>
 

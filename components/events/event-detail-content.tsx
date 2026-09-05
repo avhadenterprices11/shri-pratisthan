@@ -234,14 +234,14 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
                 <div className="lg:col-span-7 xl:col-span-8 space-y-4 sm:space-y-5">
                   {/* Eyebrow Pill */}
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase bg-gradient-to-r from-saffron/12 via-gold/15 to-saffron/5 border border-saffron/25 text-saffron font-sans shadow-xs">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-[0.2em] uppercase bg-gradient-to-r from-saffron/12 via-gold/15 to-saffron/5 border border-saffron/25 text-saffron font-sans shadow-xs">
                       <span className="w-1.5 h-1.5 rounded-full bg-saffron animate-pulse" />
                       {event.tagline}
                     </span>
                   </div>
 
                   {/* Event Heading */}
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-normal text-neutral-900 font-heading leading-[1.12] uppercase tracking-tight">
+                  <h1 className="text-[32px] sm:text-3xl md:text-4xl lg:text-[2.75rem] font-normal text-neutral-900 font-heading leading-[1.12] uppercase tracking-tight">
                     {event.title}
                   </h1>
 
@@ -250,10 +250,10 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
                     <div className="text-5xl sm:text-6xl text-saffron/12 font-serif leading-none absolute -top-1 right-3 pointer-events-none select-none">
                       “
                     </div>
-                    <p className="relative z-10 text-xs sm:text-sm md:text-base text-slate-700 italic leading-relaxed font-sans">
+                    <p className="relative z-10 text-base text-slate-700 italic leading-relaxed font-sans">
                       &ldquo;{event.description}&rdquo;
                     </p>
-                    <div className="mt-2.5 pt-2.5 border-t border-saffron/10 flex items-center justify-between text-[11px] text-slate-500 font-sans">
+                    <div className="mt-2.5 pt-2.5 border-t border-saffron/10 flex items-center justify-between text-xs text-slate-500 font-sans">
                       <span className="font-semibold text-saffron">Shree Pratisthan Organizing Committee</span>
                       <span>Nashik, Maharashtra</span>
                     </div>
@@ -449,10 +449,10 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
         <div className="glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/80 shadow-md">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-saffron/15">
             <div>
-              <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-saffron font-sans">
+              <span className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.2em] text-saffron font-sans">
                 <Building2 className="w-3.5 h-3.5" /> {t("eventsPage.detail.venue")}
               </span>
-              <h2 className="text-xl sm:text-2xl font-normal font-heading text-neutral-900 uppercase tracking-tight mt-1">
+              <h2 className="text-2xl font-normal font-heading text-neutral-900 uppercase tracking-tight mt-1">
                 {event.venueName}
               </h2>
             </div>
@@ -466,18 +466,18 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
             </a>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-xs sm:text-sm text-slate-700 font-sans">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-base text-slate-700 font-sans">
             <div>
-              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">{t("eventsPage.detail.streetAddress")}</span>
+              <span className="text-xs uppercase font-bold text-slate-400 block tracking-wider">{t("eventsPage.detail.streetAddress")}</span>
               <p className="mt-0.5 font-medium">{event.addressLine1}</p>
               {event.addressLine2 && <p className="text-slate-500">{event.addressLine2}</p>}
             </div>
             <div>
-              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">{t("eventsPage.detail.cityState")}</span>
+              <span className="text-xs uppercase font-bold text-slate-400 block tracking-wider">{t("eventsPage.detail.cityState")}</span>
               <p className="mt-0.5 font-medium">{event.city}, {event.state}</p>
             </div>
             <div>
-              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">{t("eventsPage.detail.postalCountry")}</span>
+              <span className="text-xs uppercase font-bold text-slate-400 block tracking-wider">{t("eventsPage.detail.postalCountry")}</span>
               <p className="mt-0.5 font-medium">{event.postalCode}, {event.country}</p>
             </div>
           </div>
@@ -487,11 +487,11 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
         {event.accessibilityInfo && event.accessibilityInfo.length > 0 && (
           <div className="glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/80 shadow-md space-y-4 sm:space-y-6">
             <div className="border-b border-saffron/15 pb-3">
-              <span className="inline-flex items-center gap-1.5 bg-saffron/10 text-saffron font-bold text-[9px] sm:text-[10px] uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border border-saffron/20 shadow-sm font-sans mb-1.5">
+              <span className="inline-flex items-center gap-1.5 bg-saffron/10 text-saffron font-bold text-xs uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border border-saffron/20 shadow-sm font-sans mb-1.5">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 {t("eventsPage.detail.accessibility")}
               </span>
-              <h2 className="text-xl sm:text-2xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
+              <h2 className="text-2xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
                 {t("eventsPage.detail.accessibility")}
               </h2>
             </div>
@@ -514,11 +514,11 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
         {/* 5. Organization Operations Story */}
         <div className="glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/80 shadow-md space-y-6">
           <div className="border-b border-saffron/15 pb-4">
-            <span className="inline-flex items-center gap-1.5 bg-saffron/10 text-saffron font-bold text-[9px] sm:text-[10px] uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border border-saffron/20 shadow-sm font-sans mb-1.5">
+            <span className="inline-flex items-center gap-1.5 bg-saffron/10 text-saffron font-bold text-xs uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border border-saffron/20 shadow-sm font-sans mb-1.5">
               <Info className="w-3.5 h-3.5" />
               {t("eventsPage.detail.operationsBadge")}
             </span>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
+            <h2 className="text-2xl sm:text-2xl md:text-3xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
               {t("eventsPage.detail.operationsTitle")}
             </h2>
           </div>
@@ -526,10 +526,10 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {event.organizedDetails.map((detail, idx) => (
               <div key={idx} className="space-y-1.5 border-l-2 border-saffron/40 pl-3.5 py-1">
-                <h3 className="font-normal font-heading text-neutral-900 text-base uppercase">
+                <h3 className="font-normal font-heading text-neutral-900 text-lg uppercase">
                   {idx + 1}. {detail.heading}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-grey leading-[1.7] font-sans font-normal">
+                <p className="text-base text-slate-grey leading-[1.7] font-sans font-normal">
                   {detail.content}
                 </p>
               </div>
@@ -541,7 +541,7 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
         {event.agenda && event.agenda.length > 0 && (
           <div className="glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/80 shadow-md space-y-6">
             <div className="border-b border-saffron/15 pb-3">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
+              <h2 className="text-2xl sm:text-2xl md:text-3xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
                 {t("eventsPage.detail.schedule")}
               </h2>
             </div>
@@ -549,12 +549,12 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
             <div className="space-y-3">
               {event.agenda.map((item, idx) => (
                 <div key={idx} className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 p-3.5 sm:p-4 bg-white/90 border border-saffron/10 rounded-xl shadow-xs">
-                  <span className="px-3 py-1 bg-saffron text-white font-mono font-bold text-[10px] sm:text-xs rounded-full whitespace-nowrap shadow-xs">
+                  <span className="px-3 py-1 bg-saffron text-white font-mono font-bold text-xs rounded-full whitespace-nowrap shadow-xs">
                     {item.time}
                   </span>
                   <div>
-                    <h4 className="font-normal text-neutral-900 text-sm sm:text-base font-heading uppercase">{item.title}</h4>
-                    <p className="text-xs sm:text-sm text-slate-grey mt-0.5 leading-[1.6] font-sans font-normal">{item.description}</p>
+                    <h4 className="font-normal text-neutral-900 text-base font-heading uppercase">{item.title}</h4>
+                    <p className="text-base text-slate-grey mt-0.5 leading-[1.6] font-sans font-normal">{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -567,7 +567,7 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
           <div className="glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/80 shadow-md space-y-4">
             <div className="flex items-center gap-2 border-b border-saffron/15 pb-3">
               <Video className="w-5 h-5 text-saffron" />
-              <h2 className="text-xl sm:text-2xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
+              <h2 className="text-2xl sm:text-2xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
                 {t("eventsPage.detail.promoVideoTitle")}
               </h2>
             </div>
@@ -585,7 +585,7 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
 
         {/* 8. Photo Moments Gallery Grid */}
         <div id="moments-gallery" className="glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/80 shadow-md space-y-4 sm:space-y-6 scroll-mt-24">
-          <h2 className="text-xl sm:text-2xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
+          <h2 className="text-2xl sm:text-2xl font-normal font-heading text-neutral-900 uppercase tracking-tight">
             {t("eventsPage.detail.momentsGalleryTitle")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">

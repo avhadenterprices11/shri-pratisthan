@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
               <span>Official Transparency Policy</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
+            <h1 className="text-[32px] sm:text-6xl lg:text-7xl font-extrabold text-foreground tracking-tight font-heading leading-tight">
               Privacy <span className="text-saffron text-outline-festive">Policy</span>
             </h1>
 

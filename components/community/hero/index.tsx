@@ -112,16 +112,16 @@ export default function CommunityHero() {
         {/* Content Overlay (Z-20) */}
         <div className="max-w-[1600px] w-full mx-auto relative z-20 flex flex-col justify-start text-left pointer-events-none">
           <div className="max-w-3xl pointer-events-auto">
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-neutral-900 leading-[1.3] sm:leading-[1.32] tracking-tight mb-4 sm:mb-6 font-heading [text-shadow:_0_2px_4px_rgba(255,255,255,0.8)] uppercase">
+            <h1 className="text-[32px] sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.3] sm:leading-[1.32] tracking-tight mb-4 sm:mb-6 font-heading uppercase">
               <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-3 sm:py-4 -my-2 sm:-my-3">
-                <span className="block reveal-line py-1">{t("communityPage.hero.titleLine1")}</span>
+                <span className="block reveal-line py-1 text-white font-heading drop-shadow-sm">{t("communityPage.hero.titleLine1")}</span>
               </div>
               <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-3 sm:py-4 -my-2 sm:-my-3">
-                <span className="block reveal-line py-1 text-saffron text-outline-festive font-heading">{t("communityPage.hero.titleLine2")}</span>
+                <span className="block reveal-line py-1 text-saffron font-heading">{t("communityPage.hero.titleLine2")}</span>
               </div>
             </h1>
 
-            <p className="hero-subtitle text-xs sm:text-base md:text-lg text-neutral-800 leading-[1.7] sm:leading-[1.75] font-normal font-sans [text-shadow:_0_1.5px_3px_rgba(255,255,255,0.9)]">
+            <p className="hero-subtitle text-base sm:text-base md:text-lg text-neutral-800 leading-[1.7] sm:leading-[1.75] font-normal font-sans">
               {t("communityPage.hero.subtitle")}
             </p>
           </div>

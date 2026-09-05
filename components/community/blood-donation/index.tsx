@@ -99,19 +99,19 @@ export default function BloodDonation() {
         >
           {/* Left Column: Info & Stats */}
           <div className="blood-animate-left space-y-4 sm:space-y-6">
-            <span className="text-red-600 font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.25em] block mb-1 font-sans">
+            <span className="text-red-600 font-bold text-xs uppercase tracking-[0.25em] block mb-1 font-sans">
               {t("communityPage.bloodDonation.badge")}
             </span>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
               {t("communityPage.bloodDonation.heading")}
             </h2>
-            <p className="text-xs sm:text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
+            <p className="text-base md:text-lg text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal">
               {t("communityPage.bloodDonation.description")}
             </p>
             <div className="flex flex-wrap gap-4 sm:gap-6 pt-2 sm:pt-4">
               <div className="flex items-center gap-2.5 sm:gap-3">
                 <span className="text-2xl sm:text-3xl font-normal text-red-600 font-heading">50+</span>
-                <span className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-slate-grey font-sans">
+                <span className="text-xs uppercase font-bold tracking-[0.18em] text-slate-grey font-sans">
                   {t("communityPage.impact.s1Label")}
                 </span>
               </div>
@@ -132,7 +132,7 @@ export default function BloodDonation() {
               <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 font-heading uppercase leading-snug">
                 {t("communityPage.bloodDonation.recentDrivesTitle")}
               </h3>
-              <span className="shrink-0 text-[9px] sm:text-xs uppercase font-bold tracking-[0.18em] text-red-600 bg-red-50 px-2.5 sm:px-3 py-1 rounded-full border border-red-100 font-sans">
+              <span className="shrink-0 text-xs uppercase font-bold tracking-[0.18em] text-red-600 bg-red-50 px-2.5 sm:px-3 py-1 rounded-full border border-red-100 font-sans">
                 {t("communityPage.bloodDonation.verifiedTag")}
               </span>
             </div>

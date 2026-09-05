@@ -63,7 +63,7 @@ export default function ShareMemoriesCTA() {
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 leading-tight mb-3 sm:mb-6 font-heading tracking-tight uppercase">
               {t("galleryPage.cta.heading")}
             </h2>
-            <p className="text-xs sm:text-base md:text-lg text-slate-grey max-w-xl mx-auto mb-6 sm:mb-10 leading-[1.7] sm:leading-[1.75] font-sans font-normal">
+            <p className="text-base md:text-lg text-slate-grey max-w-xl mx-auto mb-6 sm:mb-10 leading-[1.7] sm:leading-[1.75] font-sans font-normal">
               {t("galleryPage.cta.subtitle")}
             </p>
 
@@ -75,7 +75,7 @@ export default function ShareMemoriesCTA() {
                 transform: `translate3d(${btnCoords.x}px, ${btnCoords.y}px, 0)`,
                 transition: btnCoords.x === 0 ? "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)" : "none",
               }}
-              className="bg-saffron hover:bg-saffron/90 text-white font-bold px-8 sm:px-10 py-3.5 sm:py-4.5 rounded-full shadow-lg shadow-saffron/20 text-[10px] sm:text-xs uppercase tracking-[0.2em] transition-all hover:scale-105 active:scale-95 cursor-pointer font-sans"
+              className="bg-saffron hover:bg-saffron/90 text-white font-bold px-8 sm:px-10 py-3.5 sm:py-4.5 rounded-full shadow-lg shadow-saffron/20 text-xs uppercase tracking-[0.2em] transition-all hover:scale-105 active:scale-95 cursor-pointer font-sans"
               data-hover="pointer"
             >
               {t("galleryPage.cta.shareBtn")}

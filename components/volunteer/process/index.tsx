@@ -160,7 +160,7 @@ export default function VolunteerProcess() {
 
         {/* Scroll Instruction Banner */}
         <div className="text-center mb-4 sm:mb-6">
-          <span className="text-[10px] sm:text-xs text-slate-grey/70 font-bold uppercase tracking-[0.2em] bg-black/5 px-3.5 sm:px-4 py-1.5 rounded-full inline-block font-sans select-none">
+          <span className="text-xs text-slate-grey/70 font-bold uppercase tracking-[0.2em] bg-black/5 px-3.5 sm:px-4 py-1.5 rounded-full inline-block font-sans select-none">
             {t("volunteerPage.process.scrollInstruction")}
           </span>
         </div>
@@ -272,7 +272,7 @@ export default function VolunteerProcess() {
                 </h3>
                 
                 {/* Description */}
-                <p className="text-slate-grey text-xs sm:text-base md:text-lg leading-[1.7] sm:leading-[1.75] font-sans font-normal">
+                <p className="text-slate-grey text-base leading-[1.7] sm:leading-[1.75] font-sans font-normal">
                   {STAGES[activeIdx].desc}
                 </p>
               </div>

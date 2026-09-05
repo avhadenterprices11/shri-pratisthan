@@ -27,11 +27,11 @@ export default function StepAddress({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="border-b border-neutral-200 pb-4 mb-6">
-        <h3 className="text-xl md:text-2xl font-bold font-heading text-neutral-900 flex items-center gap-2">
+        <h3 className="text-lg md:text-2xl font-bold font-heading text-neutral-900 flex items-center gap-2">
           <MapPin className="w-6 h-6 text-saffron" />
           Step 3: Address Details
         </h3>
-        <p className="text-sm text-neutral-600 mt-1">
+        <p className="text-base text-neutral-600 mt-1">
           Provide your residential address for pass allocation and local coordinator dispatch.
         </p>
       </div>

@@ -16,79 +16,18 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
-  // Scroll listener: smart hide on scroll down, reveal on scroll up
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-    let isHidden = false;
-
-    const handleScroll = () => {
-      // If the portal intro overlay is still active, ignore scroll events
-      const portal = document.querySelector('.portal-intro') as HTMLElement;
-      if (portal && portal.style.display !== 'none') {
-        return;
-      }
-
-      const currentScrollY = window.scrollY;
-
-      // If we are at the very top of the page, always show the Navbar
-      if (currentScrollY <= 50) {
-        if (isHidden) {
-          isHidden = false;
-          gsap.to(navRef.current, {
-            y: 0,
-            opacity: 1,
-            duration: 0.4,
-            ease: "power2.out"
-          });
-        }
-        lastScrollY = currentScrollY;
-        return;
-      }
-
-      // Track scroll direction (5px threshold to prevent minor noise triggering)
-      if (currentScrollY > lastScrollY + 5) {
-        // Scrolling down: hide Navbar
-        if (!isHidden) {
-          isHidden = true;
-          gsap.to(navRef.current, {
-            y: -120,
-            opacity: 0,
-            duration: 0.4,
-            ease: "power2.out"
-          });
-        }
-      } else if (currentScrollY < lastScrollY - 5) {
-        // Scrolling up: show Navbar
-        if (isHidden) {
-          isHidden = false;
-          gsap.to(navRef.current, {
-            y: 0,
-            opacity: 1,
-            duration: 0.4,
-            ease: "power2.out"
-          });
-        }
-      }
-
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   // Entrance reveal: detect when the Hero portal intro overlay finishes
   useEffect(() => {
     const portal = document.querySelector('.portal-intro') as HTMLElement;
     if (!portal) {
       // If no portal (e.g. on subpages), show Navbar immediately
-      gsap.to(navRef.current, { opacity: 1, y: 0, duration: 0.5 });
+      gsap.to(navRef.current, { opacity: 1, duration: 0.5 });
       return;
     }
 
     // Check if it's already hidden (in case we mounted after it finished)
     if (portal.style.display === 'none') {
-      gsap.to(navRef.current, { opacity: 1, y: 0, duration: 0.5 });
+      gsap.to(navRef.current, { opacity: 1, duration: 0.5 });
       return;
     }
 
@@ -96,7 +35,6 @@ export function Navbar() {
       if (portal.style.display === 'none') {
         gsap.to(navRef.current, {
           opacity: 1,
-          y: 0,
           duration: 0.8,
           ease: "power2.out"
         });
@@ -149,9 +87,9 @@ export function Navbar() {
     <>
       <header
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 py-4 sm:py-6 px-4 sm:px-6 md:px-12 bg-transparent pointer-events-none transition-transform opacity-0 -translate-y-[100px]"
+        className="absolute top-0 left-0 right-0 z-50 py-4 sm:py-6 px-4 sm:px-6 md:px-12 bg-transparent pointer-events-none transition-opacity opacity-0"
       >
-        <div className="max-w-[1400px] mx-auto flex justify-between items-center">
+        <div className="max-w-[1400px] mx-auto flex justify-between items-start">
           {/* Left: Genuine Official Emblem inside Floating Glass Pill */}
           <Link
             href="/"
@@ -174,10 +112,8 @@ export function Navbar() {
             </span>
           </Link>
 
-          {/* Right: Language Switcher + Floating Dark Glassmorphic Menu Button */}
-          <div className="flex items-center gap-2.5 sm:gap-3 pointer-events-auto">
-            <LanguageSwitcher variant="header" />
-
+          {/* Right: Floating Dark Glassmorphic Menu Button + Language Switcher Directly Below */}
+          <div className="flex flex-col items-center gap-2 pointer-events-auto">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="group flex flex-col items-end justify-center w-12 sm:w-14 h-9 sm:h-10 px-3 sm:px-4 rounded-full bg-neutral-950/95 border border-white/10 hover:border-saffron/30 transition-all duration-300 pointer-events-auto shadow-lg z-50 relative gap-1.5 focus:outline-none cursor-pointer"
@@ -193,6 +129,11 @@ export function Navbar() {
                 isOpen ? "w-5 sm:w-6 -rotate-45 -translate-y-[4px] bg-saffron" : "w-3 sm:w-4 group-hover:w-5 sm:group-hover:w-6 group-hover:bg-saffron"
               )} />
             </button>
+
+            {/* Language Switcher visible below menu button on pages; hidden when drawer menu is open */}
+            {!isOpen && (
+              <LanguageSwitcher variant="header" />
+            )}
           </div>
         </div>
       </header>

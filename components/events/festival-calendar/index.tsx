@@ -96,8 +96,8 @@ export default function FestivalCalendar() {
 
       const startX = offset;
       const endX = offset - (CALENDAR_ITEMS.length - 1) * step;
-      // Scroll distance ensures all 7 cards show off completely before unpinning
-      const scrollDistance = isMobile ? 1800 : 2400;
+      // Natural, proportional scroll distance matching card travel width
+      const scrollDistance = Math.round((CALENDAR_ITEMS.length - 1) * step * (isMobile ? 1.15 : 1.25));
 
       const tween = gsap.fromTo(
         slider,
@@ -109,7 +109,7 @@ export default function FestivalCalendar() {
             trigger: "#calendarPinContainer",
             start: "top top",
             end: () => `+=${scrollDistance}`,
-            scrub: 0.3,
+            scrub: isMobile ? 0.4 : 0.6,
             pin: true,
             pinSpacing: true,
             anticipatePin: 1,
@@ -158,25 +158,25 @@ export default function FestivalCalendar() {
     <section 
       id="calendarPinContainer" 
       ref={containerRef}
-      className="bg-background relative w-full h-[100dvh] flex flex-col justify-between pt-8 pb-6 sm:pt-12 sm:pb-8 overflow-hidden select-none border-t border-black/5"
+      className="bg-background relative w-full h-[100dvh] flex flex-col justify-between pt-6 pb-4 sm:pt-10 sm:pb-6 overflow-hidden select-none border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-30 z-0" />
 
       {/* Top Header */}
-      <div className="text-center max-w-3xl mx-auto relative z-10 px-4 sm:px-6 shrink-0 space-y-1 sm:space-y-2">
+      <div className="text-center max-w-3xl mx-auto relative z-10 px-4 sm:px-6 shrink-0 space-y-1 sm:space-y-1.5">
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 font-heading leading-tight uppercase tracking-tight">
           {t("eventsPage.calendar.heading")}
         </h2>
         <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-1 rounded-full" />
         <div className="pt-1">
-          <span className="text-[10px] sm:text-xs text-slate-grey/80 font-bold uppercase tracking-[0.18em] bg-black/5 px-3.5 sm:px-4 py-1.5 rounded-full inline-block font-sans">
+          <span className="text-xs text-slate-grey/80 font-bold uppercase tracking-[0.18em] bg-black/5 px-3.5 sm:px-4 py-1.5 rounded-full inline-block font-sans">
             {t("eventsPage.calendar.scrollInstruction")}
           </span>
         </div>
       </div>
 
       {/* Middle Animated Track: Cards change with scrolling */}
-      <div className="relative w-full h-[370px] sm:h-[400px] lg:h-[430px] flex items-center justify-center overflow-hidden shrink-0 my-auto">
+      <div className="relative w-full h-[360px] sm:h-[390px] md:h-[420px] flex items-center justify-start overflow-hidden shrink-0 my-auto">
         <div 
           ref={sliderRef}
           className="flex gap-4 sm:gap-7 w-max will-change-transform transform-gpu"
@@ -200,18 +200,18 @@ export default function FestivalCalendar() {
                   </span>
 
                   {/* Event Title */}
-                  <h3 className="text-base sm:text-lg md:text-xl font-normal text-neutral-900 font-heading mb-2 leading-snug">
+                  <h3 className="text-lg sm:text-lg md:text-xl font-normal text-neutral-900 font-heading mb-2 leading-snug">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs sm:text-sm text-slate-grey leading-[1.65] font-sans select-none pointer-events-none line-clamp-4">
+                  <p className="text-base text-slate-grey leading-[1.65] font-sans select-none pointer-events-none line-clamp-4">
                     {item.desc}
                   </p>
                 </div>
 
                 {/* Indicator stamp */}
-                <div className="mt-4 pt-3 border-t border-saffron/10 flex justify-between items-center text-[10px] font-bold uppercase tracking-[0.16em] text-saffron font-sans">
+                <div className="mt-4 pt-3 border-t border-saffron/10 flex justify-between items-center text-xs font-bold uppercase tracking-[0.16em] text-saffron font-sans">
                   <span>{t("eventsPage.calendar.activeDriveLocation")}</span>
                   <span>★</span>
                 </div>
@@ -222,7 +222,7 @@ export default function FestivalCalendar() {
       </div>
 
       {/* Bottom Milestone Indicator Dots */}
-      <div className="flex justify-center gap-2 relative z-10 shrink-0">
+      <div className="flex justify-center gap-2 relative z-10 shrink-0 pb-1 sm:pb-2">
         {CALENDAR_ITEMS.map((_, idx) => (
           <button
             key={idx}

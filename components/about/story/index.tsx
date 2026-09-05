@@ -127,7 +127,7 @@ export default function AboutStory() {
             {t("aboutPage.story.heading")}
           </h2>
           
-          <p className="text-xs sm:text-sm text-slate-grey max-w-md leading-[1.75] font-sans font-normal">
+          <p className="text-base text-slate-grey max-w-md leading-[1.75] font-sans font-normal">
             {t("aboutPage.story.subtitle")}
           </p>
 
@@ -185,7 +185,7 @@ export default function AboutStory() {
                     {step.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-grey leading-[1.7] font-sans font-normal">
+                  <p className="text-base text-slate-grey leading-[1.7] font-sans font-normal">
                     {step.description}
                   </p>
                 </div>

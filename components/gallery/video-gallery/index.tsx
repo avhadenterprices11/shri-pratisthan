@@ -71,7 +71,7 @@ export default function VideoGallery() {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 {/* Category Badge */}
-                <div className="absolute top-3 left-3 z-10 bg-white/90 text-saffron font-bold text-[9px] uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border border-saffron/20 shadow-sm backdrop-blur-sm font-sans">
+                <div className="absolute top-3 left-3 z-10 bg-white/90 text-saffron font-bold text-xs uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border border-saffron/20 shadow-sm backdrop-blur-sm font-sans">
                   {item.category}
                 </div>
                 {/* Play Button Overlay */}
@@ -86,10 +86,10 @@ export default function VideoGallery() {
 
               {/* Meta */}
               <div className="p-4 sm:p-5 bg-white border-t border-saffron/10 flex flex-col justify-between flex-grow relative z-20 space-y-2">
-                <h3 className="text-xs sm:text-base font-normal text-neutral-900 font-heading group-hover:text-saffron transition-colors leading-snug line-clamp-2 uppercase">
+                <h3 className="text-lg font-normal text-neutral-900 font-heading group-hover:text-saffron transition-colors leading-snug line-clamp-2 uppercase">
                   {item.title}
                 </h3>
-                <div className="flex justify-between items-center text-[9px] sm:text-[10px] text-slate-grey font-bold tracking-[0.16em] sm:tracking-[0.18em] uppercase pt-2 border-t border-neutral-100 font-sans">
+                <div className="flex justify-between items-center text-xs text-slate-grey font-bold tracking-[0.16em] sm:tracking-[0.18em] uppercase pt-2 border-t border-neutral-100 font-sans">
                   <span>{item.location}</span>
                   <span className="text-saffron">{item.duration}</span>
                 </div>
@@ -104,7 +104,7 @@ export default function VideoGallery() {
         <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6">
           <div className="w-full max-w-4xl rounded-2xl sm:rounded-block bg-neutral-900 border border-white/10 p-3 sm:p-4 relative shadow-2xl flex flex-col gap-3 sm:gap-4">
             <div className="flex justify-between items-center text-white border-b border-white/10 pb-2">
-              <h3 className="text-sm sm:text-xl font-normal font-heading text-saffron uppercase">{activeVideo.title}</h3>
+              <h3 className="text-lg sm:text-xl font-normal font-heading text-saffron uppercase">{activeVideo.title}</h3>
               <button 
                 onClick={() => setActiveVideo(null)}
                 className="text-white hover:text-saffron font-bold text-xs sm:text-sm tracking-widest uppercase transition-colors focus:outline-none cursor-pointer flex items-center gap-1.5 font-sans"

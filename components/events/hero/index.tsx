@@ -131,7 +131,7 @@ export default function EventsHero() {
 
       {/* Overlaid Page Header */}
       <div className="max-w-[1600px] w-full mx-auto relative z-20 flex flex-col justify-start text-left pointer-events-none">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white leading-[1.3] sm:leading-[1.32] tracking-tight mb-4 sm:mb-6 font-heading pointer-events-auto drop-shadow-md">
+        <h1 className="text-[32px] sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white leading-[1.3] sm:leading-[1.32] tracking-tight mb-4 sm:mb-6 font-heading pointer-events-auto drop-shadow-md">
           <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-3 sm:py-4 -my-2 sm:-my-3">
             <span className="block reveal-line py-1">{t("eventsPage.hero.titleLine1")}</span>
           </div>
@@ -140,7 +140,7 @@ export default function EventsHero() {
           </div>
         </h1>
 
-        <p className="hero-subtitle text-xs sm:text-base md:text-lg text-slate-100 max-w-2xl leading-[1.7] sm:leading-[1.75] font-normal pointer-events-auto font-sans drop-shadow-sm">
+        <p className="hero-subtitle text-base sm:text-base md:text-lg text-slate-100 max-w-2xl leading-[1.7] sm:leading-[1.75] font-normal pointer-events-auto font-sans drop-shadow-sm">
           {t("eventsPage.hero.subtitle")}
         </p>
       </div>

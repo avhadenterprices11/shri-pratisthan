@@ -84,7 +84,7 @@ export default function ContactFAQ() {
                   className="w-full flex justify-between items-center p-4 sm:p-6 text-left font-normal text-neutral-900 font-heading hover:text-saffron transition-colors cursor-pointer uppercase"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-sm sm:text-lg leading-snug pr-4">{faq.q}</span>
+                  <span className="text-base sm:text-lg leading-snug pr-4">{faq.q}</span>
                   <span className={`text-lg sm:text-xl font-light transform transition-transform duration-300 shrink-0 ${isOpen ? "rotate-45 text-saffron" : "text-slate-grey"}`}>
                     ＋
                   </span>
@@ -95,7 +95,7 @@ export default function ContactFAQ() {
                     isOpen ? "max-h-[220px] border-t border-saffron/10" : "max-h-0"
                   }`}
                 >
-                  <p className="p-4 sm:p-6 text-xs sm:text-sm text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal bg-slate-50/20">
+                  <p className="p-4 sm:p-6 text-base md:text-sm text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal bg-slate-50/20">
                     {faq.a}
                   </p>
                 </div>
