@@ -50,7 +50,7 @@ export function LanguageSwitcher({ variant = "header", className }: LanguageSwit
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 backdrop-blur-md border border-saffron/25 hover:border-saffron/60 shadow-md flex items-center justify-center text-xs font-bold text-neutral-900 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none relative group"
+          className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-saffron/25 dark:border-white/20 hover:border-saffron/60 dark:hover:border-saffron/60 shadow-md flex items-center justify-center text-xs font-bold text-neutral-900 dark:text-neutral-100 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none relative group"
           aria-expanded={isOpen}
           aria-haspopup="true"
           aria-label="Language Selector"
@@ -59,12 +59,11 @@ export function LanguageSwitcher({ variant = "header", className }: LanguageSwit
           <span className="font-heading font-normal text-[11px] sm:text-xs tracking-wider uppercase group-hover:text-saffron transition-colors">
             {currentLang.shortLabel}
           </span>
-          <span className="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full bg-saffron ring-1 ring-white" />
         </button>
 
         {isOpen && (
           <div
-            className="absolute right-0 top-full mt-2 w-36 bg-white/98 backdrop-blur-xl border border-saffron/20 rounded-2xl shadow-2xl p-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-200 select-none space-y-1"
+            className="absolute right-0 top-full mt-2 w-36 bg-white/98 dark:bg-neutral-900/98 backdrop-blur-xl border border-saffron/20 dark:border-white/10 rounded-2xl shadow-2xl p-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-200 select-none space-y-1"
             role="menu"
             aria-orientation="vertical"
           >
@@ -82,7 +81,7 @@ export function LanguageSwitcher({ variant = "header", className }: LanguageSwit
                     "w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold font-sans transition-all cursor-pointer",
                     isActive
                       ? "bg-saffron text-white shadow-xs"
-                      : "text-neutral-700 hover:bg-saffron/5 hover:text-saffron"
+                      : "text-neutral-700 dark:text-neutral-300 hover:bg-saffron/10 dark:hover:bg-neutral-800 hover:text-saffron"
                   )}
                   role="menuitem"
                 >

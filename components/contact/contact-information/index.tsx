@@ -83,7 +83,7 @@ export default function ContactInformation() {
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             {t("contactPage.info.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -95,13 +95,13 @@ export default function ContactInformation() {
             return (
               <div
                 key={index}
-                className="info-card glass-panel group p-5 sm:p-8 rounded-2xl sm:rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-xl transition-all duration-300 bg-white border border-saffron/10"
+                className="info-card glass-panel group p-5 sm:p-8 rounded-2xl sm:rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#121214] border border-saffron/10 dark:border-white/10"
               >
                 <div>
                   <div className="mb-4 sm:mb-6 w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-saffron/10 to-saffron/5 border border-saffron/20 flex items-center justify-center text-saffron group-hover:scale-110 group-hover:border-saffron/40 group-hover:shadow-md group-hover:shadow-saffron/10 transition-all duration-300">
                     <Icon className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.75]" />
                   </div>
-                  <h3 className="text-lg sm:text-xl font-normal text-neutral-900 mb-3 sm:mb-4 font-heading leading-snug uppercase">
+                  <h3 className="text-lg sm:text-xl font-normal text-neutral-900 dark:text-neutral-100 mb-3 sm:mb-4 font-heading leading-snug uppercase">
                     {item.title}
                   </h3>
                   <div className="space-y-1.5 font-sans">
@@ -110,7 +110,7 @@ export default function ContactInformation() {
                         const parts = line.split("Info@shreepratishthan.com");
                         const prefix = parts[0];
                         return (
-                          <p key={idx} className="text-base md:text-sm text-slate-grey font-normal leading-[1.7]">
+                          <p key={idx} className="text-base md:text-sm text-slate-grey dark:text-neutral-300 font-normal leading-[1.7]">
                             {prefix}
                             <a
                               href="mailto:Info@shreepratishthan.com"
@@ -126,7 +126,7 @@ export default function ContactInformation() {
                         const parts = line.split("+91 9922786608");
                         const prefix = parts[0];
                         return (
-                          <p key={idx} className="text-base md:text-sm text-slate-grey font-normal leading-[1.7]">
+                          <p key={idx} className="text-base md:text-sm text-slate-grey dark:text-neutral-300 font-normal leading-[1.7]">
                             {prefix}
                             <a
                               href={isWhatsApp ? "https://wa.me/919922786608" : "tel:+919922786608"}
@@ -140,7 +140,7 @@ export default function ContactInformation() {
                         );
                       }
                       return (
-                        <p key={idx} className="text-base md:text-sm text-slate-grey font-normal leading-[1.7]">
+                        <p key={idx} className="text-base md:text-sm text-slate-grey dark:text-neutral-300 font-normal leading-[1.7]">
                           {line}
                         </p>
                       );
@@ -148,7 +148,7 @@ export default function ContactInformation() {
                   </div>
                 </div>
 
-                <div className="mt-4 sm:mt-6 text-xs text-saffron uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] font-sans pt-3 border-t border-saffron/10">
+                <div className="mt-4 sm:mt-6 text-xs text-saffron uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] font-sans pt-3 border-t border-saffron/10 dark:border-white/10">
                   {t("contactPage.info.officialDirectory")}
                 </div>
               </div>

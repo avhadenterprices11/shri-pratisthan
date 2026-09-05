@@ -142,7 +142,7 @@ export default function CharitySocialWork() {
     <section
       id="charity-social-work"
       ref={containerRef}
-      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20 border-t border-black/5"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20 border-t border-black/5 dark:border-white/10"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 z-0" />
       
@@ -153,10 +153,10 @@ export default function CharitySocialWork() {
           <span className="text-saffron font-bold text-xs uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
             {t("communityPage.charity.badge")}
           </span>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             {t("communityPage.charity.heading")}
           </h2>
-          <p className="text-slate-grey mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-base font-normal">
+          <p className="text-slate-grey dark:text-neutral-300 mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-base font-normal">
             {t("communityPage.charity.subtitle")}
           </p>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -170,25 +170,25 @@ export default function CharitySocialWork() {
           {CAMPAIGNS.map((item, index) => (
             <div
               key={index}
-              className="charity-card glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-2xl transition-all duration-300 bg-white border border-saffron/10 shadow-md"
+              className="charity-card glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block flex flex-col justify-between hover:border-saffron/30 hover:shadow-2xl transition-all duration-300 bg-white dark:bg-[#121214] border border-saffron/10 dark:border-white/10 shadow-md"
             >
               <div>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-saffron/5 flex items-center justify-center text-saffron mb-4 sm:mb-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-saffron/5 dark:bg-saffron/10 flex items-center justify-center text-saffron mb-4 sm:mb-6">
                   {item.icon}
                 </div>
-                <h3 className="text-lg sm:text-xl font-normal text-neutral-900 mb-2.5 sm:mb-4 font-heading leading-snug uppercase">
+                <h3 className="text-lg sm:text-xl font-normal text-neutral-900 dark:text-neutral-100 mb-2.5 sm:mb-4 font-heading leading-snug uppercase">
                   {item.title}
                 </h3>
-                <p className="text-base md:text-sm text-slate-grey leading-[1.7] font-sans font-normal">
+                <p className="text-base md:text-sm text-slate-grey dark:text-neutral-300 leading-[1.7] font-sans font-normal">
                   {item.desc}
                 </p>
               </div>
 
-              <div className="border-t border-saffron/10 pt-4 sm:pt-6 mt-4 sm:mt-6 flex justify-between items-center">
+              <div className="border-t border-saffron/10 dark:border-white/10 pt-4 sm:pt-6 mt-4 sm:mt-6 flex justify-between items-center">
                 <span className="text-xs uppercase font-bold tracking-[0.18em] text-saffron font-sans">
                   {item.metric}
                 </span>
-                <span className="text-xs text-slate-grey uppercase font-bold tracking-[0.18em] bg-slate-100 px-2 py-0.5 rounded font-sans">
+                <span className="text-xs text-slate-grey dark:text-neutral-400 uppercase font-bold tracking-[0.18em] bg-slate-100 dark:bg-neutral-800 px-2 py-0.5 rounded font-sans">
                   {t("communityPage.charity.distributedTag")}
                 </span>
               </div>

@@ -76,7 +76,7 @@ export default function CommunityImpact() {
           <span className="text-saffron font-bold text-xs uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
             {t("communityPage.impact.badge")}
           </span>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             {t("communityPage.impact.heading")}
           </h2>
         </div>
@@ -85,14 +85,14 @@ export default function CommunityImpact() {
           {STATS.map((item, index) => (
             <div
               key={index}
-              className="stat-box glass-panel p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-block text-center flex flex-col justify-center items-center bg-white border border-saffron/15 shadow-md"
+              className="stat-box glass-panel p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-block text-center flex flex-col justify-center items-center bg-white dark:bg-[#121214] border border-saffron/15 dark:border-white/10 shadow-md"
             >
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-saffron font-heading flex items-center justify-center">
                 <span className="count-number" data-target={item.value}>{item.value}</span>
                 {item.suffix ? <span>{item.suffix}</span> : null}
               </div>
               <div className="w-8 sm:w-10 h-0.5 bg-gold my-2.5 sm:my-4 rounded-full" />
-              <div className="text-xs md:text-sm font-bold text-slate-grey uppercase tracking-[0.16em] sm:tracking-[0.18em] font-sans">
+              <div className="text-xs md:text-sm font-bold text-slate-grey dark:text-neutral-300 uppercase tracking-[0.16em] sm:tracking-[0.18em] font-sans">
                 {item.label}
               </div>
             </div>

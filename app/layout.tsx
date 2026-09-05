@@ -85,6 +85,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { ThemeProvider } from "@/context/ThemeContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -93,17 +95,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`h-full antialiased ${sansFont.variable} ${headingFont.variable} ${eyebrowFont.variable}`}
     >
-      <body className="min-h-full flex flex-col relative">
-        <LanguageProvider>
-          <ScrollProvider>
-            <CustomCursor />
-            <Navbar />
-            {children}
-            <Footer />
-          </ScrollProvider>
-        </LanguageProvider>
+      <body className="min-h-full flex flex-col relative bg-background text-foreground transition-colors duration-300">
+        <ThemeProvider>
+          <LanguageProvider>
+            <ScrollProvider>
+              <CustomCursor />
+              <Navbar />
+              {children}
+              <Footer />
+            </ScrollProvider>
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

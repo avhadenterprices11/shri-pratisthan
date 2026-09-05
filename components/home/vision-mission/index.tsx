@@ -55,10 +55,10 @@ export default function VisionMission() {
             <h3 className="text-lg sm:text-3xl font-normal text-foreground mb-5 font-heading leading-snug">
               Building a United & Active Community
             </h3>
-            <p className="text-base sm:text-lg text-slate-grey leading-[1.8] mb-6 font-sans">
+            <p className="text-base sm:text-lg text-slate-grey dark:text-neutral-300 leading-[1.8] mb-6 font-sans">
               To build a united, active, and socially responsible community where people come together to celebrate culture, support one another, encourage youth participation, and contribute towards the overall development and well-being of society.
             </p>
-            <p className="text-base text-slate-grey/80 leading-[1.7] font-sans">
+            <p className="text-base text-slate-grey/80 dark:text-neutral-400 leading-[1.7] font-sans">
               Rooted in Indira Nagar, Nashik since 2006, we envision an empowered neighborhood where tradition fuels civic progress, youth empowerment, and mutual brotherhood.
             </p>
           </div>
@@ -70,10 +70,10 @@ export default function VisionMission() {
             <h3 className="text-lg sm:text-3xl font-normal text-foreground mb-5 font-heading leading-snug">
               Connecting People Through Culture & Service
             </h3>
-            <p className="text-base sm:text-lg text-slate-grey leading-[1.8] mb-6 font-sans">
+            <p className="text-base sm:text-lg text-slate-grey dark:text-neutral-300 leading-[1.8] mb-6 font-sans">
               To bring together friends, families, and residents of the community through cultural celebrations, social initiatives, sports, health and wellness activities, charitable programmes, and community development efforts.
             </p>
-            <p className="text-base text-slate-grey/80 leading-[1.7] font-sans">
+            <p className="text-base text-slate-grey/80 dark:text-neutral-400 leading-[1.7] font-sans">
               Creating inclusive opportunities for citizens of all generations to connect, participate, and contribute actively towards a stronger, healthier, and caring society.
             </p>
           </div>

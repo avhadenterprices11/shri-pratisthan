@@ -89,16 +89,16 @@ export default function VolunteerHero() {
         {/* Left Column: Heading text content */}
         <div className="lg:col-span-5 space-y-3 sm:space-y-6 text-left">
 
-          <h1 className="text-[22px] sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white leading-[1.3] sm:leading-[1.32] tracking-tight font-heading uppercase">
-            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1.5 sm:py-4 -my-1 sm:-my-3">
+          <h1 className="text-[24px] sm:text-[36px] md:text-[48px] font-normal text-white leading-[1.25] tracking-tight font-heading uppercase">
+            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-2 sm:py-3.5">
               <span className="block reveal-line py-1">{t("volunteerPage.hero.titleLine1")}</span>
             </div>
-            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-1.5 sm:py-4 -my-1 sm:-my-3">
+            <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-2 sm:py-3.5">
               <span className="block reveal-line py-1 text-saffron text-outline-festive font-heading">{t("volunteerPage.hero.titleLine2")}</span>
             </div>
           </h1>
 
-          <p className="hero-subtitle text-[12px] sm:text-base md:text-lg text-slate-200 max-w-xl leading-relaxed sm:leading-[1.75] font-normal font-sans [text-shadow:_0_2px_4px_rgba(0,0,0,0.8)]">
+          <p className="hero-subtitle text-sm sm:text-base md:text-lg text-slate-200 max-w-xl leading-relaxed sm:leading-[1.75] font-normal font-sans [text-shadow:_0_2px_4px_rgba(0,0,0,0.8)]">
             {t("volunteerPage.hero.subtitle")}
           </p>
         </div>
@@ -111,17 +111,17 @@ export default function VolunteerHero() {
               className="stat-item-row border-b border-white/20 pb-2.5 sm:pb-6 w-full group cursor-pointer transition-all duration-300 pr-0 hover:pr-4"
             >
               <div className="flex flex-col sm:flex-row-reverse sm:items-baseline gap-1 sm:gap-4 mb-1 sm:mb-2 justify-start">
-                <span className="text-2xl sm:text-5xl lg:text-6xl font-normal text-white group-hover:text-saffron transition-colors duration-300 font-heading tracking-tight leading-none [text-shadow:_0_2px_10px_rgba(0,0,0,0.6)]">
+                <span className="text-2xl sm:text-4xl lg:text-[48px] font-normal text-white group-hover:text-saffron transition-colors duration-300 font-heading tracking-tight leading-snug py-1 [text-shadow:_0_2px_10px_rgba(0,0,0,0.6)]">
                   {stat.number}
                 </span>
                 <div className="flex items-center gap-1.5 sm:gap-2 justify-start sm:justify-start">
                   {stat.icon}
-                  <span className="text-[9px] sm:text-xs font-bold text-saffron uppercase tracking-[0.2em] font-sans [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
+                  <span className="text-xs sm:text-sm font-bold text-saffron uppercase tracking-[0.2em] font-sans [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">
                     {stat.label}
                   </span>
                 </div>
               </div>
-              <p className="text-[11px] sm:text-sm text-slate-200 max-w-xl ml-0 sm:ml-auto font-sans leading-snug sm:leading-relaxed transition-colors duration-300 group-hover:text-white [text-shadow:_0_1px_3px_rgba(0,0,0,0.7)] font-normal">
+              <p className="text-xs sm:text-sm md:text-base text-slate-200 max-w-xl ml-0 sm:ml-auto font-sans leading-snug sm:leading-relaxed transition-colors duration-300 group-hover:text-white [text-shadow:_0_1px_3px_rgba(0,0,0,0.7)] font-normal">
                 {stat.description}
               </p>
             </div>

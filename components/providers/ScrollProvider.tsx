@@ -15,8 +15,8 @@ export function ScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
 
-    // Disable GSAP lagSmoothing so reverse scroll direction changes never desync or stutter
-    gsap.ticker.lagSmoothing(0);
+    // Gracefully buffer CPU/GPU micro-hitches so dropped frames never cause violent scroll jumps
+    gsap.ticker.lagSmoothing(500, 33);
 
     // Only bypass Lenis on actual mobile phone viewports
     const isMobilePhone =

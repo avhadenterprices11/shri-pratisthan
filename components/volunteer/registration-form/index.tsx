@@ -60,11 +60,11 @@ function FieldError({ message }: { message?: string }) {
 
 function inputClass(hasError?: boolean) {
   return [
-    "w-full bg-slate-50/50 border rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm text-neutral-900 font-sans",
-    "focus:outline-none focus:bg-white transition-all",
+    "w-full bg-slate-50/50 dark:bg-[#18181b] border rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm text-neutral-900 dark:text-neutral-100 font-sans",
+    "focus:outline-none focus:bg-white dark:focus:bg-[#1f1f23] transition-all",
     hasError
       ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100"
-      : "border-slate-200 focus:border-saffron",
+      : "border-slate-200 dark:border-white/10 focus:border-saffron",
   ].join(" ");
 }
 
@@ -184,13 +184,13 @@ export default function VolunteerRegistrationForm() {
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 animate-pulse" />
       <div className="max-w-6xl mx-auto relative z-10 form-reveal">
-        <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white border border-saffron/10 shadow-2xl">
+        <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white dark:bg-[#121214] border border-saffron/10 dark:border-white/10 shadow-2xl">
 
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
               {t("volunteerPage.form.heading")}
             </h2>
-            <p className="text-slate-grey mt-2.5 sm:mt-3 text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
+            <p className="text-slate-grey dark:text-neutral-300 mt-2.5 sm:mt-3 text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
               {t("volunteerPage.form.subtitle")}
             </p>
             <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -202,10 +202,10 @@ export default function VolunteerRegistrationForm() {
               <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-saffron/10 text-saffron flex items-center justify-center mx-auto border border-saffron/20">
                 <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 stroke-[1.5]" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 font-heading uppercase">
+              <h3 className="text-xl sm:text-2xl font-normal text-neutral-900 dark:text-neutral-100 font-heading uppercase">
                 {t("volunteerPage.form.successTitle")}
               </h3>
-              <p className="text-slate-grey max-w-md mx-auto text-base font-sans leading-relaxed">
+              <p className="text-slate-grey dark:text-neutral-300 max-w-md mx-auto text-base font-sans leading-relaxed">
                 {t("volunteerPage.form.successMsg")}
               </p>
               <button
@@ -229,7 +229,7 @@ export default function VolunteerRegistrationForm() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="vf-name" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="vf-name" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                     {t("volunteerPage.form.nameLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -246,7 +246,7 @@ export default function VolunteerRegistrationForm() {
                 </div>
 
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="vf-email" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="vf-email" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                     {t("volunteerPage.form.emailLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -265,7 +265,7 @@ export default function VolunteerRegistrationForm() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="vf-phone" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="vf-phone" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                     {t("volunteerPage.form.phoneLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -282,7 +282,7 @@ export default function VolunteerRegistrationForm() {
                 </div>
 
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="vf-location" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="vf-location" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                     {t("volunteerPage.form.locationLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -299,7 +299,7 @@ export default function VolunteerRegistrationForm() {
                 </div>
 
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="vf-age" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="vf-age" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                     {t("volunteerPage.form.ageLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -320,7 +320,7 @@ export default function VolunteerRegistrationForm() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="vf-track" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="vf-track" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                     {t("volunteerPage.form.trackLabel")}
                   </label>
                   <select
@@ -338,7 +338,7 @@ export default function VolunteerRegistrationForm() {
                 </div>
 
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="vf-availability" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="vf-availability" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                     {t("volunteerPage.form.availLabel")}
                   </label>
                   <select
@@ -356,7 +356,7 @@ export default function VolunteerRegistrationForm() {
               </div>
 
               <div className="space-y-1.5 sm:space-y-2">
-                <label htmlFor="vf-message" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                <label htmlFor="vf-message" className="text-[10px] sm:text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                   {t("volunteerPage.form.notesLabel")}
                 </label>
                 <textarea

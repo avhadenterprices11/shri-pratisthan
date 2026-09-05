@@ -33,7 +33,7 @@ import AboutJoinCTA from "@/components/about/join-cta";
 
 export default function AboutPage() {
   return (
-    <main className="flex flex-col w-full min-h-screen">
+    <main className="flex flex-col w-full min-h-screen bg-background text-foreground">
       {/* 1. Hero Landing Block */}
       <AboutHero />
 

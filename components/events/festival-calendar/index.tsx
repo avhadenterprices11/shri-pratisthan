@@ -164,12 +164,12 @@ export default function FestivalCalendar() {
 
       {/* Top Header */}
       <div className="text-center max-w-3xl mx-auto relative z-10 px-4 sm:px-6 shrink-0 space-y-1 sm:space-y-1.5">
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 font-heading leading-tight uppercase tracking-tight">
+        <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-neutral-900 dark:text-neutral-100 font-heading leading-snug uppercase tracking-tight py-1">
           {t("eventsPage.calendar.heading")}
         </h2>
         <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-1 rounded-full" />
         <div className="pt-1">
-          <span className="text-xs text-slate-grey/80 font-bold uppercase tracking-[0.18em] bg-black/5 px-3.5 sm:px-4 py-1.5 rounded-full inline-block font-sans">
+          <span className="text-xs sm:text-sm text-slate-grey/80 dark:text-neutral-300 font-bold uppercase tracking-[0.18em] bg-black/5 dark:bg-white/10 px-3.5 sm:px-4 py-1.5 rounded-full inline-block font-sans">
             {t("eventsPage.calendar.scrollInstruction")}
           </span>
         </div>
@@ -187,31 +187,31 @@ export default function FestivalCalendar() {
               <div
                 key={index}
                 onClick={() => handleCardClick(index)}
-                className={`w-[280px] sm:w-[340px] shrink-0 p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl bg-white border transition-all duration-300 min-h-[330px] sm:min-h-[360px] flex flex-col justify-between cursor-pointer select-none transform-gpu will-change-transform ${
+                className={`w-[280px] sm:w-[340px] shrink-0 p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#121214] border transition-all duration-300 min-h-[330px] sm:min-h-[360px] flex flex-col justify-between cursor-pointer select-none transform-gpu will-change-transform ${
                   isActive 
-                    ? "border-saffron/60 shadow-2xl opacity-100 z-10 shadow-saffron/20 ring-2 ring-saffron/30 scale-100" 
-                    : "border-neutral-200/80 opacity-50 hover:opacity-75 z-0 shadow-sm scale-[0.95]"
+                    ? "border-saffron/60 dark:border-saffron/80 shadow-2xl opacity-100 z-10 shadow-saffron/20 ring-2 ring-saffron/30 scale-100" 
+                    : "border-neutral-200/80 dark:border-white/10 opacity-50 hover:opacity-75 z-0 shadow-sm scale-[0.95]"
                 }`}
               >
                 <div>
                   {/* Month Title */}
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-normal font-heading text-neutral-900 block mb-1 leading-none uppercase">
+                  <span className="text-xl sm:text-2xl md:text-[24px] font-normal font-heading text-neutral-900 dark:text-neutral-100 block mb-1 leading-snug py-0.5 uppercase">
                     {item.month}
                   </span>
 
                   {/* Event Title */}
-                  <h3 className="text-lg sm:text-lg md:text-xl font-normal text-neutral-900 font-heading mb-2 leading-snug">
+                  <h3 className="text-base sm:text-lg md:text-[20px] font-normal text-neutral-900 dark:text-neutral-100 font-heading mb-2 leading-snug">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-base text-slate-grey leading-[1.65] font-sans select-none pointer-events-none line-clamp-4">
+                  <p className="text-base text-slate-grey dark:text-neutral-300 leading-[1.65] font-sans select-none pointer-events-none line-clamp-4">
                     {item.desc}
                   </p>
                 </div>
 
                 {/* Indicator stamp */}
-                <div className="mt-4 pt-3 border-t border-saffron/10 flex justify-between items-center text-xs font-bold uppercase tracking-[0.16em] text-saffron font-sans">
+                <div className="mt-4 pt-3 border-t border-saffron/10 dark:border-white/10 flex justify-between items-center text-xs sm:text-sm font-bold uppercase tracking-[0.16em] text-saffron font-sans">
                   <span>{t("eventsPage.calendar.activeDriveLocation")}</span>
                   <span>★</span>
                 </div>

@@ -31,11 +31,11 @@ export default function GalleryDetailContent({ item }: { item: GalleryItem }) {
         </div>
 
         {/* Details Wrapper */}
-        <div className="glass-panel p-4 sm:p-8 md:p-12 rounded-2xl sm:rounded-block border border-saffron/20 relative overflow-hidden bg-white/75 shadow-2xl">
+        <div className="glass-panel p-4 sm:p-8 md:p-12 rounded-2xl sm:rounded-block border border-saffron/20 dark:border-white/10 relative overflow-hidden bg-white/75 dark:bg-[#121214] shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-start">
             
             {/* Left Column: Image Showcase */}
-            <div className="lg:col-span-7 relative aspect-[16/10] w-full overflow-hidden rounded-2xl sm:rounded-block border border-saffron/10 shadow-lg bg-neutral-100">
+            <div className="lg:col-span-7 relative aspect-[16/10] w-full overflow-hidden rounded-2xl sm:rounded-block border border-saffron/10 dark:border-white/10 shadow-lg bg-neutral-100 dark:bg-neutral-900">
               <Image
                 src={localizedItem.src}
                 alt={localizedItem.title}
@@ -54,36 +54,36 @@ export default function GalleryDetailContent({ item }: { item: GalleryItem }) {
                   <Tag className="w-3 h-3" />
                   {localizedItem.category}
                 </span>
-                <span className="inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 font-bold text-[9px] uppercase tracking-widest px-2.5 sm:px-3 py-1 rounded-full border border-slate-200/60 shadow-sm font-sans">
+                <span className="inline-flex items-center gap-1.5 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-neutral-300 font-bold text-[9px] uppercase tracking-widest px-2.5 sm:px-3 py-1 rounded-full border border-slate-200/60 dark:border-white/10 shadow-sm font-sans">
                   <Calendar className="w-3 h-3" />
                   {localizedItem.date}
                 </span>
                 {localizedItem.metric && (
-                  <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 font-bold text-[9px] uppercase tracking-widest px-2.5 sm:px-3 py-1 rounded-full border border-amber-200/50 shadow-sm font-sans">
+                  <span className="inline-flex items-center gap-1.5 bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 font-bold text-[9px] uppercase tracking-widest px-2.5 sm:px-3 py-1 rounded-full border border-amber-200/50 dark:border-amber-800/40 shadow-sm font-sans">
                     <Award className="w-3 h-3" />
                     {localizedItem.metric}
                   </span>
                 )}
               </div>
 
-              <h1 className="text-[32px] sm:text-4xl font-normal text-neutral-900 leading-tight font-heading uppercase">
+              <h1 className="text-[32px] sm:text-4xl font-normal text-neutral-900 dark:text-neutral-100 leading-tight font-heading uppercase">
                 {localizedItem.title}
               </h1>
 
               {/* Description quote block */}
               <div className="flex gap-3 border-l-4 border-saffron pl-3 sm:pl-4 py-1">
-                <p className="text-base sm:text-lg font-normal text-slate-800 italic leading-relaxed font-heading">
+                <p className="text-base sm:text-lg font-normal text-slate-800 dark:text-neutral-200 italic leading-relaxed font-heading">
                   {localizedItem.description}
                 </p>
               </div>
 
               {/* Event overview detailed text */}
-              <div className="border-t border-saffron/10 pt-4 sm:pt-6">
-                <h2 className="text-2xl font-normal text-neutral-900 font-heading mb-2 sm:mb-3 flex items-center gap-2 uppercase">
+              <div className="border-t border-saffron/10 dark:border-white/10 pt-4 sm:pt-6">
+                <h2 className="text-2xl font-normal text-neutral-900 dark:text-neutral-100 font-heading mb-2 sm:mb-3 flex items-center gap-2 uppercase">
                   <Info className="w-4 h-4 text-saffron" />
                   {t("galleryPage.detail.overviewHeading")}
                 </h2>
-                <p className="text-base text-slate-grey leading-[1.7] sm:leading-relaxed whitespace-pre-line font-sans font-normal">
+                <p className="text-base text-slate-grey dark:text-neutral-300 leading-[1.7] sm:relaxed whitespace-pre-line font-sans font-normal">
                   {localizedItem.details}
                 </p>
               </div>

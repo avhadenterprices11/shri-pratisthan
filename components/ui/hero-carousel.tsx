@@ -103,13 +103,21 @@ export function HeroCarousel({
   const index = clamp(controlled ?? uncontrolled, 0, Math.max(0, last))
   const [mounted, setMounted] = React.useState(false)
 
-  // One observer feeds every measurement below.
+  // One observer feeds every measurement below with subpixel guard to prevent scroll-triggered re-renders
   React.useEffect(() => {
     setMounted(true)
     const stage = stageRef.current
     if (!stage) return
-    const read = () =>
-      setBox({ w: stage.clientWidth, h: stage.clientHeight })
+    const read = () => {
+      const nextW = Math.round(stage.clientWidth)
+      const nextH = Math.round(stage.clientHeight)
+      setBox((prev) => {
+        if (Math.abs(prev.w - nextW) < 2 && Math.abs(prev.h - nextH) < 2) {
+          return prev
+        }
+        return { w: nextW, h: nextH }
+      })
+    }
     read()
     const ro = new ResizeObserver(read)
     ro.observe(stage)
@@ -145,12 +153,12 @@ export function HeroCarousel({
     ? 10
     : Math.max(11, Math.round(stageH * LABEL))
 
-  // Headline font size scaling: 70% scale (24-28px) on mobile, responsive on tablet and desktop
+  // Headline font size scaling: mobile 24-28px, tablet 36px, desktop standard 48px
   const titleSize = isMobile
     ? clamp(Math.round(stageW * 0.07), 24, 28)
     : isTablet
-      ? Math.min(52, Math.max(36, Math.round(stageH * 0.058)))
-      : Math.min(74, Math.max(48, Math.round(stageH * 0.076)))
+      ? 36
+      : 48
 
   // Dynamic strip top edge moved right down into the bottom portion
   const stripTop = isMobile ? 0.73 : 0.70
@@ -234,7 +242,8 @@ export function HeroCarousel({
               alt=""
               aria-hidden
               draggable={false}
-              className="absolute inset-0 h-full w-full object-cover"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover will-change-transform [transform:translateZ(0)]"
               initial={{ scale: reduced ? 1 : 1.05 }}
               animate={{ scale: 1 }}
               transition={reduced ? { duration: 0 } : { duration: 3, ease: "linear" }}
@@ -307,9 +316,9 @@ export function HeroCarousel({
               transition={{ duration: 0.25, ease: "easeOut" }}
             >
               {lines.map((line, i) => (
-                <span key={i} className="block overflow-hidden py-2 sm:py-3 -my-1 sm:-my-1.5">
+                <span key={i} className="block overflow-hidden py-2 sm:py-3.5">
                   <motion.span
-                    className="block py-1"
+                    className="block py-1 sm:py-1.5"
                     initial={{ y: "110%" }}
                     animate={{ y: 0 }}
                     transition={
@@ -398,7 +407,8 @@ export function HeroCarousel({
                 src={item.image}
                 alt={item.title.replace(/\n/g, " ")}
                 draggable={false}
-                className="h-full w-full object-cover select-none"
+                decoding="async"
+                className="h-full w-full object-cover select-none will-change-transform"
                 style={{ objectPosition: "50% 25%" }}
               />
               {/* Subtle bottom gradient for number readability */}

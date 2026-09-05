@@ -65,7 +65,7 @@ export default function ContactFAQ() {
         
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
           <span className="text-saffron font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.25em] block mb-2 sm:mb-3 font-sans">FAQ</span>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             Contact Queries &amp; Guidelines
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -77,25 +77,25 @@ export default function ContactFAQ() {
             return (
               <div
                 key={index}
-                className="glass-panel rounded-xl sm:rounded-interactive overflow-hidden bg-white border border-saffron/10 transition-all duration-300"
+                className="glass-panel rounded-xl sm:rounded-interactive overflow-hidden bg-white dark:bg-[#121214] border border-saffron/10 dark:border-white/10 transition-all duration-300"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full flex justify-between items-center p-4 sm:p-6 text-left font-normal text-neutral-900 font-heading hover:text-saffron transition-colors cursor-pointer uppercase"
+                  className="w-full flex justify-between items-center p-4 sm:p-6 text-left font-normal text-neutral-900 dark:text-neutral-100 font-heading hover:text-saffron transition-colors cursor-pointer uppercase"
                   aria-expanded={isOpen}
                 >
                   <span className="text-base sm:text-lg leading-snug pr-4">{faq.q}</span>
-                  <span className={`text-lg sm:text-xl font-light transform transition-transform duration-300 shrink-0 ${isOpen ? "rotate-45 text-saffron" : "text-slate-grey"}`}>
+                  <span className={`text-lg sm:text-xl font-light transform transition-transform duration-300 shrink-0 ${isOpen ? "rotate-45 text-saffron" : "text-slate-grey dark:text-neutral-400"}`}>
                     ＋
                   </span>
                 </button>
                 
                 <div
                   className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                    isOpen ? "max-h-[220px] border-t border-saffron/10" : "max-h-0"
+                    isOpen ? "max-h-[220px] border-t border-saffron/10 dark:border-white/10" : "max-h-0"
                   }`}
                 >
-                  <p className="p-4 sm:p-6 text-base md:text-sm text-slate-grey leading-[1.7] sm:leading-[1.75] font-sans font-normal bg-slate-50/20">
+                  <p className="p-4 sm:p-6 text-base md:text-sm text-slate-grey dark:text-neutral-300 leading-[1.7] sm:leading-[1.75] font-sans font-normal bg-slate-50/20 dark:bg-white/[0.02]">
                     {faq.a}
                   </p>
                 </div>

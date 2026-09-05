@@ -64,7 +64,7 @@ export default function AboutMission() {
   return (
     <section
       ref={containerRef}
-      className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 xl:px-24 overflow-hidden bg-[#FFFDF9] border-t border-saffron/10"
+      className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 xl:px-24 overflow-hidden bg-[#FFFDF9] dark:bg-background border-t border-saffron/10 dark:border-white/10"
     >
       {/* Background Grid Accent */}
       <div 
@@ -81,13 +81,13 @@ export default function AboutMission() {
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col gap-8 sm:gap-12">
         
         {/* Top title header */}
-        <div className="mission-reveal flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-4 sm:pb-6 border-b border-saffron/15">
+        <div className="mission-reveal flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-4 sm:pb-6 border-b border-saffron/15 dark:border-white/10">
           <div className="flex flex-col items-start gap-2 sm:gap-3">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 font-heading uppercase leading-tight tracking-tight">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 dark:text-neutral-100 font-heading uppercase leading-tight tracking-tight">
               {t("aboutPage.mission.heading")}
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
+          <p className="text-xs sm:text-sm text-slate-grey dark:text-neutral-300 max-w-md font-sans font-normal leading-[1.75]">
             {t("aboutPage.mission.subtitle")}
           </p>
         </div>
@@ -100,7 +100,7 @@ export default function AboutMission() {
               onMouseEnter={() => setActiveIdx(idx)}
               onMouseLeave={() => setActiveIdx(null)}
               className={cn(
-                "relative min-h-[340px] sm:min-h-[420px] rounded-2xl sm:rounded-[2.5rem] border border-saffron/15 bg-white overflow-hidden flex flex-col justify-end p-5 sm:p-8 md:p-12 shadow-xl shadow-saffron/5 transition-all duration-700 ease-out cursor-default group",
+                "relative min-h-[340px] sm:min-h-[420px] rounded-2xl sm:rounded-[2.5rem] border border-saffron/15 dark:border-white/10 bg-white dark:bg-[#121214] overflow-hidden flex flex-col justify-end p-5 sm:p-8 md:p-12 shadow-xl shadow-saffron/5 transition-all duration-700 ease-out cursor-default group",
                 activeIdx === idx 
                   ? "w-full lg:w-[62%]" 
                   : activeIdx !== null 

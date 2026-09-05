@@ -44,7 +44,7 @@ export default function AboutVision() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[50vh] sm:min-h-[70vh] flex items-center py-12 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 xl:px-24 overflow-hidden bg-[#FFFDF9] border-t border-saffron/10"
+      className="relative min-h-[50vh] sm:min-h-[70vh] flex items-center py-12 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 xl:px-24 overflow-hidden bg-[#FFFDF9] dark:bg-background border-t border-saffron/10 dark:border-white/10"
     >
       {/* 1. Subtle Ambient Heritage Glow */}
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-5 z-0" />
@@ -68,7 +68,7 @@ export default function AboutVision() {
         {/* Left Side: Tag & Header */}
         <div className="lg:col-span-5 flex flex-col items-start text-left">
 
-          <h2 className="reveal-wipe text-2xl sm:text-4xl md:text-6xl font-normal text-slate-800 leading-[1.08] tracking-tight uppercase font-heading">
+          <h2 className="reveal-wipe text-2xl sm:text-4xl md:text-6xl font-normal text-slate-800 dark:text-neutral-100 leading-[1.08] tracking-tight uppercase font-heading">
             {t("aboutPage.vision.titlePart1")} <br />
             {t("aboutPage.vision.titlePart2")} <br />
             <span className="text-saffron font-heading">{t("aboutPage.vision.titlePart3")}</span>
@@ -80,7 +80,7 @@ export default function AboutVision() {
         <div className="lg:col-span-7 flex flex-col items-start gap-4 sm:gap-6 max-w-3xl">
           
           <div className="reveal-wipe overflow-hidden">
-            <p className="text-base sm:text-xl md:text-2xl text-slate-800 leading-relaxed font-heading font-normal tracking-normal">
+            <p className="text-base sm:text-xl md:text-2xl text-slate-800 dark:text-neutral-100 leading-relaxed font-heading font-normal tracking-normal">
               &ldquo;{t("aboutPage.vision.quote")}&rdquo;
             </p>
           </div>

@@ -181,7 +181,7 @@ function EventBookingContent() {
         />
       ) : (
         /* Form Steps 1-3 Glassmorphic Panel */
-        <div className="glass-panel p-6 sm:p-10 md:p-12 rounded-block border border-saffron/20 bg-white/85 shadow-xl relative overflow-hidden max-w-5xl mx-auto">
+        <div className="glass-panel p-6 sm:p-10 md:p-12 rounded-block border border-saffron/20 dark:border-white/10 bg-white/85 dark:bg-[#121214] shadow-xl relative overflow-hidden max-w-5xl mx-auto">
           <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-saffron via-gold to-saffron" />
 
           {currentStep === 1 && (

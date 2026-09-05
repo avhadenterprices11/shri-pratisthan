@@ -29,7 +29,7 @@ export default function StepProgress({
       {/* Progress Bar Header */}
       <div className="relative flex items-center justify-between">
         {/* Connection Line */}
-        <div className="absolute top-1/2 left-4 right-4 -translate-y-1/2 h-1 bg-neutral-200 -z-10 rounded-full">
+        <div className="absolute top-1/2 left-4 right-4 -translate-y-1/2 h-1 bg-neutral-200 dark:bg-neutral-800 -z-10 rounded-full">
           <div
             className="h-full bg-gradient-to-r from-saffron via-gold to-saffron transition-all duration-500 rounded-full"
             style={{
@@ -62,8 +62,8 @@ export default function StepProgress({
                   isCompleted
                     ? "bg-saffron text-white border-saffron shadow-saffron/20 scale-100"
                     : isCurrent
-                    ? "bg-white text-saffron border-saffron ring-4 ring-saffron/15 scale-110 shadow-lg"
-                    : "bg-white text-neutral-400 border-neutral-300"
+                    ? "bg-white dark:bg-[#121214] text-saffron border-saffron ring-4 ring-saffron/15 scale-110 shadow-lg"
+                    : "bg-white dark:bg-[#121214] text-neutral-400 dark:text-neutral-500 border-neutral-300 dark:border-white/10"
                 )}
               >
                 {isCompleted ? (
@@ -80,8 +80,8 @@ export default function StepProgress({
                   isCurrent
                     ? "text-saffron font-bold"
                     : isCompleted
-                    ? "text-neutral-800 font-medium"
-                    : "text-neutral-400"
+                    ? "text-neutral-800 dark:text-neutral-200 font-medium"
+                    : "text-neutral-400 dark:text-neutral-500"
                 )}
               >
                 {step.label}

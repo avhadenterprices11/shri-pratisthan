@@ -96,7 +96,7 @@ export default function SuccessStories() {
   return (
     <section
       ref={containerRef}
-      className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
+      className="pt-10 pb-12 sm:pt-12 sm:pb-14 md:py-16 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5 dark:border-white/10"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 z-0" />
       
@@ -104,10 +104,10 @@ export default function SuccessStories() {
         
         {/* Title block */}
         <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-10">
-          <span className="text-saffron font-bold text-xs uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
+          <span className="text-saffron font-bold text-xs sm:text-sm uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
             {t("communityPage.successStories.badge")}
           </span>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-snug uppercase py-1">
             {t("communityPage.successStories.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -115,7 +115,7 @@ export default function SuccessStories() {
 
         {/* 3D Stacked Deck Slider Container */}
         <div 
-          className="relative w-full max-w-4xl mx-auto h-[320px] sm:h-[280px] md:h-[230px] flex items-center justify-center"
+          className="relative w-full max-w-4xl mx-auto h-[360px] sm:h-[300px] md:h-[240px] flex items-center justify-center"
           style={{ perspective: 1500, transformStyle: "preserve-3d" }}
         >
           {STORIES.map((story, index) => {
@@ -138,7 +138,7 @@ export default function SuccessStories() {
             return (
               <div
                 key={index}
-                className={`absolute w-full p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block flex flex-col md:flex-row gap-4 sm:gap-8 items-center bg-white border border-saffron/15 shadow-xl transition-all duration-700 ease-out ${transformClass}`}
+                className={`absolute w-full p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block flex flex-col md:flex-row gap-4 sm:gap-8 items-center bg-white dark:bg-[#121214] border border-saffron/15 dark:border-white/10 shadow-xl transition-all duration-700 ease-out ${transformClass}`}
               >
                 {/* Story Icon/Avatar */}
                 <div className={`w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-2 flex items-center justify-center text-sm sm:text-lg font-normal font-heading shadow-md ${story.accent} flex-shrink-0`}>
@@ -148,19 +148,19 @@ export default function SuccessStories() {
                 {/* Content block */}
                 <div className="flex-grow space-y-2 sm:space-y-3 text-center md:text-left">
                   <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2">
-                    <span className="text-xs uppercase font-bold tracking-[0.18em] bg-saffron/10 text-saffron px-2.5 py-0.5 sm:py-1 rounded font-sans">
+                    <span className="text-xs sm:text-sm uppercase font-bold tracking-[0.18em] bg-saffron/10 text-saffron px-2.5 py-0.5 sm:py-1 rounded font-sans">
                       {story.location}
                     </span>
-                    <span className="text-xs uppercase font-bold tracking-[0.18em] bg-slate-100 text-slate-grey px-2.5 py-0.5 sm:py-1 rounded font-sans">
+                    <span className="text-xs sm:text-sm uppercase font-bold tracking-[0.18em] bg-slate-100 dark:bg-white/10 text-slate-grey dark:text-neutral-300 px-2.5 py-0.5 sm:py-1 rounded font-sans">
                       {story.beneficiary}
                     </span>
                   </div>
                   
-                  <h3 className="text-lg sm:text-2xl font-normal text-neutral-900 font-heading leading-snug uppercase">
+                  <h3 className="text-lg sm:text-xl md:text-[24px] font-normal text-neutral-900 dark:text-neutral-100 font-heading leading-snug py-1 uppercase">
                     {story.title}
                   </h3>
                   
-                  <p className="text-slate-grey leading-snug text-base italic font-heading font-normal">
+                  <p className="text-slate-grey dark:text-neutral-300 leading-relaxed text-base md:text-lg italic font-heading font-normal">
                     &ldquo;{story.story}&rdquo;
                   </p>
                 </div>

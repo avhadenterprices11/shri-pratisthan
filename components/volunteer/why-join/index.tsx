@@ -103,7 +103,7 @@ export default function VolunteerWhyJoin() {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             {t("volunteerPage.whyJoin.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -122,14 +122,14 @@ export default function VolunteerWhyJoin() {
                   onClick={() => handleTabClick(index)}
                   className={`text-left p-3 sm:p-5 rounded-xl border transition-all duration-300 flex items-center gap-2.5 sm:gap-4 group cursor-pointer w-full ${
                     isActive 
-                      ? "bg-white border-saffron/20 shadow-lg scale-[1.01]" 
-                      : "bg-white/40 md:bg-transparent border-black/5 md:border-transparent hover:bg-white/60"
+                      ? "bg-white dark:bg-[#121214] border-saffron/20 dark:border-white/10 shadow-lg scale-[1.01]" 
+                      : "bg-white/40 dark:bg-white/5 md:bg-transparent border-black/5 dark:border-white/5 md:border-transparent hover:bg-white/60 dark:hover:bg-white/10"
                   }`}
                 >
-                  <span className={`text-base font-normal font-heading transition-colors duration-300 ${isActive ? "text-saffron" : "text-slate-grey group-hover:text-neutral-900"}`}>
+                  <span className={`text-base font-normal font-heading transition-colors duration-300 ${isActive ? "text-saffron" : "text-slate-grey dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-100"}`}>
                     0{index + 1}
                   </span>
-                  <span className={`text-base font-normal font-heading transition-colors duration-300 uppercase ${isActive ? "text-neutral-900" : "text-slate-grey group-hover:text-neutral-900"}`}>
+                  <span className={`text-base font-normal font-heading transition-colors duration-300 uppercase ${isActive ? "text-neutral-900 dark:text-neutral-100" : "text-slate-grey dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-neutral-100"}`}>
                     {item.title}
                   </span>
                 </button>
@@ -139,17 +139,17 @@ export default function VolunteerWhyJoin() {
 
           {/* Right Column: Display Card Portal */}
           <div className="md:col-span-7">
-            <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white border border-saffron/15 shadow-2xl relative min-h-[220px] sm:min-h-[280px] flex flex-col justify-between overflow-hidden">
+            <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white dark:bg-[#121214] border border-saffron/15 dark:border-white/10 shadow-2xl relative min-h-[220px] sm:min-h-[280px] flex flex-col justify-between overflow-hidden">
               <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-20 z-0" />
               
               <div ref={cardContentRef} className="relative z-10">
                 {/* Title */}
-                <h3 className="text-lg sm:text-3xl font-normal text-neutral-900 mb-2.5 sm:mb-4 font-heading leading-snug uppercase">
+                <h3 className="text-lg sm:text-3xl font-normal text-neutral-900 dark:text-neutral-100 mb-2.5 sm:mb-4 font-heading leading-snug uppercase">
                   {VALUES[activeIdx].title}
                 </h3>
                 
                 {/* Description */}
-                <p className="text-slate-grey text-base leading-[1.7] sm:leading-[1.75] font-sans font-normal">
+                <p className="text-slate-grey dark:text-neutral-300 text-base leading-[1.7] sm:leading-[1.75] font-sans font-normal">
                   {VALUES[activeIdx].desc}
                 </p>
               </div>

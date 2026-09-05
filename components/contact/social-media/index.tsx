@@ -89,7 +89,7 @@ export default function ContactSocialMedia() {
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-50" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             {t("contactPage.social.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -102,16 +102,16 @@ export default function ContactSocialMedia() {
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="social-card glass-panel glass-panel-hover p-5 sm:p-8 rounded-2xl sm:rounded-block flex flex-col justify-between cursor-pointer bg-white transition-all duration-300 border border-saffron/10"
+              className="social-card glass-panel glass-panel-hover p-5 sm:p-8 rounded-2xl sm:rounded-block flex flex-col justify-between cursor-pointer bg-white dark:bg-[#121214] transition-all duration-300 border border-saffron/10 dark:border-white/10"
             >
               <div>
                 <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-saffron/5 flex items-center justify-center mb-4 sm:mb-6">
                   {item.icon}
                 </div>
-                <h3 className="text-lg sm:text-xl font-normal text-neutral-900 mb-2 sm:mb-3 font-heading uppercase">
+                <h3 className="text-lg sm:text-xl font-normal text-neutral-900 dark:text-neutral-100 mb-2 sm:mb-3 font-heading uppercase">
                   {item.name}
                 </h3>
-                <p className="text-base md:text-sm text-slate-grey leading-[1.7] font-sans font-normal">
+                <p className="text-base md:text-sm text-slate-grey dark:text-neutral-300 leading-[1.7] font-sans font-normal">
                   {item.desc}
                 </p>
               </div>

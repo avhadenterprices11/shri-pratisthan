@@ -90,10 +90,10 @@ export default function VolunteerOpportunities() {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             {t("volunteerPage.opportunities.heading")}
           </h2>
-          <p className="text-slate-grey mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-base font-normal">
+          <p className="text-slate-grey dark:text-neutral-300 mt-2.5 sm:mt-4 font-sans leading-[1.7] sm:leading-relaxed text-base font-normal">
             {t("volunteerPage.opportunities.subtitle")}
           </p>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -105,7 +105,7 @@ export default function VolunteerOpportunities() {
             <div
               key={index}
               onClick={handleScrollToForm}
-              className="opportunity-col glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block flex flex-col justify-between cursor-pointer bg-white transition-all duration-500 border border-black/8 hover:border-saffron/30 hover:shadow-2xl flex-1 md:group-hover/container:flex-[0.8] md:hover:flex-[1.6] overflow-hidden relative group"
+              className="opportunity-col glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-block flex flex-col justify-between cursor-pointer bg-white dark:bg-[#121214] transition-all duration-500 border border-black/8 dark:border-white/10 hover:border-saffron/30 hover:shadow-2xl flex-1 md:group-hover/container:flex-[0.8] md:hover:flex-[1.6] overflow-hidden relative group"
             >
               <div className="w-full">
                 {/* Column Card Header */}
@@ -114,25 +114,25 @@ export default function VolunteerOpportunities() {
                     {item.icon}
                   </div>
                   
-                  <span className="text-xl sm:text-2xl font-normal text-neutral-200 group-hover:text-saffron/20 transition-colors duration-500 font-heading select-none pointer-events-none">
+                  <span className="text-xl sm:text-2xl font-normal text-neutral-200 dark:text-neutral-700 group-hover:text-saffron/20 transition-colors duration-500 font-heading select-none pointer-events-none">
                     0{index + 1}
                   </span>
                 </div>
                 
                 {/* Column Card Title */}
-                <h3 className="text-lg sm:text-xl font-normal text-neutral-900 font-heading mt-4 sm:mt-6 leading-snug uppercase">
+                <h3 className="text-lg sm:text-xl font-normal text-neutral-900 dark:text-neutral-100 font-heading mt-4 sm:mt-6 leading-snug uppercase">
                   {item.title}
                 </h3>
                 
                 {/* Expandable Description (Immediately readable on mobile, animated on desktop) */}
-                <p className="text-base text-slate-grey mt-2.5 sm:mt-4 leading-[1.7] font-sans font-normal opacity-100 md:opacity-0 md:max-h-0 md:group-hover:opacity-100 md:group-hover:max-h-[140px] transition-all duration-500 ease-in-out overflow-hidden">
+                <p className="text-base text-slate-grey dark:text-neutral-300 mt-2.5 sm:mt-4 leading-[1.7] font-sans font-normal opacity-100 md:opacity-0 md:max-h-0 md:group-hover:opacity-100 md:group-hover:max-h-[140px] transition-all duration-500 ease-in-out overflow-hidden">
                   {item.desc}
                 </p>
               </div>
 
               {/* Skills Footer */}
-              <div className="mt-4 sm:mt-8 pt-3 sm:pt-4 border-t border-saffron/10 w-full">
-                <span className="text-xs uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] text-saffron bg-saffron/5 border border-saffron/10 px-2.5 py-1 rounded inline-block font-sans">
+              <div className="mt-4 sm:mt-8 pt-3 sm:pt-4 border-t border-saffron/10 dark:border-white/10 w-full">
+                <span className="text-xs uppercase font-bold tracking-[0.16em] sm:tracking-[0.2em] text-saffron bg-saffron/5 dark:bg-saffron/10 border border-saffron/10 dark:border-saffron/30 px-2.5 py-1 rounded inline-block font-sans">
                   Skills: {item.skills}
                 </span>
               </div>

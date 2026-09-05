@@ -31,7 +31,7 @@ export default function GalleryFilters({
             className={`font-bold text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] px-4 sm:px-6 py-2 sm:py-3 rounded-full border transition-all cursor-pointer font-sans ${
               activeCategory === item.id
                 ? "bg-saffron text-white border-saffron shadow-md"
-                : "bg-white/40 text-slate-grey border-saffron/10 hover:border-saffron/40 hover:bg-white/60 backdrop-blur-sm"
+                : "bg-white/40 dark:bg-[#121214] text-slate-grey dark:text-neutral-300 border-saffron/10 dark:border-white/10 hover:border-saffron/40 dark:hover:border-white/20 hover:bg-white/60 dark:hover:bg-[#18181b] backdrop-blur-sm"
             }`}
           >
             {item.label}

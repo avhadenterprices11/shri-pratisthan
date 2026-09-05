@@ -46,11 +46,11 @@ function FieldError({ message }: { message?: string }) {
 
 function inputClass(hasError?: boolean) {
   return [
-    "w-full bg-slate-50/50 border rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm text-neutral-900 font-sans",
-    "focus:outline-none focus:bg-white transition-all",
+    "w-full bg-slate-50/50 dark:bg-white/5 border rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm text-neutral-900 dark:text-neutral-100 font-sans",
+    "focus:outline-none focus:bg-white dark:focus:bg-white/10 transition-all",
     hasError
-      ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100"
-      : "border-slate-200 focus:border-saffron",
+      ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-100 dark:focus:ring-red-950"
+      : "border-slate-200 dark:border-white/15 focus:border-saffron",
   ].join(" ");
 }
 
@@ -177,20 +177,20 @@ export default function JoinMission() {
     <section
       id="join-mission"
       ref={containerRef}
-      className="pt-10 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
+      className="pt-12 sm:pt-14 md:pt-16 pb-12 sm:pb-16 md:pb-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 animate-pulse" />
       <div className="max-w-5xl mx-auto relative z-10 join-reveal">
-        <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white border border-saffron/10 shadow-2xl">
+        <div className="glass-panel p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-block bg-white dark:bg-[#121214] border border-saffron/10 dark:border-white/10 shadow-2xl">
 
           <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-            <span className="text-saffron font-bold text-xs uppercase tracking-[0.25em] block mb-2 font-sans">
+            <span className="text-saffron font-bold text-xs sm:text-sm uppercase tracking-[0.25em] block mb-2 font-sans">
               {t("communityPage.joinMission.badge")}
             </span>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+            <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-snug uppercase py-1">
               {t("communityPage.joinMission.heading")}
             </h2>
-            <p className="text-slate-grey mt-2.5 sm:mt-3 text-base font-sans leading-[1.7] sm:leading-relaxed font-normal">
+            <p className="text-slate-grey mt-2.5 sm:mt-3 text-base md:text-lg font-sans leading-[1.75] font-normal">
               {t("communityPage.joinMission.subtitle")}
             </p>
             <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -221,7 +221,7 @@ export default function JoinMission() {
 
               {/* Global error banner */}
               {status === "error" && errorMessage && (
-                <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-xs sm:text-sm text-red-700 font-sans">
+                <div className="flex items-start gap-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/40 rounded-xl px-4 py-3 text-xs sm:text-sm text-red-700 dark:text-red-400 font-sans">
                   <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                   <span>{errorMessage}</span>
                 </div>
@@ -229,7 +229,7 @@ export default function JoinMission() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="jm-name" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="jm-name" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                     {t("communityPage.joinMission.nameLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -246,7 +246,7 @@ export default function JoinMission() {
                 </div>
 
                 <div className="space-y-1.5 sm:space-y-2">
-                  <label htmlFor="jm-contact" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                  <label htmlFor="jm-contact" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                     {t("communityPage.joinMission.contactLabel")} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -265,14 +265,14 @@ export default function JoinMission() {
 
               {/* Premium Custom Dropdown */}
               <div className="space-y-1.5 sm:space-y-2 relative" ref={dropdownRef}>
-                <label id="jm-interest" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                <label id="jm-interest" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                   {t("communityPage.joinMission.interestLabel")}
                 </label>
                 <button
                   type="button"
                   disabled={status === "loading"}
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-full bg-slate-50/50 hover:bg-white border border-slate-200 focus:border-saffron rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm text-neutral-900 flex items-center justify-between transition-all cursor-pointer shadow-xs disabled:opacity-60 disabled:cursor-not-allowed font-sans"
+                  className="w-full bg-slate-50/50 dark:bg-[#18181b] hover:bg-white dark:hover:bg-[#202024] border border-slate-200 dark:border-white/15 focus:border-saffron rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm text-neutral-900 dark:text-neutral-100 flex items-center justify-between transition-all cursor-pointer shadow-xs disabled:opacity-60 disabled:cursor-not-allowed font-sans"
                 >
                   <span className="font-normal text-left truncate">
                     {INTEREST_OPTIONS.find((opt) => opt.value === formData.interest)?.label}
@@ -281,7 +281,7 @@ export default function JoinMission() {
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute left-0 right-0 top-full mt-2 bg-white/95 backdrop-blur-xl border border-saffron/25 rounded-xl shadow-2xl z-50 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 font-sans">
+                  <div className="absolute left-0 right-0 top-full mt-2 bg-white/95 dark:bg-[#18181b]/95 backdrop-blur-xl border border-saffron/25 dark:border-white/15 rounded-xl shadow-2xl z-50 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 font-sans">
                     {INTEREST_OPTIONS.map((opt) => (
                       <div
                         key={opt.value}
@@ -292,7 +292,7 @@ export default function JoinMission() {
                         className={`px-3.5 sm:px-4 py-2 sm:py-2.5 text-base sm:text-sm cursor-pointer flex items-center justify-between transition-colors ${
                           formData.interest === opt.value
                             ? "bg-saffron/10 text-saffron font-bold"
-                            : "text-neutral-900 hover:bg-saffron/5 font-normal"
+                            : "text-neutral-900 dark:text-neutral-200 hover:bg-saffron/5 dark:hover:bg-white/5 font-normal"
                         }`}
                       >
                         <span className="truncate">{opt.label}</span>
@@ -304,7 +304,7 @@ export default function JoinMission() {
               </div>
 
               <div className="space-y-1.5 sm:space-y-2">
-                <label htmlFor="jm-message" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 block font-sans">
+                <label htmlFor="jm-message" className="text-xs uppercase font-bold tracking-[0.18em] text-neutral-900 dark:text-neutral-200 block font-sans">
                   {t("communityPage.joinMission.messageLabel")}
                 </label>
                 <textarea

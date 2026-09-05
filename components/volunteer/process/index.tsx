@@ -152,7 +152,7 @@ export default function VolunteerProcess() {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-3 sm:mb-8 md:mb-12 px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             {t("volunteerPage.process.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 sm:mt-4 rounded-full" />
@@ -160,7 +160,7 @@ export default function VolunteerProcess() {
 
         {/* Scroll Instruction Banner */}
         <div className="text-center mb-4 sm:mb-6">
-          <span className="text-xs text-slate-grey/70 font-bold uppercase tracking-[0.2em] bg-black/5 px-3.5 sm:px-4 py-1.5 rounded-full inline-block font-sans select-none">
+          <span className="text-xs text-slate-grey/70 dark:text-neutral-300 font-bold uppercase tracking-[0.2em] bg-black/5 dark:bg-white/10 px-3.5 sm:px-4 py-1.5 rounded-full inline-block font-sans select-none">
             {t("volunteerPage.process.scrollInstruction")}
           </span>
         </div>
@@ -213,7 +213,7 @@ export default function VolunteerProcess() {
                   className={`absolute -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full border flex items-center justify-center text-sm font-normal font-heading shadow-md cursor-pointer transition-all duration-300 ${
                     isActive 
                       ? "bg-saffron text-white border-saffron scale-115 shadow-xl shadow-saffron/40 z-20 ring-4 ring-saffron/20" 
-                      : "bg-white text-slate-grey border-saffron/20 hover:border-saffron hover:text-saffron z-10 hover:scale-105"
+                      : "bg-white dark:bg-[#121214] text-slate-grey dark:text-neutral-300 border-saffron/20 dark:border-white/10 hover:border-saffron hover:text-saffron z-10 hover:scale-105"
                   }`}
                 >
                   {stage.step}
@@ -238,7 +238,7 @@ export default function VolunteerProcess() {
                         ? "bg-saffron border-saffron text-white shadow-lg scale-102" 
                         : isPassed
                         ? "bg-saffron/10 border-saffron/30 text-saffron"
-                        : "bg-white/90 border-black/8 text-slate-grey"
+                        : "bg-white/90 dark:bg-[#121214] border-black/8 dark:border-white/10 text-slate-grey dark:text-neutral-300"
                     }`}
                   >
                     <span className="text-[11px] font-bold uppercase tracking-wider font-heading leading-none">
@@ -252,7 +252,7 @@ export default function VolunteerProcess() {
               })}
             </div>
             {/* Progress bar line */}
-            <div className="w-full bg-black/5 h-1.5 rounded-full overflow-hidden">
+            <div className="w-full bg-black/5 dark:bg-white/10 h-1.5 rounded-full overflow-hidden">
               <div 
                 className="bg-saffron h-full transition-all duration-300 rounded-full"
                 style={{ width: `${((activeIdx + 1) / STAGES.length) * 100}%` }}
@@ -262,17 +262,17 @@ export default function VolunteerProcess() {
 
           {/* Right Column: Display Card Panel */}
           <div className="md:col-span-7 w-full">
-            <div className="glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block bg-white border border-saffron/15 shadow-2xl relative min-h-[190px] sm:min-h-[200px] flex flex-col justify-between overflow-hidden">
+            <div className="glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block bg-white dark:bg-[#121214] border border-saffron/15 dark:border-white/10 shadow-2xl relative min-h-[190px] sm:min-h-[200px] flex flex-col justify-between overflow-hidden">
               <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-20 z-0" />
               
               <div ref={detailsRef} className="relative z-10 text-left">
                 {/* Stage Title */}
-                <h3 className="text-lg sm:text-2xl md:text-3xl font-normal text-neutral-900 mb-2 sm:mb-3 font-heading leading-snug uppercase">
+                <h3 className="text-lg sm:text-2xl md:text-3xl font-normal text-neutral-900 dark:text-neutral-100 mb-2 sm:mb-3 font-heading leading-snug uppercase">
                   {STAGES[activeIdx].title}
                 </h3>
                 
                 {/* Description */}
-                <p className="text-slate-grey text-base leading-[1.7] sm:leading-[1.75] font-sans font-normal">
+                <p className="text-slate-grey dark:text-neutral-300 text-base leading-[1.7] sm:leading-[1.75] font-sans font-normal">
                   {STAGES[activeIdx].desc}
                 </p>
               </div>

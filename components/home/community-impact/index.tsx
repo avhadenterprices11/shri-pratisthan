@@ -118,7 +118,7 @@ export default function CommunityImpact() {
         
         {/* Editorial Heading Section */}
         <div className="max-w-3xl mb-8 sm:mb-14 md:mb-24">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-foreground tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-foreground tracking-tight font-heading leading-snug uppercase py-1">
             {t("communityImpact.title")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mt-3 sm:mt-6 rounded-full" />
@@ -136,7 +136,7 @@ export default function CommunityImpact() {
               )}
             >
               {/* Giant Metric Number */}
-              <div className="text-4xl sm:text-5xl lg:text-6xl font-normal text-saffron font-heading tracking-tight leading-none flex items-baseline select-none">
+              <div className="text-3xl sm:text-4xl lg:text-[48px] font-normal text-saffron font-heading tracking-tight leading-tight py-1 flex items-baseline select-none">
                 <span id={`stat-val-${index}`} className={`count-number count-number-${index}`} data-target={item.value}>
                   {item.value}
                 </span>
@@ -149,12 +149,12 @@ export default function CommunityImpact() {
               </div>
 
               {/* Title label */}
-              <span className="text-xs uppercase font-bold tracking-[0.2em] text-slate-800 mt-3 sm:mt-4 block font-sans">
+              <span className="text-xs sm:text-sm uppercase font-bold tracking-[0.2em] text-slate-800 dark:text-neutral-200 mt-3 sm:mt-4 block font-sans">
                 {item.label}
               </span>
 
               {/* Styled Image Capsule/Frame */}
-              <div className="relative w-full aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden border border-saffron/10 mt-3 sm:mt-5 mb-3 sm:mb-5 shadow-md">
+              <div className="relative w-full aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden border border-saffron/10 dark:border-white/10 mt-3 sm:mt-5 mb-3 sm:mb-5 shadow-md">
                 <Image
                   src={item.image}
                   alt={item.label}

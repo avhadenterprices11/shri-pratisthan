@@ -96,7 +96,7 @@ export default function VolunteerCTA({
       <div className="max-w-7xl mx-auto relative z-10 volunteer-canvas">
         
         {/* Typographic Canvas Card */}
-        <div className="w-full bg-[#FFFDF9] border border-saffron/15 rounded-2xl sm:rounded-[2.5rem] py-8 sm:py-10 md:py-14 px-4 sm:px-8 md:px-16 shadow-lg text-center flex flex-col items-center justify-center max-w-7xl mx-auto relative overflow-hidden">
+        <div className="w-full bg-[#FFFDF9] dark:bg-[#121214] border border-saffron/15 dark:border-white/10 rounded-2xl sm:rounded-[2.5rem] py-8 sm:py-10 md:py-14 px-4 sm:px-8 md:px-16 shadow-lg text-center flex flex-col items-center justify-center max-w-7xl mx-auto relative overflow-hidden">
           
           {/* Heritage Corner Borders */}
           <div className="absolute top-3 left-3 sm:top-6 sm:left-6 w-4 h-4 sm:w-8 sm:h-8 border-t-2 border-l-2 border-saffron/20 pointer-events-none" />
@@ -105,12 +105,12 @@ export default function VolunteerCTA({
           <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 w-4 h-4 sm:w-8 sm:h-8 border-b-2 border-r-2 border-saffron/20 pointer-events-none" />
 
           {/* Massive Display Typography */}
-          <h2 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-slate-800 tracking-tight font-heading leading-tight uppercase max-w-4xl mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-slate-800 dark:text-neutral-100 tracking-tight font-heading leading-snug uppercase max-w-4xl mb-4 sm:mb-6 py-1">
             {displayTitle}
           </h2>
 
           {/* Clean Description */}
-          <p className="text-slate-grey text-base leading-[1.75] max-w-2xl mb-6 sm:mb-8 font-normal font-sans">
+          <p className="text-slate-grey dark:text-neutral-300 text-base md:text-lg leading-[1.75] max-w-2xl mb-6 sm:mb-8 font-normal font-sans">
             {displayDesc}
           </p>
 
@@ -128,7 +128,7 @@ export default function VolunteerCTA({
                 variant="themed"
                 size="lg"
                 icon={<ArrowRight className="w-4 h-4" />}
-                className="text-xs uppercase font-bold tracking-[0.2em] font-sans cursor-pointer w-full sm:w-auto"
+                className="text-xs sm:text-sm uppercase font-bold tracking-[0.2em] font-sans cursor-pointer w-full sm:w-auto"
                 data-hover="pointer"
               >
                 {displayBtn}

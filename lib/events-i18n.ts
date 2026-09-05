@@ -419,9 +419,70 @@ export const EVENT_LOCALIZATIONS: Record<
         "Celebrating the architect of the Indian Constitution with free educational books distribution, constitutional awareness seminars, and scholarships for meritorious students.",
       categoryLabel: "Social Harmony & Education",
       date: "Apr 14, 2026",
+      time: "08:30 AM – 06:00 PM",
       location: "Pratishtan Seva Bhavan, Indira Nagar, Nashik",
+      venueName: "Pratishtan Seva Bhavan",
+      addressLine1: "Plot 45, Seva Bhavan Road, Indira Nagar",
+      addressLine2: "Near Municipal Library",
+      city: "Nashik",
+      state: "Maharashtra",
+      country: "India",
+      eventMode: "In-Person",
+      checkInMode: "Free Open Gate",
+      emergencyContactName: "Education & Welfare Desk",
       metricLabel: "Students Benefited",
       metricValue: "1,500+",
+      allMetrics: [
+        { label: "Students Honored", value: "300+ Meritorious Students" },
+        { label: "Books & Kits Distributed", value: "1,500+ Notebooks" },
+        { label: "Health Consultations", value: "500+ Free Checkups" },
+        { label: "Community Harmony Reach", value: "Whole Indira Nagar" },
+      ],
+      accessibilityInfo: [
+        "Ground floor accessible hall with wheelchair ramps",
+        "Sign language interpreters available for keynote address",
+        "Free medical checkup counter on-site",
+      ],
+      organizedDetails: [
+        {
+          heading: "Educational Kit Distribution Drive",
+          content:
+            "Free distribution of complete notebook sets, geometry boxes, and bags to primary and secondary school students from low-income families.",
+        },
+        {
+          heading: "Merit Felicitation Program",
+          content:
+            "Annual award ceremony honoring 10th and 12th board high scorers from the Indira Nagar locality.",
+        },
+      ],
+      agenda: [
+        {
+          time: "08:30 AM",
+          title: "Floral Tribute & Constitution Reading",
+          description: "Reading the Preamble of the Constitution of India.",
+        },
+        {
+          time: "11:00 AM",
+          title: "Educational Kits Distribution",
+          description: "Handing over study materials to school students.",
+        },
+        {
+          time: "03:00 PM",
+          title: "Academic Merit Felicitation Ceremony",
+          description: "Awards and certificates presented to top students.",
+        },
+        {
+          time: "05:00 PM",
+          title: "Social Equality Seminar",
+          description: "Discussions on youth education and community upliftment.",
+        },
+      ],
+      partners: [
+        { name: "Nashik Student Education Foundation", role: "Academic Partner" },
+      ],
+      sponsors: [
+        { name: "Vidya Book House Nashik", tier: "Powered By" },
+      ],
     },
     mr: {
       title: "डॉ. बाबासाहेब आंबेडकर जयंती २०२६",
@@ -430,9 +491,70 @@ export const EVENT_LOCALIZATIONS: Record<
         "भारतीय संविधानाचे शिल्पकार डॉ. बाबासाहेब आंबेडकर यांच्या जयंतीनिमित्त मोफत शैक्षणिक साहित्य वाटप, संविधान जागृती व्याख्याने व गुणवंत विद्यार्थ्यांचा सत्कार.",
       categoryLabel: "सामाजिक समता व शिक्षण",
       date: "१४ एप्रिल २०२६",
+      time: "सकाळी ०८:३० – संध्याकाळी ०६:००",
       location: "प्रतिष्ठान सेवा भवन, इंदिरा नगर, नाशिक",
+      venueName: "प्रतिष्ठान सेवा भवन",
+      addressLine1: "प्लॉट ४५, सेवा भवन मार्ग, इंदिरा नगर",
+      addressLine2: "मनपा वाचनालयाजवळ",
+      city: "नाशिक",
+      state: "महाराष्ट्र",
+      country: "भारत",
+      eventMode: "प्रत्यक्ष उपस्थिती",
+      checkInMode: "मोफत खुला प्रवेश",
+      emergencyContactName: "शिक्षण व समाजकल्याण कक्ष",
       metricLabel: "लाभार्थी विद्यार्थी",
       metricValue: "१,५००+",
+      allMetrics: [
+        { label: "गुणवंत विद्यार्थी सत्कार", value: "३००+ विद्यार्थी" },
+        { label: "शैक्षणिक साहित्य वाटप", value: "१,५००+ वह्या व संच" },
+        { label: "आरोग्य तपासणी व सल्ला", value: "५००+ मोफत तपासण्या" },
+        { label: "सामाजिक समता प्रसार", value: "संपूर्ण इंदिरा नगर" },
+      ],
+      accessibilityInfo: [
+        "व्हीलचेअर रॅम्पसह तळमजल्यावरील सुलभ सभागृह",
+        "मुख्य भाषणादरम्यान सांकेतिक भाषा दुभाषा उपलब्ध",
+        "सभागृहात मोफत आरोग्य तपासणी कक्ष उपलब्ध",
+      ],
+      organizedDetails: [
+        {
+          heading: "शैक्षणिक साहित्य वाटप मोहीम",
+          content:
+            "गरजू प्राथमिक व माध्यमिक शालेय विद्यार्थ्यांना संपूर्ण वही संच, कंपास पेटी व स्कूल बॅगचे मोफत वाटप.",
+        },
+        {
+          heading: "गुणवंत विद्यार्थी सत्कार समारंभ",
+          content:
+            "इंदिरा नगर परिसरातील दहावी व बारावी बोर्ड परीक्षेत विशेष यश संपादन करणाऱ्या विद्यार्थ्यांचा गौरव.",
+        },
+      ],
+      agenda: [
+        {
+          time: "सकाळी ०८:३०",
+          title: "पुष्पहार अर्पण व संविधान उद्देशिका वाचन",
+          description: "भारतीय संविधानाच्या उद्देशिकेचे सामूहिक वाचन.",
+        },
+        {
+          time: "सकाळी ११:००",
+          title: "शैक्षणिक साहित्य वाटप",
+          description: "शालेय विद्यार्थ्यांना मोफत वह्या व शैक्षणिक साहित्याचे वाटप.",
+        },
+        {
+          time: "दुपारी ०३:००",
+          title: "गुणवंत विद्यार्थी गौरव सोहळा",
+          description: "विशेष प्रावीण्य मिळवणाऱ्या विद्यार्थ्यांना प्रमाणपत्र व सन्मानचिन्ह प्रदान.",
+        },
+        {
+          time: "संध्याकाळी ०५:००",
+          title: "सामाजिक समता परिसंवाद",
+          description: "युवा शिक्षण व समाज प्रबोधनावर विचारवंतांचे मार्गदर्शन.",
+        },
+      ],
+      partners: [
+        { name: "नाशिक विद्यार्थी शिक्षण फाउंडेशन", role: "शैक्षणिक सहयोगी" },
+      ],
+      sponsors: [
+        { name: "विद्या बुक हाऊस नाशिक", tier: "Powered By" },
+      ],
     },
     hi: {
       title: "डॉ. बाबासाहेब आंबेडकर जयंती 2026",
@@ -441,9 +563,70 @@ export const EVENT_LOCALIZATIONS: Record<
         "संविधान निर्माता डॉ. बाबासाहेब आंबेडकर की जयंती पर निःशुल्क अध्ययन सामग्री वितरण, संविधान जागरूकता संगोष्ठी एवं मेधावी छात्रों का अभिनंदन।",
       categoryLabel: "सामाजिक समरसता एवं शिक्षा",
       date: "14 अप्रैल 2026",
+      time: "प्रातः 08:30 – सायं 06:00",
       location: "प्रतिष्ठान सेवा भवन, इंदिरा नगर, नाशिक",
+      venueName: "प्रतिष्ठान सेवा भवन",
+      addressLine1: "प्लॉट 45, सेवा भवन मार्ग, इंदिरा नगर",
+      addressLine2: "नगर निगम पुस्तकालय के पास",
+      city: "नाशिक",
+      state: "महाराष्ट्र",
+      country: "भारत",
+      eventMode: "प्रत्यक्ष उपस्थिति",
+      checkInMode: "निःशुल्क खुला प्रवेश",
+      emergencyContactName: "शिक्षा एवं समाज कल्याण कक्ष",
       metricLabel: "लाभान्वित विद्यार्थी",
       metricValue: "1,500+",
+      allMetrics: [
+        { label: "मेधावी छात्र सम्मान", value: "300+ विद्यार्थी" },
+        { label: "शैक्षणिक सामग्री वितरण", value: "1,500+ पुस्तकें व किट" },
+        { label: "स्वास्थ्य परामर्श", value: "500+ निःशुल्क जांच" },
+        { label: "सामुदायिक समरसता प्रसार", value: "संपूर्ण इंदिरा नगर" },
+      ],
+      accessibilityInfo: [
+        "व्हीलचेयर रैंप सहित भूतल पर सुगम सभागार",
+        "मुख्य भाषण के लिए सांकेतिक भाषा दुभाषिया उपलब्ध",
+        "परिसर में निःशुल्क स्वास्थ्य जांच केंद्र उपलब्ध",
+      ],
+      organizedDetails: [
+        {
+          heading: "शैक्षणिक सामग्री वितरण अभियान",
+          content:
+            "जरूरतमंद प्राथमिक व माध्यमिक स्कूली छात्रों को नोटबुक सेट, ज्यामिति बॉक्स एवं बैग का निःशुल्क वितरण।",
+        },
+        {
+          heading: "मेधावी छात्र अभिनंदन समारोह",
+          content:
+            "इंदिरा नगर क्षेत्र के 10वीं व 12वीं बोर्ड परीक्षा में उत्कृष्ट प्रदर्शन करने वाले विद्यार्थियों का सम्मान।",
+        },
+      ],
+      agenda: [
+        {
+          time: "प्रातः 08:30",
+          title: "पुष्पांजलि एवं संविधान उद्देशिका वाचन",
+          description: "भारतीय संविधान की उद्देशिका का सामूहिक वाचन।",
+        },
+        {
+          time: "पूर्वाह्न 11:00",
+          title: "शैक्षणिक किट वितरण",
+          description: "स्कूली विद्यार्थियों को अध्ययन सामग्री का वितरण।",
+        },
+        {
+          time: "अपराह्न 03:00",
+          title: "मेधावी छात्र सम्मान समारोह",
+          description: "शीर्ष प्रदर्शन करने वाले छात्रों को पुरस्कार एवं प्रमाणपत्र प्रदान।",
+        },
+        {
+          time: "सायं 05:00",
+          title: "सामाजिक समरसता संगोष्ठी",
+          description: "युवा शिक्षा एवं समाजोत्थान पर परिचर्चा।",
+        },
+      ],
+      partners: [
+        { name: "नाशिक छात्र शिक्षा फाउंडेशन", role: "शैक्षणिक सहयोगी" },
+      ],
+      sponsors: [
+        { name: "विद्या बुक हाउस नाशिक", tier: "Powered By" },
+      ],
     },
   },
   "blood-donation-camp-2026": {

@@ -69,7 +69,7 @@ export default function PhotoGallery() {
         
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-6">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             {t("galleryPage.photoGallery.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
@@ -92,7 +92,7 @@ export default function PhotoGallery() {
               <Link 
                 href={`/gallery/${item.id}`}
                 key={item.id || index}
-                className={`photo-card-row group relative overflow-hidden rounded-2xl sm:rounded-block border border-saffron/10 shadow-md flex flex-col justify-between p-4 sm:p-6 transition-all duration-500 hover:shadow-2xl cursor-pointer ${layout.widthClass} ${layout.aspectClass}`}
+                className={`photo-card-row group relative overflow-hidden rounded-2xl sm:rounded-block border border-saffron/10 dark:border-white/10 shadow-md flex flex-col justify-between p-4 sm:p-6 transition-all duration-500 hover:shadow-2xl cursor-pointer ${layout.widthClass} ${layout.aspectClass}`}
               >
                 {/* Background Image */}
                 <Image 
@@ -107,7 +107,7 @@ export default function PhotoGallery() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent group-hover:via-black/45 transition-all duration-300 z-10" />
 
                 {/* Tag */}
-                <div className="relative z-20 self-start bg-white/90 text-saffron font-bold text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-saffron/20 shadow-sm font-sans">
+                <div className="relative z-20 self-start bg-white/90 dark:bg-[#18181b] text-saffron font-bold text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-saffron/20 dark:border-white/10 shadow-sm font-sans">
                   {localized.category}
                 </div>
 

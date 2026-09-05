@@ -89,7 +89,7 @@ export default function AboutAchievements() {
   return (
     <section 
       ref={containerRef} 
-      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 xl:px-24 bg-[#FFFDF9] border-t border-saffron/10 relative overflow-hidden select-none z-10"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 xl:px-24 bg-[#FFFDF9] dark:bg-background border-t border-saffron/10 dark:border-white/10 relative overflow-hidden select-none z-10"
     >
       {/* Animation keyframes for badge spin are defined in globals.css */}
 
@@ -108,13 +108,13 @@ export default function AboutAchievements() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-saffron/15 mb-8 sm:mb-16 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-saffron/15 dark:border-white/10 mb-8 sm:mb-16 relative z-10">
           <div className="flex flex-col items-start gap-2 sm:gap-3">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 font-heading uppercase leading-tight tracking-tight">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 dark:text-neutral-100 font-heading uppercase leading-tight tracking-tight">
               {t("aboutPage.achievements.heading")}
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
+          <p className="text-xs sm:text-sm text-slate-grey dark:text-neutral-300 max-w-md font-sans font-normal leading-[1.75]">
             {t("aboutPage.achievements.subtitle")}
           </p>
         </div>
@@ -124,11 +124,11 @@ export default function AboutAchievements() {
           {AWARDS.map((item, index) => (
             <div 
               key={index}
-              className="achievement-badge-card flex flex-col items-center text-center p-6 sm:p-8 md:p-10 bg-white border border-saffron/15 rounded-2xl sm:rounded-[3rem] shadow-xl shadow-saffron/5 hover:border-saffron/30 hover:shadow-2xl transition-all duration-500 group relative cursor-default"
+              className="achievement-badge-card flex flex-col items-center text-center p-6 sm:p-8 md:p-10 bg-white dark:bg-[#121214] border border-saffron/15 dark:border-white/10 rounded-2xl sm:rounded-[3rem] shadow-xl shadow-saffron/5 hover:border-saffron/30 hover:shadow-2xl transition-all duration-500 group relative cursor-default"
             >
               
               {/* Emblem Badge Dial */}
-              <div className="achievement-badge-dial w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-[#FFFDF9] border border-saffron/15 flex items-center justify-center relative overflow-visible mb-5 sm:mb-8 shadow-inner">
+              <div className="achievement-badge-dial w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-[#FFFDF9] dark:bg-[#18181b] border border-saffron/15 dark:border-white/10 flex items-center justify-center relative overflow-visible mb-5 sm:mb-8 shadow-inner">
                 
                 {/* Rotating SVG Curved Label */}
                 <svg className="absolute inset-0 w-full h-full animate-spin-slow-badge opacity-50 group-hover:opacity-90 transition-opacity" viewBox="0 0 100 100">
@@ -148,17 +148,17 @@ export default function AboutAchievements() {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg sm:text-lg md:text-xl font-normal text-slate-800 font-heading uppercase tracking-tight mb-2 sm:mb-3 group-hover:text-saffron transition-colors duration-350 leading-snug">
+              <h3 className="text-lg sm:text-lg md:text-xl font-normal text-slate-800 dark:text-neutral-100 font-heading uppercase tracking-tight mb-2 sm:mb-3 group-hover:text-saffron transition-colors duration-350 leading-snug">
                 {item.title}
               </h3>
               
               {/* Description */}
-              <p className="text-base text-slate-grey leading-[1.7] font-sans font-normal max-w-xs transition-transform duration-500 translate-y-1 group-hover:translate-y-0">
+              <p className="text-base text-slate-grey dark:text-neutral-300 leading-[1.7] font-sans font-normal max-w-xs transition-transform duration-500 translate-y-1 group-hover:translate-y-0">
                 {item.desc}
               </p>
 
               {/* Verified Stamp tag */}
-              <div className="mt-5 sm:mt-8 text-xs text-saffron uppercase font-bold tracking-[0.2em] border border-saffron/20 bg-saffron/5 px-3.5 sm:px-4.5 py-1.5 rounded-full font-sans shadow-sm transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+              <div className="mt-5 sm:mt-8 text-xs text-saffron uppercase font-bold tracking-[0.2em] border border-saffron/20 dark:border-saffron/30 bg-saffron/5 dark:bg-saffron/10 px-3.5 sm:px-4.5 py-1.5 rounded-full font-sans shadow-sm transition-all duration-500 translate-y-2 group-hover:translate-y-0">
                 {t("aboutPage.achievements.validationTag")}
               </div>
 

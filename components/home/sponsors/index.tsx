@@ -36,23 +36,35 @@ export default function Sponsors() {
       ease: "none",
     });
 
+    let isAccelerated = false;
     let stopTimer: NodeJS.Timeout | null = null;
 
-    // Velocity observer to scale marquee animation speed on scroll speed
+    // Velocity observer to scale marquee animation speed smoothly on scroll speed
     const trigger = ScrollTrigger.create({
       trigger: marquee,
       start: "top bottom",
       end: "bottom top",
       onUpdate: (self) => {
         const velocity = Math.abs(self.getVelocity());
-        if (velocity < 60) return;
-        const targetScale = 1 + Math.min(velocity / 400, 2);
+        if (velocity < 80) return;
+        const targetScale = Math.min(1 + velocity / 350, 2.5);
         anim.timeScale(targetScale);
+        isAccelerated = true;
 
         if (stopTimer) clearTimeout(stopTimer);
         stopTimer = setTimeout(() => {
-          gsap.to(anim, { timeScale: 1, duration: 0.6, ease: "power1.out", overwrite: "auto" });
-        }, 120);
+          if (isAccelerated) {
+            gsap.to(anim, {
+              timeScale: 1,
+              duration: 0.5,
+              ease: "power2.out",
+              overwrite: "auto",
+              onComplete: () => {
+                isAccelerated = false;
+              },
+            });
+          }
+        }, 100);
       },
     });
 
@@ -98,7 +110,7 @@ export default function Sponsors() {
                 className={`text-base sm:text-2xl font-normal font-heading tracking-widest uppercase transition-all duration-300 transform hover:scale-105 whitespace-nowrap ${
                   isEven
                     ? "text-saffron hover:text-gold"
-                    : "text-slate-grey hover:text-saffron"
+                    : "text-slate-grey dark:text-neutral-300 hover:text-saffron"
                 }`}
                 data-hover="pointer"
               >

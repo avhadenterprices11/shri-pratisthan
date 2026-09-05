@@ -31,10 +31,10 @@ export default function EventsGrid({ events }: EventsGridProps) {
           return (
             <div
               key={event.id}
-              className="group bg-white border border-neutral-200/90 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-saffron/40 transition-all duration-500 flex flex-col justify-between"
+              className="group bg-white dark:bg-[#121214] border border-neutral-200/90 dark:border-white/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-saffron/40 transition-all duration-500 flex flex-col justify-between"
             >
               {/* Image Box */}
-              <div className="relative h-44 sm:h-52 w-full overflow-hidden bg-neutral-100">
+              <div className="relative h-44 sm:h-52 w-full overflow-hidden bg-neutral-100 dark:bg-neutral-900">
                 <Image
                   src={event.mainImage}
                   alt={event.title}
@@ -81,16 +81,16 @@ export default function EventsGrid({ events }: EventsGridProps) {
               {/* Content Body */}
               <div className="p-3.5 sm:p-4 flex-grow flex flex-col justify-between">
                 <div>
-                  <h3 className="text-base sm:text-lg font-normal font-heading text-neutral-900 leading-snug group-hover:text-saffron transition-colors uppercase">
+                  <h3 className="text-base sm:text-lg font-normal font-heading text-neutral-900 dark:text-neutral-100 leading-snug group-hover:text-saffron transition-colors uppercase">
                     {event.title}
                   </h3>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="pt-3 flex items-center justify-between gap-2 border-t border-neutral-100 mt-3">
+                <div className="pt-3 flex items-center justify-between gap-2 border-t border-neutral-100 dark:border-white/10 mt-3">
                   <Link
                     href={`/events/${event.id}`}
-                    className="flex-1 py-2 px-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] text-center transition-all flex items-center justify-center gap-1.5 font-sans"
+                    className="flex-1 py-2 px-3 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-900 dark:text-neutral-100 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] text-center transition-all flex items-center justify-center gap-1.5 font-sans"
                   >
                     {t("eventsPage.allEvents.detailsBtn")} <ArrowRight className="w-3.5 h-3.5 text-saffron" />
                   </Link>

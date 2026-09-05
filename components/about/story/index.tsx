@@ -104,7 +104,7 @@ export default function AboutStory() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full bg-[#FFFDF9] py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 xl:px-24 border-t border-saffron/10 z-10 select-none"
+      className="relative w-full bg-[#FFFDF9] dark:bg-background py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 xl:px-24 border-t border-saffron/10 dark:border-white/10 z-10 select-none"
     >
       {/* Background Grid Accent */}
       <div 
@@ -123,16 +123,16 @@ export default function AboutStory() {
         {/* Left Column: Sticky Sidebar Info & Giant Year */}
         <div className="w-full lg:w-5/12 lg:sticky lg:top-[16vh] flex flex-col items-start gap-4 sm:gap-6 z-20 will-change-transform">
 
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 tracking-tight uppercase font-heading leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-slate-800 dark:text-neutral-100 tracking-tight uppercase font-heading leading-snug py-1">
             {t("aboutPage.story.heading")}
           </h2>
           
-          <p className="text-base text-slate-grey max-w-md leading-[1.75] font-sans font-normal">
+          <p className="text-base md:text-lg text-slate-grey dark:text-neutral-300 max-w-md leading-[1.75] font-sans font-normal">
             {t("aboutPage.story.subtitle")}
           </p>
 
           {/* Giant Active Year Indicator display */}
-          <div className="relative overflow-hidden h-[70px] sm:h-[100px] md:h-[130px] w-full mt-2 sm:mt-4 flex items-center justify-start border-t border-saffron/15 pt-3 sm:pt-6">
+          <div className="relative overflow-hidden h-[70px] sm:h-[100px] md:h-[130px] w-full mt-2 sm:mt-4 flex items-center justify-start border-t border-saffron/15 dark:border-white/10 pt-3 sm:pt-6">
             {/* Outline Shadow Text */}
             <div className="absolute left-0 text-5xl sm:text-7xl md:text-8xl font-normal text-saffron/10 font-heading select-none uppercase tracking-tight leading-none">
               {activeYear}
@@ -153,11 +153,11 @@ export default function AboutStory() {
             return (
               <div
                 key={step.year}
-                className="story-card-item w-full bg-white border border-saffron/15 rounded-2xl sm:rounded-[2.5rem] p-5 sm:p-8 md:p-10 shadow-xl shadow-saffron/5 flex flex-col gap-4 sm:gap-6 transition-all duration-300 hover:border-saffron/30 hover:shadow-2xl will-change-transform"
+                className="story-card-item w-full bg-white dark:bg-[#121214] border border-saffron/15 dark:border-white/10 rounded-2xl sm:rounded-[2.5rem] p-5 sm:p-8 md:p-10 shadow-xl shadow-saffron/5 flex flex-col gap-4 sm:gap-6 transition-all duration-300 hover:border-saffron/30 hover:shadow-2xl will-change-transform"
                 data-year={step.year}
               >
                 {/* Card Image Frame */}
-                <div className="w-full aspect-[16/10] relative overflow-hidden rounded-xl sm:rounded-[1.8rem] border border-saffron/10 shadow-md bg-slate-950">
+                <div className="w-full aspect-[16/10] relative overflow-hidden rounded-xl sm:rounded-[1.8rem] border border-saffron/10 dark:border-white/10 shadow-md bg-slate-950">
                   <Image
                     src={step.image}
                     alt={step.title}
@@ -181,11 +181,11 @@ export default function AboutStory() {
                     </span>
                   </div>
 
-                  <h3 className="text-lg sm:text-xl font-normal text-slate-800 uppercase tracking-tight font-heading leading-snug">
+                  <h3 className="text-lg sm:text-xl font-normal text-slate-800 dark:text-neutral-100 uppercase tracking-tight font-heading leading-snug">
                     {step.title}
                   </h3>
 
-                  <p className="text-base text-slate-grey leading-[1.7] font-sans font-normal">
+                  <p className="text-base text-slate-grey dark:text-neutral-300 leading-[1.7] font-sans font-normal">
                     {step.description}
                   </p>
                 </div>

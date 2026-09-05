@@ -74,7 +74,7 @@ export default function CommunityHero() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative bg-[#FBFBFA]">
+    <div ref={containerRef} className="relative bg-[#FBFBFA] dark:bg-[#0c0c0e]">
       {/* Custom Cursor Followers (Desktop Only) */}
       <div
         ref={cursorRef}
@@ -93,7 +93,7 @@ export default function CommunityHero() {
         {/* Plasma Background Overlay Layer */}
         <div
           id="bgPlasma"
-          className="absolute inset-0 bg-[#FBFBFA] opacity-0 pointer-events-none z-10 transition-opacity duration-300"
+          className="absolute inset-0 bg-[#FBFBFA] dark:bg-[#0c0c0e] opacity-0 pointer-events-none z-10 transition-opacity duration-300"
         />
 
         {/* Background Image Container */}
@@ -112,16 +112,16 @@ export default function CommunityHero() {
         {/* Content Overlay (Z-20) */}
         <div className="max-w-[1600px] w-full mx-auto relative z-20 flex flex-col justify-start text-left pointer-events-none">
           <div className="max-w-3xl pointer-events-auto">
-            <h1 className="text-[32px] sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.3] sm:leading-[1.32] tracking-tight mb-4 sm:mb-6 font-heading uppercase">
-              <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-3 sm:py-4 -my-2 sm:-my-3">
+            <h1 className="text-[28px] sm:text-[36px] md:text-[48px] font-normal leading-[1.25] tracking-tight mb-4 sm:mb-6 font-heading uppercase">
+              <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-2 sm:py-3.5">
                 <span className="block reveal-line py-1 text-white font-heading drop-shadow-sm">{t("communityPage.hero.titleLine1")}</span>
               </div>
-              <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-3 sm:py-4 -my-2 sm:-my-3">
+              <div className="overflow-hidden px-2 sm:px-4 -mx-2 sm:-mx-4 py-2 sm:py-3.5">
                 <span className="block reveal-line py-1 text-saffron font-heading">{t("communityPage.hero.titleLine2")}</span>
               </div>
             </h1>
 
-            <p className="hero-subtitle text-base sm:text-base md:text-lg text-neutral-800 leading-[1.7] sm:leading-[1.75] font-normal font-sans">
+            <p className="hero-subtitle text-base md:text-lg text-neutral-800 dark:text-neutral-200 leading-[1.75] font-normal font-sans">
               {t("communityPage.hero.subtitle")}
             </p>
           </div>

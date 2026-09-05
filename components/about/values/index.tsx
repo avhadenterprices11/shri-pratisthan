@@ -129,7 +129,7 @@ export default function AboutValues() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full bg-[#FFFDF9] py-10 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 xl:px-24 select-none border-t border-saffron/10 z-20 overflow-hidden"
+      className="relative w-full bg-[#FFFDF9] dark:bg-background py-10 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 xl:px-24 select-none border-t border-saffron/10 dark:border-white/10 z-20 overflow-hidden"
     >
       {/* Background Grid Accent */}
       <div 
@@ -143,13 +143,13 @@ export default function AboutValues() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-saffron/15 mb-6 sm:mb-12 relative z-10">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-saffron/15 dark:border-white/10 mb-6 sm:mb-12 relative z-10">
         <div className="flex flex-col items-start gap-2 sm:gap-3">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 font-heading uppercase leading-tight tracking-tight">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 dark:text-neutral-100 font-heading uppercase leading-tight tracking-tight">
             {t("aboutPage.values.heading")}
           </h2>
         </div>
-        <p className="text-base text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
+        <p className="text-base text-slate-grey dark:text-neutral-300 max-w-md font-sans font-normal leading-[1.75]">
           {t("aboutPage.values.subtitle")}
         </p>
       </div>
@@ -179,7 +179,7 @@ export default function AboutValues() {
                 gsap.to(".floating-preview", { scale: 0.75, opacity: 0, duration: 0.2, ease: "power2.out" });
               }}
               className={cn(
-                "value-row-item group py-5 sm:py-8 lg:py-10 border-b border-saffron/15 flex flex-col transition-all duration-500 relative z-10 cursor-pointer rounded-2xl lg:rounded-none px-3 lg:px-0",
+                "value-row-item group py-5 sm:py-8 lg:py-10 border-b border-saffron/15 dark:border-white/10 flex flex-col transition-all duration-500 relative z-10 cursor-pointer rounded-2xl lg:rounded-none px-3 lg:px-0",
                 isAnyHovered && !isHovered ? "lg:opacity-30" : "lg:opacity-100",
                 isMobileOpen ? "bg-saffron/[0.03] lg:bg-transparent" : ""
               )}
@@ -198,7 +198,7 @@ export default function AboutValues() {
                     </span>
                     <h3 className={cn(
                       "text-lg sm:text-2xl lg:text-3xl font-normal font-heading uppercase tracking-tight transition-colors leading-snug",
-                      isMobileOpen ? "text-saffron" : "text-slate-800 group-hover:text-saffron"
+                      isMobileOpen ? "text-saffron" : "text-slate-800 dark:text-neutral-100 group-hover:text-saffron"
                     )}>
                       {item.title}
                     </h3>
@@ -214,7 +214,7 @@ export default function AboutValues() {
                 </div>
 
                 {/* Right Column: Description */}
-                <p className="text-base text-slate-grey leading-[1.7] lg:w-7/12 font-sans font-normal transition-all duration-500 group-hover:text-slate-700">
+                <p className="text-base text-slate-grey dark:text-neutral-300 leading-[1.7] lg:w-7/12 font-sans font-normal transition-all duration-500 group-hover:text-slate-700 dark:group-hover:text-white">
                   {item.desc}
                 </p>
               </div>

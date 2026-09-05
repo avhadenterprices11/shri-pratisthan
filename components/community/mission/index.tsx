@@ -124,7 +124,7 @@ export default function CommunityMission() {
   return (
     <section
       ref={containerRef}
-      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5 dark:border-white/10"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 z-0" />
       
@@ -133,7 +133,7 @@ export default function CommunityMission() {
           
           {/* Paragraph Column */}
           <div className="md:col-span-8 order-2 md:order-1 space-y-4 sm:space-y-6">
-            <p className="text-lg sm:text-xl md:text-2xl text-[#525250] leading-snug font-normal font-heading">
+            <p className="text-lg sm:text-xl md:text-2xl text-[#525250] dark:text-neutral-300 leading-snug font-normal font-heading">
               {paragraph1Phrases.map((phrase, idx) => (
                 <span key={idx} className="inline-block overflow-hidden py-0.5 mr-1.5 sm:mr-2 last:mr-0">
                   <span
@@ -146,7 +146,7 @@ export default function CommunityMission() {
                 </span>
               ))}
             </p>
-            <p className="text-base md:text-lg text-[#525250]/80 leading-[1.7] sm:leading-[1.75] font-normal font-sans">
+            <p className="text-base md:text-lg text-[#525250]/80 dark:text-neutral-400 leading-[1.7] sm:leading-[1.75] font-normal font-sans">
               {paragraph2Phrases.map((phrase, idx) => (
                 <span key={idx} className="inline-block overflow-hidden py-0.5 mr-1.5 sm:mr-2 last:mr-0">
                   <span
@@ -166,7 +166,7 @@ export default function CommunityMission() {
             <span className="text-saffron font-bold text-xs uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
               {t("communityPage.mission.badge")}
             </span>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight flex flex-wrap gap-x-2 sm:gap-x-2.5 uppercase">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight flex flex-wrap gap-x-2 sm:gap-x-2.5 uppercase">
               {headingWords.map((word, index) => (
                 <span key={index} className="inline-block overflow-hidden py-0.5">
                   <span className="reveal-word inline-block">

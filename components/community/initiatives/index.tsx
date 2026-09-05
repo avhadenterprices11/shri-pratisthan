@@ -105,7 +105,7 @@ export default function CommunityInitiatives() {
   return (
     <section
       ref={containerRef}
-      className="py-12 sm:py-16 md:py-24 relative overflow-hidden bg-background border-t border-black/5 select-none"
+      className="py-12 sm:py-16 md:py-24 relative overflow-hidden bg-background border-t border-black/5 dark:border-white/10 select-none"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 z-0" />
       
@@ -115,7 +115,7 @@ export default function CommunityInitiatives() {
           <span className="text-saffron font-bold text-xs uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
             {t("communityPage.initiatives.badge")}
           </span>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             {t("communityPage.initiatives.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mt-3 sm:mt-4 rounded-full" />
@@ -123,7 +123,7 @@ export default function CommunityInitiatives() {
       </div>
 
       {/* Marquee Rows Accordion List - Full Width Edge-to-Edge */}
-      <div className="w-full flex flex-col border-t border-neutral-300 relative z-10">
+      <div className="w-full flex flex-col border-t border-neutral-300 dark:border-white/10 relative z-10">
         {INITIATIVES_SUMMARY.map((item, index) => {
           const isTouchActive = touchRow === index;
           const isMobileActive = activeMobileRow === index;
@@ -135,7 +135,7 @@ export default function CommunityInitiatives() {
               onPointerDown={() => setTouchRow(index)}
               onPointerUp={() => setTouchRow(null)}
               onPointerCancel={() => setTouchRow(null)}
-              className="initiative-row-item group border-b border-neutral-300 py-6 sm:py-10 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out relative flex flex-col justify-start touch-manipulation w-full"
+              className="initiative-row-item group border-b border-neutral-300 dark:border-white/10 py-6 sm:py-10 cursor-pointer overflow-hidden transition-all duration-500 ease-in-out relative flex flex-col justify-start touch-manipulation w-full"
             >
               {/* Hardware Accelerated Infinite CSS Marquee */}
               <div className="w-full overflow-hidden flex relative z-10 py-4 sm:py-6 -my-2">
@@ -204,7 +204,7 @@ export default function CommunityInitiatives() {
                 }`}
               >
                 <div className="max-w-3xl">
-                  <p className="text-base md:text-lg text-[#525250] leading-[1.7] sm:leading-[1.75] font-sans font-normal">
+                  <p className="text-base md:text-lg text-[#525250] dark:text-neutral-300 leading-[1.7] sm:leading-[1.75] font-sans font-normal">
                     {item.desc}
                   </p>
                   <button

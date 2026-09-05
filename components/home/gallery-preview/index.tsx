@@ -180,13 +180,13 @@ export default function GalleryPreview() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-6 sm:mb-10 md:mb-14 gap-3 sm:gap-6">
           <div className="max-w-2xl">
-            <h2 className="gallery-reveal-header text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-tight">
+            <h2 className="gallery-reveal-header text-2xl sm:text-3xl md:text-[36px] font-normal text-foreground tracking-tight font-heading leading-snug py-1">
               {t("galleryPreview.title")}
             </h2>
           </div>
           <a
             href="/gallery"
-            className="gallery-reveal-header group inline-flex items-center gap-2 text-saffron font-bold uppercase text-[11px] sm:text-xs tracking-widest hover:text-gold transition-colors font-sans cursor-pointer"
+            className="gallery-reveal-header group inline-flex items-center gap-2 text-saffron font-bold uppercase text-xs sm:text-sm tracking-widest hover:text-gold transition-colors font-sans cursor-pointer"
             data-hover="pointer"
           >
             {t("galleryPreview.viewAll")}
@@ -201,7 +201,7 @@ export default function GalleryPreview() {
             return (
               <div
                 key={index}
-                className={`gallery-item group relative overflow-hidden rounded-2xl sm:rounded-block border border-saffron/10 shadow-md ${
+                className={`gallery-item group relative overflow-hidden rounded-2xl sm:rounded-block border border-saffron/10 dark:border-white/10 shadow-md ${
                   isTall ? "lg:row-span-2 min-h-[240px] sm:min-h-[360px]" : "min-h-[200px] sm:min-h-[260px]"
                 } flex flex-col justify-between p-4 sm:p-7 transition-[border-color,box-shadow] duration-500 hover:shadow-[0_20px_50px_rgba(226,88,34,0.15)] hover:border-saffron/30`}
               >
@@ -216,10 +216,10 @@ export default function GalleryPreview() {
                 />
 
                 {/* Ambient Dark Gradient Overlay for Maximum Readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/40 to-black/10 z-10 transition-all duration-500 group-hover:via-charcoal/50 group-hover:to-black/25" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 transition-all duration-500 group-hover:via-black/50 group-hover:to-black/20" />
 
                 {/* Category Tag */}
-                <div className="relative z-20 self-start bg-white/95 text-saffron font-bold text-[9px] sm:text-[10px] uppercase tracking-widest px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-saffron/20 shadow-md font-sans">
+                <div className="relative z-20 self-start bg-white/95 dark:bg-[#18181b]/95 text-saffron font-bold text-[9px] sm:text-[10px] uppercase tracking-widest px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-saffron/20 dark:border-white/10 shadow-md font-sans">
                   {item.tag}
                 </div>
 

@@ -107,7 +107,7 @@ export default function AboutTimeline() {
   return (
     <section 
       ref={containerRef} 
-      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-[#FFFDF9] border-t border-saffron/10 z-10 select-none"
+      className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-[#FFFDF9] dark:bg-background border-t border-saffron/10 dark:border-white/10 z-10 select-none"
     >
       {/* Background Grid Accent */}
       <div 
@@ -124,13 +124,13 @@ export default function AboutTimeline() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-saffron/15 mb-8 sm:mb-16 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-saffron/15 dark:border-white/10 mb-8 sm:mb-16 relative z-10">
           <div className="flex flex-col items-start gap-2 sm:gap-3">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-slate-800 font-heading uppercase leading-tight tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-slate-800 dark:text-neutral-100 font-heading uppercase leading-snug tracking-tight py-1">
               {t("aboutPage.timeline.heading")}
             </h2>
           </div>
-          <p className="text-base text-slate-grey max-w-md font-sans font-normal leading-[1.75]">
+          <p className="text-base md:text-lg text-slate-grey dark:text-neutral-300 max-w-md font-sans font-normal leading-[1.75]">
             {t("aboutPage.timeline.subtitle")}
           </p>
         </div>
@@ -146,7 +146,7 @@ export default function AboutTimeline() {
             return (
               <div 
                 key={item.year}
-                className="timeline-row w-full grid grid-cols-1 md:grid-cols-12 items-center gap-3 sm:gap-6 md:gap-12 py-4 sm:py-8 border-b border-saffron/10 last:border-0 relative"
+                className="timeline-row w-full grid grid-cols-1 md:grid-cols-12 items-center gap-3 sm:gap-6 md:gap-12 py-4 sm:py-8 border-b border-saffron/10 dark:border-white/10 last:border-0 relative"
               >
                 {/* Left Column: Giant Year outlines */}
                 <div className="md:col-span-5 relative select-none leading-none h-[50px] sm:h-[80px] md:h-[120px] flex items-center justify-start">
@@ -177,10 +177,10 @@ export default function AboutTimeline() {
 
                 {/* Right Column: Title and details */}
                 <div className="timeline-detail-content md:col-span-7 flex flex-col items-start gap-2 sm:gap-3 text-left">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-normal text-slate-800 uppercase tracking-tight font-heading leading-snug">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-normal text-slate-800 dark:text-neutral-100 uppercase tracking-tight font-heading leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-base text-slate-grey leading-[1.7] font-sans font-normal">
+                  <p className="text-base text-slate-grey dark:text-neutral-300 leading-[1.7] font-sans font-normal">
                     {item.desc}
                   </p>
                 </div>

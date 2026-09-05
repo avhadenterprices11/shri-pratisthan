@@ -177,7 +177,7 @@ export default function Testimonials({
         
         {/* Section Header */}
         <div className="max-w-3xl mb-8 sm:mb-14 md:mb-24">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-foreground tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-foreground tracking-tight font-heading leading-snug uppercase py-1">
             {t("testimonials.title")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mt-3 sm:mt-6 rounded-full" />
@@ -201,7 +201,7 @@ export default function Testimonials({
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   className="relative z-10 pt-2 sm:pt-4"
                 >
-                  <p className="text-lg sm:text-2xl lg:text-[2.25rem] font-normal font-heading italic text-slate-800 leading-snug tracking-tight">
+                  <p className="text-base sm:text-lg lg:text-[20px] font-normal font-heading italic text-slate-800 dark:text-neutral-100 leading-relaxed tracking-tight">
                     {activeItem.description}
                   </p>
                 </motion.div>
@@ -209,7 +209,7 @@ export default function Testimonials({
             </div>
 
             {/* Progress & Controls */}
-            <div className="flex items-center justify-between gap-4 sm:gap-8 mt-8 sm:mt-16 pt-6 sm:pt-8 border-t border-saffron/10">
+            <div className="flex items-center justify-between gap-4 sm:gap-8 mt-8 sm:mt-16 pt-6 sm:pt-8 border-t border-saffron/10 dark:border-white/10">
               {/* Progress Line Indicator */}
               <div className="flex items-center gap-3 sm:gap-4 select-none">
                 <span className="text-[10px] font-bold text-saffron tracking-wider font-sans">01</span>
@@ -219,7 +219,7 @@ export default function Testimonials({
                     style={{ width: `${((activeIndex + 1) / testimonialsData.length) * 100}%` }}
                   />
                 </div>
-                <span className="text-[10px] font-bold text-slate-400 tracking-wider font-sans">
+                <span className="text-[10px] font-bold text-slate-400 dark:text-neutral-400 tracking-wider font-sans">
                   0{testimonialsData.length}
                 </span>
               </div>
@@ -231,7 +231,7 @@ export default function Testimonials({
                   onClick={handlePrev}
                   disabled={activeIndex === 0}
                   aria-label="Previous testimonial"
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-saffron/20 flex items-center justify-center text-slate-700 hover:bg-saffron hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-saffron/20 flex items-center justify-center text-slate-700 dark:text-neutral-200 hover:bg-saffron hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
                 >
                   ‹
                 </button>
@@ -240,7 +240,7 @@ export default function Testimonials({
                   onClick={handleNext}
                   disabled={activeIndex === TESTIMONIALS_DATA.length - 1}
                   aria-label="Next testimonial"
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-saffron/20 flex items-center justify-center text-slate-700 hover:bg-saffron hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-saffron/20 flex items-center justify-center text-slate-700 dark:text-neutral-200 hover:bg-saffron hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
                 >
                   ›
                 </button>
@@ -250,7 +250,7 @@ export default function Testimonials({
 
           {/* Right Column: Cinematic Portrait Canvas */}
           <div className="col-span-1 md:col-span-5 flex justify-center md:justify-end w-full order-1 md:order-2">
-            <div className="relative w-full max-w-[280px] sm:max-w-[340px] aspect-[4/3] sm:aspect-[3/4] rounded-2xl sm:rounded-[2.5rem] overflow-hidden border border-saffron/10 shadow-2xl group bg-neutral-950">
+            <div className="relative w-full max-w-[280px] sm:max-w-[340px] aspect-[4/3] sm:aspect-[3/4] rounded-2xl sm:rounded-[2.5rem] overflow-hidden border border-saffron/10 dark:border-white/10 shadow-2xl group bg-neutral-950">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
@@ -275,11 +275,11 @@ export default function Testimonials({
               <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-transparent to-transparent pointer-events-none" />
 
               {/* Overlapping Glassmorphic Ticket Stub */}
-              <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 backdrop-blur-md bg-white/85 border border-white/20 p-3.5 sm:p-5 rounded-xl sm:rounded-2xl shadow-lg flex flex-col transition-transform duration-500 select-none">
-                <span className="text-xs font-bold text-saffron uppercase tracking-[0.2em] block mb-0.5 sm:mb-1 font-sans">
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 backdrop-blur-md bg-white/85 dark:bg-[#121214]/90 border border-white/20 dark:border-white/10 p-3.5 sm:p-5 rounded-xl sm:rounded-2xl shadow-lg flex flex-col transition-transform duration-500 select-none">
+                <span className="text-xs sm:text-sm font-bold text-saffron uppercase tracking-[0.2em] block mb-0.5 sm:mb-1 font-sans">
                   {activeItem.subtitle}
                 </span>
-                <h4 className="text-base sm:text-lg font-normal text-slate-900 font-heading leading-tight">
+                <h4 className="text-base sm:text-base md:text-lg font-normal text-slate-900 dark:text-white font-heading leading-tight">
                   {activeItem.title}
                 </h4>
               </div>

@@ -108,9 +108,9 @@ export default function AboutPreview() {
 
       {/* Centered Heading Layout */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 flex flex-col items-center mb-8 sm:mb-12 text-center relative z-10">
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-snug sm:leading-normal py-1 opacity-0 about-title-el uppercase">
+        <h2 className="text-2xl sm:text-[32px] md:text-[36px] font-normal text-foreground tracking-tight font-heading leading-snug py-1 opacity-0 about-title-el uppercase">
           {t("aboutPreview.title1")} <br />
-          <span className="text-3xl sm:text-[3.25rem] md:text-[4.75rem] font-normal text-saffron block mt-2 sm:mt-3 py-1 text-outline-festive font-heading">
+          <span className="text-3xl sm:text-[36px] md:text-[48px] font-normal text-saffron block mt-2 sm:mt-3 py-1 text-outline-festive font-heading">
             {t("aboutPreview.title2")}
           </span>
         </h2>
@@ -124,7 +124,7 @@ export default function AboutPreview() {
             borderRadius: "clamp(16px, 4vw, 80px)",
             aspectRatio: videoAspectRatio ? `${videoAspectRatio}` : "16 / 9",
           }}
-          className="relative w-full p-1 sm:p-[6px] shadow-2xl overflow-hidden bg-white border border-saffron/10 transition-[aspect-ratio] duration-300"
+          className="relative w-full p-1 sm:p-[6px] shadow-2xl overflow-hidden bg-white dark:bg-[#121214] border border-saffron/10 dark:border-white/10 transition-[aspect-ratio] duration-300"
         >
           {/* Animated Liquid Metal Border Bezel */}
           <LiquidMetal

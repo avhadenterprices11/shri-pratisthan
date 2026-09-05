@@ -214,6 +214,9 @@ export default function EventsHighlights() {
           color: transparent;
           transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
+        .dark .text-outline-highlight {
+          -webkit-text-stroke: 1.5px rgba(244, 244, 244, 0.35);
+        }
         .group:hover .text-outline-highlight,
         .text-outline-highlight.is-active {
           -webkit-text-stroke: 1.5px transparent;
@@ -225,17 +228,17 @@ export default function EventsHighlights() {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-12 md:mb-16 px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             {t("eventsPage.highlights.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-2 sm:mt-4 rounded-full" />
-          <p className="text-xs sm:text-sm text-slate-grey mt-3 font-sans">
+          <p className="text-xs sm:text-sm text-slate-grey dark:text-neutral-300 mt-3 font-sans">
             {t("eventsPage.highlights.subtitle")}
           </p>
         </div>
 
         {/* Unified Typographic List (Desktop Cursor Hover + Mobile/Tablet Finger Tap) */}
-        <div className="max-w-6xl mx-auto border-t border-black/10">
+        <div className="max-w-6xl mx-auto border-t border-black/10 dark:border-white/10">
           {HIGHLIGHTS.map((item, index) => {
             const isTapped = tappedIdx === index;
             const isHoverActive = activeIdx === index;
@@ -248,7 +251,7 @@ export default function EventsHighlights() {
                 onMouseEnter={(e) => handleMouseEnter(index, e)}
                 onMouseLeave={() => handleMouseLeave(index)}
                 className={cn(
-                  "group relative flex flex-col py-5 sm:py-8 lg:py-10 border-b border-black/10 cursor-pointer select-none transition-all duration-300 px-2 sm:px-4",
+                  "group relative flex flex-col py-5 sm:py-8 lg:py-10 border-b border-black/10 dark:border-white/10 cursor-pointer select-none transition-all duration-300 px-2 sm:px-4",
                   isTapped ? "bg-saffron/[0.03]" : ""
                 )}
               >

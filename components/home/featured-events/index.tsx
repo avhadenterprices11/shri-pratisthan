@@ -222,10 +222,10 @@ export default function FeaturedEvents() {
 
         {/* Editorial Heading Section */}
         <div className="flex flex-col mb-8 sm:mb-12 md:mb-16 max-w-4xl">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-foreground tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-foreground tracking-tight font-heading leading-snug uppercase py-1">
             {t("featuredEvents.title")}
           </h2>
-          <p className="text-slate-grey max-w-2xl text-base leading-relaxed font-sans mt-3 sm:mt-4">
+          <p className="text-slate-grey dark:text-neutral-300 max-w-2xl text-base md:text-lg leading-relaxed font-sans mt-3 sm:mt-4">
             {t("featuredEvents.subtitle")}
           </p>
         </div>
@@ -237,7 +237,7 @@ export default function FeaturedEvents() {
         >
 
           {/* Left Column: Sticky Metadata Details (Desktop only) */}
-          <div className="hidden md:flex md:w-[40%] flex-col justify-between pr-10 border-r border-saffron/10 min-h-[560px] sticky top-28">
+          <div className="hidden md:flex md:w-[40%] flex-col justify-between pr-10 border-r border-saffron/10 dark:border-white/10 min-h-[560px] sticky top-28">
             <div className="flex flex-col gap-4">
               <div>
                 <h3 className="text-3xl lg:text-4xl font-normal text-foreground mt-2 font-heading uppercase leading-tight">
@@ -246,7 +246,7 @@ export default function FeaturedEvents() {
               </div>
 
               {/* Active Image Render Box inside Sidebar */}
-              <div className="relative w-full h-[220px] lg:h-[240px] rounded-3xl overflow-hidden shadow-lg border border-saffron/10 mt-1">
+              <div className="relative w-full h-[220px] lg:h-[240px] rounded-3xl overflow-hidden shadow-lg border border-saffron/10 dark:border-white/10 mt-1">
                 <div className="relative w-full h-full bg-neutral-950">
                   {eventsData.map((event) => (
                     <Image
@@ -267,7 +267,7 @@ export default function FeaturedEvents() {
                 </div>
               </div>
 
-              <p className="text-slate-grey text-xs lg:text-sm leading-relaxed mt-2 font-sans min-h-[60px]">
+              <p className="text-slate-grey dark:text-neutral-300 text-xs lg:text-sm leading-relaxed mt-2 font-sans min-h-[60px]">
                 {activeEvent.description}
               </p>
             </div>
@@ -277,7 +277,7 @@ export default function FeaturedEvents() {
                 {activeEvent.details.map((detail, idx) => (
                   <span
                     key={idx}
-                    className="px-2.5 py-1.5 rounded-full bg-saffron/5 border border-saffron/15 text-[9px] font-bold text-saffron uppercase tracking-wider transition-all duration-300 font-sans"
+                    className="px-2.5 py-1.5 rounded-full bg-saffron/5 dark:bg-saffron/10 border border-saffron/15 dark:border-saffron/25 text-[9px] font-bold text-saffron uppercase tracking-wider transition-all duration-300 font-sans"
                   >
                     {detail}
                   </span>
@@ -299,7 +299,7 @@ export default function FeaturedEvents() {
 
           {/* Right Column: Interactive List */}
           <div
-            className="w-full md:w-[60%] flex flex-col border-t border-saffron/10 md:border-t-0 md:pl-16 relative"
+            className="w-full md:w-[60%] flex flex-col border-t border-saffron/10 dark:border-white/10 md:border-t-0 md:pl-16 relative"
           >
             {eventsData.map((event) => (
               <div
@@ -309,18 +309,18 @@ export default function FeaturedEvents() {
                 onClick={() => {
                   setActiveMobileId(activeMobileId === event.id ? null : event.id);
                 }}
-                className="py-5 sm:py-8 md:py-10 border-b border-saffron/10 flex flex-col md:flex-row md:justify-between md:items-center group transition-colors duration-300 relative cursor-pointer"
+                className="py-5 sm:py-8 md:py-10 border-b border-saffron/10 dark:border-white/10 flex flex-col md:flex-row md:justify-between md:items-center group transition-colors duration-300 relative cursor-pointer"
               >
                 {/* Desktop/Mobile List Layout */}
                 <div className="flex items-baseline gap-4 sm:gap-6 select-none">
                   <span className="text-xs md:text-sm font-bold text-saffron tracking-wider font-sans">
                     {event.num}
                   </span>
-                  <h3 className="text-lg sm:text-3xl lg:text-5xl font-normal text-slate-800 group-hover:text-saffron transition-all duration-300 font-heading uppercase leading-none">
+                  <h3 className="text-lg sm:text-2xl md:text-[24px] font-normal text-slate-800 dark:text-neutral-100 group-hover:text-saffron transition-all duration-300 font-heading uppercase leading-snug py-1">
                     {event.category}
                   </h3>
                 </div>
-                <span className="hidden md:inline text-xs uppercase font-bold tracking-widest text-slate-400 group-hover:text-saffron transition-colors duration-300 mt-2 md:mt-0 font-sans">
+                <span className="hidden md:inline text-xs sm:text-sm uppercase font-bold tracking-widest text-slate-400 dark:text-neutral-400 group-hover:text-saffron transition-colors duration-300 mt-2 md:mt-0 font-sans">
                   {event.id === "ganesh" ? t("featuredEvents.b1") : (event.id === "swagat-yatra" ? t("featuredEvents.b2") : (event.id === "dahi-handi" ? t("featuredEvents.b3") : (event.id === "shivratri" ? t("featuredEvents.b4") : t("featuredEvents.b5"))))}
                 </span>
 
@@ -331,7 +331,7 @@ export default function FeaturedEvents() {
                     activeMobileId === event.id ? "max-h-[550px] opacity-100 mt-4 pb-2" : "max-h-0 opacity-0 pointer-events-none"
                   )}
                 >
-                  <div className="relative w-full h-[180px] sm:h-[200px] rounded-2xl overflow-hidden shadow-lg border border-saffron/10 mt-1">
+                  <div className="relative w-full h-[180px] sm:h-[200px] rounded-2xl overflow-hidden shadow-lg border border-saffron/10 dark:border-white/10 mt-1">
                     <Image
                       src={event.image}
                       alt={event.title}
@@ -340,7 +340,7 @@ export default function FeaturedEvents() {
                       className="object-cover object-center"
                     />
                   </div>
-                  <p className="text-base text-slate-grey leading-relaxed font-sans">{event.description}</p>
+                  <p className="text-base text-slate-grey dark:text-neutral-300 leading-relaxed font-sans">{event.description}</p>
 
                   <div className="flex flex-wrap gap-1.5">
                     {event.details.map((detail, i) => (

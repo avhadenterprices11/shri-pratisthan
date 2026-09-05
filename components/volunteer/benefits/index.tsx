@@ -87,6 +87,9 @@ export default function VolunteerBenefits() {
           color: transparent;
           transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
+        .dark .text-outline-row-benefit {
+          -webkit-text-stroke: 1.5px rgba(244, 244, 244, 0.35);
+        }
         .group:hover .text-outline-row-benefit,
         .text-outline-row-benefit.is-active-mobile {
           -webkit-text-stroke: 1.5px transparent;
@@ -98,14 +101,14 @@ export default function VolunteerBenefits() {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 tracking-tight font-heading leading-tight uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-neutral-900 dark:text-neutral-100 tracking-tight font-heading leading-tight uppercase">
             {t("volunteerPage.benefits.heading")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-3 sm:mt-4 rounded-full" />
         </div>
 
         {/* Typographic Accordion List Container */}
-        <div className="flex flex-col border-t border-neutral-300">
+        <div className="flex flex-col border-t border-neutral-300 dark:border-white/10">
           {BENEFITS.map((item, index) => {
             const isOpen = activeIdx === index;
 
@@ -114,7 +117,7 @@ export default function VolunteerBenefits() {
                 key={index}
                 onClick={() => handleToggle(index)}
                 className={cn(
-                  "benefit-row group border-b border-neutral-300 py-5 sm:py-8 cursor-pointer overflow-hidden transition-all duration-500 flex flex-col justify-start relative px-2 sm:px-4",
+                  "benefit-row group border-b border-neutral-300 dark:border-white/10 py-5 sm:py-8 cursor-pointer overflow-hidden transition-all duration-500 flex flex-col justify-start relative px-2 sm:px-4",
                   isOpen ? "bg-saffron/[0.02]" : ""
                 )}
               >
@@ -155,7 +158,7 @@ export default function VolunteerBenefits() {
                     ? "max-h-[160px] opacity-100 mt-2.5 sm:mt-4"
                     : "max-h-0 opacity-0 mt-0 sm:max-h-0 sm:opacity-0 group-hover:sm:max-h-[120px] group-hover:sm:opacity-100 group-hover:sm:mt-4"
                 )}>
-                  <p className="text-base text-slate-grey leading-[1.7] sm:leading-[1.75] max-w-3xl font-sans font-normal">
+                  <p className="text-base text-slate-grey dark:text-neutral-300 leading-[1.7] sm:leading-[1.75] max-w-3xl font-sans font-normal">
                     {item.desc}
                   </p>
                 </div>

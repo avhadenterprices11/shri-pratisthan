@@ -44,7 +44,7 @@ export default function AllEventsFilter({
                 "group flex items-center gap-1.5 sm:gap-2.5 px-3 sm:px-5 py-2 sm:py-3 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-[0.14em] sm:tracking-[0.18em] transition-all duration-300 whitespace-nowrap cursor-pointer border shadow-sm font-sans",
                 isSelected
                   ? "bg-saffron text-white border-saffron ring-2 sm:ring-4 ring-saffron/20 shadow-md scale-105"
-                  : "bg-white text-neutral-800 border-neutral-200 hover:border-saffron/40 hover:bg-neutral-50 hover:scale-[1.02]"
+                  : "bg-white dark:bg-[#18181b] text-neutral-800 dark:text-neutral-200 border-neutral-200 dark:border-white/10 hover:border-saffron/40 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:scale-[1.02]"
               )}
             >
               <Icon className={cn("w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:scale-110 shrink-0", isSelected ? "text-white" : "text-saffron")} />
@@ -52,7 +52,7 @@ export default function AllEventsFilter({
               <span
                 className={cn(
                   "px-2 sm:px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold font-mono",
-                  isSelected ? "bg-white/20 text-white" : "bg-neutral-100 text-neutral-700 border border-neutral-200"
+                  isSelected ? "bg-white/20 text-white" : "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10"
                 )}
               >
                 {count}

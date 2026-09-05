@@ -146,14 +146,14 @@ export default function ContactCTA() {
 
               {/* Office Location */}
               <div className="flex gap-3 sm:gap-4 items-center">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 shrink-0">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-orange-100 dark:bg-saffron/20 flex items-center justify-center text-orange-600 dark:text-saffron shrink-0">
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                     <circle cx="12" cy="10" r="3" />
                   </svg>
                 </div>
                 <div>
-                  <span className="text-xs text-slate-grey uppercase font-bold tracking-[0.2em] block font-sans">{t("contactCTA.addressTitle")}</span>
+                  <span className="text-xs text-slate-grey dark:text-neutral-300 uppercase font-bold tracking-[0.2em] block font-sans">{t("contactCTA.addressTitle")}</span>
                   <span className="text-base font-normal text-foreground font-heading">{t("contactCTA.address")}</span>
                 </div>
               </div>
@@ -161,18 +161,18 @@ export default function ContactCTA() {
           </div>
 
           {/* Right Column: Contact Form */}
-          <div className="lg:col-span-7 contact-slide-in glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 bg-white/90 backdrop-blur-md shadow-xl">
+          <div className="lg:col-span-7 contact-slide-in glass-panel p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-block border border-saffron/20 dark:border-white/10 bg-white/90 dark:bg-[#121214]/95 backdrop-blur-md shadow-xl">
             <h3 className="text-lg sm:text-2xl font-normal text-foreground mb-4 sm:mb-6 font-heading">{t("contactCTA.form.submitButton")}</h3>
 
             {status === "success" ? (
-              <div className="py-6 sm:py-8 px-4 sm:px-6 text-center space-y-3 sm:space-y-4 bg-emerald-50/80 border border-emerald-200 rounded-2xl animate-in fade-in duration-300">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+              <div className="py-6 sm:py-8 px-4 sm:px-6 text-center space-y-3 sm:space-y-4 bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-2xl animate-in fade-in duration-300">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
-                <h4 className="text-lg sm:text-xl font-extrabold text-emerald-950 font-heading">
+                <h4 className="text-lg sm:text-xl font-extrabold text-emerald-950 dark:text-emerald-200 font-heading">
                   {t("contactCTA.form.successTitle")}
                 </h4>
-                <p className="text-xs sm:text-sm text-emerald-800 leading-relaxed max-w-md mx-auto">
+                <p className="text-xs sm:text-sm text-emerald-800 dark:text-emerald-300 leading-relaxed max-w-md mx-auto">
                   {t("contactCTA.form.successDesc")}
                 </p>
                 <button
@@ -187,16 +187,16 @@ export default function ContactCTA() {
               <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit} noValidate>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <label className="text-xs text-slate-grey uppercase font-bold tracking-widest block mb-1.5 sm:mb-2 font-heading">{t("contactCTA.form.nameLabel")}</label>
+                    <label className="text-xs text-slate-grey dark:text-neutral-300 uppercase font-bold tracking-widest block mb-1.5 sm:mb-2 font-heading">{t("contactCTA.form.nameLabel")}</label>
                     <input 
                       type="text" 
                       placeholder={t("contactCTA.form.namePlaceholder")}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className={`w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-base transition-all ${
+                      className={`w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-interactive border bg-background/80 dark:bg-[#18181b] focus:outline-none focus:ring-2 text-base text-foreground transition-all ${
                         errors.name
                           ? "border-red-400 focus:border-red-500 focus:ring-red-100"
-                          : "border-saffron/20 focus:border-saffron focus:ring-saffron/20"
+                          : "border-saffron/20 dark:border-white/10 focus:border-saffron focus:ring-saffron/20"
                       }`}
                     />
                     {errors.name && (
@@ -206,16 +206,16 @@ export default function ContactCTA() {
                     )}
                   </div>
                   <div>
-                    <label className="text-xs text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.emailLabel")}</label>
+                    <label className="text-xs text-slate-grey dark:text-neutral-300 uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.emailLabel")}</label>
                     <input 
                       type="text" 
                       placeholder={t("contactCTA.form.emailPlaceholder")}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-base transition-all ${
+                      className={`w-full px-4 py-3 rounded-interactive border bg-background/80 dark:bg-[#18181b] focus:outline-none focus:ring-2 text-base text-foreground transition-all ${
                         errors.email
                           ? "border-red-400 focus:border-red-500 focus:ring-red-100"
-                          : "border-saffron/20 focus:border-saffron focus:ring-saffron/20"
+                          : "border-saffron/20 dark:border-white/10 focus:border-saffron focus:ring-saffron/20"
                       }`}
                     />
                     {errors.email && (
@@ -228,18 +228,18 @@ export default function ContactCTA() {
 
                 {/* Premium Custom Dropdown */}
                 <div className="relative" ref={dropdownRef}>
-                  <label className="text-xs text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.subjectLabel")}</label>
+                  <label className="text-xs text-slate-grey dark:text-neutral-300 uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.subjectLabel")}</label>
                   <button
                     type="button"
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="w-full px-4 py-3 rounded-interactive border border-saffron/25 bg-background/80 hover:bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-base text-foreground flex items-center justify-between transition-all cursor-pointer shadow-xs"
+                    className="w-full px-4 py-3 rounded-interactive border border-saffron/25 dark:border-white/10 bg-background/80 dark:bg-[#18181b] hover:bg-background focus:outline-none focus:border-saffron focus:ring-2 focus:ring-saffron/20 text-base text-foreground flex items-center justify-between transition-all cursor-pointer shadow-xs"
                   >
                     <span className="font-medium">{subjectOptions[selectedSubjectIndex]}</span>
                     <ChevronDown className={`w-4 h-4 text-saffron transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} />
                   </button>
 
                   {isDropdownOpen && (
-                    <div className="absolute left-0 right-0 top-full mt-2 bg-white/95 backdrop-blur-xl border border-saffron/25 rounded-xl shadow-2xl z-50 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="absolute left-0 right-0 top-full mt-2 bg-white/95 dark:bg-[#18181b] backdrop-blur-xl border border-saffron/25 dark:border-white/10 rounded-xl shadow-2xl z-50 py-2 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
                       {subjectOptions.map((option, idx) => (
                         <div
                           key={idx}
@@ -250,7 +250,7 @@ export default function ContactCTA() {
                           className={`px-4 py-2.5 text-base cursor-pointer flex items-center justify-between transition-colors ${
                             selectedSubjectIndex === idx
                               ? "bg-saffron/10 text-saffron font-bold"
-                              : "text-foreground hover:bg-saffron/5"
+                              : "text-foreground hover:bg-saffron/5 dark:hover:bg-white/5"
                           }`}
                         >
                           <span>{option}</span>
@@ -262,16 +262,16 @@ export default function ContactCTA() {
                 </div>
 
                 <div>
-                  <label className="text-xs text-slate-grey uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.messageLabel")}</label>
+                  <label className="text-xs text-slate-grey dark:text-neutral-300 uppercase font-bold tracking-widest block mb-2 font-heading">{t("contactCTA.form.messageLabel")}</label>
                   <textarea 
                     rows={4} 
                     placeholder={t("contactCTA.form.messagePlaceholder")}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className={`w-full px-4 py-3 rounded-interactive border bg-background/80 focus:outline-none focus:ring-2 text-base transition-all resize-none ${
+                    className={`w-full px-4 py-3 rounded-interactive border bg-background/80 dark:bg-[#18181b] focus:outline-none focus:ring-2 text-base text-foreground transition-all resize-none ${
                       errors.message
                         ? "border-red-400 focus:border-red-500 focus:ring-red-100"
-                        : "border-saffron/20 focus:border-saffron focus:ring-saffron/20"
+                        : "border-saffron/20 dark:border-white/10 focus:border-saffron focus:ring-saffron/20"
                     }`}
                   />
                   {errors.message && (

@@ -15,6 +15,7 @@ export default function FestivalJourney() {
   const trackRef = useRef<HTMLDivElement>(null);
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const activeIndexRef = useRef(0);
   const [slideSize, setSlideSize] = useState(440);
 
   const milestonesData = useMemo(() => [
@@ -89,6 +90,8 @@ export default function FestivalJourney() {
         scrollTrigger: {
           trigger: section,
           pin: true,
+          pinSpacing: true,
+          pinType: "fixed",
           start: "top top",
           end: () => `+=${scrollDistance}`,
           scrub: 0.3,
@@ -102,7 +105,10 @@ export default function FestivalJourney() {
               totalMilestones - 1,
               Math.max(0, Math.round(rawIndex))
             );
-            setActiveIndex(clampedIndex);
+            if (clampedIndex !== activeIndexRef.current) {
+              activeIndexRef.current = clampedIndex;
+              setActiveIndex(clampedIndex);
+            }
           },
         },
       });
@@ -123,6 +129,8 @@ export default function FestivalJourney() {
 
   // Click year button: smoothly scrolls page to target milestone
   const scrollToMilestone = useCallback((targetIndex: number) => {
+    activeIndexRef.current = targetIndex;
+    setActiveIndex(targetIndex);
     const st = scrollTriggerRef.current;
     if (st) {
       const targetScroll = st.start + (targetIndex / (totalMilestones - 1)) * (st.end - st.start);
@@ -130,8 +138,6 @@ export default function FestivalJourney() {
         top: targetScroll,
         behavior: "smooth",
       });
-    } else {
-      setActiveIndex(targetIndex);
     }
   }, [totalMilestones]);
 
@@ -146,7 +152,7 @@ export default function FestivalJourney() {
 
       {/* Top Header */}
       <div className="text-center max-w-2xl mx-auto relative z-20 space-y-1 sm:space-y-2 shrink-0">
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-foreground tracking-tight font-heading leading-tight uppercase">
+        <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-foreground tracking-tight font-heading leading-snug uppercase py-1">
           {t("festivalJourney.title")}
         </h2>
         <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-1.5 rounded-full" />
@@ -200,7 +206,7 @@ export default function FestivalJourney() {
 
                   {/* Card Top: Milestone Tag */}
                   <div className="relative z-10 p-4 sm:p-6 flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-bold uppercase tracking-widest text-amber-300 font-sans">
+                    <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs sm:text-sm font-bold uppercase tracking-widest text-amber-300 font-sans">
                       {item.tag}
                     </span>
                     <span className="text-xl sm:text-2xl font-normal font-heading text-white/90">
@@ -210,7 +216,7 @@ export default function FestivalJourney() {
 
                   {/* Card Bottom: Content info */}
                   <div className="relative z-10 p-4 sm:p-6 space-y-1.5 sm:space-y-2">
-                    <h3 className="text-lg sm:text-2xl font-normal font-heading text-white leading-snug uppercase">
+                    <h3 className="text-lg sm:text-xl md:text-[24px] font-normal font-heading text-white leading-snug py-0.5 uppercase">
                       {item.title}
                     </h3>
                     <p className="text-base text-neutral-300 line-clamp-3 font-sans font-normal leading-relaxed">
@@ -233,7 +239,7 @@ export default function FestivalJourney() {
             className={`px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider font-sans transition-all cursor-pointer ${
               activeIndex === idx
                 ? "bg-saffron text-white shadow-md shadow-saffron/30 scale-105"
-                : "bg-black/5 text-neutral-600 hover:bg-black/10"
+                : "bg-black/5 dark:bg-white/10 text-neutral-600 dark:text-neutral-300 hover:bg-black/10 dark:hover:bg-white/20"
             }`}
           >
             {item.year}

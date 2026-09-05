@@ -103,10 +103,10 @@ export default function CustomSelect({
           }
         }}
         className={cn(
-          "w-full flex items-center justify-between px-4 py-3.5 bg-white border rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer text-left select-none",
+          "w-full flex items-center justify-between px-4 py-3.5 bg-white dark:bg-[#18181b] border rounded-2xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer text-left select-none",
           isOpen
-            ? "border-saffron ring-4 ring-saffron/10 shadow-lg text-neutral-900"
-            : "border-neutral-200 hover:border-saffron/60 text-neutral-900 hover:shadow-xs shadow-xs"
+            ? "border-saffron ring-4 ring-saffron/10 shadow-lg text-neutral-900 dark:text-neutral-100"
+            : "border-neutral-200 dark:border-white/15 hover:border-saffron/60 text-neutral-900 dark:text-neutral-100 hover:shadow-xs shadow-xs"
         )}
       >
         <div className="flex items-center gap-3 overflow-hidden">
@@ -115,15 +115,15 @@ export default function CustomSelect({
               {icon}
             </span>
           )}
-          <span className="truncate text-neutral-900 font-sans">
-            {selectedOption ? selectedOption.label : <span className="text-slate-400 font-normal">{placeholder}</span>}
+          <span className="truncate text-neutral-900 dark:text-neutral-100 font-sans">
+            {selectedOption ? selectedOption.label : <span className="text-slate-400 dark:text-neutral-500 font-normal">{placeholder}</span>}
           </span>
         </div>
 
         <div
           className={cn(
             "w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 ml-2",
-            isOpen ? "rotate-180 bg-saffron text-white" : "bg-neutral-100 text-neutral-500"
+            isOpen ? "rotate-180 bg-saffron text-white" : "bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400"
           )}
         >
           <ChevronDown className="w-3.5 h-3.5" />
@@ -135,7 +135,7 @@ export default function CustomSelect({
         <div
           ref={optionsListRef}
           role="listbox"
-          className="absolute left-0 right-0 top-full mt-2 bg-white/98 backdrop-blur-2xl border border-black/10 rounded-2xl shadow-[0_16px_48px_rgba(0,0,0,0.16)] z-50 overflow-hidden p-1.5 max-h-64 overflow-y-auto animate-in fade-in zoom-in-98 duration-150"
+          className="absolute left-0 right-0 top-full mt-2 bg-white/98 dark:bg-[#18181b] backdrop-blur-2xl border border-black/10 dark:border-white/15 rounded-2xl shadow-[0_16px_48px_rgba(0,0,0,0.16)] z-50 overflow-hidden p-1.5 max-h-64 overflow-y-auto animate-in fade-in zoom-in-98 duration-150"
         >
           {options.map((opt, idx) => {
             const isSelected = opt.value === value;
@@ -157,7 +157,7 @@ export default function CustomSelect({
                     ? "bg-saffron text-white font-bold shadow-xs"
                     : isHighlighted
                     ? "bg-saffron/10 text-saffron font-medium"
-                    : "text-neutral-800 hover:bg-neutral-50"
+                    : "text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/10"
                 )}
               >
                 <div className="flex items-center gap-2.5 min-w-0 pr-2">

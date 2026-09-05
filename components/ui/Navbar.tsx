@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -93,7 +94,7 @@ export function Navbar() {
           {/* Left: Genuine Official Emblem inside Floating Glass Pill */}
           <Link
             href="/"
-            className="flex items-center gap-2 sm:gap-3 group bg-white/95 backdrop-blur-md border border-saffron/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-lg pointer-events-auto hover:border-saffron/30 hover:scale-[1.02] transition-all duration-300 select-none"
+            className="flex items-center gap-2 sm:gap-3 group bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-saffron/10 dark:border-white/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-lg pointer-events-auto hover:border-saffron/30 hover:scale-[1.02] transition-all duration-300 select-none"
             onClick={() => setIsOpen(false)}
             data-hover="pointer"
           >
@@ -107,7 +108,7 @@ export function Navbar() {
                 priority
               />
             </div>
-            <span className="text-[11px] sm:text-sm font-normal tracking-wider text-foreground font-heading uppercase">
+            <span className="text-[11px] sm:text-sm font-normal tracking-wider text-neutral-900 dark:text-neutral-100 font-heading uppercase">
               {t("common.trustName")}
             </span>
           </Link>
@@ -130,9 +131,12 @@ export function Navbar() {
               )} />
             </button>
 
-            {/* Language Switcher visible below menu button on pages; hidden when drawer menu is open */}
+            {/* Language Switcher & Theme Toggle below menu button on pages; hidden when drawer menu is open */}
             {!isOpen && (
-              <LanguageSwitcher variant="header" />
+              <div className="flex flex-col items-center gap-1.5">
+                <LanguageSwitcher variant="header" />
+                <ThemeToggle variant="header" />
+              </div>
             )}
           </div>
         </div>
@@ -140,16 +144,16 @@ export function Navbar() {
 
       {/* Next-Level Full-Screen Menu Overlay Drawer */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col md:flex-row p-6 pt-24 pb-12 sm:p-12 md:p-24 overflow-y-auto max-h-screen">
+        <div className="fixed inset-0 z-40 bg-white/98 dark:bg-neutral-950/98 backdrop-blur-2xl flex flex-col md:flex-row p-6 pt-24 pb-12 sm:p-12 md:p-24 overflow-y-auto max-h-screen text-foreground">
           {/* Ambient decorative glows */}
           <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-5" />
           <div className="absolute inset-0 ambient-gold-glow pointer-events-none translate-y-40 opacity-5" />
 
           {/* Left Column: Branding Showcase */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start border-b md:border-b-0 md:border-r border-saffron/10 pb-6 md:pb-0 md:pr-16 mb-6 md:mb-0 relative z-10 pt-6 md:pt-0">
-            {/* Clean Logo Emblem & Drawer Language Switcher */}
+          <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start border-b md:border-b-0 md:border-r border-saffron/10 dark:border-white/10 pb-6 md:pb-0 md:pr-16 mb-6 md:mb-0 relative z-10 pt-6 md:pt-0">
+            {/* Clean Logo Emblem & Drawer Language Switcher + Theme Switcher */}
             <div className="nav-drawer-info flex flex-col items-center md:items-start gap-4">
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-saffron/30 shadow-xl bg-white/90 p-1 group transition-transform duration-500 hover:scale-105">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-saffron/30 shadow-xl bg-white/90 dark:bg-neutral-900/90 p-1 group transition-transform duration-500 hover:scale-105">
                 <div className="relative w-full h-full rounded-full overflow-hidden">
                   <Image
                     src="/logo.png"
@@ -162,8 +166,9 @@ export function Navbar() {
                 </div>
               </div>
 
-              <div className="w-full max-w-[300px] pt-3">
+              <div className="w-full max-w-[300px] pt-3 flex flex-col gap-2.5">
                 <LanguageSwitcher variant="drawer" />
+                <ThemeToggle variant="drawer" />
               </div>
             </div>
           </div>
@@ -181,7 +186,7 @@ export function Navbar() {
                     className="nav-drawer-link group relative block text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal font-heading tracking-tight uppercase transition-all duration-300"
                     data-hover="pointer"
                   >
-                    <span className={`inline-block transition-transform duration-300 md:group-hover:translate-x-3 ${isActive ? "text-saffron" : "text-neutral-900 hover:text-saffron"
+                    <span className={`inline-block transition-transform duration-300 md:group-hover:translate-x-3 ${isActive ? "text-saffron" : "text-neutral-900 dark:text-neutral-100 hover:text-saffron"
                       }`}>
                       {link.label}
                     </span>
