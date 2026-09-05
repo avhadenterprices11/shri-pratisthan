@@ -96,14 +96,14 @@ export default function SuccessStories() {
   return (
     <section
       ref={containerRef}
-      className="py-6 sm:py-8 md:py-10 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
+      className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background border-t border-black/5"
     >
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-40 z-0" />
       
       <div className="max-w-5xl mx-auto relative z-10 stories-reveal">
         
         {/* Title block */}
-        <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-8">
+        <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-10">
           <span className="text-saffron font-bold text-xs uppercase tracking-[0.25em] block mb-2 sm:mb-3 font-sans">
             {t("communityPage.successStories.badge")}
           </span>

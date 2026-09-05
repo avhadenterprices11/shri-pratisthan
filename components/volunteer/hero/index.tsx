@@ -67,7 +67,7 @@ export default function VolunteerHero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[70vh] sm:min-h-[85vh] flex items-center py-10 sm:py-20 lg:py-24 px-4 sm:px-6 md:px-12 overflow-hidden bg-neutral-950"
+      className="relative min-h-[70vh] sm:min-h-[85vh] flex items-center pt-20 pb-10 sm:py-20 lg:py-24 px-4 sm:px-6 md:px-12 overflow-hidden bg-neutral-950"
     >
       {/* Fullscreen Ken Burns Background Image Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden">

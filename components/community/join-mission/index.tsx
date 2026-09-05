@@ -177,7 +177,7 @@ export default function JoinMission() {
     <section
       id="join-mission"
       ref={containerRef}
-      className="pt-6 sm:pt-8 md:pt-10 pb-12 sm:pb-16 md:pb-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
+      className="pt-10 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-24 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background scroll-mt-20"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40 animate-pulse" />
       <div className="max-w-5xl mx-auto relative z-10 join-reveal">

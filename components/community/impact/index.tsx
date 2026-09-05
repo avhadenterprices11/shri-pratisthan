@@ -68,7 +68,7 @@ export default function CommunityImpact() {
   return (
     <section
       ref={sectionRef}
-      className="pt-12 sm:pt-16 md:pt-20 pb-4 sm:pb-6 md:pb-8 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background"
+      className="pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 md:pb-12 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-background"
     >
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-40" />
       <div className="max-w-7xl mx-auto relative z-10">
