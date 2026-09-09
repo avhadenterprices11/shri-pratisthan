@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Marcellus, Outfit } from "next/font/google";
+import { Plus_Jakarta_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import { ScrollProvider } from "@/components/providers/ScrollProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -14,10 +14,10 @@ const sansFont = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const headingFont = Marcellus({
+const headingFont = Outfit({
   subsets: ["latin"],
   variable: "--font-heading",
-  weight: ["400"],
+  weight: ["500", "600", "700", "800"],
   display: "swap",
 });
 
