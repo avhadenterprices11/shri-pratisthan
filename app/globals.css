@@ -408,3 +408,60 @@ body {
 .notranslate {
   font-feature-settings: normal;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   HIGH-PRECISION PRINT ENGINE STYLES (Single Page & Clean Passes)
+   ══════════════════════════════════════════════════════════════ */
+@media print {
+  @page {
+    size: auto;
+    margin: 8mm;
+  }
+
+  /* 1. Eliminate Global Navbars, Floating Switchers, Cursors, Footers */
+  header,
+  nav,
+  footer,
+  .portal-intro,
+  .custom-cursor,
+  [data-cursor],
+  .ambient-saffron-glow,
+  .ambient-gold-glow,
+  .print\:hidden {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* 2. Reset Layout Root & Prevent Accidental Page 2 Overflow */
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111827 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: auto !important;
+  }
+
+  /* 3. Strict 1-Page Pass Container Guarantee */
+  .printable-pass-container {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-before: avoid !important;
+    break-before: avoid !important;
+    max-height: 96vh !important;
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+  }
+}

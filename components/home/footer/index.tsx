@@ -138,7 +138,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="group/footer bg-[#111111] text-white relative overflow-hidden border-t border-white/10 select-none">
+    <footer className="group/footer bg-[#111111] text-white relative overflow-hidden border-t border-white/10 select-none print:hidden">
 
       {/* 1. Sleek Stable Header Marquee — Zero Layout Shift */}
       <div 

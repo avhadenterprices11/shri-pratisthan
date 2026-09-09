@@ -88,7 +88,7 @@ export function Navbar() {
     <>
       <header
         ref={navRef}
-        className="absolute top-0 left-0 right-0 z-50 py-4 sm:py-6 px-4 sm:px-6 md:px-12 bg-transparent pointer-events-none transition-opacity opacity-0"
+        className="absolute top-0 left-0 right-0 z-50 py-4 sm:py-6 px-4 sm:px-6 md:px-12 bg-transparent pointer-events-none transition-opacity opacity-0 print:hidden"
       >
         <div className="max-w-[1400px] mx-auto flex justify-between items-start">
           {/* Left: Genuine Official Emblem inside Floating Glass Pill */}

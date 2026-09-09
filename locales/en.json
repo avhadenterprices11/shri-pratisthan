@@ -800,7 +800,17 @@
       "opt2": "Gudipadwa Swagat Yatra (Mar 19)",
       "opt3": "Bhavya Blood Donation & Health Camp (Aug 30)",
       "opt4": "Annual Sports & Cricket Tournament (Dec 18 - 25)",
-      "opt5": "Navratri Utsav & Dandiya Nights (Sep 22 - Oct 02)"
+      "opt5": "Navratri Utsav & Dandiya Nights (Sep 22 - Oct 02)",
+      "confirmModalTitle": "Registration Confirmed!",
+      "confirmModalDesc": "Your initiative registration has been recorded successfully. Our coordinators will contact you shortly.",
+      "confirmModalBadge": "Initiative Verified",
+      "bookingId": "Reference ID",
+      "copied": "Copied!",
+      "copyId": "Copy ID",
+      "doneBtn": "Done / Close",
+      "printSlip": "Print Confirmation",
+      "nameReq": "Please enter your full name",
+      "phoneReq": "Please enter a valid 10-digit phone number"
     },
     "faq": {
       "heading": "Frequently Asked Questions",
