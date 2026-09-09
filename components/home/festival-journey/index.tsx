@@ -72,17 +72,18 @@ export default function FestivalJourney() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // GSAP Pinned Scroll Scrub: Cards change with scrolling, locked full screen with zero gaps
+  // GSAP Pinned Scroll Scrub: Desktop only (>= 768px) with zero pinning on mobile
   useEffect(() => {
     const section = sectionRef.current;
     const track = trackRef.current;
     if (!section || !track) return;
 
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
       const travelDistance = (totalMilestones - 1) * slideSize;
-      const isMobile = window.innerWidth < 768;
-      // Ample scroll distance so all cards show off completely before unpinning
-      const scrollDistance = isMobile ? 1300 : 1700;
+      // Ultra-responsive, minimal wheel travel: glides through in just 1-2 quick wheel ticks and exits
+      const scrollDistance = 400;
 
       const anim = gsap.to(track, {
         x: -travelDistance,
@@ -94,7 +95,7 @@ export default function FestivalJourney() {
           pinType: "fixed",
           start: "top top",
           end: () => `+=${scrollDistance}`,
-          scrub: 0.3,
+          scrub: 0.15,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           fastScrollEnd: true,
@@ -114,14 +115,14 @@ export default function FestivalJourney() {
       });
 
       scrollTriggerRef.current = anim.scrollTrigger ?? null;
-    }, sectionRef);
+    });
 
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 200);
 
     return () => {
-      ctx.revert();
+      mm.revert();
       clearTimeout(timer);
       scrollTriggerRef.current = null;
     };
@@ -144,22 +145,70 @@ export default function FestivalJourney() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-[100dvh] overflow-hidden bg-background flex flex-col justify-between pt-8 pb-6 sm:pt-12 sm:pb-8 px-4 sm:px-6 select-none"
+      className="relative w-full md:h-[100dvh] md:overflow-hidden bg-background flex flex-col justify-between py-6 sm:py-8 md:py-8 px-4 sm:px-6 select-none"
     >
       {/* Ambient Brand Glows */}
       <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-30" />
       <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-20" />
 
       {/* Top Header */}
-      <div className="text-center max-w-2xl mx-auto relative z-20 space-y-1 sm:space-y-2 shrink-0">
+      <div className="text-center max-w-2xl mx-auto relative z-20 space-y-1 sm:space-y-2 shrink-0 mb-4 md:mb-0">
         <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-foreground tracking-tight font-heading leading-snug uppercase py-1">
           {t("festivalJourney.title")}
         </h2>
         <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-1.5 rounded-full" />
       </div>
 
-      {/* Middle Carousel Viewport: Cards change with scrolling */}
-      <div className="relative w-full h-[370px] sm:h-[410px] lg:h-[450px] flex items-center justify-center overflow-hidden shrink-0 my-auto">
+      {/* ── Mobile Vertical Journey Stack: Ultra-compact height for effortless scroll-through ── */}
+      <div className="flex md:hidden flex-col gap-3 w-full max-w-md mx-auto relative z-20">
+        {milestonesData.map((item, index) => (
+          <div
+            key={item.year}
+            className="w-full h-[155px] sm:h-[175px] rounded-2xl overflow-hidden flex flex-col justify-between border border-saffron/40 bg-[#121214] shadow-lg shadow-saffron/10 relative"
+          >
+            {/* Background Image */}
+            <Image
+              src={item.image}
+              alt={item.title}
+              fill
+              sizes="(max-width: 640px) 100vw, 440px"
+              priority={index === 0}
+              className={cn(
+                "transition-transform duration-700 ease-out",
+                item.fit === "contain"
+                  ? "object-contain p-4 -translate-y-2"
+                  : "object-cover"
+              )}
+            />
+
+            {/* Gradient Backplate */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-transparent" />
+
+            {/* Card Top: Milestone Tag & Year */}
+            <div className="relative z-10 p-3 sm:p-4 flex items-center justify-between">
+              <span className="px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[11px] font-bold uppercase tracking-wider text-amber-300 font-sans">
+                {item.tag}
+              </span>
+              <span className="text-lg font-bold font-heading text-white/95">
+                {item.year}
+              </span>
+            </div>
+
+            {/* Card Bottom: Content info */}
+            <div className="relative z-10 p-3 sm:p-4 space-y-1">
+              <h3 className="text-base sm:text-lg font-bold font-heading text-white leading-snug uppercase line-clamp-1">
+                {item.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-300 line-clamp-2 font-sans font-normal leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Desktop Carousel Viewport (Pinned horizontal scrub with ScrollTrigger) ── */}
+      <div className="hidden md:flex relative w-full h-[370px] sm:h-[410px] lg:h-[450px] items-center justify-center overflow-hidden shrink-0 my-auto">
         <div
           ref={trackRef}
           className="absolute left-[50%] flex w-fit items-center will-change-transform"
@@ -230,8 +279,8 @@ export default function FestivalJourney() {
         </div>
       </div>
 
-      {/* Bottom Year Buttons */}
-      <div className="flex justify-center gap-2 relative z-20 shrink-0">
+      {/* Bottom Year Buttons (Desktop only) */}
+      <div className="hidden md:flex justify-center gap-2 relative z-20 shrink-0">
         {milestonesData.map((item, idx) => (
           <button
             key={item.year}
