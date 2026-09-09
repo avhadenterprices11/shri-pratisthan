@@ -14,7 +14,6 @@ export default function FestivalJourney() {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const mobileTrackRef = useRef<HTMLDivElement>(null);
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const activeIndexRef = useRef(0);
@@ -65,27 +64,18 @@ export default function FestivalJourney() {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      // 1. Mobile Phone (< 768px): Vertical scrub — cards come ONE BY ONE vertically
+      // 1. Mobile Phone (< 768px): Vertical scrub — clean single-card layered stage
       mm.add("(max-width: 767px)", () => {
-        const mobileTrack = mobileTrackRef.current;
-        if (!mobileTrack) return;
+        const scrollDistance = 700;
 
-        const cardH = 340;
-        const gap = 16;
-        const step = cardH + gap;
-        const travelDistance = (totalMilestones - 1) * step;
-        const scrollDistance = 450;
-
-        const anim = gsap.to(mobileTrack, {
-          y: -travelDistance,
-          ease: "none",
+        const anim = gsap.to({}, {
           scrollTrigger: {
             trigger: section,
             pin: true,
             pinSpacing: true,
             start: "top top",
             end: () => `+=${scrollDistance}`,
-            scrub: 0.15,
+            scrub: 0.2,
             anticipatePin: 1,
             invalidateOnRefresh: true,
             fastScrollEnd: true,
@@ -114,7 +104,7 @@ export default function FestivalJourney() {
 
         const dynamicSlideSize = window.innerWidth >= 1024 ? 440 : 380;
         const travelDistance = (totalMilestones - 1) * dynamicSlideSize;
-        const scrollDistance = 450;
+        const scrollDistance = 700;
 
         const anim = gsap.to(track, {
           x: -travelDistance,
@@ -125,7 +115,7 @@ export default function FestivalJourney() {
             pinSpacing: true,
             start: "top top",
             end: () => `+=${scrollDistance}`,
-            scrub: 0.15,
+            scrub: 0.2,
             anticipatePin: 1,
             invalidateOnRefresh: true,
             fastScrollEnd: true,
@@ -172,90 +162,83 @@ export default function FestivalJourney() {
     <div ref={containerRef} className="relative w-full">
       <section
         ref={sectionRef}
-        className="relative w-full h-[100dvh] overflow-hidden bg-background flex flex-col justify-between py-6 sm:py-8 px-4 sm:px-6 select-none"
+        className="relative w-full h-[100dvh] overflow-hidden bg-background flex flex-col items-center justify-center py-6 sm:py-8 px-4 sm:px-6 select-none"
       >
         {/* Ambient Brand Glows */}
         <div className="absolute inset-0 ambient-saffron-glow pointer-events-none opacity-30" />
         <div className="absolute inset-0 ambient-gold-glow pointer-events-none opacity-20" />
 
         {/* Top Header */}
-        <div className="text-center max-w-2xl mx-auto relative z-20 space-y-1 sm:space-y-2 shrink-0">
+        <div className="text-center max-w-2xl mx-auto relative z-20 space-y-1 sm:space-y-2 shrink-0 mb-4 sm:mb-6">
           <h2 className="text-2xl sm:text-3xl md:text-[36px] font-normal text-foreground tracking-tight font-heading leading-snug uppercase py-1">
             {t("festivalJourney.title")}
           </h2>
           <div className="w-12 sm:w-16 h-1 bg-saffron mx-auto mt-1.5 rounded-full" />
         </div>
 
-        {/* ── Mobile Vertical Carousel Viewport: Cards come one by one vertically as user scrolls ── */}
-        <div className="flex md:hidden relative w-full h-[360px] items-center justify-center overflow-hidden shrink-0 my-auto">
-          <div
-            ref={mobileTrackRef}
-            className="absolute top-[50%] -mt-[170px] flex flex-col w-full items-center will-change-transform"
-          >
-            {milestonesData.map((item, index) => {
-              const isActive = activeIndex === index;
+        {/* ── Mobile Clean Single-Card Stage: Cards transition one by one vertically with zero edge bleeding ── */}
+        <div className="flex md:hidden relative w-full max-w-[340px] h-[340px] items-center justify-center shrink-0">
+          {milestonesData.map((item, index) => {
+            const isActive = activeIndex === index;
+            const isPast = index < activeIndex;
 
-              return (
-                <div
-                  key={item.year}
-                  className="flex shrink-0 flex-col items-center justify-center will-change-transform w-full max-w-[340px] px-2 h-[340px] mb-4"
-                  onClick={() => scrollToMilestone(index)}
-                >
-                  {/* Milestone Detail Card */}
-                  <div
-                    className={cn(
-                      "w-full h-[340px] rounded-2xl overflow-hidden flex flex-col justify-between border bg-[#121214] shadow-2xl transition-all duration-300 relative cursor-pointer",
-                      isActive
-                        ? "border-saffron/60 shadow-saffron/25 ring-2 ring-saffron/30 scale-100 opacity-100"
-                        : "border-slate-800/80 shadow-slate-950/60 scale-[0.93] opacity-35"
-                    )}
-                  >
-                    {/* Background Image */}
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 640px) 340px, 440px"
-                      priority={index === 0}
-                      className={cn(
-                        "transition-transform duration-700 ease-out",
-                        item.fit === "contain"
-                          ? "object-contain p-6 -translate-y-3"
-                          : "object-cover"
-                      )}
-                    />
+            return (
+              <div
+                key={item.year}
+                className={cn(
+                  "absolute inset-0 w-full h-[340px] rounded-2xl overflow-hidden flex flex-col justify-between border bg-[#121214] shadow-2xl transition-all duration-500 ease-out cursor-pointer",
+                  isActive
+                    ? "opacity-100 scale-100 translate-y-0 pointer-events-auto border-saffron/60 shadow-saffron/25 ring-2 ring-saffron/30 z-10"
+                    : isPast
+                      ? "opacity-0 scale-95 -translate-y-6 pointer-events-none border-slate-800/80 z-0"
+                      : "opacity-0 scale-95 translate-y-6 pointer-events-none border-slate-800/80 z-0"
+                )}
+                onClick={() => scrollToMilestone(index)}
+              >
+                {/* Background Image */}
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 640px) 340px, 440px"
+                  priority={index === 0}
+                  className={cn(
+                    "transition-transform duration-700 ease-out",
+                    item.fit === "contain"
+                      ? "object-contain p-6 -translate-y-3"
+                      : "object-cover"
+                  )}
+                />
 
-                    {/* Gradient Backplate */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                {/* Gradient Backplate */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
-                    {/* Card Top: Milestone Tag & Year */}
-                    <div className="relative z-10 p-4 flex items-center justify-between">
-                      <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-bold uppercase tracking-widest text-amber-300 font-sans">
-                        {item.tag}
-                      </span>
-                      <span className="text-xl font-bold font-heading text-white/95">
-                        {item.year}
-                      </span>
-                    </div>
-
-                    {/* Card Bottom: Content info */}
-                    <div className="relative z-10 p-4 space-y-1.5">
-                      <h3 className="text-lg font-bold font-heading text-white leading-snug py-0.5 uppercase">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-neutral-300 line-clamp-3 font-sans font-normal leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
+                {/* Card Top: Milestone Tag & Year */}
+                <div className="relative z-10 p-4 flex items-center justify-between">
+                  <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-bold uppercase tracking-widest text-amber-300 font-sans">
+                    {item.tag}
+                  </span>
+                  <span className="text-xl font-bold font-heading text-white/95">
+                    {item.year}
+                  </span>
                 </div>
-              );
-            })}
-          </div>
+
+                {/* Card Bottom: Content info */}
+                <div className="relative z-10 p-4 space-y-1.5">
+                  <h3 className="text-lg font-bold font-heading text-white leading-snug py-0.5 uppercase">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-neutral-300 line-clamp-3 font-sans font-normal leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* ── Desktop Carousel Viewport: Cards come one by one horizontally as user scrolls ── */}
-        <div className="hidden md:flex relative w-full h-[370px] sm:h-[410px] lg:h-[450px] items-center justify-center overflow-hidden shrink-0 my-auto">
+        <div className="hidden md:flex relative w-full h-[360px] sm:h-[400px] lg:h-[430px] items-center justify-center overflow-hidden shrink-0">
           <div
             ref={trackRef}
             className="absolute left-[50%] -ml-[190px] lg:-ml-[220px] flex w-fit items-center will-change-transform"
@@ -322,13 +305,13 @@ export default function FestivalJourney() {
           </div>
         </div>
 
-        {/* Bottom Year Buttons (Active on both Mobile and PC) */}
-        <div className="flex justify-center gap-1.5 sm:gap-2 relative z-20 shrink-0">
+        {/* Bottom Year Buttons directly grouped below the cards (no empty gap) */}
+        <div className="flex justify-center gap-1.5 sm:gap-2 relative z-20 shrink-0 mt-5 sm:mt-7">
           {milestonesData.map((item, idx) => (
             <button
               key={item.year}
               onClick={() => scrollToMilestone(idx)}
-              className={`px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-xs font-bold tracking-wider font-sans transition-all cursor-pointer ${
+              className={`px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold tracking-wider font-sans transition-all cursor-pointer ${
                 activeIndex === idx
                   ? "bg-saffron text-white shadow-md shadow-saffron/30 scale-105"
                   : "bg-black/5 dark:bg-white/10 text-neutral-600 dark:text-neutral-300 hover:bg-black/10 dark:hover:bg-white/20"
