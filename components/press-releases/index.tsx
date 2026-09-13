@@ -4,10 +4,8 @@ import React, { useState } from "react";
 import PressHero from "./hero";
 import FeaturedRelease from "./featured-release";
 import ReleaseArchive from "./release-archive";
-import MediaCoverage from "./media-coverage";
 import CommunityHighlights from "./community-highlights";
 import OfficialStatements from "./official-statements";
-import PressKit from "./press-kit";
 import PressContact from "./press-contact";
 import ReleaseModal from "./release-modal";
 import { PRESS_RELEASES, PressRelease, OfficialAnnouncement } from "@/lib/press-data";
@@ -54,21 +52,15 @@ export default function PressReleasesClient() {
         onReadRelease={handleOpenReleaseModal}
       />
 
-      {/* 4. MEDIA COVERAGE */}
-      <MediaCoverage />
-
-      {/* 5. EVENT & COMMUNITY HIGHLIGHTS */}
+      {/* 4. EVENT & COMMUNITY HIGHLIGHTS */}
       <CommunityHighlights />
 
-      {/* 6. OFFICIAL STATEMENTS / ANNOUNCEMENTS */}
+      {/* 5. OFFICIAL STATEMENTS / ANNOUNCEMENTS */}
       <OfficialStatements
         onSelectAnnouncement={handleOpenAnnouncementModal}
       />
 
-      {/* 7. PRESS KIT */}
-      <PressKit />
-
-      {/* 8. MEDIA / PRESS CONTACT */}
+      {/* 6. MEDIA / PRESS CONTACT */}
       <PressContact />
 
       {/* Interactive Modal Reader */}
