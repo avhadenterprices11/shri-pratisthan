@@ -267,6 +267,7 @@ export default function Footer() {
                 <li><Link href="/community" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.14em] sm:tracking-[0.18em]">{t("navbar.community")}</Link></li>
                 <li><Link href="/about" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.14em] sm:tracking-[0.18em]">{t("navbar.about")}</Link></li>
                 <li><Link href="/gallery" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.14em] sm:tracking-[0.18em]">{t("navbar.gallery")}</Link></li>
+                <li><Link href="/press-releases" className="hover:text-white transition-colors duration-200 uppercase font-bold tracking-[0.14em] sm:tracking-[0.18em]">Press & Releases</Link></li>
               </ul>
             </div>
 

@@ -81,6 +81,7 @@ export function Navbar() {
     { label: t("navbar.volunteer"), href: "/volunteer" },
     { label: t("navbar.events"), href: "/events" },
     { label: t("navbar.gallery"), href: "/gallery" },
+    { label: "Press & Releases", href: "/press-releases" },
     { label: t("navbar.contact"), href: "/contact" },
   ];
 
