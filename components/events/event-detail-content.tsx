@@ -41,7 +41,6 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
       "/events/swarnagiri/swarnagiri-1.png",
       "/events/swarnagiri/swarnagiri-2.png",
       "/events/swarnagiri/swarnagiri-3.png",
-      "/events/swarnagiri/swarnagiri-4.png",
     ];
   }, []);
 
@@ -632,12 +631,11 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
           <h2 className="text-2xl sm:text-2xl font-normal font-heading text-neutral-900 dark:text-neutral-100 uppercase tracking-tight">
             {t("eventsPage.detail.momentsGalleryTitle")}
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {[
               "/events/swarnagiri/swarnagiri-1.png",
               "/events/swarnagiri/swarnagiri-2.png",
               "/events/swarnagiri/swarnagiri-3.png",
-              "/events/swarnagiri/swarnagiri-4.png",
             ].map((img, idx) => (
               <div key={idx} className="relative aspect-video w-full rounded-xl overflow-hidden border border-saffron/15 dark:border-white/10 shadow-sm group">
                 <Image
@@ -646,7 +644,7 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
                   fill
                   unoptimized
                   quality={100}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
