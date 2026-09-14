@@ -564,65 +564,10 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
           </div>
         </div>
 
-        {/* 9. Our Partners & Event Sponsors Grid */}
-        {(event.partners?.length > 0 || event.sponsors?.length > 0) && (
-          <div className={`grid grid-cols-1 ${event.partners?.length > 0 && event.sponsors?.length > 0 ? "md:grid-cols-2" : ""} gap-4 sm:gap-6`}>
-            
-            {/* Partners Card */}
-            {event.partners && event.partners.length > 0 && (
-              <div className="glass-panel p-5 sm:p-7 rounded-2xl border border-saffron/15 dark:border-white/10 bg-white/80 dark:bg-[#121214] space-y-4 shadow-sm">
-                <div className="flex items-center gap-2 border-b border-black/5 dark:border-white/10 pb-3">
-                  <HeartHandshake className="w-5 h-5 text-saffron" />
-                  <h3 className="font-normal font-heading text-neutral-900 dark:text-neutral-100 text-base sm:text-lg uppercase">
-                    {t("eventsPage.detail.partners")}
-                  </h3>
-                </div>
-                <div className="space-y-2.5">
-                  {event.partners.map((partner, idx) => (
-                    <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-neutral-50 dark:bg-[#18181b] border border-black/5 dark:border-white/10 text-xs sm:text-sm font-sans">
-                      <span className="font-bold text-slate-800 dark:text-neutral-200">{partner.name}</span>
-                      {partner.role && (
-                        <span className="text-[10px] uppercase font-bold text-saffron bg-saffron/10 px-2.5 py-0.5 rounded-full">
-                          {partner.role}
-                        </span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Sponsors Card */}
-            {event.sponsors && event.sponsors.length > 0 && (
-              <div className="glass-panel p-5 sm:p-7 rounded-2xl border border-saffron/15 dark:border-white/10 bg-white/80 dark:bg-[#121214] space-y-4 shadow-sm">
-                <div className="flex items-center gap-2 border-b border-black/5 dark:border-white/10 pb-3">
-                  <Award className="w-5 h-5 text-gold" />
-                  <h3 className="font-normal font-heading text-neutral-900 dark:text-neutral-100 text-base sm:text-lg uppercase">
-                    {t("eventsPage.detail.sponsors")}
-                  </h3>
-                </div>
-                <div className="space-y-2.5">
-                  {event.sponsors.map((sponsor, idx) => (
-                    <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-neutral-50 dark:bg-[#18181b] border border-black/5 dark:border-white/10 text-xs sm:text-sm font-sans">
-                      <span className="font-bold text-slate-800 dark:text-neutral-200">{sponsor.name}</span>
-                      {sponsor.tier ? (
-                        <span className="text-[10px] uppercase font-bold text-gold dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/40 px-2.5 py-0.5 rounded-full">
-                          {getSponsorTierLabel(sponsor.tier)}
-                        </span>
-                      ) : null}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-          </div>
-        )}
-
         {/* 10. Helpline, Emergency Staff Contact & Location Coordinates */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 items-start">
           
-          {/* Emergency Coordinator Contact */}
+          {/* Emergency Coordinator Contact / Helpline Card */}
           <div className="glass-panel p-5 sm:p-7 rounded-2xl border border-saffron/20 dark:border-white/10 bg-white/80 dark:bg-[#121214] space-y-3 shadow-sm h-fit">
             <div className="flex items-center gap-2 border-b border-black/5 dark:border-white/10 pb-3">
               <PhoneCall className="w-5 h-5 text-saffron shrink-0" />

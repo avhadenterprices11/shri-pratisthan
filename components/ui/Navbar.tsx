@@ -128,21 +128,21 @@ export function Navbar() {
           {/* Left: Genuine Official Emblem inside Floating Glass Pill */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 sm:gap-3 group bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-saffron/10 dark:border-white/10 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full shadow-lg pointer-events-auto hover:border-saffron/30 hover:scale-[1.02] transition-all duration-300 select-none"
+            className="flex items-center gap-2.5 sm:gap-3 group bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-saffron/10 dark:border-white/10 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-lg pointer-events-auto hover:border-saffron/30 hover:scale-[1.02] transition-all duration-300 select-none"
             onClick={() => setIsOpen(false)}
             data-hover="pointer"
           >
-            <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0 border border-saffron/20 shadow-sm transition-transform duration-500 group-hover:scale-105">
+            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden shrink-0 border border-saffron/20 shadow-sm transition-transform duration-500 group-hover:scale-105">
               <Image
                 src="/logo.png"
                 alt="Shree Pratisthan Official Logo"
                 fill
-                sizes="(max-width: 640px) 32px, 40px"
+                sizes="(max-width: 640px) 40px, 48px"
                 className="object-contain"
                 priority
               />
             </div>
-            <span className="text-xs sm:text-sm md:text-base font-medium tracking-wider text-neutral-900 dark:text-neutral-100 font-heading uppercase">
+            <span className="text-xs sm:text-sm md:text-base font-bold tracking-wider text-neutral-900 dark:text-neutral-100 font-heading uppercase">
               {t("common.trustName")}
             </span>
           </Link>
