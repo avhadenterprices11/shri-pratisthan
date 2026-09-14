@@ -112,9 +112,9 @@ export const ALL_EVENTS: EventItem[] = [
     embedMapUrl: "https://maps.google.com/maps?q=19.9650694,73.7800350&z=16&output=embed",
     mainImage: "/events/swarnagiri/swarnagiri-1.png",
     galleryImages: [
-      "/events/swarnagiri/swarnagiri-3.png",
       "/events/swarnagiri/swarnagiri-2.png",
-      "/events/swarnagiri/swarnagiri-1.png",
+      "/events/swarnagiri/swarnagiri-3.png",
+      "/events/swarnagiri/swarnagiri-4.png",
     ],
     description:
       "Celebrating its 20th grand year, Shri Pratishthan and Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha present Nashik Ganeshotsav 2026. \n\nThis year’s highlight is a grand, life-sized replica (Dekhava) of Telangana's iconic Swarnagiri Shri Venkateshwara Swamy Temple (Hyderabad). Entry is completely free for all devotees.",
@@ -778,9 +778,9 @@ export const ALL_EVENTS: EventItem[] = [
     embedMapUrl: "https://maps.google.com/maps?q=19.9650694,73.7800350&z=16&output=embed",
     mainImage: "/events/swarnagiri/swarnagiri-1.png",
     galleryImages: [
-      "/events/swarnagiri/swarnagiri-3.png",
       "/events/swarnagiri/swarnagiri-2.png",
-      "/events/swarnagiri/swarnagiri-1.png",
+      "/events/swarnagiri/swarnagiri-3.png",
+      "/events/swarnagiri/swarnagiri-4.png",
     ],
     description:
       "Celebrating its 20th grand year, Shri Pratishthan and Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha present Nashik Ganeshotsav 2026. \n\nThis year’s highlight is a grand, life-sized replica (Dekhava) of Telangana's iconic Swarnagiri Shri Venkateshwara Swamy Temple (Hyderabad). Entry is completely free for all devotees.",

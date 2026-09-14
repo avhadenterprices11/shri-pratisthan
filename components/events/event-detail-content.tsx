@@ -14,6 +14,7 @@ import {
   Check,
   CheckCircle2,
   ExternalLink,
+  ChevronLeft,
   ChevronRight,
   HeartHandshake,
   Award,
@@ -25,6 +26,7 @@ import {
   QrCode,
   Sparkles,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { getLocalizedEvent } from "@/lib/events-i18n";
 import { EventItem } from "@/lib/events-data";
 import { useLanguage } from "@/context/LanguageContext";
@@ -36,11 +38,54 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
 
   const displayImages = React.useMemo(() => {
     return [
-      event.mainImage || "/events/swarnagiri/swarnagiri-1.png",
-      event.galleryImages?.[0] || "/events/swarnagiri/swarnagiri-3.png",
-      event.galleryImages?.[1] || "/events/swarnagiri/swarnagiri-2.png",
+      "/events/swarnagiri/swarnagiri-1.png",
+      "/events/swarnagiri/swarnagiri-2.png",
+      "/events/swarnagiri/swarnagiri-3.png",
+      "/events/swarnagiri/swarnagiri-4.png",
     ];
-  }, [event.mainImage, event.galleryImages]);
+  }, []);
+
+  // Interactive Carousel State & Controls
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
+  const touchStartX = React.useRef<number | null>(null);
+  const touchEndX = React.useRef<number | null>(null);
+
+  React.useEffect(() => {
+    if (isCarouselPaused) return;
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % displayImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isCarouselPaused, displayImages.length]);
+
+  const handleNextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % displayImages.length);
+  };
+
+  const handlePrevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + displayImages.length) % displayImages.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const distance = touchStartX.current - touchEndX.current;
+    if (distance > 40) {
+      handleNextSlide();
+    } else if (distance < -40) {
+      handlePrevSlide();
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
 
   const handleShare = async () => {
     if (typeof window === "undefined") return;
@@ -114,89 +159,131 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
 
           <div className="relative z-10 space-y-8 sm:space-y-10">
             
-            {/* FULL WIDTH IMAGE GRID (Portrait on mobile, expansive landscape grid on desktop) */}
+            {/* FULL WIDTH HERO CAROUSEL (Showcases the 3 sacred images in a high-definition interactive slider) */}
             <div className="w-full">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 h-auto md:h-[460px] lg:h-[500px]">
-                {/* Main Feature Photo (md:col-span-8, aspect-[4/5] portrait on mobile) */}
-                <div className="w-full aspect-[4/5] sm:aspect-[3/4] md:aspect-auto md:h-full md:col-span-8 relative rounded-2xl sm:rounded-block overflow-hidden border border-black/5 dark:border-white/10 shadow-xl bg-neutral-950 group select-none">
-                  <Image
-                    src={displayImages[0]}
-                    alt={event.title}
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 100vw, 68vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-                  />
+              <div 
+                className="relative w-full aspect-[4/5] sm:aspect-[16/10] md:h-[480px] lg:h-[520px] rounded-2xl sm:rounded-block overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl bg-neutral-950 group select-none"
+                onMouseEnter={() => setIsCarouselPaused(true)}
+                onMouseLeave={() => setIsCarouselPaused(false)}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                {/* Slides Layer */}
+                {displayImages.map((imgSrc, idx) => {
+                  const isActive = idx === activeSlide;
+                  return (
+                    <div
+                      key={imgSrc + idx}
+                      className={cn(
+                        "absolute inset-0 transition-opacity duration-700 ease-in-out",
+                        isActive ? "opacity-100 z-10" : "opacity-0 pointer-events-none z-0"
+                      )}
+                    >
+                      <Image
+                        src={imgSrc}
+                        alt={`${event.title} - Photo ${idx + 1}`}
+                        fill
+                        priority={idx === 0}
+                        unoptimized
+                        quality={100}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1400px) 95vw, 1360px"
+                        className={cn(
+                          "object-cover transition-transform duration-1000 ease-out",
+                          isActive ? "scale-100 group-hover:scale-105" : "scale-105"
+                        )}
+                      />
 
-                  {/* Diagonal Light Shimmer Sweep on Hover */}
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none z-10" />
-
-                  {/* Vignette Gradients for Text Legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/25 to-transparent pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-transparent to-transparent pointer-events-none" />
-                  
-                  {/* Badges Top Overlay */}
-                  <div className="absolute top-3.5 sm:top-5 left-3.5 sm:left-5 right-3.5 sm:right-5 flex flex-wrap items-center justify-between gap-2 z-10">
-                    <div className="flex flex-wrap gap-2">
-                      <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-saffron to-amber-600 text-white font-extrabold text-[10px] sm:text-[11px] uppercase tracking-[0.2em] px-3 sm:px-3.5 py-1.5 rounded-full shadow-lg shadow-saffron/30 border border-white/25 font-sans backdrop-blur-md">
-                        <Sparkles className="w-3 h-3 text-amber-200" />
-                        {event.categoryLabel}
-                      </span>
-
-                      <span className="inline-flex items-center gap-1.5 bg-neutral-950/75 text-white font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.16em] px-3 py-1.5 rounded-full shadow-md font-sans backdrop-blur-md border border-white/20">
-                        <MapPin className="w-3 h-3 text-gold" />
-                        {event.eventMode}
-                      </span>
+                      {/* Vignette Gradients for Text Legibility & Contrast */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/25 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/50 via-transparent to-transparent pointer-events-none" />
                     </div>
+                  );
+                })}
 
-                    <span className="inline-flex items-center gap-1.5 bg-white/90 text-neutral-900 font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.16em] px-3 py-1.5 rounded-full shadow-md font-sans backdrop-blur-md border border-white/80">
-                      <QrCode className="w-3 h-3 text-saffron" />
-                      {event.checkInMode}
+                {/* Badges Top Overlay */}
+                <div className="absolute top-3.5 sm:top-5 left-3.5 sm:left-5 right-3.5 sm:right-5 flex flex-wrap items-center justify-between gap-2 z-20 pointer-events-none">
+                  <div className="flex flex-wrap gap-2 pointer-events-auto">
+                    <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-saffron to-amber-600 text-white font-extrabold text-[10px] sm:text-[11px] uppercase tracking-[0.2em] px-3 sm:px-3.5 py-1.5 rounded-full shadow-lg shadow-saffron/30 border border-white/25 font-sans backdrop-blur-md">
+                      <Sparkles className="w-3 h-3 text-amber-200" />
+                      {event.categoryLabel}
+                    </span>
+
+                    <span className="inline-flex items-center gap-1.5 bg-neutral-950/80 text-white font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.16em] px-3 py-1.5 rounded-full shadow-md font-sans backdrop-blur-md border border-white/20">
+                      <MapPin className="w-3 h-3 text-gold" />
+                      {event.eventMode}
                     </span>
                   </div>
 
-                  {/* Bottom Trust Prestige Bar on Image */}
-                  <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 flex items-end justify-between gap-3 text-white z-10">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-full bg-saffron flex items-center justify-center text-white shadow-md ring-2 ring-white/30">
-                        <ShieldCheck className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-gold leading-tight">
-                          {language === "mr" ? "श्री प्रतिष्ठान अधिकृत" : language === "hi" ? "श्री प्रतिष्ठान आधिकारिक" : "Shree Pratisthan Official"}
-                        </p>
-                        <p className="text-xs text-white/90 font-medium">{event.city}, {event.state || "Maharashtra"}</p>
-                      </div>
-                    </div>
+                  <div className="flex items-center gap-2 pointer-events-auto">
+                    <span className="inline-flex items-center gap-1.5 bg-white/95 text-neutral-900 font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.16em] px-3 py-1.5 rounded-full shadow-md font-sans backdrop-blur-md border border-white/80">
+                      <QrCode className="w-3 h-3 text-saffron" />
+                      {event.checkInMode}
+                    </span>
+
+                    {/* Slide Counter Badge */}
+                    <span className="inline-flex items-center gap-1.5 bg-neutral-950/80 text-white/95 font-mono text-[10px] sm:text-xs font-semibold px-3 py-1.5 rounded-full border border-white/20 backdrop-blur-md shadow-md">
+                      <span className="text-gold font-bold">{String(activeSlide + 1).padStart(2, "0")}</span>
+                      <span className="text-white/40">/</span>
+                      <span>{String(displayImages.length).padStart(2, "0")}</span>
+                    </span>
                   </div>
                 </div>
 
-                {/* Secondary Photos Stack (md:col-span-4) */}
-                <div className="grid grid-cols-2 md:grid-cols-1 md:col-span-4 md:grid-rows-2 gap-3 sm:gap-4 h-[130px] sm:h-[150px] md:h-full">
-                  {/* Photo 2 */}
-                  <div className="relative rounded-2xl sm:rounded-block overflow-hidden border border-black/5 dark:border-white/10 shadow-md bg-neutral-950 group select-none">
-                    <Image
-                      src={displayImages[1]}
-                      alt={`${event.title} moment 2`}
-                      fill
-                      sizes="(max-width: 768px) 50vw, 32vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
+                {/* Left Navigation Arrow */}
+                <button
+                  type="button"
+                  onClick={handlePrevSlide}
+                  aria-label="Previous slide"
+                  className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-neutral-950/65 hover:bg-saffron text-white border border-white/20 hover:border-saffron backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-xl hover:scale-110 active:scale-95 opacity-80 sm:opacity-0 group-hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-saffron"
+                >
+                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+
+                {/* Right Navigation Arrow */}
+                <button
+                  type="button"
+                  onClick={handleNextSlide}
+                  aria-label="Next slide"
+                  className="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-neutral-950/65 hover:bg-saffron text-white border border-white/20 hover:border-saffron backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-xl hover:scale-110 active:scale-95 opacity-80 sm:opacity-0 group-hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-saffron"
+                >
+                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+
+                {/* Bottom Bar on Carousel: Trust Prestige + Dot Indicators */}
+                <div className="absolute bottom-0 inset-x-0 p-3.5 sm:p-5 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 text-white z-20 bg-gradient-to-t from-neutral-950/90 via-neutral-950/50 to-transparent">
+                  {/* Left: Trust Prestige info */}
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-full bg-saffron flex items-center justify-center text-white shadow-md ring-2 ring-white/30 shrink-0">
+                      <ShieldCheck className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-gold leading-tight">
+                        {language === "mr" ? "श्री प्रतिष्ठान अधिकृत" : language === "hi" ? "श्री प्रतिष्ठान आधिकारिक" : "Shree Pratisthan Official"}
+                      </p>
+                      <p className="text-xs text-white/90 font-medium">{event.city}, {event.state || "Maharashtra"}</p>
+                    </div>
                   </div>
 
-                  {/* Photo 3 */}
-                  <div className="relative rounded-2xl sm:rounded-block overflow-hidden border border-black/5 dark:border-white/10 shadow-md bg-neutral-950 group select-none">
-                    <Image
-                      src={displayImages[2]}
-                      alt={`${event.title} moment 3`}
-                      fill
-                      sizes="(max-width: 768px) 50vw, 32vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
-                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
+                  {/* Right: Dot/Pill Indicators and Quick Selector */}
+                  <div className="flex items-center gap-2 self-center sm:self-auto bg-neutral-950/80 border border-white/15 px-3 py-1.5 rounded-full backdrop-blur-md shadow-lg">
+                    {displayImages.map((_, dotIdx) => {
+                      const isSelected = dotIdx === activeSlide;
+                      return (
+                        <button
+                          key={dotIdx}
+                          type="button"
+                          onClick={() => setActiveSlide(dotIdx)}
+                          aria-label={`Slide ${dotIdx + 1}`}
+                          className={cn(
+                            "h-2.5 rounded-full transition-all duration-300 focus:outline-none",
+                            isSelected 
+                              ? "w-8 bg-gradient-to-r from-saffron to-gold shadow-md shadow-saffron/50" 
+                              : "w-2.5 bg-white/40 hover:bg-white/75"
+                          )}
+                        />
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -545,18 +632,21 @@ export default function EventDetailContent({ event: rawEvent }: { event: EventIt
           <h2 className="text-2xl sm:text-2xl font-normal font-heading text-neutral-900 dark:text-neutral-100 uppercase tracking-tight">
             {t("eventsPage.detail.momentsGalleryTitle")}
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
               "/events/swarnagiri/swarnagiri-1.png",
-              "/events/swarnagiri/swarnagiri-3.png",
               "/events/swarnagiri/swarnagiri-2.png",
+              "/events/swarnagiri/swarnagiri-3.png",
+              "/events/swarnagiri/swarnagiri-4.png",
             ].map((img, idx) => (
-              <div key={idx} className="relative aspect-video w-full rounded-xl overflow-hidden border border-saffron/10 dark:border-white/10 shadow-xs group">
+              <div key={idx} className="relative aspect-video w-full rounded-xl overflow-hidden border border-saffron/15 dark:border-white/10 shadow-sm group">
                 <Image
                   src={img}
                   alt={`${event.title} photo ${idx + 1}`}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  unoptimized
+                  quality={100}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
