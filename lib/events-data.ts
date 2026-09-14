@@ -22,7 +22,7 @@ export interface EventPartner {
 
 export interface EventSponsor {
   name: string;
-  tier: "Title Sponsor" | "Gold Sponsor" | "Powered By" | "Associate Sponsor";
+  tier: "Title Sponsor" | "Gold Sponsor" | "Powered By" | "Associate Sponsor" | string;
   logo?: string;
 }
 
@@ -45,8 +45,8 @@ export interface EventItem {
   registrationStatus: "open" | "closing_soon" | "closed" | "free_entry";
   registrationOpenDate?: string;
   registrationCloseDate?: string;
-  eventMode: "In-Person" | "Virtual" | "Hybrid";
-  checkInMode: "QR Code Scan" | "Digital Pass" | "Free Open Gate";
+  eventMode: "In-Person" | "Virtual" | "Hybrid" | string;
+  checkInMode: "QR Code Scan" | "Digital Pass" | "Free Open Gate" | "QR Digital Pass" | string;
   date: string;
   time: string;
   startDate?: string;
@@ -63,6 +63,7 @@ export interface EventItem {
   country: string;
   location: string;
   mapUrl: string;
+  embedMapUrl?: string;
   mainImage: string;
   galleryImages: string[];
   promoVideoUrl?: string;
@@ -84,118 +85,50 @@ export interface EventItem {
 export const ALL_EVENTS: EventItem[] = [
   {
     id: "ganesh-utsav-2026",
-    title: "Shree Ganeshotsav Grand Celebration 2026 (श्री गणेशोत्सव)",
-    tagline: "10 Days of Devotion, Cultural Unity, and Grand Maha Aarti",
+    title: "Nashik Ganeshotsav 2026 – Swarnagiri Shri Venkateshwara Swamy Temple Replica",
+    tagline: "Celebrating its 20th grand year, Shri Pratishthan and Late Dharmaraj Badode Bahuuddeshiya Sevabhavi",
     category: "cultural",
     categoryLabel: "Cultural Festival",
-    status: "upcoming",
+    status: "active",
     registrationStatus: "open",
-    registrationOpenDate: "July 15, 2026",
-    registrationCloseDate: "August 25, 2026",
     eventMode: "In-Person",
-    checkInMode: "QR Code Scan",
-    venueName: "Shree Pratishtan Grand Pandal Arena",
-    addressLine1: "Central Grounds, Near Shree Ganesha Temple, Indira Nagar",
-    addressLine2: "Opp. City Park, Deepali Nagar Chowk",
+    checkInMode: "QR Digital Pass",
+    date: "Sep 14 – 26, 2026",
+    time: "06:00 AM – 11:00 AM",
+    startDate: "2026-09-14",
+    endDate: "2026-09-26",
+    capacity: 25000,
+    isCapacityFull: false,
+    waitlistEnabled: true,
+    venueName: "Anukamal Farm",
+    addressLine1: "Opposite Corporator Shyam Badode’s contact office and Gajanan Maharaj Temple",
+    addressLine2: "Wadala–Pathardi Road, Indira Nagar",
     city: "Nashik",
     state: "Maharashtra",
     postalCode: "422009",
     country: "India",
-    date: "Aug 27 – Sep 06, 2026",
-    time: "06:00 AM – 11:00 PM Daily",
-    startDate: "2026-08-27",
-    endDate: "2026-09-06",
-    capacity: 500,
-    isCapacityFull: false,
-    waitlistEnabled: true,
-    location: "Shree Pratishtan Mandal, Indira Nagar Ground, Nashik",
-    mapUrl: "https://maps.google.com/?q=Indira+Nagar+Nashik+Maharashtra",
-    mainImage: "/events_ganeshotsav_2024_jejuri.jpg",
+    location: "Anukamal Farm, Opposite Corporator Shyam Badode’s contact office and Gajanan Maharaj Temple, Wadala–Pathardi Road, Indira Nagar, Nashik, Maharashtra 422009",
+    mapUrl: "https://maps.app.goo.gl/BVYBW23Uj1vMnsHG8?g_st=ic",
+    embedMapUrl: "https://maps.google.com/maps?q=19.9650694,73.7800350&z=16&output=embed",
+    mainImage: "/events/swarnagiri/swarnagiri-1.png",
     galleryImages: [
-      "/events_ganeshotsav_2024_jejuri.jpg",
-      "/events_ganeshotsav_2023.jpg",
-      "/ganeshotsav_2017_jaipur.jpg",
+      "/events/swarnagiri/swarnagiri-3.png",
+      "/events/swarnagiri/swarnagiri-2.png",
+      "/events/swarnagiri/swarnagiri-1.png",
     ],
-    promoVideoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     description:
-      "Shree Pratisthan's signature annual festival uniting thousands of devotees across Indira Nagar and Nashik in traditional celebration, eco-friendly clay idol immersion, daily grand aarti, cultural plays, and hygienic Maha Prasad distribution.",
-    accessibilityInfo: [
-      "Dedicated Wheelchair Ramps at North & South Entrances",
-      "Reserved Senior Citizen Seating Row for Evening Maha Aarti",
-      "24/7 On-site First Aid Booth & Ambulance Staging Area",
-      "Free Purified Cold Drinking Water Stations throughout the arena",
-      "Braille & Signage Wayfinding with Volunteer Marshals",
-    ],
-    emergencyContactName: "Adv. Shyam Badode (Coordinator)",
+      "Celebrating its 20th grand year, Shri Pratishthan and Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha present Nashik Ganeshotsav 2026. \n\nThis year’s highlight is a grand, life-sized replica (Dekhava) of Telangana's iconic Swarnagiri Shri Venkateshwara Swamy Temple (Hyderabad). Entry is completely free for all devotees.",
+    accessibilityInfo: [],
+    emergencyContactName: "",
     emergencyContactPhone: "+91 9922786608",
-    partners: [
-      { name: "Nashik Municipal Corporation", role: "Civic & Safety Partner" },
-      { name: "Indira Nagar Welfare Trust", role: "Community Partner" },
-      { name: "Nashik Civil Hospital", role: "Medical Support Partner" },
-    ],
+    partners: [],
     sponsors: [
-      { name: "Badode Associates & Legal Counsel", tier: "Title Sponsor" },
-      { name: "Nashik City Infra Developers", tier: "Gold Sponsor" },
-      { name: "Maharashtra Gramin Bank", tier: "Powered By" },
+      { name: "Sham Badode", tier: "" },
     ],
-    customQuestions: [
-      {
-        id: "aarti_pass",
-        label: "Do you require Evening 108-Lamp Maha Aarti Reserved Pass?",
-        type: "select",
-        options: ["Yes, for family", "No, general darshan is fine"],
-        required: true,
-      },
-      {
-        id: "senior_citizen_support",
-        label: "Are you attending with Senior Citizens (wheelchair / seating assistance)?",
-        type: "select",
-        options: ["Yes, assistance required", "No assistance needed"],
-        required: false,
-      },
-      {
-        id: "dhol_tasha_participation",
-        label: "Interested in joining Shree Naad Dhol Tasha Troupe during Visarjan?",
-        type: "select",
-        options: ["Yes, I want to participate", "No, as spectator only"],
-        required: false,
-      },
-    ],
-    metrics: [
-      { label: "Expected Devotees", value: "50,000+" },
-      { label: "Volunteer Marshals", value: "100+ Organizers" },
-      { label: "Cultural Programs", value: "10 Days Drama & Music" },
-      { label: "Prasad Distributed", value: "25,000 Meals" },
-    ],
-    organizedDetails: [
-      {
-        heading: "Community Planning & Municipal Approvals",
-        content:
-          "Full planning coordinated with Nashik Municipal Corporation, police clearances, fire safety audits, and structural inspections of the central Pandal with backup generators.",
-      },
-      {
-        heading: "Eco-Friendly Shadu Clay Idol & Green Visarjan",
-        content:
-          "Continuing our environmental pledge, the central Bappa idol is sculpted using 100% natural eco-friendly clay (Shadu Mati) with organic colors, supported by artificial immersion tanks.",
-      },
-      {
-        heading: "Crowd Safety, CCTV Surveillance & Medical Booths",
-        content:
-          "24/7 CCTV surveillance connected to our Indira Nagar coordination desk ensures safety for senior citizens and families alongside first-aid stations staffed by doctors.",
-      },
-      {
-        heading: "Cultural Stages & Daily Maha Prasad Management",
-        content:
-          "Evenings feature traditional Maharashtrian devotional bhajans, Dhol Tasha rhythm, and youth performances with nutritious Maha Prasad served daily.",
-      },
-    ],
-    agenda: [
-      { time: "06:00 AM", title: "Prabhat Aarti & Morning Prayers", description: "Traditional morning prayers to commence the festival day." },
-      { time: "11:00 AM", title: "Eco-Workshop & Children's Activity", description: "Interactive clay modeling and cultural sessions for local school students." },
-      { time: "07:30 PM", title: "Grand Evening Maha Aarti", description: "Resonant 108-lamp aarti attended by community elders and youth." },
-      { time: "09:00 PM", title: "Cultural Drama & Dhol Tasha Recital", description: "Live stage performances celebrating Maharashtra's rich legacy." },
-    ],
-    organizerName: "Shree Pratishtan Utsav Samiti",
+    metrics: [],
+    organizedDetails: [],
+    agenda: [],
+    organizerName: "Shree Pratishtan",
     organizerPhone: "+91 9922786608",
     organizerEmail: "Info@shreepratishthan.com",
   },
@@ -813,6 +746,55 @@ export const ALL_EVENTS: EventItem[] = [
       { time: "05:00 PM", title: "Volunteer Debrief & Next Phase Planning", description: "Reviewing distribution logs and community feedback." },
     ],
     organizerName: "Shree Pratishtan Seva Cell",
+    organizerPhone: "+91 9922786608",
+    organizerEmail: "Info@shreepratishthan.com",
+  },
+  {
+    id: "nashik-ganeshotsav-2026-swarnagiri-shri-venkateshwara-swamy",
+    title: "Nashik Ganeshotsav 2026 – Swarnagiri Shri Venkateshwara Swamy Temple Replica",
+    tagline: "Celebrating its 20th grand year, Shri Pratishthan and Late Dharmaraj Badode Bahuuddeshiya Sevabhavi",
+    category: "cultural",
+    categoryLabel: "Cultural Festival",
+    status: "active",
+    registrationStatus: "open",
+    eventMode: "In-Person",
+    checkInMode: "QR Digital Pass",
+    date: "Sep 14 – 26, 2026",
+    time: "06:00 AM – 11:00 AM",
+    startDate: "2026-09-14",
+    endDate: "2026-09-26",
+    capacity: 25000,
+    isCapacityFull: false,
+    waitlistEnabled: true,
+    venueName: "Anukamal Farm",
+    addressLine1: "Opposite Corporator Shyam Badode’s contact office and Gajanan Maharaj Temple",
+    addressLine2: "Wadala–Pathardi Road, Indira Nagar",
+    city: "Nashik",
+    state: "Maharashtra",
+    postalCode: "422009",
+    country: "India",
+    location: "Anukamal Farm, Opposite Corporator Shyam Badode’s contact office and Gajanan Maharaj Temple, Wadala–Pathardi Road, Indira Nagar, Nashik, Maharashtra 422009",
+    mapUrl: "https://maps.app.goo.gl/BVYBW23Uj1vMnsHG8?g_st=ic",
+    embedMapUrl: "https://maps.google.com/maps?q=19.9650694,73.7800350&z=16&output=embed",
+    mainImage: "/events/swarnagiri/swarnagiri-1.png",
+    galleryImages: [
+      "/events/swarnagiri/swarnagiri-3.png",
+      "/events/swarnagiri/swarnagiri-2.png",
+      "/events/swarnagiri/swarnagiri-1.png",
+    ],
+    description:
+      "Celebrating its 20th grand year, Shri Pratishthan and Late Dharmaraj Badode Bahuuddeshiya Sevabhavi Sanstha present Nashik Ganeshotsav 2026. \n\nThis year’s highlight is a grand, life-sized replica (Dekhava) of Telangana's iconic Swarnagiri Shri Venkateshwara Swamy Temple (Hyderabad). Entry is completely free for all devotees.",
+    accessibilityInfo: [],
+    emergencyContactName: "",
+    emergencyContactPhone: "+91 9922786608",
+    partners: [],
+    sponsors: [
+      { name: "Sham Badode", tier: "" },
+    ],
+    metrics: [],
+    organizedDetails: [],
+    agenda: [],
+    organizerName: "Shree Pratishtan",
     organizerPhone: "+91 9922786608",
     organizerEmail: "Info@shreepratishthan.com",
   },
