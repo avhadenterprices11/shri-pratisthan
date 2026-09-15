@@ -177,6 +177,9 @@ export const eventBookingSchema = z.object({
   ticketPrice: z.number().optional(),
   promoCode: z.string().optional(),
   selectedAddons: z.record(z.string(), z.number()).optional(),
+
+  // Dynamic Custom Questions Answers
+  customAnswers: z.record(z.string(), z.union([z.string(), z.boolean()])).optional(),
 });
 
 export type VolunteerInput = z.infer<typeof volunteerSchema>;

@@ -1,26 +1,29 @@
 "use client";
 
 import React from "react";
-import { Check, User, Calendar, MapPin, ClipboardCheck, CreditCard } from "lucide-react";
+import { Check, User, Calendar, ClipboardCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface StepProgressProps {
-  currentStep: number; // 1 to 3
+  currentStep: number;
   onStepClick: (step: number) => void;
   maxStepReached: number;
 }
-
-const STEPS = [
-  { id: 1, label: "Personal Info", icon: User },
-  { id: 2, label: "Booking Slot", icon: Calendar },
-  { id: 3, label: "Review & Confirm", icon: ClipboardCheck },
-];
 
 export default function StepProgress({
   currentStep,
   onStepClick,
   maxStepReached,
 }: StepProgressProps) {
+  const { t } = useLanguage();
+
+  const STEPS = [
+    { id: 1, label: t("eventsPage.booking.step1"), icon: User },
+    { id: 2, label: t("eventsPage.booking.step2"), icon: Calendar },
+    { id: 3, label: t("eventsPage.booking.step3"), icon: ClipboardCheck },
+  ];
+
   return (
     <div className="w-full max-w-4xl mx-auto mb-10 px-2">
       {/* Progress Bar Header */}
@@ -28,9 +31,9 @@ export default function StepProgress({
         {/* Connection Line */}
         <div className="absolute top-1/2 left-4 right-4 -translate-y-1/2 h-1 bg-neutral-200 dark:bg-neutral-800 -z-10 rounded-full">
           <div
-            className="h-full bg-gradient-to-r from-saffron via-marigold to-saffron transition-all duration-500 rounded-full"
+            className="h-full bg-gradient-to-r from-saffron via-gold to-saffron transition-all duration-500 rounded-full"
             style={{
-              width: `${((Math.min(currentStep, 5) - 1) / (STEPS.length - 1)) * 100}%`,
+              width: `${((Math.min(currentStep, 3) - 1) / (STEPS.length - 1)) * 100}%`,
             }}
           />
         </div>
@@ -59,8 +62,8 @@ export default function StepProgress({
                   isCompleted
                     ? "bg-saffron text-white border-saffron shadow-saffron/20 scale-100"
                     : isCurrent
-                    ? "bg-white text-saffron border-saffron ring-4 ring-saffron/15 scale-110 shadow-lg"
-                    : "bg-white text-neutral-400 border-neutral-300"
+                    ? "bg-white dark:bg-[#121214] text-saffron border-saffron ring-4 ring-saffron/15 scale-110 shadow-lg"
+                    : "bg-white dark:bg-[#121214] text-neutral-400 dark:text-neutral-500 border-neutral-300 dark:border-white/10"
                 )}
               >
                 {isCompleted ? (
@@ -73,16 +76,15 @@ export default function StepProgress({
               {/* Step Label */}
               <span
                 className={cn(
-                  "mt-2 text-[10px] md:text-xs font-semibold tracking-wide transition-colors duration-300 text-center max-w-[70px] md:max-w-none",
+                  "mt-2 text-[10px] md:text-xs font-semibold tracking-wide transition-colors duration-300 text-center max-w-[90px] md:max-w-none font-sans",
                   isCurrent
                     ? "text-saffron font-bold"
                     : isCompleted
-                    ? "text-neutral-800 font-medium"
-                    : "text-neutral-400"
+                    ? "text-neutral-800 dark:text-neutral-200 font-medium"
+                    : "text-neutral-400 dark:text-neutral-500"
                 )}
               >
-                Step {step.id}
-                <span className="hidden sm:inline"> • {step.label}</span>
+                {step.label}
               </span>
             </button>
           );

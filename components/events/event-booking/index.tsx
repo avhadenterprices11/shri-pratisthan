@@ -1,20 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import StepProgress from "./step-progress";
 import StepPersonal from "./step-personal";
 import StepEvent from "./step-event";
 import StepReview from "./step-review";
 import StepPaymentConfirmation from "./step-payment-confirmation";
 import { EventBookingInput } from "@/lib/validations";
-import { 
-  createEventBooking, 
-  confirmEventBooking, 
-  BookingResponse, 
-  IssuedTicketData, 
-  CreateBookingPayload 
+import {
+  createEventBooking,
+  confirmEventBooking,
+  BookingResponse,
+  IssuedTicketData,
+  CreateBookingPayload
 } from "@/lib/api/bookings";
 import { ALL_EVENTS } from "@/lib/events-data";
+import { getEventById } from "@/lib/events-data";
+import { useLanguage } from "@/context/LanguageContext";
 
 const initialFormData: Partial<EventBookingInput> = {
   fullName: "",
@@ -59,7 +62,11 @@ const initialFormData: Partial<EventBookingInput> = {
   selectedAddons: {},
 };
 
-export default function EventBookingContainer() {
+function EventBookingContent() {
+  const { t } = useLanguage();
+  const searchParams = useSearchParams();
+  const eventParam = searchParams?.get("event");
+
   const [currentStep, setCurrentStep] = useState(1);
   const [maxStepReached, setMaxStepReached] = useState(1);
   const [formData, setFormData] = useState<Partial<EventBookingInput>>(initialFormData);
@@ -80,6 +87,20 @@ export default function EventBookingContainer() {
       }
     }
   }, []);
+
+  // Sync eventId from URL if available
+  useEffect(() => {
+    if (eventParam) {
+      const matched = getEventById(eventParam);
+      if (matched) {
+        setFormData((prev) => ({
+          ...prev,
+          eventId: matched.id,
+          dateOfBirth: matched.startDate || prev.dateOfBirth,
+        }));
+      }
+    }
+  }, [eventParam]);
 
   const updateFields = (fields: Partial<EventBookingInput>) => {
     setFormData((prev) => ({ ...prev, ...fields }));
@@ -106,13 +127,24 @@ export default function EventBookingContainer() {
       }
       if (!formData.streetArea || formData.streetArea.trim().length < 3) {
         newErrors.streetArea = "Please enter your residential area / address in Nashik.";
+        newErrors.streetArea = "Please enter your residential address.";
+      }
+
+      // Validate required custom questions if configured
+      const activeEvent = getEventById(formData.eventId || "ganesh-utsav-2026");
+      if (activeEvent?.customQuestions) {
+        activeEvent.customQuestions.forEach((q) => {
+          if (q.required && (!formData.customAnswers || !formData.customAnswers[q.id])) {
+            newErrors[`custom_${q.id}`] = `Please answer "${q.label}".`;
+          }
+        });
       }
     } else if (step === 2) {
       if (!formData.eventId) {
-        newErrors.eventId = "Please select a festival or event.";
+        newErrors.eventId = "Please select an event.";
       }
       if (!formData.dateOfBirth) {
-        newErrors.dateOfBirth = "Please select a date on the calendar.";
+        newErrors.dateOfBirth = "Please select an attendance date.";
       }
       if (!formData.preferredTimeSlot) {
         newErrors.preferredTimeSlot = "Please choose a time slot.";
@@ -263,8 +295,8 @@ export default function EventBookingContainer() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto space-y-8">
-      {/* Render 3-Step Progress indicator during Steps 1 to 3 */}
+    <div className="w-full max-w-7xl mx-auto space-y-8 select-none">
+      {/* 3-Step Progress indicator during Steps 1 to 3 */}
       {currentStep <= 3 && (
         <StepProgress
           currentStep={currentStep}
@@ -273,7 +305,7 @@ export default function EventBookingContainer() {
         />
       )}
 
-      {/* When Confirmed (Step > 3), Render Full-Width Pass & Confirmation Screen */}
+      {/* Confirmation Pass Screen (Triggered upon completing Step 3) */}
       {currentStep > 3 ? (
         <StepPaymentConfirmation
           formData={formData}
@@ -290,39 +322,50 @@ export default function EventBookingContainer() {
               {errors.submit}
             </div>
           )}
+        /* Form Steps 1-3 Glassmorphic Panel */
+          <div className="glass-panel p-6 sm:p-10 md:p-12 rounded-block border border-saffron/20 dark:border-white/10 bg-white/85 dark:bg-[#121214] shadow-xl relative overflow-hidden max-w-5xl mx-auto">
+            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-saffron via-gold to-saffron" />
 
-          {currentStep === 1 && (
-            <StepPersonal
-              formData={formData}
-              updateFields={updateFields}
-              errors={errors}
-              onNext={handleNext}
-            />
-          )}
+            {currentStep === 1 && (
+              <StepPersonal
+                formData={formData}
+                updateFields={updateFields}
+                errors={errors}
+                onNext={handleNext}
+              />
+            )}
 
-          {currentStep === 2 && (
-            <StepEvent
-              formData={formData}
-              updateFields={updateFields}
-              errors={errors}
-              onNext={handleNext}
-              onBack={handleBack}
-            />
-          )}
+            {currentStep === 2 && (
+              <StepEvent
+                formData={formData}
+                updateFields={updateFields}
+                errors={errors}
+                onNext={handleNext}
+                onBack={handleBack}
+              />
+            )}
 
-          {currentStep === 3 && (
-            <StepReview
-              formData={formData}
-              updateFields={updateFields}
-              errors={errors}
-              isSubmitting={isSubmitting}
-              onJumpToStep={handleJumpToStep}
-              onSubmit={handleSubmitBooking}
-              onBack={handleBack}
-            />
-          )}
-        </div>
+            {currentStep === 3 && (
+              <StepReview
+                formData={formData}
+                updateFields={updateFields}
+                errors={errors}
+                isSubmitting={isSubmitting}
+                onJumpToStep={handleJumpToStep}
+                onSubmit={handleSubmitBooking}
+                onBack={handleBack}
+              />
+            )}
+          </div>
       )}
-    </div>
-  );
+        </div>
+      );
+}
+
+      export default function EventBookingContainer() {
+  return (
+      <Suspense fallback={<div className="text-center py-12 text-slate-500 font-sans">Loading booking portal...</div>}>
+        <EventBookingContent />
+      </Suspense>
+      );
 }

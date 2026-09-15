@@ -27,11 +27,11 @@ export default function StepAddress({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="border-b border-neutral-200 pb-4 mb-6">
-        <h3 className="text-xl md:text-2xl font-bold font-heading text-neutral-900 flex items-center gap-2">
+        <h3 className="text-lg md:text-2xl font-bold font-heading text-neutral-900 flex items-center gap-2">
           <MapPin className="w-6 h-6 text-saffron" />
           Step 3: Address Details
         </h3>
-        <p className="text-sm text-neutral-600 mt-1">
+        <p className="text-base text-neutral-600 mt-1">
           Provide your residential address for pass allocation and local coordinator dispatch.
         </p>
       </div>
@@ -192,18 +192,18 @@ export default function StepAddress({
       </div>
 
       {/* Navigation Buttons */}
-      <div className="flex items-center justify-between pt-4">
+      <div className="flex items-center justify-between gap-3 sm:gap-4 pt-4">
         <button
           type="button"
           onClick={onBack}
-          className="px-6 py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold text-sm uppercase rounded-xl transition-all cursor-pointer"
+          className="px-3.5 sm:px-6 py-2.5 sm:py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-bold text-[11px] sm:text-sm uppercase rounded-xl transition-all cursor-pointer shrink-0 whitespace-nowrap"
         >
           &larr; Back
         </button>
 
         <button
           type="submit"
-          className="px-8 py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-sm tracking-wider uppercase rounded-xl shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer"
+          className="px-4 sm:px-8 py-2.5 sm:py-3.5 bg-saffron hover:bg-saffron/90 text-white font-bold text-[11px] sm:text-sm tracking-wider uppercase rounded-xl shadow-lg hover:shadow-saffron/25 transition-all duration-300 cursor-pointer shrink-0 whitespace-nowrap text-center"
         >
           Next: Review & Terms &rarr;
         </button>

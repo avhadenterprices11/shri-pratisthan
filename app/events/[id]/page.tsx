@@ -5,14 +5,26 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getEventById, ALL_EVENTS } from "@/lib/events-data";
 import { fetchEvents, fetchEventByIdOrSlug } from "@/lib/api/events";
-import { 
-  ArrowLeft, 
-  Calendar, 
-  MapPin, 
-  Clock, 
-  Ticket, 
-  PhoneCall, 
+import {
+  ArrowLeft,
+  Calendar,
+  MapPin,
+  Clock,
+  Ticket,
+  PhoneCall,
   ExternalLink,
+  ShieldCheck,
+  HeartHandshake,
+  Award,
+  Video,
+  AlertCircle,
+  Building2,
+  QrCode,
+  Sparkles,
+  Mail,
+  CheckCircle2,
+  ChevronRight,
+  Compass
   Info,
   Users,
   Tag,
@@ -39,7 +51,7 @@ export async function generateStaticParams() {
     const { events } = await fetchEvents({ pageSize: 100 });
     const dynamicIds = events.map((e) => ({ id: e.id }));
     const staticIds = ALL_EVENTS.map((e) => ({ id: e.id }));
-    
+
     // Combine and deduplicate IDs
     const allIds = Array.from(new Set([...dynamicIds.map(d => d.id), ...staticIds.map(s => s.id)]));
     return allIds.map(id => ({ id }));
@@ -85,6 +97,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: canonicalUrl,
     },
     openGraph: {
+      title: `${event.title} | Shree Pratishtan (श्री प्रतिष्ठान)`,
+      description: event.description,
+      url: `https://www.shreepratishthan.org/events/${event.id}`,
+      images: [{ url: event.mainImage, width: 1200, height: 630, alt: event.title }],
       title: pageTitle,
       description: pageDescription,
       url: canonicalUrl,
@@ -111,6 +127,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+import EventDetailContent from "@/components/events/event-detail-content";
+
 export default async function EventDetailPage({ params }: PageProps) {
   const { id } = await params;
   const event = (await fetchEventByIdOrSlug(id)) || getEventById(id);
@@ -133,31 +151,31 @@ export default async function EventDetailPage({ params }: PageProps) {
     "url": canonicalUrl,
     "startDate": event.rawStartDate || new Date().toISOString(),
     "endDate": event.rawEndDate || new Date().toISOString(),
-    "eventStatus": event.status === "completed" 
-      ? "https://schema.org/EventMovedOnline" 
+    "eventStatus": event.status === "completed"
+      ? "https://schema.org/EventMovedOnline"
       : "https://schema.org/EventScheduled",
     "eventAttendanceMode": event.mode === "online"
       ? "https://schema.org/OnlineEventAttendanceMode"
       : event.mode === "hybrid"
-      ? "https://schema.org/MixedEventAttendanceMode"
-      : "https://schema.org/OfflineEventAttendanceMode",
-    "location": event.mode === "online" 
+        ? "https://schema.org/MixedEventAttendanceMode"
+        : "https://schema.org/OfflineEventAttendanceMode",
+    "location": event.mode === "online"
       ? {
-          "@type": "VirtualLocation",
-          "url": event.meetingUrl || canonicalUrl,
-        }
+        "@type": "VirtualLocation",
+        "url": event.meetingUrl || canonicalUrl,
+      }
       : {
-          "@type": "Place",
-          "name": event.venueName || event.location,
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": event.address || event.location,
-            "addressLocality": event.city || "Nashik",
-            "addressRegion": event.state || "Maharashtra",
-            "postalCode": event.zipCode || "",
-            "addressCountry": event.country || "IN",
-          },
+        "@type": "Place",
+        "name": event.venueName || event.location,
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": event.address || event.location,
+          "addressLocality": event.city || "Nashik",
+          "addressRegion": event.state || "Maharashtra",
+          "postalCode": event.zipCode || "",
+          "addressCountry": event.country || "IN",
         },
+      },
     "image": [
       fullImageUrl,
       ...(event.galleryImages || []).map((img) =>
@@ -176,13 +194,14 @@ export default async function EventDetailPage({ params }: PageProps) {
       "url": canonicalUrl,
       "price": "0",
       "priceCurrency": "INR",
-      "availability": event.status === "completed" 
-        ? "https://schema.org/SoldOut" 
+      "availability": event.status === "completed"
+        ? "https://schema.org/SoldOut"
         : "https://schema.org/InStock",
       "validFrom": event.rawStartDate || new Date().toISOString(),
     },
   };
 
+  return <EventDetailContent event={event} />;
   return (
     <>
       {/* Schema.org Structured Data */}
@@ -211,7 +230,7 @@ export default async function EventDetailPage({ params }: PageProps) {
           {/* Main Showcase Hero Panel */}
           <div className="glass-panel p-6 sm:p-10 lg:p-12 rounded-3xl border border-saffron/20 relative overflow-hidden bg-white/80 shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-              
+
               {/* Left Column: Image / Media Showcase */}
               <div className="lg:col-span-7 space-y-4">
                 <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-saffron/15 shadow-md bg-neutral-100 group">
@@ -229,7 +248,7 @@ export default async function EventDetailPage({ params }: PageProps) {
                     <span className="inline-flex items-center bg-saffron text-white font-extrabold text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
                       {event.categoryLabel}
                     </span>
-                    
+
                     {/* Event Mode Badge */}
                     <span className="inline-flex items-center gap-1 bg-slate-900/90 text-white backdrop-blur-md font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md border border-white/10">
                       {event.mode === "online" ? (
@@ -249,19 +268,18 @@ export default async function EventDetailPage({ params }: PageProps) {
 
                     {/* Status Badge */}
                     <span
-                      className={`inline-flex items-center font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md ${
-                        event.status === "upcoming"
+                      className={`inline-flex items-center font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md ${event.status === "upcoming"
                           ? "bg-emerald-600 text-white"
                           : event.status === "active"
-                          ? "bg-amber-500 text-white animate-pulse"
-                          : "bg-neutral-800 text-neutral-200"
-                      }`}
+                            ? "bg-amber-500 text-white animate-pulse"
+                            : "bg-neutral-800 text-neutral-200"
+                        }`}
                     >
                       {event.status === "upcoming"
                         ? "Upcoming Event"
                         : event.status === "active"
-                        ? "Happening Now"
-                        : "Completed Archive"}
+                          ? "Happening Now"
+                          : "Completed Archive"}
                     </span>
                   </div>
                 </div>
@@ -306,10 +324,10 @@ export default async function EventDetailPage({ params }: PageProps) {
                     {event.regEndAt
                       ? `Closes on ${new Date(event.regEndAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`
                       : event.id === "ganesh-utsav-2026"
-                      ? "Closes on August 25, 2026"
-                      : event.date
-                      ? `Closes prior to ${event.date.split("–")[0].trim()}`
-                      : "Closes prior to event start"}
+                        ? "Closes on August 25, 2026"
+                        : event.date
+                          ? `Closes prior to ${event.date.split("–")[0].trim()}`
+                          : "Closes prior to event start"}
                   </span>
                 </div>
 
